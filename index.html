@@ -1328,6 +1328,19 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
         animation-iteration-count: 1 !important;
       }
     }
+    .brand-logo {
+  display: block;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
   </style>
 </head>
 <body>
@@ -1335,10 +1348,11 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
   <header class="site-header">
     <div class="container">
       <nav class="nav" aria-label="Main navigation">
-    <a href="#" class="brand" aria-label="ARTHNIX home">
-      <span class="brand-mark">A</span>
-      <span class="brand-name">ARTHNIX</span>
-    </a>
+  <a class="brand" href="index.html" aria-label="ARTHNIX home">
+  <img class="brand-logo" src="/logo.svg" alt="ARTHNIX logo">
+  <span class="brand-name">ARTHNIX</span>
+
+</a>
     <div class="nav-links" id="navLinks">
       <a href="#tools">Free Tools</a>
       <a href="#platform">Platform</a>
