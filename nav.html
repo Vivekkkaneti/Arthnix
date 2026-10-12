@@ -1,0 +1,410 @@
+<!-- =========================================================
+     ARTHNIX — Shared Navigation
+     File: nav.html
+     Design:
+     Background: #090909
+     Accent:     #ED3434
+     Font:       Manrope
+     Requirements:
+     - Include this fragment in each page.
+     - Load pages.css for shared styling.
+     - Initialize the mobile menu after inserting this fragment.
+     ========================================================= -->
+<header class="site-header" id="siteHeader">
+  <nav class="navbar" aria-label="Main navigation">
+    <!-- Brand -->
+    <a class="brand" href="index.html" aria-label="ARTHNIX home">
+      <img
+        class="brand-logo"
+        src="/logo.svg"
+        alt=""
+        width="38"
+        height="38"
+      >
+      <span class="brand-name">ARTHNIX</span>
+    </a>
+    <!-- Navigation links -->
+    <div class="nav-links" id="navLinks">
+      <a href="tools.html">Free Tools</a>
+      <a href="index.html#platform">Platform</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <!-- Primary action -->
+    <a class="nav-cta" href="pricing.html">
+      <span>Start Free</span>
+      <span class="nav-cta-icon" aria-hidden="true">↗</span>
+    </a>
+    <!-- Mobile menu toggle -->
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="navLinks"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+<style>
+  /* =========================================================
+     ARTHNIX NAVBAR
+     Self-contained styles so the navbar remains consistent
+     when this fragment is included on different pages.
+     ========================================================= */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: #090909;
+    border-bottom: 1px solid #292929;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+  .site-header,
+  .site-header * {
+    box-sizing: border-box;
+  }
+  .navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    width: min(1200px, calc(100% - 64px));
+    min-height: 76px;
+    margin: 0 auto;
+  }
+  /* Brand */
+  .site-header .brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .site-header .brand-logo {
+    display: block;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .site-header .brand-name {
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.8px;
+  }
+  /* Desktop navigation */
+  .site-header .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 27px;
+  }
+  .site-header .nav-links a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    color: #bcbcbc;
+    font-family: "Manrope", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 180ms ease;
+  }
+  .site-header .nav-links a:hover,
+  .site-header .nav-links a:focus-visible {
+    color: #ed3434;
+  }
+  .site-header .nav-links a:focus-visible,
+  .site-header .nav-cta:focus-visible,
+  .site-header .menu-toggle:focus-visible,
+  .site-header .brand:focus-visible {
+    outline: 2px solid #ed3434;
+    outline-offset: 4px;
+  }
+  /* Primary CTA */
+  .site-header .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    gap: 8px;
+    min-height: 40px;
+    padding: 0 16px;
+    border: 1px solid #ed3434;
+    border-radius: 7px;
+    background: #ed3434;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease;
+  }
+  .site-header .nav-cta:hover {
+    border-color: #d92727;
+    background: #d92727;
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+  .site-header .nav-cta-icon {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1;
+    transition: transform 180ms ease;
+  }
+  .site-header .nav-cta:hover .nav-cta-icon {
+    transform: translate(2px, -2px);
+  }
+  /* Mobile menu button — hidden on desktop */
+  .site-header .menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid #353535;
+    border-radius: 7px;
+    background: #111111;
+    cursor: pointer;
+  }
+  .site-header .menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: #ffffff;
+    transition:
+      transform 180ms ease,
+      opacity 180ms ease;
+  }
+  /* Tablet */
+  @media (max-width: 1050px) {
+    .navbar {
+      width: calc(100% - 40px);
+      gap: 18px;
+    }
+    .site-header .nav-links {
+      gap: 18px;
+    }
+    .site-header .nav-links a {
+      font-size: 12px;
+    }
+  }
+  /* Mobile */
+  @media (max-width: 780px) {
+    .navbar {
+      width: calc(100% - 36px);
+      min-height: 68px;
+      gap: 10px;
+    }
+    .site-header .brand {
+      gap: 8px;
+    }
+    .site-header .brand-logo {
+      width: 31px;
+      height: 31px;
+    }
+    .site-header .brand-name {
+      font-size: 17px;
+      letter-spacing: -0.5px;
+    }
+    .site-header .nav-cta {
+      min-height: 37px;
+      margin-left: auto;
+      padding: 0 12px;
+      font-size: 11px;
+    }
+    .site-header .menu-toggle {
+      display: flex;
+    }
+    .site-header .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+      display: none;
+      align-items: stretch;
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 14px 14px;
+      border: 1px solid #292929;
+      border-top: 0;
+      border-radius: 0 0 10px 10px;
+      background: #090909;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+    }
+    .site-header .nav-links.is-open {
+      display: flex;
+    }
+    .site-header .nav-links a {
+      display: flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 12px 4px;
+      border-bottom: 1px solid #242424;
+      color: #dedede;
+      font-size: 13px;
+      white-space: normal;
+    }
+    .site-header .nav-links a:last-child {
+      border-bottom: 0;
+    }
+    .site-header .nav-links a:hover,
+    .site-header .nav-links a:focus-visible {
+      color: #ed3434;
+    }
+  }
+  /* Small phones */
+  @media (max-width: 380px) {
+    .navbar {
+      width: calc(100% - 24px);
+      gap: 7px;
+    }
+    .site-header .brand {
+      gap: 6px;
+    }
+    .site-header .brand-logo {
+      width: 27px;
+      height: 27px;
+    }
+    .site-header .brand-name {
+      font-size: 15px;
+      letter-spacing: -0.5px;
+    }
+    .site-header .nav-cta {
+      min-height: 35px;
+      padding: 0 9px;
+      font-size: 10px;
+    }
+    .site-header .nav-cta-icon {
+      font-size: 13px;
+    }
+    .site-header .menu-toggle {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  /* Respect reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .site-header *,
+    .site-header *::before,
+    .site-header *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+</style>
+<script>
+  /*
+   * Mobile navigation initializer.
+   *
+   * This script supports both:
+   * 1. A navbar included before this script runs.
+   * 2. A navbar inserted dynamically by a shared component loader.
+   *
+   * The data attribute prevents duplicate event listeners.
+   */
+  (() => {
+    function initializeArthnixNav() {
+      const header = document.getElementById("siteHeader");
+      if (!header || header.dataset.navInitialized === "true") {
+        return;
+      }
+      const menuButton = header.querySelector("#menuToggle");
+      const navLinks = header.querySelector("#navLinks");
+      if (!menuButton || !navLinks) {
+        return;
+      }
+      header.dataset.navInitialized = "true";
+      const menuLines = menuButton.querySelectorAll("span");
+      function setMenuState(isOpen) {
+        navLinks.classList.toggle("is-open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        if (menuLines.length >= 2) {
+          menuLines[0].style.transform = isOpen
+            ? "translateY(3.5px) rotate(45deg)"
+            : "";
+          menuLines[1].style.transform = isOpen
+            ? "translateY(-3.5px) rotate(-45deg)"
+            : "";
+        }
+      }
+      menuButton.addEventListener("click", () => {
+        const isOpen =
+          menuButton.getAttribute("aria-expanded") !== "true";
+        setMenuState(isOpen);
+      });
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          setMenuState(false);
+        });
+      });
+      document.addEventListener("click", (event) => {
+        if (
+          navLinks.classList.contains("is-open") &&
+          !header.contains(event.target)
+        ) {
+          setMenuState(false);
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" &&
+            navLinks.classList.contains("is-open")) {
+          setMenuState(false);
+          menuButton.focus();
+        }
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 780) {
+          setMenuState(false);
+        }
+      });
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener(
+        "DOMContentLoaded",
+        initializeArthnixNav,
+        { once: true }
+      );
+    } else {
+      initializeArthnixNav();
+    }
+    /*
+     * If another script inserts nav.html after this script executes,
+     * the component loader should call:
+     * window.initializeArthnixNav()
+     */
+    window.initializeArthnixNav = initializeArthnixNav;
+  })();
+</script>
