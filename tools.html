@@ -45,7 +45,6 @@
     /* =====================================================
        ARTHNIX — TOOLS DIRECTORY
        Shared navigation/footer are loaded through components.js.
-       Typography and layout follow index.html.
        ===================================================== */
 
     :root {
@@ -119,7 +118,6 @@
 
     /* =====================================================
        HERO
-       Black background, matching the homepage hero.
        ===================================================== */
 
     .tools-hero {
@@ -329,16 +327,11 @@
        ===================================================== */
 
     .tools-category-bar {
-position: relative;
-z-index: 1;
-border-bottom: 1px solid var(–tools-border);
-background: #ffffff;
-}
-    .tools-category-bar {
-
-  top: 68px;
-
-}
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px solid var(--tools-border);
+      background: #ffffff;
+    }
 
     .tools-category-inner {
       display: flex;
@@ -538,19 +531,35 @@ background: #ffffff;
       font-weight: 600;
     }
 
+    /* Enhanced category headings */
+
     .tool-category-header h3 {
-      margin: 1px 0 0;
+      display: inline-block;
+      position: relative;
+      margin: 0;
+      padding-bottom: 8px;
+      color: var(--tools-red);
       font-family: "Manrope", sans-serif;
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 24px;
+      font-weight: 800;
       line-height: 1.35;
       letter-spacing: -0.7px;
     }
 
+    .tool-category-header h3::after {
+      display: block;
+      width: 42px;
+      height: 3px;
+      margin-top: 7px;
+      border-radius: 3px;
+      background: var(--tools-red);
+      content: "";
+    }
+
     .tool-category-header p {
       max-width: 570px;
-      margin: 6px 0 0;
-      color: var(--tools-muted);
+      margin: 5px 0 0;
+      color: #666666;
       font-size: 12px;
       line-height: 1.8;
     }
@@ -1193,8 +1202,14 @@ background: #ffffff;
       }
 
       .tool-category-header h3 {
-        font-size: 18px;
+        font-size: 21px;
         letter-spacing: -0.5px;
+      }
+
+      .tool-category-header h3::after {
+        width: 36px;
+        height: 3px;
+        margin-top: 6px;
       }
 
       .tool-category-header p {
@@ -1277,9 +1292,7 @@ background: #ffffff;
 
   <main>
 
-    <!-- ===================================================
-         HERO
-         =================================================== -->
+    <!-- HERO -->
 
     <section class="tools-hero" aria-labelledby="toolsHeroTitle">
       <div class="tools-container">
@@ -1339,9 +1352,7 @@ background: #ffffff;
       </div>
     </section>
 
-    <!-- ===================================================
-         CATEGORY NAVIGATION
-         =================================================== -->
+    <!-- CATEGORY NAVIGATION -->
 
     <nav class="tools-category-bar" aria-label="Tool categories">
       <div class="tools-container">
@@ -1381,9 +1392,7 @@ background: #ffffff;
       </div>
     </nav>
 
-    <!-- ===================================================
-         TOOL DIRECTORY
-         =================================================== -->
+    <!-- TOOL DIRECTORY -->
 
     <section class="tools-directory" id="all-tools">
       <div class="tools-container">
@@ -1427,7 +1436,7 @@ background: #ffffff;
               <div class="tool-category-icon" aria-hidden="true">₹</div>
 
               <div>
-                <span style="color: #ed3434"><h3 id="gstBillingTitle">GST &amp; Billing</h3></span>
+                <h3 id="gstBillingTitle">GST &amp; Billing</h3>
                 <p>
                   Calculate taxes, prepare invoices, and organize
                   essential billing details.
@@ -1573,7 +1582,7 @@ background: #ffffff;
               <div class="tool-category-icon" aria-hidden="true">▥</div>
 
               <div>
-                <span style="color: #ed3434"><h3 id="payrollHrTitle">Payroll &amp; HR</h3></span>
+                <h3 id="payrollHrTitle">Payroll &amp; HR</h3>
                 <p>
                   Work out salary rates, track attendance, estimate
                   payroll values, and simplify everyday HR calculations.
@@ -1986,9 +1995,7 @@ background: #ffffff;
       </div>
     </section>
 
-    <!-- ===================================================
-         BOTTOM CTA
-         =================================================== -->
+    <!-- BOTTOM CTA -->
 
     <section class="tools-bottom-cta">
       <div class="tools-container">
@@ -2042,15 +2049,15 @@ background: #ffffff;
 
       const searchForm = document.getElementById("toolsSearchForm");
       const searchInput = document.getElementById("toolsSearchInput");
+
       const categoryLinks = Array.from(
         document.querySelectorAll("[data-category-link]")
       );
+
       const categories = Array.from(
         document.querySelectorAll(".tool-category[data-category]")
       );
-      const cards = Array.from(
-        document.querySelectorAll("[data-tool]")
-      );
+
       const resultsCount = document.getElementById("toolsResultCount");
       const noResults = document.getElementById("toolsNoResults");
       const resetButton = document.getElementById("toolsResetButton");
@@ -2118,6 +2125,7 @@ background: #ffffff;
 
         categories.forEach((categorySection) => {
           const categoryName = categorySection.dataset.category;
+
           const categoryAllowed =
             activeCategory === "all" ||
             activeCategory === categoryName;
@@ -2129,7 +2137,8 @@ background: #ffffff;
           let visibleInCategory = 0;
 
           categoryCards.forEach((card) => {
-            const matches = categoryAllowed &&
+            const matches =
+              categoryAllowed &&
               cardMatchesSearch(card, query);
 
             card.hidden = !matches;
@@ -2148,7 +2157,8 @@ background: #ffffff;
           activeCategory === "all" ||
           activeCategory === "ai-generation";
 
-        const aiMatches = !query ||
+        const aiMatches =
+          !query ||
           normalize(aiSection.textContent).includes(query);
 
         aiSection.hidden = !(aiAllowed && aiMatches);
@@ -2170,16 +2180,8 @@ background: #ffffff;
           activeCategory = "all";
 
           categoryLinks.forEach((link) => {
-            const isActive =
-              link.dataset.categoryLink === "gst-billing";
-
             link.classList.remove("is-active");
             link.removeAttribute("aria-current");
-
-            if (isActive && !searchInput.value.trim()) {
-              link.classList.add("is-active");
-              link.setAttribute("aria-current", "location");
-            }
           });
         }
 
