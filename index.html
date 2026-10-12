@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARTHNIX — Intelligence for Every Business</title>
-
-<meta
-name=“description”
-content=“Create invoices, manage inventory, track sales, and simplify everyday business operations with ARTHNIX — intelligence for every business.”
-
+  <meta
+    name="description"
+    content="Create invoices, manage inventory, track sales, and simplify everyday business operations with ARTHNIX — intelligence for every business."
+  >
   <meta name="theme-color" content="#090909">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
   <style>
@@ -169,170 +168,222 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
     .button:hover .arrow {
       transform: translateX(3px);
     }
-    /* NAVIGATION */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.94);
-  border-bottom: 1px solid #ededed;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-.navbar {
-  width: min(1200px, calc(100% - 64px));
-  min-height: 76px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-}
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.brand-logo {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  display: block;
-}
-.brand-name {
-  color: #111111;
-  font-family: "Manrope", sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.8px;
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-}
-.nav-links a {
-  position: relative;
-  color: #555555;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color 180ms ease;
-}
-.nav-links a:hover {
-  color: #ed3434;
-}
-.nav-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 40px;
-  padding: 0 17px;
-  border: 1px solid #ed3434;
-  border-radius: 7px;
-  background: #ed3434;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 180ms ease, border-color 180ms ease;
-}
-.nav-cta:hover {
-  background: #d92727;
-  border-color: #d92727;
-}
-.menu-toggle {
-  display: none;
-  width: 40px;
-  height: 40px;
-  padding: 10px;
-  border: 1px solid #e8e8e8;
-  border-radius: 7px;
-  background: #ffffff;
-  cursor: pointer;
-}
-.menu-toggle span {
-  display: block;
-  width: 18px;
-  height: 2px;
-  margin: 4px auto;
-  background: #171717;
-}
-@media (max-width: 900px) {
-  .navbar {
-    width: calc(100% - 40px);
-    gap: 18px;
-  }
-  .nav-links {
-    gap: 18px;
-  }
-  .nav-links a {
-    font-size: 12px;
-  }
-}
-@media (max-width: 760px) {
-  .navbar {
-    min-height: 68px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .brand-logo {
-    width: 31px;
-    height: 31px;
-  }
-  .brand-name {
-    font-size: 19px;
-  }
-  .nav-cta {
-    margin-left: auto;
-    min-height: 37px;
-    padding: 0 13px;
-    font-size: 11px;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  .nav-links {
-    display: none;
-    order: 4;
-    width: 100%;
-    padding: 8px 0 18px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-  .nav-links.is-open {
-    display: flex;
-  }
-  .nav-links a {
-    padding: 13px 2px;
-    border-bottom: 1px solid #eeeeee;
-    font-size: 14px;
-  }
-}
-    .nav-actions .button {
+    /* =====================================================
+       NAVIGATION
+       Exact black background matching the hero: #090909
+       ===================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: #090909;
+      border-bottom: 1px solid #292929;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+    .navbar {
+      position: relative;
+      width: min(1200px, calc(100% - 64px));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .brand-logo {
+      display: block;
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .brand-name {
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 27px;
+    }
+    .nav-links a {
+      display: inline-block;
+      color: #bcbcbc;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--red);
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       min-height: 40px;
-      padding-inline: 16px;
+      padding: 0 16px;
+      border: 1px solid var(--red);
+      border-radius: 7px;
+      background: var(--red);
+      color: #ffffff;
       font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
     }
-    .mobile-menu-button {
+    .nav-cta:hover {
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+    }
+    .menu-toggle {
       display: none;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
       border: 1px solid #353535;
-      border-radius: 8px;
-      background: transparent;
-      color: var(--white);
-      font-size: 21px;
+      border-radius: 7px;
+      background: #111111;
+      color: #ffffff;
       cursor: pointer;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
     }
-    /* HERO */
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 5px auto;
+      border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+    }
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      .nav-links a {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+      .brand {
+        gap: 8px;
+      }
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+      }
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+      .menu-toggle {
+        display: inline-flex;
+      }
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+      }
+      .nav-links.is-open {
+        display: flex;
+      }
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--red);
+      }
+    }
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+      .brand-name {
+        font-size: 15px;
+      }
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+    /* HERO — preserved */
     .hero {
       position: relative;
       overflow: hidden;
@@ -771,7 +822,7 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
     }
     .platform-copy {
       position: sticky;
-      top: 40px;
+      top: 100px;
     }
     .platform-copy .section-heading h2 {
       font-size: clamp(36px, 4vw, 48px);
@@ -1073,44 +1124,40 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
       padding-bottom: 45px;
     }
     .footer-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.footer-brand-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: #ffffff;
-  font-family: "Manrope", sans-serif;
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: -0.6px;
-  text-decoration: none;
-}
-
-.footer-logo {
-  display: block;
-  width: 31px;
-  height: 31px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.footer-tagline {
-  margin: 15px 0 0;
-  color: #d0d0d0;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.footer-powered {
-  margin: 7px 0 0;
-  color: #929292;
-  font-size: 11px;
-  letter-spacing: 0.3px;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .footer-powered {
+      margin: 7px 0 0;
+      color: #929292;
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
     .footer-column h4 {
       margin-bottom: 19px;
       color: #f0f0f0;
@@ -1146,11 +1193,8 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
       color: #b8b8b8;
       font-weight: 600;
     }
-    /* RESPONSIVE */
+    /* RESPONSIVE LAYOUT */
     @media (max-width: 1050px) {
-      .nav-links {
-        gap: 20px;
-      }
       .hero-inner {
         grid-template-columns: 1fr 0.9fr;
         gap: 28px;
@@ -1171,45 +1215,7 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
     }
     @media (max-width: 780px) {
       .container {
-        width: min(100% - 40px, var(--container));
-      }
-      .nav {
-        min-height: 72px;
-      }
-      .nav-links {
-        position: absolute;
-        top: 72px;
-        left: 20px;
-        right: 20px;
-        display: none;
-        align-items: stretch;
-        gap: 0;
-        padding: 12px;
-        border: 1px solid #303030;
-        border-radius: 9px;
-        background: #111111;
-      }
-      .nav-links.is-open {
-        display: flex;
-        flex-direction: column;
-      }
-      .nav-links > a:not(.button) {
-        padding: 14px 12px;
-        border-bottom: 1px solid #272727;
-      }
-      .nav-links > a.button {
-        margin-top: 10px;
-      }
-      .nav-actions {
-        margin-left: auto;
-      }
-      .nav-actions .button {
-        min-height: 38px;
-        padding-inline: 12px;
-      }
-      .mobile-menu-button {
-        display: grid;
-        place-items: center;
+        width: min(calc(100% - 40px), var(--container));
       }
       .hero {
         min-height: unset;
@@ -1302,16 +1308,6 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
     @media (max-width: 520px) {
       .container {
         width: calc(100% - 36px);
-      }
-      .brand-name {
-        font-size: 17px;
-      }
-      .brand-mark {
-        width: 27px;
-        height: 27px;
-      }
-      .nav-actions .button {
-        display: none;
       }
       .hero {
         padding-top: 117px;
@@ -1449,579 +1445,612 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
         animation-iteration-count: 1 !important;
       }
     }
-    .brand-logo {
-  display: block;
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header class="site-header">
-  <nav class="navbar" aria-label="Main navigation">
-    <a class="brand" href="index.html" aria-label="ARTHNIX home">
-      <img class="brand-logo" src="/logo.svg" alt="ARTHNIX logo">
-      <span class="brand-name">ARTHNIX</span>
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#tools">Free Tools</a>
-      <a href="#platform">Platform</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <a class="nav-cta" href="#pricing">Start Free <span aria-hidden="true">↗</span></a>
-    <button class="menu-toggle" id="menuToggle"
-      type="button" aria-label="Open navigation menu"
-      aria-expanded="false" aria-controls="navLinks">
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-</header>
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="ARTHNIX home">
+        <img class="brand-logo" src="/logo.svg" alt="ARTHNIX logo">
+        <span class="brand-name">ARTHNIX</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#tools">Free Tools</a>
+        <a href="#platform">Platform</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="nav-cta" href="#pricing">
+        Start Free <span aria-hidden="true">↗</span>
+      </a>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
   <main>
-<!-- HERO -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-copy">
-      <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        Intelligence for Every Business
-      </div>
-      <h1>
-        Run your business.
-        <span>Not your paperwork.</span>
-      </h1>
-      <p class="hero-description">
-        Create invoices, manage inventory, track sales, and simplify
-        everyday business operations with AI-powered tools.
-        One simple platform, built to help your business move forward.
-      </p>
-      <div class="hero-actions">
-        <a href="#tools" class="button button-primary">
-          Explore Free Tools <span class="arrow">↗</span>
-        </a>
-        <a href="#platform" class="button button-outline-dark">
-          Discover ARTHNIX <span class="arrow">→</span>
-        </a>
-      </div>
-      <div class="hero-note">
-        <span>No installation required</span>
-        <span>Desktop and mobile</span>
-        <span>Start with free tools</span>
-      </div>
-    </div>
-    <!-- Illustrative product preview -->
-    <div class="hero-visual" aria-label="Illustrative business dashboard preview">
-      <div class="dashboard">
-        <div class="dashboard-top">
-          <div class="dashboard-brand">
-            <span>A</span>
-            ARTHNIX
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Intelligence for Every Business
           </div>
-          <div class="dashboard-status">
-            <i></i>
-            Business overview
+          <h1>
+            Run your business.
+            <span>Not your paperwork.</span>
+          </h1>
+          <p class="hero-description">
+            Create invoices, manage inventory, track sales, and simplify
+            everyday business operations with AI-powered tools.
+            One simple platform, built to help your business move forward.
+          </p>
+          <div class="hero-actions">
+            <a href="#tools" class="button button-primary">
+              Explore Free Tools <span class="arrow">↗</span>
+            </a>
+            <a href="#platform" class="button button-outline-dark">
+              Discover ARTHNIX <span class="arrow">→</span>
+            </a>
+          </div>
+          <div class="hero-note">
+            <span>No installation required</span>
+            <span>Desktop and mobile</span>
+            <span>Start with free tools</span>
           </div>
         </div>
-        <div class="dashboard-body">
-          <div class="dashboard-greeting">
+        <!-- Illustrative product preview -->
+        <div class="hero-visual" aria-label="Illustrative business dashboard preview">
+          <div class="dashboard">
+            <div class="dashboard-top">
+              <div class="dashboard-brand">
+                <span>A</span>
+                ARTHNIX
+              </div>
+              <div class="dashboard-status">
+                <i></i>
+                Business overview
+              </div>
+            </div>
+            <div class="dashboard-body">
+              <div class="dashboard-greeting">
+                <div>
+                  <h3>Your business at a glance</h3>
+                  <p>A simpler view of everyday operations.</p>
+                </div>
+                <div class="date-pill">Overview</div>
+              </div>
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <div class="stat-label">Total sales</div>
+                  <div class="stat-value">₹84,250</div>
+                  <div class="stat-change">Sales overview</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Invoices</div>
+                  <div class="stat-value">128</div>
+                  <div class="stat-change neutral">Billing overview</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Inventory</div>
+                  <div class="stat-value">246</div>
+                  <div class="stat-change neutral">Items overview</div>
+                </div>
+              </div>
+              <div class="dashboard-lower">
+                <div class="panel">
+                  <div class="panel-title">Sales activity</div>
+                  <div class="panel-subtitle">Illustrative dashboard data</div>
+                  <div class="chart">
+                    <svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#ed3434" stop-opacity="0.25"/>
+                          <stop offset="100%" stop-color="#ed3434" stop-opacity="0"/>
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M0,95 C22,85 27,70 49,78 S80,65 100,72 S130,38 151,53 S181,63 201,37 S230,47 249,24 S278,35 300,12 L300,120 L0,120 Z"
+                        fill="url(#chartFill)"
+                      />
+                      <path
+                        d="M0,95 C22,85 27,70 49,78 S80,65 100,72 S130,38 151,53 S181,63 201,37 S230,47 249,24 S278,35 300,12"
+                        fill="none"
+                        stroke="#ed3434"
+                        stroke-width="2.5"
+                        vector-effect="non-scaling-stroke"
+                      />
+                    </svg>
+                  </div>
+                  <div class="chart-labels">
+                    <span>Week 1</span>
+                    <span>Week 2</span>
+                    <span>Week 3</span>
+                    <span>Week 4</span>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="panel-title">Recent activity</div>
+                  <div class="panel-subtitle">Example transactions</div>
+                  <div class="activity-list">
+                    <div class="activity-item">
+                      <div class="activity-icon">↗</div>
+                      <div class="activity-text">
+                        <strong>New invoice</strong>
+                        <small>Illustrative entry</small>
+                      </div>
+                      <div class="activity-amount">₹4,500</div>
+                    </div>
+                    <div class="activity-item">
+                      <div class="activity-icon">□</div>
+                      <div class="activity-text">
+                        <strong>Stock update</strong>
+                        <small>Illustrative entry</small>
+                      </div>
+                      <div class="activity-amount">+12</div>
+                    </div>
+                    <div class="activity-item">
+                      <div class="activity-icon">✓</div>
+                      <div class="activity-text">
+                        <strong>Payment</strong>
+                        <small>Illustrative entry</small>
+                      </div>
+                      <div class="activity-amount">₹2,800</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="dashboard-footnote">
+                Concept preview only. Values are illustrative and do not represent live business data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- BENEFIT STRIP -->
+    <section class="trust-strip">
+      <div class="container trust-inner">
+        <p class="trust-copy">
+          Everything you need to get started.<br>
+          More connected as your business grows.
+        </p>
+        <div class="trust-items">
+          <div class="trust-item"><span>↗</span> Invoicing</div>
+          <div class="trust-item"><span>□</span> Inventory</div>
+          <div class="trust-item"><span>⌁</span> Business tools</div>
+          <div class="trust-item"><span>✳</span> AI-assisted workflows</div>
+        </div>
+      </div>
+    </section>
+    <!-- FREE TOOLS -->
+    <section class="tools-section" id="tools">
+      <div class="container">
+        <div class="tools-top">
+          <div class="section-heading">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Start Here
+            </div>
+            <h2>
+              Useful tools.<br>
+              <span class="accent">No unnecessary complexity.</span>
+            </h2>
+            <p>
+              Get everyday business calculations and documents done quickly.
+              Start with the tools you need, without committing to a full
+              business management platform.
+            </p>
+          </div>
+          <a href="tools.html" class="button button-outline-light">
+            View All Tools <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">₹</div>
+            <h3>GST Calculator</h3>
+            <p>Calculate GST amounts, inclusive prices, and pre-tax totals.</p>
+            <a href="tools/gst-calculator.html" class="text-link">
+              Open calculator <span>↗</span>
+            </a>
+          </article>
+          <article class="tool-card">
+            <div class="tool-icon">▤</div>
+            <h3>Invoice Generator</h3>
+            <p>Create a professional invoice with your business and customer details.</p>
+            <a href="tools/invoice-generator.html" class="text-link">
+              Create an invoice <span>↗</span>
+            </a>
+          </article>
+          <article class="tool-card">
+            <div class="tool-icon">%</div>
+            <h3>Profit Calculator</h3>
+            <p>Work out profit, margin, markup, and selling price.</p>
+            <a href="tools/profit-calculator.html" class="text-link">
+              Calculate profit <span>↗</span>
+            </a>
+          </article>
+          <article class="tool-card">
+            <div class="tool-icon">▧</div>
+            <h3>Quotation Generator</h3>
+            <p>Prepare clear quotations for customers, products, and services.</p>
+            <a href="tools/quotation-generator.html" class="text-link">
+              Create a quotation <span>↗</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- PLATFORM FEATURES -->
+    <section class="platform-section" id="platform">
+      <div class="container platform-layout">
+        <div class="platform-copy">
+          <div class="section-heading">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              The ARTHNIX Platform
+            </div>
+            <h2>
+              Your business,<br>
+              <span class="accent">working together.</span>
+            </h2>
+            <p>
+              As your needs grow, bring your daily business activities
+              together in one connected workspace. Spend less time
+              switching between tools and more time running your business.
+            </p>
+          </div>
+          <a href="#how-it-works" class="button button-outline-light">
+            See How It Works <span class="arrow">→</span>
+          </a>
+        </div>
+        <div class="feature-list">
+          <article class="feature-item">
+            <div class="feature-number">01</div>
             <div>
-              <h3>Your business at a glance</h3>
-              <p>A simpler view of everyday operations.</p>
+              <h3>Professional invoicing</h3>
+              <p>
+                Create customer invoices, quotations, and business documents
+                with a clear, consistent, professional appearance.
+              </p>
             </div>
-            <div class="date-pill">Overview</div>
+          </article>
+          <article class="feature-item">
+            <div class="feature-number">02</div>
+            <div>
+              <h3>Inventory and stock</h3>
+              <p>
+                Organize products, keep track of stock movement, and make
+                inventory management easier as your catalogue grows.
+              </p>
+            </div>
+          </article>
+          <article class="feature-item">
+            <div class="feature-number">03</div>
+            <div>
+              <h3>Sales and business records</h3>
+              <p>
+                Build a clearer picture of invoices, transactions, customer
+                balances, and day-to-day business activity.
+              </p>
+            </div>
+          </article>
+          <article class="feature-item">
+            <div class="feature-number">04</div>
+            <div>
+              <h3>Retail and restaurant billing</h3>
+              <p>
+                Work toward faster point-of-sale billing, barcode workflows,
+                restaurant orders, tables, and kitchen ticket management.
+              </p>
+            </div>
+          </article>
+          <article class="feature-item">
+            <div class="feature-number">05</div>
+            <div>
+              <h3>Accounting and business reports</h3>
+              <p>
+                Bring important financial records and operational summaries
+                into a more understandable business overview.
+              </p>
+            </div>
+          </article>
+          <article class="feature-item">
+            <div class="feature-number">06</div>
+            <div>
+              <h3>Payroll and multiple businesses</h3>
+              <p>
+                Support employee administration and manage separate business
+                operations through a simpler, more organized experience.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- HOW IT WORKS -->
+    <section class="workflow-section" id="how-it-works">
+      <div class="container">
+        <div class="workflow-heading">
+          <div class="section-heading">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              A Better Way to Work
+            </div>
+            <h2>
+              Simple from the <span class="accent">start.</span>
+            </h2>
+            <p>
+              Business software should help you get work done,
+              not make you learn another complicated system.
+            </p>
           </div>
-          <div class="stat-grid">
-            <div class="stat-card">
-              <div class="stat-label">Total sales</div>
-              <div class="stat-value">₹84,250</div>
-              <div class="stat-change">Sales overview</div>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <div class="workflow-number">STEP 01</div>
+            <h3>Start with what you need</h3>
+            <p>
+              Use a free calculator or document tool for a quick task.
+              No need to learn an entire platform first.
+            </p>
+          </article>
+          <article class="workflow-card">
+            <div class="workflow-number">STEP 02</div>
+            <h3>Organize your business</h3>
+            <p>
+              As you need more, organize your business information,
+              customers, products, and records in one place.
+            </p>
+          </article>
+          <article class="workflow-card">
+            <div class="workflow-number">STEP 03</div>
+            <h3>Grow at your own pace</h3>
+            <p>
+              Add more connected workflows as your operations become
+              more demanding. Keep the experience simple.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- AI -->
+    <section class="ai-section">
+      <div class="container">
+        <div class="ai-panel">
+          <div class="ai-copy">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Business Meets Intelligence
             </div>
-            <div class="stat-card">
-              <div class="stat-label">Invoices</div>
-              <div class="stat-value">128</div>
-              <div class="stat-change neutral">Billing overview</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Inventory</div>
-              <div class="stat-value">246</div>
-              <div class="stat-change neutral">Items overview</div>
-            </div>
+            <h2>
+              Less repetitive work.<br>
+              <span class="accent">More clarity.</span>
+            </h2>
+            <p>
+              AI should make everyday business tasks easier, not introduce
+              another layer of complexity. ARTHNIX is designed to bring
+              intelligent assistance into practical workflows, with people
+              reviewing important details before they are finalized.
+            </p>
+            <a href="#tools" class="button button-primary">
+              Explore Business Tools <span class="arrow">↗</span>
+            </a>
           </div>
-          <div class="dashboard-lower">
-            <div class="panel">
-              <div class="panel-title">Sales activity</div>
-              <div class="panel-subtitle">Illustrative dashboard data</div>
-              <div class="chart">
-                <svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#ed3434" stop-opacity="0.25"/>
-                      <stop offset="100%" stop-color="#ed3434" stop-opacity="0"/>
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d="M0,95 C22,85 27,70 49,78 S80,65 100,72 S130,38 151,53 S181,63 201,37 S230,47 249,24 S278,35 300,12 L300,120 L0,120 Z"
-                    fill="url(#chartFill)"
-                  />
-                  <path
-                    d="M0,95 C22,85 27,70 49,78 S80,65 100,72 S130,38 151,53 S181,63 201,37 S230,47 249,24 S278,35 300,12"
-                    fill="none"
-                    stroke="#ed3434"
-                    stroke-width="2.5"
-                    vector-effect="non-scaling-stroke"
-                  />
-                </svg>
-              </div>
-              <div class="chart-labels">
-                <span>Week 1</span>
-                <span>Week 2</span>
-                <span>Week 3</span>
-                <span>Week 4</span>
-              </div>
+          <div class="ai-example">
+            <div class="ai-example-label">An example of AI-assisted billing</div>
+            <div class="ai-prompt">
+              Create an invoice for 10 office chairs at ₹2,500 each
+              for ABC Enterprises.
             </div>
-            <div class="panel">
-              <div class="panel-title">Recent activity</div>
-              <div class="panel-subtitle">Example transactions</div>
-              <div class="activity-list">
-                <div class="activity-item">
-                  <div class="activity-icon">↗</div>
-                  <div class="activity-text">
-                    <strong>New invoice</strong>
-                    <small>Illustrative entry</small>
-                  </div>
-                  <div class="activity-amount">₹4,500</div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-icon">□</div>
-                  <div class="activity-text">
-                    <strong>Stock update</strong>
-                    <small>Illustrative entry</small>
-                  </div>
-                  <div class="activity-amount">+12</div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-icon">✓</div>
-                  <div class="activity-text">
-                    <strong>Payment</strong>
-                    <small>Illustrative entry</small>
-                  </div>
-                  <div class="activity-amount">₹2,800</div>
-                </div>
+            <div class="ai-response">
+              <div class="ai-response-title">
+                <span>✳</span>
+                Invoice details to review
+              </div>
+              <p>
+                Customer: ABC Enterprises<br>
+                Item: Office chairs<br>
+                Quantity: 10<br>
+                Unit price: ₹2,500<br>
+                Subtotal: ₹25,000
+              </p>
+              <div class="ai-response-note">
+                Example only. Tax details and other required fields must be
+                confirmed before generating a final invoice.
               </div>
             </div>
           </div>
-          <p class="dashboard-footnote">
-            Concept preview only. Values are illustrative and do not represent live business data.
-          </p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- BENEFIT STRIP -->
-<section class="trust-strip">
-  <div class="container trust-inner">
-    <p class="trust-copy">
-      Everything you need to get started.<br>
-      More connected as your business grows.
-    </p>
-    <div class="trust-items">
-      <div class="trust-item"><span>↗</span> Invoicing</div>
-      <div class="trust-item"><span>□</span> Inventory</div>
-      <div class="trust-item"><span>⌁</span> Business tools</div>
-      <div class="trust-item"><span>✳</span> AI-assisted workflows</div>
-    </div>
-  </div>
-</section>
-<!-- FREE TOOLS -->
-<section class="tools-section" id="tools">
-  <div class="container">
-    <div class="tools-top">
-      <div class="section-heading">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Start Here
+    </section>
+    <!-- PRICING -->
+    <section class="pricing-section" id="pricing">
+      <div class="container">
+        <div class="pricing-header">
+          <div class="section-heading">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Straightforward by Design
+            </div>
+            <h2>
+              Start small.<br>
+              <span class="accent">Grow when you're ready.</span>
+            </h2>
+            <p>
+              Begin with useful business tools. When you need more,
+              move toward a connected business workspace that fits
+              the way you work.
+            </p>
+          </div>
+          <p class="pricing-note">
+            Our goal is to make practical business software approachable
+            for businesses at different stages.
+          </p>
         </div>
-        <h2>
-          Useful tools.<br>
-          <span class="accent">No unnecessary complexity.</span>
-        </h2>
-        <p>
-          Get everyday business calculations and documents done quickly.
-          Start with the tools you need, without committing to a full
-          business management platform.
-        </p>
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-label">Free business tools</div>
+            <h3>Useful from day one.</h3>
+            <p>
+              Explore available calculators and document tools without
+              committing to a paid plan. Connected platform features and
+              future plans will be introduced as they become available.
+            </p>
+          </div>
+          <div class="pricing-actions">
+            <a href="#tools" class="button button-primary">
+              Explore Free Tools <span class="arrow">↗</span>
+            </a>
+            <small>No pricing promises or hidden plan claims.</small>
+          </div>
+        </div>
       </div>
-      <a href="tools.html" class="button button-outline-light">
-        View All Tools <span class="arrow">↗</span>
-      </a>
-    </div>
-    <div class="tools-grid">
-      <article class="tool-card">
-        <div class="tool-icon">₹</div>
-        <h3>GST Calculator</h3>
-        <p>Calculate GST amounts, inclusive prices, and pre-tax totals.</p>
-        <a href="tools/gst-calculator.html" class="text-link">
-          Open calculator <span>↗</span>
-        </a>
-      </article>
-      <article class="tool-card">
-        <div class="tool-icon">▤</div>
-        <h3>Invoice Generator</h3>
-        <p>Create a professional invoice with your business and customer details.</p>
-        <a href="tools/invoice-generator.html" class="text-link">
-          Create an invoice <span>↗</span>
-        </a>
-      </article>
-      <article class="tool-card">
-        <div class="tool-icon">%</div>
-        <h3>Profit Calculator</h3>
-        <p>Work out profit, margin, markup, and selling price.</p>
-        <a href="tools/profit-calculator.html" class="text-link">
-          Calculate profit <span>↗</span>
-        </a>
-      </article>
-      <article class="tool-card">
-        <div class="tool-icon">▧</div>
-        <h3>Quotation Generator</h3>
-        <p>Prepare clear quotations for customers, products, and services.</p>
-        <a href="tools/quotation-generator.html" class="text-link">
-          Create a quotation <span>↗</span>
-        </a>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- PLATFORM FEATURES -->
-<section class="platform-section" id="platform">
-  <div class="container platform-layout">
-    <div class="platform-copy">
-      <div class="section-heading">
+    </section>
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-          The ARTHNIX Platform
+          Built Around Your Business
         </div>
         <h2>
-          Your business,<br>
-          <span class="accent">working together.</span>
+          Your business deserves<br>
+          <span class="accent">a simpler way.</span>
         </h2>
         <p>
-          As your needs grow, bring your daily business activities
-          together in one connected workspace. Spend less time
-          switching between tools and more time running your business.
-        </p>
-      </div>
-      <a href="#how-it-works" class="button button-outline-light">
-        See How It Works <span class="arrow">→</span>
-      </a>
-    </div>
-    <div class="feature-list">
-      <article class="feature-item">
-        <div class="feature-number">01</div>
-        <div>
-          <h3>Professional invoicing</h3>
-          <p>
-            Create customer invoices, quotations, and business documents
-            with a clear, consistent, professional appearance.
-          </p>
-        </div>
-      </article>
-      <article class="feature-item">
-        <div class="feature-number">02</div>
-        <div>
-          <h3>Inventory and stock</h3>
-          <p>
-            Organize products, keep track of stock movement, and make
-            inventory management easier as your catalogue grows.
-          </p>
-        </div>
-      </article>
-      <article class="feature-item">
-        <div class="feature-number">03</div>
-        <div>
-          <h3>Sales and business records</h3>
-          <p>
-            Build a clearer picture of invoices, transactions, customer
-            balances, and day-to-day business activity.
-          </p>
-        </div>
-      </article>
-      <article class="feature-item">
-        <div class="feature-number">04</div>
-        <div>
-          <h3>Retail and restaurant billing</h3>
-          <p>
-            Work toward faster point-of-sale billing, barcode workflows,
-            restaurant orders, tables, and kitchen ticket management.
-          </p>
-        </div>
-      </article>
-      <article class="feature-item">
-        <div class="feature-number">05</div>
-        <div>
-          <h3>Accounting and business reports</h3>
-          <p>
-            Bring important financial records and operational summaries
-            into a more understandable business overview.
-          </p>
-        </div>
-      </article>
-      <article class="feature-item">
-        <div class="feature-number">06</div>
-        <div>
-          <h3>Payroll and multiple businesses</h3>
-          <p>
-            Support employee administration and manage separate business
-            operations through a simpler, more organized experience.
-          </p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- HOW IT WORKS -->
-<section class="workflow-section" id="how-it-works">
-  <div class="container">
-    <div class="workflow-heading">
-      <div class="section-heading">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          A Better Way to Work
-        </div>
-        <h2>
-          Simple from the <span class="accent">start.</span>
-        </h2>
-        <p>
-          Business software should help you get work done,
-          not make you learn another complicated system.
-        </p>
-      </div>
-    </div>
-    <div class="workflow-grid">
-      <article class="workflow-card">
-        <div class="workflow-number">STEP 01</div>
-        <h3>Start with what you need</h3>
-        <p>
-          Use a free calculator or document tool for a quick task.
-          No need to learn an entire platform first.
-        </p>
-      </article>
-      <article class="workflow-card">
-        <div class="workflow-number">STEP 02</div>
-        <h3>Organize your business</h3>
-        <p>
-          As you need more, organize your business information,
-          customers, products, and records in one place.
-        </p>
-      </article>
-      <article class="workflow-card">
-        <div class="workflow-number">STEP 03</div>
-        <h3>Grow at your own pace</h3>
-        <p>
-          Add more connected workflows as your operations become
-          more demanding. Keep the experience simple.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- AI -->
-<section class="ai-section">
-  <div class="container">
-    <div class="ai-panel">
-      <div class="ai-copy">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Business Meets Intelligence
-        </div>
-        <h2>
-          Less repetitive work.<br>
-          <span class="accent">More clarity.</span>
-        </h2>
-        <p>
-          AI should make everyday business tasks easier, not introduce
-          another layer of complexity. ARTHNIX is designed to bring
-          intelligent assistance into practical workflows, with people
-          reviewing important details before they are finalized.
+          Start with one useful tool. Discover a better way to organize
+          everyday business tasks, one step at a time.
         </p>
         <a href="#tools" class="button button-primary">
-          Explore Business Tools <span class="arrow">↗</span>
+          Explore ARTHNIX <span class="arrow">↗</span>
         </a>
       </div>
-      <div class="ai-example">
-        <div class="ai-example-label">An example of AI-assisted billing</div>
-        <div class="ai-prompt">
-          Create an invoice for 10 office chairs at ₹2,500 each
-          for ABC Enterprises.
-        </div>
-        <div class="ai-response">
-          <div class="ai-response-title">
-            <span>✳</span>
-            Invoice details to review
-          </div>
-          <p>
-            Customer: ABC Enterprises<br>
-            Item: Office chairs<br>
-            Quantity: 10<br>
-            Unit price: ₹2,500<br>
-            Subtotal: ₹25,000
-          </p>
-          <div class="ai-response-note">
-            Example only. Tax details and other required fields must be
-            confirmed before generating a final invoice.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- PRICING -->
-<section class="pricing-section" id="pricing">
-  <div class="container">
-    <div class="pricing-header">
-      <div class="section-heading">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Straightforward by Design
-        </div>
-        <h2>
-          Start small.<br>
-          <span class="accent">Grow when you're ready.</span>
-        </h2>
-        <p>
-          Begin with useful business tools. When you need more,
-          move toward a connected business workspace that fits
-          the way you work.
-        </p>
-      </div>
-      <p class="pricing-note">
-        Our goal is to make practical business software approachable
-        for businesses at different stages.
-      </p>
-    </div>
-    <div class="pricing-card">
-      <div>
-        <div class="pricing-label">Free business tools</div>
-        <h3>Useful from day one.</h3>
-        <p>
-          Explore available calculators and document tools without
-          committing to a paid plan. Connected platform features and
-          future plans will be introduced as they become available.
-        </p>
-      </div>
-      <div class="pricing-actions">
-        <a href="#tools" class="button button-primary">
-          Explore Free Tools <span class="arrow">↗</span>
-        </a>
-        <small>No pricing promises or hidden plan claims.</small>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="container">
-    <div class="eyebrow">
-      <span class="eyebrow-dot"></span>
-      Built Around Your Business
-    </div>
-    <h2>
-      Your business deserves<br>
-      <span class="accent">a simpler way.</span>
-    </h2>
-    <p>
-      Start with one useful tool. Discover a better way to organize
-      everyday business tasks, one step at a time.
-    </p>
-    <a href="#tools" class="button button-primary">
-      Explore ARTHNIX <span class="arrow">↗</span>
-    </a>
-  </div>
-</section>
+    </section>
   </main>
   <!-- FOOTER -->
   <footer class="site-footer" id="footer-contact">
     <div class="container">
-  <div class="footer-main">
-    <div class="footer-brand">
-  <a class="footer-brand-link" href="index.html" aria-label="ARTHNIX home">
-    <img class="footer-logo" src="/logo.svg" alt="ARTHNIX logo">
-    <span>ARTHNIX</span>
-  </a>
-  <p class="footer-tagline">Intelligence for Every Business.</p>
-  <p class="footer-powered">Powered by Alphex AI</p>
-</div>
-    <div class="footer-column">
-      <h4>Explore</h4>
-      <a href="#platform">Platform</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#tools">Free Tools</a>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="footer-brand-link" href="index.html" aria-label="ARTHNIX home">
+            <img class="footer-logo" src="/logo.svg" alt="ARTHNIX logo">
+            <span>ARTHNIX</span>
+          </a>
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <p class="footer-powered">Powered by Alphex AI</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore</h4>
+          <a href="#platform">Platform</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#tools">Free Tools</a>
+        </div>
+        <div class="footer-column">
+          <h4>Business Tools</h4>
+          <a href="tools/gst-calculator.html">GST Calculator</a>
+          <a href="tools/invoice-generator.html">Invoice Generator</a>
+          <a href="tools/profit-calculator.html">Profit Calculator</a>
+          <a href="tools/quotation-generator.html">Quotation Generator</a>
+        </div>
+        <div class="footer-column">
+          <h4>Information</h4>
+          <a href="about.html">About ARTHNIX</a>
+          <a href="help.html">Help Centre</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">
+          © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+        </p>
+        <p class="powered-by">
+          An independent product brand · <strong>Powered by Alphex AI</strong>
+        </p>
+      </div>
     </div>
-    <div class="footer-column">
-      <h4>Business Tools</h4>
-      <a href="tools/gst-calculator.html">GST Calculator</a>
-      <a href="tools/invoice-generator.html">Invoice Generator</a>
-      <a href="tools/profit-calculator.html">Profit Calculator</a>
-      <a href="tools/quotation-generator.html">Quotation Generator</a>
-    </div>
-    <div class="footer-column">
-      <h4>Information</h4>
-      <a href="about.html">About ARTHNIX</a>
-      <a href="help.html">Help Centre</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-      <a href="disclaimer.html">Disclaimer</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="copyright">
-      © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
-    </p>
-    <p class="powered-by">
-      An independent product brand · <strong>Powered by Alphex AI</strong>
-    </p>
-  </div>
-</div>
   </footer>
   <script>
-    // Mobile navigation
-    const menuButton = document.getElementById("mobileMenuButton");
-    const navLinks = document.getElementById("navLinks");
-    menuButton.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("is-open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-      );
-      menuButton.textContent = isOpen ? "×" : "☰";
-    });
-    // Close mobile navigation after selecting a link
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("is-open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open navigation menu");
-        menuButton.textContent = "☰";
-      });
-    });
-    // Automatically update the copyright year
-    document.getElementById("currentYear").textContent =
-      new Date().getFullYear();
+    (() => {
+      "use strict";
+      const menuButton = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const currentYear = document.getElementById("currentYear");
+      function setMenuState(isOpen) {
+        if (!menuButton || !navLinks) return;
+        navLinks.classList.toggle("is-open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        const lines = menuButton.querySelectorAll("span");
+        if (lines.length >= 2) {
+          lines[0].style.transform = isOpen
+            ? "translateY(3.5px) rotate(45deg)"
+            : "";
+          lines[1].style.transform = isOpen
+            ? "translateY(-3.5px) rotate(-45deg)"
+            : "";
+        }
+      }
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isOpen =
+            menuButton.getAttribute("aria-expanded") === "true";
+          setMenuState(!isOpen);
+        });
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            setMenuState(false);
+          });
+        });
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("is-open") &&
+            !menuButton.contains(event.target) &&
+            !navLinks.contains(event.target)
+          ) {
+            setMenuState(false);
+          }
+        });
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            navLinks.classList.contains("is-open")
+          ) {
+            setMenuState(false);
+            menuButton.focus();
+          }
+        });
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 780) {
+            setMenuState(false);
+          }
+        });
+      }
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+    })();
   </script>
 </body>
 </html>
