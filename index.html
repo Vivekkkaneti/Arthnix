@@ -170,63 +170,152 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
       transform: translateX(3px);
     }
     /* NAVIGATION */
-    .site-header {
-      position: absolute;
-      inset: 0 0 auto;
-      z-index: 10;
-      color: var(--white);
-      background: transparent;
-    }
-    .nav {
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      flex-shrink: 0;
-    }
-    .brand-mark {
-      width: 29px;
-      height: 29px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 8px;
-      color: var(--red);
-      font-family: "Manrope", sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-    }
-    .brand-name {
-      font-family: "Manrope", sans-serif;
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: 1.4px;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .nav-links > a:not(.button) {
-      color: #c2c2c2;
-      font-size: 12px;
-      transition: color 180ms ease;
-    }
-    .nav-links > a:not(.button):hover {
-      color: var(--white);
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #ededed;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.navbar {
+  width: min(1200px, calc(100% - 64px));
+  min-height: 76px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+.brand-name {
+  color: #111111;
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.nav-links a {
+  position: relative;
+  color: #555555;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+.nav-links a:hover {
+  color: #ed3434;
+}
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 17px;
+  border: 1px solid #ed3434;
+  border-radius: 7px;
+  background: #ed3434;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.nav-cta:hover {
+  background: #d92727;
+  border-color: #d92727;
+}
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #e8e8e8;
+  border-radius: 7px;
+  background: #ffffff;
+  cursor: pointer;
+}
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 4px auto;
+  background: #171717;
+}
+@media (max-width: 900px) {
+  .navbar {
+    width: calc(100% - 40px);
+    gap: 18px;
+  }
+  .nav-links {
+    gap: 18px;
+  }
+  .nav-links a {
+    font-size: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .navbar {
+    min-height: 68px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .brand-logo {
+    width: 31px;
+    height: 31px;
+  }
+  .brand-name {
+    font-size: 19px;
+  }
+  .nav-cta {
+    margin-left: auto;
+    min-height: 37px;
+    padding: 0 13px;
+    font-size: 11px;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    order: 4;
+    width: 100%;
+    padding: 8px 0 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nav-links.is-open {
+    display: flex;
+  }
+  .nav-links a {
+    padding: 13px 2px;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 14px;
+  }
+}
     .nav-actions .button {
       min-height: 40px;
       padding-inline: 16px;
@@ -983,13 +1072,45 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
       gap: 50px;
       padding-bottom: 45px;
     }
-    .footer-brand p {
-      max-width: 300px;
-      margin-top: 17px;
-      color: #929292;
-      font-size: 12px;
-      line-height: 1.9;
-    }
+    .footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #ffffff;
+  font-family: "Manrope", sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  text-decoration: none;
+}
+
+.footer-logo {
+  display: block;
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.footer-tagline {
+  margin: 15px 0 0;
+  color: #d0d0d0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.footer-powered {
+  margin: 7px 0 0;
+  color: #929292;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
     .footer-column h4 {
       margin-bottom: 19px;
       color: #f0f0f0;
@@ -1834,15 +1955,13 @@ content=“Create invoices, manage inventory, track sales, and simplify everyday
     <div class="container">
   <div class="footer-main">
     <div class="footer-brand">
-      <a href="#" class="brand" aria-label="ARTHNIX home">
-        <span class="brand-mark">A</span>
-        <span class="brand-name">ARTHNIX</span>
-      </a>
-      <p>
-        Intelligence for every business. Practical tools and a simpler
-        approach to everyday business operations.
-      </p>
-    </div>
+  <a class="footer-brand-link" href="index.html" aria-label="ARTHNIX home">
+    <img class="footer-logo" src="/logo.svg" alt="ARTHNIX logo">
+    <span>ARTHNIX</span>
+  </a>
+  <p class="footer-tagline">Intelligence for Every Business.</p>
+  <p class="footer-powered">Powered by Alphex AI</p>
+</div>
     <div class="footer-column">
       <h4>Explore</h4>
       <a href="#platform">Platform</a>
