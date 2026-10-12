@@ -1,0 +1,332 @@
+<!-- =========================================================
+     ARTHNIX — Shared Footer
+     File: footer.html
+     Design:
+     Background: #090909
+     Accent:     #ED3434
+     Font:       Manrope
+     Integration:
+     - Include this fragment at the bottom of each page.
+     - Load pages.css for the shared website design system.
+     - Update links to match the pages available on your website.
+     ========================================================= -->
+<footer class="site-footer" id="siteFooter">
+  <!-- Main footer -->
+  <div class="footer-main">
+    <!-- Brand and description -->
+    <div class="footer-brand-column">
+      <a class="footer-brand" href="index.html" aria-label="ARTHNIX home">
+        <img
+          class="footer-logo"
+          src="/logo.svg"
+          alt=""
+          width="38"
+          height="38"
+          loading="lazy"
+        >
+        <span class="footer-brand-name">ARTHNIX</span>
+      </a>
+      <p class="footer-description">
+        Intelligence for every business.
+        Simplify everyday operations with smarter tools
+        for invoicing, inventory, and sales.
+      </p>
+      <a class="footer-contact-link" href="contact.html">
+        Get in touch
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <!-- Product links -->
+    <div class="footer-column">
+      <h2 class="footer-heading">Product</h2>
+      <ul class="footer-links">
+        <li><a href="tools.html">Free Tools</a></li>
+        <li><a href="index.html#platform">Platform</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <!-- Company links -->
+    <div class="footer-column">
+      <h2 class="footer-heading">Company</h2>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <!-- Legal links -->
+    <div class="footer-column">
+      <h2 class="footer-heading">Information</h2>
+      <ul class="footer-links">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <p class="footer-copyright">
+      &copy; <span id="footerCurrentYear">2026</span> ARTHNIX.
+      All rights reserved.
+    </p>
+    <a class="footer-back-to-top" href="#top">
+      Back to top
+      <span aria-hidden="true">↑</span>
+    </a>
+  </div>
+</footer>
+<style>
+  /* =========================================================
+     ARTHNIX FOOTER
+     Self-contained styles for consistent rendering across pages.
+     ========================================================= */
+  .site-footer {
+    width: 100%;
+    margin-top: auto;
+    overflow: hidden;
+    border-top: 1px solid #292929;
+    background: #090909;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+  }
+  .site-footer,
+  .site-footer * {
+    box-sizing: border-box;
+  }
+  /* Main footer layout */
+  .site-footer .footer-main {
+    display: grid;
+    grid-template-columns: minmax(240px, 1.8fr) repeat(3, minmax(120px, 1fr));
+    gap: 48px;
+    width: min(1200px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 64px 0 52px;
+  }
+  /* Brand */
+  .site-footer .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .site-footer .footer-logo {
+    display: block;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .site-footer .footer-brand-name {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.8px;
+  }
+  .site-footer .footer-description {
+    max-width: 320px;
+    margin: 20px 0 18px;
+    color: #999999;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.9;
+  }
+  .site-footer .footer-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ed3434;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  .site-footer .footer-contact-link:hover {
+    color: #ff6565;
+  }
+  .site-footer .footer-contact-link span {
+    transition: transform 180ms ease;
+  }
+  .site-footer .footer-contact-link:hover span {
+    transform: translate(2px, -2px);
+  }
+  /* Footer columns */
+  .site-footer .footer-heading {
+    margin: 5px 0 22px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+  }
+  .site-footer .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-footer .footer-links li {
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer .footer-links a {
+    display: inline-block;
+    color: #999999;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  .site-footer .footer-links a:hover {
+    color: #ed3434;
+  }
+  .site-footer a:focus-visible {
+    outline: 2px solid #ed3434;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  /* Bottom bar */
+  .site-footer .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: min(1200px, calc(100% - 64px));
+    min-height: 72px;
+    margin: 0 auto;
+    padding: 18px 0;
+    border-top: 1px solid #292929;
+  }
+  .site-footer .footer-copyright {
+    margin: 0;
+    color: #777777;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+  .site-footer .footer-back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    color: #999999;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  .site-footer .footer-back-to-top:hover {
+    color: #ed3434;
+  }
+  .site-footer .footer-back-to-top span {
+    color: #ed3434;
+    font-size: 15px;
+  }
+  /* Tablet */
+  @media (max-width: 900px) {
+    .site-footer .footer-main {
+      grid-template-columns: minmax(220px, 1.5fr) repeat(2, minmax(120px, 1fr));
+      gap: 40px 32px;
+      padding: 52px 0 42px;
+    }
+    .site-footer .footer-brand-column {
+      grid-column: 1 / -1;
+    }
+    .site-footer .footer-description {
+      max-width: 440px;
+    }
+  }
+  /* Mobile */
+  @media (max-width: 600px) {
+    .site-footer .footer-main {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 36px 24px;
+      width: calc(100% - 36px);
+      padding: 42px 0 36px;
+    }
+    .site-footer .footer-brand-column {
+      grid-column: 1 / -1;
+    }
+    .site-footer .footer-logo {
+      width: 34px;
+      height: 34px;
+    }
+    .site-footer .footer-brand-name {
+      font-size: 18px;
+    }
+    .site-footer .footer-description {
+      max-width: 360px;
+      margin-top: 16px;
+      font-size: 12px;
+    }
+    .site-footer .footer-heading {
+      margin-bottom: 17px;
+      font-size: 12px;
+    }
+    .site-footer .footer-links {
+      gap: 13px;
+    }
+    .site-footer .footer-links a {
+      font-size: 11px;
+    }
+    .site-footer .footer-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+      width: calc(100% - 36px);
+      min-height: auto;
+      padding: 20px 0 24px;
+    }
+  }
+  /* Small phones */
+  @media (max-width: 360px) {
+    .site-footer .footer-main {
+      width: calc(100% - 28px);
+      gap: 30px 16px;
+    }
+    .site-footer .footer-bottom {
+      width: calc(100% - 28px);
+    }
+    .site-footer .footer-description {
+      font-size: 11px;
+    }
+  }
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer *,
+    .site-footer *::before,
+    .site-footer *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  } 
+</style>
+<script>
+  (() => {
+    function initializeArthnixFooter() {
+      const yearElement = document.getElementById("footerCurrentYear");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener(
+        "DOMContentLoaded",
+        initializeArthnixFooter,
+        { once: true }
+      );
+    } else {
+      initializeArthnixFooter();
+    }
+    /*
+     * If footer.html is inserted dynamically after this script
+     * executes, call window.initializeArthnixFooter().
+     */
+    window.initializeArthnixFooter = initializeArthnixFooter;
+  })();
+</script>   
