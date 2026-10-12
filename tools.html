@@ -531,34 +531,69 @@
       font-weight: 600;
     }
 
-    /* Enhanced category headings */
+    /* =====================================================
+       NEW CATEGORY HEADING BARS
+       GST & BILLING: RED BACKGROUND + WHITE TEXT
+       PAYROLL & HR: BLACK BACKGROUND + RED TEXT
+       ===================================================== */
 
     .tool-category-header h3 {
-      display: inline-block;
-      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
       margin: 0;
-      padding-bottom: 8px;
-      color: var(--tools-red);
+      padding: 12px 17px;
+      border-radius: 5px;
       font-family: "Manrope", sans-serif;
-      font-size: 24px;
+      font-size: 23px;
       font-weight: 800;
       line-height: 1.35;
-      letter-spacing: -0.7px;
+      letter-spacing: -0.6px;
+      overflow-wrap: anywhere;
     }
 
-    .tool-category-header h3::after {
-      display: block;
-      width: 42px;
-      height: 3px;
-      margin-top: 7px;
-      border-radius: 3px;
-      background: var(--tools-red);
-      content: "";
+    /* GST & Billing — red background, white heading */
+
+    #gst-billing .tool-category-header h3 {
+      background: #ed3434;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(237, 52, 52, 0.15);
+    }
+
+    #gst-billing .tool-category-header h3::after {
+      display: none;
+    }
+
+    /* Payroll & HR — black background, red heading */
+
+    #payroll-hr .tool-category-header h3 {
+      background: #111111;
+      color: #ff4545;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    #payroll-hr .tool-category-header h3::after {
+      display: none;
+    }
+
+    /* Matching category icons */
+
+    #gst-billing .tool-category-icon {
+      border-color: #f4cccc;
+      background: #fff2f2;
+      color: #ed3434;
+    }
+
+    #payroll-hr .tool-category-icon {
+      border-color: #222222;
+      background: #111111;
+      color: #ff4545;
     }
 
     .tool-category-header p {
       max-width: 570px;
-      margin: 5px 0 0;
+      margin: 10px 0 0;
       color: #666666;
       font-size: 12px;
       line-height: 1.8;
@@ -1201,15 +1236,12 @@
         font-size: 16px;
       }
 
-      .tool-category-header h3 {
-        font-size: 21px;
-        letter-spacing: -0.5px;
-      }
+      /* Responsive heading bars */
 
-      .tool-category-header h3::after {
-        width: 36px;
-        height: 3px;
-        margin-top: 6px;
+      .tool-category-header h3 {
+        padding: 10px 13px;
+        font-size: 19px;
+        letter-spacing: -0.4px;
       }
 
       .tool-category-header p {
