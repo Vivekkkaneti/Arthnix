@@ -8,15 +8,17 @@
 
   <meta
     name="description"
-    content="Explore free business tools from ARTHNIX, including a GST calculator, invoice generator, income tax calculator, payroll tools, attendance calculators, and more."
+    content="Explore free business tools from ARTHNIX, including GST and income tax calculators, invoice and quotation generators, profit calculators, payroll tools, and HR calculators."
   >
 
   <meta name="theme-color" content="#090909">
 
   <meta
     name="keywords"
-    content="free business tools, GST calculator India, invoice generator, income tax calculator FY 2026-27, payroll calculator, attendance calculator, PF calculator, salary slip generator"
+    content="free business tools, GST calculator India, invoice generator, quotation generator, profit calculator, income tax calculator FY 2026-27, payroll calculator, attendance calculator, PF calculator, salary slip generator"
   >
+
+  <meta name="robots" content="index,follow">
 
   <link rel="canonical" href="https://arthnix.com/tools.html">
 
@@ -24,7 +26,7 @@
   <meta property="og:title" content="Free Business Tools — ARTHNIX">
   <meta
     property="og:description"
-    content="Practical tools for billing, GST, payroll, HR, and everyday business calculations."
+    content="Practical calculators and generators for GST, billing, profit, quotations, payroll, and everyday business tasks."
   >
   <meta property="og:url" content="https://arthnix.com/tools.html">
   <meta property="og:site_name" content="ARTHNIX">
@@ -35,30 +37,34 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
   <link rel="stylesheet" href="/pages.css">
 
   <style>
-    /* =====================================================
-       ARTHNIX — TOOLS DIRECTORY
-       Shared navigation/footer are loaded through components.js.
-       ===================================================== */
+    /* =========================================================
+       ARTHNIX BUSINESS TOOLS
+       Professional directory redesign
+       ========================================================= */
 
     :root {
-      --tools-black: #090909;
-      --tools-black-soft: #111111;
-      --tools-white: #ffffff;
-      --tools-paper: #fafaf9;
-      --tools-surface: #f4f4f2;
-      --tools-text: #151515;
-      --tools-muted: #737373;
-      --tools-border: #e9e9e7;
-      --tools-red: #ed3434;
-      --tools-red-dark: #d92727;
-      --tools-container: 1160px;
+      --an-black: #090909;
+      --an-black-2: #111111;
+      --an-white: #ffffff;
+      --an-paper: #fafaf9;
+      --an-surface: #f5f5f3;
+      --an-text: #171717;
+      --an-muted: #727272;
+      --an-border: #e8e8e5;
+      --an-red: #ed3434;
+      --an-red-dark: #d92727;
+      --an-red-soft: #fff1f1;
+      --an-green: #39724b;
+      --an-container: 1160px;
+      --an-radius: 10px;
+      --an-shadow: 0 10px 30px rgba(0, 0, 0, 0.045);
     }
 
     *,
@@ -74,8 +80,8 @@
 
     body {
       margin: 0;
-      background: var(--tools-white);
-      color: var(--tools-text);
+      background: var(--an-white);
+      color: var(--an-text);
       font-family: "DM Sans", sans-serif;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -83,9 +89,8 @@
 
     body,
     button,
-    input,
-    a {
-      -webkit-tap-highlight-color: transparent;
+    input {
+      font-family: "DM Sans", sans-serif;
     }
 
     button,
@@ -103,271 +108,294 @@
       outline-offset: 4px;
     }
 
-    ::selection {
-      color: #ffffff;
-      background: var(--tools-red);
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--an-red);
+      outline-offset: 4px;
     }
 
-    .tools-container {
-      width: min(
-        var(--tools-container),
-        calc(100% - 64px)
-      );
+    ::selection {
+      color: #fff;
+      background: var(--an-red);
+    }
+
+    .an-container {
+      width: min(var(--an-container), calc(100% - 64px));
       margin-inline: auto;
     }
 
-    /* =====================================================
-       HERO
-       ===================================================== */
+    .an-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
-    .tools-hero {
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .an-hero {
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      padding: 104px 0 82px;
-      background: var(--tools-black);
-      color: var(--tools-white);
+      padding: 82px 0 72px;
+      background: var(--an-black);
+      color: var(--an-white);
     }
 
-    .tools-hero::before {
+    .an-hero::before {
       position: absolute;
       z-index: -1;
-      top: -250px;
-      right: -130px;
-      width: 640px;
-      height: 640px;
+      top: -290px;
+      right: -120px;
+      width: 680px;
+      height: 680px;
       border-radius: 50%;
       background: radial-gradient(
         circle,
-        rgba(237, 52, 52, 0.13) 0%,
-        rgba(237, 52, 52, 0.035) 42%,
+        rgba(237, 52, 52, 0.17) 0%,
+        rgba(237, 52, 52, 0.055) 43%,
         transparent 72%
       );
       content: "";
       pointer-events: none;
     }
 
-    .tools-hero::after {
+    .an-hero::after {
       position: absolute;
       z-index: -1;
       inset: 0;
       background-image: radial-gradient(
-        rgba(150, 150, 150, 0.45) 0.6px,
+        rgba(255, 255, 255, 0.55) 0.6px,
         transparent 0.6px
       );
-      background-size: 27px 27px;
-      opacity: 0.14;
-      mask-image: linear-gradient(
-        to bottom,
-        #000000,
-        transparent 90%
-      );
+      background-size: 28px 28px;
+      opacity: 0.09;
+      mask-image: linear-gradient(to bottom, #000, transparent 90%);
       content: "";
       pointer-events: none;
     }
 
-    .tools-hero-inner {
-      position: relative;
-      z-index: 1;
+    .an-hero-content {
       max-width: 850px;
     }
 
-    .tools-eyebrow {
+    .an-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       color: #bcbcbc;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      line-height: 1.5;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      line-height: 1.6;
       text-transform: uppercase;
     }
 
-    .tools-eyebrow-dot {
+    .an-eyebrow-dot {
       width: 7px;
       height: 7px;
       flex-shrink: 0;
       border-radius: 50%;
-      background: var(--tools-red);
+      background: var(--an-red);
+      box-shadow: 0 0 0 4px rgba(237, 52, 52, 0.12);
     }
 
-    .tools-hero h1 {
-      max-width: 790px;
-      margin: 27px 0 0;
+    .an-hero h1 {
+      max-width: 800px;
+      margin: 25px 0 0;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(45px, 6.2vw, 72px);
-      font-weight: 600;
+      font-size: clamp(43px, 6.1vw, 70px);
+      font-weight: 700;
       line-height: 1.08;
-      letter-spacing: -3.8px;
+      letter-spacing: -3.6px;
     }
 
-    .tools-hero h1 span {
-      color: #929292;
+    .an-hero h1 span {
+      display: block;
+      color: #969696;
       font-weight: 500;
     }
 
-    .tools-hero-description {
-      max-width: 630px;
-      margin: 23px 0 0;
-      color: #a9a9a9;
-      font-size: 15px;
-      font-weight: 400;
+    .an-hero-description {
+      max-width: 650px;
+      margin: 21px 0 0;
+      color: #b1b1b1;
+      font-size: 14px;
       line-height: 1.9;
     }
 
-    .tools-hero-meta {
+    .an-hero-benefits {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px 23px;
-      margin-top: 25px;
-      color: #a3a3a3;
-      font-size: 11px;
+      gap: 12px 22px;
+      margin-top: 24px;
     }
 
-    .tools-hero-meta span {
+    .an-hero-benefit {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      color: #c0c0c0;
+      font-size: 11px;
     }
 
-    .tools-hero-meta span::before {
-      color: #e3e3e3;
-      content: "✓";
+    .an-hero-benefit-icon {
+      color: #ff6969;
       font-size: 13px;
+      font-weight: 800;
     }
 
-    /* =====================================================
+    /* =========================================================
        SEARCH
-       ===================================================== */
+       ========================================================= */
 
-    .tools-search-wrap {
-      position: relative;
-      max-width: 680px;
-      margin-top: 35px;
+    .an-search-wrap {
+      max-width: 700px;
+      margin-top: 32px;
     }
 
-    .tools-search {
-      position: relative;
+    .an-search {
       display: flex;
       align-items: center;
-      min-height: 59px;
-      padding: 7px 8px 7px 19px;
-      border: 1px solid #343434;
-      border-radius: 8px;
-      background: #111111;
+      min-height: 60px;
+      gap: 10px;
+      padding: 7px 8px 7px 16px;
+      border: 1px solid #373737;
+      border-radius: 9px;
+      background: #141414;
       transition:
         border-color 180ms ease,
         box-shadow 180ms ease;
     }
 
-    .tools-search:focus-within {
-      border-color: rgba(237, 52, 52, 0.75);
+    .an-search:focus-within {
+      border-color: rgba(237, 52, 52, 0.8);
       box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
     }
 
-    .tools-search-icon {
+    .an-search-icon {
       display: grid;
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       flex-shrink: 0;
       place-items: center;
-      color: #888888;
-      font-size: 19px;
+      color: #999;
     }
 
-    .tools-search input {
+    .an-search-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .an-search input {
       width: 100%;
       min-width: 0;
-      height: 43px;
-      padding: 0 13px;
+      height: 42px;
+      padding: 0 5px;
       border: 0;
       outline: none;
       background: transparent;
-      color: #ffffff;
+      color: #fff;
       font-size: 13px;
     }
 
-    .tools-search input::placeholder {
-      color: #777777;
+    .an-search input::placeholder {
+      color: #858585;
       opacity: 1;
     }
 
-    .tools-search input:focus-visible {
+    .an-search input:focus-visible {
       outline: none;
     }
 
-    .tools-search-button {
-      min-height: 42px;
+    .an-search-button {
+      display: inline-flex;
+      min-height: 43px;
       flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 0 17px;
-      border: 1px solid var(--tools-red);
+      border: 1px solid var(--an-red);
       border-radius: 6px;
-      background: var(--tools-red);
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: 700;
+      background: var(--an-red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
       cursor: pointer;
       transition: background 180ms ease;
     }
 
-    .tools-search-button:hover {
-      background: var(--tools-red-dark);
+    .an-search-button:hover {
+      background: var(--an-red-dark);
     }
 
-    .tools-search-hint {
+    .an-search-button svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .an-search-hint {
       margin: 11px 0 0;
-      color: #777777;
-      font-size: 11px;
-      line-height: 1.7;
+      color: #858585;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    /* =====================================================
+    /* =========================================================
        CATEGORY NAVIGATION
-       ===================================================== */
+       ========================================================= */
 
-    .tools-category-bar {
+    .an-category-nav {
       position: relative;
-      z-index: 1;
-      border-bottom: 1px solid var(--tools-border);
-      background: #ffffff;
+      z-index: 2;
+      border-bottom: 1px solid var(--an-border);
+      background: #fff;
     }
 
-    .tools-category-inner {
+    .an-category-nav-inner {
       display: flex;
+      min-height: 72px;
       align-items: center;
       gap: 8px;
-      min-height: 74px;
       overflow-x: auto;
       scrollbar-width: none;
     }
 
-    .tools-category-inner::-webkit-scrollbar {
+    .an-category-nav-inner::-webkit-scrollbar {
       display: none;
     }
 
-    .tools-category-label {
-      margin-right: 8px;
-      color: #898989;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
+    .an-category-label {
+      margin-right: 7px;
+      color: #8a8a8a;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
-    .tools-category-link {
+    .an-category-link {
       display: inline-flex;
-      min-height: 36px;
+      min-height: 37px;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 9px;
       padding: 0 13px;
       border: 1px solid transparent;
       border-radius: 6px;
-      color: #666666;
+      color: #656565;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       white-space: nowrap;
       transition:
         color 180ms ease,
@@ -375,281 +403,275 @@
         border-color 180ms ease;
     }
 
-    .tools-category-link:hover,
-    .tools-category-link:focus-visible {
-      border-color: var(--tools-border);
-      background: var(--tools-paper);
-      color: var(--tools-text);
+    .an-category-link:hover {
+      border-color: var(--an-border);
+      background: var(--an-paper);
+      color: var(--an-text);
     }
 
-    .tools-category-link.is-active {
-      border-color: #f1dada;
-      background: #fff5f5;
-      color: var(--tools-red);
+    .an-category-link.is-active {
+      border-color: #f1d2d2;
+      background: #fff3f3;
+      color: var(--an-red);
     }
 
-    .tools-category-count {
+    .an-category-count {
       display: inline-grid;
-      min-width: 20px;
-      height: 20px;
+      min-width: 21px;
+      height: 21px;
       padding: 0 5px;
       place-items: center;
-      border-radius: 4px;
+      border-radius: 5px;
       background: #f0f0ee;
-      color: #666666;
-      font-size: 10px;
-      font-weight: 700;
+      color: #656565;
+      font-size: 9px;
+      font-weight: 800;
     }
 
-    .tools-category-link.is-active .tools-category-count {
-      background: #ffe6e6;
-      color: var(--tools-red);
+    .an-category-link.is-active .an-category-count {
+      background: #ffe1e1;
+      color: var(--an-red);
     }
 
-    /* =====================================================
-       MAIN DIRECTORY
-       ===================================================== */
+    /* =========================================================
+       DIRECTORY HEADER
+       ========================================================= */
 
-    .tools-directory {
-      padding: 80px 0 105px;
-      background: var(--tools-white);
+    .an-directory {
+      padding: 67px 0 92px;
+      background: #fff;
     }
 
-    .tools-directory-header {
+    .an-directory-header {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
       gap: 25px;
-      margin-bottom: 43px;
+      margin-bottom: 42px;
     }
 
-    .tools-directory-heading {
-      max-width: 650px;
+    .an-directory-intro {
+      max-width: 690px;
     }
 
-    .tools-section-eyebrow {
+    .an-section-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      color: #777777;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
+      color: #797979;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
       text-transform: uppercase;
     }
 
-    .tools-section-eyebrow::before {
+    .an-section-eyebrow::before {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--tools-red);
+      background: var(--an-red);
       content: "";
     }
 
-    .tools-directory-heading h2 {
-      margin: 17px 0 0;
+    .an-directory-intro h2 {
+      margin: 16px 0 0;
       font-family: "Manrope", sans-serif;
       font-size: clamp(31px, 4vw, 43px);
-      font-weight: 600;
-      line-height: 1.18;
+      font-weight: 700;
+      line-height: 1.2;
       letter-spacing: -1.8px;
     }
 
-    .tools-directory-heading h2 span {
-      color: var(--tools-red);
+    .an-directory-intro h2 span {
+      color: var(--an-red);
     }
 
-    .tools-directory-heading p {
-      max-width: 600px;
-      margin: 14px 0 0;
-      color: var(--tools-muted);
-      font-size: 13px;
+    .an-directory-intro p {
+      max-width: 620px;
+      margin: 13px 0 0;
+      color: var(--an-muted);
+      font-size: 12px;
       line-height: 1.9;
     }
 
-    .tools-results {
+    .an-results-box {
+      display: inline-flex;
+      min-height: 40px;
       flex-shrink: 0;
-      padding: 9px 12px;
-      border: 1px solid var(--tools-border);
+      align-items: center;
+      gap: 5px;
+      padding: 0 13px;
+      border: 1px solid var(--an-border);
       border-radius: 6px;
-      background: var(--tools-paper);
-      color: #666666;
-      font-size: 11px;
+      background: var(--an-paper);
+      color: #777;
+      font-size: 10px;
       white-space: nowrap;
     }
 
-    .tools-results strong {
-      color: var(--tools-text);
-      font-weight: 700;
+    .an-results-box strong {
+      color: var(--an-text);
+      font-size: 12px;
     }
 
-    /* =====================================================
+    /* =========================================================
        CATEGORY SECTIONS
-       ===================================================== */
+       ========================================================= */
 
-    .tool-category {
-      margin-top: 66px;
-      scroll-margin-top: 180px;
+    .an-tool-category {
+      margin-top: 60px;
+      scroll-margin-top: 110px;
     }
 
-    .tool-category:first-of-type {
+    .an-tool-category:first-of-type {
       margin-top: 0;
     }
 
-    .tool-category[hidden] {
-      display: none;
+    .an-tool-category[hidden],
+    .an-tool-card[hidden],
+    .an-ai-panel[hidden],
+    .an-no-results[hidden] {
+      display: none !important;
     }
 
-    .tool-category-header {
+    .an-category-heading {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 22px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--tools-border);
+      padding-bottom: 19px;
+      border-bottom: 1px solid var(--an-border);
     }
 
-    .tool-category-title-group {
+    .an-category-heading-main {
       display: flex;
       align-items: flex-start;
-      gap: 15px;
+      gap: 14px;
       min-width: 0;
     }
 
-    .tool-category-icon {
+    .an-category-icon {
       display: grid;
       width: 43px;
       height: 43px;
       flex-shrink: 0;
       place-items: center;
-      border: 1px solid #eeeeeb;
+      border: 1px solid #f1cccc;
       border-radius: 9px;
-      background: #fffafa;
-      color: var(--tools-red);
-      font-family: "Manrope", sans-serif;
-      font-size: 19px;
-      font-weight: 600;
+      background: #fff3f3;
+      color: var(--an-red);
+      font-size: 20px;
+      font-weight: 700;
     }
 
-    /* =====================================================
-       NEW CATEGORY HEADING BARS
-       GST & BILLING: RED BACKGROUND + WHITE TEXT
-       PAYROLL & HR: BLACK BACKGROUND + RED TEXT
-       ===================================================== */
+    .an-category-heading-copy {
+      min-width: 0;
+    }
 
-    .tool-category-header h3 {
+    .an-category-title {
       display: inline-flex;
-      align-items: center;
-      width: fit-content;
       max-width: 100%;
+      align-items: center;
       margin: 0;
-      padding: 12px 17px;
+      padding: 11px 15px;
       border-radius: 5px;
       font-family: "Manrope", sans-serif;
-      font-size: 23px;
+      font-size: 21px;
       font-weight: 800;
-      line-height: 1.35;
-      letter-spacing: -0.6px;
+      line-height: 1.4;
+      letter-spacing: -0.5px;
       overflow-wrap: anywhere;
     }
 
-    /* GST & Billing — red background, white heading */
+    /* GST & Billing: RED BAR + WHITE TEXT */
 
-    #gst-billing .tool-category-header h3 {
-      background: #ed3434;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(237, 52, 52, 0.15);
+    #gst-billing .an-category-title {
+      background: var(--an-red);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(237, 52, 52, 0.14);
     }
 
-    #gst-billing .tool-category-header h3::after {
-      display: none;
+    #gst-billing .an-category-icon {
+      border-color: #f1cccc;
+      background: #fff3f3;
+      color: var(--an-red);
     }
 
-    /* Payroll & HR — black background, red heading */
+    /* Payroll & HR: BLACK BAR + RED TEXT */
 
-    #payroll-hr .tool-category-header h3 {
-      background: #111111;
-      color: #ff4545;
+    #payroll-hr .an-category-title {
+      background: #111;
+      color: #ff5050;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    #payroll-hr .tool-category-header h3::after {
-      display: none;
+    #payroll-hr .an-category-icon {
+      border-color: #222;
+      background: #111;
+      color: #ff5050;
     }
 
-    /* Matching category icons */
-
-    #gst-billing .tool-category-icon {
-      border-color: #f4cccc;
-      background: #fff2f2;
-      color: #ed3434;
-    }
-
-    #payroll-hr .tool-category-icon {
-      border-color: #222222;
-      background: #111111;
-      color: #ff4545;
-    }
-
-    .tool-category-header p {
-      max-width: 570px;
+    .an-category-description {
+      max-width: 600px;
       margin: 10px 0 0;
-      color: #666666;
+      color: var(--an-muted);
       font-size: 12px;
       line-height: 1.8;
     }
 
-    .tool-category-total {
+    .an-category-total {
       flex-shrink: 0;
-      padding-top: 5px;
-      color: #888888;
-      font-size: 11px;
+      padding-top: 6px;
+      color: #858585;
+      font-size: 10px;
+      white-space: nowrap;
     }
 
-    .tool-category-total strong {
-      color: #333333;
-      font-weight: 700;
+    .an-category-total strong {
+      color: var(--an-text);
+      font-size: 12px;
     }
 
-    /* =====================================================
-       TOOL CARDS
-       ===================================================== */
+    /* =========================================================
+       TOOL GRID
+       ========================================================= */
 
-    .tools-card-grid {
+    .an-tool-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 15px;
       margin-top: 22px;
     }
 
-    .tools-card {
+    .an-tool-card {
       position: relative;
       display: flex;
       min-width: 0;
-      min-height: 228px;
+      min-height: 242px;
       flex-direction: column;
       align-items: flex-start;
       padding: 22px;
-      border: 1px solid var(--tools-border);
-      border-radius: 9px;
-      background: #ffffff;
+      border: 1px solid var(--an-border);
+      border-radius: var(--an-radius);
+      background: #fff;
       transition:
         transform 180ms ease,
         border-color 180ms ease,
         box-shadow 180ms ease;
     }
 
-    .tools-card:hover {
+    .an-tool-card:hover {
       transform: translateY(-3px);
-      border-color: #d8d8d4;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.045);
+      border-color: #d6d6d2;
+      box-shadow: var(--an-shadow);
     }
 
-    .tools-card[hidden] {
-      display: none;
+    .an-tool-card:focus-within {
+      border-color: #e9a0a0;
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.06);
     }
 
-    .tools-card-top {
+    .an-tool-card-top {
       display: flex;
       width: 100%;
       align-items: center;
@@ -657,261 +679,268 @@
       gap: 12px;
     }
 
-    .tools-card-icon {
+    .an-tool-icon {
       display: grid;
-      width: 39px;
-      height: 39px;
+      width: 40px;
+      height: 40px;
       flex-shrink: 0;
       place-items: center;
-      border: 1px solid #eeeeeb;
-      border-radius: 8px;
-      background: #fffafa;
-      color: var(--tools-red);
+      border: 1px solid #efefec;
+      border-radius: 9px;
+      background: #fafaf8;
+      color: var(--an-red);
       font-family: "Manrope", sans-serif;
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 17px;
+      font-weight: 800;
     }
 
-    .tools-card-badge {
+    .an-tool-badge {
       display: inline-flex;
+      min-height: 24px;
       align-items: center;
       gap: 6px;
-      padding: 5px 8px;
-      border: 1px solid #e8eee8;
-      border-radius: 4px;
+      padding: 4px 8px;
+      border: 1px solid #e4ebe4;
+      border-radius: 5px;
       background: #f7faf7;
-      color: #527457;
+      color: var(--an-green);
       font-size: 9px;
-      font-weight: 600;
+      font-weight: 700;
       white-space: nowrap;
     }
 
-    .tools-card-badge::before {
+    .an-tool-badge::before {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: #6b9c70;
+      background: #61946a;
       content: "";
     }
 
-    .tools-card h4 {
-      margin: 20px 0 0;
+    .an-tool-card h4 {
+      margin: 19px 0 0;
       font-family: "Manrope", sans-serif;
       font-size: 15px;
-      font-weight: 650;
+      font-weight: 800;
       line-height: 1.5;
-      letter-spacing: -0.35px;
+      letter-spacing: -0.3px;
     }
 
-    .tools-card p {
-      margin: 9px 0 0;
-      color: var(--tools-muted);
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 1.8;
+    .an-tool-card p {
+      margin: 8px 0 0;
+      color: var(--an-muted);
+      font-size: 11.5px;
+      line-height: 1.85;
     }
 
-    .tools-card-action {
+    .an-tool-action {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
       margin-top: auto;
-      padding-top: 21px;
-      color: var(--tools-text);
+      padding-top: 22px;
+      color: var(--an-text);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       transition: color 180ms ease;
     }
 
-    .tools-card-action span {
-      color: var(--tools-red);
-      font-size: 15px;
+    .an-tool-action .an-arrow {
+      display: inline-block;
+      color: var(--an-red);
+      font-size: 16px;
       transition: transform 180ms ease;
     }
 
-    .tools-card:hover .tools-card-action {
-      color: var(--tools-red);
+    .an-tool-card:hover .an-tool-action {
+      color: var(--an-red);
     }
 
-    .tools-card:hover .tools-card-action span {
-      transform: translateX(3px);
+    .an-tool-card:hover .an-arrow {
+      transform: translate(3px, -2px);
     }
 
-    .tools-card-action:focus-visible {
-      outline: 2px solid var(--tools-red);
-      outline-offset: 4px;
+    /* Highlight the two newly added tools */
+
+    .an-tool-card.is-featured {
+      border-color: #e8caca;
+      background:
+        linear-gradient(145deg, #fff 0%, #fff 72%, #fff8f8 100%);
     }
 
-    /* =====================================================
-       NO RESULTS
-       ===================================================== */
+    .an-tool-card.is-featured .an-tool-icon {
+      border-color: #f0caca;
+      background: #fff0f0;
+    }
 
-    .tools-no-results {
-      padding: 70px 24px;
+    .an-tool-card.is-featured .an-tool-badge {
+      border-color: #f1d5d5;
+      background: #fff4f4;
+      color: #c52b2b;
+    }
+
+    .an-tool-card.is-featured .an-tool-badge::before {
+      background: var(--an-red);
+    }
+
+    /* =========================================================
+       EMPTY SEARCH STATE
+       ========================================================= */
+
+    .an-no-results {
+      margin-top: 24px;
+      padding: 55px 22px;
       border: 1px dashed #dededb;
       border-radius: 10px;
-      background: var(--tools-paper);
+      background: var(--an-paper);
       text-align: center;
     }
 
-    .tools-no-results[hidden] {
-      display: none;
-    }
-
-    .tools-no-results-icon {
+    .an-no-results-icon {
       display: grid;
       width: 48px;
       height: 48px;
       margin: 0 auto;
       place-items: center;
-      border: 1px solid #e7e7e4;
+      border: 1px solid var(--an-border);
       border-radius: 12px;
-      background: #ffffff;
-      color: var(--tools-red);
-      font-size: 22px;
+      background: #fff;
+      color: var(--an-red);
+      font-size: 23px;
     }
 
-    .tools-no-results h3 {
-      margin: 18px 0 0;
+    .an-no-results h3 {
+      margin: 17px 0 0;
       font-family: "Manrope", sans-serif;
       font-size: 21px;
-      font-weight: 600;
+      font-weight: 800;
       letter-spacing: -0.5px;
     }
 
-    .tools-no-results p {
+    .an-no-results p {
       max-width: 430px;
       margin: 10px auto 0;
-      color: var(--tools-muted);
-      font-size: 13px;
+      color: var(--an-muted);
+      font-size: 12px;
       line-height: 1.8;
     }
 
-    .tools-reset-button {
+    .an-reset-button {
       min-height: 42px;
       margin-top: 20px;
-      padding: 0 16px;
+      padding: 0 17px;
       border: 1px solid #dededb;
       border-radius: 6px;
-      background: #ffffff;
-      color: var(--tools-text);
-      font-size: 12px;
-      font-weight: 700;
+      background: #fff;
+      color: var(--an-text);
+      font-size: 11px;
+      font-weight: 800;
       cursor: pointer;
-      transition:
-        border-color 180ms ease,
-        background 180ms ease;
     }
 
-    .tools-reset-button:hover {
+    .an-reset-button:hover {
       border-color: #cfcfca;
       background: #f5f5f2;
     }
 
-    /* =====================================================
-       AI TOOLS PLACEHOLDER
-       ===================================================== */
+    /* =========================================================
+       AI TOOLS PANEL
+       ========================================================= */
 
-    .tools-coming-soon {
+    .an-ai-panel {
       position: relative;
-      overflow: hidden;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      gap: 28px;
-      margin-top: 65px;
-      padding: 33px;
-      border: 1px solid #e9e9e7;
-      border-radius: 10px;
-      background: var(--tools-paper);
+      gap: 25px;
+      margin-top: 62px;
+      padding: 30px;
+      border: 1px solid var(--an-border);
+      border-radius: 11px;
+      background: var(--an-paper);
+      scroll-margin-top: 110px;
     }
 
-    .tools-coming-soon[hidden] {
-      display: none;
-    }
-
-    .tools-coming-soon-copy {
+    .an-ai-copy {
       min-width: 0;
     }
 
-    .tools-coming-soon-label {
+    .an-ai-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--tools-red);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.3px;
+      color: var(--an-red);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
     }
 
-    .tools-coming-soon-label span {
-      font-size: 15px;
+    .an-ai-label span {
+      font-size: 16px;
     }
 
-    .tools-coming-soon h3 {
-      margin: 15px 0 0;
+    .an-ai-panel h3 {
+      margin: 13px 0 0;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(23px, 3vw, 31px);
-      font-weight: 600;
-      line-height: 1.25;
-      letter-spacing: -1px;
+      font-size: clamp(22px, 3vw, 29px);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: -0.8px;
     }
 
-    .tools-coming-soon p {
-      max-width: 600px;
+    .an-ai-panel p {
+      max-width: 610px;
       margin: 10px 0 0;
-      color: var(--tools-muted);
+      color: var(--an-muted);
       font-size: 12px;
       line-height: 1.9;
     }
 
-    .tools-coming-soon-visual {
+    .an-ai-visual {
       display: grid;
-      width: 85px;
-      height: 85px;
+      width: 76px;
+      height: 76px;
       flex-shrink: 0;
       place-items: center;
-      border: 1px solid #f0dcdc;
-      border-radius: 16px;
-      background: #fff4f4;
-      color: var(--tools-red);
-      font-family: "Manrope", sans-serif;
-      font-size: 35px;
-      font-weight: 500;
+      border: 1px solid #f0d5d5;
+      border-radius: 15px;
+      background: #fff2f2;
+      color: var(--an-red);
+      font-size: 33px;
     }
 
-    /* =====================================================
+    /* =========================================================
        BOTTOM CTA
-       ===================================================== */
+       ========================================================= */
 
-    .tools-bottom-cta {
-      padding: 0 0 100px;
-      background: #ffffff;
+    .an-bottom-cta {
+      padding: 0 0 90px;
+      background: #fff;
     }
 
-    .tools-cta-panel {
+    .an-cta-panel {
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      padding: 53px 45px;
-      border-radius: 11px;
+      padding: 53px 35px;
+      border-radius: 12px;
       background: #101010;
-      color: #ffffff;
+      color: #fff;
       text-align: center;
     }
 
-    .tools-cta-panel::before {
+    .an-cta-panel::before {
       position: absolute;
       z-index: -1;
-      top: -180px;
+      top: -220px;
       left: 50%;
-      width: 420px;
-      height: 420px;
+      width: 520px;
+      height: 520px;
       border-radius: 50%;
       background: radial-gradient(
         circle,
-        rgba(237, 52, 52, 0.16),
+        rgba(237, 52, 52, 0.17),
         transparent 70%
       );
       content: "";
@@ -919,48 +948,48 @@
       pointer-events: none;
     }
 
-    .tools-cta-eyebrow {
+    .an-cta-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      color: #b0b0b0;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
+      color: #b7b7b7;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
       text-transform: uppercase;
     }
 
-    .tools-cta-eyebrow::before {
+    .an-cta-eyebrow::before {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--tools-red);
+      background: var(--an-red);
       content: "";
     }
 
-    .tools-cta-panel h2 {
-      max-width: 650px;
-      margin: 21px auto 0;
+    .an-cta-panel h2 {
+      max-width: 660px;
+      margin: 19px auto 0;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(31px, 4.5vw, 46px);
-      font-weight: 600;
-      line-height: 1.18;
-      letter-spacing: -1.8px;
+      font-size: clamp(31px, 4.4vw, 45px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -1.7px;
     }
 
-    .tools-cta-panel h2 span {
+    .an-cta-panel h2 span {
       color: #ff7777;
     }
 
-    .tools-cta-panel p {
+    .an-cta-panel p {
       max-width: 530px;
-      margin: 15px auto 0;
-      color: #a2a2a2;
-      font-size: 13px;
+      margin: 14px auto 0;
+      color: #aaa;
+      font-size: 12px;
       line-height: 1.9;
     }
 
-    .tools-cta-actions {
+    .an-cta-actions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -968,336 +997,310 @@
       margin-top: 25px;
     }
 
-    .tools-cta-button {
+    .an-cta-button {
       display: inline-flex;
-      min-height: 45px;
+      min-height: 44px;
       align-items: center;
       justify-content: center;
       gap: 9px;
       padding: 0 18px;
-      border: 1px solid transparent;
+      border: 1px solid var(--an-red);
       border-radius: 6px;
-      background: var(--tools-red);
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: 700;
+      background: var(--an-red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
       transition:
         transform 180ms ease,
         background 180ms ease;
     }
 
-    .tools-cta-button:hover {
+    .an-cta-button:hover {
       transform: translateY(-2px);
-      background: var(--tools-red-dark);
+      background: var(--an-red-dark);
     }
 
-    .tools-cta-button-secondary {
-      border-color: #393939;
+    .an-cta-button-secondary {
+      border-color: #3d3d3d;
       background: transparent;
-      color: #ffffff;
+      color: #fff;
     }
 
-    .tools-cta-button-secondary:hover {
-      border-color: #696969;
-      background: #1a1a1a;
+    .an-cta-button-secondary:hover {
+      border-color: #707070;
+      background: #1c1c1c;
     }
 
-    /* =====================================================
-       COMPONENT LOADING
-       ===================================================== */
-
-    #site-nav,
-    #site-footer {
-      display: block;
-    }
-
-    html:not(.components-loaded) #site-nav,
-    html:not(.components-loaded) #site-footer {
-      min-height: 1px;
-    }
-
-    /* =====================================================
+    /* =========================================================
        RESPONSIVE
-       ===================================================== */
+       ========================================================= */
 
     @media (max-width: 1000px) {
-      .tools-card-grid {
+      .an-tool-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .tools-directory {
-        padding: 68px 0 85px;
+      .an-directory {
+        padding: 58px 0 78px;
       }
 
-      .tools-category-bar {
-        top: 68px;
-      }
-
-      .tools-category-inner {
-        min-height: 67px;
+      .an-category-nav-inner {
+        min-height: 65px;
       }
     }
 
-    @media (max-width: 780px) {
-      .tools-container {
-        width: min(
-          var(--tools-container),
-          calc(100% - 40px)
-        );
+    @media (max-width: 760px) {
+      .an-container {
+        width: calc(100% - 40px);
       }
 
-      .tools-hero {
-        padding: 85px 0 66px;
+      .an-hero {
+        padding: 72px 0 62px;
       }
 
-      .tools-hero h1 {
-        font-size: clamp(43px, 9vw, 62px);
+      .an-hero h1 {
+        font-size: clamp(43px, 8.5vw, 60px);
         letter-spacing: -2.8px;
       }
 
-      .tools-hero-description {
-        font-size: 14px;
-      }
-
-      .tools-category-bar {
-        top: 68px;
-      }
-
-      .tools-category-inner {
-        gap: 4px;
-        min-height: 63px;
-      }
-
-      .tools-category-label {
-        display: none;
-      }
-
-      .tools-directory-header {
+      .an-directory-header {
         align-items: flex-start;
         flex-direction: column;
         gap: 17px;
         margin-bottom: 35px;
       }
 
-      .tools-directory {
-        padding: 60px 0 75px;
+      .an-tool-category {
+        margin-top: 51px;
       }
 
-      .tool-category {
-        margin-top: 54px;
+      .an-ai-panel {
+        padding: 25px;
       }
 
-      .tools-coming-soon {
-        padding: 27px;
+      .an-bottom-cta {
+        padding-bottom: 70px;
       }
 
-      .tools-bottom-cta {
-        padding-bottom: 75px;
-      }
-
-      .tools-cta-panel {
-        padding: 43px 30px;
+      .an-cta-panel {
+        padding: 43px 27px;
       }
     }
 
     @media (max-width: 520px) {
       html {
-        scroll-padding-top: 90px;
+        scroll-padding-top: 85px;
       }
 
-      .tools-container {
-        width: calc(100% - 36px);
+      .an-container {
+        width: calc(100% - 34px);
       }
 
-      .tools-hero {
-        padding: 72px 0 55px;
+      .an-hero {
+        padding: 60px 0 48px;
       }
 
-      .tools-eyebrow {
+      .an-eyebrow {
         font-size: 9px;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.3px;
       }
 
-      .tools-hero h1 {
-        margin-top: 23px;
-        font-size: clamp(39px, 11.5vw, 53px);
-        letter-spacing: -2.5px;
+      .an-hero h1 {
+        margin-top: 22px;
+        font-size: clamp(38px, 11vw, 51px);
+        letter-spacing: -2.4px;
       }
 
-      .tools-hero-description {
-        margin-top: 18px;
-        font-size: 13px;
-        line-height: 1.85;
+      .an-hero-description {
+        margin-top: 17px;
+        font-size: 12px;
+        line-height: 1.9;
       }
 
-      .tools-hero-meta {
+      .an-hero-benefits {
         gap: 11px 15px;
+      }
+
+      .an-hero-benefit {
         font-size: 10px;
       }
 
-      .tools-search-wrap {
-        margin-top: 27px;
+      .an-search-wrap {
+        margin-top: 25px;
       }
 
-      .tools-search {
-        min-height: 55px;
-        padding-left: 11px;
+      .an-search {
+        min-height: 54px;
+        gap: 6px;
+        padding-left: 10px;
       }
 
-      .tools-search input {
-        padding: 0 7px;
+      .an-search-icon {
+        width: 21px;
+      }
+
+      .an-search input {
+        height: 39px;
+        padding: 0 3px;
         font-size: 11px;
       }
 
-      .tools-search-button {
-        min-height: 39px;
-        padding: 0 11px;
-        font-size: 11px;
-      }
-
-      .tools-search-hint {
-        font-size: 10px;
-      }
-
-      .tools-category-bar {
-        top: 68px;
-      }
-
-      .tools-category-inner {
-        min-height: 58px;
-      }
-
-      .tools-category-link {
-        min-height: 34px;
+      .an-search-button {
+        min-height: 38px;
+        gap: 5px;
         padding: 0 10px;
         font-size: 10px;
       }
 
-      .tools-category-count {
+      .an-search-hint {
+        font-size: 10px;
+      }
+
+      .an-category-nav-inner {
+        min-height: 58px;
+        gap: 4px;
+      }
+
+      .an-category-label {
+        display: none;
+      }
+
+      .an-category-link {
+        min-height: 34px;
+        gap: 6px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+
+      .an-category-count {
         min-width: 18px;
         height: 18px;
+        padding: 0 4px;
         font-size: 9px;
       }
 
-      .tools-directory {
-        padding: 48px 0 65px;
+      .an-directory {
+        padding: 45px 0 60px;
       }
 
-      .tools-directory-heading h2 {
+      .an-directory-intro h2 {
         font-size: 32px;
         letter-spacing: -1.3px;
       }
 
-      .tools-directory-heading p {
-        font-size: 12px;
+      .an-directory-intro p {
+        font-size: 11.5px;
       }
 
-      .tools-card-grid {
-        grid-template-columns: 1fr;
-        gap: 11px;
-        margin-top: 17px;
+      .an-tool-category {
+        margin-top: 42px;
+        scroll-margin-top: 80px;
       }
 
-      .tools-card {
-        min-height: 0;
-        padding: 20px;
+      .an-category-heading {
+        gap: 10px;
+        padding-bottom: 15px;
       }
 
-      .tools-card h4 {
-        margin-top: 16px;
-        font-size: 15px;
+      .an-category-heading-main {
+        gap: 10px;
       }
 
-      .tools-card p {
-        font-size: 12px;
-      }
-
-      .tools-card-action {
-        padding-top: 18px;
-      }
-
-      .tool-category {
-        margin-top: 43px;
-        scroll-margin-top: 145px;
-      }
-
-      .tool-category-header {
-        gap: 12px;
-        padding-bottom: 16px;
-      }
-
-      .tool-category-title-group {
-        gap: 11px;
-      }
-
-      .tool-category-icon {
-        width: 37px;
-        height: 37px;
+      .an-category-icon {
+        width: 35px;
+        height: 35px;
         font-size: 16px;
       }
 
-      /* Responsive heading bars */
-
-      .tool-category-header h3 {
-        padding: 10px 13px;
-        font-size: 19px;
-        letter-spacing: -0.4px;
+      .an-category-title {
+        padding: 9px 11px;
+        font-size: 17px;
+        letter-spacing: -0.35px;
       }
 
-      .tool-category-header p {
+      .an-category-description {
+        margin-top: 9px;
+        font-size: 10.5px;
+      }
+
+      .an-category-total {
+        padding-top: 3px;
+        font-size: 9px;
+      }
+
+      .an-category-total strong {
         font-size: 11px;
       }
 
-      .tool-category-total {
-        padding-top: 3px;
-        font-size: 10px;
-      }
-
-      .tools-coming-soon {
+      .an-tool-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-        margin-top: 43px;
-        padding: 23px 20px;
+        gap: 11px;
+        margin-top: 15px;
       }
 
-      .tools-coming-soon h3 {
+      .an-tool-card {
+        min-height: 0;
+        padding: 19px;
+      }
+
+      .an-tool-card h4 {
+        margin-top: 16px;
+        font-size: 14px;
+      }
+
+      .an-tool-card p {
+        font-size: 11.5px;
+      }
+
+      .an-tool-action {
+        padding-top: 18px;
+      }
+
+      .an-ai-panel {
+        grid-template-columns: 1fr;
+        gap: 19px;
+        margin-top: 43px;
+        padding: 22px 19px;
+      }
+
+      .an-ai-panel h3 {
+        font-size: 24px;
+      }
+
+      .an-ai-visual {
+        width: 54px;
+        height: 54px;
+        border-radius: 11px;
         font-size: 25px;
       }
 
-      .tools-coming-soon-visual {
-        width: 58px;
-        height: 58px;
-        border-radius: 11px;
-        font-size: 27px;
+      .an-no-results {
+        padding: 43px 17px;
       }
 
-      .tools-no-results {
-        padding: 47px 18px;
+      .an-bottom-cta {
+        padding-bottom: 55px;
       }
 
-      .tools-bottom-cta {
-        padding-bottom: 60px;
+      .an-cta-panel {
+        padding: 34px 19px;
       }
 
-      .tools-cta-panel {
-        padding: 35px 20px;
-      }
-
-      .tools-cta-panel h2 {
-        font-size: 33px;
+      .an-cta-panel h2 {
+        font-size: 32px;
         letter-spacing: -1.2px;
       }
 
-      .tools-cta-panel p {
-        font-size: 12px;
+      .an-cta-panel p {
+        font-size: 11.5px;
       }
 
-      .tools-cta-actions {
-        align-items: stretch;
+      .an-cta-actions {
         flex-direction: column;
+        align-items: stretch;
       }
 
-      .tools-cta-button {
+      .an-cta-button {
         width: 100%;
       }
     }
@@ -1319,64 +1322,108 @@
 
 <body>
 
-  <!-- SHARED NAVIGATION -->
+  <!-- SHARED SITE NAVIGATION -->
   <div id="site-nav"></div>
 
   <main>
 
-    <!-- HERO -->
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
 
-    <section class="tools-hero" aria-labelledby="toolsHeroTitle">
-      <div class="tools-container">
-        <div class="tools-hero-inner">
+    <section class="an-hero" aria-labelledby="anHeroTitle">
+      <div class="an-container">
+        <div class="an-hero-content">
 
-          <div class="tools-eyebrow">
-            <span class="tools-eyebrow-dot"></span>
-            Practical tools for everyday work
+          <div class="an-eyebrow">
+            <span class="an-eyebrow-dot" aria-hidden="true"></span>
+            ARTHNIX Business Tools
           </div>
 
-          <h1 id="toolsHeroTitle">
-            Get the work done.
-            <span>Skip the busywork.</span>
+          <h1 id="anHeroTitle">
+            Work smarter.
+            <span>Get things done.</span>
           </h1>
 
-          <p class="tools-hero-description">
-            Explore practical calculators and document generators for
-            billing, GST, payroll, and everyday business tasks.
-            Find the tool you need and get started in minutes.
+          <p class="an-hero-description">
+            A practical collection of business calculators and document
+            generators. Calculate GST, estimate profit, prepare invoices
+            and quotations, and simplify everyday payroll tasks.
           </p>
 
-          <div class="tools-hero-meta">
-            <span>Free tools to get started</span>
-            <span>Simple and practical</span>
-            <span>No account required where supported</span>
+          <div class="an-hero-benefits">
+            <span class="an-hero-benefit">
+              <span class="an-hero-benefit-icon" aria-hidden="true">✓</span>
+              Easy to use
+            </span>
+
+            <span class="an-hero-benefit">
+              <span class="an-hero-benefit-icon" aria-hidden="true">✓</span>
+              Practical calculations
+            </span>
+
+            <span class="an-hero-benefit">
+              <span class="an-hero-benefit-icon" aria-hidden="true">✓</span>
+              No account required where supported
+            </span>
           </div>
 
           <form
-            class="tools-search-wrap"
+            class="an-search-wrap"
             id="toolsSearchForm"
             role="search"
           >
-            <div class="tools-search">
-              <span class="tools-search-icon" aria-hidden="true">⌕</span>
+            <label class="an-sr-only" for="toolsSearchInput">
+              Search business tools
+            </label>
+
+            <div class="an-search">
+
+              <span class="an-search-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                  <path d="m16 16 4.2 4.2"></path>
+                </svg>
+              </span>
 
               <input
                 type="search"
                 id="toolsSearchInput"
                 name="q"
-                placeholder="Search GST, salary, invoice..."
-                aria-label="Search business tools"
+                placeholder="Search GST, profit, invoice, salary..."
                 autocomplete="off"
                 spellcheck="false"
+                aria-label="Search business tools"
               >
 
-              <button class="tools-search-button" type="submit">
-                Search tools
+              <button class="an-search-button" type="submit">
+                Search
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m13 6 6 6-6 6"></path>
+                </svg>
               </button>
+
             </div>
 
-            <p class="tools-search-hint">
-              Try “GST calculator”, “salary”, “attendance”, or “invoice”.
+            <p class="an-search-hint">
+              Popular searches: GST calculator, profit calculator,
+              quotation, salary, attendance.
             </p>
           </form>
 
@@ -1384,172 +1431,196 @@
       </div>
     </section>
 
-    <!-- CATEGORY NAVIGATION -->
+    <!-- =====================================================
+         CATEGORY NAVIGATION
+         ===================================================== -->
 
-    <nav class="tools-category-bar" aria-label="Tool categories">
-      <div class="tools-container">
-        <div class="tools-category-inner">
+    <nav class="an-category-nav" aria-label="Tool categories">
+      <div class="an-container">
+        <div class="an-category-nav-inner">
 
-          <span class="tools-category-label">Browse by</span>
+          <span class="an-category-label">Explore</span>
 
           <a
-            class="tools-category-link is-active"
+            class="an-category-link is-active"
             href="#gst-billing"
             data-category-link="gst-billing"
             aria-current="location"
           >
             GST &amp; Billing
-            <span class="tools-category-count">4</span>
+            <span class="an-category-count" data-category-count="gst-billing">6</span>
           </a>
 
           <a
-            class="tools-category-link"
+            class="an-category-link"
             href="#payroll-hr"
             data-category-link="payroll-hr"
           >
             Payroll &amp; HR
-            <span class="tools-category-count">12</span>
+            <span class="an-category-count" data-category-count="payroll-hr">12</span>
           </a>
 
           <a
-            class="tools-category-link"
+            class="an-category-link"
             href="#ai-generation"
             data-category-link="ai-generation"
           >
             AI Generation
-            <span class="tools-category-count">0</span>
+            <span class="an-category-count" data-category-count="ai-generation">0</span>
           </a>
 
         </div>
       </div>
     </nav>
 
-    <!-- TOOL DIRECTORY -->
+    <!-- =====================================================
+         TOOLS DIRECTORY
+         ===================================================== -->
 
-    <section class="tools-directory" id="all-tools">
-      <div class="tools-container">
+    <section class="an-directory" id="all-tools">
+      <div class="an-container">
 
-        <div class="tools-directory-header">
-          <div class="tools-directory-heading">
+        <header class="an-directory-header">
 
-            <div class="tools-section-eyebrow">
-              The tools directory
+          <div class="an-directory-intro">
+
+            <div class="an-section-eyebrow">
+              Explore the directory
             </div>
 
             <h2>
-              Find your next <span>shortcut.</span>
+              Find the right tool.
+              <span>Save time.</span>
             </h2>
 
             <p>
-              Choose a tool by category or search for a specific task.
-              Each tool is designed to help you complete routine
-              calculations and business documents more easily.
+              Browse tools by category or search for a specific task.
+              From everyday calculations to business documents, choose
+              a tool and get started.
             </p>
 
           </div>
 
-          <div class="tools-results" aria-live="polite">
-            Showing <strong id="toolsResultCount">16</strong> tools
+          <div class="an-results-box" aria-live="polite" aria-atomic="true">
+            <strong id="toolsResultCount">18</strong>
+            <span id="toolsResultLabel">tools available</span>
           </div>
-        </div>
 
-        <!-- GST & BILLING -->
+        </header>
+
+        <!-- =================================================
+             GST & BILLING
+             ================================================= -->
 
         <section
-          class="tool-category"
+          class="an-tool-category"
           id="gst-billing"
           data-category="gst-billing"
           aria-labelledby="gstBillingTitle"
         >
 
-          <header class="tool-category-header">
-            <div class="tool-category-title-group">
+          <header class="an-category-heading">
 
-              <div class="tool-category-icon" aria-hidden="true">₹</div>
+            <div class="an-category-heading-main">
 
-              <div>
-                <h3 id="gstBillingTitle">GST &amp; Billing</h3>
-                <p>
-                  Calculate taxes, prepare invoices, and organize
-                  essential billing details.
+              <div class="an-category-icon" aria-hidden="true">₹</div>
+
+              <div class="an-category-heading-copy">
+
+                <h3 class="an-category-title" id="gstBillingTitle">
+                  GST &amp; Billing
+                </h3>
+
+                <p class="an-category-description">
+                  Calculate taxes, work out profit, and prepare essential
+                  billing documents for your business.
                 </p>
+
               </div>
 
             </div>
 
-            <div class="tool-category-total">
-              <strong>04</strong> tools
+            <div class="an-category-total">
+              <strong data-category-total="gst-billing">06</strong>
+              tools
             </div>
+
           </header>
 
-          <div class="tools-card-grid">
+          <div class="an-tool-grid">
+
+            <!-- INVOICE GENERATOR -->
 
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="invoice generator"
               data-description="Create professional invoices instantly. Generate PDF invoices with your business details, items, quantities, and pricing."
               data-tags="invoice billing pdf business customer gst document"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">▤</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">▤</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Invoice Generator</h4>
 
               <p>
                 Create professional invoices with your business details,
-                items, and pricing. Generate a PDF invoice.
+                items, quantities, and pricing. Generate a PDF invoice.
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/invoice-generator.html"
                 aria-label="Open Invoice Generator"
               >
-                Create an invoice <span aria-hidden="true">↗</span>
+                Create an invoice <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- GST CALCULATOR -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="gst calculator"
               data-description="Calculate GST using 5%, 18%, and 40% slabs. Split CGST, SGST, or IGST. Add GST to a base amount or reverse GST from an inclusive price."
               data-tags="gst tax cgst sgst igst india inclusive exclusive reverse tax calculator"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">%</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">%</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>GST Calculator</h4>
 
               <p>
-                Calculate GST using 5%, 18%, and 40% slabs.
-                Add or reverse GST and split CGST, SGST, or IGST.
+                Calculate GST, add or reverse tax, and split CGST,
+                SGST, or IGST using the available rate options.
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/gst-calculator.html"
                 aria-label="Open GST Calculator"
               >
-                Calculate GST <span aria-hidden="true">↗</span>
+                Calculate GST <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- INCOME TAX CALCULATOR -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="income tax calculator"
               data-description="Estimate Indian income tax under Old and New tax regimes for FY 2026-27 and compare eligible deductions."
               data-tags="income tax calculator old new regime india fy 2026-27 deductions 80c 80d hra salary"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">₹</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">₹</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Income Tax Calculator</h4>
@@ -1560,86 +1631,160 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/income-tax-calculator.html"
                 aria-label="Open Income Tax Calculator"
               >
-                Calculate income tax <span aria-hidden="true">↗</span>
+                Calculate income tax <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- INVOICE NUMBER GENERATOR -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="invoice number generator"
               data-description="Generate sequential or custom invoice numbers using your preferred format and prefix."
               data-tags="invoice number generator numbering sequential prefix billing invoice id format"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">#</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">#</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Invoice Number Generator</h4>
 
               <p>
                 Generate sequential or custom invoice numbers
-                with your preferred format and prefix.
+                using your preferred format and prefix.
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/invoice-number-generator.html"
                 aria-label="Open Invoice Number Generator"
               >
-                Generate invoice numbers <span aria-hidden="true">↗</span>
+                Generate invoice numbers <span class="an-arrow" aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <!-- PROFIT CALCULATOR — NEW -->
+
+            <article
+              class="an-tool-card is-featured"
+              data-tool
+              data-name="profit calculator"
+              data-description="Work out profit, margin, markup, cost, and selling price. Calculate profit from cost and selling price or determine a selling price from a target margin."
+              data-tags="profit calculator business margin markup selling price cost revenue earnings gross profit pricing"
+            >
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">%</div>
+                <span class="an-tool-badge">New tool</span>
+              </div>
+
+              <h4>Profit Calculator</h4>
+
+              <p>
+                Work out profit, margin, markup, and selling price
+                to make more informed pricing decisions.
+              </p>
+
+              <a
+                class="an-tool-action"
+                href="/tools/profit-calculator.html"
+                aria-label="Open Profit Calculator"
+              >
+                Calculate profit <span class="an-arrow" aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <!-- QUOTATION GENERATOR — NEW -->
+
+            <article
+              class="an-tool-card is-featured"
+              data-tool
+              data-name="quotation generator quote maker estimate generator"
+              data-description="Prepare clear quotations for customers, products, and services. Add line items, quantities, prices, taxes, business details, and terms."
+              data-tags="quotation generator quote maker estimate generator sales customer proposal product service billing pricing pdf"
+            >
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">▧</div>
+                <span class="an-tool-badge">New tool</span>
+              </div>
+
+              <h4>Quotation Generator</h4>
+
+              <p>
+                Prepare clear quotations for customers, products,
+                and services with itemized pricing.
+              </p>
+
+              <a
+                class="an-tool-action"
+                href="/tools/quotation-generator.html"
+                aria-label="Open Quotation Generator"
+              >
+                Create a quotation <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
           </div>
         </section>
 
-        <!-- PAYROLL & HR -->
+        <!-- =================================================
+             PAYROLL & HR
+             ================================================= -->
 
         <section
-          class="tool-category"
+          class="an-tool-category"
           id="payroll-hr"
           data-category="payroll-hr"
           aria-labelledby="payrollHrTitle"
         >
 
-          <header class="tool-category-header">
-            <div class="tool-category-title-group">
+          <header class="an-category-heading">
 
-              <div class="tool-category-icon" aria-hidden="true">▥</div>
+            <div class="an-category-heading-main">
 
-              <div>
-                <h3 id="payrollHrTitle">Payroll &amp; HR</h3>
-                <p>
-                  Work out salary rates, track attendance, estimate
-                  payroll values, and simplify everyday HR calculations.
+              <div class="an-category-icon" aria-hidden="true">▥</div>
+
+              <div class="an-category-heading-copy">
+
+                <h3 class="an-category-title" id="payrollHrTitle">
+                  Payroll &amp; HR
+                </h3>
+
+                <p class="an-category-description">
+                  Calculate salary rates, estimate payroll values,
+                  track attendance, and simplify everyday HR tasks.
                 </p>
+
               </div>
 
             </div>
 
-            <div class="tool-category-total">
-              <strong>12</strong> tools
+            <div class="an-category-total">
+              <strong data-category-total="payroll-hr">12</strong>
+              tools
             </div>
+
           </header>
 
-          <div class="tools-card-grid">
+          <div class="an-tool-grid">
+
+            <!-- SALARY PER DAY -->
 
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="salary per day calculator"
               data-description="Convert monthly salary into daily and hourly rates using 26-day or 30-day calculation methods."
               data-tags="salary per day hourly wage monthly payroll 26 day 30 day hr"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">₹</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">₹</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Salary Per Day Calculator</h4>
@@ -1650,52 +1795,56 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/salary-per-day-calculator.html"
                 aria-label="Open Salary Per Day Calculator"
               >
-                Calculate salary rates <span aria-hidden="true">↗</span>
+                Calculate salary rates <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- PF INTEREST -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="pf interest calculator"
               data-description="Project EPF balance growth using current savings, monthly contributions, and an assumed interest rate."
               data-tags="pf epf provident fund interest balance savings retirement contribution employee"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">%</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">%</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>PF Interest Calculator</h4>
 
               <p>
                 Project EPF balance growth from your current balance,
-                monthly contribution, and interest rate.
+                monthly contributions, and an assumed interest rate.
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/pf-interest-calculator.html"
                 aria-label="Open PF Interest Calculator"
               >
-                Estimate PF growth <span aria-hidden="true">↗</span>
+                Estimate PF growth <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- ATTENDANCE -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="attendance calculator"
               data-description="Calculate attendance percentage from working days, present days, and half-days."
               data-tags="attendance percentage present absent working days half days school college employee hr"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">✓</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">✓</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Attendance Calculator</h4>
@@ -1706,24 +1855,26 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/attendance-calculator.html"
                 aria-label="Open Attendance Calculator"
               >
-                Calculate attendance <span aria-hidden="true">↗</span>
+                Calculate attendance <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- WORKING DAYS -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="working days calculator"
               data-description="Count business days between two dates, excluding weekends and any holidays you specify."
               data-tags="working days business days date calculator weekdays weekends holidays calendar"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">▦</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">▦</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Working Days Calculator</h4>
@@ -1734,24 +1885,26 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/working-days-calculator.html"
                 aria-label="Open Working Days Calculator"
               >
-                Count working days <span aria-hidden="true">↗</span>
+                Count working days <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- TIME CARD -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="time card calculator"
               data-description="Calculate total weekly work hours from punch-in, punch-out, and break minutes."
               data-tags="time card timesheet work hours punch in punch out break overtime weekly employee"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">◷</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">◷</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Time Card Calculator</h4>
@@ -1762,24 +1915,26 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/time-card-calculator.html"
                 aria-label="Open Time Card Calculator"
               >
-                Calculate work hours <span aria-hidden="true">↗</span>
+                Calculate work hours <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- EARNED LEAVE -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="earned leave calculator"
               data-description="Estimate earned leave using days worked and a leave credit rate, with an optional 26-day encashment calculation."
               data-tags="earned leave el leave encashment salary leave credit hr payroll 26 day"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">▤</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">▤</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Earned Leave Calculator</h4>
@@ -1790,24 +1945,26 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/earned-leave-calculator.html"
                 aria-label="Open Earned Leave Calculator"
               >
-                Calculate earned leave <span aria-hidden="true">↗</span>
+                Calculate earned leave <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- EPS / EPF PENSION -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="eps epf pension calculator"
               data-description="Estimate monthly EPS pension using pensionable salary and eligible service years."
               data-tags="eps epf pension retirement monthly pension pensionable salary service years employee provident fund"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">₹</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">₹</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>EPS / EPF Pension Calculator</h4>
@@ -1818,52 +1975,56 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/eps-epf-pension-calculator.html"
                 aria-label="Open EPS and EPF Pension Calculator"
               >
-                Estimate pension <span aria-hidden="true">↗</span>
+                Estimate pension <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- ATTRITION -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="attrition rate calculator"
               data-description="Calculate employee attrition as a percentage of average headcount over a selected period."
               data-tags="attrition rate employee turnover separations average headcount hr workforce people analytics"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">↘</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">↘</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Attrition Rate Calculator</h4>
 
               <p>
                 Calculate employee separations as a percentage
-                of average headcount over a period.
+                of average headcount over a selected period.
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/attrition-rate-calculator.html"
                 aria-label="Open Attrition Rate Calculator"
               >
-                Calculate attrition <span aria-hidden="true">↗</span>
+                Calculate attrition <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- REVENUE PER EMPLOYEE -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="revenue per employee calculator"
               data-description="Calculate revenue per employee using business revenue and average employee count."
               data-tags="revenue per employee productivity workforce business revenue average employees hr metrics"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">↗</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">↗</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Revenue Per Employee Calculator</h4>
@@ -1874,24 +2035,27 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/revenue-per-employee-calculator.html"
                 aria-label="Open Revenue Per Employee Calculator"
               >
-                Calculate revenue per employee <span aria-hidden="true">↗</span>
+                Calculate revenue per employee
+                <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- INCENTIVE -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="incentive calculator"
               data-description="Estimate a linear incentive payout based on target achievement and an incentive amount."
               data-tags="incentive calculator target achievement sales commission employee bonus payout"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">%</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">%</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Incentive Calculator</h4>
@@ -1902,24 +2066,26 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/incentive-calculator.html"
                 aria-label="Open Incentive Calculator"
               >
-                Calculate incentive <span aria-hidden="true">↗</span>
+                Calculate incentive <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- VARIABLE PAY -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="variable pay calculator"
               data-description="Estimate variable pay using CTC, variable pay weights, and performance achievement."
               data-tags="variable pay ctc compensation salary performance achievement bonus payout hr"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">₹</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">₹</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Variable Pay Calculator</h4>
@@ -1930,24 +2096,26 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/variable-pay-calculator.html"
                 aria-label="Open Variable Pay Calculator"
               >
-                Calculate variable pay <span aria-hidden="true">↗</span>
+                Calculate variable pay <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
+            <!-- SALARY SLIP -->
+
             <article
-              class="tools-card"
+              class="an-tool-card"
               data-tool
               data-name="salary slip generator"
               data-description="Generate professional salary slips with gross earnings, allowances, deductions, and net salary details."
               data-tags="salary slip payslip payroll salary statement gross earnings deductions net salary employee"
             >
-              <div class="tools-card-top">
-                <div class="tools-card-icon" aria-hidden="true">▤</div>
-                <span class="tools-card-badge">Free tool</span>
+              <div class="an-tool-card-top">
+                <div class="an-tool-icon" aria-hidden="true">▤</div>
+                <span class="an-tool-badge">Free tool</span>
               </div>
 
               <h4>Salary Slip Generator</h4>
@@ -1958,31 +2126,33 @@
               </p>
 
               <a
-                class="tools-card-action"
+                class="an-tool-action"
                 href="/tools/salary-slip-generator.html"
                 aria-label="Open Salary Slip Generator"
               >
-                Generate salary slip <span aria-hidden="true">↗</span>
+                Generate salary slip <span class="an-arrow" aria-hidden="true">↗</span>
               </a>
             </article>
 
           </div>
         </section>
 
-        <!-- NO RESULTS -->
+        <!-- =================================================
+             NO RESULTS
+             ================================================= -->
 
-        <div class="tools-no-results" id="toolsNoResults" hidden>
-          <div class="tools-no-results-icon" aria-hidden="true">⌕</div>
+        <div class="an-no-results" id="toolsNoResults" hidden>
+          <div class="an-no-results-icon" aria-hidden="true">⌕</div>
 
           <h3>No matching tools found</h3>
 
           <p>
-            Try another search term or clear your search to browse
-            all available categories.
+            Try a different keyword, or clear your search to browse
+            all available tools.
           </p>
 
           <button
-            class="tools-reset-button"
+            class="an-reset-button"
             type="button"
             id="toolsResetButton"
           >
@@ -1990,73 +2160,75 @@
           </button>
         </div>
 
-        <!-- AI GENERATION -->
+        <!-- =================================================
+             AI GENERATION
+             ================================================= -->
 
         <section
-          class="tools-coming-soon"
+          class="an-ai-panel"
           id="ai-generation"
           data-category="ai-generation"
           aria-labelledby="aiGenerationTitle"
         >
 
-          <div class="tools-coming-soon-copy">
+          <div class="an-ai-copy">
 
-            <div class="tools-coming-soon-label">
+            <div class="an-ai-label">
               <span aria-hidden="true">✳</span>
               AI Generation
             </div>
 
             <h3 id="aiGenerationTitle">
-              Practical AI tools, as they become available.
+              More ways to get work done.
             </h3>
 
             <p>
               This category is reserved for AI-assisted generators
-              and productivity tools. New tools can be added here
+              and productivity tools. Additional tools can be added
               as they become available.
             </p>
 
           </div>
 
-          <div class="tools-coming-soon-visual" aria-hidden="true">
-            ✳
-          </div>
+          <div class="an-ai-visual" aria-hidden="true">✳</div>
 
         </section>
 
       </div>
     </section>
 
-    <!-- BOTTOM CTA -->
+    <!-- =====================================================
+         BOTTOM CTA
+         ===================================================== -->
 
-    <section class="tools-bottom-cta">
-      <div class="tools-container">
+    <section class="an-bottom-cta">
+      <div class="an-container">
 
-        <div class="tools-cta-panel">
+        <div class="an-cta-panel">
 
-          <div class="tools-cta-eyebrow">
-            Intelligence for Every Business
+          <div class="an-cta-eyebrow">
+            Practical tools. Less busywork.
           </div>
 
           <h2>
-            A simpler way to handle
-            <span>everyday work.</span>
+            Make everyday work
+            <span>feel simpler.</span>
           </h2>
 
           <p>
-            Start with the tool you need today. Explore ARTHNIX
-            as your business needs grow.
+            Start with the calculator or generator you need.
+            Explore ARTHNIX to discover more ways to simplify your work.
           </p>
 
-          <div class="tools-cta-actions">
+          <div class="an-cta-actions">
 
-            <a class="tools-cta-button" href="/index.html#platform">
+            <a class="an-cta-button" href="/index.html#platform">
               Discover ARTHNIX
               <span aria-hidden="true">↗</span>
             </a>
 
             <a
-              class="tools-cta-button tools-cta-button-secondary"
+              class="an-cta-button an-cta-button-secondary"
               href="/index.html#how-it-works"
             >
               How it works
@@ -2072,8 +2244,12 @@
 
   </main>
 
-  <!-- SHARED FOOTER -->
+  <!-- SHARED SITE FOOTER -->
   <div id="site-footer"></div>
+
+  <!-- =======================================================
+       SEARCH, FILTERS AND COUNTS
+       ======================================================= -->
 
   <script>
     (() => {
@@ -2086,16 +2262,21 @@
         document.querySelectorAll("[data-category-link]")
       );
 
-      const categories = Array.from(
-        document.querySelectorAll(".tool-category[data-category]")
+      const categorySections = Array.from(
+        document.querySelectorAll(".an-tool-category[data-category]")
       );
 
+      const aiSection = document.getElementById("ai-generation");
       const resultsCount = document.getElementById("toolsResultCount");
+      const resultsLabel = document.getElementById("toolsResultLabel");
       const noResults = document.getElementById("toolsNoResults");
       const resetButton = document.getElementById("toolsResetButton");
-      const aiSection = document.getElementById("ai-generation");
 
       let activeCategory = "all";
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
 
       function normalize(value) {
         return String(value || "")
@@ -2106,8 +2287,16 @@
           .trim();
       }
 
+      function getAllCards() {
+        return Array.from(
+          document.querySelectorAll(".an-tool-card[data-tool]")
+        );
+      }
+
       function cardMatchesSearch(card, query) {
-        if (!query) return true;
+        if (!query) {
+          return true;
+        }
 
         const searchableText = normalize([
           card.dataset.name,
@@ -2119,12 +2308,55 @@
         return searchableText.includes(query);
       }
 
-      function setActiveCategory(category, shouldScroll = false) {
+      function updateCategoryCounts() {
+        const categoryCounts = {};
+
+        categorySections.forEach((section) => {
+          const category = section.dataset.category;
+
+          const count = section.querySelectorAll(
+            ".an-tool-card[data-tool]"
+          ).length;
+
+          categoryCounts[category] = count;
+        });
+
+        categoryLinks.forEach((link) => {
+          const category = link.dataset.categoryLink;
+          const countElement = link.querySelector(
+            "[data-category-count]"
+          );
+
+          if (countElement) {
+            countElement.textContent = String(
+              categoryCounts[category] || 0
+            );
+          }
+        });
+
+        Object.entries(categoryCounts).forEach(([category, count]) => {
+          const totalElement = document.querySelector(
+            `[data-category-total="${category}"]`
+          );
+
+          if (totalElement) {
+            totalElement.textContent = String(count).padStart(2, "0");
+          }
+        });
+
+        const total = getAllCards().length;
+
+        resultsCount.textContent = String(total);
+        resultsLabel.textContent = total === 1
+          ? "tool available"
+          : "tools available";
+      }
+
+      function updateActiveCategory(category) {
         activeCategory = category;
 
         categoryLinks.forEach((link) => {
-          const isActive =
-            link.dataset.categoryLink === category;
+          const isActive = link.dataset.categoryLink === category;
 
           link.classList.toggle("is-active", isActive);
 
@@ -2134,100 +2366,122 @@
             link.removeAttribute("aria-current");
           }
         });
-
-        if (shouldScroll) {
-          const target = document.getElementById(category);
-
-          if (target) {
-            target.scrollIntoView({
-              behavior: window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-              ).matches ? "auto" : "smooth",
-              block: "start"
-            });
-          }
-        }
-
-        applyFilters();
       }
 
       function applyFilters() {
         const query = normalize(searchInput.value);
         let visibleCount = 0;
 
-        categories.forEach((categorySection) => {
-          const categoryName = categorySection.dataset.category;
+        categorySections.forEach((section) => {
+          const category = section.dataset.category;
 
           const categoryAllowed =
             activeCategory === "all" ||
-            activeCategory === categoryName;
+            activeCategory === category;
 
-          const categoryCards = Array.from(
-            categorySection.querySelectorAll("[data-tool]")
+          const cards = Array.from(
+            section.querySelectorAll(".an-tool-card[data-tool]")
           );
 
           let visibleInCategory = 0;
 
-          categoryCards.forEach((card) => {
-            const matches =
+          cards.forEach((card) => {
+            const visible =
               categoryAllowed &&
               cardMatchesSearch(card, query);
 
-            card.hidden = !matches;
+            card.hidden = !visible;
 
-            if (matches) {
-              visibleCount += 1;
+            if (visible) {
               visibleInCategory += 1;
+              visibleCount += 1;
             }
           });
 
-          categorySection.hidden =
-            !categoryAllowed || visibleInCategory === 0;
+          section.hidden = !categoryAllowed || visibleInCategory === 0;
         });
 
-        const aiAllowed =
+        /*
+         * AI Generation is a placeholder, not a tool card.
+         * It remains visible for its category when there is no search.
+         * Search results are based on actual available tool cards.
+         */
+
+        const aiCategoryAllowed =
           activeCategory === "all" ||
           activeCategory === "ai-generation";
 
-        const aiMatches =
+        const aiTextMatches =
           !query ||
           normalize(aiSection.textContent).includes(query);
 
-        aiSection.hidden = !(aiAllowed && aiMatches);
+        aiSection.hidden = !aiCategoryAllowed || !aiTextMatches;
 
         resultsCount.textContent = String(visibleCount);
 
-        noResults.hidden =
-          visibleCount > 0 || !query;
+        resultsLabel.textContent = visibleCount === 1
+          ? "tool found"
+          : "tools found";
 
-        if (query && visibleCount === 0 && aiMatches && aiAllowed) {
-          noResults.hidden = true;
+        /*
+         * A zero-result search must display the empty state.
+         * The AI placeholder does not count as a matching tool.
+         */
+
+        noResults.hidden = !(query && visibleCount === 0);
+      }
+
+      function scrollToDirectory() {
+        document.getElementById("all-tools").scrollIntoView({
+          behavior: reducedMotion.matches ? "auto" : "smooth",
+          block: "start"
+        });
+      }
+
+      function selectCategory(category, shouldScroll = false) {
+        searchInput.value = "";
+
+        updateActiveCategory(category);
+        applyFilters();
+
+        if (shouldScroll) {
+          const target = document.getElementById(category);
+
+          if (target) {
+            target.scrollIntoView({
+              behavior: reducedMotion.matches ? "auto" : "smooth",
+              block: "start"
+            });
+          }
         }
       }
 
       searchForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        if (searchInput.value.trim()) {
-          activeCategory = "all";
+        /*
+         * Search all categories instead of limiting the results
+         * to the category that was previously selected.
+         */
 
-          categoryLinks.forEach((link) => {
-            link.classList.remove("is-active");
-            link.removeAttribute("aria-current");
-          });
-        }
-
+        updateActiveCategory("all");
         applyFilters();
+        scrollToDirectory();
 
-        document.getElementById("all-tools").scrollIntoView({
-          behavior: window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-          ).matches ? "auto" : "smooth",
-          block: "start"
-        });
+        const hash = "#all-tools";
+
+        if (window.location.hash !== hash) {
+          history.replaceState(null, "", hash);
+        }
       });
 
       searchInput.addEventListener("input", () => {
+        /*
+         * Update live results while the user types.
+         * Keep the selected category unless a form submission
+         * explicitly starts a search across all categories.
+         */
+
         applyFilters();
       });
 
@@ -2237,9 +2491,7 @@
 
           const category = link.dataset.categoryLink;
 
-          searchInput.value = "";
-
-          setActiveCategory(category, true);
+          selectCategory(category, true);
 
           history.replaceState(
             null,
@@ -2251,38 +2503,43 @@
 
       resetButton.addEventListener("click", () => {
         searchInput.value = "";
-        setActiveCategory("all", false);
+
+        updateActiveCategory("all");
         applyFilters();
-        searchInput.focus();
 
         history.replaceState(
           null,
           "",
           "#all-tools"
         );
+
+        searchInput.focus();
       });
 
       function initializeFromHash() {
         const hash = window.location.hash.replace(/^#/, "");
 
-        const validCategory = categoryLinks.find(
+        const matchingLink = categoryLinks.find(
           (link) => link.dataset.categoryLink === hash
         );
 
-        if (validCategory) {
-          setActiveCategory(hash, false);
+        if (matchingLink) {
+          updateActiveCategory(hash);
         } else {
-          activeCategory = "all";
-          applyFilters();
+          updateActiveCategory("all");
         }
+
+        applyFilters();
       }
 
+      updateCategoryCounts();
       initializeFromHash();
 
       /*
-       * The navbar and footer are loaded by components.js.
-       * This page does not duplicate their markup or event handlers.
+       * Shared site navigation and footer are still provided
+       * by components.js. Their markup is not duplicated here.
        */
+
       document.addEventListener(
         "arthnix:components-loaded",
         () => {
