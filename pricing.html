@@ -4,154 +4,188 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pricing Plans | ARTHNIX — Business Tools Made Simple</title>
-  <meta name="description" content="Explore ARTHNIX pricing plans for invoicing, inventory management, sales tracking, and everyday business operations. Start free and upgrade as your business grows.">
+  <meta name="description" content="Explore ARTHNIX pricing plans for invoicing, inventory management, sales tracking, and everyday business operations. Start with free tools and explore plans for your business.">
   <meta name="theme-color" content="#090909">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://arthnix.com/pricing.html">
   <link rel="icon" href="/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="pages.css">
   <script src="components.js" defer></script>
   <style>
     :root {
-      --price-bg: #090909;
-      --price-surface: #101010;
-      --price-surface-raised: #151515;
-      --price-border: #272727;
-      --price-border-strong: #383838;
-      --price-red: #ED3434;
-      --price-red-hover: #ff4545;
-      --price-white: #f8f8f8;
+      --black: #090909;
+      --black-soft: #111111;
+      --black-raised: #151515;
+      --white: #ffffff;
+      --paper: #fafaf9;
+      --surface: #f4f4f2;
+      --text: #151515;
+      --muted: #737373;
+      --border: #292929;
+      --border-strong: #383838;
+      --red: #ed3434;
+      --red-dark: #d92727;
+      --red-light: #ff8585;
       --price-muted: #a0a0a0;
       --price-dim: #707070;
-      --price-radius: 18px;
-      --price-container: 1160px;
+      --radius: 18px;
+      --container: 1160px;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
     html {
       scroll-behavior: smooth;
-      background: var(--price-bg);
+      scroll-padding-top: 100px;
+      background: var(--black);
     }
     body {
       margin: 0;
-      background: var(--price-bg);
-      color: var(--price-white);
-      font-family: "Manrope", sans-serif;
+      background: var(--black);
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-size: 14px;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
-    body * {
-      box-sizing: border-box;
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+    a {
+      color: inherit;
     }
     .pricing-page {
-      overflow: hidden;
       min-height: 100vh;
+      overflow: clip;
     }
     .pricing-container {
-      width: min(var(--price-container), calc(100% - 48px));
+      width: min(var(--container), calc(100% - 48px));
       margin-inline: auto;
     }
     .pricing-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      margin-bottom: 22px;
+      gap: 10px;
+      margin: 0 0 20px;
       color: #d0d0d0;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 2px;
+      line-height: 1.6;
       text-transform: uppercase;
     }
     .pricing-eyebrow::before {
       width: 7px;
       height: 7px;
+      flex: 0 0 7px;
       border-radius: 50%;
-      background: var(--price-red);
+      background: var(--red);
+      box-shadow: 0 0 14px rgb(237 52 52 / 35%);
       content: "";
-      box-shadow: 0 0 14px rgb(237 52 52 / 40%);
     }
     .pricing-hero {
       position: relative;
-      padding: 100px 0 58px;
-      text-align: center;
       isolation: isolate;
+      padding: 100px 0 42px;
+      text-align: center;
     }
     .pricing-hero::before {
       position: absolute;
       z-index: -1;
-      top: -180px;
+      top: -160px;
       left: 50%;
-      width: 700px;
-      height: 500px;
+      width: min(760px, 100vw);
+      height: 520px;
       transform: translateX(-50%);
-      background: radial-gradient(ellipse, rgb(237 52 52 / 9%) 0%, rgb(237 52 52 / 3%) 42%, transparent 72%);
+      background: radial-gradient(
+        ellipse,
+        rgb(237 52 52 / 10%) 0%,
+        rgb(237 52 52 / 3%) 44%,
+        transparent 72%
+      );
       content: "";
       pointer-events: none;
     }
     .pricing-hero h1 {
-      max-width: 900px;
+      max-width: 940px;
       margin: 0 auto;
-      font-size: clamp(38px, 6.3vw, 72px);
-      font-weight: 800;
-      letter-spacing: -3.8px;
-      line-height: 1.08;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(49px, 6.4vw, 78px);
+      font-weight: 600;
+      letter-spacing: -5px;
+      line-height: 1.03;
     }
     .pricing-hero h1 .accent {
-      color: var(--price-red);
+      color: var(--red);
     }
     .pricing-hero-description {
-      max-width: 640px;
-      margin: 23px auto 0;
-      color: var(--price-muted);
+      max-width: 650px;
+      margin: 25px auto 0;
+      color: #a6a6a6;
       font-size: 15px;
+      font-weight: 400;
       line-height: 1.9;
     }
     .pricing-trust {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 22px;
+      gap: 13px 24px;
       margin-top: 28px;
-      color: #a8a8a8;
-      font-size: 11px;
-      font-weight: 600;
+      color: #b2b2b2;
+      font-size: 12px;
+      font-weight: 500;
     }
     .pricing-trust span {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
     }
     .pricing-trust svg {
-      width: 14px;
-      height: 14px;
-      color: var(--price-red);
-      flex-shrink: 0;
+      width: 15px;
+      height: 15px;
+      flex: 0 0 15px;
+      color: var(--red);
     }
     .billing-area {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 12px;
-      margin-top: 42px;
+      margin-top: 38px;
     }
     .billing-switch {
       display: inline-flex;
       align-items: center;
       gap: 4px;
       padding: 5px;
-      border: 1px solid var(--price-border);
-      border-radius: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       background: #111;
     }
     .billing-option {
       min-height: 42px;
       padding: 0 19px;
       border: 0;
-      border-radius: 8px;
+      border-radius: 7px;
       background: transparent;
-      color: #929292;
-      font: inherit;
+      color: #a0a0a0;
+      font-family: "DM Sans", sans-serif;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       cursor: pointer;
       transition: background .2s ease, color .2s ease;
     }
@@ -159,58 +193,66 @@
       background: #292929;
       color: #fff;
     }
-    .billing-option:focus-visible,
-    .pricing-button:focus-visible,
-    .faq-question:focus-visible,
-    .enterprise-button:focus-visible {
-      outline: 2px solid var(--price-red);
-      outline-offset: 4px;
-    }
     .billing-save {
       display: inline-flex;
       align-items: center;
+      min-height: 27px;
       padding: 5px 9px;
       border: 1px solid rgb(237 52 52 / 28%);
       border-radius: 6px;
       background: rgb(237 52 52 / 9%);
       color: #ff8585;
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: .2px;
+      white-space: nowrap;
     }
     .billing-note {
+      max-width: 480px;
+      margin: 0;
       color: var(--price-dim);
       font-size: 11px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
+    .billing-option:focus-visible,
+    .pricing-button:focus-visible,
+    .faq-question:focus-visible,
+    .enterprise-button:focus-visible,
+    .faq-contact:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 4px;
+    }
+    /* Pricing cards */
     .pricing-plans {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       align-items: stretch;
       gap: 18px;
-      padding: 20px 0 92px;
+      padding: 35px 0 95px;
     }
     .plan-card {
       position: relative;
       display: flex;
       flex-direction: column;
       min-width: 0;
-      padding: 30px 27px 27px;
-      border: 1px solid var(--price-border);
-      border-radius: var(--price-radius);
-      background: linear-gradient(160deg, #131313 0%, #0d0d0d 75%);
+      padding: 30px 27px 26px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(155deg, #131313 0%, #0d0d0d 78%);
       transition: transform .25s ease, border-color .25s ease;
     }
     .plan-card:hover {
       transform: translateY(-4px);
-      border-color: var(--price-border-strong);
+      border-color: var(--border-strong);
     }
     .plan-card.featured {
-      border-color: var(--price-red);
+      border-color: var(--red);
       background:
-        radial-gradient(ellipse at 50% 0%, rgb(237 52 52 / 10%), transparent 52%),
-        linear-gradient(160deg, #171313 0%, #101010 70%);
-      box-shadow: 0 0 0 1px rgb(237 52 52 / 8%), 0 22px 70px rgb(0 0 0 / 25%);
+        radial-gradient(ellipse at 50% 0%, rgb(237 52 52 / 10%), transparent 54%),
+        linear-gradient(155deg, #171313 0%, #101010 75%);
+      box-shadow:
+        0 0 0 1px rgb(237 52 52 / 7%),
+        0 22px 65px rgb(0 0 0 / 20%);
     }
     .plan-badge {
       position: absolute;
@@ -218,34 +260,34 @@
       left: 50%;
       transform: translateX(-50%);
       padding: 7px 13px;
-      border-radius: 7px;
-      background: var(--price-red);
-      color: white;
+      border-radius: 6px;
+      background: var(--red);
+      color: #fff;
       font-size: 9px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 1.2px;
-      white-space: nowrap;
       text-transform: uppercase;
+      white-space: nowrap;
     }
     .plan-name-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
     }
     .plan-icon {
       display: grid;
-      width: 38px;
-      height: 38px;
-      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
       place-items: center;
-      border: 1px solid var(--price-border);
-      border-radius: 11px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       background: #191919;
       color: #d0d0d0;
     }
     .plan-icon svg {
-      width: 19px;
-      height: 19px;
+      width: 20px;
+      height: 20px;
     }
     .featured .plan-icon {
       border-color: rgb(237 52 52 / 28%);
@@ -254,59 +296,68 @@
     }
     .plan-name {
       margin: 0;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -.5px;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -.7px;
     }
     .plan-audience {
-      min-height: 43px;
-      margin: 16px 0 0;
+      min-height: 48px;
+      margin: 17px 0 0;
       color: var(--price-muted);
       font-size: 12px;
-      line-height: 1.8;
+      line-height: 1.85;
     }
     .plan-price {
       display: flex;
       align-items: baseline;
       gap: 5px;
-      margin-top: 28px;
+      min-height: 57px;
+      margin-top: 27px;
     }
     .plan-currency {
       align-self: flex-start;
-      margin-top: 9px;
-      color: #c8c8c8;
+      margin-top: 8px;
+      color: #d0d0d0;
       font-size: 17px;
-      font-weight: 700;
-    }
-    .plan-amount {
-      font-size: clamp(38px, 4vw, 48px);
-      font-weight: 800;
-      letter-spacing: -2.6px;
-      line-height: 1.1;
-    }
-    .plan-period {
-      color: #8d8d8d;
-      font-size: 11px;
       font-weight: 600;
     }
+    .plan-amount {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(38px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -2.8px;
+      line-height: 1.1;
+    }
+    .plan-amount.custom-price {
+      align-self: center;
+      font-size: 34px;
+      letter-spacing: -1.6px;
+    }
+    .plan-period {
+      color: #929292;
+      font-size: 11px;
+      font-weight: 500;
+    }
     .plan-billing-detail {
-      min-height: 22px;
+      min-height: 24px;
       margin: 9px 0 0;
-      color: #818181;
+      color: #858585;
       font-size: 10px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
     .plan-divider {
+      width: 100%;
       height: 1px;
-      margin: 24px 0 21px;
+      margin: 23px 0 21px;
       border: 0;
-      background: var(--price-border);
+      background: var(--border);
     }
     .plan-feature-heading {
       margin: 0 0 17px;
-      color: #dedede;
-      font-size: 11px;
-      font-weight: 800;
+      color: #e0e0e0;
+      font-size: 12px;
+      font-weight: 700;
     }
     .plan-features {
       display: grid;
@@ -319,22 +370,22 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      color: #b6b6b6;
+      color: #b9b9b9;
       font-size: 11px;
-      line-height: 1.75;
+      line-height: 1.8;
     }
     .feature-check {
       display: grid;
       width: 17px;
       height: 17px;
-      flex-shrink: 0;
+      flex: 0 0 17px;
       place-items: center;
       margin-top: 1px;
       border: 1px solid #393939;
       border-radius: 50%;
-      color: #d6d6d6;
+      color: #e0e0e0;
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 700;
     }
     .featured .feature-check {
       border-color: rgb(237 52 52 / 38%);
@@ -346,33 +397,33 @@
       justify-content: center;
       gap: 9px;
       width: 100%;
-      min-height: 47px;
+      min-height: 48px;
       margin-top: auto;
       padding: 12px 17px;
       border: 1px solid #363636;
-      border-radius: 10px;
+      border-radius: 7px;
       background: #191919;
       color: #f4f4f4;
-      font-family: inherit;
-      font-size: 11px;
-      font-weight: 800;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
       text-align: center;
       text-decoration: none;
       cursor: pointer;
-      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+      transition: background .2s ease, border-color .2s ease;
     }
     .pricing-button:hover {
       border-color: #555;
       background: #232323;
     }
     .pricing-button.primary {
-      border-color: var(--price-red);
-      background: var(--price-red);
+      border-color: var(--red);
+      background: var(--red);
       color: #fff;
     }
     .pricing-button.primary:hover {
-      border-color: var(--price-red-hover);
-      background: var(--price-red-hover);
+      border-color: var(--red-dark);
+      background: var(--red-dark);
     }
     .pricing-button .arrow {
       font-size: 16px;
@@ -383,86 +434,101 @@
     }
     .plan-footnote {
       margin: 13px 0 0;
-      color: #696969;
-      font-size: 9px;
+      color: #777;
+      font-size: 10px;
       line-height: 1.7;
       text-align: center;
     }
+    /* Section headings */
     .section-heading {
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
       text-align: center;
     }
     .section-heading .pricing-eyebrow {
       margin-bottom: 17px;
     }
+    .section-heading h2,
+    .faq-intro h2,
+    .enterprise-content h2 {
+      font-family: "Manrope", sans-serif;
+      font-weight: 600;
+    }
     .section-heading h2 {
       margin: 0;
-      font-size: clamp(29px, 4vw, 44px);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.2;
+      font-size: clamp(34px, 4.2vw, 53px);
+      letter-spacing: -2.4px;
+      line-height: 1.12;
     }
     .section-heading p {
-      margin: 17px 0 0;
+      max-width: 610px;
+      margin: 18px auto 0;
       color: var(--price-muted);
       font-size: 13px;
       line-height: 1.9;
     }
+    /* Business tools */
     .tools-section {
-      padding: 30px 0 95px;
+      padding: 30px 0 100px;
     }
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 13px;
-      margin-top: 43px;
+      gap: 14px;
+      margin-top: 44px;
     }
     .tool-card {
       min-width: 0;
-      padding: 24px 21px;
-      border: 1px solid var(--price-border);
+      padding: 25px 22px;
+      border: 1px solid var(--border);
       border-radius: 14px;
-      background: var(--price-surface);
+      background: var(--black-soft);
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-strong);
     }
     .tool-card-icon {
       display: grid;
-      width: 42px;
-      height: 42px;
+      width: 43px;
+      height: 43px;
       place-items: center;
       margin-bottom: 22px;
       border: 1px solid #343434;
-      border-radius: 12px;
+      border-radius: 10px;
       background: #181818;
       color: #ff7777;
     }
     .tool-card-icon svg {
-      width: 20px;
-      height: 20px;
+      width: 21px;
+      height: 21px;
     }
     .tool-card h3 {
       margin: 0;
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: -.3px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -.4px;
     }
     .tool-card p {
-      margin: 10px 0 0;
+      margin: 11px 0 0;
       color: var(--price-muted);
-      font-size: 11px;
+      font-size: 12px;
       line-height: 1.85;
     }
+    /* Comparison table */
     .comparison-section {
-      padding: 90px 0;
-      border-top: 1px solid #1e1e1e;
-      border-bottom: 1px solid #1e1e1e;
+      padding: 95px 0;
+      border-top: 1px solid #202020;
+      border-bottom: 1px solid #202020;
       background: #0c0c0c;
     }
     .comparison-wrap {
-      margin-top: 42px;
+      margin-top: 43px;
       overflow-x: auto;
-      border: 1px solid var(--price-border);
-      border-radius: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       background: #101010;
       scrollbar-color: #444 #111;
     }
@@ -476,13 +542,13 @@
     .comparison-table td {
       padding: 18px 22px;
       border-bottom: 1px solid #252525;
-      font-size: 11px;
+      font-size: 12px;
     }
     .comparison-table thead th {
       background: #151515;
       color: #f2f2f2;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
     .comparison-table thead th:first-child {
       width: 36%;
@@ -502,23 +568,24 @@
       font-weight: 600;
     }
     .table-check {
-      color: #ff7777;
-      font-weight: 800;
+      color: #ff8585 !important;
+      font-weight: 600;
     }
     .table-limited {
       color: #b7b7b7;
     }
     .table-dash {
-      color: #565656;
+      color: #656565;
     }
     .comparison-note {
       margin: 14px 0 0;
-      color: #777;
-      font-size: 10px;
+      color: #818181;
+      font-size: 11px;
       line-height: 1.8;
     }
+    /* Frequently asked questions */
     .faq-section {
-      padding: 95px 0;
+      padding: 100px 0;
     }
     .faq-layout {
       display: grid;
@@ -528,13 +595,12 @@
     }
     .faq-intro h2 {
       margin: 0;
-      font-size: clamp(30px, 4vw, 43px);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.2;
+      font-size: clamp(34px, 4.2vw, 48px);
+      letter-spacing: -2.2px;
+      line-height: 1.12;
     }
     .faq-intro > p {
-      margin: 17px 0 0;
+      margin: 19px 0 0;
       color: var(--price-muted);
       font-size: 13px;
       line-height: 1.9;
@@ -543,20 +609,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 22px;
-      color: #ff7777;
+      margin-top: 24px;
+      color: #ff8585;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       text-decoration: none;
     }
     .faq-contact:hover {
       color: #ffaaaa;
     }
     .faq-list {
-      border-top: 1px solid var(--price-border);
+      border-top: 1px solid var(--border);
     }
     .faq-item {
-      border-bottom: 1px solid var(--price-border);
+      border-bottom: 1px solid var(--border);
     }
     .faq-question {
       display: flex;
@@ -568,42 +634,43 @@
       border: 0;
       background: transparent;
       color: #f1f1f1;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 800;
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
       line-height: 1.7;
       text-align: left;
       cursor: pointer;
     }
     .faq-plus {
       display: grid;
-      width: 26px;
-      height: 26px;
-      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
       place-items: center;
       border: 1px solid #353535;
-      border-radius: 8px;
+      border-radius: 7px;
       color: #ccc;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 400;
       transition: transform .2s ease, border-color .2s ease, color .2s ease;
     }
     .faq-question[aria-expanded="true"] .faq-plus {
       transform: rotate(45deg);
       border-color: rgb(237 52 52 / 45%);
-      color: #ff7777;
+      color: #ff8585;
     }
     .faq-answer {
       padding: 0 42px 22px 0;
       color: var(--price-muted);
-      font-size: 11px;
+      font-size: 12px;
       line-height: 1.95;
     }
     .faq-answer[hidden] {
       display: none;
     }
+    /* Enterprise call to action */
     .enterprise-section {
-      padding: 0 0 100px;
+      padding: 0 0 75px;
     }
     .enterprise-panel {
       position: relative;
@@ -612,9 +679,9 @@
       justify-content: space-between;
       gap: 40px;
       overflow: hidden;
-      padding: 46px 48px;
+      padding: 48px;
       border: 1px solid #3a2525;
-      border-radius: 20px;
+      border-radius: 18px;
       background:
         radial-gradient(ellipse at 0% 100%, rgb(237 52 52 / 9%), transparent 48%),
         linear-gradient(120deg, #151111, #101010 70%);
@@ -627,30 +694,31 @@
       height: 300px;
       border: 1px solid rgb(237 52 52 / 11%);
       border-radius: 50%;
-      box-shadow: 0 0 0 35px rgb(237 52 52 / 3%), 0 0 0 70px rgb(237 52 52 / 2%);
+      box-shadow:
+        0 0 0 35px rgb(237 52 52 / 3%),
+        0 0 0 70px rgb(237 52 52 / 2%);
       content: "";
       pointer-events: none;
     }
     .enterprise-content {
       position: relative;
       z-index: 1;
-      max-width: 650px;
+      max-width: 660px;
     }
     .enterprise-content .pricing-eyebrow {
-      margin-bottom: 16px;
+      margin-bottom: 17px;
     }
     .enterprise-content h2 {
       margin: 0;
-      font-size: clamp(26px, 3.4vw, 39px);
-      font-weight: 800;
-      letter-spacing: -1.6px;
-      line-height: 1.2;
+      font-size: clamp(30px, 3.7vw, 43px);
+      letter-spacing: -2px;
+      line-height: 1.13;
     }
     .enterprise-content p {
       max-width: 600px;
-      margin: 15px 0 0;
+      margin: 17px 0 0;
       color: var(--price-muted);
-      font-size: 12px;
+      font-size: 13px;
       line-height: 1.9;
     }
     .enterprise-button {
@@ -660,33 +728,35 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      flex-shrink: 0;
       min-height: 48px;
+      flex-shrink: 0;
       padding: 0 22px;
-      border: 1px solid var(--price-red);
-      border-radius: 10px;
-      background: var(--price-red);
+      border: 1px solid var(--red);
+      border-radius: 7px;
+      background: var(--red);
       color: #fff;
-      font-family: inherit;
-      font-size: 11px;
-      font-weight: 800;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
       text-decoration: none;
-      transition: background .2s ease;
+      transition: background .2s ease, border-color .2s ease;
     }
     .enterprise-button:hover {
-      background: var(--price-red-hover);
+      border-color: var(--red-dark);
+      background: var(--red-dark);
     }
     .pricing-disclaimer {
       padding: 0 0 30px;
-      color: #696969;
-      font-size: 10px;
-      line-height: 1.8;
+      color: #777;
+      font-size: 11px;
+      line-height: 1.9;
       text-align: center;
     }
-    @media (max-width: 900px) {
+    /* Responsive layout */
+    @media (max-width: 1000px) {
       .pricing-plans {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 20px;
+        gap: 22px;
       }
       .plan-card:last-child {
         grid-column: 1 / -1;
@@ -699,7 +769,10 @@
       }
       .faq-layout {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 38px;
+      }
+      .faq-intro {
+        max-width: 600px;
       }
       .enterprise-panel {
         align-items: flex-start;
@@ -707,44 +780,66 @@
         gap: 25px;
       }
     }
-    @media (max-width: 600px) {
-      .pricing-container {
-        width: min(100% - 32px, var(--price-container));
-      }
+    @media (max-width: 780px) {
       .pricing-hero {
-        padding: 72px 0 40px;
+        padding-top: 78px;
       }
       .pricing-hero h1 {
-        font-size: clamp(36px, 10vw, 48px);
-        letter-spacing: -2px;
+        font-size: clamp(44px, 8vw, 64px);
+        letter-spacing: -3.4px;
       }
       .pricing-hero-description {
-        margin-top: 18px;
+        font-size: 14px;
+      }
+      .section-heading h2 {
+        font-size: clamp(34px, 5.5vw, 46px);
+        letter-spacing: -1.8px;
+      }
+    }
+    @media (max-width: 600px) {
+      .pricing-container {
+        width: calc(100% - 32px);
+      }
+      .pricing-hero {
+        padding: 64px 0 30px;
+      }
+      .pricing-hero h1 {
+        font-size: clamp(37px, 10vw, 49px);
+        letter-spacing: -2.3px;
+        line-height: 1.08;
+      }
+      .pricing-hero-description {
+        margin-top: 19px;
         font-size: 13px;
+        line-height: 1.85;
       }
       .pricing-trust {
         gap: 12px 16px;
-        font-size: 10px;
+        font-size: 11px;
       }
       .billing-area {
         margin-top: 30px;
       }
       .billing-option {
+        min-height: 40px;
         padding-inline: 13px;
+      }
+      .billing-save {
+        font-size: 9px;
       }
       .pricing-plans {
         grid-template-columns: 1fr;
-        gap: 25px;
-        padding-bottom: 70px;
+        gap: 24px;
+        padding-top: 27px;
+        padding-bottom: 72px;
       }
+      .plan-card,
       .plan-card:last-child {
         grid-column: auto;
+        padding: 27px 23px 24px;
       }
       .plan-card:last-child .plan-features {
         grid-template-columns: 1fr;
-      }
-      .plan-card {
-        padding: 27px 23px 24px;
       }
       .plan-amount {
         font-size: 46px;
@@ -752,21 +847,25 @@
       .tools-section,
       .comparison-section,
       .faq-section {
-        padding-block: 70px;
+        padding-block: 72px;
       }
       .tools-grid {
         grid-template-columns: 1fr;
-        margin-top: 30px;
+        gap: 12px;
+        margin-top: 31px;
       }
       .tool-card {
-        padding: 21px;
+        padding: 22px;
       }
       .tool-card-icon {
-        margin-bottom: 16px;
+        margin-bottom: 17px;
       }
       .section-heading h2,
       .faq-intro h2 {
-        letter-spacing: -1.2px;
+        letter-spacing: -1.4px;
+      }
+      .section-heading p {
+        font-size: 12px;
       }
       .comparison-wrap {
         margin-top: 30px;
@@ -776,63 +875,82 @@
         padding: 15px;
       }
       .faq-layout {
-        gap: 28px;
+        gap: 29px;
+      }
+      .faq-question {
+        gap: 14px;
+        padding: 21px 0;
+        font-size: 12px;
+      }
+      .faq-answer {
+        padding-right: 12px;
       }
       .enterprise-section {
-        padding-bottom: 70px;
+        padding-bottom: 48px;
       }
       .enterprise-panel {
-        padding: 30px 24px;
+        gap: 24px;
+        padding: 30px 23px;
+        border-radius: 14px;
       }
       .enterprise-content h2 {
-        letter-spacing: -1px;
+        font-size: clamp(28px, 7vw, 36px);
+        letter-spacing: -1.2px;
+      }
+      .enterprise-content p {
+        font-size: 12px;
       }
       .enterprise-button {
         width: 100%;
+      }
+      .pricing-disclaimer {
+        padding-bottom: 25px;
+        font-size: 10px;
       }
     }
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
       }
-      .plan-card,
-      .pricing-button,
-      .pricing-button .arrow,
-      .billing-option,
-      .faq-plus {
-        transition: none;
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
 </head>
 <body>
-  <a id="top"></a>
+  <a id="top" aria-hidden="true"></a>
   <div id="site-nav"></div>
   <main class="pricing-page">
-    <section class="pricing-hero">
-      <div class="pricing-container">
-        <span class="pricing-eyebrow">Straightforward pricing</span>
+<!-- HERO -->
+<section class="pricing-hero">
+  <div class="pricing-container">
+    <span class="pricing-eyebrow">Straightforward pricing</span>
     <h1>
       Run your business.<br>
       <span class="accent">Not your expenses.</span>
     </h1>
     <p class="pricing-hero-description">
-      From creating invoices to managing inventory and tracking sales,
-      ARTHNIX gives you practical business tools that help you spend less
-      time on routine work and more time growing your business.
+      Create invoices, manage inventory, track sales, and simplify everyday
+      business operations with practical tools designed for the way you work.
     </p>
     <div class="pricing-trust" aria-label="Pricing highlights">
       <span>
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Start with a free plan
+        Start with free tools
       </span>
       <span>
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Upgrade when you're ready
+        Explore plans as you grow
       </span>
       <span>
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -843,23 +961,34 @@
     </div>
     <div class="billing-area">
       <div class="billing-switch" role="group" aria-label="Billing frequency">
-        <button class="billing-option" type="button" data-billing="monthly" aria-pressed="true">
+        <button
+          class="billing-option"
+          type="button"
+          data-billing="monthly"
+          aria-pressed="true"
+        >
           Monthly
         </button>
-        <button class="billing-option" type="button" data-billing="yearly" aria-pressed="false">
+        <button
+          class="billing-option"
+          type="button"
+          data-billing="yearly"
+          aria-pressed="false"
+        >
           Yearly
         </button>
         <span class="billing-save">SAVE 20%</span>
       </div>
       <p class="billing-note" id="billingNote" aria-live="polite">
-        Monthly billing. Upgrade or change your plan as your needs evolve.
+        Monthly billing is shown as a proposed pricing option. Final terms are not yet confirmed.
       </p>
     </div>
   </div>
 </section>
+<!-- PRICING PLANS -->
 <section class="pricing-container" aria-label="Pricing plans">
   <div class="pricing-plans">
-    <!-- FREE PLAN -->
+    <!-- FREE -->
     <article class="plan-card">
       <div class="plan-name-row">
         <div class="plan-icon" aria-hidden="true">
@@ -878,7 +1007,9 @@
         <span class="plan-amount">0</span>
         <span class="plan-period">/ forever</span>
       </div>
-      <p class="plan-billing-detail">No subscription payment required.</p>
+      <p class="plan-billing-detail">
+        No subscription payment required for the free tier.
+      </p>
       <hr class="plan-divider">
       <p class="plan-feature-heading">What's included</p>
       <ul class="plan-features">
@@ -891,9 +1022,11 @@
       <a class="pricing-button" href="tools.html">
         Explore free tools <span class="arrow" aria-hidden="true">↗</span>
       </a>
-      <p class="plan-footnote">Exact tool availability may vary.</p>
+      <p class="plan-footnote">
+        Exact tool availability may vary.
+      </p>
     </article>
-    <!-- PRO PLAN -->
+    <!-- PRO -->
     <article class="plan-card featured">
       <span class="plan-badge">Most popular</span>
       <div class="plan-name-row">
@@ -912,14 +1045,14 @@
         <span class="plan-currency">₹</span>
         <span
           class="plan-amount"
+          id="proPrice"
           data-monthly-price="999"
           data-yearly-price="799"
-          id="proPrice"
         >999</span>
-        <span class="plan-period">/ month</span>
+        <span class="plan-period" id="proPeriod">/ month</span>
       </div>
       <p class="plan-billing-detail" id="proBillingDetail">
-        Billed monthly. Cancel according to the applicable plan terms.
+        Proposed price. Monthly subscription terms are not yet finalized.
       </p>
       <hr class="plan-divider">
       <p class="plan-feature-heading">Everything in Free, plus</p>
@@ -931,11 +1064,13 @@
         <li><span class="feature-check">✓</span><span>Priority support</span></li>
       </ul>
       <a class="pricing-button primary" href="contact.html">
-        Get started with Pro <span class="arrow" aria-hidden="true">↗</span>
+        Enquire about Pro <span class="arrow" aria-hidden="true">↗</span>
       </a>
-      <p class="plan-footnote">Pro features and usage limits are subject to final plan specifications.</p>
+      <p class="plan-footnote">
+        Proposed features and usage limits require confirmation.
+      </p>
     </article>
-    <!-- ENTERPRISE PLAN -->
+    <!-- ENTERPRISE -->
     <article class="plan-card">
       <div class="plan-name-row">
         <div class="plan-icon" aria-hidden="true">
@@ -950,9 +1085,11 @@
         For established businesses with specialized workflows and larger operational needs.
       </p>
       <div class="plan-price">
-        <span class="plan-amount" style="font-size:38px;letter-spacing:-1.8px;">Custom</span>
+        <span class="plan-amount custom-price">Custom</span>
       </div>
-      <p class="plan-billing-detail">Tailored pricing based on your requirements.</p>
+      <p class="plan-billing-detail">
+        Pricing would depend on your requirements.
+      </p>
       <hr class="plan-divider">
       <p class="plan-feature-heading">Everything in Pro, plus</p>
       <ul class="plan-features">
@@ -963,9 +1100,11 @@
         <li><span class="feature-check">✓</span><span>Dedicated onboarding options, where available</span></li>
       </ul>
       <a class="pricing-button" href="contact.html">
-        Contact our team <span class="arrow" aria-hidden="true">↗</span>
+        Discuss your requirements <span class="arrow" aria-hidden="true">↗</span>
       </a>
-      <p class="plan-footnote">Enterprise services depend on scope and availability.</p>
+      <p class="plan-footnote">
+        Enterprise services depend on scope and availability.
+      </p>
     </article>
   </div>
 </section>
@@ -974,10 +1113,13 @@
   <div class="pricing-container">
     <div class="section-heading">
       <span class="pricing-eyebrow">Made for daily work</span>
-      <h2>The tools your business needs.<br>Without the unnecessary complexity.</h2>
+      <h2>
+        The tools your business needs.<br>
+        Without the unnecessary complexity.
+      </h2>
       <p>
-        Spend less time juggling routine tasks and more time focused on customers,
-        operations, and growth.
+        Create invoices, organize inventory, track sales, and handle routine
+        calculations with practical tools designed to simplify everyday work.
       </p>
     </div>
     <div class="tools-grid">
@@ -989,7 +1131,9 @@
           </svg>
         </div>
         <h3>Invoice creation</h3>
-        <p>Create clear, professional invoices and simplify routine billing tasks.</p>
+        <p>
+          Create clear, professional invoices and simplify routine billing tasks.
+        </p>
       </article>
       <article class="tool-card">
         <div class="tool-card-icon" aria-hidden="true">
@@ -999,7 +1143,9 @@
           </svg>
         </div>
         <h3>Inventory management</h3>
-        <p>Organize stock information and make everyday inventory work easier.</p>
+        <p>
+          Organize stock information and make everyday inventory work easier.
+        </p>
       </article>
       <article class="tool-card">
         <div class="tool-card-icon" aria-hidden="true">
@@ -1010,7 +1156,9 @@
           </svg>
         </div>
         <h3>Sales tracking</h3>
-        <p>Keep an eye on sales activity and make more informed business decisions.</p>
+        <p>
+          Keep an eye on sales activity and make more informed business decisions.
+        </p>
       </article>
       <article class="tool-card">
         <div class="tool-card-icon" aria-hidden="true">
@@ -1020,23 +1168,30 @@
           </svg>
         </div>
         <h3>Business utilities</h3>
-        <p>Handle practical calculations and common operational tasks in one place.</p>
+        <p>
+          Handle practical calculations and common operational tasks in one place.
+        </p>
       </article>
     </div>
   </div>
 </section>
-<!-- COMPARISON TABLE -->
+<!-- PLAN COMPARISON -->
 <section class="comparison-section">
   <div class="pricing-container">
     <div class="section-heading">
       <span class="pricing-eyebrow">Compare plans</span>
       <h2>Choose what fits your workflow.</h2>
       <p>
-        Start with the essentials and consider a higher tier when your
-        business needs more capacity or specialized support.
+        Start with the essentials and explore a higher tier if your business
+        needs more capacity or specialized support.
       </p>
     </div>
-    <div class="comparison-wrap" role="region" aria-label="Pricing plan comparison" tabindex="0">
+    <div
+      class="comparison-wrap"
+      role="region"
+      aria-label="Pricing plan comparison table"
+      tabindex="0"
+    >
       <table class="comparison-table">
         <thead>
           <tr>
@@ -1100,7 +1255,8 @@
     </div>
     <p class="comparison-note">
       This comparison represents a proposed plan structure. Final inclusions,
-      limits, and availability should be confirmed before the plans are offered to customers.
+      limits, support, and availability should be confirmed before the plans
+      are offered to customers.
     </p>
   </div>
 </section>
@@ -1112,7 +1268,8 @@
         <span class="pricing-eyebrow">Frequently asked questions</span>
         <h2>Good questions.<br>Clear answers.</h2>
         <p>
-          Need help choosing a plan? Here are some things to consider before getting started.
+          Need help choosing a plan? Here are a few things to consider
+          before getting started.
         </p>
         <a class="faq-contact" href="contact.html">
           Still have questions? Contact us <span aria-hidden="true">↗</span>
@@ -1120,66 +1277,141 @@
       </div>
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="true" aria-controls="faqAnswer1" id="faqQuestion1">
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="true"
+            aria-controls="faqAnswer1"
+            id="faqQuestion1"
+          >
             What is included in the Free plan?
             <span class="faq-plus" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faqAnswer1" role="region" aria-labelledby="faqQuestion1">
-            The proposed Free plan provides access to selected business tools and essential
-            utilities. The exact tools, usage limits, and availability will be specified
-            when the plans are finalized.
+          <div
+            class="faq-answer"
+            id="faqAnswer1"
+            role="region"
+            aria-labelledby="faqQuestion1"
+          >
+            The proposed Free plan provides access to selected business tools
+            and essential utilities. Exact tools, usage limits, and availability
+            will be specified when the plans are finalized.
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer2" id="faqQuestion2">
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+            aria-controls="faqAnswer2"
+            id="faqQuestion2"
+          >
             What's the difference between monthly and yearly billing?
             <span class="faq-plus" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faqAnswer2" role="region" aria-labelledby="faqQuestion2" hidden>
-            Monthly billing charges for each month. Yearly billing charges for the full year
-            upfront and is proposed to offer a lower effective monthly rate. The actual
-            billing terms will be confirmed before checkout is enabled.
+          <div
+            class="faq-answer"
+            id="faqAnswer2"
+            role="region"
+            aria-labelledby="faqQuestion2"
+            hidden
+          >
+            The displayed yearly price is a proposed effective monthly rate
+            based on annual billing. The example pricing shows ₹799 per month,
+            or ₹9,588 for a full year, compared with the proposed monthly price
+            of ₹999. The 20% saving and payment terms have not been finalized.
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer3" id="faqQuestion3">
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+            aria-controls="faqAnswer3"
+            id="faqQuestion3"
+          >
             Can I upgrade from Free to Pro later?
             <span class="faq-plus" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faqAnswer3" role="region" aria-labelledby="faqQuestion3" hidden>
-            The intended plan structure allows businesses to start with Free and move to Pro
-            when they need more capabilities. Account upgrades will depend on the availability
-            of the subscription and billing system.
+          <div
+            class="faq-answer"
+            id="faqAnswer3"
+            role="region"
+            aria-labelledby="faqQuestion3"
+            hidden
+          >
+            The intended plan structure allows businesses to start with Free
+            and move to Pro when they need more capabilities. Account upgrades
+            will depend on the availability of the subscription and billing system.
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer4" id="faqQuestion4">
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+            aria-controls="faqAnswer4"
+            id="faqQuestion4"
+          >
             Is Enterprise pricing fixed?
             <span class="faq-plus" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faqAnswer4" role="region" aria-labelledby="faqQuestion4" hidden>
-            Enterprise pricing is proposed to depend on the tools, usage, support, and
-            integration requirements of each business. Contact ARTHNIX to discuss your needs.
+          <div
+            class="faq-answer"
+            id="faqAnswer4"
+            role="region"
+            aria-labelledby="faqQuestion4"
+            hidden
+          >
+            Enterprise pricing is proposed to depend on the tools, usage,
+            support, and integration requirements of each business. Contact
+            ARTHNIX to discuss your needs and the options that may be available.
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer5" id="faqQuestion5">
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+            aria-controls="faqAnswer5"
+            id="faqQuestion5"
+          >
             Can I cancel a paid subscription?
             <span class="faq-plus" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faqAnswer5" role="region" aria-labelledby="faqQuestion5" hidden>
-            Cancellation rights, billing-cycle rules, refunds, and access after cancellation
-            should be defined in the final subscription terms before paid plans launch.
+          <div
+            class="faq-answer"
+            id="faqAnswer5"
+            role="region"
+            aria-labelledby="faqQuestion5"
+            hidden
+          >
+            Cancellation rights, billing-cycle rules, refunds, and access after
+            cancellation must be defined in the final subscription terms before
+            paid plans launch.
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer6" id="faqQuestion6">
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+            aria-controls="faqAnswer6"
+            id="faqQuestion6"
+          >
             Are all the tools available today?
             <span class="faq-plus" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faqAnswer6" role="region" aria-labelledby="faqQuestion6" hidden>
-            Tool availability depends on what has been implemented and released on ARTHNIX.
-            Please check the Free Tools page or contact us for details about a specific capability.
+          <div
+            class="faq-answer"
+            id="faqAnswer6"
+            role="region"
+            aria-labelledby="faqQuestion6"
+            hidden
+          >
+            Tool availability depends on what has been implemented and released
+            on ARTHNIX. Check the Free Tools page or contact us for details about
+            a specific capability.
           </div>
         </div>
       </div>
@@ -1192,10 +1424,14 @@
     <div class="enterprise-panel">
       <div class="enterprise-content">
         <span class="pricing-eyebrow">For growing businesses</span>
-        <h2>Your workflow isn't one-size-fits-all.<br>Your tools shouldn't be either.</h2>
+        <h2>
+          Your workflow isn't one-size-fits-all.<br>
+          Your tools shouldn't be either.
+        </h2>
         <p>
           Tell us about your business operations and the tools you need.
-          We can discuss whether a tailored solution makes sense for your requirements.
+          We can discuss whether a tailored solution makes sense for your
+          requirements.
         </p>
       </div>
       <a class="enterprise-button" href="contact.html">
@@ -1204,21 +1440,27 @@
     </div>
   </div>
 </section>
+<!-- PRICING DISCLOSURE -->
 <div class="pricing-container">
   <p class="pricing-disclaimer">
-    Prices, discounts, plan features, and limits shown on this page are proposed launch details
-    and must be confirmed before publication or accepting payments.
+    Prices, discounts, plan features, and limits shown on this page are
+    proposed launch details and must be confirmed before publication as
+    finalized offers or accepting payments.
   </p>
 </div>
   </main>
+  <!-- Shared footer loaded from footer.html by components.js -->
   <div id="site-footer"></div>
   <script>
     (() => {
       "use strict";
       const billingButtons = document.querySelectorAll("[data-billing]");
       const proPrice = document.getElementById("proPrice");
+      const proPeriod = document.getElementById("proPeriod");
       const proBillingDetail = document.getElementById("proBillingDetail");
       const billingNote = document.getElementById("billingNote");
+      const formatINR = (amount) =>
+        Number(amount).toLocaleString("en-IN");
       function setBilling(period) {
         const yearly = period === "yearly";
         billingButtons.forEach((button) => {
@@ -1228,28 +1470,39 @@
           );
         });
         if (yearly) {
-          proPrice.textContent = Number(proPrice.dataset.yearlyPrice).toLocaleString("en-IN");
-          proPrice.nextElementSibling.textContent = "/ month";
-          proBillingDetail.textContent = "₹9,588 billed annually. Proposed 20% savings vs monthly.";
-          billingNote.textContent = "Yearly billing is proposed to save 20% compared with monthly billing.";
+          proPrice.textContent = formatINR(proPrice.dataset.yearlyPrice);
+          proPeriod.textContent = "/ month";
+          proBillingDetail.textContent =
+            "Proposed total: ₹9,588 billed annually. Final terms are not confirmed.";
+          billingNote.textContent =
+            "Yearly pricing is a proposal. The displayed effective monthly rate assumes annual billing.";
         } else {
-          proPrice.textContent = Number(proPrice.dataset.monthlyPrice).toLocaleString("en-IN");
-          proPrice.nextElementSibling.textContent = "/ month";
-          proBillingDetail.textContent = "Billed monthly. Cancel according to the applicable plan terms.";
-          billingNote.textContent = "Monthly billing. Upgrade or change your plan as your needs evolve.";
+          proPrice.textContent = formatINR(proPrice.dataset.monthlyPrice);
+          proPeriod.textContent = "/ month";
+          proBillingDetail.textContent =
+            "Proposed monthly price. Subscription terms are not yet finalized.";
+          billingNote.textContent =
+            "Monthly pricing is shown as a proposal. Final subscription terms are not yet confirmed.";
         }
       }
       billingButtons.forEach((button) => {
-        button.addEventListener("click", () => setBilling(button.dataset.billing));
+        button.addEventListener("click", () => {
+          setBilling(button.dataset.billing);
+        });
       });
       document.querySelectorAll(".faq-question").forEach((button) => {
         button.addEventListener("click", () => {
-          const isExpanded = button.getAttribute("aria-expanded") === "true";
-          const answer = document.getElementById(button.getAttribute("aria-controls"));
+          const isExpanded =
+            button.getAttribute("aria-expanded") === "true";
+          const answer = document.getElementById(
+            button.getAttribute("aria-controls")
+          );
+          if (!answer) return;
           button.setAttribute("aria-expanded", String(!isExpanded));
           answer.hidden = isExpanded;
         });
       });
+      setBilling("monthly");
     })();
   </script>
 </body>
