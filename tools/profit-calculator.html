@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Free Profit Calculator | ARTHNIX</title>
-  <meta name="description" content="Calculate your business profit, total costs, profit margin, markup, and break-even selling price with the free ARTHNIX Profit Calculator.">
-  <meta name="robots" content="index,follow">
+
+  <meta
+    name="description"
+    content="Calculate business profit, loss, profit margin, markup, and break-even selling price with the free ARTHNIX Profit Calculator."
+  >
   <meta name="theme-color" content="#090909">
+
   <link rel="canonical" href="https://arthnix.com/tools/profit-calculator.html">
-  <link rel="icon" href="/logo.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root {
@@ -27,12 +34,11 @@
       --border: #e9e9e7;
       --red: #ed3434;
       --red-dark: #d92727;
-      --green: #16804a;
-      --green-bg: #eaf7ef;
-      --red-bg: #fff0f0;
+      --green: #16845b;
+      --green-soft: #edf8f2;
+      --red-soft: #fff1f0;
       --radius: 18px;
       --container: 1160px;
-      --shadow: 0 16px 50px rgba(0, 0, 0, .055);
     }
 
     * {
@@ -43,19 +49,22 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 90px;
     }
 
     body {
       font-family: "DM Sans", sans-serif;
-      background: var(--paper);
       color: var(--text);
-      line-height: 1.6;
+      background: var(--white);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    body, input, button {
-      font-family: "DM Sans", sans-serif;
+    body,
+    button,
+    a,
+    input {
+      -webkit-tap-highlight-color: transparent;
     }
 
     a {
@@ -63,37 +72,126 @@
       text-decoration: none;
     }
 
-    button, input {
+    button,
+    input {
       font: inherit;
+    }
+
+    button,
+    a {
+      outline-offset: 4px;
     }
 
     button {
       cursor: pointer;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
+    ::selection {
+      background: var(--red);
+      color: var(--white);
     }
 
     .container {
-      width: min(var(--container), calc(100% - 48px));
+      width: min(var(--container), calc(100% - 64px));
       margin-inline: auto;
     }
 
-    /* NAVIGATION */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-    .navbar {
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .accent {
+      color: var(--red);
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      transition:
+        background 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .button-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .button-outline-light {
+      border-color: #dededb;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .button-outline-light:hover {
+      border-color: #aaaaa5;
+      background: #fafaf8;
+    }
+
+    .arrow {
+      font-size: 17px;
+      line-height: 1;
+      transition: transform 180ms ease;
+    }
+
+    .button:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    /* =====================================================
+       NAVIGATION
+       Matched to the supplied ARTHNIX homepage.
+       ===================================================== */
+
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: var(--black);
-      color: var(--white);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      width: 100%;
+      background: #090909;
+      border-bottom: 1px solid #292929;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
     }
 
-    .nav-inner {
+    .navbar {
+      position: relative;
+      width: min(1200px, calc(100% - 64px));
       min-height: 76px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -103,759 +201,109 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
       flex-shrink: 0;
+      text-decoration: none;
     }
 
     .brand-logo {
+      display: block;
       width: 38px;
       height: 38px;
       object-fit: contain;
-      border-radius: 9px;
+      flex-shrink: 0;
     }
 
     .brand-name {
+      color: #ffffff;
       font-family: "Manrope", sans-serif;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
-      letter-spacing: -.8px;
-      color: #fff;
+      letter-spacing: -0.8px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 31px;
-      list-style: none;
+      justify-content: center;
+      gap: 27px;
     }
 
     .nav-links a {
+      display: inline-block;
+      color: #bcbcbc;
       font-size: 13px;
-      font-weight: 500;
-      color: #bdbdbd;
-      transition: color .2s ease;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
     }
 
     .nav-links a:hover,
-    .nav-links a.active {
-      color: #fff;
+    .nav-links a:focus-visible,
+    .nav-links a[aria-current="page"] {
+      color: var(--red);
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .btn {
-      min-height: 45px;
+    .nav-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      padding: 0 20px;
-      border: 1px solid transparent;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 700;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-red {
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--red);
+      border-radius: 7px;
       background: var(--red);
-      color: #fff;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
     }
 
-    .btn-red:hover {
+    .nav-cta:hover {
       background: var(--red-dark);
-    }
-
-    .btn-dark {
-      background: var(--black);
-      color: #fff;
-    }
-
-    .btn-dark:hover {
-      background: #282828;
-    }
-
-    .btn-outline {
-      background: #fff;
-      color: var(--text);
-      border-color: var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: #bdbdbd;
+      border-color: var(--red-dark);
     }
 
     .menu-toggle {
       display: none;
-      width: 43px;
-      height: 43px;
-      align-items: center;
-      justify-content: center;
-      background: #1b1b1b;
-      color: #fff;
-      border: 1px solid #333;
-      border-radius: 9px;
-      font-size: 22px;
-    }
-
-    /* HERO */
-
-    .hero {
-      padding: 66px 0 42px;
-      text-align: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 19px;
-      color: var(--red);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--red);
-      border-radius: 50%;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: "Manrope", sans-serif;
-      letter-spacing: -1.1px;
-    }
-
-    .hero h1 {
-      max-width: 820px;
-      margin: 0 auto 17px;
-      font-size: clamp(35px, 5vw, 59px);
-      line-height: 1.12;
-      font-weight: 800;
-    }
-
-    .hero h1 span {
-      color: var(--red);
-    }
-
-    .hero-description {
-      max-width: 620px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.85;
-    }
-
-    .hero-badges {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 25px;
-    }
-
-    .hero-badge {
-      padding: 7px 12px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      background: #fff;
-      color: #555;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .hero-badge span {
-      color: var(--green);
-      margin-right: 5px;
-    }
-
-    /* CALCULATOR LAYOUT */
-
-    .calculator-section {
-      padding: 14px 0 82px;
-    }
-
-    .calculator-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
-      gap: 24px;
-      align-items: start;
-    }
-
-    .panel {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    .panel-header {
-      padding: 27px 28px 23px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .panel-header h2 {
-      margin-bottom: 6px;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -.6px;
-    }
-
-    .panel-header p {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .panel-body {
-      padding: 27px 28px 29px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px 18px;
-    }
-
-    .field {
-      min-width: 0;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 9px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #292929;
-    }
-
-    .field-hint {
-      display: block;
-      margin-top: 7px;
-      color: #858585;
-      font-size: 10px;
-      line-height: 1.6;
-    }
-
-    .input-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      min-height: 51px;
-      border: 1px solid #dededb;
-      border-radius: 9px;
-      background: #fff;
-      transition: border-color .2s, box-shadow .2s;
-    }
-
-    .input-wrap:focus-within {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(237,52,52,.08);
-    }
-
-    .input-prefix {
-      padding-left: 14px;
-      color: #777;
-      font-size: 13px;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .input-suffix {
-      padding-right: 14px;
-      color: #777;
-      font-size: 11px;
-      flex-shrink: 0;
-    }
-
-    .input-wrap input {
-      width: 100%;
-      min-width: 0;
-      height: 49px;
-      padding: 0 13px;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .input-wrap input.has-prefix {
-      padding-left: 8px;
-    }
-
-    .input-wrap input::-webkit-inner-spin-button,
-    .input-wrap input::-webkit-outer-spin-button {
-      opacity: 1;
-    }
-
-    .example-note {
-      margin-top: 24px;
-      padding: 13px 15px;
-      background: #fafaf8;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      color: #6d6d6d;
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .example-note strong {
-      color: #292929;
-    }
-
-    .form-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 11px;
-      margin-top: 24px;
-    }
-
-    .form-actions .btn {
-      flex: 1;
-    }
-
-    /* RESULTS */
-
-    .results-panel {
-      background: var(--black);
-      color: #fff;
-      border: 1px solid #242424;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .results-header {
-      padding: 27px 28px 22px;
-      border-bottom: 1px solid #292929;
-    }
-
-    .results-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    .results-label h2 {
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
-
-    .live-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 9px;
-      border-radius: 100px;
-      background: #1d1d1d;
-      color: #c7c7c7;
-      font-size: 10px;
-      font-weight: 600;
-    }
-
-    .live-dot {
-      width: 6px;
-      height: 6px;
-      background: #4bc786;
-      border-radius: 50%;
-      box-shadow: 0 0 0 3px rgba(75,199,134,.12);
-    }
-
-    .profit-caption {
-      margin-bottom: 7px;
-      color: #a5a5a5;
-      font-size: 12px;
-    }
-
-    .profit-amount {
-      overflow-wrap: anywhere;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(32px, 4vw, 45px);
-      line-height: 1.2;
-      font-weight: 800;
-      letter-spacing: -1.6px;
-      color: #fff;
-    }
-
-    .profit-amount.positive {
-      color: #65d69a;
-    }
-
-    .profit-amount.negative {
-      color: #ff7777;
-    }
-
-    .profit-amount.neutral {
-      color: #fff;
-    }
-
-    .profit-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-top: 15px;
-      padding: 7px 11px;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border: 1px solid #353535;
       border-radius: 7px;
-      background: #202020;
-      color: #d6d6d6;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .profit-status.positive {
-      background: rgba(40,165,97,.15);
-      color: #7be0a8;
-    }
-
-    .profit-status.negative {
-      background: rgba(237,52,52,.14);
-      color: #ff8989;
-    }
-
-    .profit-status.neutral {
-      background: #242424;
-      color: #d1d1d1;
-    }
-
-    .results-body {
-      padding: 23px 28px 27px;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 27px;
-    }
-
-    .metric-card {
-      min-width: 0;
-      padding: 17px 15px;
-      border: 1px solid #292929;
-      border-radius: 11px;
-      background: #141414;
-    }
-
-    .metric-label {
-      margin-bottom: 9px;
-      color: #a0a0a0;
-      font-size: 10px;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-
-    .metric-value {
-      overflow-wrap: anywhere;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(18px, 2.3vw, 24px);
-      font-weight: 800;
-      letter-spacing: -.5px;
-      line-height: 1.35;
-      color: #fff;
-    }
-
-    .metric-subtext {
-      margin-top: 5px;
-      color: #888;
-      font-size: 10px;
-    }
-
-    .breakdown-title {
-      margin-bottom: 14px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: -.1px;
-    }
-
-    .breakdown-list {
-      display: grid;
-      gap: 0;
-    }
-
-    .breakdown-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 12px 0;
-      border-bottom: 1px solid #272727;
-      font-size: 12px;
-    }
-
-    .breakdown-row:last-child {
-      border-bottom: none;
-    }
-
-    .breakdown-row .row-label {
-      color: #b7b7b7;
-    }
-
-    .breakdown-row .row-value {
-      text-align: right;
-      font-weight: 700;
-      color: #fff;
-      overflow-wrap: anywhere;
-    }
-
-    .breakdown-row.total {
-      margin-top: 3px;
-      padding-top: 16px;
-      border-top: 1px solid #454545;
-      border-bottom: none;
-    }
-
-    .breakdown-row.total .row-label,
-    .breakdown-row.total .row-value {
-      color: #fff;
-      font-weight: 700;
-    }
-
-    .results-footer {
-      padding: 14px 28px;
-      border-top: 1px solid #292929;
-      background: #101010;
-      color: #8e8e8e;
-      font-size: 10px;
-      line-height: 1.7;
-    }
-
-    .results-footer strong {
-      color: #cfcfcf;
-    }
-
-    /* EXPLANATION */
-
-    .info-section {
-      padding: 0 0 84px;
-    }
-
-    .section-heading {
-      max-width: 680px;
-      margin: 0 auto 38px;
-      text-align: center;
-    }
-
-    .section-heading .eyebrow {
-      margin-bottom: 13px;
-    }
-
-    .section-heading h2 {
-      margin-bottom: 13px;
-      font-size: clamp(28px, 4vw, 39px);
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .info-card {
-      padding: 25px 23px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: #fff;
-    }
-
-    .info-number {
-      display: inline-flex;
+      background: #111111;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
       align-items: center;
       justify-content: center;
-      width: 37px;
-      height: 37px;
-      margin-bottom: 18px;
-      border-radius: 10px;
-      background: #fff0f0;
-      color: var(--red);
-      font-family: "Manrope", sans-serif;
-      font-size: 13px;
-      font-weight: 800;
     }
 
-    .info-card h3 {
-      margin-bottom: 10px;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -.4px;
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 5px auto;
+      border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
     }
 
-    .info-card p {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
 
-    .info-card strong {
-      color: #252525;
-    }
-
-    /* CTA */
-
-    .cta-section {
-      padding: 0 0 80px;
-    }
-
-    .cta-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      padding: 36px 38px;
-      background: #f1f1ee;
-      border: 1px solid #e8e8e4;
-      border-radius: var(--radius);
-    }
-
-    .cta-box h2 {
-      margin-bottom: 8px;
-      font-size: clamp(22px, 3vw, 29px);
-      font-weight: 800;
-      letter-spacing: -.8px;
-    }
-
-    .cta-box p {
-      max-width: 560px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .cta-box .btn {
-      flex-shrink: 0;
-    }
-
-    /* FOOTER */
-
-    .footer {
-      background: var(--black);
-      color: #fff;
-      padding: 58px 0 0;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr 1fr;
-      gap: 42px;
-      padding-bottom: 48px;
-    }
-
-    .footer-brand .brand {
-      margin-bottom: 19px;
-    }
-
-    .footer-brand p {
-      max-width: 270px;
-      color: #9d9d9d;
-      font-size: 12px;
-      line-height: 1.9;
-    }
-
-    .powered-by {
-      margin-top: 16px;
-      color: #777;
-      font-size: 11px;
-    }
-
-    .powered-by span {
-      color: #c6c6c6;
-      font-weight: 700;
-    }
-
-    .footer-column h3 {
-      margin-bottom: 20px;
-      color: #fff;
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
-
-    .footer-column ul {
-      display: grid;
-      gap: 12px;
-      list-style: none;
-    }
-
-    .footer-column a {
-      color: #969696;
-      font-size: 12px;
-      transition: color .2s ease;
-    }
-
-    .footer-column a:hover {
-      color: #fff;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 21px 0;
-      border-top: 1px solid #292929;
-      color: #858585;
-      font-size: 11px;
-    }
-
-    .footer-bottom a {
-      color: #aaa;
-    }
-
-    .footer-bottom a:hover {
-      color: #fff;
-    }
-
-    /* ACCESSIBILITY */
-
-    :focus-visible {
-      outline: 3px solid rgba(237,52,52,.55);
-      outline-offset: 3px;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 980px) {
       .nav-links {
         gap: 18px;
       }
@@ -863,188 +311,1246 @@
       .nav-links a {
         font-size: 12px;
       }
-
-      .calculator-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .results-panel {
-        order: -1;
-      }
-
-      .profit-amount {
-        font-size: 43px;
-      }
-
-      .footer-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 36px;
-      }
     }
 
-    @media (max-width: 720px) {
-      .container {
-        width: min(100% - 32px, var(--container));
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
       }
 
-      .nav-inner {
-        min-height: 68px;
+      .brand {
+        gap: 8px;
       }
 
       .brand-logo {
-        width: 34px;
-        height: 34px;
+        width: 31px;
+        height: 31px;
       }
 
       .brand-name {
-        font-size: 19px;
+        font-size: 17px;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
       }
 
       .menu-toggle {
         display: inline-flex;
       }
 
-      .nav-actions .btn {
-        display: none;
-      }
-
       .nav-links {
-        display: none;
         position: absolute;
-        top: 68px;
+        top: calc(100% + 1px);
         left: 0;
         right: 0;
-        flex-direction: column;
+        z-index: 1001;
+        display: none;
         align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
         gap: 0;
-        padding: 12px 16px 18px;
-        background: var(--black);
-        border-top: 1px solid #292929;
-        border-bottom: 1px solid #292929;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
       }
 
-      .nav-links.open {
+      .nav-links.is-open {
         display: flex;
       }
 
-      .nav-links li a {
+      .nav-links a {
         display: block;
-        padding: 13px 5px;
-        font-size: 14px;
-      }
-
-      .hero {
-        padding: 48px 0 31px;
-      }
-
-      .hero h1 {
-        font-size: clamp(34px, 9vw, 47px);
-      }
-
-      .hero-description {
-        font-size: 13px;
-      }
-
-      .calculator-section {
-        padding-bottom: 58px;
-      }
-
-      .panel-header,
-      .results-header {
-        padding: 23px 21px 20px;
-      }
-
-      .panel-body,
-      .results-body {
-        padding: 23px 21px;
-      }
-
-      .results-footer {
-        padding: 13px 21px;
-      }
-
-      .profit-amount {
-        font-size: 36px;
-      }
-
-      .metric-value {
-        font-size: 21px;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-        gap: 13px;
-      }
-
-      .info-card {
-        padding: 22px;
-      }
-
-      .section-heading {
-        margin-bottom: 27px;
-      }
-
-      .cta-box {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 28px 24px;
-      }
-
-      .cta-box .btn {
         width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
       }
 
-      .footer {
-        padding-top: 43px;
-      }
-
-      .footer-grid {
-        gap: 34px 23px;
-      }
-
-      .footer-bottom {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
+      .nav-links a:last-child {
+        border-bottom: 0;
       }
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    /* =====================================================
+       PAGE INTRODUCTION
+       ===================================================== */
+
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 78px 0 75px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .page-hero::before {
+      position: absolute;
+      content: "";
+      width: 620px;
+      height: 620px;
+      top: -300px;
+      right: -130px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(237, 52, 52, 0.16) 0%,
+        rgba(237, 52, 52, 0.035) 42%,
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    .page-hero::after {
+      position: absolute;
+      content: "";
+      inset: 0;
+      opacity: 0.14;
+      background-image: radial-gradient(#6b6b6b 0.6px, transparent 0.6px);
+      background-size: 27px 27px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero .eyebrow {
+      color: #bcbcbc;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 28px;
+      color: #8c8c8c;
+      font-size: 11px;
+    }
+
+    .breadcrumb a {
+      transition: color 180ms ease;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--white);
+    }
+
+    .breadcrumb .separator {
+      color: #555555;
+    }
+
+    .page-hero h1 {
+      max-width: 850px;
+      margin-top: 25px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(43px, 6vw, 69px);
+      line-height: 1.08;
+      font-weight: 600;
+      letter-spacing: -3.8px;
+    }
+
+    .page-hero h1 span {
+      color: #888888;
+      font-weight: 500;
+    }
+
+    .page-hero-description {
+      max-width: 610px;
+      margin-top: 22px;
+      color: #a9a9a9;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid #333333;
+      border-radius: 6px;
+      color: #c6c6c6;
+      font-size: 11px;
+    }
+
+    .hero-badge span {
+      color: var(--red);
+    }
+
+    /* =====================================================
+       CALCULATOR SECTION
+       ===================================================== */
+
+    .calculator-section {
+      padding: 80px 0 100px;
+      background: var(--paper);
+    }
+
+    .section-heading {
+      max-width: 720px;
+    }
+
+    .section-heading h2 {
+      margin-top: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(31px, 4vw, 43px);
+      line-height: 1.15;
+      letter-spacing: -1.8px;
+      font-weight: 600;
+    }
+
+    .section-heading p {
+      max-width: 600px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.94fr);
+      align-items: start;
+      gap: 22px;
+      margin-top: 38px;
+    }
+
+    .calculator-card {
+      min-width: 0;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: 0 8px 35px rgba(0, 0, 0, 0.025);
+    }
+
+    .card-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      padding-bottom: 23px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-heading h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .card-heading p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1px solid #f2dede;
+      border-radius: 9px;
+      background: #fff8f7;
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .example-note {
+      margin-top: 20px;
+      padding: 12px 14px;
+      border: 1px solid #f0e5d3;
+      border-radius: 7px;
+      background: #fffaf1;
+      color: #7c6643;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .calculator-form {
+      margin-top: 23px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px 16px;
+    }
+
+    .form-field {
+      min-width: 0;
+    }
+
+    .form-field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 9px;
+      color: #282828;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field-hint {
+      display: block;
+      margin-top: 7px;
+      color: #888888;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      min-height: 49px;
+      overflow: hidden;
+      border: 1px solid #dededb;
+      border-radius: 7px;
+      background: #ffffff;
+      transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .input-wrap:focus-within {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.08);
+    }
+
+    .input-prefix,
+    .input-suffix {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      flex-shrink: 0;
+      padding: 0 13px;
+      background: #fafaf9;
+      color: #777777;
+      font-size: 12px;
+    }
+
+    .input-prefix {
+      border-right: 1px solid #eeeeeb;
+    }
+
+    .input-suffix {
+      border-left: 1px solid #eeeeeb;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      min-width: 0;
+      height: 47px;
+      padding: 0 12px;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    .input-wrap input::-webkit-outer-spin-button,
+    .input-wrap input::-webkit-inner-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
+    }
+
+    .input-wrap input::placeholder {
+      color: #b5b5b5;
+      font-weight: 400;
+    }
+
+    .form-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 23px;
+      border-top: 1px solid var(--border);
+    }
+
+    .form-actions .button {
+      min-height: 45px;
+    }
+
+    .reset-button {
+      min-height: 45px;
+      padding: 0 17px;
+      border: 1px solid #dededb;
+      border-radius: 7px;
+      background: #ffffff;
+      color: #555555;
+      font-size: 12px;
+      font-weight: 700;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .reset-button:hover {
+      border-color: #bdbdb8;
+      background: #fafaf9;
+    }
+
+    .form-footnote {
+      margin-top: 17px;
+      color: #898989;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    /* RESULTS */
+
+    .results-card {
+      position: sticky;
+      top: 100px;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid #292929;
+      border-radius: 12px;
+      background: #101010;
+      color: var(--white);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.09);
+    }
+
+    .results-header {
+      padding: 27px 27px 23px;
+      border-bottom: 1px solid #2c2c2c;
+    }
+
+    .results-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .results-label {
+      color: #a5a5a5;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 9px;
+      border: 1px solid #343434;
+      border-radius: 5px;
+      color: #c3c3c3;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    .live-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #77c69a;
+    }
+
+    .profit-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 27px;
+      padding: 7px 10px;
+      border-radius: 5px;
+      background: #1c2b22;
+      color: #a8e0bc;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .profit-status.loss {
+      background: #351c1c;
+      color: #ffb1ac;
+    }
+
+    .profit-status.break-even {
+      background: #292929;
+      color: #dedede;
+    }
+
+    .profit-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .net-profit-label {
+      margin-top: 17px;
+      color: #a0a0a0;
+      font-size: 12px;
+    }
+
+    .net-profit-value {
+      overflow-wrap: anywhere;
+      margin-top: 7px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(33px, 4vw, 48px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .net-profit-value.negative {
+      color: #ff7770;
+    }
+
+    .net-profit-value.positive {
+      color: #a6e4bc;
+    }
+
+    .net-profit-value.neutral {
+      color: #ffffff;
+    }
+
+    .profit-summary {
+      margin-top: 12px;
+      color: #969696;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .result-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 19px 22px 22px;
+    }
+
+    .metric-card {
+      min-width: 0;
+      padding: 16px 14px;
+      border: 1px solid #2d2d2d;
+      border-radius: 8px;
+      background: #171717;
+    }
+
+    .metric-label {
+      color: #999999;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .metric-value {
+      overflow-wrap: anywhere;
+      margin-top: 10px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(17px, 2vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.7px;
+    }
+
+    .metric-description {
+      margin-top: 6px;
+      color: #777777;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .breakdown {
+      padding: 0 22px 23px;
+    }
+
+    .breakdown-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 17px 0 14px;
+      border-top: 1px solid #2c2c2c;
+      color: #eeeeee;
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .breakdown-heading span {
+      color: #888888;
+      font-family: "DM Sans", sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px 0;
+      border-bottom: 1px solid #252525;
+      font-size: 11px;
+    }
+
+    .breakdown-row:last-child {
+      border-bottom: 0;
+    }
+
+    .breakdown-row span:first-child {
+      color: #a2a2a2;
+      line-height: 1.7;
+    }
+
+    .breakdown-row span:last-child {
+      color: #f0f0f0;
+      font-weight: 600;
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .breakdown-row.total {
+      margin-top: 3px;
+      padding-top: 15px;
+      border-top: 1px solid #444444;
+      border-bottom: 0;
+    }
+
+    .breakdown-row.total span {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .results-footnote {
+      padding: 14px 22px;
+      border-top: 1px solid #292929;
+      background: #141414;
+      color: #777777;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    /* =====================================================
+       EXPLANATION SECTION
+       ===================================================== */
+
+    .guide-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .guide-intro {
+      position: sticky;
+      top: 110px;
+    }
+
+    .guide-intro h2 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(32px, 4vw, 45px);
+      line-height: 1.15;
+      letter-spacing: -1.9px;
+      font-weight: 600;
+    }
+
+    .guide-intro p {
+      margin-top: 17px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .guide-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .guide-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 18px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-number {
+      padding-top: 3px;
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .guide-item h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    .guide-item p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .formula-box {
+      margin-top: 13px;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--paper);
+      color: #414141;
+      font-size: 12px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .formula-box strong {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* =====================================================
+       RELATED TOOLS
+       ===================================================== */
+
+    .related-section {
+      padding: 85px 0;
+      background: var(--paper);
+      border-top: 1px solid var(--border);
+    }
+
+    .related-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .related-header h2 {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(31px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -1.7px;
+      font-weight: 600;
+    }
+
+    .related-header p {
+      max-width: 430px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 35px;
+    }
+
+    .related-card {
+      min-width: 0;
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--white);
+      transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-3px);
+      border-color: #d5d5d0;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.035);
+    }
+
+    .related-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #eeeeeb;
+      border-radius: 8px;
+      background: #fffafa;
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .related-card h3 {
+      margin-top: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .related-card p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .related-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 16px;
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .related-card a span {
+      color: var(--red);
+      font-size: 15px;
+      transition: transform 180ms ease;
+    }
+
+    .related-card a:hover span {
+      transform: translateX(3px);
+    }
+
+    /* =====================================================
+       FOOTER
+       Matched to the supplied ARTHNIX homepage.
+       ===================================================== */
+
+    .site-footer {
+      padding: 57px 0 25px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 45px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      text-decoration: none;
+    }
+
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-powered {
+      margin: 7px 0 0;
+      color: #929292;
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 19px;
+      color: #f0f0f0;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-top: 13px;
+      color: #919191;
+      font-size: 11px;
+      transition: color 180ms ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 22px;
+      border-top: 1px solid #292929;
+    }
+
+    .copyright,
+    .powered-by {
+      color: #797979;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .powered-by strong {
+      color: #b8b8b8;
+      font-weight: 600;
+    }
+
+    /* =====================================================
+       RESPONSIVE LAYOUT
+       ===================================================== */
+
+    @media (max-width: 1050px) {
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+        gap: 16px;
+      }
+
+      .calculator-card {
+        padding: 24px;
+      }
+
+      .results-header {
+        padding: 23px;
+      }
+
+      .result-metrics {
+        padding-inline: 18px;
+      }
+
+      .breakdown {
+        padding-inline: 18px;
+      }
+
+      .guide-grid {
+        gap: 48px;
+      }
+
+      .footer-main {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 780px) {
       .container {
-        width: calc(100% - 26px);
+        width: min(calc(100% - 40px), var(--container));
+      }
+
+      .page-hero {
+        padding: 63px 0 58px;
+      }
+
+      .page-hero h1 {
+        letter-spacing: -2.8px;
+      }
+
+      .calculator-section {
+        padding: 65px 0 75px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .results-card {
+        position: static;
+      }
+
+      .guide-section {
+        padding: 75px 0;
+      }
+
+      .guide-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .guide-intro {
+        position: static;
+      }
+
+      .related-section {
+        padding: 70px 0;
+      }
+
+      .related-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 38px 28px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: calc(100% - 36px);
+      }
+
+      .page-hero {
+        padding: 50px 0 47px;
+      }
+
+      .breadcrumb {
+        margin-bottom: 24px;
+      }
+
+      .page-hero h1 {
+        font-size: clamp(40px, 11vw, 55px);
+        letter-spacing: -2.5px;
+      }
+
+      .page-hero-description {
+        font-size: 14px;
+      }
+
+      .hero-badges {
+        gap: 8px;
+      }
+
+      .hero-badge {
+        padding: 8px 10px;
+        font-size: 10px;
+      }
+
+      .calculator-section {
+        padding: 54px 0 62px;
+      }
+
+      .section-heading h2 {
+        font-size: 34px;
+        letter-spacing: -1.5px;
+      }
+
+      .section-heading p {
+        font-size: 13px;
+      }
+
+      .calculator-layout {
+        margin-top: 28px;
+      }
+
+      .calculator-card {
+        padding: 21px 17px;
+      }
+
+      .card-heading h3 {
+        font-size: 17px;
       }
 
       .form-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 19px;
       }
 
-      .field.full {
+      .form-field.full-width {
         grid-column: auto;
       }
 
-      .metric-grid {
-        gap: 9px;
+      .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .form-actions .button,
+      .form-actions .reset-button {
+        width: 100%;
+      }
+
+      .results-header {
+        padding: 22px 19px;
+      }
+
+      .net-profit-value {
+        font-size: 39px;
+      }
+
+      .result-metrics {
+        gap: 8px;
+        padding: 15px;
       }
 
       .metric-card {
-        padding: 14px 12px;
+        padding: 13px 11px;
       }
 
       .metric-value {
         font-size: 18px;
       }
 
-      .form-actions {
-        flex-direction: column;
+      .breakdown {
+        padding: 0 17px 19px;
       }
 
-      .footer-grid {
+      .results-footnote {
+        padding-inline: 17px;
+      }
+
+      .guide-section {
+        padding: 62px 0;
+      }
+
+      .guide-intro h2 {
+        font-size: 35px;
+        letter-spacing: -1.5px;
+      }
+
+      .guide-item {
+        grid-template-columns: 29px 1fr;
+        gap: 13px;
+      }
+
+      .related-section {
+        padding: 60px 0;
+      }
+
+      .related-header h2 {
+        font-size: 34px;
+        letter-spacing: -1.5px;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 27px;
+      }
+
+      .related-card {
+        padding: 20px;
+      }
+
+      .footer-main {
         grid-template-columns: 1fr 1fr;
+        gap: 35px 18px;
       }
 
       .footer-brand {
         grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .calculator-card {
+        padding: 17px 13px;
+      }
+
+      .results-topline {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .net-profit-value {
+        font-size: 34px;
+      }
+
+      .metric-value {
+        font-size: 16px;
       }
     }
 
@@ -1053,8 +1559,8 @@
       *::before,
       *::after {
         scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
       }
     }
@@ -1063,467 +1569,761 @@
 
 <body>
 
-  <!-- NAVIGATION -->
-  <header class="navbar">
-    <div class="container nav-inner">
+  <!-- =====================================================
+       HEADER / NAVIGATION
+       ===================================================== -->
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
 
       <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-        <img
-          class="brand-logo"
-          src="/logo.png"
-          alt="ARTHNIX logo"
-          width="38"
-          height="38"
-        >
+        <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
         <span class="brand-name">ARTHNIX</span>
       </a>
 
-      <nav aria-label="Main navigation">
-        <ul class="nav-links" id="navLinks">
-          <li><a href="/tools.html" class="active">Tools</a></li>
-          <li><a href="/platform.html">Platform</a></li>
-          <li><a href="/index.html#how-it-works">How It Works</a></li>
-          <li><a href="/pricing.html">Pricing</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="nav-actions">
-        <a class="btn btn-red" href="/tools.html">Explore Tools <span aria-hidden="true">↗</span></a>
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="navLinks"
-        >☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="/tools.html" aria-current="page">Free Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/index.html#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
       </div>
 
-    </div>
+      <a class="nav-cta" href="/tools.html">
+        Start Free <span aria-hidden="true">↗</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
   </header>
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
+    <!-- =====================================================
+         PAGE HERO
+         ===================================================== -->
+
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span class="separator" aria-hidden="true">/</span>
+          <a href="/tools.html">Free Tools</a>
+          <span class="separator" aria-hidden="true">/</span>
+          <span aria-current="page">Profit Calculator</span>
+        </nav>
 
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-          FREE BUSINESS TOOL
+          Free Business Tool
         </div>
 
         <h1>
-          Know your profit.<br>
+          Know your profit.
           <span>Price with confidence.</span>
         </h1>
 
-        <p class="hero-description">
-          Calculate your business profit, total costs, profit margin, markup,
-          and break-even selling price in seconds. Simple numbers. Clear decisions.
+        <p class="page-hero-description">
+          Calculate your business profit or loss, understand your profit
+          margin, and find your break-even selling price. Enter your
+          numbers and see the results update instantly.
         </p>
 
         <div class="hero-badges">
-          <span class="hero-badge"><span>✓</span> Instant calculations</span>
-          <span class="hero-badge"><span>✓</span> Indian Rupee support</span>
-          <span class="hero-badge"><span>✓</span> No sign-up required</span>
+          <div class="hero-badge">
+            <span>✓</span> Free to use
+          </div>
+
+          <div class="hero-badge">
+            <span>✓</span> Instant calculations
+          </div>
+
+          <div class="hero-badge">
+            <span>✓</span> No sign-up required
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- CALCULATOR -->
-    <section class="calculator-section" aria-label="Profit calculator">
-      <div class="container">
+    <!-- =====================================================
+         PROFIT CALCULATOR
+         ===================================================== -->
 
-        <div class="calculator-layout">
-
-          <!-- INPUT PANEL -->
-          <section class="panel" aria-labelledby="inputsHeading">
-
-            <div class="panel-header">
-              <h2 id="inputsHeading">Enter your numbers</h2>
-              <p>Adjust the values below to calculate the profitability of your sale.</p>
-            </div>
-
-            <div class="panel-body">
-
-              <form id="profitForm">
-
-                <div class="form-grid">
-
-                  <div class="field">
-                    <label for="costPrice">Cost price per unit</label>
-                    <div class="input-wrap">
-                      <span class="input-prefix" aria-hidden="true">₹</span>
-                      <input
-                        class="has-prefix"
-                        id="costPrice"
-                        name="costPrice"
-                        type="number"
-                        min="0"
-                        max="1000000000000"
-                        step="0.01"
-                        value="500"
-                        inputmode="decimal"
-                        required
-                        aria-describedby="costHint"
-                      >
-                    </div>
-                    <span class="field-hint" id="costHint">
-                      What you pay to purchase or produce one item.
-                    </span>
-                  </div>
-
-                  <div class="field">
-                    <label for="sellingPrice">Selling price per unit</label>
-                    <div class="input-wrap">
-                      <span class="input-prefix" aria-hidden="true">₹</span>
-                      <input
-                        class="has-prefix"
-                        id="sellingPrice"
-                        name="sellingPrice"
-                        type="number"
-                        min="0"
-                        max="1000000000000"
-                        step="0.01"
-                        value="750"
-                        inputmode="decimal"
-                        required
-                        aria-describedby="sellingHint"
-                      >
-                    </div>
-                    <span class="field-hint" id="sellingHint">
-                      The amount you charge your customer for one item.
-                    </span>
-                  </div>
-
-                  <div class="field full">
-                    <label for="quantity">Quantity sold</label>
-                    <div class="input-wrap">
-                      <input
-                        id="quantity"
-                        name="quantity"
-                        type="number"
-                        min="1"
-                        max="1000000000"
-                        step="1"
-                        value="10"
-                        inputmode="numeric"
-                        required
-                      >
-                      <span class="input-suffix">units</span>
-                    </div>
-                    <span class="field-hint">
-                      The total number of units included in this sale.
-                    </span>
-                  </div>
-
-                  <div class="field full">
-                    <label for="additionalCosts">Additional expenses for the entire order</label>
-                    <div class="input-wrap">
-                      <span class="input-prefix" aria-hidden="true">₹</span>
-                      <input
-                        class="has-prefix"
-                        id="additionalCosts"
-                        name="additionalCosts"
-                        type="number"
-                        min="0"
-                        max="1000000000000"
-                        step="0.01"
-                        value="0"
-                        inputmode="decimal"
-                        required
-                        aria-describedby="expensesHint"
-                      >
-                    </div>
-                    <span class="field-hint" id="expensesHint">
-                      Include packaging, shipping, labour, transaction fees, or other
-                      order-level expenses. Enter the total for the whole order, not per unit.
-                    </span>
-                  </div>
-
-                </div>
-
-                <div class="example-note">
-                  <strong>Example values are pre-filled.</strong>
-                  Change the numbers to match your actual costs and selling price.
-                  Expenses are added to the total cost of the order.
-                </div>
-
-                <div class="form-actions">
-                  <button class="btn btn-dark" type="button" id="resetButton">
-                    ↺ Reset values
-                  </button>
-                  <button class="btn btn-red" type="button" id="printButton">
-                    Print results ↗
-                  </button>
-                </div>
-
-              </form>
-
-            </div>
-          </section>
-
-          <!-- RESULTS PANEL -->
-          <section class="results-panel" aria-labelledby="resultsHeading" aria-live="polite">
-
-            <div class="results-header">
-
-              <div class="results-label">
-                <h2 id="resultsHeading">Your profit summary</h2>
-                <span class="live-indicator">
-                  <span class="live-dot"></span>
-                  Live results
-                </span>
-              </div>
-
-              <p class="profit-caption" id="profitCaption">Estimated net profit</p>
-
-              <div class="profit-amount positive" id="netProfit" aria-live="polite">
-                ₹2,500.00
-              </div>
-
-              <div class="profit-status positive" id="profitStatus">
-                <span aria-hidden="true">↗</span>
-                <span id="profitStatusText">You're making a profit</span>
-              </div>
-
-            </div>
-
-            <div class="results-body">
-
-              <div class="metric-grid">
-
-                <div class="metric-card">
-                  <div class="metric-label">Profit margin</div>
-                  <div class="metric-value" id="profitMargin">33.33%</div>
-                  <div class="metric-subtext">Profit as a share of revenue</div>
-                </div>
-
-                <div class="metric-card">
-                  <div class="metric-label">Markup on cost</div>
-                  <div class="metric-value" id="markup">33.33%</div>
-                  <div class="metric-subtext">Profit as a share of total cost</div>
-                </div>
-
-                <div class="metric-card">
-                  <div class="metric-label">Profit per unit</div>
-                  <div class="metric-value" id="profitPerUnit">₹250.00</div>
-                  <div class="metric-subtext">Average profit for each unit</div>
-                </div>
-
-                <div class="metric-card">
-                  <div class="metric-label">Break-even price per unit</div>
-                  <div class="metric-value" id="breakEvenPrice">₹500.00</div>
-                  <div class="metric-subtext">Price needed to cover all costs</div>
-                </div>
-
-              </div>
-
-              <h3 class="breakdown-title">Cost and revenue breakdown</h3>
-
-              <div class="breakdown-list">
-
-                <div class="breakdown-row">
-                  <span class="row-label">Selling revenue</span>
-                  <span class="row-value" id="totalRevenue">₹7,500.00</span>
-                </div>
-
-                <div class="breakdown-row">
-                  <span class="row-label">Product costs</span>
-                  <span class="row-value" id="productCosts">₹5,000.00</span>
-                </div>
-
-                <div class="breakdown-row">
-                  <span class="row-label">Additional expenses</span>
-                  <span class="row-value" id="displayExpenses">₹0.00</span>
-                </div>
-
-                <div class="breakdown-row total">
-                  <span class="row-label">Total cost</span>
-                  <span class="row-value" id="totalCost">₹5,000.00</span>
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="results-footer">
-              <strong>Keep in mind:</strong> These are estimates based on the numbers
-              entered. Include applicable taxes, platform charges, and other expenses
-              in your inputs for a more complete calculation.
-            </div>
-
-          </section>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="info-section" id="how-it-works">
+    <section class="calculator-section" id="calculator">
       <div class="container">
 
         <div class="section-heading">
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
-            UNDERSTAND YOUR NUMBERS
+            Calculate Your Numbers
           </div>
 
-          <h2>Profit is more than the money left over.</h2>
+          <h2>
+            Every cost matters.<br>
+            <span class="accent">Know what you earn.</span>
+          </h2>
 
           <p>
-            Understand the numbers behind your sales so you can set prices,
-            manage expenses, and make more informed business decisions.
+            Enter your product cost, selling price, order quantity, and
+            any additional expenses. Your profit breakdown will update
+            automatically as you make changes.
           </p>
         </div>
 
-        <div class="info-grid">
+        <div class="calculator-layout">
 
-          <article class="info-card">
-            <div class="info-number">01</div>
-            <h3>Net profit or loss</h3>
-            <p>
-              Net profit is the money remaining after subtracting all included
-              costs from your revenue. If your costs exceed your revenue,
-              the calculator displays a loss.
-              <br><br>
-              <strong>Revenue − Total costs = Net profit</strong>
-            </p>
+          <!-- INPUT CARD -->
+
+          <section class="calculator-card" aria-labelledby="inputHeading">
+
+            <div class="card-heading">
+              <div>
+                <h3 id="inputHeading">Enter your details</h3>
+                <p>Use your actual costs and selling prices.</p>
+              </div>
+
+              <div class="card-icon" aria-hidden="true">₹</div>
+            </div>
+
+            <div class="example-note">
+              <strong>Example values are prefilled.</strong>
+              Replace them with your own figures to calculate your
+              business profit.
+            </div>
+
+            <form class="calculator-form" id="profitForm">
+
+              <div class="form-grid">
+
+                <div class="form-field">
+                  <label for="costPrice">Cost price per unit</label>
+
+                  <div class="input-wrap">
+                    <span class="input-prefix" aria-hidden="true">₹</span>
+                    <input
+                      type="number"
+                      id="costPrice"
+                      name="costPrice"
+                      min="0"
+                      max="1000000000000"
+                      step="0.01"
+                      value="500"
+                      inputmode="decimal"
+                      required
+                      aria-describedby="costHint"
+                    >
+                  </div>
+
+                  <span class="field-hint" id="costHint">
+                    What you pay to purchase or produce one unit.
+                  </span>
+                </div>
+
+                <div class="form-field">
+                  <label for="sellingPrice">Selling price per unit</label>
+
+                  <div class="input-wrap">
+                    <span class="input-prefix" aria-hidden="true">₹</span>
+                    <input
+                      type="number"
+                      id="sellingPrice"
+                      name="sellingPrice"
+                      min="0"
+                      max="1000000000000"
+                      step="0.01"
+                      value="750"
+                      inputmode="decimal"
+                      required
+                      aria-describedby="sellingHint"
+                    >
+                  </div>
+
+                  <span class="field-hint" id="sellingHint">
+                    The price your customer pays for one unit.
+                  </span>
+                </div>
+
+                <div class="form-field">
+                  <label for="quantity">Quantity sold</label>
+
+                  <div class="input-wrap">
+                    <input
+                      type="number"
+                      id="quantity"
+                      name="quantity"
+                      min="1"
+                      max="1000000000"
+                      step="1"
+                      value="10"
+                      inputmode="numeric"
+                      required
+                      aria-describedby="quantityHint"
+                    >
+                    <span class="input-suffix">units</span>
+                  </div>
+
+                  <span class="field-hint" id="quantityHint">
+                    The total number of units sold in this order.
+                  </span>
+                </div>
+
+                <div class="form-field">
+                  <label for="additionalCosts">Additional order expenses</label>
+
+                  <div class="input-wrap">
+                    <span class="input-prefix" aria-hidden="true">₹</span>
+                    <input
+                      type="number"
+                      id="additionalCosts"
+                      name="additionalCosts"
+                      min="0"
+                      max="1000000000000"
+                      step="0.01"
+                      value="0"
+                      inputmode="decimal"
+                      required
+                      aria-describedby="expensesHint"
+                    >
+                  </div>
+
+                  <span class="field-hint" id="expensesHint">
+                    Total shipping, packaging, labour, or other expenses
+                    for the entire order.
+                  </span>
+                </div>
+
+              </div>
+
+              <div class="form-actions">
+
+                <button class="button button-primary" type="submit">
+                  Calculate Profit <span class="arrow" aria-hidden="true">↗</span>
+                </button>
+
+                <button class="reset-button" type="reset" id="resetButton">
+                  Reset values
+                </button>
+
+              </div>
+
+              <p class="form-footnote">
+                All amounts are in Indian rupees (INR). Calculations use
+                the values entered above. Include taxes and fees in the
+                appropriate costs if you want them reflected in the result.
+              </p>
+
+            </form>
+
+          </section>
+
+          <!-- RESULTS CARD -->
+
+          <section class="results-card" aria-labelledby="resultsHeading">
+
+            <div class="results-header">
+
+              <div class="results-topline">
+                <p class="results-label" id="resultsHeading">
+                  Your Profit Summary
+                </p>
+
+                <span class="live-badge">Live calculation</span>
+              </div>
+
+              <div
+                class="profit-status"
+                id="profitStatus"
+                role="status"
+                aria-live="polite"
+              >
+                Profitable order
+              </div>
+
+              <p class="net-profit-label" id="netProfitLabel">
+                Estimated net profit
+              </p>
+
+              <div class="net-profit-value positive" id="netProfitValue">
+                ₹2,500.00
+              </div>
+
+              <p class="profit-summary" id="profitSummary">
+                Your order generates ₹2,500.00 after the entered product
+                cost and additional expenses.
+              </p>
+
+            </div>
+
+            <div class="result-metrics">
+
+              <div class="metric-card">
+                <div class="metric-label">Profit margin</div>
+                <div class="metric-value" id="profitMargin">33.33%</div>
+                <div class="metric-description">
+                  Profit as a percentage of revenue.
+                </div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-label">Markup</div>
+                <div class="metric-value" id="markup">50.00%</div>
+                <div class="metric-description">
+                  Profit as a percentage of total cost.
+                </div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-label">Profit per unit</div>
+                <div class="metric-value" id="profitPerUnit">₹250.00</div>
+                <div class="metric-description">
+                  Average profit for each unit sold.
+                </div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-label">Break-even price</div>
+                <div class="metric-value" id="breakEvenPrice">₹500.00</div>
+                <div class="metric-description">
+                  Minimum price per unit to cover entered costs.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="breakdown">
+
+              <div class="breakdown-heading">
+                Cost breakdown
+                <span>Order total</span>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Sales revenue</span>
+                <span id="totalRevenue">₹7,500.00</span>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Product cost</span>
+                <span id="totalProductCost">₹5,000.00</span>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Additional expenses</span>
+                <span id="totalAdditionalCosts">₹0.00</span>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Total cost</span>
+                <span id="totalCost">₹5,000.00</span>
+              </div>
+
+              <div class="breakdown-row total">
+                <span>Net profit / loss</span>
+                <span id="breakdownNetProfit">₹2,500.00</span>
+              </div>
+
+            </div>
+
+            <div class="results-footnote">
+              Estimates are based on your inputs. Actual business profit
+              may differ due to taxes, discounts, returns, financing,
+              overheads, and other costs not included in the calculation.
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         HOW PROFIT IS CALCULATED
+         ===================================================== -->
+
+    <section class="guide-section" id="how-it-works">
+      <div class="container guide-grid">
+
+        <div class="guide-intro">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Understand Your Results
+          </div>
+
+          <h2>
+            Know the numbers
+            <span class="accent">behind your business.</span>
+          </h2>
+
+          <p>
+            Profit is more than the difference between the buying and
+            selling price. Additional expenses also affect how much
+            your business actually earns.
+          </p>
+        </div>
+
+        <div class="guide-list">
+
+          <article class="guide-item">
+            <div class="guide-number">01</div>
+
+            <div>
+              <h3>Total sales revenue</h3>
+
+              <p>
+                Revenue is the amount generated by selling your products
+                before deducting the costs included in this calculator.
+              </p>
+
+              <div class="formula-box">
+                <strong>Formula:</strong>
+                Selling price per unit × Quantity sold
+              </div>
+            </div>
           </article>
 
-          <article class="info-card">
-            <div class="info-number">02</div>
-            <h3>Profit margin vs. markup</h3>
-            <p>
-              Profit margin measures profit against revenue. Markup measures
-              profit against total cost. Both are percentages, but they use
-              different reference amounts.
-              <br><br>
-              <strong>Margin = Profit ÷ Revenue</strong>
-              <br>
-              <strong>Markup = Profit ÷ Total cost</strong>
-            </p>
+          <article class="guide-item">
+            <div class="guide-number">02</div>
+
+            <div>
+              <h3>Net profit or loss</h3>
+
+              <p>
+                Subtract the product costs and additional order expenses
+                from sales revenue. A positive result indicates profit;
+                a negative result indicates a loss.
+              </p>
+
+              <div class="formula-box">
+                <strong>Formula:</strong>
+                Revenue − Product costs − Additional expenses
+              </div>
+            </div>
           </article>
 
-          <article class="info-card">
-            <div class="info-number">03</div>
-            <h3>Break-even selling price</h3>
-            <p>
-              Your break-even price is the average selling price per unit
-              required to cover the product costs and additional expenses
-              entered in the calculator.
-              <br><br>
-              <strong>Total costs ÷ Quantity = Break-even price</strong>
-            </p>
+          <article class="guide-item">
+            <div class="guide-number">03</div>
+
+            <div>
+              <h3>Profit margin</h3>
+
+              <p>
+                Profit margin shows the portion of revenue that remains
+                as profit after deducting the costs entered here.
+              </p>
+
+              <div class="formula-box">
+                <strong>Formula:</strong>
+                Net profit ÷ Revenue × 100
+              </div>
+            </div>
+          </article>
+
+          <article class="guide-item">
+            <div class="guide-number">04</div>
+
+            <div>
+              <h3>Markup percentage</h3>
+
+              <p>
+                Markup compares profit against total costs. It helps you
+                understand how much you earn relative to what the order
+                costs your business.
+              </p>
+
+              <div class="formula-box">
+                <strong>Formula:</strong>
+                Net profit ÷ Total cost × 100
+              </div>
+            </div>
+          </article>
+
+          <article class="guide-item">
+            <div class="guide-number">05</div>
+
+            <div>
+              <h3>Break-even selling price</h3>
+
+              <p>
+                This is the average selling price per unit needed to
+                recover the product costs and additional expenses entered
+                for the order. It does not include costs you have omitted.
+              </p>
+
+              <div class="formula-box">
+                <strong>Formula:</strong>
+                Total order cost ÷ Quantity sold
+              </div>
+            </div>
           </article>
 
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
+    <!-- =====================================================
+         RELATED BUSINESS TOOLS
+         ===================================================== -->
+
+    <section class="related-section" id="related-tools">
       <div class="container">
 
-        <div class="cta-box">
+        <div class="related-header">
           <div>
-            <h2>More clarity. Better business decisions.</h2>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              More Free Business Tools
+            </div>
+
+            <h2>
+              Keep your business
+              <span class="accent">moving.</span>
+            </h2>
+
             <p>
-              Explore practical business tools from ARTHNIX to simplify
-              everyday calculations and workflows.
+              Explore other ARTHNIX tools for everyday calculations
+              and business documents.
             </p>
           </div>
 
-          <a class="btn btn-red" href="/tools.html">
-            Explore all tools <span aria-hidden="true">↗</span>
+          <a href="/tools.html" class="button button-outline-light">
+            View All Tools <span class="arrow" aria-hidden="true">↗</span>
           </a>
         </div>
 
+        <div class="related-grid">
+
+          <article class="related-card">
+            <div class="related-icon" aria-hidden="true">₹</div>
+
+            <h3>GST Calculator</h3>
+
+            <p>
+              Calculate GST amounts, inclusive prices, and pre-tax totals
+              for your products and services.
+            </p>
+
+            <a href="/tools/gst-calculator.html">
+              Open calculator <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="related-card">
+            <div class="related-icon" aria-hidden="true">▤</div>
+
+            <h3>Invoice Generator</h3>
+
+            <p>
+              Prepare professional invoices with your business,
+              customer, product, and payment details.
+            </p>
+
+            <a href="/tools/invoice-generator.html">
+              Create an invoice <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="related-card">
+            <div class="related-icon" aria-hidden="true">▧</div>
+
+            <h3>Quotation Generator</h3>
+
+            <p>
+              Create clear quotations for customers, products,
+              services, and proposed business work.
+            </p>
+
+            <a href="/tools/quotation-generator.html">
+              Create a quotation <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <!-- =====================================================
+       FOOTER
+       Matched to the supplied ARTHNIX homepage.
+       ===================================================== -->
+
+  <footer class="site-footer" id="footer-contact">
     <div class="container">
 
-      <div class="footer-grid">
+      <div class="footer-main">
 
         <div class="footer-brand">
 
-          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-            <img
-              class="brand-logo"
-              src="/logo.png"
-              alt="ARTHNIX logo"
-              width="38"
-              height="38"
-              loading="lazy"
-            >
-            <span class="brand-name">ARTHNIX</span>
+          <a
+            class="footer-brand-link"
+            href="/index.html"
+            aria-label="ARTHNIX home"
+          >
+            <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
+            <span>ARTHNIX</span>
           </a>
 
-          <p>
-            Practical intelligence for modern businesses. Discover tools
-            and technology designed to simplify the way you work.
+          <p class="footer-tagline">
+            Intelligence for Every Business.
           </p>
 
-          <div class="powered-by">
-            Powered by <span>Alphex AI</span>
-          </div>
+          <p class="footer-powered">
+            Powered by Alphex AI
+          </p>
 
         </div>
 
         <div class="footer-column">
-          <h3>Explore</h3>
-          <ul>
-            <li><a href="/platform.html">Platform</a></li>
-            <li><a href="/index.html#how-it-works">How It Works</a></li>
-            <li><a href="/pricing.html">Pricing</a></li>
-            <li><a href="/tools.html">All Tools</a></li>
-          </ul>
+          <h4>Explore</h4>
+          <a href="/platform.html">Platform</a>
+          <a href="/index.html#how-it-works">How It Works</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/tools.html">Free Tools</a>
         </div>
 
         <div class="footer-column">
-          <h3>Business Tools</h3>
-          <ul>
-            <li><a href="/tools/gst-calculator.html">GST Calculator</a></li>
-            <li><a href="/tools/invoice-generator.html">Invoice Generator</a></li>
-            <li><a href="/tools/profit-calculator.html" aria-current="page">Profit Calculator</a></li>
-            <li><a href="/tools/quotation-generator.html">Quotation Generator</a></li>
-          </ul>
+          <h4>Business Tools</h4>
+          <a href="/tools/gst-calculator.html">GST Calculator</a>
+          <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/profit-calculator.html" aria-current="page">
+            Profit Calculator
+          </a>
+          <a href="/tools/quotation-generator.html">Quotation Generator</a>
         </div>
 
         <div class="footer-column">
-          <h3>Information</h3>
-          <ul>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/help.html">Help Centre</a></li>
-            <li><a href="/blog.html">Blog</a></li>
-            <li><a href="/contact.html">Contact</a></li>
-            <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="/terms.html">Terms of Service</a></li>
-            <li><a href="/disclaimer.html">Disclaimer</a></li>
-          </ul>
+          <h4>Information</h4>
+          <a href="/about.html">About ARTHNIX</a>
+          <a href="/help.html">Help Centre</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/disclaimer.html">Disclaimer</a>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
-        <span>Intelligence for Every Business.</span>
-      </div>
 
+        <p class="copyright">
+          © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+        </p>
+
+        <p class="powered-by">
+          An independent product brand ·
+          <strong>Powered by Alphex AI</strong>
+        </p>
+
+      </div>
     </div>
   </footer>
+
+  <!-- =====================================================
+       FUNCTIONALITY
+       ===================================================== -->
 
   <script>
     (() => {
       "use strict";
+
+      /* -----------------------------------------------
+         MOBILE NAVIGATION
+         ----------------------------------------------- */
+
+      const menuButton = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const currentYear = document.getElementById("currentYear");
+
+      function setMenuState(isOpen) {
+        if (!menuButton || !navLinks) return;
+
+        navLinks.classList.toggle("is-open", isOpen);
+
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+        const lines = menuButton.querySelectorAll("span");
+
+        if (lines.length >= 2) {
+          lines[0].style.transform = isOpen
+            ? "translateY(3.5px) rotate(45deg)"
+            : "";
+
+          lines[1].style.transform = isOpen
+            ? "translateY(-3.5px) rotate(-45deg)"
+            : "";
+        }
+      }
+
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+
+          const isOpen =
+            menuButton.getAttribute("aria-expanded") === "true";
+
+          setMenuState(!isOpen);
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            setMenuState(false);
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("is-open") &&
+            !menuButton.contains(event.target) &&
+            !navLinks.contains(event.target)
+          ) {
+            setMenuState(false);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            navLinks.classList.contains("is-open")
+          ) {
+            setMenuState(false);
+            menuButton.focus();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 780) {
+            setMenuState(false);
+          }
+        });
+      }
+
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+
+      /* -----------------------------------------------
+         PROFIT CALCULATOR
+         ----------------------------------------------- */
 
       const form = document.getElementById("profitForm");
 
@@ -1535,25 +2335,19 @@
       };
 
       const output = {
-        netProfit: document.getElementById("netProfit"),
-        profitCaption: document.getElementById("profitCaption"),
-        profitStatus: document.getElementById("profitStatus"),
-        profitStatusText: document.getElementById("profitStatusText"),
-        profitMargin: document.getElementById("profitMargin"),
+        status: document.getElementById("profitStatus"),
+        netProfitLabel: document.getElementById("netProfitLabel"),
+        netProfitValue: document.getElementById("netProfitValue"),
+        summary: document.getElementById("profitSummary"),
+        margin: document.getElementById("profitMargin"),
         markup: document.getElementById("markup"),
         profitPerUnit: document.getElementById("profitPerUnit"),
         breakEvenPrice: document.getElementById("breakEvenPrice"),
-        totalRevenue: document.getElementById("totalRevenue"),
-        productCosts: document.getElementById("productCosts"),
-        displayExpenses: document.getElementById("displayExpenses"),
-        totalCost: document.getElementById("totalCost")
-      };
-
-      const initialValues = {
-        costPrice: "500",
-        sellingPrice: "750",
-        quantity: "10",
-        additionalCosts: "0"
+        revenue: document.getElementById("totalRevenue"),
+        productCost: document.getElementById("totalProductCost"),
+        additionalCosts: document.getElementById("totalAdditionalCosts"),
+        totalCost: document.getElementById("totalCost"),
+        breakdownProfit: document.getElementById("breakdownNetProfit")
       };
 
       const currencyFormatter = new Intl.NumberFormat("en-IN", {
@@ -1563,7 +2357,12 @@
         maximumFractionDigits: 2
       });
 
-      function currency(value) {
+      const percentFormatter = new Intl.NumberFormat("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      function formatCurrency(value) {
         if (!Number.isFinite(value)) {
           return "—";
         }
@@ -1571,226 +2370,222 @@
         return currencyFormatter.format(value);
       }
 
-      function percentage(value) {
+      function formatPercent(value) {
         if (!Number.isFinite(value)) {
           return "—";
         }
 
-        return value.toLocaleString("en-IN", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }) + "%";
+        return percentFormatter.format(value) + "%";
       }
 
-      function getNumber(input) {
+      function getInputValue(input) {
         const value = Number(input.value);
 
-        if (input.value.trim() === "" || !Number.isFinite(value)) {
+        if (
+          input.value.trim() === "" ||
+          !Number.isFinite(value) ||
+          value < 0
+        ) {
           return null;
         }
 
         return value;
       }
 
-      function setInvalid(input, invalid) {
-        input.setAttribute("aria-invalid", invalid ? "true" : "false");
+      function setText(element, value) {
+        if (element) {
+          element.textContent = value;
+        }
       }
 
-      function setResultState(state, message, caption) {
-        output.netProfit.classList.remove("positive", "negative", "neutral");
-        output.profitStatus.classList.remove("positive", "negative", "neutral");
+      function updateCalculator() {
+        const costPrice = getInputValue(fields.costPrice);
+        const sellingPrice = getInputValue(fields.sellingPrice);
+        const quantity = getInputValue(fields.quantity);
+        const additionalCosts = getInputValue(fields.additionalCosts);
 
-        output.netProfit.classList.add(state);
-        output.profitStatus.classList.add(state);
+        const valuesAreValid =
+          costPrice !== null &&
+          sellingPrice !== null &&
+          quantity !== null &&
+          additionalCosts !== null &&
+          quantity >= 1 &&
+          Number.isInteger(quantity) &&
+          quantity <= 1000000000 &&
+          costPrice <= 1000000000000 &&
+          sellingPrice <= 1000000000000 &&
+          additionalCosts <= 1000000000000;
 
-        output.profitStatusText.textContent = message;
-        output.profitCaption.textContent = caption;
-      }
+        if (!valuesAreValid) {
+          output.status.className = "profit-status break-even";
+          setText(output.status, "Check your inputs");
 
-      function calculate() {
-        const costPrice = getNumber(fields.costPrice);
-        const sellingPrice = getNumber(fields.sellingPrice);
-        const quantity = getNumber(fields.quantity);
-        const additionalCosts = getNumber(fields.additionalCosts);
-
-        const values = [
-          [fields.costPrice, costPrice],
-          [fields.sellingPrice, sellingPrice],
-          [fields.quantity, quantity],
-          [fields.additionalCosts, additionalCosts]
-        ];
-
-        let invalid = false;
-
-        values.forEach(([input, value]) => {
-          const bad =
-            value === null ||
-            value < Number(input.min) ||
-            value > Number(input.max) ||
-            (input.id === "quantity" && !Number.isInteger(value));
-
-          setInvalid(input, bad);
-          if (bad) invalid = true;
-        });
-
-        if (invalid) {
-          output.netProfit.textContent = "Check your inputs";
-          output.profitMargin.textContent = "—";
-          output.markup.textContent = "—";
-          output.profitPerUnit.textContent = "—";
-          output.breakEvenPrice.textContent = "—";
-          output.totalRevenue.textContent = "—";
-          output.productCosts.textContent = "—";
-          output.displayExpenses.textContent = "—";
-          output.totalCost.textContent = "—";
-
-          setResultState(
-            "neutral",
-            "Enter valid values to continue",
-            "Profit calculation"
+          output.netProfitValue.className = "net-profit-value neutral";
+          setText(output.netProfitValue, "—");
+          setText(output.netProfitLabel, "Net profit / loss");
+          setText(
+            output.summary,
+            "Enter valid non-negative amounts and a whole-number quantity of at least one."
           );
+
+          setText(output.margin, "—");
+          setText(output.markup, "—");
+          setText(output.profitPerUnit, "—");
+          setText(output.breakEvenPrice, "—");
+          setText(output.revenue, "—");
+          setText(output.productCost, "—");
+          setText(output.additionalCosts, "—");
+          setText(output.totalCost, "—");
+          setText(output.breakdownProfit, "—");
+
           return;
         }
 
-        const revenue = sellingPrice * quantity;
-        const productCost = costPrice * quantity;
-        const totalCost = productCost + additionalCosts;
-        const netProfit = revenue - totalCost;
+        const totalRevenue = sellingPrice * quantity;
+        const totalProductCost = costPrice * quantity;
+        const totalCost = totalProductCost + additionalCosts;
+        const netProfit = totalRevenue - totalCost;
 
-        const margin = revenue !== 0
-          ? (netProfit / revenue) * 100
-          : null;
+        const profitMargin =
+          totalRevenue !== 0
+            ? (netProfit / totalRevenue) * 100
+            : null;
 
-        const markup = totalCost !== 0
-          ? (netProfit / totalCost) * 100
-          : null;
+        const markup =
+          totalCost !== 0
+            ? (netProfit / totalCost) * 100
+            : null;
 
         const profitPerUnit = netProfit / quantity;
         const breakEvenPrice = totalCost / quantity;
 
-        output.netProfit.textContent = currency(netProfit);
-        output.profitMargin.textContent =
-          margin === null ? "N/A" : percentage(margin);
+        const calculations = [
+          totalRevenue,
+          totalProductCost,
+          totalCost,
+          netProfit,
+          profitPerUnit,
+          breakEvenPrice
+        ];
 
-        output.markup.textContent =
-          markup === null ? "N/A" : percentage(markup);
+        if (calculations.some((value) => !Number.isFinite(value))) {
+          output.status.className = "profit-status break-even";
+          setText(output.status, "Values too large");
 
-        output.profitPerUnit.textContent = currency(profitPerUnit);
-        output.breakEvenPrice.textContent = currency(breakEvenPrice);
-
-        output.totalRevenue.textContent = currency(revenue);
-        output.productCosts.textContent = currency(productCost);
-        output.displayExpenses.textContent = currency(additionalCosts);
-        output.totalCost.textContent = currency(totalCost);
-
-        if (netProfit > 0.000001) {
-          setResultState(
-            "positive",
-            "You're making a profit",
-            "Estimated net profit"
+          output.netProfitValue.className = "net-profit-value neutral";
+          setText(output.netProfitValue, "—");
+          setText(output.netProfitLabel, "Net profit / loss");
+          setText(
+            output.summary,
+            "The entered values are too large to calculate reliably. Please use smaller values."
           );
-        } else if (netProfit < -0.000001) {
-          setResultState(
-            "negative",
-            "Your sale is at a loss",
-            "Estimated net loss"
+
+          setText(output.margin, "—");
+          setText(output.markup, "—");
+          setText(output.profitPerUnit, "—");
+          setText(output.breakEvenPrice, "—");
+          setText(output.revenue, "—");
+          setText(output.productCost, "—");
+          setText(output.additionalCosts, "—");
+          setText(output.totalCost, "—");
+          setText(output.breakdownProfit, "—");
+
+          return;
+        }
+
+        /* Profit, loss, and break-even status */
+
+        if (netProfit > 0) {
+          output.status.className = "profit-status";
+          setText(output.status, "Profitable order");
+
+          output.netProfitValue.className = "net-profit-value positive";
+          setText(output.netProfitLabel, "Estimated net profit");
+
+          setText(
+            output.summary,
+            "Your order generates " +
+              formatCurrency(netProfit) +
+              " after deducting the entered product costs and additional expenses."
+          );
+        } else if (netProfit < 0) {
+          output.status.className = "profit-status loss";
+          setText(output.status, "Loss-making order");
+
+          output.netProfitValue.className = "net-profit-value negative";
+          setText(output.netProfitLabel, "Estimated net loss");
+
+          setText(
+            output.summary,
+            "Your order is short by " +
+              formatCurrency(Math.abs(netProfit)) +
+              ". Consider reviewing your costs or selling price."
           );
         } else {
-          setResultState(
-            "neutral",
-            "You've reached break-even",
-            "Estimated net profit / loss"
+          output.status.className = "profit-status break-even";
+          setText(output.status, "Break-even");
+
+          output.netProfitValue.className = "net-profit-value neutral";
+          setText(output.netProfitLabel, "Estimated net profit / loss");
+
+          setText(
+            output.summary,
+            "Your revenue exactly covers the costs entered. There is no profit or loss."
           );
         }
+
+        /* Supporting metrics */
+
+        setText(
+          output.margin,
+          profitMargin === null ? "N/A" : formatPercent(profitMargin)
+        );
+
+        setText(
+          output.markup,
+          markup === null ? "N/A" : formatPercent(markup)
+        );
+
+        setText(output.profitPerUnit, formatCurrency(profitPerUnit));
+        setText(output.breakEvenPrice, formatCurrency(breakEvenPrice));
+
+        /* Cost breakdown */
+
+        setText(output.revenue, formatCurrency(totalRevenue));
+        setText(output.productCost, formatCurrency(totalProductCost));
+        setText(output.additionalCosts, formatCurrency(additionalCosts));
+        setText(output.totalCost, formatCurrency(totalCost));
+        setText(output.breakdownProfit, formatCurrency(netProfit));
       }
 
-      form.addEventListener("input", calculate);
-      form.addEventListener("change", calculate);
+      /* Update results while the user types. */
 
-      document.getElementById("resetButton").addEventListener("click", () => {
-        Object.entries(initialValues).forEach(([key, value]) => {
-          fields[key].value = value;
-          setInvalid(fields[key], false);
-        });
-
-        calculate();
+      Object.values(fields).forEach((input) => {
+        input.addEventListener("input", updateCalculator);
+        input.addEventListener("change", updateCalculator);
       });
 
-      document.getElementById("printButton").addEventListener("click", () => {
-        calculate();
-        window.print();
+      /* Prevent accidental page submission and refresh results. */
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        updateCalculator();
       });
 
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.getElementById("navLinks");
+      /* Reset to the original illustrative example. */
 
-      menuToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.toggle("open");
-
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-        menuToggle.textContent = isOpen ? "×" : "☰";
-      });
-
-      navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open navigation menu");
-          menuToggle.textContent = "☰";
+      form.addEventListener("reset", () => {
+        window.requestAnimationFrame(() => {
+          updateCalculator();
         });
       });
 
-      document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+      /* Display initial example calculations. */
 
-      calculate();
+      updateCalculator();
+
     })();
   </script>
-
-  <style>
-    @media print {
-      .navbar,
-      .hero,
-      .info-section,
-      .cta-section,
-      .footer,
-      .form-actions {
-        display: none !important;
-      }
-
-      body {
-        background: #fff;
-      }
-
-      .calculator-section {
-        padding: 0;
-      }
-
-      .container {
-        width: 100%;
-      }
-
-      .calculator-layout {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
-
-      .panel,
-      .results-panel {
-        box-shadow: none;
-        break-inside: avoid;
-      }
-
-      .results-panel {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
-    }
-  </style>
 
 </body>
 </html>
