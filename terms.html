@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Service | ARTHNIX</title>
+  <meta name="description" content="Read the terms governing your access to the ARTHNIX website, business software information, and related services.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#090909">
+  <link rel="canonical" href="https://arthnix.com/terms.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Terms of Service | ARTHNIX">
+  <meta property="og:description" content="Understand the terms for using ARTHNIX and its website.">
+  <meta property="og:url" content="https://arthnix.com/terms.html">
+  <meta property="og:site_name" content="ARTHNIX">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Terms of Service",
+    "url": "https://arthnix.com/terms.html",
+    "description": "Terms governing access to the ARTHNIX website and related services.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com/"
+    },
+    "dateModified": "2026-10-13"
+  }
+  </script>
+  <style>
+    /* =====================================================
+       ARTHNIX — TERMS OF SERVICE
+       Scoped styles; shared navigation and footer preserved.
+       ===================================================== */
+    .terms-page {
+      --terms-black: #090909;
+      --terms-black-soft: #111111;
+      --terms-red: #ed3434;
+      --terms-red-hover: #d92727;
+      --terms-white: #ffffff;
+      --terms-paper: #fafaf9;
+      --terms-surface: #f4f4f2;
+      --terms-text: #151515;
+      --terms-muted: #737373;
+      --terms-border: #e9e9e7;
+      --terms-radius: 18px;
+      --terms-container: 1160px;
+      background: var(--terms-white);
+      color: var(--terms-text);
+      font-family: "DM Sans", sans-serif;
+      overflow: hidden;
+    }
+    .terms-page *,
+    .terms-page *::before,
+    .terms-page *::after {
+      box-sizing: border-box;
+    }
+    .terms-page a {
+      color: inherit;
+    }
+    .terms-container {
+      width: min(var(--terms-container), calc(100% - 48px));
+      margin-inline: auto;
+    }
+    /* HERO */
+    .terms-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--terms-black);
+      color: var(--terms-white);
+      padding: 100px 0 92px;
+    }
+    .terms-hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background-image: radial-gradient(
+        rgba(255, 255, 255, 0.15) 0.8px,
+        transparent 0.8px
+      );
+      background-size: 23px 23px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .terms-hero::after {
+      position: absolute;
+      z-index: -1;
+      content: "";
+      width: 460px;
+      height: 460px;
+      border: 1px solid rgba(237, 52, 52, 0.32);
+      border-radius: 50%;
+      right: -155px;
+      top: -230px;
+      box-shadow:
+        0 0 0 42px rgba(237, 52, 52, 0.035),
+        0 0 0 90px rgba(237, 52, 52, 0.025);
+      pointer-events: none;
+    }
+    .terms-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+      align-items: end;
+      gap: 64px;
+    }
+    .terms-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 25px;
+      color: #d1d1d1;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+    .terms-eyebrow::before {
+      content: "";
+      width: 25px;
+      height: 2px;
+      background: var(--terms-red);
+    }
+    .terms-hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(44px, 6.4vw, 78px);
+      font-weight: 700;
+      letter-spacing: -0.065em;
+      line-height: 1.04;
+    }
+    .terms-highlight {
+      color: var(--terms-red);
+    }
+    .terms-hero-description {
+      max-width: 610px;
+      margin: 26px 0 0;
+      color: #bcbcbc;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.85;
+    }
+    .terms-hero-side {
+      padding: 25px 0 4px 25px;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .terms-hero-side-label {
+      display: block;
+      margin-bottom: 17px;
+      color: #a7a7a7;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .terms-hero-side p {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(19px, 2vw, 25px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.55;
+    }
+    .terms-hero-side .terms-red-text {
+      color: var(--terms-red);
+    }
+    .terms-updated {
+      display: block;
+      margin-top: 25px;
+      color: #9b9b9b;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    /* OVERVIEW */
+    .terms-overview {
+      padding: 34px 0;
+      background: var(--terms-paper);
+      border-bottom: 1px solid var(--terms-border);
+    }
+    .terms-overview-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .terms-overview-copy {
+      max-width: 650px;
+    }
+    .terms-overview-copy strong {
+      display: block;
+      margin-bottom: 7px;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .terms-overview-copy p {
+      margin: 0;
+      color: var(--terms-muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .terms-overview-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 15px;
+      border: 1px solid var(--terms-border);
+      border-radius: 999px;
+      background: var(--terms-white);
+      color: #333;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .terms-overview-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--terms-red);
+    }
+    /* MAIN CONTENT */
+    .terms-content-section {
+      padding: 78px 0 94px;
+      background: var(--terms-white);
+    }
+    .terms-layout {
+      display: grid;
+      grid-template-columns: 245px minmax(0, 1fr);
+      align-items: start;
+      gap: 76px;
+    }
+    .terms-toc {
+      position: sticky;
+      top: 30px;
+      padding: 24px 20px;
+      border: 1px solid var(--terms-border);
+      border-radius: var(--terms-radius);
+      background: var(--terms-paper);
+    }
+    .terms-toc-title {
+      margin: 0 0 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .terms-toc ol {
+      display: grid;
+      gap: 2px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .terms-toc a {
+      display: block;
+      padding: 8px 0;
+      color: #626262;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.55;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .terms-toc a:hover,
+    .terms-toc a:focus-visible {
+      color: var(--terms-red);
+    }
+    .terms-toc-note {
+      margin: 20px 0 0;
+      padding-top: 17px;
+      border-top: 1px solid var(--terms-border);
+      color: var(--terms-muted);
+      font-size: 11px;
+      line-height: 1.75;
+    }
+    .terms-document {
+      min-width: 0;
+    }
+    .terms-document-intro {
+      margin: 0 0 36px;
+      color: #555;
+      font-size: 15px;
+      line-height: 1.95;
+    }
+    .terms-section {
+      padding: 31px 0;
+      border-top: 1px solid var(--terms-border);
+      scroll-margin-top: 30px;
+    }
+    .terms-section:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .terms-section-heading {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      align-items: start;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .terms-section-number {
+      display: flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #f2caca;
+      border-radius: 12px;
+      background: #fff7f7;
+      color: var(--terms-red);
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .terms-section h2 {
+      margin: 3px 0 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(19px, 2vw, 24px);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1.4;
+    }
+    .terms-section p {
+      margin: 0 0 14px;
+      color: #626262;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.95;
+    }
+    .terms-section p:last-child {
+      margin-bottom: 0;
+    }
+    .terms-section ul {
+      display: grid;
+      gap: 9px;
+      margin: 14px 0 18px;
+      padding-left: 21px;
+      color: #626262;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .terms-section li {
+      padding-left: 3px;
+    }
+    .terms-section li::marker {
+      color: var(--terms-red);
+    }
+    .terms-section strong {
+      color: #272727;
+      font-weight: 700;
+    }
+    .terms-section a {
+      color: #c92c2c;
+      text-decoration: underline;
+      text-decoration-color: rgba(201, 44, 44, 0.35);
+      text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .terms-section a:hover {
+      color: var(--terms-red-hover);
+    }
+    .terms-notice {
+      margin: 24px 0;
+      padding: 19px 21px;
+      border-left: 3px solid var(--terms-red);
+      border-radius: 0 12px 12px 0;
+      background: var(--terms-paper);
+    }
+    .terms-notice strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .terms-notice p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+    /* BOTTOM CTA */
+    .terms-bottom {
+      padding: 0 0 86px;
+      background: var(--terms-white);
+    }
+    .terms-bottom-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      padding: 43px 46px;
+      border-radius: 20px;
+      background: var(--terms-black);
+      color: var(--terms-white);
+    }
+    .terms-bottom-card::after {
+      position: absolute;
+      z-index: -1;
+      content: "";
+      width: 230px;
+      height: 230px;
+      top: -130px;
+      right: 120px;
+      border: 1px solid rgba(237, 52, 52, 0.4);
+      border-radius: 50%;
+      box-shadow: 0 0 0 30px rgba(237, 52, 52, 0.035);
+    }
+    .terms-bottom-copy {
+      max-width: 650px;
+    }
+    .terms-bottom-copy .terms-bottom-eyebrow {
+      margin: 0 0 11px;
+      color: #ff7777;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .terms-bottom-copy h2 {
+      margin: 0 0 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(25px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.055em;
+      line-height: 1.25;
+    }
+    .terms-bottom-copy p {
+      margin: 0;
+      color: #bdbdbd;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+    .terms-contact-button {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid var(--terms-red);
+      border-radius: 10px;
+      background: var(--terms-red);
+      color: var(--terms-white) !important;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+    .terms-contact-button:hover {
+      transform: translateY(-2px);
+      border-color: var(--terms-red-hover);
+      background: var(--terms-red-hover);
+    }
+    .terms-contact-button span {
+      font-size: 17px;
+      line-height: 1;
+    }
+    /* ACCESSIBILITY */
+    .terms-page a:focus-visible {
+      outline: 3px solid rgba(237, 52, 52, 0.55);
+      outline-offset: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .terms-page *,
+      .terms-page *::before,
+      .terms-page *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .terms-hero {
+        padding: 78px 0 72px;
+      }
+      .terms-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+      }
+      .terms-hero-side {
+        max-width: 520px;
+        padding-top: 22px;
+      }
+      .terms-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .terms-toc {
+        position: static;
+      }
+      .terms-toc ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 24px;
+      }
+      .terms-toc-note {
+        max-width: 600px;
+      }
+      .terms-content-section {
+        padding: 58px 0 72px;
+      }
+      .terms-bottom-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+    @media (max-width: 600px) {
+      .terms-container {
+        width: min(100% - 36px, var(--terms-container));
+      }
+      .terms-hero {
+        padding: 64px 0 56px;
+      }
+      .terms-hero h1 {
+        font-size: clamp(42px, 12vw, 58px);
+      }
+      .terms-hero-description {
+        font-size: 14px;
+        line-height: 1.85;
+      }
+      .terms-hero-side {
+        padding-left: 18px;
+      }
+      .terms-overview {
+        padding: 25px 0;
+      }
+      .terms-overview-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .terms-content-section {
+        padding: 42px 0 58px;
+      }
+      .terms-toc {
+        padding: 20px 17px;
+      }
+      .terms-toc ol {
+        grid-template-columns: 1fr;
+      }
+      .terms-document-intro {
+        font-size: 14px;
+      }
+      .terms-section {
+        padding: 26px 0;
+      }
+      .terms-section-heading {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 11px;
+      }
+      .terms-section-number {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        font-size: 11px;
+      }
+      .terms-section h2 {
+        font-size: 19px;
+      }
+      .terms-section p,
+      .terms-section ul {
+        font-size: 13px;
+        line-height: 1.9;
+      }
+      .terms-notice {
+        padding: 17px;
+      }
+      .terms-bottom {
+        padding-bottom: 55px;
+      }
+      .terms-bottom-card {
+        padding: 30px 23px;
+        border-radius: 15px;
+      }
+      .terms-bottom-copy h2 {
+        font-size: 27px;
+      }
+      .terms-contact-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="terms-page">
+    <!-- HERO -->
+    <section class="terms-hero" aria-labelledby="terms-title">
+      <div class="terms-container">
+        <div class="terms-hero-grid">
+          <div>
+            <p class="terms-eyebrow">ARTHNIX · Terms of Service</p>
+            <h1 id="terms-title">
+              Clear terms.<br>
+              <span class="terms-highlight">Better business.</span>
+            </h1>
+            <p class="terms-hero-description">
+              These terms explain the basic rules for accessing the ARTHNIX
+              website and using any services we make available. Please read
+              them before using our website or services.
+            </p>
+          </div>
+          <aside class="terms-hero-side" aria-label="Terms overview">
+            <span class="terms-hero-side-label">Our approach</span>
+            <p>
+              Clear expectations.<br>
+              Responsible use.<br>
+              <span class="terms-red-text">Transparent communication.</span>
+            </p>
+            <span class="terms-updated">
+              Last updated · 13 October 2026
+            </span>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <!-- OVERVIEW -->
+    <section class="terms-overview" aria-label="Important information">
+      <div class="terms-container">
+        <div class="terms-overview-inner">
+          <div class="terms-overview-copy">
+            <strong>Please read these terms carefully.</strong>
+            <p>
+              By accessing this website, you agree to follow these terms
+              to the extent they apply to your use. If you do not agree,
+              please stop using the website.
+            </p>
+          </div>
+          <div class="terms-overview-badge">
+            Website use &amp; service terms
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- TERMS CONTENT -->
+    <section class="terms-content-section">
+      <div class="terms-container">
+        <div class="terms-layout">
+          <!-- TABLE OF CONTENTS -->
+          <nav class="terms-toc" aria-label="Terms of Service contents">
+            <h2 class="terms-toc-title">On this page</h2>
+            <ol>
+              <li><a href="#acceptance">1. Acceptance of terms</a></li>
+              <li><a href="#about">2. About ARTHNIX</a></li>
+              <li><a href="#eligibility">3. Eligibility</a></li>
+              <li><a href="#website-use">4. Acceptable use</a></li>
+              <li><a href="#accounts">5. Accounts and access</a></li>
+              <li><a href="#product-services">6. Products and services</a></li>
+              <li><a href="#pricing">7. Pricing and payments</a></li>
+              <li><a href="#user-content">8. Your information</a></li>
+              <li><a href="#ai-features">9. AI-assisted features</a></li>
+              <li><a href="#intellectual-property">10. Intellectual property</a></li>
+              <li><a href="#third-party">11. Third-party services</a></li>
+              <li><a href="#availability">12. Availability and changes</a></li>
+              <li><a href="#disclaimers">13. Disclaimers</a></li>
+              <li><a href="#liability">14. Limitation of liability</a></li>
+              <li><a href="#indemnity">15. Responsibility for misuse</a></li>
+              <li><a href="#termination">16. Suspension and termination</a></li>
+              <li><a href="#privacy">17. Privacy</a></li>
+              <li><a href="#changes">18. Changes to these terms</a></li>
+              <li><a href="#law">19. Governing law</a></li>
+              <li><a href="#contact">20. Contact</a></li>
+            </ol>
+            <p class="terms-toc-note">
+              These terms describe general website and service conditions.
+              Additional terms may apply to particular products or features.
+            </p>
+          </nav>
+          <!-- MAIN DOCUMENT -->
+          <article class="terms-document">
+            <p class="terms-document-intro">
+              Welcome to ARTHNIX — a business software brand focused on
+              helping businesses simplify everyday operations through
+              technology and AI-powered tools. These Terms of Service
+              (“Terms”) govern your access to our website and any products
+              or services that we make available. In these Terms, “ARTHNIX,”
+              “we,” “us,” and “our” refer to the ARTHNIX service or its
+              operator, as applicable. “You” refers to the person or
+              organisation accessing the website or using a service.
+            </p>
+            <!-- 01 -->
+            <section class="terms-section" id="acceptance">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">01</span>
+                <h2>Acceptance of Terms</h2>
+              </div>
+              <p>
+                By visiting or using the ARTHNIX website, you acknowledge
+                that you have read and understood these Terms and agree
+                to comply with them. If you access a particular product,
+                sign up for a service, or use a feature that has additional
+                terms, those additional terms may also apply.
+              </p>
+              <p>
+                If you are using ARTHNIX on behalf of a business or other
+                organisation, you confirm that you have the authority to
+                accept applicable terms on its behalf.
+              </p>
+            </section>
+            <!-- 02 -->
+            <section class="terms-section" id="about">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">02</span>
+                <h2>About ARTHNIX</h2>
+              </div>
+              <p>
+                ARTHNIX is a business software brand with a focus on making
+                everyday business tasks simpler. Our intended product
+                direction includes tools for activities such as invoicing,
+                inventory management, sales tracking, and AI-assisted
+                business workflows.
+              </p>
+              <p>
+                Information on the website may describe planned, developing,
+                or proposed features. Unless a feature is expressly made
+                available to you, its description should not be treated as
+                a guarantee that the feature is currently available.
+              </p>
+              <p>
+                References to “Powered by Alphex AI” describe the intended
+                technology or brand relationship where applicable. They do
+                not, by themselves, create a separate contract with another
+                business or guarantee that a particular technology is
+                available in every feature.
+              </p>
+            </section>
+            <!-- 03 -->
+            <section class="terms-section" id="eligibility">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">03</span>
+                <h2>Eligibility</h2>
+              </div>
+              <p>
+                You may use the website only where you are legally permitted
+                to do so. If you are entering into an agreement for a
+                business, you must have the necessary authority to act for
+                that business.
+              </p>
+              <p>
+                You are responsible for ensuring that your use of ARTHNIX
+                complies with applicable laws, regulations, and obligations
+                relevant to you and your business.
+              </p>
+            </section>
+            <!-- 04 -->
+            <section class="terms-section" id="website-use">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">04</span>
+                <h2>Acceptable Use</h2>
+              </div>
+              <p>
+                You agree to use the website responsibly and only for lawful
+                purposes. You must not:
+              </p>
+              <ul>
+                <li>Use the website in violation of applicable laws or regulations.</li>
+                <li>Attempt to gain unauthorised access to systems, accounts, data, or infrastructure.</li>
+                <li>Interfere with the website's operation, availability, or security.</li>
+                <li>Upload or transmit malicious code, harmful files, or deceptive content.</li>
+                <li>Misrepresent your identity or impersonate another person or organisation.</li>
+                <li>Copy, scrape, redistribute, or commercially exploit website materials in ways that violate applicable law or our rights.</li>
+                <li>Use any service to infringe another person's rights or compromise their privacy.</li>
+                <li>Attempt to bypass usage limits, access controls, or other safeguards.</li>
+              </ul>
+              <p>
+                We may take reasonable steps to investigate suspected misuse
+                and protect the website, our users, and our services.
+              </p>
+            </section>
+            <!-- 05 -->
+            <section class="terms-section" id="accounts">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">05</span>
+                <h2>Accounts and Access</h2>
+              </div>
+              <p>
+                Some features may require an account if and when account
+                functionality is made available. If you create an account,
+                you are responsible for providing accurate information,
+                safeguarding your login credentials, and taking reasonable
+                steps to prevent unauthorised access.
+              </p>
+              <p>
+                You should notify us if you believe your account or access
+                credentials have been compromised. You must not knowingly
+                share access in a way that violates any applicable product
+                terms or security requirements.
+              </p>
+              <p>
+                We do not represent that account registration, team
+                workspaces, or all account-related functions are currently
+                available on the website. Feature-specific conditions may
+                be provided before those functions are launched.
+              </p>
+            </section>
+            <!-- 06 -->
+            <section class="terms-section" id="product-services">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">06</span>
+                <h2>Products and Services</h2>
+              </div>
+              <p>
+                ARTHNIX may develop or provide software, business tools,
+                AI-assisted functionality, integrations, subscriptions,
+                or other services over time. Availability may vary by
+                feature, location, account type, or stage of development.
+              </p>
+              <p>
+                Product descriptions, demonstrations, screenshots, roadmaps,
+                and promotional material are provided for general
+                informational purposes unless expressly stated otherwise.
+                They are not a binding promise that every described
+                capability will be released or remain unchanged.
+              </p>
+              <p>
+                Certain products or features may be subject to separate
+                terms, service descriptions, usage limits, or instructions.
+                If additional terms apply, we will make them available
+                through the relevant product or service where appropriate.
+              </p>
+            </section>
+            <!-- 07 -->
+            <section class="terms-section" id="pricing">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">07</span>
+                <h2>Pricing and Payments</h2>
+              </div>
+              <p>
+                If ARTHNIX offers paid products or subscriptions, applicable
+                prices, billing periods, included features, taxes, payment
+                methods, and cancellation conditions will be presented
+                through the relevant purchase or subscription process.
+              </p>
+              <p>
+                Prices or plans mentioned in previews, mock-ups, or
+                promotional material may be indicative and may change
+                before a product becomes available for purchase.
+              </p>
+              <p>
+                No payment is due merely because you read this website.
+                Any payment obligation arises only where you actively
+                enter into a relevant paid transaction under the terms
+                presented for that transaction.
+              </p>
+              <p>
+                Refunds, renewals, cancellations, and payment disputes will
+                be handled according to the applicable product terms and
+                any mandatory consumer protection requirements.
+              </p>
+            </section>
+            <!-- 08 -->
+            <section class="terms-section" id="user-content">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">08</span>
+                <h2>Your Information and Content</h2>
+              </div>
+              <p>
+                You may choose to send us information through contact forms,
+                email, or other communication channels we make available.
+                You are responsible for ensuring that information you
+                provide is accurate and that you have the right to share it.
+              </p>
+              <p>
+                If a product allows you to enter business records, invoices,
+                inventory details, customer information, files, prompts,
+                or other content, you remain responsible for that content
+                and for ensuring that your use of it is lawful.
+              </p>
+              <ul>
+                <li>Do not submit information you are not authorised to share.</li>
+                <li>Do not upload another person's confidential or personal information without an appropriate legal basis.</li>
+                <li>Keep independent copies of important business records where appropriate.</li>
+                <li>Review any feature-specific data handling terms before using a feature with sensitive business information.</li>
+              </ul>
+              <p>
+                Where a product accepts user-provided content, the permissions
+                needed to operate that product will be explained in its
+                applicable terms or notices. These Terms do not transfer
+                ownership of your content to ARTHNIX merely because you
+                submit it.
+              </p>
+            </section>
+            <!-- 09 -->
+            <section class="terms-section" id="ai-features">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">09</span>
+                <h2>AI-Assisted Features</h2>
+              </div>
+              <p>
+                Some ARTHNIX features may use artificial intelligence or
+                automated systems to help generate, summarise, classify,
+                analyse, or organise information. Such outputs may be
+                incomplete, inaccurate, outdated, or unsuitable for a
+                particular situation.
+              </p>
+              <p>
+                You should review AI-generated information before relying
+                on it, especially when it affects financial records,
+                tax obligations, legal compliance, customer commitments,
+                inventory decisions, or other important business matters.
+              </p>
+              <div class="terms-notice">
+                <strong>Use your own judgment.</strong>
+                <p>
+                  AI-generated content should not be treated as a substitute
+                  for professional accounting, legal, tax, financial, or
+                  other specialist advice where that advice is needed.
+                </p>
+              </div>
+              <p>
+                Do not rely on an AI-assisted feature as the sole basis for
+                a consequential decision without appropriate independent
+                verification. Feature-specific limitations and data
+                processing details may be provided when those features
+                become available.
+              </p>
+            </section>
+            <!-- 10 -->
+            <section class="terms-section" id="intellectual-property">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">10</span>
+                <h2>Intellectual Property</h2>
+              </div>
+              <p>
+                The ARTHNIX name, branding, website design, original text,
+                graphics, and other website materials may be protected by
+                intellectual property laws. Except where permitted by law
+                or expressly authorised, you may not reproduce, modify,
+                distribute, publicly display, or commercially exploit
+                those materials without the relevant permission.
+              </p>
+              <p>
+                These Terms do not grant you ownership of our branding,
+                software, or other intellectual property. Any rights not
+                expressly granted remain with their respective owners.
+              </p>
+              <p>
+                Product names, logos, and marks belonging to third parties
+                remain the property of their respective owners. Their
+                appearance on the website does not necessarily imply
+                endorsement or affiliation.
+              </p>
+            </section>
+            <!-- 11 -->
+            <section class="terms-section" id="third-party">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">11</span>
+                <h2>Third-Party Services and Links</h2>
+              </div>
+              <p>
+                The website may contain links to third-party websites,
+                platforms, or services. These are provided for convenience
+                or to help you access relevant information.
+              </p>
+              <p>
+                Third-party services operate under their own terms and
+                privacy practices. We do not control every third-party
+                service and are not responsible for its content,
+                availability, policies, or practices.
+              </p>
+              <p>
+                You should review the applicable terms and privacy notices
+                before using an external service or sharing information
+                with its operator.
+              </p>
+            </section>
+            <!-- 12 -->
+            <section class="terms-section" id="availability">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">12</span>
+                <h2>Website Availability and Changes</h2>
+              </div>
+              <p>
+                We aim to maintain a useful and accessible website, but
+                uninterrupted availability cannot be guaranteed. The website
+                or a particular feature may occasionally be unavailable due
+                to maintenance, technical issues, security concerns, or
+                circumstances outside our reasonable control.
+              </p>
+              <p>
+                We may update, change, suspend, or discontinue website
+                content or features as our products develop. Where a
+                specific paid service is involved, applicable contractual
+                commitments and mandatory legal requirements will continue
+                to apply.
+              </p>
+            </section>
+            <!-- 13 -->
+            <section class="terms-section" id="disclaimers">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">13</span>
+                <h2>Disclaimers</h2>
+              </div>
+              <p>
+                To the extent permitted by applicable law, the website and
+                its general informational content are provided on an
+                “as available” basis. We do not guarantee that all content
+                will always be complete, accurate, current, uninterrupted,
+                or suitable for every purpose.
+              </p>
+              <p>
+                Website information is not, by itself, a professional
+                recommendation or a guarantee of a particular business
+                result. You are responsible for assessing whether a product,
+                service, or piece of information meets your needs.
+              </p>
+              <p>
+                Nothing in these Terms excludes a warranty, right, or
+                protection that cannot lawfully be excluded or limited.
+              </p>
+            </section>
+            <!-- 14 -->
+            <section class="terms-section" id="liability">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">14</span>
+                <h2>Limitation of Liability</h2>
+              </div>
+              <p>
+                To the extent permitted by applicable law, ARTHNIX will not
+                be liable for indirect, incidental, special, consequential,
+                or punitive losses, or for loss of profits, revenue,
+                business opportunities, goodwill, or data arising from
+                your use of or inability to use the website.
+              </p>
+              <p>
+                This section does not exclude or limit liability where
+                doing so would be unlawful. If you use a paid product or
+                enter into a separate service agreement, that agreement
+                may contain additional provisions concerning liability.
+              </p>
+              <p>
+                Nothing in this section limits any rights or remedies that
+                applicable law requires us to preserve.
+              </p>
+            </section>
+            <!-- 15 -->
+            <section class="terms-section" id="indemnity">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">15</span>
+                <h2>Responsibility for Misuse</h2>
+              </div>
+              <p>
+                You are responsible for your unlawful use of the website
+                and for content or activity that you control. To the extent
+                permitted by applicable law, you may be responsible for
+                reasonable losses or claims arising from your unlawful
+                conduct, infringement of third-party rights, or material
+                breach of these Terms.
+              </p>
+              <p>
+                Nothing in this section makes you responsible for losses
+                to the extent they were caused by our own conduct or
+                otherwise cannot legally be attributed to you.
+              </p>
+            </section>
+            <!-- 16 -->
+            <section class="terms-section" id="termination">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">16</span>
+                <h2>Suspension and Termination</h2>
+              </div>
+              <p>
+                We may restrict or suspend access where reasonably necessary
+                to protect the website, investigate suspected misuse, address
+                security risks, comply with law, or enforce applicable terms.
+              </p>
+              <p>
+                Where appropriate and reasonably practicable, we may provide
+                notice or an opportunity to address the issue before taking
+                action. This may not be possible where immediate action is
+                needed for security, legal, or operational reasons.
+              </p>
+              <p>
+                Any rights that accrued before termination, and any
+                provisions that by their nature should continue, will
+                remain subject to applicable law and the relevant agreement.
+              </p>
+            </section>
+            <!-- 17 -->
+            <section class="terms-section" id="privacy">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">17</span>
+                <h2>Privacy and Personal Information</h2>
+              </div>
+              <p>
+                Our handling of personal information is described in the
+                ARTHNIX Privacy Policy. Please review it to understand
+                what information may be collected, how it may be used,
+                and what choices may be available to you.
+              </p>
+              <p>
+                You can read the policy on our
+                <a href="privacy.html">Privacy Policy page</a>.
+              </p>
+              <p>
+                If you contact us through a link that opens your email
+                application, the information you enter is placed in a
+                prepared email draft on your device. It is not sent until
+                you choose to send the email. Once received, the information
+                may be processed to respond to your enquiry.
+              </p>
+            </section>
+            <!-- 18 -->
+            <section class="terms-section" id="changes">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">18</span>
+                <h2>Changes to These Terms</h2>
+              </div>
+              <p>
+                We may update these Terms to reflect changes to our website,
+                products, services, or legal obligations. The revised
+                version will be published on this page with an updated
+                “Last updated” date.
+              </p>
+              <p>
+                Changes will apply from the date stated in the revised
+                Terms or, if no separate date is stated, from publication.
+                Where required by law or an applicable agreement, we will
+                provide additional notice or obtain consent.
+              </p>
+              <p>
+                We encourage you to review this page periodically so you
+                remain informed about the terms that apply to your use.
+              </p>
+            </section>
+            <!-- 19 -->
+            <section class="terms-section" id="law">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">19</span>
+                <h2>Governing Law and Disputes</h2>
+              </div>
+              <p>
+                These Terms are subject to applicable laws. Any governing
+                law, jurisdiction, or dispute-resolution arrangement
+                applicable to a particular product or service will be
+                identified in the relevant agreement where appropriate.
+              </p>
+              <p>
+                Nothing in these Terms is intended to deprive you of
+                mandatory legal protections or rights available to you
+                under applicable law.
+              </p>
+            </section>
+            <!-- 20 -->
+            <section class="terms-section" id="contact">
+              <div class="terms-section-heading">
+                <span class="terms-section-number">20</span>
+                <h2>Contact ARTHNIX</h2>
+              </div>
+              <p>
+                If you have a question about these Terms, need clarification,
+                or want to raise a concern about the website or a service,
+                contact us by email.
+              </p>
+              <p>
+                Email:
+                <a href="mailto:uimockup.plus@gmail.com">
+                  uimockup.plus@gmail.com
+                </a>
+              </p>
+              <p>
+                Please include enough information for us to understand
+                your enquiry. Do not include passwords, payment credentials,
+                or other sensitive information unless it is specifically
+                necessary and an appropriate secure method has been provided.
+              </p>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- BOTTOM CTA -->
+    <section class="terms-bottom" aria-label="Questions about these terms">
+      <div class="terms-container">
+        <div class="terms-bottom-card">
+          <div class="terms-bottom-copy">
+            <p class="terms-bottom-eyebrow">Need clarification?</p>
+            <h2>Questions about the terms?</h2>
+            <p>
+              If something is unclear, contact us and tell us which part
+              you would like us to explain.
+            </p>
+          </div>
+          <a
+            class="terms-contact-button"
+            href="mailto:uimockup.plus@gmail.com?subject=Question%20about%20ARTHNIX%20Terms"
+          >
+            Contact us <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="components.js"></script>
+</body>
+</html>
