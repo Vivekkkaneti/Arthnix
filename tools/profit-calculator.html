@@ -3,28 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Profit Calculator | ARTHNIX</title>
-
   <meta
     name="description"
     content="Calculate business profit, loss, profit margin, markup, break-even selling price, and total costs with the free ARTHNIX Profit Calculator."
   >
-
   <meta name="theme-color" content="#090909">
   <meta name="robots" content="index,follow">
-
   <link rel="canonical" href="https://arthnix.com/tools/profit-calculator.html">
-
   <link rel="icon" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
-
   <style>
     :root {
       --black: #090909;
@@ -43,18 +36,15 @@
       --radius: 18px;
       --container: 1160px;
     }
-
     *,
     *::before,
     *::after {
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 100px;
     }
-
     body {
       margin: 0;
       background: var(--paper);
@@ -66,49 +56,40 @@
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
-
     body,
     button,
     input {
       font-family: "DM Sans", sans-serif;
     }
-
     button,
     input {
       font-size: inherit;
     }
-
     button,
     a {
       -webkit-tap-highlight-color: transparent;
     }
-
     a {
       color: inherit;
       text-decoration: none;
     }
-
     button {
       cursor: pointer;
     }
-
     button:focus-visible,
     a:focus-visible,
     input:focus-visible {
       outline: 3px solid rgba(237, 52, 52, 0.4);
       outline-offset: 3px;
     }
-
     img {
       display: block;
       max-width: 100%;
     }
-
     .container {
       width: min(var(--container), calc(100% - 48px));
       margin-inline: auto;
     }
-
     .section-heading,
     h1,
     h2,
@@ -117,11 +98,9 @@
       font-family: "Manrope", sans-serif;
       letter-spacing: -0.045em;
     }
-
     /* =========================================
        NAVIGATION
     ========================================= */
-
     .site-header {
       position: sticky;
       top: 0;
@@ -129,8 +108,8 @@
       background: var(--black);
       border-bottom: 1px solid #292929;
     }
-
     .nav-container {
+      position: relative;
       width: calc(100% - 64px);
       max-width: 1200px;
       min-height: 76px;
@@ -140,7 +119,6 @@
       justify-content: space-between;
       gap: 32px;
     }
-
     .brand {
       display: inline-flex;
       align-items: center;
@@ -148,13 +126,11 @@
       flex-shrink: 0;
       color: var(--white);
     }
-
     .brand img {
       width: 38px;
       height: 38px;
       object-fit: contain;
     }
-
     .brand-name {
       color: var(--white);
       font-family: "Manrope", sans-serif;
@@ -162,25 +138,21 @@
       font-weight: 800;
       letter-spacing: -0.055em;
     }
-
     .nav-links {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 30px;
     }
-
     .nav-links > a:not(.nav-cta) {
       color: #c5c5c5;
       font-size: 13px;
       font-weight: 500;
       transition: color 0.2s ease;
     }
-
     .nav-links > a:not(.nav-cta):hover {
       color: var(--white);
     }
-
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -199,14 +171,12 @@
         color 0.2s ease,
         transform 0.2s ease;
     }
-
     .nav-cta:hover {
       background: var(--red);
       border-color: var(--red);
       color: var(--white);
       transform: translateY(-1px);
     }
-
     .menu-toggle {
       display: none;
       align-items: center;
@@ -219,16 +189,13 @@
       border-radius: 9px;
       color: var(--white);
     }
-
     .menu-toggle svg {
       width: 22px;
       height: 22px;
     }
-
     /* =========================================
        HERO
     ========================================= */
-
     .hero {
       position: relative;
       overflow: hidden;
@@ -247,7 +214,6 @@
         var(--black);
       color: var(--white);
     }
-
     .hero::before {
       position: absolute;
       inset: 0;
@@ -260,7 +226,6 @@
       content: "";
       pointer-events: none;
     }
-
     .hero-inner {
       position: relative;
       z-index: 1;
@@ -268,7 +233,6 @@
       margin: 0 auto;
       text-align: center;
     }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -280,11 +244,10 @@
       background: rgba(255, 255, 255, 0.04);
       color: #e4e4e4;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.11em;
       text-transform: uppercase;
     }
-
     .eyebrow-dot {
       width: 7px;
       height: 7px;
@@ -292,21 +255,18 @@
       background: var(--red);
       box-shadow: 0 0 12px rgba(237, 52, 52, 0.65);
     }
-
     .hero h1 {
       max-width: 850px;
       margin: 0 auto 21px;
       color: var(--white);
       font-size: clamp(38px, 6.2vw, 68px);
-      font-weight: 800;
+      font-weight: 600;
       line-height: 1.08;
       letter-spacing: -0.065em;
     }
-
     .hero h1 span {
       color: var(--red);
     }
-
     .hero-description {
       max-width: 610px;
       margin: 0 auto;
@@ -314,7 +274,6 @@
       font-size: 16px;
       line-height: 1.85;
     }
-
     .hero-points {
       display: flex;
       align-items: center;
@@ -326,34 +285,28 @@
       font-size: 12px;
       font-weight: 500;
     }
-
     .hero-point {
       display: inline-flex;
       align-items: center;
       gap: 7px;
     }
-
     .hero-point svg {
       width: 15px;
       height: 15px;
       color: #f87171;
       flex-shrink: 0;
     }
-
     /* =========================================
-       CALCULATOR SECTION
+       CALCULATOR
     ========================================= */
-
     .calculator-section {
       padding: 64px 0 84px;
     }
-
     .calculator-intro {
       max-width: 700px;
       margin: 0 auto 35px;
       text-align: center;
     }
-
     .section-kicker {
       margin: 0 0 10px;
       color: var(--red);
@@ -362,28 +315,24 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-
     .calculator-intro h2 {
       margin: 0 0 12px;
       font-size: clamp(27px, 4vw, 38px);
       font-weight: 800;
       line-height: 1.2;
     }
-
     .calculator-intro p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.8;
     }
-
     .calculator-layout {
       display: grid;
       grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
       align-items: start;
       gap: 24px;
     }
-
     .panel {
       min-width: 0;
       overflow: hidden;
@@ -392,18 +341,15 @@
       border-radius: var(--radius);
       box-shadow: 0 8px 35px rgba(0, 0, 0, 0.035);
     }
-
     .panel-header {
       padding: 25px 27px 22px;
       border-bottom: 1px solid var(--border);
     }
-
     .panel-heading-row {
       display: flex;
       align-items: center;
       gap: 13px;
     }
-
     .panel-icon {
       display: flex;
       align-items: center;
@@ -415,38 +361,31 @@
       background: #fff0f0;
       color: var(--red);
     }
-
     .panel-icon svg {
       width: 22px;
       height: 22px;
     }
-
     .panel-header h2 {
       margin: 0;
       font-size: 19px;
       font-weight: 800;
       letter-spacing: -0.04em;
     }
-
     .panel-header p {
       margin: 4px 0 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.6;
     }
-
     .form-body {
       padding: 26px 27px 28px;
     }
-
     .form-group {
       margin-bottom: 22px;
     }
-
     .form-group:last-of-type {
       margin-bottom: 0;
     }
-
     .form-label-row {
       display: flex;
       align-items: center;
@@ -454,19 +393,16 @@
       gap: 12px;
       margin-bottom: 9px;
     }
-
     .form-label {
       color: var(--text);
       font-size: 13px;
       font-weight: 700;
     }
-
     .form-hint {
       color: var(--muted);
       font-size: 11px;
       text-align: right;
     }
-
     .input-wrap {
       display: flex;
       align-items: center;
@@ -479,12 +415,13 @@
         border-color 0.2s ease,
         box-shadow 0.2s ease;
     }
-
     .input-wrap:focus-within {
       border-color: var(--red);
       box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
     }
-
+    .input-wrap:has([aria-invalid="true"]) {
+      border-color: #dc2626;
+    }
     .input-prefix {
       display: flex;
       align-items: center;
@@ -498,14 +435,12 @@
       font-size: 14px;
       font-weight: 700;
     }
-
     .input-suffix {
       padding: 0 14px;
       color: var(--muted);
       font-size: 12px;
       font-weight: 600;
     }
-
     .form-input {
       display: block;
       width: 100%;
@@ -521,47 +456,39 @@
       font-weight: 600;
       font-variant-numeric: tabular-nums;
     }
-
     .form-input:focus-visible {
       outline: none;
     }
-
     .form-input::placeholder {
       color: #b3b3b3;
       font-weight: 400;
     }
-
     .form-input::-webkit-inner-spin-button,
     .form-input::-webkit-outer-spin-button {
       margin: 0;
       -webkit-appearance: none;
     }
-
     .form-input[type="number"] {
       appearance: textfield;
       -moz-appearance: textfield;
     }
-
     .input-note {
       margin: 7px 0 0;
       color: var(--muted);
       font-size: 11px;
       line-height: 1.65;
     }
-
     .form-divider {
       height: 1px;
       margin: 26px 0;
       background: var(--border);
     }
-
     .form-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 11px;
       margin-top: 27px;
     }
-
     .button {
       display: inline-flex;
       align-items: center;
@@ -579,37 +506,31 @@
         border-color 0.2s ease,
         transform 0.2s ease;
     }
-
     .button svg {
       width: 16px;
       height: 16px;
       flex-shrink: 0;
     }
-
     .button-primary {
       flex: 1;
       background: var(--red);
       border-color: var(--red);
       color: var(--white);
     }
-
     .button-primary:hover {
       background: var(--red-dark);
       border-color: var(--red-dark);
       transform: translateY(-1px);
     }
-
     .button-secondary {
       background: var(--white);
       border-color: #dededb;
       color: var(--text);
     }
-
     .button-secondary:hover {
       background: var(--surface);
       border-color: #c7c7c4;
     }
-
     .calculator-error {
       margin: 17px 0 0;
       padding: 12px 14px;
@@ -620,19 +541,16 @@
       font-size: 12px;
       line-height: 1.6;
     }
-
     .calculator-error[hidden] {
       display: none;
     }
-
     /* =========================================
-       PROFIT SUMMARY
+       SUMMARY
     ========================================= */
-
     .summary-panel {
       position: relative;
+      scroll-margin-top: 95px;
     }
-
     .summary-top {
       padding: 26px 27px 25px;
       background:
@@ -644,7 +562,6 @@
         var(--black);
       color: var(--white);
     }
-
     .summary-topline {
       display: flex;
       align-items: center;
@@ -652,13 +569,11 @@
       gap: 12px;
       margin-bottom: 26px;
     }
-
     .summary-label {
       color: #bdbdbd;
       font-size: 12px;
       font-weight: 600;
     }
-
     .status-badge {
       display: inline-flex;
       align-items: center;
@@ -672,88 +587,67 @@
       font-weight: 700;
       white-space: nowrap;
     }
-
     .status-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: #a3a3a3;
     }
-
     .status-badge.profit {
       border-color: rgba(74, 222, 128, 0.28);
       background: rgba(21, 128, 61, 0.18);
       color: #86efac;
     }
-
     .status-badge.profit .status-dot {
       background: #4ade80;
     }
-
     .status-badge.loss {
       border-color: rgba(248, 113, 113, 0.32);
       background: rgba(185, 28, 28, 0.19);
       color: #fca5a5;
     }
-
     .status-badge.loss .status-dot {
       background: #f87171;
     }
-
     .status-badge.break-even {
       border-color: #484848;
       background: #252525;
       color: #e5e5e5;
     }
-
-    .status-badge.break-even .status-dot {
-      background: #a3a3a3;
-    }
-
     .profit-amount {
-      display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 7px;
+      display: block;
       margin: 0;
       font-family: "Manrope", sans-serif;
       font-size: clamp(30px, 4vw, 43px);
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.25;
       letter-spacing: -0.065em;
       overflow-wrap: anywhere;
       font-variant-numeric: tabular-nums;
     }
-
     .profit-amount.positive {
       color: #86efac;
     }
-
     .profit-amount.negative {
       color: #fca5a5;
     }
-
     .profit-amount.neutral {
       color: var(--white);
     }
-
     .profit-caption {
       margin: 12px 0 0;
       color: #aaa;
       font-size: 12px;
       line-height: 1.7;
     }
-
     .summary-body {
       padding: 24px 27px 27px;
     }
-
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
-
     .metric-card {
       min-width: 0;
       padding: 16px;
@@ -761,7 +655,6 @@
       border: 1px solid var(--border);
       border-radius: 12px;
     }
-
     .metric-label {
       display: block;
       margin-bottom: 9px;
@@ -770,7 +663,6 @@
       font-weight: 600;
       line-height: 1.5;
     }
-
     .metric-value {
       display: block;
       color: var(--text);
@@ -782,7 +674,6 @@
       overflow-wrap: anywhere;
       font-variant-numeric: tabular-nums;
     }
-
     .metric-subtitle {
       display: block;
       margin-top: 6px;
@@ -790,13 +681,11 @@
       font-size: 10px;
       line-height: 1.5;
     }
-
     .summary-divider {
       height: 1px;
       margin: 25px 0 22px;
       background: var(--border);
     }
-
     .breakdown-title {
       margin: 0 0 17px;
       font-family: "Manrope", sans-serif;
@@ -804,12 +693,10 @@
       font-weight: 800;
       letter-spacing: -0.025em;
     }
-
     .breakdown-list {
       display: grid;
       gap: 15px;
     }
-
     .breakdown-row {
       display: flex;
       align-items: flex-start;
@@ -819,13 +706,12 @@
       font-size: 12px;
       line-height: 1.6;
     }
-
     .breakdown-row > span:first-child {
       min-width: 0;
     }
-
     .breakdown-row strong {
       flex-shrink: 0;
+      max-width: 60%;
       color: var(--text);
       font-size: 12px;
       font-weight: 700;
@@ -833,7 +719,6 @@
       font-variant-numeric: tabular-nums;
       overflow-wrap: anywhere;
     }
-
     .breakdown-row.total {
       margin-top: 2px;
       padding-top: 15px;
@@ -841,11 +726,9 @@
       color: var(--text);
       font-weight: 700;
     }
-
     .breakdown-row.total strong {
       font-weight: 800;
     }
-
     .breakdown-row.net-result {
       margin-top: 3px;
       padding: 14px;
@@ -855,33 +738,23 @@
       color: var(--text);
       font-weight: 700;
     }
-
-    .breakdown-row.net-result strong {
-      font-weight: 800;
-    }
-
     .breakdown-row.net-result.positive {
       background: var(--green-soft);
       border-color: #bbf7d0;
     }
-
     .breakdown-row.net-result.positive strong {
       color: var(--green);
     }
-
     .breakdown-row.net-result.negative {
       background: var(--red-soft);
       border-color: #fecaca;
     }
-
     .breakdown-row.net-result.negative strong {
       color: #b91c1c;
     }
-
     .breakdown-row.net-result.neutral strong {
       color: var(--text);
     }
-
     .summary-note {
       display: flex;
       align-items: flex-start;
@@ -895,7 +768,6 @@
       font-size: 11px;
       line-height: 1.7;
     }
-
     .summary-note svg {
       width: 16px;
       height: 16px;
@@ -903,41 +775,34 @@
       margin-top: 2px;
       color: var(--red);
     }
-
     /* =========================================
-       EXPLANATION SECTION
+       EXPLANATION
     ========================================= */
-
     .info-section {
       padding: 0 0 86px;
     }
-
     .info-heading {
       max-width: 700px;
       margin: 0 auto 34px;
       text-align: center;
     }
-
     .info-heading h2 {
       margin: 0 0 12px;
       font-size: clamp(27px, 4vw, 37px);
       font-weight: 800;
       line-height: 1.2;
     }
-
     .info-heading p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.8;
     }
-
     .info-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 17px;
     }
-
     .info-card {
       min-width: 0;
       padding: 25px;
@@ -945,7 +810,6 @@
       border: 1px solid var(--border);
       border-radius: 15px;
     }
-
     .info-number {
       display: inline-flex;
       align-items: center;
@@ -960,20 +824,17 @@
       font-size: 13px;
       font-weight: 800;
     }
-
     .info-card h3 {
       margin: 0 0 10px;
       font-size: 17px;
       font-weight: 800;
     }
-
     .info-card p {
       margin: 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.85;
     }
-
     .formula {
       display: block;
       margin-top: 14px;
@@ -987,7 +848,6 @@
       font-weight: 700;
       line-height: 1.8;
     }
-
     .disclaimer {
       margin-top: 22px;
       padding: 18px 20px;
@@ -998,48 +858,40 @@
       font-size: 12px;
       line-height: 1.85;
     }
-
     .disclaimer strong {
       color: var(--text);
     }
-
     /* =========================================
        FOOTER
     ========================================= */
-
     .site-footer {
       padding: 57px 0 25px;
       background: var(--black);
       color: var(--white);
     }
-
     .footer-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: 42px;
       padding-bottom: 43px;
     }
-
     .footer-brand {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 16px;
     }
-
     .footer-brand img {
       width: 31px;
       height: 31px;
       object-fit: contain;
     }
-
     .footer-brand span {
       font-family: "Manrope", sans-serif;
       font-size: 19px;
       font-weight: 800;
       letter-spacing: -0.055em;
     }
-
     .footer-tagline {
       max-width: 230px;
       margin: 0 0 13px;
@@ -1050,14 +902,12 @@
       line-height: 1.6;
       letter-spacing: -0.025em;
     }
-
     .footer-powered {
       margin: 0;
       color: #858585;
       font-size: 11px;
       line-height: 1.8;
     }
-
     .footer-column h3 {
       margin: 5px 0 19px;
       color: var(--white);
@@ -1066,12 +916,10 @@
       font-weight: 800;
       letter-spacing: -0.01em;
     }
-
     .footer-links {
       display: grid;
       gap: 11px;
     }
-
     .footer-links a {
       width: fit-content;
       max-width: 100%;
@@ -1080,11 +928,9 @@
       line-height: 1.6;
       transition: color 0.2s ease;
     }
-
     .footer-links a:hover {
       color: var(--white);
     }
-
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -1097,25 +943,20 @@
       font-size: 11px;
       line-height: 1.7;
     }
-
     .footer-bottom p {
       margin: 0;
     }
-
     /* =========================================
        RESPONSIVE
     ========================================= */
-
     @media (max-width: 1050px) {
       .nav-links {
         gap: 20px;
       }
-
       .calculator-layout {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 18px;
       }
-
       .panel-header,
       .form-body,
       .summary-top,
@@ -1123,22 +964,18 @@
         padding-left: 21px;
         padding-right: 21px;
       }
-
       .footer-grid {
         gap: 28px;
       }
     }
-
     @media (max-width: 780px) {
       .nav-container {
         width: calc(100% - 40px);
         min-height: 70px;
       }
-
       .menu-toggle {
         display: inline-flex;
       }
-
       .nav-links {
         position: absolute;
         top: 100%;
@@ -1151,105 +988,82 @@
         background: var(--black);
         border-bottom: 1px solid #292929;
       }
-
       .nav-links.is-open {
         display: flex;
         flex-direction: column;
       }
-
       .nav-links > a:not(.nav-cta) {
         display: block;
         padding: 14px 0;
         border-bottom: 1px solid #242424;
         font-size: 14px;
       }
-
       .nav-cta {
         align-self: flex-start;
         margin-top: 15px;
       }
-
       .hero {
         padding: 64px 0 68px;
       }
-
       .calculator-section {
         padding: 48px 0 65px;
       }
-
       .calculator-layout {
         grid-template-columns: minmax(0, 1fr);
       }
-
       .calculator-intro {
         margin-bottom: 28px;
       }
-
       .summary-panel {
         order: 0;
       }
-
       .form-panel {
         order: 1;
       }
-
       .info-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-
       .info-card {
         padding: 22px;
       }
-
       .info-section {
         padding-bottom: 65px;
       }
-
       .footer-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 35px 25px;
       }
     }
-
     @media (max-width: 480px) {
       .container {
         width: calc(100% - 32px);
       }
-
       .nav-container {
         width: calc(100% - 32px);
       }
-
       .brand-name {
         font-size: 18px;
       }
-
       .brand img {
         width: 34px;
         height: 34px;
       }
-
       .hero {
         padding: 53px 0 58px;
       }
-
       .hero h1 {
         font-size: clamp(35px, 10vw, 46px);
       }
-
       .hero-description {
         font-size: 14px;
       }
-
       .hero-points {
         gap: 12px 17px;
         font-size: 11px;
       }
-
       .calculator-section {
         padding-top: 40px;
       }
-
       .panel-header,
       .form-body,
       .summary-top,
@@ -1257,98 +1071,77 @@
         padding-left: 17px;
         padding-right: 17px;
       }
-
       .panel-header {
         padding-top: 21px;
         padding-bottom: 19px;
       }
-
       .form-body {
         padding-top: 22px;
         padding-bottom: 22px;
       }
-
       .summary-top {
         padding-top: 22px;
         padding-bottom: 22px;
       }
-
       .summary-body {
         padding-top: 20px;
         padding-bottom: 22px;
       }
-
       .profit-amount {
-        font-size: clamp(28px, 8.5vw, 38px);
+        font-size: clamp(27px, 8vw, 38px);
       }
-
       .metric-card {
         padding: 13px 12px;
       }
-
       .metric-value {
         font-size: clamp(16px, 4.8vw, 21px);
       }
-
       .form-label-row {
         align-items: flex-start;
       }
-
       .form-hint {
         max-width: 45%;
       }
-
       .form-actions {
         flex-direction: column;
       }
-
       .form-actions .button {
         width: 100%;
       }
-
       .footer-grid {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 30px 18px;
       }
-
       .footer-brand span {
         font-size: 17px;
       }
-
       .footer-bottom {
         align-items: flex-start;
         flex-direction: column;
       }
     }
-
     @media (max-width: 380px) {
       .footer-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-
       .metrics-grid {
         gap: 9px;
       }
-
       .metric-card {
         padding: 12px 10px;
       }
-
       .metric-label {
         font-size: 10px;
       }
-
       .metric-value {
         font-size: 17px;
       }
-
       .summary-topline {
         align-items: flex-start;
         flex-direction: column;
         gap: 10px;
       }
     }
-
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -1359,9 +1152,15 @@
         animation-iteration-count: 1 !important;
       }
     }
-
     /* Print only the calculator and its results. */
     @media print {
+      @page {
+        margin: 14mm;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+      }
       .site-header,
       .hero,
       .form-panel,
@@ -1372,75 +1171,71 @@
       .print-actions {
         display: none !important;
       }
-
-      body {
-        background: white;
-      }
-
       .calculator-section {
         padding: 0;
       }
-
       .container {
         width: 100%;
         max-width: none;
       }
-
       .calculator-layout {
         display: block;
       }
-
       .summary-panel {
+        overflow: visible;
         border: 1px solid #ddd;
         box-shadow: none;
       }
-
       .summary-top {
-        background: white;
-        color: black;
+        background: white !important;
+        color: black !important;
         border-bottom: 1px solid #ddd;
       }
-
       .summary-label,
       .profit-caption {
-        color: #555;
+        color: #555 !important;
       }
-
       .profit-amount,
       .profit-amount.positive,
       .profit-amount.negative,
       .profit-amount.neutral {
-        color: black;
+        color: black !important;
       }
-
-      .status-badge {
-        background: white;
-        color: black;
-        border-color: #ddd;
+      .status-badge,
+      .status-badge.profit,
+      .status-badge.loss,
+      .status-badge.break-even {
+        background: white !important;
+        color: black !important;
+        border-color: #ddd !important;
       }
-
+      .summary-body {
+        padding: 18px;
+      }
       .metric-card,
+      .breakdown-row,
       .breakdown-row.net-result {
         break-inside: avoid;
+      }
+      .metric-card,
+      .breakdown-row.net-result {
+        background: white !important;
+        border-color: #ddd !important;
+      }
+      .breakdown-row.net-result strong {
+        color: black !important;
       }
     }
   </style>
 </head>
-
 <body>
-
-  <!-- =======================================
-       NAVIGATION
-  ======================================== -->
-
+  <!-- NAVIGATION -->
   <header class="site-header">
     <div class="nav-container">
-
       <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-        <img src="/logo.png" alt="ARTHNIX logo">
+        <img src="/logo.png" alt="ARTHNIX logo" width="38" height="38">
         <span class="brand-name">ARTHNIX</span>
       </a>
-
       <button
         class="menu-toggle"
         id="menuToggle"
@@ -1456,11 +1251,11 @@
           stroke="currentColor"
           stroke-width="1.8"
           stroke-linecap="round"
+          aria-hidden="true"
         >
           <path d="M4 7h16M4 12h16M4 17h16"></path>
         </svg>
       </button>
-
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
         <a href="/tools.html">Free Tools</a>
         <a href="/platform.html">Platform</a>
@@ -1471,73 +1266,58 @@
           Start Free <span aria-hidden="true">↗</span>
         </a>
       </nav>
-
     </div>
   </header>
-
   <main>
-
-    <!-- =======================================
-         HERO
-    ======================================== -->
-
+    <!-- HERO -->
     <section class="hero">
       <div class="container">
         <div class="hero-inner">
-
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
             Free Business Tool
           </div>
-
           <h1>
             Know your profit.<br>
             <span>Price with confidence.</span>
           </h1>
-
           <p class="hero-description">
             Calculate your actual profit, profit margin, markup, and
             break-even selling price. Enter your numbers and see your
             business results update instantly.
           </p>
-
           <div class="hero-points">
             <span class="hero-point">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
                 <path d="m5 12 4 4L19 6"></path>
               </svg>
               Instant calculations
             </span>
-
             <span class="hero-point">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
                 <path d="m5 12 4 4L19 6"></path>
               </svg>
               Indian Rupees
             </span>
-
             <span class="hero-point">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
                 <path d="m5 12 4 4L19 6"></path>
               </svg>
               Free to use
             </span>
           </div>
-
         </div>
       </div>
     </section>
-
-    <!-- =======================================
-         CALCULATOR
-    ======================================== -->
-
+    <!-- CALCULATOR -->
     <section class="calculator-section" id="calculator">
       <div class="container">
-
         <div class="calculator-intro">
           <p class="section-kicker">Your numbers, your results</p>
           <h2>Calculate your business profit</h2>
@@ -1547,35 +1327,27 @@
             summary updates automatically.
           </p>
         </div>
-
         <div class="calculator-layout">
-
           <!-- INPUT PANEL -->
-
           <section class="panel form-panel" aria-labelledby="inputTitle">
-
             <div class="panel-header">
               <div class="panel-heading-row">
-
                 <div class="panel-icon">
                   <svg viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
+                    stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
                     <rect x="4" y="3" width="16" height="18" rx="2"></rect>
                     <path d="M8 7h8M8 11h2m4 0h2M8 15h2m4 0h2M8 18h8"></path>
                   </svg>
                 </div>
-
                 <div>
                   <h2 id="inputTitle">Product details</h2>
                   <p>Enter your costs and selling price.</p>
                 </div>
-
               </div>
             </div>
-
             <form class="form-body" id="profitForm" novalidate>
-
               <div class="form-group">
                 <div class="form-label-row">
                   <label class="form-label" for="costPrice">
@@ -1583,7 +1355,6 @@
                   </label>
                   <span class="form-hint">Purchase / production cost</span>
                 </div>
-
                 <div class="input-wrap">
                   <span class="input-prefix" aria-hidden="true">₹</span>
                   <input
@@ -1597,14 +1368,13 @@
                     value="500"
                     inputmode="decimal"
                     required
+                    aria-describedby="costPriceNote"
                   >
                 </div>
-
-                <p class="input-note">
+                <p class="input-note" id="costPriceNote">
                   What it costs you to purchase or produce one unit.
                 </p>
               </div>
-
               <div class="form-group">
                 <div class="form-label-row">
                   <label class="form-label" for="sellingPrice">
@@ -1612,7 +1382,6 @@
                   </label>
                   <span class="form-hint">Price charged to customer</span>
                 </div>
-
                 <div class="input-wrap">
                   <span class="input-prefix" aria-hidden="true">₹</span>
                   <input
@@ -1626,15 +1395,14 @@
                     value="750"
                     inputmode="decimal"
                     required
+                    aria-describedby="sellingPriceNote"
                   >
                 </div>
-
-                <p class="input-note">
+                <p class="input-note" id="sellingPriceNote">
                   The amount you charge for one unit before considering
                   additional order expenses.
                 </p>
               </div>
-
               <div class="form-group">
                 <div class="form-label-row">
                   <label class="form-label" for="quantity">
@@ -1642,7 +1410,6 @@
                   </label>
                   <span class="form-hint">Number of units</span>
                 </div>
-
                 <div class="input-wrap">
                   <input
                     class="form-input"
@@ -1655,17 +1422,15 @@
                     value="10"
                     inputmode="numeric"
                     required
+                    aria-describedby="quantityNote"
                   >
                   <span class="input-suffix">units</span>
                 </div>
-
-                <p class="input-note">
+                <p class="input-note" id="quantityNote">
                   The number of units included in this calculation.
                 </p>
               </div>
-
               <div class="form-divider"></div>
-
               <div class="form-group">
                 <div class="form-label-row">
                   <label class="form-label" for="additionalCosts">
@@ -1673,7 +1438,6 @@
                   </label>
                   <span class="form-hint">Entire order</span>
                 </div>
-
                 <div class="input-wrap">
                   <span class="input-prefix" aria-hidden="true">₹</span>
                   <input
@@ -1687,16 +1451,15 @@
                     value="0"
                     inputmode="decimal"
                     required
+                    aria-describedby="additionalCostsNote"
                   >
                 </div>
-
-                <p class="input-note">
+                <p class="input-note" id="additionalCostsNote">
                   Include shipping, packaging, labour, advertising,
                   transaction fees, or other expenses for the entire order.
                   Do not multiply these expenses by quantity again.
                 </p>
               </div>
-
               <div
                 class="calculator-error"
                 id="calculatorError"
@@ -1704,17 +1467,16 @@
                 aria-live="polite"
                 hidden
               ></div>
-
               <div class="form-actions">
                 <button class="button button-primary" type="submit">
                   <svg viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                    stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
                     <path d="M12 3v18M3 12h18"></path>
                   </svg>
                   Calculate profit
                 </button>
-
                 <button
                   class="button button-secondary"
                   type="button"
@@ -1722,19 +1484,17 @@
                 >
                   <svg viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
+                    stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
                     <path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path>
                     <path d="M3 3v5h5"></path>
                   </svg>
                   Reset
                 </button>
               </div>
-
             </form>
           </section>
-
-          <!-- PROFIT SUMMARY PANEL -->
-
+          <!-- RESULTS PANEL -->
           <section
             class="panel summary-panel"
             id="profitSummary"
@@ -1742,37 +1502,28 @@
             aria-live="polite"
             aria-atomic="false"
           >
-
             <div class="summary-top">
-
               <div class="summary-topline">
                 <span class="summary-label" id="summaryTitle">
                   Your net profit
                 </span>
-
                 <span class="status-badge break-even" id="profitStatus">
                   <span class="status-dot"></span>
                   <span id="profitStatusText">Calculating</span>
                 </span>
               </div>
-
               <p
                 class="profit-amount neutral"
                 id="netProfit"
                 aria-label="Net profit or loss"
               >₹2,500.00</p>
-
               <p class="profit-caption" id="profitCaption">
                 Your estimated profit after product costs and additional
                 order expenses.
               </p>
-
             </div>
-
             <div class="summary-body">
-
               <div class="metrics-grid">
-
                 <div class="metric-card">
                   <span class="metric-label">Profit margin</span>
                   <strong class="metric-value" id="profitMargin">33.33%</strong>
@@ -1780,7 +1531,6 @@
                     Profit as a percentage of revenue
                   </span>
                 </div>
-
                 <div class="metric-card">
                   <span class="metric-label">Markup</span>
                   <strong class="metric-value" id="markup">50.00%</strong>
@@ -1788,7 +1538,6 @@
                     Profit as a percentage of total cost
                   </span>
                 </div>
-
                 <div class="metric-card">
                   <span class="metric-label">Profit per unit</span>
                   <strong class="metric-value" id="profitPerUnit">₹250.00</strong>
@@ -1796,7 +1545,6 @@
                     Average profit per unit sold
                   </span>
                 </div>
-
                 <div class="metric-card">
                   <span class="metric-label">Break-even price</span>
                   <strong class="metric-value" id="breakEvenPrice">₹500.00</strong>
@@ -1804,57 +1552,45 @@
                     Minimum price per unit to cover costs
                   </span>
                 </div>
-
               </div>
-
               <div class="summary-divider"></div>
-
               <h3 class="breakdown-title">Financial breakdown</h3>
-
               <div class="breakdown-list">
-
                 <div class="breakdown-row">
                   <span>Total revenue</span>
                   <strong id="totalRevenue">₹7,500.00</strong>
                 </div>
-
                 <div class="breakdown-row">
                   <span>Product costs</span>
                   <strong id="productCosts">₹5,000.00</strong>
                 </div>
-
                 <div class="breakdown-row">
                   <span>Additional expenses</span>
                   <strong id="displayExpenses">₹0.00</strong>
                 </div>
-
                 <div class="breakdown-row total">
                   <span>Total costs</span>
                   <strong id="totalCost">₹5,000.00</strong>
                 </div>
-
-                <div class="breakdown-row net-result positive" id="netResultRow">
+                <div class="breakdown-row net-result neutral" id="netResultRow">
                   <span>Net profit / loss</span>
                   <strong id="breakdownNetProfit">₹2,500.00</strong>
                 </div>
-
               </div>
-
               <div class="summary-note">
                 <svg viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.8"
-                  stroke-linecap="round" stroke-linejoin="round">
+                  stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
                   <circle cx="12" cy="12" r="9"></circle>
                   <path d="M12 11v5M12 8h.01"></path>
                 </svg>
-
                 <span id="summaryNoteText">
                   This estimate includes the costs entered above.
                   Taxes and other expenses are excluded unless you include
                   them in additional expenses.
                 </span>
               </div>
-
               <div class="form-actions print-actions">
                 <button
                   class="button button-secondary"
@@ -1863,7 +1599,8 @@
                 >
                   <svg viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
+                    stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
                     <path d="M6 9V3h12v6"></path>
                     <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                     <path d="M6 14h12v7H6z"></path>
@@ -1871,21 +1608,14 @@
                   Print summary
                 </button>
               </div>
-
             </div>
           </section>
-
         </div>
       </div>
     </section>
-
-    <!-- =======================================
-         EXPLANATION
-    ======================================== -->
-
+    <!-- EXPLANATION -->
     <section class="info-section" id="how-it-works">
       <div class="container">
-
         <div class="info-heading">
           <p class="section-kicker">Understand your numbers</p>
           <h2>How profit is calculated</h2>
@@ -1894,9 +1624,7 @@
             helps you price products more confidently.
           </p>
         </div>
-
         <div class="info-grid">
-
           <article class="info-card">
             <span class="info-number">01</span>
             <h3>Net profit or loss</h3>
@@ -1909,7 +1637,6 @@
               Net profit = Revenue − Total costs
             </span>
           </article>
-
           <article class="info-card">
             <span class="info-number">02</span>
             <h3>Profit margin vs. markup</h3>
@@ -1923,7 +1650,6 @@
               Markup = Profit ÷ Total costs × 100
             </span>
           </article>
-
           <article class="info-card">
             <span class="info-number">03</span>
             <h3>Break-even selling price</h3>
@@ -1936,9 +1662,7 @@
               Break-even price = Total costs ÷ Quantity
             </span>
           </article>
-
         </div>
-
         <div class="disclaimer">
           <strong>Important:</strong>
           This calculator provides estimates based on the figures you enter.
@@ -1950,36 +1674,25 @@
           intended for general informational purposes and is not a
           substitute for professional accounting or tax advice.
         </div>
-
       </div>
     </section>
-
   </main>
-
-  <!-- =======================================
-       FOOTER
-  ======================================== -->
-
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
-
       <div class="footer-grid">
-
         <div class="footer-brand-column">
           <a class="footer-brand" href="/index.html" aria-label="ARTHNIX home">
-            <img src="/logo.png" alt="ARTHNIX logo">
+            <img src="/logo.png" alt="ARTHNIX logo" width="31" height="31">
             <span>ARTHNIX</span>
           </a>
-
           <p class="footer-tagline">
             Intelligence for Every Business.
           </p>
-
           <p class="footer-powered">
             Powered by Alphex AI
           </p>
         </div>
-
         <div class="footer-column">
           <h3>Explore</h3>
           <nav class="footer-links" aria-label="Explore">
@@ -1989,7 +1702,6 @@
             <a href="/tools.html">Free Tools</a>
           </nav>
         </div>
-
         <div class="footer-column">
           <h3>Business Tools</h3>
           <nav class="footer-links" aria-label="Business tools">
@@ -1999,7 +1711,6 @@
             <a href="/tools/quotation-generator.html">Quotation Generator</a>
           </nav>
         </div>
-
         <div class="footer-column">
           <h3>Information</h3>
           <nav class="footer-links" aria-label="Information">
@@ -2012,39 +1723,28 @@
             <a href="/disclaimer.html">Disclaimer</a>
           </nav>
         </div>
-
       </div>
-
       <div class="footer-bottom">
         <p>
           © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
         </p>
-
         <p>
           An independent product brand · Powered by Alphex AI
         </p>
       </div>
-
     </div>
   </footer>
-
-  <!-- =======================================
-       CALCULATOR JAVASCRIPT
-  ======================================== -->
-
+  <!-- CALCULATOR JAVASCRIPT -->
   <script>
     (() => {
       "use strict";
-
       const form = document.getElementById("profitForm");
-
       const inputs = {
         costPrice: document.getElementById("costPrice"),
         sellingPrice: document.getElementById("sellingPrice"),
         quantity: document.getElementById("quantity"),
         additionalCosts: document.getElementById("additionalCosts")
       };
-
       const elements = {
         error: document.getElementById("calculatorError"),
         status: document.getElementById("profitStatus"),
@@ -2063,119 +1763,95 @@
         netResultRow: document.getElementById("netResultRow"),
         summaryNoteText: document.getElementById("summaryNoteText")
       };
-
       const resetButton = document.getElementById("resetButton");
       const printButton = document.getElementById("printButton");
       const menuToggle = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
       const menuIcon = document.getElementById("menuIcon");
       const currentYear = document.getElementById("currentYear");
-
       const EXAMPLE_VALUES = {
         costPrice: "500",
         sellingPrice: "750",
         quantity: "10",
         additionalCosts: "0"
       };
-
       const MAX_AMOUNT = 1_000_000_000_000;
       const MAX_QUANTITY = 1_000_000_000;
-
       const inr = new Intl.NumberFormat("en-IN", {
         style: "currency",
         currency: "INR",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
-
       const percent = new Intl.NumberFormat("en-IN", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
-
       function money(value) {
         if (!Number.isFinite(value)) {
           return "—";
         }
-
         const rounded = Math.round((value + Number.EPSILON) * 100) / 100;
         return inr.format(Object.is(rounded, -0) ? 0 : rounded);
       }
-
       function percentage(value) {
         if (!Number.isFinite(value)) {
           return "—";
         }
-
         const rounded = Math.round((value + Number.EPSILON) * 100) / 100;
         return percent.format(Object.is(rounded, -0) ? 0 : rounded) + "%";
       }
-
       function setText(element, value) {
         if (element) {
           element.textContent = value;
         }
       }
-
       function showError(message) {
         elements.error.textContent = message;
         elements.error.hidden = !message;
       }
-
       function clearInvalidStates() {
         Object.values(inputs).forEach((input) => {
           input.removeAttribute("aria-invalid");
         });
       }
-
       function readAmount(input, label, options = {}) {
         const raw = input.value.trim();
-
         if (raw === "") {
           input.setAttribute("aria-invalid", "true");
           throw new Error("Please enter " + label + ".");
         }
-
         const value = Number(raw);
-
         if (!Number.isFinite(value)) {
           input.setAttribute("aria-invalid", "true");
           throw new Error("Please enter a valid number for " + label + ".");
         }
-
         if (value < 0) {
           input.setAttribute("aria-invalid", "true");
           throw new Error(label + " cannot be negative.");
         }
-
         const max = options.max ?? MAX_AMOUNT;
-
         if (value > max) {
           input.setAttribute("aria-invalid", "true");
           throw new Error(
             label + " is too large. Please enter a smaller value."
           );
         }
-
         if (options.integer && !Number.isInteger(value)) {
           input.setAttribute("aria-invalid", "true");
           throw new Error(label + " must be a whole number.");
         }
-
         if (options.min !== undefined && value < options.min) {
           input.setAttribute("aria-invalid", "true");
           throw new Error(
             label + " must be at least " + options.min + "."
           );
         }
-
         input.removeAttribute("aria-invalid");
         return value;
       }
-
       function getInputs() {
         clearInvalidStates();
-
         return {
           costPrice: readAmount(inputs.costPrice, "cost price"),
           sellingPrice: readAmount(inputs.sellingPrice, "selling price"),
@@ -2190,7 +1866,6 @@
           )
         };
       }
-
       function calculate(values) {
         const {
           costPrice,
@@ -2198,23 +1873,23 @@
           quantity,
           additionalCosts
         } = values;
-
         const revenue = sellingPrice * quantity;
         const productCosts = costPrice * quantity;
         const totalCosts = productCosts + additionalCosts;
         const netProfit = revenue - totalCosts;
-
+        /*
+         * Margin is undefined when revenue is zero.
+         * Markup is undefined when total costs are zero.
+         * Displaying "N/A" avoids presenting a misleading percentage.
+         */
         const margin = revenue > 0
           ? (netProfit / revenue) * 100
-          : 0;
-
+          : null;
         const markup = totalCosts > 0
           ? (netProfit / totalCosts) * 100
-          : 0;
-
+          : null;
         const perUnitProfit = netProfit / quantity;
         const breakEvenPrice = totalCosts / quantity;
-
         const results = {
           revenue,
           productCosts,
@@ -2226,35 +1901,29 @@
           perUnitProfit,
           breakEvenPrice
         };
-
         for (const [key, value] of Object.entries(results)) {
-          if (!Number.isFinite(value)) {
+          if (value !== null && !Number.isFinite(value)) {
             throw new Error(
               "The calculated " + key +
               " is outside the supported range. Please use smaller numbers."
             );
           }
         }
-
         return results;
       }
-
       function updateStatus(result) {
         /*
-         * Use a tolerance based on the scale of the calculated values.
-         * This avoids classifying tiny floating-point differences as
-         * a meaningful profit or loss.
+         * Account for floating-point precision when determining
+         * whether the result is a profit, loss, or break-even.
          */
         const tolerance =
           Number.EPSILON *
           Math.max(1, Math.abs(result.revenue), Math.abs(result.totalCosts)) *
           4;
-
         let status;
         let stateClass;
         let amountClass;
         let caption;
-
         if (result.netProfit > tolerance) {
           status = "Profit";
           stateClass = "profit";
@@ -2274,40 +1943,29 @@
           caption =
             "Your revenue and total costs are approximately equal. You are at the break-even point.";
         }
-
-        elements.status.classList.remove(
-          "profit",
-          "loss",
-          "break-even"
-        );
+        elements.status.classList.remove("profit", "loss", "break-even");
         elements.status.classList.add(stateClass);
-
-        elements.netProfit.classList.remove(
-          "positive",
-          "negative",
-          "neutral"
-        );
+        elements.netProfit.classList.remove("positive", "negative", "neutral");
         elements.netProfit.classList.add(amountClass);
-
         elements.netResultRow.classList.remove(
           "positive",
           "negative",
           "neutral"
         );
         elements.netResultRow.classList.add(amountClass);
-
         setText(elements.statusText, status);
         setText(elements.profitCaption, caption);
       }
-
       function renderResults(result) {
-        /*
-         * Display the signed value so a loss is shown as a negative
-         * amount instead of looking like a positive profit.
-         */
         setText(elements.netProfit, money(result.netProfit));
-        setText(elements.profitMargin, percentage(result.margin));
-        setText(elements.markup, percentage(result.markup));
+        setText(
+          elements.profitMargin,
+          result.margin === null ? "N/A" : percentage(result.margin)
+        );
+        setText(
+          elements.markup,
+          result.markup === null ? "N/A" : percentage(result.markup)
+        );
         setText(elements.profitPerUnit, money(result.perUnitProfit));
         setText(elements.breakEvenPrice, money(result.breakEvenPrice));
         setText(elements.totalRevenue, money(result.revenue));
@@ -2315,9 +1973,7 @@
         setText(elements.displayExpenses, money(result.additionalCosts));
         setText(elements.totalCost, money(result.totalCosts));
         setText(elements.breakdownNetProfit, money(result.netProfit));
-
         updateStatus(result);
-
         setText(
           elements.summaryNoteText,
           "This estimate includes " +
@@ -2327,15 +1983,12 @@
             " in additional order expenses. Taxes and other expenses are excluded unless entered above."
         );
       }
-
       function updateCalculator() {
         try {
           const values = getInputs();
           const results = calculate(values);
-
           renderResults(results);
           showError("");
-
           return true;
         } catch (error) {
           showError(
@@ -2343,37 +1996,26 @@
               ? error.message
               : "Please check your input values and try again."
           );
-
           return false;
         }
       }
-
-      /*
-       * Recalculate as the user edits any input.
-       * Invalid inputs are marked and explained in the error message.
-       */
+      /* Recalculate as inputs change. */
       Object.values(inputs).forEach((input) => {
         input.addEventListener("input", updateCalculator);
         input.addEventListener("change", updateCalculator);
       });
-
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-
         const success = updateCalculator();
-
         if (!success) {
           const invalidInput = Object.values(inputs).find(
             (input) => input.getAttribute("aria-invalid") === "true"
           );
-
           if (invalidInput) {
             invalidInput.focus();
           }
-
           return;
         }
-
         if (window.matchMedia("(max-width: 780px)").matches) {
           document.getElementById("profitSummary").scrollIntoView({
             behavior: window.matchMedia(
@@ -2383,64 +2025,46 @@
           });
         }
       });
-
       resetButton.addEventListener("click", () => {
         Object.entries(EXAMPLE_VALUES).forEach(([key, value]) => {
           inputs[key].value = value;
           inputs[key].removeAttribute("aria-invalid");
         });
-
         showError("");
         updateCalculator();
       });
-
       printButton.addEventListener("click", () => {
-        if (!updateCalculator()) {
-          return;
+        if (updateCalculator()) {
+          window.print();
         }
-
-        window.print();
       });
-
-      /* =========================================
-         RESPONSIVE MOBILE NAVIGATION
-      ========================================= */
-
+      /* MOBILE NAVIGATION */
       function setMenuOpen(open) {
         navLinks.classList.toggle("is-open", open);
-
         menuToggle.setAttribute("aria-expanded", String(open));
         menuToggle.setAttribute(
           "aria-label",
           open ? "Close navigation menu" : "Open navigation menu"
         );
-
         if (menuIcon) {
           menuIcon.innerHTML = open
             ? '<path d="m6 6 12 12M18 6 6 18"></path>'
             : '<path d="M4 7h16M4 12h16M4 17h16"></path>';
         }
       }
-
       menuToggle.addEventListener("click", () => {
         const isOpen =
           menuToggle.getAttribute("aria-expanded") === "true";
-
         setMenuOpen(!isOpen);
       });
-
       navLinks.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          setMenuOpen(false);
-        });
+        link.addEventListener("click", () => setMenuOpen(false));
       });
-
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
           setMenuOpen(false);
         }
       });
-
       document.addEventListener("click", (event) => {
         if (
           navLinks.classList.contains("is-open") &&
@@ -2450,18 +2074,12 @@
           setMenuOpen(false);
         }
       });
-
-      /* =========================================
-         INITIALIZE PAGE
-      ========================================= */
-
+      /* INITIALIZE */
       if (currentYear) {
         currentYear.textContent = new Date().getFullYear();
       }
-
       updateCalculator();
     })();
   </script>
-
 </body>
 </html>
