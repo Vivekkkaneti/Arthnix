@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — ARTHNIX</title>
+  <meta name="description" content="Read the ARTHNIX Privacy Policy to understand how information shared with us may be collected, used, protected, and managed.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#090909">
+  <link rel="canonical" href="https://arthnix.com/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy Policy — ARTHNIX">
+  <meta property="og:description" content="Learn how ARTHNIX approaches privacy, information handling, and user choices.">
+  <meta property="og:url" content="https://arthnix.com/privacy.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages.css">
+  <style>
+    /* =====================================================
+       ARTHNIX — Privacy Policy
+       Scoped styles only. Shared site components preserved.
+       ===================================================== */
+    .privacy-page {
+      --privacy-bg: #090909;
+      --privacy-panel: #111111;
+      --privacy-text: #f7f7f5;
+      --privacy-muted: #a6a6a6;
+      --privacy-red: #ed3434;
+      --privacy-border: rgba(255, 255, 255, 0.11);
+      background: var(--privacy-bg);
+      color: var(--privacy-text);
+      font-family: "DM Sans", sans-serif;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .privacy-page *,
+    .privacy-page *::before,
+    .privacy-page *::after {
+      box-sizing: border-box;
+    }
+    .privacy-page a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .privacy-page .privacy-hero {
+      position: relative;
+      isolation: isolate;
+      padding: clamp(76px, 11vw, 132px) 24px 76px;
+      border-bottom: 1px solid var(--privacy-border);
+      overflow: hidden;
+    }
+    .privacy-page .privacy-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(
+          ellipse at 50% 15%,
+          rgba(237, 52, 52, 0.15),
+          transparent 47%
+        ),
+        linear-gradient(
+          180deg,
+          #0c0c0c 0%,
+          #090909 100%
+        );
+    }
+    .privacy-page .privacy-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image: radial-gradient(
+        rgba(255, 255, 255, 0.4) 0.7px,
+        transparent 0.7px
+      );
+      background-size: 24px 24px;
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+      );
+    }
+    .privacy-page .privacy-hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .privacy-page .privacy-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      color: var(--privacy-red);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .privacy-page .privacy-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: var(--privacy-red);
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(237, 52, 52, 0.6);
+    }
+    .privacy-page .privacy-hero h1 {
+      margin: 0;
+      color: var(--privacy-text);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(42px, 7vw, 76px);
+      font-weight: 800;
+      letter-spacing: -0.065em;
+      line-height: 1.05;
+    }
+    .privacy-page .privacy-hero h1 span {
+      color: var(--privacy-red);
+    }
+    .privacy-page .privacy-hero-description {
+      max-width: 660px;
+      margin: 25px auto 0;
+      color: var(--privacy-muted);
+      font-size: clamp(15px, 1.8vw, 17px);
+      line-height: 1.9;
+    }
+    .privacy-page .privacy-meta {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .privacy-page .privacy-meta span {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 13px;
+      border: 1px solid var(--privacy-border);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.035);
+      color: #c8c8c8;
+      font-size: 12px;
+    }
+    .privacy-page .privacy-meta strong {
+      margin-right: 5px;
+      color: #fff;
+      font-weight: 600;
+    }
+    .privacy-page .privacy-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 230px) minmax(0, 760px);
+      gap: clamp(34px, 6vw, 80px);
+      align-items: start;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 76px 24px 100px;
+    }
+    .privacy-page .privacy-sidebar {
+      position: sticky;
+      top: 30px;
+      padding: 23px 20px;
+      border: 1px solid var(--privacy-border);
+      border-radius: 16px;
+      background: var(--privacy-panel);
+    }
+    .privacy-page .privacy-sidebar-label {
+      margin: 0 0 17px;
+      color: #777;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+    .privacy-page .privacy-sidebar nav {
+      display: grid;
+      gap: 4px;
+    }
+    .privacy-page .privacy-sidebar nav a {
+      display: block;
+      padding: 9px 10px;
+      border-left: 2px solid transparent;
+      border-radius: 0 6px 6px 0;
+      color: #aaa;
+      font-size: 12px;
+      line-height: 1.5;
+      transition:
+        color 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+    }
+    .privacy-page .privacy-sidebar nav a:hover {
+      border-left-color: var(--privacy-red);
+      background: rgba(237, 52, 52, 0.07);
+      color: #fff;
+    }
+    .privacy-page .privacy-content {
+      min-width: 0;
+    }
+    .privacy-page .privacy-intro {
+      margin: 0 0 38px;
+      padding: 25px 26px;
+      border: 1px solid rgba(237, 52, 52, 0.28);
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(237, 52, 52, 0.09),
+        rgba(255, 255, 255, 0.02)
+      );
+      color: #d0d0d0;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .privacy-page .privacy-intro strong {
+      color: #fff;
+    }
+    .privacy-page .privacy-section {
+      padding: 0 0 32px;
+      margin: 0 0 34px;
+      border-bottom: 1px solid var(--privacy-border);
+      scroll-margin-top: 35px;
+    }
+    .privacy-page .privacy-section:last-of-type {
+      border-bottom: 0;
+    }
+    .privacy-page .privacy-section h2 {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin: 0 0 17px;
+      color: #f7f7f5;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(21px, 3vw, 27px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.35;
+    }
+    .privacy-page .privacy-section h2 span {
+      flex: 0 0 auto;
+      color: var(--privacy-red);
+      font-family: "DM Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .privacy-page .privacy-section p {
+      margin: 0 0 14px;
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.95;
+    }
+    .privacy-page .privacy-section p:last-child {
+      margin-bottom: 0;
+    }
+    .privacy-page .privacy-section strong {
+      color: #e9e9e9;
+      font-weight: 600;
+    }
+    .privacy-page .privacy-section ul {
+      display: grid;
+      gap: 11px;
+      margin: 15px 0 18px;
+      padding-left: 21px;
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+    .privacy-page .privacy-section li {
+      padding-left: 4px;
+    }
+    .privacy-page .privacy-section li::marker {
+      color: var(--privacy-red);
+    }
+    .privacy-page .privacy-section a,
+    .privacy-page .privacy-contact-link {
+      color: #ff6262;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 98, 98, 0.35);
+      text-underline-offset: 4px;
+      overflow-wrap: anywhere;
+    }
+    .privacy-page .privacy-section a:hover,
+    .privacy-page .privacy-contact-link:hover {
+      color: #fff;
+      text-decoration-color: #fff;
+    }
+    .privacy-page .privacy-contact-card {
+      margin-top: 16px;
+      padding: 24px;
+      border: 1px solid var(--privacy-border);
+      border-radius: 14px;
+      background: #111;
+    }
+    .privacy-page .privacy-contact-card p {
+      margin-bottom: 9px;
+    }
+    .privacy-page .privacy-bottom-note {
+      margin-top: 42px;
+      padding-top: 25px;
+      border-top: 1px solid var(--privacy-border);
+      color: #777;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .privacy-page .privacy-bottom-note strong {
+      color: #aaa;
+    }
+    @media (max-width: 800px) {
+      .privacy-page .privacy-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding-top: 48px;
+      }
+      .privacy-page .privacy-sidebar {
+        position: static;
+      }
+      .privacy-page .privacy-sidebar nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px 10px;
+      }
+      .privacy-page .privacy-sidebar nav a {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 520px) {
+      .privacy-page .privacy-hero {
+        padding: 75px 20px 58px;
+      }
+      .privacy-page .privacy-hero h1 {
+        font-size: clamp(39px, 12vw, 55px);
+      }
+      .privacy-page .privacy-layout {
+        padding: 36px 18px 70px;
+      }
+      .privacy-page .privacy-sidebar {
+        padding: 19px 15px;
+      }
+      .privacy-page .privacy-sidebar nav {
+        grid-template-columns: 1fr;
+      }
+      .privacy-page .privacy-intro {
+        padding: 20px;
+      }
+      .privacy-page .privacy-section h2 {
+        gap: 10px;
+      }
+      .privacy-page .privacy-contact-card {
+        padding: 19px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .privacy-page *,
+      .privacy-page *::before,
+      .privacy-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy",
+    "url": "https://arthnix.com/privacy.html",
+    "description": "The ARTHNIX Privacy Policy explains how information shared with ARTHNIX may be handled.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="privacy-page">
+    <header class="privacy-hero">
+      <div class="privacy-hero-inner">
+        <div class="privacy-eyebrow">Your privacy matters</div>
+        <h1>Privacy <span>Policy.</span></h1>
+        <p class="privacy-hero-description">
+          Your trust matters to us. This policy explains how ARTHNIX
+          approaches personal information, how information you choose
+          to share may be used, and the choices available to you.
+        </p>
+        <div class="privacy-meta">
+          <span><strong>Last updated:</strong> 13 October 2026</span>
+          <span><strong>Website:</strong> ARTHNIX</span>
+        </div>
+      </div>
+    </header>
+    <div class="privacy-layout">
+      <aside class="privacy-sidebar">
+        <p class="privacy-sidebar-label">On this page</p>
+        <nav aria-label="Privacy Policy sections">
+          <a href="#introduction">Introduction</a>
+          <a href="#information">Information You Provide</a>
+          <a href="#usage">How Information Is Used</a>
+          <a href="#sharing">Sharing Information</a>
+          <a href="#retention">Data Retention</a>
+          <a href="#security">Security</a>
+          <a href="#cookies">Cookies and Analytics</a>
+          <a href="#third-party">Third-Party Services</a>
+          <a href="#your-choices">Your Choices</a>
+          <a href="#children">Children's Privacy</a>
+          <a href="#changes">Policy Updates</a>
+          <a href="#contact">Contact Us</a>
+        </nav>
+      </aside>
+      <article class="privacy-content">
+        <div class="privacy-intro">
+          <strong>A note about our services:</strong>
+          ARTHNIX is developing tools intended to help businesses
+          manage everyday operations, such as invoicing, inventory,
+          sales, and AI-assisted workflows. The availability of
+          individual features may change as the product develops.
+          This policy describes our approach to information and
+          should be read in light of the features actually available
+          and used by you.
+        </div>
+        <section class="privacy-section" id="introduction">
+          <h2><span>01</span> Introduction</h2>
+          <p>
+            This Privacy Policy explains how ARTHNIX ("ARTHNIX,"
+            "we," "our," or "us") may collect, use, disclose, and
+            protect information when you visit our website or
+            voluntarily contact us.
+          </p>
+          <p>
+            By using the website or choosing to share information
+            with us, you acknowledge this policy. Where applicable
+            law requires consent or another legal basis for a
+            particular activity, we will rely on the appropriate
+            basis rather than treating website use alone as consent.
+          </p>
+          <p>
+            This policy may need to be supplemented when additional
+            products, account features, integrations, or services
+            become available.
+          </p>
+        </section>
+        <section class="privacy-section" id="information">
+          <h2><span>02</span> Information You Provide</h2>
+          <p>
+            We may receive information that you voluntarily choose
+            to provide when communicating with us or enquiring about
+            ARTHNIX.
+          </p>
+          <p>This may include:</p>
+          <ul>
+            <li>
+              <strong>Contact information:</strong> such as your
+              name and email address.
+            </li>
+            <li>
+              <strong>Business information:</strong> such as your
+              company or business name, if you choose to provide it.
+            </li>
+            <li>
+              <strong>Enquiry details:</strong> such as your subject,
+              message, selected enquiry type, or information about
+              a product or plan you are interested in.
+            </li>
+            <li>
+              <strong>Other information:</strong> any additional
+              details you choose to include in a message.
+            </li>
+          </ul>
+          <p>
+            Please avoid sending passwords, payment card details,
+            government identification numbers, confidential
+            business records, or other sensitive information
+            unless a specific service expressly requires it and
+            appropriate safeguards have been established.
+          </p>
+          <p>
+            <strong>Contact form:</strong> If you use a contact form
+            that opens a prefilled email in your email application,
+            the information is not automatically delivered to us
+            merely because you submit the form. You must send the
+            email from your email application for us to receive it.
+            Your email provider may process the message according
+            to its own policies.
+          </p>
+        </section>
+        <section class="privacy-section" id="usage">
+          <h2><span>03</span> How Information Is Used</h2>
+          <p>
+            Information you choose to provide may be used for
+            reasonable purposes connected with your interaction
+            with ARTHNIX, including:
+          </p>
+          <ul>
+            <li>Responding to your questions and enquiries.</li>
+            <li>
+              Communicating with you about products, services,
+              demonstrations, or requests you initiate.
+            </li>
+            <li>
+              Understanding feedback and improving the website
+              and planned products.
+            </li>
+            <li>
+              Identifying and addressing technical issues,
+              misuse, or security concerns.
+            </li>
+            <li>
+              Meeting applicable legal obligations and protecting
+              legitimate rights.
+            </li>
+          </ul>
+          <p>
+            We do not intend to use information for purposes
+            unrelated to the context in which it was provided
+            without an appropriate basis or notice where required
+            by law.
+          </p>
+        </section>
+        <section class="privacy-section" id="sharing">
+          <h2><span>04</span> Sharing Information</h2>
+          <p>
+            We do not sell personal information as part of the
+            website's stated purpose. We may disclose information
+            in limited circumstances where necessary and lawful,
+            such as:
+          </p>
+          <ul>
+            <li>
+              <strong>Service providers:</strong> providers that
+              support website hosting, communications, security,
+              or other services, if and when we use them to
+              process relevant information.
+            </li>
+            <li>
+              <strong>Legal requirements:</strong> where disclosure
+              is required by law, regulation, court order, or a
+              valid request from an authorised public authority.
+            </li>
+            <li>
+              <strong>Protection of rights:</strong> where
+              reasonably necessary to investigate fraud, address
+              security issues, or protect users, our services,
+              or other people.
+            </li>
+            <li>
+              <strong>Business changes:</strong> in connection
+              with a proposed or completed restructuring,
+              acquisition, or transfer, subject to applicable
+              legal requirements.
+            </li>
+          </ul>
+          <p>
+            If a future ARTHNIX feature requires sharing information
+            with an integration, AI provider, or another service,
+            the relevant details should be explained before or
+            when that feature is used, as required by law.
+          </p>
+        </section>
+        <section class="privacy-section" id="retention">
+          <h2><span>05</span> Data Retention</h2>
+          <p>
+            We aim to retain personal information only for as long
+            as reasonably necessary for the purpose for which it
+            was collected, including responding to enquiries,
+            maintaining appropriate records, resolving disputes,
+            and meeting legal obligations.
+          </p>
+          <p>
+            Retention periods may differ depending on the type of
+            information, the reason it was collected, and applicable
+            legal requirements.
+          </p>
+          <p>
+            We cannot promise a specific deletion timeline for
+            information held by independent email providers or
+            other third parties. Their retention practices are
+            governed by their own policies and systems.
+          </p>
+        </section>
+        <section class="privacy-section" id="security">
+          <h2><span>06</span> Security</h2>
+          <p>
+            We recognise the importance of protecting information
+            against unauthorised access, loss, misuse, or disclosure.
+            Appropriate safeguards should be implemented based on
+            the nature of the information and the services being
+            operated.
+          </p>
+          <p>
+            No website, email system, or electronic transmission
+            can be guaranteed to be completely secure. Please use
+            care when deciding what information to send online.
+          </p>
+          <p>
+            As ARTHNIX develops additional features, its security
+            practices and safeguards should be reviewed and
+            updated to reflect the actual systems in use.
+          </p>
+        </section>
+        <section class="privacy-section" id="cookies">
+          <h2><span>07</span> Cookies and Analytics</h2>
+          <p>
+            Cookies and similar technologies may be used by websites
+            to support functionality, remember preferences, improve
+            performance, or understand how visitors interact with
+            a site.
+          </p>
+          <p>
+            The technologies actually used by ARTHNIX may depend
+            on the website configuration and third-party tools
+            enabled at a given time. We do not use this policy to
+            claim that a particular analytics or advertising tool
+            is currently active.
+          </p>
+          <p>
+            If cookies, analytics, or similar technologies are
+            introduced, this policy should be updated to explain
+            their purposes and relevant choices. Where required,
+            consent will be requested before non-essential
+            technologies are used.
+          </p>
+          <p>
+            You can also review the privacy and cookie controls
+            available in your browser. Disabling certain cookies
+            may affect the operation of websites or their features.
+          </p>
+        </section>
+        <section class="privacy-section" id="third-party">
+          <h2><span>08</span> Third-Party Services and Links</h2>
+          <p>
+            The ARTHNIX website may link to third-party websites
+            or services. Those services may have their own privacy
+            policies, terms, security practices, and data handling
+            procedures.
+          </p>
+          <p>
+            We do not control the privacy practices of independent
+            third parties. We encourage you to review their policies
+            before sharing personal information with them.
+          </p>
+          <p>
+            If you use an external service through a future ARTHNIX
+            integration, the information you provide may also be
+            processed by that service under its applicable terms
+            and privacy policy.
+          </p>
+        </section>
+        <section class="privacy-section" id="your-choices">
+          <h2><span>09</span> Your Choices and Requests</h2>
+          <p>
+            Depending on applicable law and the circumstances,
+            you may have rights to request access to, correction
+            of, deletion of, or other information about personal
+            data relating to you.
+          </p>
+          <p>
+            You may contact us to ask a question about information
+            you have shared or to request that we correct or delete
+            it where appropriate. We may need to verify your
+            identity and clarify the scope of a request before
+            acting on it.
+          </p>
+          <p>
+            Some information may need to be retained where required
+            by law or where another lawful reason applies. The
+            rights available to you depend on the laws applicable
+            to your circumstances.
+          </p>
+          <p>
+            To make a request, use the contact details in the
+            <a href="#contact">Contact Us</a> section below.
+          </p>
+        </section>
+        <section class="privacy-section" id="children">
+          <h2><span>10</span> Children's Privacy</h2>
+          <p>
+            ARTHNIX is intended for business and general
+            productivity use, not for the deliberate collection
+            of personal information from children in violation
+            of applicable law.
+          </p>
+          <p>
+            If you believe a child has provided personal information
+            to us in circumstances where it should not have been
+            collected, please contact us so that we can review
+            the matter and take appropriate action where required.
+          </p>
+        </section>
+        <section class="privacy-section" id="changes">
+          <h2><span>11</span> Changes to This Policy</h2>
+          <p>
+            We may update this Privacy Policy as ARTHNIX evolves,
+            as our data practices change, or to reflect legal
+            and regulatory requirements.
+          </p>
+          <p>
+            When changes are made, we will update the "Last
+            updated" date on this page. Where applicable law
+            requires additional notice or consent, we will take
+            the steps required by law.
+          </p>
+          <p>
+            We encourage you to review this page periodically
+            to understand the policy that applies at the time
+            you use the website.
+          </p>
+        </section>
+        <section class="privacy-section" id="contact">
+          <h2><span>12</span> Contact Us</h2>
+          <p>
+            If you have questions about this Privacy Policy or
+            wish to make a privacy-related request, you can
+            contact ARTHNIX using the details below.
+          </p>
+          <div class="privacy-contact-card">
+            <p><strong>ARTHNIX</strong></p>
+            <p>
+              Email:
+              <a
+                class="privacy-contact-link"
+                href="mailto:uimockup.plus@gmail.com?subject=ARTHNIX%20Privacy%20Enquiry"
+              >uimockup.plus@gmail.com</a>
+            </p>
+            <p>
+              Website:
+              <a
+                class="privacy-contact-link"
+                href="https://arthnix.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >arthnix.com</a>
+            </p>
+          </div>
+        </section>
+        <div class="privacy-bottom-note">
+          <strong>ARTHNIX — Intelligence for Every Business.</strong>
+          <br>
+          This page describes our intended privacy approach and
+          should be kept aligned with the features, technologies,
+          and data practices actually in use. It is general
+          informational content, not a substitute for legal
+          advice or a jurisdiction-specific compliance review.
+        </div>
+      </article>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="components.js"></script>
+</body>
+</html>
