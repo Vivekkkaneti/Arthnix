@@ -2128,3 +2128,24 @@ textarea {
     scroll-behavior: auto !important;
   }
 }
+/* ARTHNIX — Fixed Navigation */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #090909;
+}
+
+/* Space below the fixed navigation */
+body {
+  padding-top: 76px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 68px;
+  }
+}
