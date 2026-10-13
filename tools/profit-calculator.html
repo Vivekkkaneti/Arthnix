@@ -1750,7 +1750,7 @@
                   Your net profit
                 </span>
 
-                <span class="status-badge" id="profitStatus">
+                <span class="status-badge break-even" id="profitStatus">
                   <span class="status-dot"></span>
                   <span id="profitStatusText">Calculating</span>
                 </span>
@@ -1775,9 +1775,7 @@
 
                 <div class="metric-card">
                   <span class="metric-label">Profit margin</span>
-                  <strong class="metric-value" id="profitMargin">
-                    33.33%
-                  </strong>
+                  <strong class="metric-value" id="profitMargin">33.33%</strong>
                   <span class="metric-subtitle">
                     Profit as a percentage of revenue
                   </span>
@@ -1785,9 +1783,7 @@
 
                 <div class="metric-card">
                   <span class="metric-label">Markup</span>
-                  <strong class="metric-value" id="markup">
-                    33.33%
-                  </strong>
+                  <strong class="metric-value" id="markup">50.00%</strong>
                   <span class="metric-subtitle">
                     Profit as a percentage of total cost
                   </span>
@@ -1795,9 +1791,7 @@
 
                 <div class="metric-card">
                   <span class="metric-label">Profit per unit</span>
-                  <strong class="metric-value" id="profitPerUnit">
-                    ₹250.00
-                  </strong>
+                  <strong class="metric-value" id="profitPerUnit">₹250.00</strong>
                   <span class="metric-subtitle">
                     Average profit per unit sold
                   </span>
@@ -1805,9 +1799,7 @@
 
                 <div class="metric-card">
                   <span class="metric-label">Break-even price</span>
-                  <strong class="metric-value" id="breakEvenPrice">
-                    ₹500.00
-                  </strong>
+                  <strong class="metric-value" id="breakEvenPrice">₹500.00</strong>
                   <span class="metric-subtitle">
                     Minimum price per unit to cover costs
                   </span>
@@ -2088,7 +2080,6 @@
 
       const MAX_AMOUNT = 1_000_000_000_000;
       const MAX_QUANTITY = 1_000_000_000;
-      const EPSILON = 0.000001;
 
       const inr = new Intl.NumberFormat("en-IN", {
         style: "currency",
@@ -2107,9 +2098,7 @@
           return "—";
         }
 
-        // Prevent floating-point residue from appearing in currency output.
         const rounded = Math.round((value + Number.EPSILON) * 100) / 100;
-
         return inr.format(Object.is(rounded, -0) ? 0 : rounded);
       }
 
@@ -2119,7 +2108,6 @@
         }
 
         const rounded = Math.round((value + Number.EPSILON) * 100) / 100;
-
         return percent.format(Object.is(rounded, -0) ? 0 : rounded) + "%";
       }
 
@@ -2130,51 +2118,64 @@
       }
 
       function showError(message) {
-        if (!elements.error) return;
-
         elements.error.textContent = message;
         elements.error.hidden = !message;
+      }
+
+      function clearInvalidStates() {
+        Object.values(inputs).forEach((input) => {
+          input.removeAttribute("aria-invalid");
+        });
       }
 
       function readAmount(input, label, options = {}) {
         const raw = input.value.trim();
 
         if (raw === "") {
+          input.setAttribute("aria-invalid", "true");
           throw new Error("Please enter " + label + ".");
         }
 
         const value = Number(raw);
 
         if (!Number.isFinite(value)) {
+          input.setAttribute("aria-invalid", "true");
           throw new Error("Please enter a valid number for " + label + ".");
         }
 
         if (value < 0) {
+          input.setAttribute("aria-invalid", "true");
           throw new Error(label + " cannot be negative.");
         }
 
         const max = options.max ?? MAX_AMOUNT;
 
         if (value > max) {
+          input.setAttribute("aria-invalid", "true");
           throw new Error(
             label + " is too large. Please enter a smaller value."
           );
         }
 
         if (options.integer && !Number.isInteger(value)) {
+          input.setAttribute("aria-invalid", "true");
           throw new Error(label + " must be a whole number.");
         }
 
         if (options.min !== undefined && value < options.min) {
+          input.setAttribute("aria-invalid", "true");
           throw new Error(
             label + " must be at least " + options.min + "."
           );
         }
 
+        input.removeAttribute("aria-invalid");
         return value;
       }
 
       function getInputs() {
+        clearInvalidStates();
+
         return {
           costPrice: readAmount(inputs.costPrice, "cost price"),
           sellingPrice: readAmount(inputs.sellingPrice, "selling price"),
@@ -2198,8 +2199,6 @@
           additionalCosts
         } = values;
 
-        // Calculate each value from the original inputs.
-        // Do not calculate one displayed figure from another rounded figure.
         const revenue = sellingPrice * quantity;
         const productCosts = costPrice * quantity;
         const totalCosts = productCosts + additionalCosts;
@@ -2240,129 +2239,93 @@
         return results;
       }
 
-      function updateStatus(netProfit) {
+      function updateStatus(result) {
+        /*
+         * Use a tolerance based on the scale of the calculated values.
+         * This avoids classifying tiny floating-point differences as
+         * a meaningful profit or loss.
+         */
+        const tolerance =
+          Number.EPSILON *
+          Math.max(1, Math.abs(result.revenue), Math.abs(result.totalCosts)) *
+          4;
+
         let status;
         let stateClass;
         let amountClass;
         let caption;
 
-        if (netProfit > EPSILON) {
+        if (result.netProfit > tolerance) {
           status = "Profit";
           stateClass = "profit";
           amountClass = "positive";
-          caption = "Your revenue exceeds your total costs. This is your estimated net profit for the order.";
-        } else if (netProfit < -EPSILON) {
+          caption =
+            "Your revenue exceeds your total costs. This is your estimated net profit for the order.";
+        } else if (result.netProfit < -tolerance) {
           status = "Loss";
           stateClass = "loss";
           amountClass = "negative";
-          caption = "Your total costs exceed your revenue. Review your selling price and expenses to reduce the loss.";
+          caption =
+            "Your total costs exceed your revenue. Review your selling price and expenses to reduce the loss.";
         } else {
           status = "Break-even";
           stateClass = "break-even";
           amountClass = "neutral";
-          caption = "Your revenue and total costs are equal. You neither make a profit nor incur a loss.";
+          caption =
+            "Your revenue and total costs are approximately equal. You are at the break-even point.";
         }
 
-        if (elements.status) {
-          elements.status.classList.remove(
-            "profit",
-            "loss",
-            "break-even"
-          );
+        elements.status.classList.remove(
+          "profit",
+          "loss",
+          "break-even"
+        );
+        elements.status.classList.add(stateClass);
 
-          elements.status.classList.add(stateClass);
-        }
+        elements.netProfit.classList.remove(
+          "positive",
+          "negative",
+          "neutral"
+        );
+        elements.netProfit.classList.add(amountClass);
 
-        if (elements.netProfit) {
-          elements.netProfit.classList.remove(
-            "positive",
-            "negative",
-            "neutral"
-          );
-
-          elements.netProfit.classList.add(amountClass);
-        }
-
-        if (elements.netResultRow) {
-          elements.netResultRow.classList.remove(
-            "positive",
-            "negative",
-            "neutral"
-          );
-
-          elements.netResultRow.classList.add(amountClass);
-        }
+        elements.netResultRow.classList.remove(
+          "positive",
+          "negative",
+          "neutral"
+        );
+        elements.netResultRow.classList.add(amountClass);
 
         setText(elements.statusText, status);
         setText(elements.profitCaption, caption);
       }
 
       function renderResults(result) {
-        // Main profit summary:
-        // Show the absolute amount with a separate Profit/Loss badge.
-        // The detailed breakdown below retains the positive or negative sign.
-        setText(
-          elements.netProfit,
-          money(Math.abs(result.netProfit))
-        );
+        /*
+         * Display the signed value so a loss is shown as a negative
+         * amount instead of looking like a positive profit.
+         */
+        setText(elements.netProfit, money(result.netProfit));
+        setText(elements.profitMargin, percentage(result.margin));
+        setText(elements.markup, percentage(result.markup));
+        setText(elements.profitPerUnit, money(result.perUnitProfit));
+        setText(elements.breakEvenPrice, money(result.breakEvenPrice));
+        setText(elements.totalRevenue, money(result.revenue));
+        setText(elements.productCosts, money(result.productCosts));
+        setText(elements.displayExpenses, money(result.additionalCosts));
+        setText(elements.totalCost, money(result.totalCosts));
+        setText(elements.breakdownNetProfit, money(result.netProfit));
+
+        updateStatus(result);
 
         setText(
-          elements.profitMargin,
-          percentage(result.margin)
-        );
-
-        setText(
-          elements.markup,
-          percentage(result.markup)
-        );
-
-        setText(
-          elements.profitPerUnit,
-          money(result.perUnitProfit)
-        );
-
-        setText(
-          elements.breakEvenPrice,
-          money(result.breakEvenPrice)
-        );
-
-        setText(
-          elements.totalRevenue,
-          money(result.revenue)
-        );
-
-        setText(
-          elements.productCosts,
-          money(result.productCosts)
-        );
-
-        setText(
-          elements.displayExpenses,
-          money(result.additionalCosts)
-        );
-
-        setText(
-          elements.totalCost,
-          money(result.totalCosts)
-        );
-
-        setText(
-          elements.breakdownNetProfit,
-          money(result.netProfit)
-        );
-
-        updateStatus(result.netProfit);
-
-        if (elements.summaryNoteText) {
-          setText(
-            elements.summaryNoteText,
-            "This estimate includes " +
+          elements.summaryNoteText,
+          "This estimate includes " +
             money(result.productCosts) +
             " in product costs and " +
             money(result.additionalCosts) +
             " in additional order expenses. Taxes and other expenses are excluded unless entered above."
-          );
-        }
+        );
       }
 
       function updateCalculator() {
@@ -2385,38 +2348,32 @@
         }
       }
 
-      // Live updates as the user types or changes a value.
+      /*
+       * Recalculate as the user edits any input.
+       * Invalid inputs are marked and explained in the error message.
+       */
       Object.values(inputs).forEach((input) => {
         input.addEventListener("input", updateCalculator);
         input.addEventListener("change", updateCalculator);
       });
 
-      // Submitting the form recalculates the summary without reloading the page.
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const success = updateCalculator();
 
         if (!success) {
-          const firstInvalid = Object.values(inputs).find((input) => {
-            const raw = input.value.trim();
-            const value = Number(raw);
+          const invalidInput = Object.values(inputs).find(
+            (input) => input.getAttribute("aria-invalid") === "true"
+          );
 
-            return (
-              raw === "" ||
-              !Number.isFinite(value) ||
-              value < 0
-            );
-          });
-
-          if (firstInvalid) {
-            firstInvalid.focus();
+          if (invalidInput) {
+            invalidInput.focus();
           }
 
           return;
         }
 
-        // Keep the updated summary in view on smaller screens.
         if (window.matchMedia("(max-width: 780px)").matches) {
           document.getElementById("profitSummary").scrollIntoView({
             behavior: window.matchMedia(
@@ -2427,28 +2384,31 @@
         }
       });
 
-      // Reset all fields and recalculate the example results.
       resetButton.addEventListener("click", () => {
         Object.entries(EXAMPLE_VALUES).forEach(([key, value]) => {
           inputs[key].value = value;
+          inputs[key].removeAttribute("aria-invalid");
         });
 
         showError("");
         updateCalculator();
       });
 
-      // Print a clean version of the profit summary.
       printButton.addEventListener("click", () => {
-        const success = updateCalculator();
-
-        if (!success) return;
+        if (!updateCalculator()) {
+          return;
+        }
 
         window.print();
       });
 
-      // Responsive mobile navigation.
+      /* =========================================
+         RESPONSIVE MOBILE NAVIGATION
+      ========================================= */
+
       function setMenuOpen(open) {
         navLinks.classList.toggle("is-open", open);
+
         menuToggle.setAttribute("aria-expanded", String(open));
         menuToggle.setAttribute(
           "aria-label",
@@ -2491,12 +2451,14 @@
         }
       });
 
-      // Keep the copyright year current.
+      /* =========================================
+         INITIALIZE PAGE
+      ========================================= */
+
       if (currentYear) {
         currentYear.textContent = new Date().getFullYear();
       }
 
-      // Populate the profit summary on the initial page load.
       updateCalculator();
     })();
   </script>
