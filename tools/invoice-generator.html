@@ -749,6 +749,16 @@
       color: #777;
       font-size: 8px;
     }
+    /* Added signature image preview styling */
+    .signature-image {
+      display: block;
+      max-width: 180px;
+      max-height: 70px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 8px;
+    }
     .preview-disclaimer {
       margin-top: 12px;
       color: #777;
@@ -967,20 +977,20 @@
         <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
         <span class="brand-name">ARTHNIX</span>
       </a>
-  <div class="nav-links" id="navLinks">
-    <a href="/tools.html">Free Tools</a>
-    <a href="/platform.html">Platform</a>
-    <a href="/#how-it-works">How It Works</a>
-    <a href="/pricing.html">Pricing</a>
-    <a href="/contact.html">Contact</a>
-  </div>
-  <a class="nav-cta" href="/tools.html">
-    Start Free <span aria-hidden="true">↗</span>
-  </a>
-  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
-    <span></span><span></span>
-  </button>
-</nav>
+      <div class="nav-links" id="navLinks">
+        <a href="/tools.html">Free Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+      <a class="nav-cta" href="/tools.html">
+        Start Free <span aria-hidden="true">↗</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
+    </nav>
   </header>
   <main>
     <section class="page-hero">
@@ -996,242 +1006,263 @@
         </div>
       </div>
     </section>
-<section class="workspace-section">
-  <div class="container">
-    <div class="workspace-top">
-      <div>
-        <h2>Invoice workspace</h2>
-        <p>Enter your details and watch your invoice update in real time.</p>
-      </div>
-      <div class="workspace-actions">
-        <button class="button button-outline" id="sampleButton" type="button">Load sample</button>
-        <button class="button button-outline" id="resetButton" type="button">Reset</button>
-        <button class="button button-primary" id="downloadButton" type="button">Print / Save PDF ↗</button>
-      </div>
-    </div>
-    <div class="workspace-grid">
-      <section class="editor-panel" aria-labelledby="editorHeading">
-        <div class="panel-heading">
-          <h2 id="editorHeading">Invoice details</h2>
-          <p>Fields marked optional can be left blank. Your data stays in this browser session.</p>
-        </div>
-        <div class="form-content">
-          <form id="invoiceForm" autocomplete="on">
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">01</span> Your business</h3>
-              <div class="form-grid">
-                <div class="field full">
-                  <label for="businessName">Business / seller name *</label>
-                  <input id="businessName" type="text" maxlength="120" placeholder="Your Business Name" required>
-                </div>
-                <div class="field full">
-                  <label for="businessAddress">Business address</label>
-                  <textarea id="businessAddress" maxlength="500" placeholder="Street, city, state, PIN code"></textarea>
-                </div>
-                <div class="field">
-                  <label for="businessEmail">Email</label>
-                  <input id="businessEmail" type="email" maxlength="150" placeholder="you@example.com">
-                </div>
-                <div class="field">
-                  <label for="businessPhone">Phone</label>
-                  <input id="businessPhone" type="tel" maxlength="35" placeholder="+91 ...">
-                </div>
-                <div class="field full">
-                  <label for="businessGSTIN">Business GSTIN</label>
-                  <input id="businessGSTIN" type="text" maxlength="15" placeholder="Optional GSTIN">
-                </div>
-                <div class="field full">
-                  <label for="logoUpload">Business logo</label>
-                  <input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp">
-                  <div class="logo-controls">
-                    <div class="logo-thumb" id="logoThumb" aria-label="Logo preview">Logo</div>
-                    <div>
-                      <p class="field-note">PNG, JPG or WebP. Processed locally in your browser.</p>
-                      <button class="text-button" id="removeLogo" type="button">Remove logo</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="field">
-                  <label for="accentColor">Invoice accent color</label>
-                  <input id="accentColor" type="color" value="#ed3434">
-                </div>
-              </div>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">02</span> Customer details</h3>
-              <div class="form-grid">
-                <div class="field full">
-                  <label for="customerName">Customer / bill to *</label>
-                  <input id="customerName" type="text" maxlength="120" placeholder="Customer or company name" required>
-                </div>
-                <div class="field full">
-                  <label for="customerAddress">Customer address</label>
-                  <textarea id="customerAddress" maxlength="500" placeholder="Billing address"></textarea>
-                </div>
-                <div class="field">
-                  <label for="customerEmail">Customer email</label>
-                  <input id="customerEmail" type="email" maxlength="150" placeholder="customer@example.com">
-                </div>
-                <div class="field">
-                  <label for="customerGSTIN">Customer GSTIN</label>
-                  <input id="customerGSTIN" type="text" maxlength="15" placeholder="Optional GSTIN">
-                </div>
-              </div>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">03</span> Invoice information</h3>
-              <div class="form-grid">
-                <div class="field">
-                  <label for="invoiceNumber">Invoice number *</label>
-                  <input id="invoiceNumber" type="text" maxlength="50" required>
-                </div>
-                <div class="field">
-                  <label for="currency">Currency</label>
-                  <select id="currency">
-                    <option value="INR">INR — ₹</option>
-                    <option value="USD">USD — $</option>
-                    <option value="EUR">EUR — €</option>
-                    <option value="GBP">GBP — £</option>
-                    <option value="AED">AED</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="issueDate">Issue date *</label>
-                  <input id="issueDate" type="date" required>
-                </div>
-                <div class="field">
-                  <label for="dueDate">Due date</label>
-                  <input id="dueDate" type="date">
-                </div>
-                <div class="field full">
-                  <label for="placeOfSupply">Place of supply / state</label>
-                  <input id="placeOfSupply" type="text" maxlength="100" placeholder="e.g. Telangana">
-                </div>
-                <div class="field full">
-                  <label for="taxType">GST treatment</label>
-                  <select id="taxType">
-                    <option value="intra">Intra-state — CGST + SGST</option>
-                    <option value="inter">Inter-state — IGST</option>
-                    <option value="none">No GST / not applicable</option>
-                  </select>
-                </div>
-              </div>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">04</span> Products and services</h3>
-              <div id="itemsEditor" class="items-editor"></div>
-              <button id="addItemButton" class="button add-item" type="button">+ Add product or service</button>
-              <p class="field-note">Enter the GST rate for each line item. Discount is a fixed amount per unit, before tax.</p>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">05</span> Additional details</h3>
-              <div class="form-grid">
-                <div class="field full">
-                  <label for="notes">Notes / payment terms</label>
-                  <textarea id="notes" maxlength="1200" placeholder="Payment instructions, bank details, thank-you message, or other terms"></textarea>
-                </div>
-                <div class="field full">
-                  <label for="signatureName">Authorized signatory name</label>
-                  <input id="signatureName" type="text" maxlength="100" placeholder="Optional">
-                </div>
-              </div>
-            </section>
-            <div class="tax-note">
-              Check the applicable GST rate, place of supply, tax treatment, invoice particulars, and other legal requirements before issuing the invoice. This tool provides calculations and a document layout, not tax or legal advice.
-            </div>
-            <div class="form-bottom-actions">
-              <button class="button button-primary" type="button" id="formDownloadButton">Print / Save PDF ↗</button>
-              <button class="button button-outline" type="button" id="clearItemsButton">Clear items</button>
-            </div>
-          </form>
-        </div>
-      </section>
-      <section class="preview-column" aria-labelledby="previewHeading">
-        <div class="preview-toolbar">
-          <strong id="previewHeading">Live invoice preview</strong>
-          <span class="live-badge">Live updates</span>
-        </div>
-        <p class="preview-hint">This preview updates as you type. Use “Print / Save PDF” to open your browser’s print dialog and choose Save as PDF.</p>
-        <div class="paper-stage">
-          <div id="printDocument">
-            <article class="invoice-paper" id="invoicePaper" aria-label="Invoice preview">
-              <div class="invoice-accent-bar"></div>
-              <header class="invoice-top">
-                <div class="invoice-business">
-                  <img id="previewLogo" class="invoice-logo" alt="Business logo">
-                  <div>
-                    <div id="previewBusinessName" class="invoice-business-name">Your Business Name</div>
-                    <div id="previewBusinessAddress" class="invoice-small"></div>
-                    <div id="previewBusinessContact" class="invoice-small"></div>
-                    <div id="previewBusinessGSTIN" class="invoice-small"></div>
-                  </div>
-                </div>
-                <div class="invoice-title-block">
-                  <div class="invoice-title">INVOICE</div>
-                  <div id="previewInvoiceNumber" class="invoice-number">Invoice # —</div>
-                </div>
-              </header>
-              <section class="invoice-meta">
-                <div>
-                  <div class="invoice-meta-label">Bill to</div>
-                  <div id="previewCustomer" class="invoice-meta-value"><strong>Customer name</strong></div>
-                  <div id="previewCustomerContact" class="invoice-small"></div>
-                  <div id="previewCustomerGSTIN" class="invoice-small"></div>
-                </div>
-                <div>
-                  <div class="invoice-meta-label">Invoice details</div>
-                  <div class="invoice-meta-value">
-                    <strong>Issue date:</strong> <span id="previewIssueDate">—</span><br>
-                    <strong>Due date:</strong> <span id="previewDueDate">—</span><br>
-                    <strong>Place of supply:</strong> <span id="previewPlace">—</span>
-                  </div>
-                </div>
-              </section>
-              <div class="invoice-table-wrap">
-                <table class="invoice-table">
-                  <thead>
-                    <tr>
-                      <th class="col-description">Description</th>
-                      <th class="col-qty num">Qty</th>
-                      <th class="col-rate num">Rate</th>
-                      <th class="col-tax num">GST</th>
-                      <th class="col-amount num">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody id="previewItems">
-                    <tr><td colspan="5">Add an item to begin.</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <section class="invoice-totals-area">
-                <div class="invoice-totals" id="previewTotals"></div>
-              </section>
-              <section class="amount-words">
-                <strong>Amount in words</strong>
-                <span id="previewWords">Zero rupees only</span>
-              </section>
-              <section class="invoice-notes" id="previewNotesSection">
-                <h4>Notes &amp; payment terms</h4>
-                <p id="previewNotes">Thank you for your business.</p>
-              </section>
-              <div class="invoice-signature" id="previewSignatureSection" style="display:none">
-                <div class="signature-box">
-                  <span id="previewSignatureName"></span><br>
-                  Authorized signatory
-                </div>
-              </div>
-              <footer class="invoice-attribution" style="display:none">
-                This invoice was generated using Arthnix — Smart Business Suite.
-                Visit <a href="https://arthnix.vercel.app">arthnix.vercel.app</a> to streamline your finances.
-              </footer>
-            </article>
+    <section class="workspace-section">
+      <div class="container">
+        <div class="workspace-top">
+          <div>
+            <h2>Invoice workspace</h2>
+            <p>Enter your details and watch your invoice update in real time.</p>
+          </div>
+          <div class="workspace-actions">
+            <button class="button button-outline" id="sampleButton" type="button">Load sample</button>
+            <button class="button button-outline" id="resetButton" type="button">Reset</button>
+            <button class="button button-primary" id="downloadButton" type="button">Print / Save PDF ↗</button>
           </div>
         </div>
-        <p class="preview-disclaimer">Preview is intended to approximate the printed invoice. Browser print settings, paper size, margins, and page breaks can affect the final PDF. For the cleanest output, select A4 paper and enable background graphics.</p>
-      </section>
-    </div>
-  </div>
-</section>
+        <div class="workspace-grid">
+          <section class="editor-panel" aria-labelledby="editorHeading">
+            <div class="panel-heading">
+              <h2 id="editorHeading">Invoice details</h2>
+              <p>Fields marked optional can be left blank. Your data stays in this browser session.</p>
+            </div>
+            <div class="form-content">
+              <form id="invoiceForm" autocomplete="on">
+                <section class="form-section">
+                  <h3 class="form-section-title"><span class="section-index">01</span> Your business</h3>
+                  <div class="form-grid">
+                    <div class="field full">
+                      <label for="businessName">Business / seller name *</label>
+                      <input id="businessName" type="text" maxlength="120" placeholder="Your Business Name" required>
+                    </div>
+                    <div class="field full">
+                      <label for="businessAddress">Business address</label>
+                      <textarea id="businessAddress" maxlength="500" placeholder="Street, city, state, PIN code"></textarea>
+                    </div>
+                    <div class="field">
+                      <label for="businessEmail">Email</label>
+                      <input id="businessEmail" type="email" maxlength="150" placeholder="you@example.com">
+                    </div>
+                    <div class="field">
+                      <label for="businessPhone">Phone</label>
+                      <input id="businessPhone" type="tel" maxlength="35" placeholder="+91 ...">
+                    </div>
+                    <div class="field full">
+                      <label for="businessGSTIN">Business GSTIN</label>
+                      <input id="businessGSTIN" type="text" maxlength="15" placeholder="Optional GSTIN">
+                    </div>
+                    <div class="field full">
+                      <label for="logoUpload">Business logo</label>
+                      <input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp">
+                      <div class="logo-controls">
+                        <div class="logo-thumb" id="logoThumb" aria-label="Logo preview">Logo</div>
+                        <div>
+                          <p class="field-note">PNG, JPG or WebP. Processed locally in your browser.</p>
+                          <button class="text-button" id="removeLogo" type="button">Remove logo</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label for="accentColor">Invoice accent color</label>
+                      <input id="accentColor" type="color" value="#ed3434">
+                    </div>
+                  </div>
+                </section>
+                <section class="form-section">
+                  <h3 class="form-section-title"><span class="section-index">02</span> Customer details</h3>
+                  <div class="form-grid">
+                    <div class="field full">
+                      <label for="customerName">Customer / bill to *</label>
+                      <input id="customerName" type="text" maxlength="120" placeholder="Customer or company name" required>
+                    </div>
+                    <div class="field full">
+                      <label for="customerAddress">Customer address</label>
+                      <textarea id="customerAddress" maxlength="500" placeholder="Billing address"></textarea>
+                    </div>
+                    <div class="field">
+                      <label for="customerEmail">Customer email</label>
+                      <input id="customerEmail" type="email" maxlength="150" placeholder="customer@example.com">
+                    </div>
+                    <div class="field">
+                      <label for="customerGSTIN">Customer GSTIN</label>
+                      <input id="customerGSTIN" type="text" maxlength="15" placeholder="Optional GSTIN">
+                    </div>
+                  </div>
+                </section>
+                <section class="form-section">
+                  <h3 class="form-section-title"><span class="section-index">03</span> Invoice information</h3>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="invoiceNumber">Invoice number *</label>
+                      <input id="invoiceNumber" type="text" maxlength="50" required>
+                    </div>
+                    <div class="field">
+                      <label for="currency">Currency</label>
+                      <select id="currency">
+                        <option value="INR">INR — ₹</option>
+                        <option value="USD">USD — $</option>
+                        <option value="EUR">EUR — €</option>
+                        <option value="GBP">GBP — £</option>
+                        <option value="AED">AED</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="issueDate">Issue date *</label>
+                      <input id="issueDate" type="date" required>
+                    </div>
+                    <div class="field">
+                      <label for="dueDate">Due date</label>
+                      <input id="dueDate" type="date">
+                    </div>
+                    <div class="field full">
+                      <label for="placeOfSupply">Place of supply / state</label>
+                      <input id="placeOfSupply" type="text" maxlength="100" placeholder="e.g. Telangana">
+                    </div>
+                    <div class="field full">
+                      <label for="taxType">GST treatment</label>
+                      <select id="taxType">
+                        <option value="intra">Intra-state — CGST + SGST</option>
+                        <option value="inter">Inter-state — IGST</option>
+                        <option value="none">No GST / not applicable</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="form-section">
+                  <h3 class="form-section-title"><span class="section-index">04</span> Products and services</h3>
+                  <div id="itemsEditor" class="items-editor"></div>
+                  <button id="addItemButton" class="button add-item" type="button">+ Add product or service</button>
+                  <p class="field-note">Enter the GST rate for each line item. Discount is a fixed amount per unit, before tax.</p>
+                </section>
+                <section class="form-section">
+                  <h3 class="form-section-title"><span class="section-index">05</span> Additional details</h3>
+                  <div class="form-grid">
+                    <div class="field full">
+                      <label for="notes">Notes / payment terms</label>
+                      <textarea id="notes" maxlength="1200" placeholder="Payment instructions, bank details, thank-you message, or other terms"></textarea>
+                    </div>
+                    <div class="field full">
+                      <label for="signatureName">Authorized signatory name</label>
+                      <input id="signatureName" type="text" maxlength="100" placeholder="Optional">
+                    </div>
+                    <!-- Added signature image upload -->
+                    <div class="field full">
+                      <label for="signatureUpload">Signature image</label>
+                      <input
+                        id="signatureUpload"
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp"
+                        aria-describedby="signatureNote"
+                      >
+                      <p class="field-note" id="signatureNote">
+                        Upload a handwritten signature as PNG, JPG, or WebP. Maximum size: 2 MB. Your image is processed locally in your browser.
+                      </p>
+                      <button class="text-button" id="removeSignature" type="button">Remove signature</button>
+                    </div>
+                  </div>
+                </section>
+                <div class="tax-note">
+                  Check the applicable GST rate, place of supply, tax treatment, invoice particulars, and other legal requirements before issuing the invoice. This tool provides calculations and a document layout, not tax or legal advice.
+                </div>
+                <div class="form-bottom-actions">
+                  <button class="button button-primary" type="button" id="formDownloadButton">Print / Save PDF ↗</button>
+                  <button class="button button-outline" type="button" id="clearItemsButton">Clear items</button>
+                </div>
+              </form>
+            </div>
+          </section>
+          <section class="preview-column" aria-labelledby="previewHeading">
+            <div class="preview-toolbar">
+              <strong id="previewHeading">Live invoice preview</strong>
+              <span class="live-badge">Live updates</span>
+            </div>
+            <p class="preview-hint">This preview updates as you type. Use “Print / Save PDF” to open your browser’s print dialog and choose Save as PDF.</p>
+            <div class="paper-stage">
+              <div id="printDocument">
+                <article class="invoice-paper" id="invoicePaper" aria-label="Invoice preview">
+                  <div class="invoice-accent-bar"></div>
+                  <header class="invoice-top">
+                    <div class="invoice-business">
+                      <img id="previewLogo" class="invoice-logo" alt="Business logo">
+                      <div>
+                        <div id="previewBusinessName" class="invoice-business-name">Your Business Name</div>
+                        <div id="previewBusinessAddress" class="invoice-small"></div>
+                        <div id="previewBusinessContact" class="invoice-small"></div>
+                        <div id="previewBusinessGSTIN" class="invoice-small"></div>
+                      </div>
+                    </div>
+                    <div class="invoice-title-block">
+                      <div class="invoice-title">INVOICE</div>
+                      <div id="previewInvoiceNumber" class="invoice-number">Invoice # —</div>
+                    </div>
+                  </header>
+                  <section class="invoice-meta">
+                    <div>
+                      <div class="invoice-meta-label">Bill to</div>
+                      <div id="previewCustomer" class="invoice-meta-value"><strong>Customer name</strong></div>
+                      <div id="previewCustomerContact" class="invoice-small"></div>
+                      <div id="previewCustomerGSTIN" class="invoice-small"></div>
+                    </div>
+                    <div>
+                      <div class="invoice-meta-label">Invoice details</div>
+                      <div class="invoice-meta-value">
+                        <strong>Issue date:</strong> <span id="previewIssueDate">—</span><br>
+                        <strong>Due date:</strong> <span id="previewDueDate">—</span><br>
+                        <strong>Place of supply:</strong> <span id="previewPlace">—</span>
+                      </div>
+                    </div>
+                  </section>
+                  <div class="invoice-table-wrap">
+                    <table class="invoice-table">
+                      <thead>
+                        <tr>
+                          <th class="col-description">Description</th>
+                          <th class="col-qty num">Qty</th>
+                          <th class="col-rate num">Rate</th>
+                          <th class="col-tax num">GST</th>
+                          <th class="col-amount num">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody id="previewItems">
+                        <tr><td colspan="5">Add an item to begin.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <section class="invoice-totals-area">
+                    <div class="invoice-totals" id="previewTotals"></div>
+                  </section>
+                  <section class="amount-words">
+                    <strong>Amount in words</strong>
+                    <span id="previewWords">Zero rupees only</span>
+                  </section>
+                  <section class="invoice-notes" id="previewNotesSection">
+                    <h4>Notes &amp; payment terms</h4>
+                    <p id="previewNotes">Thank you for your business.</p>
+                  </section>
+                  <div class="invoice-signature" id="previewSignatureSection" style="display:none">
+                    <div class="signature-box">
+                      <!-- Added uploaded signature preview -->
+                      <img
+                        id="previewSignatureImage"
+                        class="signature-image"
+                        alt="Uploaded authorized signature"
+                        style="display:none"
+                      >
+                      <span id="previewSignatureName"></span><br>
+                      Authorized signatory
+                    </div>
+                  </div>
+                  <footer class="invoice-attribution" style="display:none">
+                    This invoice was generated using Arthnix — Smart Business Suite.
+                    Visit <a href="https://arthnix.vercel.app">arthnix.vercel.app</a> to streamline your finances.
+                  </footer>
+                </article>
+              </div>
+            </div>
+            <p class="preview-disclaimer">Preview is intended to approximate the printed invoice. Browser print settings, paper size, margins, and page breaks can affect the final PDF. For the cleanest output, select A4 paper and enable background graphics.</p>
+          </section>
+        </div>
+      </div>
+    </section>
   </main>
   <!-- ARTHNIX FOOTER: shared structure and styling from index.html -->
   <footer class="site-footer" id="footer-contact">
@@ -1245,36 +1276,36 @@
           <p class="footer-tagline">Intelligence for Every Business.</p>
           <p class="footer-powered">Powered by Alphex AI</p>
         </div>
-    <div class="footer-column">
-      <h4>Explore</h4>
-      <a href="/#platform">Platform</a>
-      <a href="/#how-it-works">How It Works</a>
-      <a href="/pricing.html">Pricing</a>
-      <a href="/tools.html">Free Tools</a>
+        <div class="footer-column">
+          <h4>Explore</h4>
+          <a href="/#platform">Platform</a>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/tools.html">Free Tools</a>
+        </div>
+        <div class="footer-column">
+          <h4>Business Tools</h4>
+          <a href="/tools/gst-calculator.html">GST Calculator</a>
+          <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/profit-calculator.html">Profit Calculator</a>
+          <a href="/tools/quotation-generator.html">Quotation Generator</a>
+        </div>
+        <div class="footer-column">
+          <h4>Information</h4>
+          <a href="/about.html">About ARTHNIX</a>
+          <a href="/help.html">Help Centre</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="currentYear">2026</span> ARTHNIX. All rights reserved.</p>
+        <p class="powered-by">An independent product brand · <strong>Powered by Alphex AI</strong></p>
+      </div>
     </div>
-    <div class="footer-column">
-      <h4>Business Tools</h4>
-      <a href="/tools/gst-calculator.html">GST Calculator</a>
-      <a href="/tools/invoice-generator.html">Invoice Generator</a>
-      <a href="/tools/profit-calculator.html">Profit Calculator</a>
-      <a href="/tools/quotation-generator.html">Quotation Generator</a>
-    </div>
-    <div class="footer-column">
-      <h4>Information</h4>
-      <a href="/about.html">About ARTHNIX</a>
-      <a href="/help.html">Help Centre</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms of Use</a>
-      <a href="/disclaimer.html">Disclaimer</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="copyright">© <span id="currentYear">2026</span> ARTHNIX. All rights reserved.</p>
-    <p class="powered-by">An independent product brand · <strong>Powered by Alphex AI</strong></p>
-  </div>
-</div>
   </footer>
   <script>
     (() => {
@@ -1328,10 +1359,16 @@
       const previewLogo = $("previewLogo");
       const logoThumb = $("logoThumb");
       const accentColor = $("accentColor");
+      /* Added signature upload references */
+      const signatureUpload = $("signatureUpload");
+      const previewSignatureImage = $("previewSignatureImage");
+      const removeSignatureButton = $("removeSignature");
       const MAX_ITEMS = 50;
       let itemCounter = 0;
       let logoDataUrl = "";
       let logoObjectUrl = "";
+      /* Added signature image data */
+      let signatureDataUrl = "";
       const today = new Date();
       const dateISO = (date) => {
         const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
@@ -1576,9 +1613,18 @@
         const notes = getValue("notes");
         $("previewNotes").textContent = notes || "Thank you for your business.";
         $("previewNotesSection").style.display = "block";
+        /* Updated signature preview logic: show name, image, or both */
         const signature = getValue("signatureName");
-        $("previewSignatureSection").style.display = signature ? "flex" : "none";
+        $("previewSignatureSection").style.display =
+          (signature || signatureDataUrl) ? "flex" : "none";
         $("previewSignatureName").textContent = signature;
+        if (signatureDataUrl) {
+          previewSignatureImage.src = signatureDataUrl;
+          previewSignatureImage.style.display = "block";
+        } else {
+          previewSignatureImage.removeAttribute("src");
+          previewSignatureImage.style.display = "none";
+        }
         // The attribution is only shown in the printed/PDF document, not in the invoice preview.
         const attribution = document.querySelector(".invoice-attribution");
         attribution.style.display = "none";
@@ -1627,6 +1673,11 @@
           logoObjectUrl = "";
         }
         logoUpload.value = "";
+        /* Added signature reset handling */
+        signatureDataUrl = "";
+        signatureUpload.value = "";
+        previewSignatureImage.removeAttribute("src");
+        previewSignatureImage.style.display = "none";
         accentColor.value = "#ed3434";
         const now = new Date();
         $("issueDate").value = dateISO(now);
@@ -1705,6 +1756,45 @@
         };
         reader.onerror = () => alert("The logo could not be read. Please try another image.");
         reader.readAsDataURL(file);
+      });
+      /* Added signature upload handling */
+      signatureUpload.addEventListener("change", () => {
+        const file = signatureUpload.files && signatureUpload.files[0];
+        if (!file) return;
+        const allowedTypes = ["image/png", "image/jpeg", "image/webp"];
+        if (!allowedTypes.includes(file.type)) {
+          alert("Please upload a PNG, JPG, or WebP signature image.");
+          signatureUpload.value = "";
+          return;
+        }
+        if (file.size > 2 * 1024 * 1024) {
+          alert("Please choose a signature image smaller than 2 MB.");
+          signatureUpload.value = "";
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (typeof reader.result !== "string") {
+            alert("The signature image could not be read. Please try another image.");
+            signatureUpload.value = "";
+            return;
+          }
+          signatureDataUrl = reader.result;
+          updatePreview();
+        };
+        reader.onerror = () => {
+          alert("The signature image could not be read. Please try another image.");
+          signatureUpload.value = "";
+        };
+        reader.readAsDataURL(file);
+      });
+      /* Added remove-signature handling */
+      removeSignatureButton.addEventListener("click", () => {
+        signatureDataUrl = "";
+        signatureUpload.value = "";
+        previewSignatureImage.removeAttribute("src");
+        previewSignatureImage.style.display = "none";
+        updatePreview();
       });
       accentColor.addEventListener("input", updatePreview);
       // Initialize with one blank line item.
