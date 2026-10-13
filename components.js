@@ -1,49 +1,63 @@
 /* =========================================================
    ARTHNIX — Shared Component Loader
-   File: components.js
+   File: /components.js
    Loads:
-   - nav.html
-   - footer.html
+   - /nav.html
+   - /footer.html
+   Works on root pages and nested pages such as:
+   /tools/gst-calculator.html
    Usage:
    <div id="site-nav"></div>
    <div id="site-footer"></div>
-   Load this file with the defer attribute.
+   <script src="/components.js"></script>
    ========================================================= */
 (() => {
   "use strict";
+  // Resolve shared components relative to this script's URL.
+  // This avoids incorrect /tools/nav.html and /tools/footer.html paths.
+  const currentScript =
+    document.currentScript ||
+    document.querySelector('script[src$="/components.js"], script[src="components.js"]');
+  const scriptURL = currentScript
+    ? currentScript.src
+    : new URL("/components.js", window.location.origin).href;
+  const COMPONENT_BASE_URL = new URL(".", scriptURL);
+  const COMPONENTS = {
+    nav: new URL("nav.html", COMPONENT_BASE_URL).href,
+    footer: new URL("footer.html", COMPONENT_BASE_URL).href
+  };
+  let initializationPromise = null;
   /**
-   * Load an HTML fragment into a page element.
-   *
-   * Scripts embedded in the fragment are recreated so they
-   * execute after the fragment has been inserted.
+   * Load an HTML fragment into its target element.
+   * Scripts inside the fragment are recreated so they execute.
    */
-  async function loadComponent(targetId, filePath) {
+  async function loadComponent(targetId, fileURL) {
     const target = document.getElementById(targetId);
     if (!target) {
+      console.warn(
+        `[ARTHNIX] Component placeholder #${targetId} was not found.`
+      );
       return false;
     }
+    target.removeAttribute("data-component-error");
     try {
-      const response = await fetch(filePath, {
-        cache: "no-cache"
+      const response = await fetch(fileURL, {
+        cache: "no-cache",
+        credentials: "same-origin"
       });
       if (!response.ok) {
         throw new Error(
-          `Failed to load ${filePath}: HTTP ${response.status}`
+          `HTTP ${response.status} while loading ${fileURL}`
         );
       }
       const html = await response.text();
-      const parser = new DOMParser();
-      const parsedDocument = parser.parseFromString(
+      const parsedDocument = new DOMParser().parseFromString(
         html,
         "text/html"
       );
       const fragment = document.createDocumentFragment();
-      /*
-       * Extract the parsed body nodes.
-       * Scripts are handled separately because scripts inserted
-       * through innerHTML do not execute automatically.
-       */
       const scripts = [];
+      // Copy body nodes and collect scripts for controlled execution.
       for (const node of Array.from(parsedDocument.body.childNodes)) {
         if (
           node.nodeType === Node.ELEMENT_NODE &&
@@ -54,65 +68,88 @@
           fragment.appendChild(node.cloneNode(true));
         }
       }
+      // Install the component markup first.
       target.replaceChildren(fragment);
-      /*
-       * Recreate scripts after the HTML has been inserted.
-       */
+      // Recreate component scripts after markup insertion.
       for (const originalScript of scripts) {
         const script = document.createElement("script");
-        for (const attribute of originalScript.attributes) {
+        for (const attribute of Array.from(originalScript.attributes)) {
           script.setAttribute(attribute.name, attribute.value);
         }
-        script.textContent = originalScript.textContent;
-        target.appendChild(script);
+        if (originalScript.src) {
+          // Resolve relative script URLs against the component file.
+          script.src = new URL(originalScript.getAttribute("src"), fileURL).href;
+          // Wait for external scripts before continuing.
+          await new Promise((resolve, reject) => {
+            script.onload = resolve;
+            script.onerror = () => reject(
+              new Error(`Could not load component script: ${script.src}`)
+            );
+            target.appendChild(script);
+          });
+        } else {
+          script.textContent = originalScript.textContent;
+          target.appendChild(script);
+        }
       }
       return true;
     } catch (error) {
       console.error(
-        `[ARTHNIX] Could not load ${filePath}:`,
+        `[ARTHNIX] Could not load component #${targetId}:`,
         error
       );
       target.setAttribute("data-component-error", "true");
+      target.setAttribute("aria-label", "Component could not be loaded");
       return false;
     }
   }
   /**
-   * Load the navbar and footer.
+   * Load the shared navbar and footer, then initialize them.
    */
   async function initializeComponents() {
-    const navLoaded = await loadComponent(
-      "site-nav",
-      "nav.html"
-    );
-    if (navLoaded && typeof window.initializeArthnixNav === "function") {
-      window.initializeArthnixNav();
+    // Prevent accidental simultaneous duplicate initializations.
+    if (initializationPromise) {
+      return initializationPromise;
     }
-    const footerLoaded = await loadComponent(
-      "site-footer",
-      "footer.html"
-    );
-    if (
-      footerLoaded &&
-      typeof window.initializeArthnixFooter === "function"
-    ) {
-      window.initializeArthnixFooter();
+    initializationPromise = (async () => {
+      const navLoaded = await loadComponent(
+        "site-nav",
+        COMPONENTS.nav
+      );
+      if (
+        navLoaded &&
+        typeof window.initializeArthnixNav === "function"
+      ) {
+        window.initializeArthnixNav();
+      }
+      const footerLoaded = await loadComponent(
+        "site-footer",
+        COMPONENTS.footer
+      );
+      if (
+        footerLoaded &&
+        typeof window.initializeArthnixFooter === "function"
+      ) {
+        window.initializeArthnixFooter();
+      }
+      document.documentElement.classList.add("components-loaded");
+      document.dispatchEvent(
+        new CustomEvent("arthnix:components-loaded", {
+          detail: {
+            navLoaded,
+            footerLoaded
+          }
+        })
+      );
+      return { navLoaded, footerLoaded };
+    })();
+    try {
+      return await initializationPromise;
+    } finally {
+      initializationPromise = null;
     }
-    document.documentElement.classList.add(
-      "components-loaded"
-    );
-    document.dispatchEvent(
-      new CustomEvent("arthnix:components-loaded", {
-        detail: {
-          navLoaded,
-          footerLoaded
-        }
-      })
-    );
   }
-  /*
-   * Expose the initializer in case a page needs to reload
-   * shared components after a deliberate change.
-   */
+  // Expose the initializer for pages that need to reload components.
   window.initializeArthnixComponents = initializeComponents;
   if (document.readyState === "loading") {
     document.addEventListener(
