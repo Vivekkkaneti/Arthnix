@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About ARTHNIX — Intelligence for Every Business</title>
+  <meta name="description" content="Discover ARTHNIX, a business software initiative focused on simplifying invoicing, inventory, sales tracking, and everyday business operations with AI-powered tools.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://arthnix.com/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About ARTHNIX">
+  <meta property="og:description" content="Intelligence for Every Business. Discover the vision behind ARTHNIX and our approach to simpler, smarter business operations.">
+  <meta property="og:url" content="https://arthnix.com/about.html">
+  <meta name="theme-color" content="#090909">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About ARTHNIX",
+    "url": "https://arthnix.com/about.html",
+    "description": "Learn about ARTHNIX, its mission, its planned business tools, and its approach to making everyday business operations simpler.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com/"
+    },
+    "about": {
+      "@type": "Organization",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com/",
+      "description": "A business software initiative focused on practical tools for everyday business operations."
+    }
+  }
+  </script>
+  <style>
+    /* =====================================================
+       ARTHNIX ABOUT PAGE
+       Matches the existing Contact page design.
+       Black, white and red theme.
+       ===================================================== */
+    :root {
+      --about-black: #090909;
+      --about-black-soft: #111111;
+      --about-red: #ed3434;
+      --about-red-hover: #d92727;
+      --about-white: #ffffff;
+      --about-paper: #fafaf9;
+      --about-surface: #f4f4f2;
+      --about-text: #151515;
+      --about-muted: #737373;
+      --about-border: #e9e9e7;
+      --about-radius: 18px;
+      --about-container: 1160px;
+    }
+    .about-page,
+    .about-page * {
+      box-sizing: border-box;
+    }
+    .about-page {
+      background: var(--about-white);
+      color: var(--about-text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow: hidden;
+    }
+    .about-page a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .about-page button,
+    .about-page input,
+    .about-page select,
+    .about-page textarea {
+      font: inherit;
+    }
+    .about-page a:focus-visible,
+    .about-page button:focus-visible {
+      outline: 3px solid rgba(237, 52, 52, 0.45);
+      outline-offset: 3px;
+    }
+    .about-page .about-container {
+      width: min(var(--about-container), calc(100% - 48px));
+      margin-inline: auto;
+    }
+    .about-page .about-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+    .about-page .about-eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      flex: 0 0 22px;
+      background: var(--about-red);
+    }
+    .about-page .about-section-heading {
+      max-width: 700px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 600;
+      letter-spacing: -0.055em;
+      line-height: 1.16;
+    }
+    .about-page .about-section-copy {
+      max-width: 600px;
+      margin: 18px 0 0;
+      color: var(--about-muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+    .about-page .about-red-text {
+      color: var(--about-red);
+    }
+    /* HERO */
+    .about-page .about-hero {
+      position: relative;
+      isolation: isolate;
+      padding: 105px 0 94px;
+      overflow: hidden;
+      background: var(--about-black);
+      color: var(--about-white);
+    }
+    .about-page .about-hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background-image: radial-gradient(
+        rgba(255, 255, 255, 0.12) 0.7px,
+        transparent 0.7px
+      );
+      background-size: 22px 22px;
+      opacity: 0.28;
+      mask-image: linear-gradient(
+        90deg,
+        transparent 5%,
+        black 100%
+      );
+    }
+    .about-page .about-hero::after {
+      position: absolute;
+      z-index: -1;
+      top: -180px;
+      right: -130px;
+      width: 530px;
+      height: 530px;
+      content: "";
+      border: 1px solid rgba(237, 52, 52, 0.15);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 55px rgba(237, 52, 52, 0.025),
+        0 0 0 110px rgba(237, 52, 52, 0.02);
+      pointer-events: none;
+    }
+    .about-page .about-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
+      align-items: end;
+      gap: 65px;
+    }
+    .about-page .about-hero .about-eyebrow {
+      color: #c8c8c8;
+    }
+    .about-page .about-hero h1 {
+      max-width: 800px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(48px, 7.2vw, 84px);
+      font-weight: 600;
+      letter-spacing: -0.075em;
+      line-height: 1.03;
+    }
+    .about-page .about-hero h1 .about-highlight {
+      color: var(--about-red);
+    }
+    .about-page .about-hero-description {
+      max-width: 590px;
+      margin: 26px 0 0;
+      color: #b7b7b7;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+    .about-page .about-hero-side {
+      padding: 26px 0 6px 25px;
+      border-left: 1px solid #303030;
+    }
+    .about-page .about-hero-side-label {
+      display: block;
+      margin-bottom: 14px;
+      color: #858585;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .about-page .about-hero-side p {
+      margin: 0;
+      color: #eeeeee;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.65;
+    }
+    .about-page .about-hero-side span:last-child {
+      display: block;
+      margin-top: 17px;
+      color: #888888;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    /* INTRODUCTION */
+    .about-page .about-introduction {
+      padding: 91px 0 96px;
+      background: var(--about-paper);
+      border-bottom: 1px solid var(--about-border);
+    }
+    .about-page .about-introduction-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 85px;
+      align-items: start;
+    }
+    .about-page .about-introduction-title {
+      position: sticky;
+      top: 30px;
+    }
+    .about-page .about-introduction-content p {
+      margin: 0 0 20px;
+      color: #606060;
+      font-size: 15px;
+      line-height: 2;
+    }
+    .about-page .about-introduction-content p:last-child {
+      margin-bottom: 0;
+    }
+    .about-page .about-statement {
+      margin-top: 30px;
+      padding: 23px 25px;
+      border-left: 3px solid var(--about-red);
+      border-radius: 0 12px 12px 0;
+      background: var(--about-white);
+      color: var(--about-text);
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.7;
+    }
+    /* MISSION AND VISION */
+    .about-page .about-purpose {
+      padding: 94px 0 100px;
+      background: var(--about-white);
+    }
+    .about-page .about-purpose-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 35px;
+      margin-bottom: 38px;
+    }
+    .about-page .about-purpose-header .about-section-copy {
+      max-width: 390px;
+      margin-top: 0;
+      font-size: 14px;
+    }
+    .about-page .about-purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+    .about-page .about-purpose-card {
+      min-height: 255px;
+      padding: 31px;
+      border: 1px solid var(--about-border);
+      border-radius: var(--about-radius);
+      background: var(--about-white);
+      transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+    .about-page .about-purpose-card:hover {
+      transform: translateY(-3px);
+      border-color: #e5b0b0;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.035);
+    }
+    .about-page .about-purpose-number {
+      display: inline-flex;
+      width: 39px;
+      height: 39px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 11px;
+      background: #fff0f0;
+      color: var(--about-red);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .about-page .about-purpose-card h3 {
+      margin: 24px 0 11px;
+      font-family: "Manrope", sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.4;
+    }
+    .about-page .about-purpose-card p {
+      max-width: 480px;
+      margin: 0;
+      color: var(--about-muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    /* WHAT WE ARE BUILDING */
+    .about-page .about-capabilities {
+      padding: 92px 0 100px;
+      background: var(--about-paper);
+      border-top: 1px solid var(--about-border);
+      border-bottom: 1px solid var(--about-border);
+    }
+    .about-page .about-capabilities-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 35px;
+      margin-bottom: 39px;
+    }
+    .about-page .about-capabilities-header .about-section-copy {
+      max-width: 400px;
+      margin-top: 0;
+      font-size: 14px;
+    }
+    .about-page .about-capability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .about-page .about-capability-card {
+      min-height: 220px;
+      padding: 27px 25px;
+      border: 1px solid var(--about-border);
+      border-radius: var(--about-radius);
+      background: var(--about-white);
+      transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+    .about-page .about-capability-card:hover {
+      transform: translateY(-3px);
+      border-color: #e5b0b0;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.035);
+    }
+    .about-page .about-capability-number {
+      display: inline-flex;
+      width: 35px;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: #fff0f0;
+      color: var(--about-red);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .about-page .about-capability-card h3 {
+      margin: 22px 0 9px;
+      font-family: "Manrope", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.4;
+    }
+    .about-page .about-capability-card p {
+      margin: 0;
+      color: var(--about-muted);
+      font-size: 13px;
+      line-height: 1.85;
+    }
+    /* OUR APPROACH */
+    .about-page .about-approach {
+      padding: 100px 0;
+      background: var(--about-white);
+    }
+    .about-page .about-approach-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      align-items: start;
+      gap: 85px;
+    }
+    .about-page .about-approach-intro > p:not(.about-eyebrow) {
+      max-width: 440px;
+      margin: 20px 0 0;
+      color: var(--about-muted);
+      font-size: 14px;
+      line-height: 1.95;
+    }
+    .about-page .about-approach-list {
+      border-top: 1px solid var(--about-border);
+    }
+    .about-page .about-approach-item {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 17px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--about-border);
+    }
+    .about-page .about-approach-item-number {
+      display: flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--about-border);
+      border-radius: 11px;
+      color: var(--about-red);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .about-page .about-approach-item h3 {
+      margin: 0 0 7px;
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.5;
+    }
+    .about-page .about-approach-item p {
+      margin: 0;
+      color: var(--about-muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+    /* ALPHEX AI */
+    .about-page .about-parent {
+      padding: 76px 0;
+      background: var(--about-black);
+      color: var(--about-white);
+    }
+    .about-page .about-parent-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 45px;
+    }
+    .about-page .about-parent .about-eyebrow {
+      color: #bdbdbd;
+    }
+    .about-page .about-parent h2 {
+      max-width: 730px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(29px, 4vw, 43px);
+      font-weight: 600;
+      letter-spacing: -0.055em;
+      line-height: 1.2;
+    }
+    .about-page .about-parent-description {
+      max-width: 720px;
+      margin: 17px 0 0;
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .about-page .about-parent-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 17px;
+      border: 1px solid #383838;
+      border-radius: 10px;
+      color: #f1f1f1;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .about-page .about-parent-label span {
+      color: var(--about-red);
+    }
+    /* BOTTOM CTA */
+    .about-page .about-bottom-cta {
+      padding: 80px 0;
+      background: var(--about-paper);
+      border-top: 1px solid var(--about-border);
+    }
+    .about-page .about-bottom-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+    }
+    .about-page .about-bottom-cta h2 {
+      max-width: 700px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(29px, 4vw, 43px);
+      font-weight: 600;
+      letter-spacing: -0.055em;
+      line-height: 1.2;
+    }
+    .about-page .about-bottom-cta p {
+      max-width: 560px;
+      margin: 14px 0 0;
+      color: var(--about-muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+    .about-page .about-bottom-cta-button {
+      display: inline-flex;
+      min-height: 49px;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border: 1px solid var(--about-red);
+      border-radius: 10px;
+      background: var(--about-red);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      transition:
+        background 160ms ease,
+        transform 160ms ease;
+    }
+    .about-page .about-bottom-cta-button:hover {
+      transform: translateY(-2px);
+      background: var(--about-red-hover);
+    }
+    .about-page .about-bottom-cta-button svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .about-page .about-hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 38px;
+      }
+      .about-page .about-hero-side {
+        max-width: 430px;
+      }
+      .about-page .about-introduction-grid,
+      .about-page .about-approach-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 38px;
+      }
+      .about-page .about-introduction-title {
+        position: static;
+      }
+      .about-page .about-purpose-header,
+      .about-page .about-capabilities-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .about-page .about-purpose-header .about-section-copy,
+      .about-page .about-capabilities-header .about-section-copy {
+        max-width: 600px;
+      }
+      .about-page .about-capability-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .about-page .about-parent-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+      .about-page .about-parent-label {
+        justify-self: start;
+      }
+    }
+    @media (max-width: 640px) {
+      .about-page .about-container {
+        width: min(100% - 36px, var(--about-container));
+      }
+      .about-page .about-hero {
+        padding: 75px 0 68px;
+      }
+      .about-page .about-hero::after {
+        top: -120px;
+        right: -300px;
+        width: 430px;
+        height: 430px;
+      }
+      .about-page .about-hero h1 {
+        font-size: clamp(43px, 12vw, 62px);
+      }
+      .about-page .about-hero-description {
+        margin-top: 21px;
+        font-size: 14px;
+      }
+      .about-page .about-hero-side {
+        padding-left: 19px;
+      }
+      .about-page .about-introduction {
+        padding: 65px 0 70px;
+      }
+      .about-page .about-section-heading {
+        font-size: clamp(29px, 8vw, 38px);
+      }
+      .about-page .about-statement {
+        padding: 20px;
+        font-size: 17px;
+      }
+      .about-page .about-purpose {
+        padding: 67px 0 72px;
+      }
+      .about-page .about-purpose-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+      }
+      .about-page .about-purpose-card {
+        min-height: 0;
+        padding: 25px 22px;
+      }
+      .about-page .about-purpose-card h3 {
+        margin-top: 18px;
+      }
+      .about-page .about-capabilities {
+        padding: 67px 0 72px;
+      }
+      .about-page .about-capability-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+      }
+      .about-page .about-capability-card {
+        min-height: 0;
+        padding: 23px;
+      }
+      .about-page .about-capability-card h3 {
+        margin-top: 17px;
+      }
+      .about-page .about-approach {
+        padding: 70px 0;
+      }
+      .about-page .about-approach-grid {
+        gap: 30px;
+      }
+      .about-page .about-parent {
+        padding: 59px 0;
+      }
+      .about-page .about-parent-label {
+        white-space: normal;
+      }
+      .about-page .about-bottom-cta {
+        padding: 58px 0;
+      }
+      .about-page .about-bottom-cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 25px;
+      }
+      .about-page .about-bottom-cta-button {
+        width: 100%;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .about-page *,
+      .about-page *::before,
+      .about-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="about-page">
+    <!-- HERO -->
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="about-container">
+        <div class="about-hero-grid">
+          <div>
+            <p class="about-eyebrow">About ARTHNIX</p>
+            <h1 id="about-title">
+              Intelligence for<br>
+              <span class="about-highlight">every business.</span>
+            </h1>
+            <p class="about-hero-description">
+              We believe everyday business operations should be easier
+              to understand, simpler to manage, and better supported by
+              technology. ARTHNIX is being developed around that idea.
+            </p>
+          </div>
+          <aside class="about-hero-side">
+            <span class="about-hero-side-label">Our guiding idea</span>
+            <p>
+              Less complexity.<br>
+              More clarity.<br>
+              <span class="about-red-text">Smarter operations.</span>
+            </p>
+            <span>Practical tools · Thoughtful technology · Business-focused design</span>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <!-- INTRODUCTION -->
+    <section class="about-introduction" aria-labelledby="about-introduction-title">
+      <div class="about-container">
+        <div class="about-introduction-grid">
+          <div class="about-introduction-title">
+            <p class="about-eyebrow">Who we are</p>
+            <h2 class="about-section-heading" id="about-introduction-title">
+              Built around the way <span class="about-red-text">business works.</span>
+            </h2>
+            <p class="about-section-copy">
+              ARTHNIX is a business software initiative focused on making
+              essential business tasks more approachable through useful,
+              connected digital tools.
+            </p>
+          </div>
+          <div class="about-introduction-content">
+            <p>
+              Running a business involves more than serving customers
+              and growing revenue. Invoices need to be created, sales
+              need to be tracked, inventory needs attention, and everyday
+              decisions depend on clear information.
+            </p>
+            <p>
+              These tasks can become difficult when information is
+              scattered across different tools or routine processes
+              take too much time. ARTHNIX is being built with the goal
+              of bringing practical business capabilities into a more
+              accessible experience.
+            </p>
+            <p>
+              Our focus is on useful functionality, understandable
+              workflows, and technology that supports business owners
+              rather than adding unnecessary complexity.
+            </p>
+            <div class="about-statement">
+              Technology should make running a business simpler—not
+              make business owners work harder to understand their tools.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- MISSION AND VISION -->
+    <section class="about-purpose" aria-labelledby="about-purpose-title">
+      <div class="about-container">
+        <div class="about-purpose-header">
+          <div>
+            <p class="about-eyebrow">Our purpose</p>
+            <h2 class="about-section-heading" id="about-purpose-title">
+              Guided by a <span class="about-red-text">clear purpose.</span>
+            </h2>
+          </div>
+          <p class="about-section-copy">
+            We are focusing on the everyday needs of businesses and
+            the opportunities technology creates to address them.
+          </p>
+        </div>
+        <div class="about-purpose-grid">
+          <article class="about-purpose-card">
+            <span class="about-purpose-number">01</span>
+            <h3>Our mission</h3>
+            <p>
+              To develop practical, accessible business tools that help
+              people organise everyday operations, manage information,
+              and spend less time dealing with repetitive administrative
+              work.
+            </p>
+          </article>
+          <article class="about-purpose-card">
+            <span class="about-purpose-number">02</span>
+            <h3>Our vision</h3>
+            <p>
+              To make useful business technology more approachable for
+              businesses of different sizes, with a thoughtful combination
+              of essential tools, clear information, and AI-powered
+              assistance where it adds value.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- WHAT WE ARE BUILDING -->
+    <section class="about-capabilities" aria-labelledby="about-capabilities-title">
+      <div class="about-container">
+        <div class="about-capabilities-header">
+          <div>
+            <p class="about-eyebrow">What we're building</p>
+            <h2 class="about-section-heading" id="about-capabilities-title">
+              Everyday tools. <span class="about-red-text">Connected thinking.</span>
+            </h2>
+          </div>
+          <p class="about-section-copy">
+            Our planned capabilities focus on common business workflows,
+            with room to introduce smarter assistance as the product evolves.
+          </p>
+        </div>
+        <div class="about-capability-grid">
+          <article class="about-capability-card">
+            <span class="about-capability-number">01</span>
+            <h3>Invoicing &amp; GST tools</h3>
+            <p>
+              Support for everyday invoicing workflows and useful GST
+              calculations, designed to make routine financial tasks
+              easier to manage.
+            </p>
+          </article>
+          <article class="about-capability-card">
+            <span class="about-capability-number">02</span>
+            <h3>Inventory management</h3>
+            <p>
+              Planned tools to help businesses organise product
+              information, keep track of inventory, and understand
+              their operational needs.
+            </p>
+          </article>
+          <article class="about-capability-card">
+            <span class="about-capability-number">03</span>
+            <h3>Sales tracking</h3>
+            <p>
+              A focus on bringing useful sales information into a
+              clearer view so business owners can follow activity
+              and review their operations.
+            </p>
+          </article>
+          <article class="about-capability-card">
+            <span class="about-capability-number">04</span>
+            <h3>Business tools &amp; reports</h3>
+            <p>
+              Practical calculators, reports, and export options
+              intended to make common business information easier
+              to review and use.
+            </p>
+          </article>
+          <article class="about-capability-card">
+            <span class="about-capability-number">05</span>
+            <h3>Payroll-related tools</h3>
+            <p>
+              Planned payroll-related capabilities intended to
+              support selected administrative workflows as the
+              product develops.
+            </p>
+          </article>
+          <article class="about-capability-card">
+            <span class="about-capability-number">06</span>
+            <h3>AI-powered assistance</h3>
+            <p>
+              Our direction includes exploring AI assistance that
+              can help users navigate information, understand
+              workflows, and work more efficiently.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- OUR APPROACH -->
+    <section class="about-approach" aria-labelledby="about-approach-title">
+      <div class="about-container">
+        <div class="about-approach-grid">
+          <div class="about-approach-intro">
+            <p class="about-eyebrow">How we think</p>
+            <h2 class="about-section-heading" id="about-approach-title">
+              Useful by design. <span class="about-red-text">Built with purpose.</span>
+            </h2>
+            <p>
+              We believe good business software should start with
+              real tasks and clear user needs. Technology is valuable
+              when it helps people understand their work and act
+              with greater confidence.
+            </p>
+          </div>
+          <div class="about-approach-list">
+            <article class="about-approach-item">
+              <span class="about-approach-item-number">01</span>
+              <div>
+                <h3>Practical over complicated</h3>
+                <p>
+                  We aim to prioritise understandable workflows and
+                  useful features over unnecessary complexity.
+                </p>
+              </div>
+            </article>
+            <article class="about-approach-item">
+              <span class="about-approach-item-number">02</span>
+              <div>
+                <h3>Accessible business technology</h3>
+                <p>
+                  Our goal is to make everyday digital tools easier
+                  to approach, including for individuals and smaller
+                  businesses with straightforward operational needs.
+                </p>
+              </div>
+            </article>
+            <article class="about-approach-item">
+              <span class="about-approach-item-number">03</span>
+              <div>
+                <h3>AI with a practical purpose</h3>
+                <p>
+                  We see AI as a way to support useful tasks and
+                  improve experiences—not as a feature to add
+                  without a clear reason.
+                </p>
+              </div>
+            </article>
+            <article class="about-approach-item">
+              <span class="about-approach-item-number">04</span>
+              <div>
+                <h3>Transparent development</h3>
+                <p>
+                  We aim to communicate clearly about planned
+                  capabilities, proposed pricing, and what is
+                  available as the product develops.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- POWERED BY ALPHEX AI -->
+    <section class="about-parent" aria-labelledby="about-parent-title">
+      <div class="about-container">
+        <div class="about-parent-inner">
+          <div>
+            <p class="about-eyebrow">Our technology connection</p>
+            <h2 id="about-parent-title">
+              Powered by <span class="about-red-text">Alphex AI.</span>
+            </h2>
+            <p class="about-parent-description">
+              ARTHNIX is the business software direction focused on
+              practical tools for everyday operations. Alphex AI is
+              the broader AI brand behind this initiative, reflecting
+              an interest in building useful AI systems, assistants,
+              and technology experiences.
+            </p>
+          </div>
+          <div class="about-parent-label">
+            <span aria-hidden="true">●</span>
+            Powered by Alphex AI
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- BOTTOM CTA -->
+    <section class="about-bottom-cta" aria-labelledby="about-bottom-title">
+      <div class="about-container">
+        <div class="about-bottom-cta-inner">
+          <div>
+            <h2 id="about-bottom-title">
+              Have a question?
+              <span class="about-red-text">Let's talk.</span>
+            </h2>
+            <p>
+              Have a suggestion, a business requirement, or a question
+              about ARTHNIX? We'd welcome the opportunity to hear from you.
+            </p>
+          </div>
+          <a class="about-bottom-cta-button" href="contact.html">
+            Contact ARTHNIX
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="components.js"></script>
+</body>
+</html>
