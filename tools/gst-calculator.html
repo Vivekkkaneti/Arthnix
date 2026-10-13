@@ -30,51 +30,64 @@
     }
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 90px;
     }
     body {
-      margin: 0;
-      padding: 0;
-      background: var(--paper);
-      color: var(--text);
       font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background: var(--white);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     body,
+    button,
+    input,
+    select {
+      font-family: "DM Sans", sans-serif;
+    }
+    button,
     input,
     select,
-    button {
-      font-family: "DM Sans", sans-serif;
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
     button,
     input,
     select {
       font-size: inherit;
     }
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
     a {
       color: inherit;
       text-decoration: none;
     }
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    a:focus-visible {
-      outline: 3px solid rgba(237, 52, 52, .35);
+    button {
+      cursor: pointer;
+    }
+    button,
+    a,
+    input,
+    select {
+      outline-offset: 4px;
+    }
+    :focus-visible {
+      outline: 3px solid rgba(237, 52, 52, .4);
       outline-offset: 3px;
     }
+    ::selection {
+      background: var(--red);
+      color: var(--white);
+    }
     .container {
-      width: min(var(--container), calc(100% - 48px));
-      margin: 0 auto;
+      width: min(var(--container), calc(100% - 64px));
+      margin-inline: auto;
     }
     /* =====================================================
-       SHARED ARTHNIX NAVBAR — MATCHES INDEX PAGE
+       ARTHNIX NAVBAR — MATCHES INDEX PAGE
        ===================================================== */
     .site-header {
       position: sticky;
@@ -83,85 +96,103 @@
       width: 100%;
       background: #090909;
       border-bottom: 1px solid #292929;
-      backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
     }
     .navbar {
-      width: min(1160px, calc(100% - 48px));
+      position: relative;
+      width: min(1200px, calc(100% - 64px));
       min-height: 76px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 28px;
     }
     .brand {
       display: inline-flex;
       align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .brand-logo {
+      display: block;
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
       flex-shrink: 0;
     }
-    .brand img {
-      display: block;
-      width: auto;
-      height: 38px;
-      max-width: 190px;
-      object-fit: contain;
+    .brand-name {
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.8px;
     }
     .nav-links {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 28px;
-      margin-left: auto;
+      gap: 27px;
     }
     .nav-links a {
-      color: #c8c8c8;
-      font-size: 12px;
+      display: inline-block;
+      color: #bcbcbc;
+      font-size: 13px;
       font-weight: 600;
-      transition: color .2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
     }
     .nav-links a:hover,
-    .nav-links a[aria-current="page"] {
-      color: #ffffff;
+    .nav-links a:focus-visible {
+      color: var(--red);
     }
     .nav-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
-      padding: 0 17px;
-      border-radius: 8px;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--red);
+      border-radius: 7px;
       background: var(--red);
       color: #ffffff;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
+      text-decoration: none;
       white-space: nowrap;
-      transition: background .2s ease, transform .2s ease;
+      flex-shrink: 0;
+      transition: background 180ms ease, border-color 180ms ease;
     }
     .nav-cta:hover {
       background: var(--red-dark);
-      transform: translateY(-1px);
+      border-color: var(--red-dark);
     }
     .menu-toggle {
       display: none;
-      width: 43px;
-      height: 43px;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border: 1px solid #353535;
+      border-radius: 7px;
+      background: #111111;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-      border: 1px solid #333333;
-      border-radius: 9px;
-      background: transparent;
-      cursor: pointer;
     }
     .menu-toggle span {
       display: block;
       width: 18px;
       height: 2px;
+      margin: 5px auto;
       border-radius: 2px;
       background: #ffffff;
-      transition: transform .2s ease, opacity .2s ease;
+      transition: transform 180ms ease, opacity 180ms ease;
     }
     .menu-toggle[aria-expanded="true"] span:first-child {
       transform: translateY(3.5px) rotate(45deg);
@@ -169,7 +200,107 @@
     .menu-toggle[aria-expanded="true"] span:last-child {
       transform: translateY(-3.5px) rotate(-45deg);
     }
-    /* GENERAL */
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      .nav-links a {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+      .brand {
+        gap: 8px;
+      }
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -.5px;
+      }
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+      .menu-toggle {
+        display: inline-flex;
+      }
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, .3);
+      }
+      .nav-links.is-open {
+        display: flex;
+      }
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+    }
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+      .brand-name {
+        font-size: 15px;
+      }
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+    /* =====================================================
+       SHARED BUTTONS AND PAGE ELEMENTS
+       ===================================================== */
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -197,19 +328,19 @@
       border-radius: 10px;
       background: var(--red);
       color: var(--white);
-      font-weight: 700;
       font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
-      transition: transform .2s ease, background .2s ease;
+      transition: transform 180ms ease, background 180ms ease;
     }
     .button:hover {
       background: var(--red-dark);
       transform: translateY(-1px);
     }
     .button-secondary {
+      border-color: var(--border);
       background: var(--white);
       color: var(--text);
-      border-color: var(--border);
     }
     .button-secondary:hover {
       background: var(--surface);
@@ -222,7 +353,9 @@
     .button-dark:hover {
       background: #292929;
     }
-    /* PAGE INTRO */
+    /* =====================================================
+       PAGE INTRODUCTION
+       ===================================================== */
     .page-hero {
       padding: 68px 0 44px;
       background:
@@ -267,11 +400,13 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       background: rgba(255, 255, 255, .75);
-      color: #555;
+      color: #555555;
       font-size: 11px;
       font-weight: 600;
     }
-    /* CALCULATOR */
+    /* =====================================================
+       CALCULATOR FORM
+       ===================================================== */
     .calculator-section {
       padding: 12px 0 76px;
     }
@@ -330,7 +465,7 @@
       border: 1px solid #dededb;
       border-radius: 11px;
       background: var(--white);
-      transition: border-color .2s ease, box-shadow .2s ease;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
     }
     .amount-field:focus-within {
       border-color: var(--red);
@@ -338,7 +473,7 @@
     }
     .currency-symbol {
       padding-left: 17px;
-      color: #555;
+      color: #555555;
       font-size: 19px;
       font-weight: 700;
     }
@@ -385,12 +520,12 @@
       padding: 8px;
       border: 1px solid transparent;
       border-radius: 8px;
-      color: #666;
+      color: #666666;
       text-align: center;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+      transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
     }
     .segment-option input:checked + label {
       border-color: var(--border);
@@ -460,7 +595,9 @@
     .error-message.is-visible {
       display: block;
     }
-    /* RESULTS */
+    /* =====================================================
+       CALCULATION RESULTS
+       ===================================================== */
     .results-card {
       position: sticky;
       top: 98px;
@@ -470,7 +607,7 @@
       background: var(--black);
       color: var(--white);
     }
-    .results-top .result-label {
+    .result-label {
       color: #bdbdbd;
       font-size: 12px;
       font-weight: 600;
@@ -524,7 +661,7 @@
       border-bottom: 0;
     }
     .result-row-label {
-      color: #666;
+      color: #666666;
       font-size: 12px;
       line-height: 1.6;
     }
@@ -556,7 +693,7 @@
       padding: 12px;
       border-radius: 9px;
       background: var(--surface);
-      color: #666;
+      color: #666666;
       font-size: 11px;
       line-height: 1.75;
     }
@@ -572,7 +709,9 @@
       line-height: 1.5;
       text-align: center;
     }
-    /* EXPLANATION */
+    /* =====================================================
+       EXPLANATION AND FORMULAS
+       ===================================================== */
     .info-section {
       padding: 75px 0;
       border-top: 1px solid var(--border);
@@ -644,7 +783,7 @@
     }
     .formula {
       padding: 10px 0;
-      color: #555;
+      color: #555555;
       font-size: 13px;
       line-height: 1.7;
     }
@@ -661,11 +800,13 @@
       padding: 15px 17px;
       border-left: 3px solid var(--red);
       background: #fff7f7;
-      color: #666;
+      color: #666666;
       font-size: 11px;
       line-height: 1.8;
     }
-    /* OTHER TOOLS */
+    /* =====================================================
+       OTHER BUSINESS TOOLS
+       ===================================================== */
     .other-tools {
       padding: 74px 0;
       background: var(--surface);
@@ -684,7 +825,7 @@
       border: 1px solid #e4e4e1;
       border-radius: 14px;
       background: var(--white);
-      transition: border-color .2s ease, transform .2s ease;
+      transition: border-color 180ms ease, transform 180ms ease;
     }
     .tool-link-card:hover {
       transform: translateY(-3px);
@@ -722,82 +863,96 @@
       font-weight: 800;
     }
     /* =====================================================
-       SHARED ARTHNIX FOOTER — MATCHES INDEX PAGE
+       ARTHNIX FOOTER
+       Matches the shared index-page footer design.
        ===================================================== */
     .site-footer {
-      padding: 58px 0 24px;
-      background: #090909;
-      color: #ffffff;
+      padding: 57px 0 25px;
+      background: var(--black);
+      color: var(--white);
     }
-    .footer-inner {
-      width: min(1160px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-    .footer-top {
+    .footer-main {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 38px;
-      padding-bottom: 42px;
+      gap: 50px;
+      padding-bottom: 45px;
     }
-    .footer-brand img {
-      display: block;
-      width: auto;
-      height: 38px;
-      max-width: 190px;
-      object-fit: contain;
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
-    .footer-brand p {
-      max-width: 270px;
-      margin: 18px 0 0;
-      color: #a5a5a5;
-      font-size: 12px;
-      line-height: 1.9;
-    }
-    .footer-column h3 {
-      margin: 3px 0 17px;
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
       color: #ffffff;
-      font-size: 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
       font-weight: 800;
+      letter-spacing: -.6px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .footer-powered {
+      margin: 7px 0 0;
+      color: #929292;
+      font-size: 11px;
+      letter-spacing: .3px;
+    }
+    .footer-column h4 {
+      margin-bottom: 19px;
+      color: #f0f0f0;
+      font-size: 11px;
+      font-weight: 700;
     }
     .footer-column a {
       display: block;
       width: fit-content;
-      margin: 11px 0;
-      color: #a5a5a5;
-      font-size: 12px;
-      line-height: 1.6;
-      transition: color .2s ease;
+      margin-top: 13px;
+      color: #919191;
+      font-size: 11px;
+      transition: color 180ms ease;
     }
     .footer-column a:hover {
-      color: #ffffff;
+      color: var(--white);
     }
     .footer-bottom {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
+      justify-content: space-between;
+      gap: 20px;
       padding-top: 22px;
       border-top: 1px solid #292929;
-      color: #8e8e8e;
-      font-size: 11px;
-      line-height: 1.7;
     }
-    .footer-bottom-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+    .copyright,
+    .powered-by {
+      color: #797979;
+      font-size: 10px;
+      line-height: 1.8;
     }
-    .footer-bottom-links a {
-      color: #a5a5a5;
+    .powered-by strong {
+      color: #b8b8b8;
+      font-weight: 600;
     }
-    .footer-bottom-links a:hover {
-      color: #ffffff;
-    }
-    /* RESPONSIVE */
+    /* =====================================================
+       RESPONSIVE LAYOUT
+       ===================================================== */
     @media (max-width: 960px) {
       .calculator-layout {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 16px;
       }
       .card-heading,
@@ -807,51 +962,14 @@
         padding-left: 21px;
         padding-right: 21px;
       }
-      .nav-links {
-        gap: 17px;
-      }
-      .footer-top {
+      .footer-main {
         grid-template-columns: 1.3fr 1fr 1fr;
+        gap: 35px;
       }
     }
-    @media (max-width: 760px) {
-      .navbar {
-        width: calc(100% - 36px);
-        min-height: 68px;
-        flex-wrap: wrap;
-        gap: 0;
-      }
-      .brand img {
-        height: 34px;
-      }
-      .menu-toggle {
-        display: flex;
-        margin-left: auto;
-      }
-      .nav-links {
-        display: none;
-        order: 3;
-        width: 100%;
-        align-items: stretch;
-        flex-direction: column;
-        gap: 0;
-        margin: 0;
-        padding: 8px 0 15px;
-      }
-      .nav-links.is-open {
-        display: flex;
-      }
-      .nav-links a {
-        display: block;
-        padding: 13px 3px;
-        border-bottom: 1px solid #242424;
-        font-size: 13px;
-      }
-      .nav-cta {
-        display: none;
-      }
+    @media (max-width: 780px) {
       .container {
-        width: min(100% - 36px, var(--container));
+        width: calc(100% - 36px);
       }
       .page-hero {
         padding: 49px 0 32px;
@@ -888,12 +1006,20 @@
       .tool-link-card {
         min-height: 160px;
       }
-      .footer-inner {
-        width: calc(100% - 36px);
-      }
-      .footer-top {
+      .footer-main {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 30px 22px;
+        gap: 38px 28px;
+      }
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+      }
+    }
+    @media (max-width: 520px) {
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 18px;
       }
       .footer-brand {
         grid-column: 1 / -1;
@@ -901,9 +1027,6 @@
     }
     @media (max-width: 420px) {
       .container {
-        width: calc(100% - 28px);
-      }
-      .navbar {
         width: calc(100% - 28px);
       }
       .card-heading,
@@ -928,15 +1051,8 @@
       .result-row-value {
         font-size: 12px;
       }
-      .footer-inner {
-        width: calc(100% - 28px);
-      }
-      .footer-top {
+      .footer-main {
         gap: 25px 16px;
-      }
-      .footer-bottom {
-        align-items: flex-start;
-        flex-direction: column;
       }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -952,36 +1068,48 @@
   </style>
 </head>
 <body>
-  <!-- SHARED ARTHNIX NAVBAR: EMBEDDED DIRECTLY, NO COMPONENTS.JS -->
+  <!-- =====================================================
+       ARTHNIX NAVBAR — EMBEDDED DIRECTLY
+       No components.js or separate navbar file.
+       ===================================================== -->
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
-      <a class="brand" href="/" aria-label="ARTHNIX home">
-        <img src="/logo.png" alt="ARTHNIX" width="190" height="38">
-      </a>
-  <button
-    class="menu-toggle"
-    id="menuToggle"
-    type="button"
-    aria-label="Toggle navigation"
-    aria-controls="navLinks"
-    aria-expanded="false">
-    <span></span>
-    <span></span>
-  </button>
+  <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+    <img
+      class="brand-logo"
+      src="/logo.png"
+      alt="ARTHNIX logo"
+      width="38"
+      height="38">
+    <span class="brand-name">ARTHNIX</span>
+  </a>
   <div class="nav-links" id="navLinks">
-    <a href="/tools.html" aria-current="page">Tools</a>
+    <a href="/tools.html">Free Tools</a>
     <a href="/platform.html">Platform</a>
     <a href="/#how-it-works">How It Works</a>
     <a href="/pricing.html">Pricing</a>
     <a href="/contact.html">Contact</a>
   </div>
-  <a class="nav-cta" href="/tools.html">Explore Tools <span aria-hidden="true">↗</span></a>
+  <a class="nav-cta" href="/tools.html">
+    Start Free <span aria-hidden="true">↗</span>
+  </a>
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="navLinks">
+    <span></span>
+    <span></span>
+  </button>
 </nav>
   </header>
   <main>
-    <section class="page-hero">
-      <div class="container hero-content">
-        <span class="eyebrow">Free Business Tool</span>
+<!-- PAGE INTRODUCTION -->
+<section class="page-hero">
+  <div class="container hero-content">
+    <span class="eyebrow">Free Business Tool</span>
     <h1>
       GST Calculator.<br>
       <span>Clear numbers. Better decisions.</span>
@@ -998,13 +1126,17 @@
     </div>
   </div>
 </section>
+<!-- GST CALCULATOR -->
 <section class="calculator-section" aria-label="GST calculator">
   <div class="container">
     <div class="calculator-layout">
+      <!-- INPUT FORM -->
       <section class="calculator-card" aria-labelledby="calculatorHeading">
         <div class="card-heading">
           <h2 id="calculatorHeading">Calculate your GST</h2>
-          <p>Enter an amount, choose the GST rate and select the transaction type.</p>
+          <p>
+            Enter an amount, choose the GST rate and select the transaction type.
+          </p>
         </div>
         <form class="calculator-form" id="gstForm" novalidate>
           <div class="form-group">
@@ -1031,32 +1163,45 @@
             <span class="form-label">Amount type</span>
             <div class="segmented-control">
               <div class="segment-option">
-                <input type="radio" id="exclusive" name="amountMode" value="exclusive" checked>
+                <input
+                  type="radio"
+                  id="exclusive"
+                  name="amountMode"
+                  value="exclusive"
+                  checked>
                 <label for="exclusive">GST Exclusive</label>
               </div>
               <div class="segment-option">
-                <input type="radio" id="inclusive" name="amountMode" value="inclusive">
+                <input
+                  type="radio"
+                  id="inclusive"
+                  name="amountMode"
+                  value="inclusive">
                 <label for="inclusive">GST Inclusive</label>
               </div>
             </div>
             <span class="form-hint">
-              Exclusive: GST is added to the entered amount. Inclusive: GST is already included.
+              Exclusive: GST is added to the entered amount.
+              Inclusive: GST is already included in the amount.
             </span>
           </div>
           <div class="form-group">
             <label class="form-label" for="gstRate">GST rate</label>
             <select class="select-field" id="gstRate" name="gstRate">
               <option value="0">0% — Nil rate, where applicable</option>
-              <option value="3">3% — Special rate, where applicable</option>
-              <option value="5">5%</option>
+              <option value="0.1">0.1% — Where applicable</option>
+              <option value="0.25">0.25% — Where applicable</option>
+              <option value="3">3% — Where applicable</option>
+              <option value="5">5% — Where applicable</option>
               <option value="12">12% — Where applicable</option>
-              <option value="18" selected>18%</option>
+              <option value="18" selected>18% — Where applicable</option>
               <option value="28">28% — Where applicable</option>
-              <option value="40">40% — Where applicable</option>
               <option value="custom">Custom rate</option>
             </select>
             <div class="custom-rate-wrap hidden" id="customRateWrap">
-              <label class="form-label" for="customRate">Enter custom GST rate</label>
+              <label class="form-label" for="customRate">
+                Enter custom GST rate
+              </label>
               <div class="custom-rate-field">
                 <input
                   class="custom-rate-input"
@@ -1069,23 +1214,35 @@
                   placeholder="Enter rate from 0 to 100">
                 <span class="percent-symbol" aria-hidden="true">%</span>
               </div>
-              <span class="form-hint">Enter a rate between 0% and 100%.</span>
+              <span class="form-hint">
+                Enter a rate between 0% and 100%.
+              </span>
             </div>
           </div>
           <div class="form-group">
             <span class="form-label">Transaction type</span>
             <div class="segmented-control">
               <div class="segment-option">
-                <input type="radio" id="intraState" name="transactionType" value="intra" checked>
+                <input
+                  type="radio"
+                  id="intraState"
+                  name="transactionType"
+                  value="intra"
+                  checked>
                 <label for="intraState">Intra-state</label>
               </div>
               <div class="segment-option">
-                <input type="radio" id="interState" name="transactionType" value="inter">
+                <input
+                  type="radio"
+                  id="interState"
+                  name="transactionType"
+                  value="inter">
                 <label for="interState">Inter-state</label>
               </div>
             </div>
             <span class="form-hint">
-              Intra-state generally splits GST into CGST and SGST. Inter-state generally uses IGST.
+              Intra-state generally splits GST into CGST and SGST.
+              Inter-state generally uses IGST.
             </span>
           </div>
           <div class="error-message" id="errorMessage" role="alert"></div>
@@ -1099,6 +1256,7 @@
           </div>
         </form>
       </section>
+      <!-- CALCULATION RESULTS -->
       <section
         class="calculator-card results-card"
         aria-labelledby="resultsHeading"
@@ -1149,8 +1307,8 @@
             <div class="result-row-value" id="totalGst">₹1,800.00</div>
           </div>
           <p class="results-note" id="calculationNote">
-            GST is calculated on the taxable amount. For an intra-state transaction,
-            the selected GST rate is split equally between CGST and SGST.
+            GST is calculated on the taxable amount. For an intra-state
+            transaction, the selected GST rate is split between CGST and SGST.
           </p>
           <button class="button button-dark copy-button" type="button" id="copyButton">
             Copy GST breakdown <span aria-hidden="true">↗</span>
@@ -1161,15 +1319,16 @@
     </div>
   </div>
 </section>
+<!-- EXPLANATION -->
 <section class="info-section">
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">Understand the Calculation</span>
       <h2>GST made simple.</h2>
       <p>
-        Goods and Services Tax is an indirect tax applied to many goods and services in India.
-        The calculation depends on the applicable rate and whether the entered amount already
-        includes GST.
+        Goods and Services Tax is an indirect tax applied to many goods and
+        services in India. The calculation depends on the applicable rate
+        and whether the entered amount already includes GST.
       </p>
     </div>
     <div class="info-grid">
@@ -1177,24 +1336,24 @@
         <span class="info-number">01</span>
         <h3>GST Exclusive</h3>
         <p>
-          Use this when the amount is before GST. The calculator calculates tax on the entered
-          value and adds it to determine the final amount.
+          Use this when the amount is before GST. The calculator calculates
+          tax on the entered value and adds it to determine the final amount.
         </p>
       </article>
       <article class="info-card">
         <span class="info-number">02</span>
         <h3>GST Inclusive</h3>
         <p>
-          Use this when the entered price already includes GST. The calculator separates the
-          taxable value and tax component from the total.
+          Use this when the entered price already includes GST. The calculator
+          separates the taxable value and tax component from the total.
         </p>
       </article>
       <article class="info-card">
         <span class="info-number">03</span>
         <h3>CGST, SGST &amp; IGST</h3>
         <p>
-          For an eligible intra-state supply, GST is generally split into CGST and SGST.
-          For an eligible inter-state supply, IGST generally applies.
+          For an eligible intra-state supply, GST is generally split into
+          CGST and SGST. For an eligible inter-state supply, IGST generally applies.
         </p>
       </article>
     </div>
@@ -1224,20 +1383,23 @@
       </div>
     </div>
     <div class="disclaimer">
-      <strong>Important:</strong> This calculator provides an estimate for general informational
-      purposes. GST rates, exemptions, place-of-supply rules and tax treatment depend on the
-      specific goods or services and applicable law. Confirm the appropriate rate and treatment
-      before issuing an invoice or filing a tax return.
+      <strong>Important:</strong> This calculator provides an estimate for general
+      informational purposes. GST rates, exemptions, place-of-supply rules and
+      tax treatment depend on the specific goods or services and applicable law.
+      Confirm the appropriate rate and treatment before issuing an invoice or
+      filing a tax return.
     </div>
   </div>
 </section>
+<!-- OTHER BUSINESS TOOLS -->
 <section class="other-tools">
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">More Business Tools</span>
       <h2>More clarity for your business.</h2>
       <p>
-        Explore other ARTHNIX tools designed to simplify everyday business calculations and documents.
+        Explore other ARTHNIX tools designed to simplify everyday business
+        calculations and documents.
       </p>
     </div>
     <div class="tools-grid">
@@ -1263,87 +1425,122 @@
   </div>
 </section>
   </main>
-  <!-- SHARED ARTHNIX FOOTER: EMBEDDED DIRECTLY, NO COMPONENTS.JS -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="/" aria-label="ARTHNIX home">
-            <img src="/logo.png" alt="ARTHNIX" width="190" height="38" loading="lazy">
-          </a>
-          <p>
-            Intelligence for Every Business. ARTHNIX builds practical digital tools
-            to help businesses work smarter, make informed decisions and grow.
-          </p>
-        </div>
-    <div class="footer-column">
-      <h3>Explore</h3>
-      <a href="/platform.html">Platform</a>
-      <a href="/tools.html">Business Tools</a>
-      <a href="/#how-it-works">How It Works</a>
-      <a href="/pricing.html">Pricing</a>
+  <!-- =====================================================
+       ARTHNIX FOOTER — EMBEDDED DIRECTLY
+       Matches the shared index-page footer design.
+       ===================================================== -->
+  <footer class="site-footer" id="footer-contact">
+    <div class="container">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a class="footer-brand-link" href="/index.html" aria-label="ARTHNIX home">
+        <img
+          class="footer-logo"
+          src="/logo.png"
+          alt="ARTHNIX logo"
+          width="31"
+          height="31"
+          loading="lazy">
+        <span>ARTHNIX</span>
+      </a>
+      <p class="footer-tagline">Intelligence for Every Business.</p>
+      <p class="footer-powered">Powered by Alphex AI</p>
     </div>
     <div class="footer-column">
-      <h3>Tools</h3>
+      <h4>Explore</h4>
+      <a href="/#platform">Platform</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/tools.html">Free Tools</a>
+    </div>
+    <div class="footer-column">
+      <h4>Business Tools</h4>
       <a href="/tools/gst-calculator.html">GST Calculator</a>
       <a href="/tools/invoice-generator.html">Invoice Generator</a>
       <a href="/tools/profit-calculator.html">Profit Calculator</a>
       <a href="/tools/quotation-generator.html">Quotation Generator</a>
     </div>
     <div class="footer-column">
-      <h3>Company</h3>
-      <a href="/about.html">About</a>
+      <h4>Information</h4>
+      <a href="/about.html">About ARTHNIX</a>
+      <a href="/help.html">Help Centre</a>
+      <a href="/blog.html">Blog</a>
       <a href="/contact.html">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Use</a>
+      <a href="/disclaimer.html">Disclaimer</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
-    <div class="footer-bottom-links">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/contact.html">Contact</a>
-    </div>
+    <p class="copyright">
+      © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+    </p>
+    <p class="powered-by">
+      An independent product brand · <strong>Powered by Alphex AI</strong>
+    </p>
   </div>
 </div>
   </footer>
+  <!-- =====================================================
+       NAVIGATION AND GST CALCULATOR LOGIC
+       No external JavaScript files required.
+       ===================================================== -->
   <script>
     (() => {
       "use strict";
-      /* Mobile navigation — embedded directly, no components.js */
+      /* ---------------------------------------------------
+         MOBILE NAVIGATION
+         --------------------------------------------------- */
       const menuToggle = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
+      function closeMenu() {
+        if (!menuToggle || !navLinks) return;
+        navLinks.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      }
       if (menuToggle && navLinks) {
         menuToggle.addEventListener("click", () => {
           const isOpen = navLinks.classList.toggle("is-open");
           menuToggle.setAttribute("aria-expanded", String(isOpen));
           menuToggle.setAttribute(
             "aria-label",
-            isOpen ? "Close navigation" : "Toggle navigation"
+            isOpen ? "Close navigation menu" : "Open navigation menu"
           );
         });
         navLinks.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => {
-            navLinks.classList.remove("is-open");
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.setAttribute("aria-label", "Toggle navigation");
-          });
+          link.addEventListener("click", closeMenu);
+        });
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("is-open") &&
+            !navLinks.contains(event.target) &&
+            !menuToggle.contains(event.target)
+          ) {
+            closeMenu();
+          }
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
         });
         window.addEventListener("resize", () => {
-          if (window.innerWidth > 760) {
-            navLinks.classList.remove("is-open");
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.setAttribute("aria-label", "Toggle navigation");
+          if (window.innerWidth > 780) {
+            closeMenu();
           }
         });
       }
-      /* Footer year */
+      /* ---------------------------------------------------
+         FOOTER YEAR
+         --------------------------------------------------- */
       const currentYear = document.getElementById("currentYear");
       if (currentYear) {
         currentYear.textContent = new Date().getFullYear();
       }
-      /* GST calculator */
+      /* ---------------------------------------------------
+         GST CALCULATOR
+         --------------------------------------------------- */
       const form = document.getElementById("gstForm");
       const amountInput = document.getElementById("amount");
       const rateSelect = document.getElementById("gstRate");
@@ -1377,6 +1574,10 @@
         maximumFractionDigits: 4
       });
       let lastCalculation = null;
+      let copyResetTimer = null;
+      function roundMoney(value) {
+        return Math.round((value + Number.EPSILON) * 100) / 100;
+      }
       function formatCurrency(value) {
         return currency.format(Object.is(value, -0) ? 0 : value);
       }
@@ -1384,20 +1585,28 @@
         return numberFormat.format(value) + "%";
       }
       function getMode() {
-        return document.querySelector('input[name="amountMode"]:checked').value;
+        return document.querySelector(
+          'input[name="amountMode"]:checked'
+        ).value;
       }
       function getTransactionType() {
-        return document.querySelector('input[name="transactionType"]:checked').value;
+        return document.querySelector(
+          'input[name="transactionType"]:checked'
+        ).value;
       }
       function getRate() {
         if (rateSelect.value === "custom") {
           const customValue = customRateInput.value.trim();
           if (customValue === "") {
-            throw new Error("Enter a custom GST rate between 0% and 100%.");
+            throw new Error(
+              "Enter a custom GST rate between 0% and 100%."
+            );
           }
           const rate = Number(customValue);
           if (!Number.isFinite(rate) || rate < 0 || rate > 100) {
-            throw new Error("The custom GST rate must be between 0% and 100%.");
+            throw new Error(
+              "The custom GST rate must be between 0% and 100%."
+            );
           }
           return rate;
         }
@@ -1418,24 +1627,25 @@
         errorMessage.classList.remove("is-visible");
       }
       function calculate(event) {
-        if (event) event.preventDefault();
+        if (event) {
+          event.preventDefault();
+        }
         clearError();
         liveStatus.textContent = "";
         const rawAmount = amountInput.value.trim();
         if (rawAmount === "") {
           showError("Enter an amount to calculate GST.");
-          amountInput.focus();
           return;
         }
         const amount = Number(rawAmount);
         if (!Number.isFinite(amount) || amount <= 0) {
           showError("Enter an amount greater than ₹0.");
-          amountInput.focus();
           return;
         }
         if (amount > Number.MAX_SAFE_INTEGER) {
-          showError("Enter a smaller amount that can be calculated reliably.");
-          amountInput.focus();
+          showError(
+            "Enter a smaller amount that can be calculated reliably."
+          );
           return;
         }
         let rate;
@@ -1443,9 +1653,6 @@
           rate = getRate();
         } catch (error) {
           showError(error.message);
-          if (rateSelect.value === "custom") {
-            customRateInput.focus();
-          }
           return;
         }
         const mode = getMode();
@@ -1454,25 +1661,46 @@
         let totalGst;
         let finalAmount;
         if (mode === "inclusive") {
+          /*
+           * The entered amount is already the final amount.
+           * Derive the taxable value and GST component from it.
+           */
+          finalAmount = amount;
           taxableAmount = amount / (1 + rate / 100);
           totalGst = amount - taxableAmount;
         } else {
+          /*
+           * GST is added to the entered taxable amount.
+           */
           taxableAmount = amount;
           totalGst = taxableAmount * rate / 100;
         }
-        taxableAmount = Math.round((taxableAmount + Number.EPSILON) * 100) / 100;
-        totalGst = Math.round((totalGst + Number.EPSILON) * 100) / 100;
+        taxableAmount = roundMoney(taxableAmount);
+        totalGst = roundMoney(totalGst);
         let cgst = 0;
         let sgst = 0;
         let igst = 0;
         if (transactionType === "intra") {
-          cgst = Math.round((totalGst / 2 + Number.EPSILON) * 100) / 100;
-          sgst = Math.round((totalGst - cgst + Number.EPSILON) * 100) / 100;
+          /*
+           * Round CGST to paise, then use the remaining tax
+           * amount for SGST so the displayed components add up.
+           */
+          cgst = roundMoney(totalGst / 2);
+          sgst = roundMoney(totalGst - cgst);
         } else {
           igst = totalGst;
         }
-        totalGst = cgst + sgst + igst;
-        finalAmount = Math.round((taxableAmount + totalGst + Number.EPSILON) * 100) / 100;
+        totalGst = roundMoney(cgst + sgst + igst);
+        if (mode === "exclusive") {
+          finalAmount = roundMoney(taxableAmount + totalGst);
+        } else {
+          /*
+           * Preserve the user's entered inclusive total.
+           * This avoids a paise-level discrepancy caused by
+           * rounding the extracted taxable value and tax.
+           */
+          finalAmount = roundMoney(amount);
+        }
         output.finalAmount.textContent = formatCurrency(finalAmount);
         output.taxableAmount.textContent = formatCurrency(taxableAmount);
         output.cgstAmount.textContent = formatCurrency(cgst);
@@ -1483,23 +1711,29 @@
         output.modeBadge.textContent =
           mode === "inclusive" ? "GST Inclusive" : "GST Exclusive";
         if (transactionType === "intra") {
-          output.cgstDescription.textContent = formatRate(rate / 2) + " of taxable amount";
-          output.sgstDescription.textContent = formatRate(rate / 2) + " of taxable amount";
-          output.igstDescription.textContent = "Not applicable for this selection";
+          output.cgstDescription.textContent =
+            formatRate(rate / 2) + " of taxable amount";
+          output.sgstDescription.textContent =
+            formatRate(rate / 2) + " of taxable amount";
+          output.igstDescription.textContent =
+            "Not applicable for this selection";
         } else {
-          output.cgstDescription.textContent = "Not applicable for this selection";
-          output.sgstDescription.textContent = "Not applicable for this selection";
-          output.igstDescription.textContent = formatRate(rate) + " of taxable amount";
+          output.cgstDescription.textContent =
+            "Not applicable for this selection";
+          output.sgstDescription.textContent =
+            "Not applicable for this selection";
+          output.igstDescription.textContent =
+            formatRate(rate) + " of taxable amount";
         }
         if (rate === 0) {
           output.calculationNote.textContent =
             "The selected rate is 0%. The calculator applies no GST to this amount. Confirm whether the goods or services qualify for the applicable nil rate or exemption.";
         } else if (mode === "inclusive") {
           output.calculationNote.textContent =
-            "The entered amount already includes GST. The taxable amount is derived by dividing the inclusive amount by (1 + GST rate ÷ 100).";
+            "The entered amount already includes GST. The taxable value is derived from the inclusive amount. The final amount remains the amount you entered.";
         } else {
           output.calculationNote.textContent =
-            "GST is added to the entered taxable amount. For an intra-state selection, the GST amount is split between CGST and SGST; for an inter-state selection, it is shown as IGST.";
+            "GST is added to the entered taxable amount. For an intra-state selection, the tax is split between CGST and SGST. For an inter-state selection, it is shown as IGST.";
         }
         lastCalculation = {
           enteredAmount: amount,
@@ -1519,15 +1753,15 @@
         const isCustom = rateSelect.value === "custom";
         customRateWrap.classList.toggle("hidden", !isCustom);
         customRateInput.required = isCustom;
-        if (isCustom) {
-          customRateInput.focus();
-        }
         calculate();
       }
       function getCopyText() {
-        if (!lastCalculation) return "";
+        if (!lastCalculation) {
+          return "";
+        }
         const c = lastCalculation;
-        const modeLabel = c.mode === "inclusive" ? "GST Inclusive" : "GST Exclusive";
+        const modeLabel =
+          c.mode === "inclusive" ? "GST Inclusive" : "GST Exclusive";
         const transactionLabel =
           c.transactionType === "intra"
             ? "Intra-state (CGST + SGST)"
@@ -1551,7 +1785,9 @@
       async function copyResults() {
         if (!lastCalculation) {
           calculate();
-          if (!lastCalculation) return;
+          if (!lastCalculation) {
+            return;
+          }
         }
         const text = getCopyText();
         try {
@@ -1572,9 +1808,13 @@
               throw new Error("Copy failed");
             }
           }
-          liveStatus.textContent = "GST breakdown copied to clipboard.";
-          copyButton.innerHTML = "Copied successfully ✓";
-          window.setTimeout(() => {
+          liveStatus.textContent =
+            "GST breakdown copied to clipboard.";
+          copyButton.textContent = "Copied successfully ✓";
+          if (copyResetTimer) {
+            window.clearTimeout(copyResetTimer);
+          }
+          copyResetTimer = window.setTimeout(() => {
             copyButton.innerHTML =
               'Copy GST breakdown <span aria-hidden="true">↗</span>';
           }, 1800);
@@ -1593,10 +1833,18 @@
         clearError();
         liveStatus.textContent = "";
         lastCalculation = null;
+        if (copyResetTimer) {
+          window.clearTimeout(copyResetTimer);
+          copyResetTimer = null;
+        }
+        copyButton.innerHTML =
+          'Copy GST breakdown <span aria-hidden="true">↗</span>';
         calculate();
         liveStatus.textContent = "Calculator reset.";
       }
+      /* Form submission */
       form.addEventListener("submit", calculate);
+      /* Live calculations */
       amountInput.addEventListener("input", calculate);
       customRateInput.addEventListener("input", calculate);
       rateSelect.addEventListener("change", toggleCustomRate);
@@ -1606,8 +1854,10 @@
       document.querySelectorAll('input[name="transactionType"]').forEach((input) => {
         input.addEventListener("change", calculate);
       });
+      /* Buttons */
       resetButton.addEventListener("click", resetCalculator);
       copyButton.addEventListener("click", copyResults);
+      /* Initial calculation */
       calculate();
     })();
   </script>
