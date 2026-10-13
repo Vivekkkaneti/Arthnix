@@ -1,1910 +1,672 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Invoice Generator — ARTHNIX</title>
-  <meta name="description" content="Create professional invoices with a live preview, custom business logo, automatic GST calculations, and PDF export using the free ARTHNIX Invoice Generator.">
-  <meta name="theme-color" content="#090909">
-  <link rel="canonical" href="https://arthnix.com/tools/invoice-generator.html">
-  <link rel="icon" href="/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --black: #090909;
-      --black-soft: #111111;
-      --white: #ffffff;
-      --paper: #fafaf9;
-      --surface: #f4f4f2;
-      --text: #151515;
-      --muted: #737373;
-      --border: #e9e9e7;
-      --red: #ed3434;
-      --red-dark: #d92727;
-      --radius: 18px;
-      --container: 1160px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body {
-      font-family: "DM Sans", sans-serif;
-      color: var(--text);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-    body, button, a { -webkit-tap-highlight-color: transparent; }
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
-    button, a { outline-offset: 4px; }
-    ::selection { background: #ed3434; color: #fff; }
-    .container {
-      width: min(var(--container), calc(100% - 64px));
-      margin-inline: auto;
-    }
-    /* Exact ARTHNIX navigation styles */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      width: 100%;
-      background: #090909;
-      border-bottom: 1px solid #292929;
-      -webkit-backdrop-filter: blur(16px);
-      backdrop-filter: blur(16px);
-    }
-    .navbar {
-      position: relative;
-      width: min(1200px, calc(100% - 64px));
-      min-height: 76px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-      text-decoration: none;
-    }
-    .brand-logo {
-      display: block;
-      width: 38px;
-      height: 38px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-    .brand-name {
-      color: #fff;
-      font-family: "Manrope", sans-serif;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -.8px;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 27px;
-    }
-    .nav-links a {
-      display: inline-block;
-      color: #bcbcbc;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color 180ms ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus-visible { color: var(--red); }
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 40px;
-      padding: 0 16px;
-      border: 1px solid var(--red);
-      border-radius: 7px;
-      background: var(--red);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background 180ms ease, border-color 180ms ease;
-    }
-    .nav-cta:hover {
-      background: var(--red-dark);
-      border-color: var(--red-dark);
-    }
-    .menu-toggle {
-      display: none;
-      width: 40px;
-      height: 40px;
-      padding: 9px;
-      border: 1px solid #353535;
-      border-radius: 7px;
-      background: #111;
-      color: #fff;
-      cursor: pointer;
-      flex-shrink: 0;
-      align-items: center;
-      justify-content: center;
-    }
-    .menu-toggle span {
-      display: block;
-      width: 18px;
-      height: 2px;
-      margin: 5px auto;
-      border-radius: 2px;
-      background: #fff;
-      transition: transform 180ms ease, opacity 180ms ease;
-    }
-    @media (max-width: 1050px) {
-      .navbar { width: calc(100% - 40px); gap: 18px; }
-      .nav-links { gap: 18px; }
-      .nav-links a { font-size: 12px; }
-    }
-    @media (max-width: 780px) {
-      .navbar {
-        min-height: 68px;
-        width: calc(100% - 36px);
-        flex-wrap: nowrap;
-        gap: 10px;
-      }
-      .brand { gap: 8px; }
-      .brand-logo { width: 31px; height: 31px; }
-      .brand-name { font-size: 17px; letter-spacing: -.5px; }
-      .nav-cta {
-        min-height: 37px;
-        padding: 0 12px;
-        margin-left: auto;
-        font-size: 11px;
-      }
-      .menu-toggle { display: inline-flex; }
-      .nav-links {
-        position: absolute;
-        top: calc(100% + 1px);
-        left: 0;
-        right: 0;
-        z-index: 1001;
-        display: none;
-        align-items: stretch;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 0;
-        width: 100%;
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        padding: 8px 14px 14px;
-        border: 1px solid #292929;
-        border-top: 0;
-        border-radius: 0 0 10px 10px;
-        background: #090909;
-        box-shadow: 0 18px 35px rgba(0,0,0,.3);
-      }
-      .nav-links.is-open { display: flex; }
-      .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 14px 4px;
-        border-bottom: 1px solid #242424;
-        color: #dedede;
-        font-size: 13px;
-        white-space: normal;
-      }
-      .nav-links a:last-child { border-bottom: 0; }
-      .nav-links a:hover,
-      .nav-links a:focus-visible { color: var(--red); }
-    }
-    @media (max-width: 380px) {
-      .navbar { width: calc(100% - 24px); gap: 7px; }
-      .brand-logo { width: 27px; height: 27px; }
-      .brand-name { font-size: 15px; }
-      .nav-cta { min-height: 35px; padding: 0 9px; font-size: 10px; }
-      .menu-toggle { width: 36px; height: 36px; }
-    }
-    /* Page introduction */
-    .page-hero {
-      padding: 65px 0 40px;
-      background: var(--paper);
-      border-bottom: 1px solid var(--border);
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--red);
-      flex-shrink: 0;
-    }
-    .page-hero h1 {
-      max-width: 800px;
-      margin-top: 19px;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(38px, 5vw, 60px);
-      line-height: 1.1;
-      letter-spacing: -2.8px;
-      font-weight: 600;
-    }
-    .accent { color: var(--red); }
-    .page-hero p {
-      max-width: 650px;
-      margin-top: 17px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.9;
-    }
-    .hero-points {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 22px;
-      margin-top: 23px;
-      color: #666;
-      font-size: 12px;
-    }
-    .hero-points span::before {
-      content: "✓";
-      margin-right: 7px;
-      color: var(--red);
-      font-weight: 700;
-    }
-    /* Main workspace */
-    .workspace-section { padding: 42px 0 90px; }
-    .workspace-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 24px;
-    }
-    .workspace-top h2 {
-      font-family: "Manrope", sans-serif;
-      font-size: 22px;
-      font-weight: 650;
-      letter-spacing: -.7px;
-    }
-    .workspace-top p {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .workspace-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
-    .button {
-      min-height: 43px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 0 16px;
-      border: 1px solid transparent;
-      border-radius: 7px;
-      font-size: 12px;
-      font-weight: 650;
-      cursor: pointer;
-      transition: background 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
-    }
-    .button:hover { transform: translateY(-1px); }
-    .button-primary { background: var(--red); color: #fff; }
-    .button-primary:hover { background: var(--red-dark); }
-    .button-outline {
-      border-color: #dededb;
-      color: var(--text);
-      background: #fff;
-    }
-    .button-outline:hover { border-color: #aaa; background: #fafaf8; }
-    .workspace-grid {
-      display: grid;
-      grid-template-columns: minmax(320px, .88fr) minmax(0, 1.12fr);
-      align-items: start;
-      gap: 25px;
-    }
-    .editor-panel {
-      min-width: 0;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #fff;
-      overflow: hidden;
-    }
-    .panel-heading {
-      padding: 20px 22px;
-      border-bottom: 1px solid var(--border);
-      background: #fff;
-    }
-    .panel-heading h2 {
-      font-family: "Manrope", sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: -.4px;
-    }
-    .panel-heading p {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.7;
-    }
-    .form-content { padding: 20px; }
-    .form-section { margin-bottom: 25px; }
-    .form-section:last-child { margin-bottom: 0; }
-    .form-section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
-      font-family: "Manrope", sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-    }
-    .section-index {
-      display: grid;
-      place-items: center;
-      width: 26px;
-      height: 26px;
-      border: 1px solid #eeeeeb;
-      border-radius: 7px;
-      color: var(--red);
-      background: #fffafa;
-      font-size: 10px;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 13px;
-    }
-    .field { min-width: 0; }
-    .field.full { grid-column: 1 / -1; }
-    .field label {
-      display: block;
-      margin-bottom: 6px;
-      color: #4b4b4b;
-      font-size: 11px;
-      font-weight: 700;
-    }
-    .field input,
-    .field textarea,
-    .field select {
-      display: block;
-      width: 100%;
-      min-width: 0;
-      min-height: 42px;
-      padding: 10px 11px;
-      border: 1px solid #dededb;
-      border-radius: 6px;
-      outline: none;
-      color: var(--text);
-      background: #fff;
-      font-size: 12px;
-      transition: border-color 160ms ease, box-shadow 160ms ease;
-    }
-    .field textarea { min-height: 74px; resize: vertical; line-height: 1.6; }
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(237,52,52,.08);
-    }
-    .field input[type="file"] {
-      padding: 8px;
-      font-size: 11px;
-    }
-    .field input[type="color"] {
-      min-height: 42px;
-      padding: 5px;
-      cursor: pointer;
-    }
-    .field-note {
-      margin-top: 6px;
-      color: #888;
-      font-size: 10px;
-      line-height: 1.6;
-    }
-    .logo-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .logo-thumb {
-      width: 54px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      border: 1px dashed #d6d6d1;
-      border-radius: 8px;
-      color: #888;
-      background: var(--paper);
-      font-size: 10px;
-      overflow: hidden;
-    }
-    .logo-thumb img { width: 100%; height: 100%; object-fit: contain; }
-    .text-button {
-      padding: 5px 0;
-      border: 0;
-      background: transparent;
-      color: var(--red);
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .items-editor { margin-top: 4px; }
-    .item-editor {
-      padding: 14px 0;
-      border-bottom: 1px solid #eee;
-    }
-    .item-editor:first-child { padding-top: 0; }
-    .item-editor-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 11px;
-    }
-    .item-editor-head strong { font-size: 11px; font-weight: 700; }
-    .remove-item {
-      border: 0;
-      background: transparent;
-      color: #b42323;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .item-fields {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 74px 100px;
-      gap: 9px;
-    }
-    .item-fields .field label { font-size: 10px; }
-    .item-fields .field input { padding-inline: 8px; }
-    .item-extra {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 9px;
-      margin-top: 10px;
-    }
-    .add-item {
-      width: 100%;
-      margin-top: 12px;
-      border: 1px dashed #d2d2cd;
-      background: #fff;
-      color: var(--text);
-    }
-    .add-item:hover { border-color: var(--red); color: var(--red); }
-    .tax-note {
-      padding: 12px 13px;
-      border: 1px solid #f0d9d9;
-      border-radius: 7px;
-      background: #fffafa;
-      color: #775252;
-      font-size: 10px;
-      line-height: 1.7;
-    }
-    .form-bottom-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 22px;
-    }
-    /* Live preview */
-    .preview-column { min-width: 0; }
-    .preview-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .preview-toolbar strong {
-      font-family: "Manrope", sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-    }
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 9px;
-      border: 1px solid #dcefe1;
-      border-radius: 5px;
-      background: #f5fbf6;
-      color: #39764b;
-      font-size: 10px;
-      font-weight: 700;
-    }
-    .live-badge::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #42a45d;
-    }
-    .preview-hint {
-      margin-bottom: 12px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.7;
-    }
-    .paper-stage {
-      min-width: 0;
-      padding: 16px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #efefed;
-      overflow: hidden;
-    }
-    .invoice-paper {
-      width: 100%;
-      min-height: 700px;
-      padding: 30px 27px;
-      background: #fff;
-      color: #202020;
-      box-shadow: 0 4px 20px rgba(0,0,0,.07);
-      overflow-wrap: anywhere;
-      font-family: "DM Sans", sans-serif;
-      font-size: 10px;
-    }
-    .invoice-accent-bar {
-      height: 5px;
-      margin: -30px -27px 25px;
-      background: var(--invoice-accent, #ed3434);
-    }
-    .invoice-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 15px;
-      padding-bottom: 23px;
-      border-bottom: 1px solid #e9e9e7;
-    }
-    .invoice-business {
-      display: flex;
-      align-items: flex-start;
-      gap: 11px;
-      min-width: 0;
-    }
-    .invoice-logo {
-      display: none;
-      width: 64px;
-      height: 64px;
-      flex-shrink: 0;
-      object-fit: contain;
-    }
-    .invoice-business-name {
-      font-family: "Manrope", sans-serif;
-      font-size: 18px;
-      line-height: 1.3;
-      font-weight: 800;
-      letter-spacing: -.5px;
-      white-space: pre-line;
-    }
-    .invoice-small {
-      margin-top: 5px;
-      color: #6f6f6f;
-      font-size: 9px;
-      line-height: 1.7;
-      white-space: pre-line;
-    }
-    .invoice-title-block { text-align: right; flex-shrink: 0; }
-    .invoice-title {
-      color: var(--invoice-accent, #ed3434);
-      font-family: "Manrope", sans-serif;
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-    .invoice-number {
-      margin-top: 7px;
-      color: #555;
-      font-size: 10px;
-      font-weight: 700;
-    }
-    .invoice-meta {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 20px 0;
-    }
-    .invoice-meta-label {
-      margin-bottom: 6px;
-      color: #858585;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .invoice-meta-value {
-      color: #292929;
-      font-size: 10px;
-      line-height: 1.7;
-      white-space: pre-line;
-    }
-    .invoice-meta-value strong { font-weight: 700; }
-    .invoice-table-wrap { width: 100%; }
-    .invoice-table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-    .invoice-table th {
-      padding: 10px 5px;
-      background: #f5f5f3;
-      color: #505050;
-      text-align: left;
-      font-size: 8px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .35px;
-    }
-    .invoice-table td {
-      padding: 11px 5px;
-      border-bottom: 1px solid #ededeb;
-      vertical-align: top;
-      font-size: 9px;
-      line-height: 1.6;
-    }
-    .invoice-table th:first-child,
-    .invoice-table td:first-child { padding-left: 8px; }
-    .invoice-table .col-description { width: 39%; }
-    .invoice-table .col-qty { width: 12%; }
-    .invoice-table .col-rate { width: 18%; }
-    .invoice-table .col-tax { width: 12%; }
-    .invoice-table .col-amount { width: 19%; }
-    .invoice-table .num { text-align: right; }
-    .invoice-table td.num { white-space: normal; }
-    .invoice-item-name { font-weight: 700; }
-    .invoice-totals-area {
-      display: flex;
-      justify-content: flex-end;
-      padding-top: 19px;
-    }
-    .invoice-totals {
-      width: min(100%, 260px);
-    }
-    .total-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 6px 0;
-      color: #575757;
-      font-size: 9px;
-    }
-    .total-row span:last-child {
-      text-align: right;
-      white-space: nowrap;
-    }
-    .total-row.grand-total {
-      margin-top: 7px;
-      padding: 12px 10px;
-      background: var(--invoice-accent, #ed3434);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .amount-words {
-      margin-top: 19px;
-      padding: 12px;
-      border: 1px solid #e9e9e7;
-      border-radius: 5px;
-      color: #4f4f4f;
-      font-size: 9px;
-      line-height: 1.7;
-    }
-    .amount-words strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #222;
-      font-size: 8px;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
-    .invoice-notes {
-      margin-top: 23px;
-      padding-top: 15px;
-      border-top: 1px solid #e9e9e7;
-    }
-    .invoice-notes h4 {
-      margin-bottom: 5px;
-      font-family: "Manrope", sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-    }
-    .invoice-notes p {
-      color: #666;
-      font-size: 9px;
-      line-height: 1.8;
-      white-space: pre-line;
-    }
-    .invoice-signature {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 27px;
-    }
-    .signature-box {
-      min-width: 135px;
-      max-width: 55%;
-      padding-top: 25px;
-      border-top: 1px solid #bbb;
-      text-align: center;
-      color: #777;
-      font-size: 8px;
-    }
-    #signatureUploadField[hidden],
-#typedSignatureField[hidden] {
-display: none !important;
-}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Invoice Generator | ARTHNIX</title>
+<meta name="description" content="Create and print professional invoices with ARTHNIX. Add your business details, GST, logo and a signature.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-#previewTypedSignature.signature-serif {
-font-family: Georgia, “Times New Roman”, serif !important;
-font-style: italic;
+<style>
+:root{--ink:#172033;--muted:#687386;--line:#e1e6ee;--paper:#fff;--bg:#f4f6fa;--accent:#7057ff;--soft:#f0edff;--green:#14805e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.topbar{background:#fff;border-bottom:1px solid var(--line);padding:16px 4vw;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:Manrope,sans-serif;font-weight:800;font-size:22px;letter-spacing:-1px;color:var(--ink);text-decoration:none}
+.brand i{color:var(--accent);font-style:normal}
+.topbar small{color:var(--muted)}
+.layout{max-width:1440px;margin:28px auto;padding:0 24px;display:grid;grid-template-columns:minmax(320px,460px) minmax(0,1fr);gap:24px;align-items:start}
+.panel,.preview-wrap{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 30px #1b2a4510}
+.panel{padding:22px}
+.heading{margin:0 0 6px;font:800 24px Manrope,sans-serif;letter-spacing:-.8px}
+.sub{color:var(--muted);font-size:13px;line-height:1.55;margin:0 0 20px}
+.section{padding:18px 0;border-top:1px solid var(--line)}
+.section:first-of-type{border-top:0;padding-top:0}
+.section h2{font:700 13px Manrope,sans-serif;text-transform:uppercase;letter-spacing:.08em;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{min-width:0;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field:last-child{margin-bottom:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;font-weight:700;color:#4a5568}
+.field input,.field select,.field textarea{width:100%;border:1px solid #dce2eb;border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink);outline:none;min-width:0}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #7057ff18}
+.field textarea{min-height:68px;resize:vertical}
+.hint{font-size:11px;color:var(--muted);line-height:1.5}
+.items-head,.item-row{display:grid;grid-template-columns:minmax(0,1fr) 62px 88px 34px;gap:7px;align-items:center}
+.items-head{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:7px}
+.item-row{margin-bottom:8px}
+.item-row input{min-width:0;width:100%;padding:9px 7px;border:1px solid #dce2eb;border-radius:8px}
+.item-row .remove{border:0;border-radius:8px;background:#fff0f0;color:#b42318;height:36px}
+.button-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.btn{border:1px solid var(--line);border-radius:9px;padding:10px 13px;background:#fff;color:var(--ink);font-weight:700;font-size:12px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
+.btn.dark{background:#182238;color:#fff;border-color:#182238}
+.btn:disabled{opacity:.5}
+.preview-wrap{padding:20px;position:sticky;top:16px}
+.preview-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.preview-toolbar h2{font:800 17px Manrope,sans-serif;margin:0}
+.preview-toolbar span{font-size:11px;color:var(--muted)}
+.invoice-paper{background:white;width:100%;max-width:850px;min-height:880px;margin:auto;padding:46px 48px;border:1px solid #e8ebf1;box-shadow:0 4px 18px #1b2a450b;font-size:12px}
+.invoice-top{display:flex;justify-content:space-between;gap:24px;border-bottom:2px solid var(--accent);padding-bottom:24px}
+.company{display:flex;gap:14px;align-items:flex-start;min-width:0}
+.logo{width:66px;height:66px;object-fit:contain;display:none}
+.company h1{font:800 25px Manrope,sans-serif;letter-spacing:-.8px;margin:0 0 7px;overflow-wrap:anywhere}
+.company p,.meta p,.billto p{white-space:pre-line;color:#5e6878;line-height:1.6;margin:2px 0}
+.invoice-title{text-align:right;flex-shrink:0}
+.invoice-title h2{font:800 27px Manrope,sans-serif;color:var(--accent);margin:0 0 8px}
+.invoice-title p{margin:4px 0;color:#5e6878}
+.invoice-title strong{color:var(--ink)}
+.party-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:25px 0}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:800;color:var(--muted);margin-bottom:8px}
+.billto h3{font:700 14px Manrope,sans-serif;margin:0 0 5px}
+.invoice-table{width:100%;border-collapse:collapse;margin-top:5px}
+.invoice-table th{background:var(--accent);color:white;text-align:left;font-size:10px;padding:11px 9px}
+.invoice-table td{padding:12px 9px;border-bottom:1px solid #e9edf3;vertical-align:top}
+.invoice-table td:not(:first-child),.invoice-table th:not(:first-child){text-align:right}
+.invoice-table td:first-child{width:48%}
+.item-desc{color:#6a7485;font-size:10px;margin-top:3px;white-space:pre-line}
+.totals-area{display:flex;justify-content:space-between;gap:24px;margin-top:22px}
+.notes{max-width:55%;color:#5e6878;line-height:1.6;white-space:pre-line}
+.totals{width:270px;max-width:48%}
+.total-row{display:flex;justify-content:space-between;gap:16px;padding:6px 0;color:#5e6878}
+.total-row strong{color:var(--ink);font-weight:700}
+.total-row.grand{margin-top:6px;border-top:1px solid var(--line);padding-top:12px;font-size:15px;color:var(--ink)}
+.total-row.grand strong{color:var(--accent);font-size:18px}
+.words{margin-top:22px;padding:12px 14px;background:#f7f8fb;border-radius:8px;color:#596477;line-height:1.6}
+.words strong{color:var(--ink)}
+.payment{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);color:#5e6878;white-space:pre-line;line-height:1.6}
+.invoice-signature{display:flex;justify-content:flex-end;margin-top:35px;page-break-inside:avoid;break-inside:avoid}
+.signature-box{text-align:center;min-width:180px;max-width:260px;color:#5e6878;font-size:10px}
+.signature-image{display:block;max-width:190px;max-height:80px;object-fit:contain;margin:0 auto 6px}
+.typed-signature{font-size:30px;line-height:1.25;overflow-wrap:anywhere;color:#20253a;margin-bottom:4px}
+.signature-cursive{font-family:'Brush Script MT','Segoe Script',cursive;font-style:italic}
+.signature-serif{font-family:Georgia,serif;font-style:italic}
+.signature-sans{font-family:'DM Sans',sans-serif;font-weight:600}
+.signature-name{font-weight:700;color:var(--ink);font-size:11px}
+.signature-designation{margin-top:3px}
+.invoice-footer{margin-top:35px;padding-top:12px;border-top:1px solid var(--line);font-size:9px;color:#8a93a2;text-align:center}
+.attribution{display:none}
+.notice{font-size:11px;color:var(--muted);background:#f7f8fb;border-radius:8px;padding:10px;line-height:1.5}
+.remove-signature{margin-top:7px}
+.field [hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.preview-wrap{position:static}.invoice-paper{padding:30px;min-height:auto}}
+@media(max-width:600px){
+.layout{padding:0 10px;margin:12px auto;gap:14px}
+.panel,.preview-wrap{padding:15px;border-radius:13px}
+.grid{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+.invoice-paper{padding:20px 15px;font-size:10px}
+.invoice-top{gap:10px}
+.company h1{font-size:18px}
+.invoice-title h2{font-size:20px}
+.logo{width:44px;height:44px}
+.party-grid{gap:12px}
+.invoice-table th,.invoice-table td{padding:8px 5px}
+.items-head,.item-row{grid-template-columns:minmax(0,1fr) 48px 70px 30px}
+.totals-area{gap:10px}
+.totals{width:52%}
+.notes{max-width:45%}
+.total-row.grand strong{font-size:15px}
+.preview-toolbar{align-items:flex-start;flex-direction:column}
+.topbar{padding:14px 16px}
 }
-
-#previewTypedSignature.signature-sans {
-font-family: “DM Sans”, sans-serif !important;
-font-style: italic;
-font-weight: 600;
+@page{size:A4;margin:12mm}
+@media print{
+body{background:#fff}
+.topbar,.panel,.preview-toolbar{display:none!important}
+.layout{display:block;margin:0;padding:0;max-width:none}
+.preview-wrap{padding:0;border:0;box-shadow:none;border-radius:0}
+.invoice-paper{max-width:none;width:100%;min-height:0;padding:0;border:0;box-shadow:none;font-size:10pt}
+.invoice-top{break-inside:avoid}
+.invoice-table tr{break-inside:avoid}
+.invoice-signature{break-inside:avoid}
+.invoice-footer{margin-top:24px}
+.attribution{display:block!important;margin-top:10px;text-align:center;font-size:8pt;color:#777}
+.attribution a{color:inherit;text-decoration:none}
 }
-
-#previewTypedSignature.signature-cursive {
-font-family: cursive !important;
-font-style: italic;
-}
-
-.invoice-signature {
-break-inside: avoid;
-page-break-inside: avoid;
-}
-
-#previewSignatureImage {
-display: block;
-}
-    .preview-disclaimer {
-      margin-top: 12px;
-      color: #777;
-      font-size: 10px;
-      line-height: 1.7;
-    }
-    /* Exact ARTHNIX footer styles */
-    .site-footer {
-      padding: 57px 0 25px;
-      background: var(--black);
-      color: var(--white);
-    }
-    .footer-main {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 50px;
-      padding-bottom: 45px;
-    }
-    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; }
-    .footer-brand-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: #fff;
-      font-family: "Manrope", sans-serif;
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: -.6px;
-      text-decoration: none;
-    }
-    .footer-logo {
-      display: block;
-      width: 31px;
-      height: 31px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-    .footer-tagline {
-      margin: 15px 0 0;
-      color: #d0d0d0;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-    .footer-powered {
-      margin: 7px 0 0;
-      color: #929292;
-      font-size: 11px;
-      letter-spacing: .3px;
-    }
-    .footer-column h4 {
-      margin-bottom: 19px;
-      color: #f0f0f0;
-      font-size: 11px;
-      font-weight: 700;
-    }
-    .footer-column a {
-      display: block;
-      width: fit-content;
-      margin-top: 13px;
-      color: #919191;
-      font-size: 11px;
-      transition: color 180ms ease;
-    }
-    .footer-column a:hover { color: var(--white); }
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding-top: 22px;
-      border-top: 1px solid #292929;
-    }
-    .copyright, .powered-by {
-      color: #797979;
-      font-size: 10px;
-      line-height: 1.8;
-    }
-    .powered-by strong { color: #b8b8b8; font-weight: 600; }
-    @media (max-width: 1050px) {
-      .workspace-grid { grid-template-columns: minmax(290px, .9fr) minmax(0, 1.1fr); gap: 17px; }
-      .form-content { padding: 16px; }
-      .paper-stage { padding: 10px; }
-      .invoice-paper { padding: 23px 18px; }
-      .invoice-accent-bar { margin: -23px -18px 21px; }
-      .footer-main { gap: 35px; }
-    }
-    @media (max-width: 850px) {
-      .workspace-grid { grid-template-columns: 1fr; }
-      .preview-column { grid-row: 1; }
-      .editor-panel { grid-row: 2; }
-      .invoice-paper { max-width: 680px; margin: 0 auto; min-height: 650px; }
-      .paper-stage { padding: 18px; }
-      .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 28px; }
-    }
-    @media (max-width: 520px) {
-      .container { width: calc(100% - 36px); }
-      .page-hero { padding: 45px 0 30px; }
-      .page-hero h1 { font-size: 40px; letter-spacing: -2px; }
-      .page-hero p { font-size: 14px; }
-      .workspace-section { padding: 27px 0 60px; }
-      .workspace-top { align-items: flex-start; flex-direction: column; }
-      .workspace-actions { width: 100%; }
-      .workspace-actions .button { flex: 1; }
-      .panel-heading { padding: 17px; }
-      .form-content { padding: 16px; }
-      .form-grid { gap: 11px; }
-      .item-fields { grid-template-columns: minmax(0, 1fr) 58px 82px; gap: 6px; }
-      .item-extra { gap: 7px; }
-      .paper-stage { padding: 7px; }
-      .invoice-paper { padding: 18px 12px; min-height: 0; font-size: 9px; }
-      .invoice-accent-bar { margin: -18px -12px 18px; }
-      .invoice-top { gap: 8px; padding-bottom: 15px; }
-      .invoice-business { gap: 6px; }
-      .invoice-logo { width: 43px; height: 43px; }
-      .invoice-business-name { font-size: 13px; }
-      .invoice-small { font-size: 8px; }
-      .invoice-title { font-size: 19px; }
-      .invoice-number { font-size: 8px; }
-      .invoice-meta { gap: 8px; padding: 14px 0; }
-      .invoice-meta-value { font-size: 9px; }
-      .invoice-table th { padding: 8px 3px; font-size: 7px; letter-spacing: 0; }
-      .invoice-table td { padding: 9px 3px; font-size: 8px; }
-      .invoice-table .col-description { width: 36%; }
-      .invoice-table .col-qty { width: 11%; }
-      .invoice-table .col-rate { width: 20%; }
-      .invoice-table .col-tax { width: 12%; }
-      .invoice-table .col-amount { width: 21%; }
-      .total-row { font-size: 8px; }
-      .total-row.grand-total { font-size: 10px; }
-      .footer-main { grid-template-columns: 1fr 1fr; gap: 35px 18px; }
-      .footer-brand { grid-column: 1 / -1; }
-      .footer-bottom { align-items: flex-start; flex-direction: column; gap: 9px; }
-    }
-    @media print {
-      @page { size: A4; margin: 12mm; }
-      html, body {
-        width: 100%;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #fff !important;
-        color: #202020 !important;
-      }
-      body * { visibility: hidden !important; }
-      #printDocument,
-      #printDocument * { visibility: visible !important; }
-      #printDocument {
-        display: block !important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        background: #fff;
-      }
-      .invoice-paper {
-        width: 100%;
-        max-width: none;
-        min-height: 0;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        font-size: 9pt;
-        overflow: visible;
-      }
-      .invoice-accent-bar {
-        margin: 0 0 22px;
-        height: 5px;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .invoice-table th,
-      .total-row.grand-total {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .invoice-top,
-      .invoice-meta,
-      .invoice-table tr,
-      .invoice-totals-area,
-      .amount-words,
-      .invoice-notes,
-      .invoice-signature {
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
-      .invoice-table thead { display: table-header-group; }
-      .invoice-attribution {
-        display: block !important;
-        margin-top: 24px;
-        padding-top: 10px;
-        border-top: 1px solid #ddd;
-        color: #777;
-        font-size: 8pt;
-        text-align: center;
-        line-height: 1.6;
-        break-inside: avoid;
-      }
-      .invoice-attribution a { color: #777; text-decoration: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <!-- ARTHNIX HEADER: shared structure and styling from index.html -->
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main navigation">
-      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-        <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
-        <span class="brand-name">ARTHNIX</span>
-      </a>
-  <div class="nav-links" id="navLinks">
-    <a href="/tools.html">Free Tools</a>
-    <a href="/platform.html">Platform</a>
-    <a href="/#how-it-works">How It Works</a>
-    <a href="/pricing.html">Pricing</a>
-    <a href="/contact.html">Contact</a>
-  </div>
-  <a class="nav-cta" href="/tools.html">
-    Start Free <span aria-hidden="true">↗</span>
-  </a>
-  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
-    <span></span><span></span>
-  </button>
-</nav>
-  </header>
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> Free Business Tool</div>
-        <h1>Create invoices.<br><span class="accent">Keep it professional.</span></h1>
-        <p>Build a professional invoice with your own logo, customer details, line items, and GST calculations. See changes instantly and save your invoice as a PDF — no account or paid API required.</p>
-        <div class="hero-points">
-          <span>Live invoice preview</span>
-          <span>Custom business logo</span>
-          <span>Free PDF export</span>
-          <span>Browser-based processing</span>
-        </div>
-      </div>
-    </section>
-<section class="workspace-section">
-  <div class="container">
-    <div class="workspace-top">
-      <div>
-        <h2>Invoice workspace</h2>
-        <p>Enter your details and watch your invoice update in real time.</p>
-      </div>
-      <div class="workspace-actions">
-        <button class="button button-outline" id="sampleButton" type="button">Load sample</button>
-        <button class="button button-outline" id="resetButton" type="button">Reset</button>
-        <button class="button button-primary" id="downloadButton" type="button">Print / Save PDF ↗</button>
-      </div>
-    </div>
-    <div class="workspace-grid">
-      <section class="editor-panel" aria-labelledby="editorHeading">
-        <div class="panel-heading">
-          <h2 id="editorHeading">Invoice details</h2>
-          <p>Fields marked optional can be left blank. Your data stays in this browser session.</p>
-        </div>
-        <div class="form-content">
-          <form id="invoiceForm" autocomplete="on">
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">01</span> Your business</h3>
-              <div class="form-grid">
-                <div class="field full">
-                  <label for="businessName">Business / seller name *</label>
-                  <input id="businessName" type="text" maxlength="120" placeholder="Your Business Name" required>
-                </div>
-                <div class="field full">
-                  <label for="businessAddress">Business address</label>
-                  <textarea id="businessAddress" maxlength="500" placeholder="Street, city, state, PIN code"></textarea>
-                </div>
-                <div class="field">
-                  <label for="businessEmail">Email</label>
-                  <input id="businessEmail" type="email" maxlength="150" placeholder="you@example.com">
-                </div>
-                <div class="field">
-                  <label for="businessPhone">Phone</label>
-                  <input id="businessPhone" type="tel" maxlength="35" placeholder="+91 ...">
-                </div>
-                <div class="field full">
-                  <label for="businessGSTIN">Business GSTIN</label>
-                  <input id="businessGSTIN" type="text" maxlength="15" placeholder="Optional GSTIN">
-                </div>
-                <div class="field full">
-                  <label for="logoUpload">Business logo</label>
-                  <input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp">
-                  <div class="logo-controls">
-                    <div class="logo-thumb" id="logoThumb" aria-label="Logo preview">Logo</div>
-                    <div>
-                      <p class="field-note">PNG, JPG or WebP. Processed locally in your browser.</p>
-                      <button class="text-button" id="removeLogo" type="button">Remove logo</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="field">
-                  <label for="accentColor">Invoice accent color</label>
-                  <input id="accentColor" type="color" value="#ed3434">
-                </div>
-              </div>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">02</span> Customer details</h3>
-              <div class="form-grid">
-                <div class="field full">
-                  <label for="customerName">Customer / bill to *</label>
-                  <input id="customerName" type="text" maxlength="120" placeholder="Customer or company name" required>
-                </div>
-                <div class="field full">
-                  <label for="customerAddress">Customer address</label>
-                  <textarea id="customerAddress" maxlength="500" placeholder="Billing address"></textarea>
-                </div>
-                <div class="field">
-                  <label for="customerEmail">Customer email</label>
-                  <input id="customerEmail" type="email" maxlength="150" placeholder="customer@example.com">
-                </div>
-                <div class="field">
-                  <label for="customerGSTIN">Customer GSTIN</label>
-                  <input id="customerGSTIN" type="text" maxlength="15" placeholder="Optional GSTIN">
-                </div>
-              </div>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">03</span> Invoice information</h3>
-              <div class="form-grid">
-                <div class="field">
-                  <label for="invoiceNumber">Invoice number *</label>
-                  <input id="invoiceNumber" type="text" maxlength="50" required>
-                </div>
-                <div class="field">
-                  <label for="currency">Currency</label>
-                  <select id="currency">
-                    <option value="INR">INR — ₹</option>
-                    <option value="USD">USD — $</option>
-                    <option value="EUR">EUR — €</option>
-                    <option value="GBP">GBP — £</option>
-                    <option value="AED">AED</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="issueDate">Issue date *</label>
-                  <input id="issueDate" type="date" required>
-                </div>
-                <div class="field">
-                  <label for="dueDate">Due date</label>
-                  <input id="dueDate" type="date">
-                </div>
-                <div class="field full">
-                  <label for="placeOfSupply">Place of supply / state</label>
-                  <input id="placeOfSupply" type="text" maxlength="100" placeholder="e.g. Telangana">
-                </div>
-                <div class="field full">
-                  <label for="taxType">GST treatment</label>
-                  <select id="taxType">
-                    <option value="intra">Intra-state — CGST + SGST</option>
-                    <option value="inter">Inter-state — IGST</option>
-                    <option value="none">No GST / not applicable</option>
-                  </select>
-                </div>
-              </div>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">04</span> Products and services</h3>
-              <div id="itemsEditor" class="items-editor"></div>
-              <button id="addItemButton" class="button add-item" type="button">+ Add product or service</button>
-              <p class="field-note">Enter the GST rate for each line item. Discount is a fixed amount per unit, before tax.</p>
-            </section>
-            <section class="form-section">
-              <h3 class="form-section-title"><span class="section-index">05</span> Additional details</h3>
-              <div class="form-grid">
-                <div class="field full">
-                  <label for="notes">Notes / payment terms</label>
-                  <textarea id="notes" maxlength="1200" placeholder="Payment instructions, bank details, thank-you message, or other terms"></textarea>
-                </div>
-                <div class="field full">
-  <label for="signatureName">Authorized signatory name</label>
-  <input id="signatureName" type="text" maxlength="100" placeholder="e.g. Vivek Kumar">
+<header class="topbar">
+<a class="brand" href="https://arthnix.vercel.app" aria-label="ARTHNIX home">ARTHN<i>I</i>X</a>
+<small>Smart Business Suite · Free Invoice Generator</small>
+</header>
+
+<main class="layout">
+<form class="panel" id="invoiceForm">
+<h1 class="heading">Invoice generator</h1>
+<p class="sub">Create a professional invoice, customize the signature, then print or save it as a PDF. Your details stay in this browser session.</p>
+
+<section class="section">
+<h2>01 · Business details</h2>
+<div class="grid">
+<div class="field full"><label for="businessName">Business / seller name *</label><input id="businessName" value="Your Business Name" required></div>
+<div class="field full"><label for="businessAddress">Business address</label><textarea id="businessAddress" placeholder="Street, city, state, PIN"></textarea></div>
+<div class="field"><label for="businessPhone">Phone</label><input id="businessPhone" type="tel" placeholder="Phone number"></div>
+<div class="field"><label for="businessEmail">Email</label><input id="businessEmail" type="email" placeholder="you@example.com"></div>
+<div class="field"><label for="businessGstin">Seller GSTIN</label><input id="businessGstin" placeholder="GSTIN (if applicable)"></div>
+<div class="field"><label for="businessState">State / code</label><input id="businessState" placeholder="Telangana / 36"></div>
+<div class="field full"><label for="businessLogo">Business logo (optional)</label><input id="businessLogo" type="file" accept="image/png,image/jpeg,image/webp"><span class="hint">PNG, JPG or WebP; up to 2 MB.</span></div>
 </div>
-<div class="field full">
-  <label for="signatureDesignation">Designation (optional)</label>
-  <input id="signatureDesignation" type="text" maxlength="100" placeholder="e.g. Director, Founder, Manager">
-</div>
-<div class="field full">
-  <label for="signatureMode">Signature type</label>
-  <select id="signatureMode">
-    <option value="none">No signature</option>
-    <option value="upload">Upload handwritten signature</option>
-    <option value="typed">Create a signature from my name</option>
-  </select>
-</div>
-<div class="field full" id="signatureUploadField" hidden>
-  <label for="signatureUpload">Upload signature image</label>
-  <input id="signatureUpload" type="file" accept="image/png,image/jpeg,image/webp">
-  <p class="field-note">Use a clear signature image with a transparent or white background. Maximum file size: 2 MB.</p>
-</div>
-<div class="field full" id="typedSignatureField" hidden>
-  <label for="typedSignatureText">Signature text</label>
-  <input id="typedSignatureText" type="text" maxlength="100" placeholder="Type the name to display as a signature">
-  <p class="field-note">Choose a handwritten-style font for a signature-like appearance.</p>
-  <div class="field" style="margin-top:12px">
-    <label for="signatureFont">Signature style</label>
-    <select id="signatureFont">
-      <option value="cursive">Elegant cursive</option>
-      <option value="serif">Classic serif</option>
-      <option value="sans">Clean modern</option>
-    </select>
-  </div>
-</div>
-<div class="field full">
-  <button class="text-button" id="removeSignature" type="button">Remove signature</button>
-  <p class="field-note">Signature images and typed signatures are processed locally in your browser.</p>
-</div>
-              </div>
-            </section>
-            <div class="tax-note">
-              Check the applicable GST rate, place of supply, tax treatment, invoice particulars, and other legal requirements before issuing the invoice. This tool provides calculations and a document layout, not tax or legal advice.
-            </div>
-            <div class="form-bottom-actions">
-              <button class="button button-primary" type="button" id="formDownloadButton">Print / Save PDF ↗</button>
-              <button class="button button-outline" type="button" id="clearItemsButton">Clear items</button>
-            </div>
-          </form>
-        </div>
-      </section>
-      <section class="preview-column" aria-labelledby="previewHeading">
-        <div class="preview-toolbar">
-          <strong id="previewHeading">Live invoice preview</strong>
-          <span class="live-badge">Live updates</span>
-        </div>
-        <p class="preview-hint">This preview updates as you type. Use “Print / Save PDF” to open your browser’s print dialog and choose Save as PDF.</p>
-        <div class="paper-stage">
-          <div id="printDocument">
-            <article class="invoice-paper" id="invoicePaper" aria-label="Invoice preview">
-              <div class="invoice-accent-bar"></div>
-              <header class="invoice-top">
-                <div class="invoice-business">
-                  <img id="previewLogo" class="invoice-logo" alt="Business logo">
-                  <div>
-                    <div id="previewBusinessName" class="invoice-business-name">Your Business Name</div>
-                    <div id="previewBusinessAddress" class="invoice-small"></div>
-                    <div id="previewBusinessContact" class="invoice-small"></div>
-                    <div id="previewBusinessGSTIN" class="invoice-small"></div>
-                  </div>
-                </div>
-                <div class="invoice-title-block">
-                  <div class="invoice-title">INVOICE</div>
-                  <div id="previewInvoiceNumber" class="invoice-number">Invoice # —</div>
-                </div>
-              </header>
-              <section class="invoice-meta">
-                <div>
-                  <div class="invoice-meta-label">Bill to</div>
-                  <div id="previewCustomer" class="invoice-meta-value"><strong>Customer name</strong></div>
-                  <div id="previewCustomerContact" class="invoice-small"></div>
-                  <div id="previewCustomerGSTIN" class="invoice-small"></div>
-                </div>
-                <div>
-                  <div class="invoice-meta-label">Invoice details</div>
-                  <div class="invoice-meta-value">
-                    <strong>Issue date:</strong> <span id="previewIssueDate">—</span><br>
-                    <strong>Due date:</strong> <span id="previewDueDate">—</span><br>
-                    <strong>Place of supply:</strong> <span id="previewPlace">—</span>
-                  </div>
-                </div>
-              </section>
-              <div class="invoice-table-wrap">
-                <table class="invoice-table">
-                  <thead>
-                    <tr>
-                      <th class="col-description">Description</th>
-                      <th class="col-qty num">Qty</th>
-                      <th class="col-rate num">Rate</th>
-                      <th class="col-tax num">GST</th>
-                      <th class="col-amount num">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody id="previewItems">
-                    <tr><td colspan="5">Add an item to begin.</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <section class="invoice-totals-area">
-                <div class="invoice-totals" id="previewTotals"></div>
-              </section>
-              <section class="amount-words">
-                <strong>Amount in words</strong>
-                <span id="previewWords">Zero rupees only</span>
-              </section>
-              <section class="invoice-notes" id="previewNotesSection">
-                <h4>Notes &amp; payment terms</h4>
-                <p id="previewNotes">Thank you for your business.</p>
-              </section>
-             <div class="invoice-signature" id="previewSignatureSection" style="display:none">
-  <div class="signature-box">
-    <img
-      id="previewSignatureImage"
-      alt="Authorized signatory signature"
-      style="display:none;max-width:160px;max-height:65px;width:auto;height:auto;object-fit:contain;margin:0 auto 5px"
-    >
-    <div
-      id="previewTypedSignature"
-      style="display:none;font-family:cursive;font-size:25px;color:#202020;line-height:1.4;overflow-wrap:anywhere"
-    ></div>
-    <div id="previewSignatureName" style="font-weight:700"></div>
-    <div id="previewSignatureDesignation" style="margin-top:3px"></div>
-    <div style="margin-top:5px">Authorized signatory</div>
-  </div>
-</div>
-              <footer class="invoice-attribution" style="display:none">
-                This invoice was generated using Arthnix — Smart Business Suite.
-                Visit <a href="https://arthnix.vercel.app">arthnix.vercel.app</a> to streamline your finances.
-              </footer>
-            </article>
-          </div>
-        </div>
-        <p class="preview-disclaimer">Preview is intended to approximate the printed invoice. Browser print settings, paper size, margins, and page breaks can affect the final PDF. For the cleanest output, select A4 paper and enable background graphics.</p>
-      </section>
-    </div>
-  </div>
 </section>
-  </main>
-  <!-- ARTHNIX FOOTER: shared structure and styling from index.html -->
-  <footer class="site-footer" id="footer-contact">
-    <div class="container">
-      <div class="footer-main">
-        <div class="footer-brand">
-          <a class="footer-brand-link" href="/index.html" aria-label="ARTHNIX home">
-            <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
-            <span>ARTHNIX</span>
-          </a>
-          <p class="footer-tagline">Intelligence for Every Business.</p>
-          <p class="footer-powered">Powered by Alphex AI</p>
-        </div>
-    <div class="footer-column">
-      <h4>Explore</h4>
-      <a href="/#platform">Platform</a>
-      <a href="/#how-it-works">How It Works</a>
-      <a href="/pricing.html">Pricing</a>
-      <a href="/tools.html">Free Tools</a>
-    </div>
-    <div class="footer-column">
-      <h4>Business Tools</h4>
-      <a href="/tools/gst-calculator.html">GST Calculator</a>
-      <a href="/tools/invoice-generator.html">Invoice Generator</a>
-      <a href="/tools/profit-calculator.html">Profit Calculator</a>
-      <a href="/tools/quotation-generator.html">Quotation Generator</a>
-    </div>
-    <div class="footer-column">
-      <h4>Information</h4>
-      <a href="/about.html">About ARTHNIX</a>
-      <a href="/help.html">Help Centre</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms of Use</a>
-      <a href="/disclaimer.html">Disclaimer</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="copyright">© <span id="currentYear">2026</span> ARTHNIX. All rights reserved.</p>
-    <p class="powered-by">An independent product brand · <strong>Powered by Alphex AI</strong></p>
-  </div>
+
+<section class="section">
+<h2>02 · Invoice details</h2>
+<div class="grid">
+<div class="field"><label for="invoiceNumber">Invoice number</label><input id="invoiceNumber" value="INV-001"></div>
+<div class="field"><label for="invoiceDate">Invoice date</label><input id="invoiceDate" type="date"></div>
+<div class="field"><label for="dueDate">Due date</label><input id="dueDate" type="date"></div>
+<div class="field"><label for="placeOfSupply">Place of supply</label><input id="placeOfSupply" placeholder="State / UT"></div>
 </div>
-  </footer>
-  <script>
-    (() => {
-      "use strict";
-      const $ = (id) => document.getElementById(id);
-      const menuButton = $("menuToggle");
-      const navLinks = $("navLinks");
-      const currentYear = $("currentYear");
-      function setMenuState(isOpen) {
-        if (!menuButton || !navLinks) return;
-        navLinks.classList.toggle("is-open", isOpen);
-        menuButton.setAttribute("aria-expanded", String(isOpen));
-        menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
-        const lines = menuButton.querySelectorAll("span");
-        if (lines.length >= 2) {
-          lines[0].style.transform = isOpen ? "translateY(3.5px) rotate(45deg)" : "";
-          lines[1].style.transform = isOpen ? "translateY(-3.5px) rotate(-45deg)" : "";
-        }
-      }
-      if (menuButton && navLinks) {
-        menuButton.addEventListener("click", (event) => {
-          event.stopPropagation();
-          setMenuState(menuButton.getAttribute("aria-expanded") !== "true");
-        });
-        navLinks.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => setMenuState(false));
-        });
-        document.addEventListener("click", (event) => {
-          if (navLinks.classList.contains("is-open") &&
-              !menuButton.contains(event.target) &&
-              !navLinks.contains(event.target)) {
-            setMenuState(false);
-          }
-        });
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape" && navLinks.classList.contains("is-open")) {
-            setMenuState(false);
-            menuButton.focus();
-          }
-        });
-        window.addEventListener("resize", () => {
-          if (window.innerWidth > 780) setMenuState(false);
-        });
-      }
-      if (currentYear) currentYear.textContent = new Date().getFullYear();
-      const form = $("invoiceForm");
-      const itemsEditor = $("itemsEditor");
-      const previewItems = $("previewItems");
-      const previewTotals = $("previewTotals");
-      const logoUpload = $("logoUpload");
-      const previewLogo = $("previewLogo");
-      const logoThumb = $("logoThumb");
-      const accentColor = $("accentColor");
-      const signatureMode = $(“signatureMode”);
-const signatureUpload = $(“signatureUpload”);
-const signatureUploadField = $(“signatureUploadField”);
-const typedSignatureField = $(“typedSignatureField”);
-const signatureFont = $(“signatureFont”);
-const typedSignatureText = $(“typedSignatureText”);
-const previewSignatureImage = $(“previewSignatureImage”);
-const previewTypedSignature = $(“previewTypedSignature”);
-let signatureDataUrl = “”;
+</section>
 
-function updateSignatureControls() {
-const mode = signatureMode.value;
+<section class="section">
+<h2>03 · Bill to</h2>
+<div class="grid">
+<div class="field full"><label for="customerName">Customer / buyer name *</label><input id="customerName" placeholder="Customer or company name" required></div>
+<div class="field full"><label for="customerAddress">Billing address</label><textarea id="customerAddress" placeholder="Customer address"></textarea></div>
+<div class="field"><label for="customerGstin">Buyer GSTIN</label><input id="customerGstin" placeholder="GSTIN (if applicable)"></div>
+<div class="field"><label for="customerPhone">Customer phone / email</label><input id="customerPhone" placeholder="Contact details"></div>
+</div>
+</section>
 
-signatureUploadField.hidden = mode !== “upload”;
-typedSignatureField.hidden = mode !== “typed”;
+<section class="section">
+<h2>04 · Items and tax</h2>
+<div class="items-head"><span>Item / description</span><span>Qty</span><span>Rate (₹)</span><span></span></div>
+<div id="itemsContainer"></div>
+<button class="btn" type="button" id="addItem">＋ Add item</button>
+<div class="grid" style="margin-top:14px">
+<div class="field"><label for="discount">Discount (₹)</label><input id="discount" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="taxRate">GST rate</label><select id="taxRate"><option value="0">No GST / 0%</option><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select></div>
+<div class="field full">
+<label for="taxType">GST calculation</label>
+<select id="taxType"><option value="intra">Intra-state: CGST + SGST</option><option value="inter">Inter-state: IGST</option></select>
+<span class="hint">Choose based on the seller's and buyer's place of supply. Verify tax treatment before issuing.</span>
+</div>
+</div>
+</section>
 
+<section class="section">
+<h2>05 · Payment and notes</h2>
+<div class="grid">
+<div class="field full"><label for="paymentDetails">Payment details</label><textarea id="paymentDetails" placeholder="Bank, account name, UPI ID, payment terms"></textarea></div>
+<div class="field full"><label for="notes">Notes / terms</label><textarea id="notes" placeholder="Thank you for your business."></textarea></div>
+<div class="field full"><label for="accentColor">Invoice accent color</label><input id="accentColor" type="color" value="#7057ff" style="height:42px;padding:4px"></div>
+</div>
+</section>
+
+<section class="section">
+<h2>06 · Signature</h2>
+<div class="grid">
+<div class="field full">
+<label for="signatureMode">Signature type</label>
+<select id="signatureMode">
+<option value="none">No signature</option>
+<option value="upload">Upload signature image</option>
+<option value="typed">Typed signature</option>
+</select>
+</div>
+
+<div class="field full" id="signatureUploadField" hidden>
+<label for="signatureUpload">Signature image</label>
+<input id="signatureUpload" type="file" accept="image/png,image/jpeg,image/webp">
+<span class="hint">Transparent PNG recommended. JPG and WebP also supported. Maximum 2 MB. Image is kept locally in this page.</span>
+</div>
+
+<div class="field full" id="typedSignatureField" hidden>
+<label for="typedSignatureText">Signature text</label>
+<input id="typedSignatureText" placeholder="Type the signatory's name">
+</div>
+
+<div class="field full" id="signatureFontField" hidden>
+<label for="signatureFont">Signature style</label>
+<select id="signatureFont">
+<option value="cursive">Handwritten / cursive</option>
+<option value="serif">Classic serif</option>
+<option value="sans">Clean sans-serif</option>
+</select>
+</div>
+
+<div class="field"><label for="signatureName">Signatory name</label><input id="signatureName" placeholder="Full name"></div>
+<div class="field"><label for="signatureDesignation">Designation</label><input id="signatureDesignation" placeholder="e.g. Director / Owner"></div>
+
+<div class="field full"><button class="btn remove-signature" type="button" id="removeSignature">Remove signature</button></div>
+<div class="field full"><div class="notice">A signature image or typed name is a visual element, not a digital certificate or legally verified electronic signature. Use only a signature you are authorized to apply.</div></div>
+</div>
+</section>
+
+<div class="button-row">
+<button class="btn primary" type="button" id="printButton">Print / Save PDF</button>
+<button class="btn" type="button" id="sampleButton">Load sample</button>
+<button class="btn" type="button" id="resetButton">Reset form</button>
+</div>
+</form>
+
+<section class="preview-wrap">
+<div class="preview-toolbar">
+<div><h2>Live invoice preview</h2><span>Review all details before printing or saving as PDF.</span></div>
+<button class="btn dark" type="button" id="printButtonTop">Print / Save PDF ↗</button>
+</div>
+
+<article class="invoice-paper" id="printDocument">
+<div class="invoice-top">
+<div class="company">
+<img class="logo" id="previewLogo" alt="Business logo">
+<div>
+<h1 id="previewBusinessName">Your Business Name</h1>
+<p id="previewBusinessAddress"></p>
+<p id="previewBusinessContact"></p>
+<p id="previewBusinessGstin"></p>
+</div>
+</div>
+<div class="invoice-title">
+<h2>INVOICE</h2>
+<p>Invoice no. <strong id="previewInvoiceNumber">INV-001</strong></p>
+<p>Date: <strong id="previewInvoiceDate">—</strong></p>
+<p>Due: <strong id="previewDueDate">—</strong></p>
+</div>
+</div>
+
+<div class="party-grid">
+<div class="billto">
+<div class="eyebrow">Bill to</div>
+<h3 id="previewCustomerName">Customer name</h3>
+<p id="previewCustomerAddress"></p>
+<p id="previewCustomerContact"></p>
+<p id="previewCustomerGstin"></p>
+</div>
+<div class="meta">
+<div class="eyebrow">Invoice information</div>
+<p>Place of supply: <strong id="previewPlaceOfSupply">—</strong></p>
+<p>Currency: <strong>INR (₹)</strong></p>
+</div>
+</div>
+
+<table class="invoice-table">
+<thead><tr><th>Item / description</th><th>Qty</th><th>Rate</th><th>Amount</th></tr></thead>
+<tbody id="previewItems"></tbody>
+</table>
+
+<div class="totals-area">
+<div class="notes" id="previewNotes"></div>
+<div class="totals">
+<div class="total-row"><span>Subtotal</span><strong id="previewSubtotal">₹0.00</strong></div>
+<div class="total-row"><span>Discount</span><strong id="previewDiscount">− ₹0.00</strong></div>
+<div id="previewTaxRows"></div>
+<div class="total-row grand"><span>Total</span><strong id="previewGrandTotal">₹0.00</strong></div>
+</div>
+</div>
+
+<div class="words"><strong>Amount in words:</strong> <span id="previewAmountWords">Zero rupees only</span></div>
+<div class="payment" id="previewPayment"></div>
+
+<div class="invoice-signature" id="previewSignatureSection" style="display:none">
+<div class="signature-box">
+<img class="signature-image" id="previewSignatureImage" alt="Uploaded signature" hidden>
+<div class="typed-signature signature-cursive" id="previewTypedSignature" hidden></div>
+<div class="signature-name" id="previewSignatureName"></div>
+<div class="signature-designation" id="previewSignatureDesignation"></div>
+<div>Authorized signatory</div>
+</div>
+</div>
+
+<div class="invoice-footer">This invoice was generated using ARTHNIX — Smart Business Suite.</div>
+<div class="attribution">This invoice was generated using Arthnix — Smart Business Suite. Visit <a href="https://arthnix.vercel.app">arthnix.vercel.app</a> to streamline your finances.</div>
+</article>
+</section>
+</main>
+
+<script>
+(()=>{
+'use strict';
+
+const $=id=>document.getElementById(id),form=$('invoiceForm');
+let itemCounter=0,logoDataUrl='',signatureDataUrl='';
+
+const money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR'}).format(Number.isFinite(n)?n:0);
+const val=id=>($(id)?.value||'').trim();
+
+const safeDate=id=>{
+const v=val(id);
+if(!v)return '—';
+const d=new Date(v+'T00:00:00');
+return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+};
+
+function addItem(description='',qty=1,rate=0){
+const id=++itemCounter,row=document.createElement('div');
+row.className='item-row';
+row.dataset.itemId=id;
+row.innerHTML='<input class="item-description" aria-label="Item description" placeholder="Item name" maxlength="180"><input class="item-qty" aria-label="Quantity" type="number" min="0" step="any"><input class="item-rate" aria-label="Rate in rupees" type="number" min="0" step="0.01"><button class="remove" type="button" aria-label="Remove item">×</button>';
+row.querySelector('.item-description').value=description;
+row.querySelector('.item-qty').value=qty;
+row.querySelector('.item-rate').value=rate;
+row.querySelectorAll('input').forEach(el=>el.addEventListener('input',updatePreview));
+row.querySelector('.remove').addEventListener('click',()=>{
+row.remove();
+if(!$('itemsContainer').children.length)addItem();
+updatePreview();
+});
+$('itemsContainer').appendChild(row);
 updatePreview();
 }
 
-function updateSignaturePreview() {
-const mode = signatureMode.value;
-const name = getValue(“signatureName”);
-const designation = getValue(“signatureDesignation”);
-const typedText = getValue(“typedSignatureText”) || name;
-
-$(“previewSignatureSection”).style.display =
-mode !== “none” && (mode === “upload” ? Boolean(signatureDataUrl) : Boolean(typedText))
-? “flex”
-: “none”;
-
-previewSignatureImage.style.display = “none”;
-previewTypedSignature.style.display = “none”;
-
-if (mode === “upload” && signatureDataUrl) {
-previewSignatureImage.src = signatureDataUrl;
-previewSignatureImage.style.display = “block”;
+function getItems(){
+return [...$('itemsContainer').querySelectorAll('.item-row')].map(row=>({
+description:row.querySelector('.item-description').value.trim(),
+qty:Math.max(0,Number(row.querySelector('.item-qty').value)||0),
+rate:Math.max(0,Number(row.querySelector('.item-rate').value)||0)
+}));
 }
 
-if (mode === “typed” && typedText) {
-previewTypedSignature.textContent = typedText;
-previewTypedSignature.className =
-“signature-” + (signatureFont.value || “cursive”);
-previewTypedSignature.style.display = “block”;
+function numberWords(n){
+n=Math.round(Math.max(0,n)*100)/100;
+const ones=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+const tens=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+
+function under1000(x){
+let s='';
+if(x>=100){
+s+=ones[Math.floor(x/100)]+' hundred';
+x%=100;
+if(x)s+=' ';
+}
+if(x>=20){
+s+=tens[Math.floor(x/10)];
+if(x%10)s+=' '+ones[x%10];
+}else if(x)s+=ones[x];
+return s;
 }
 
-$(“previewSignatureName”).textContent = name;
-$(“previewSignatureDesignation”).textContent = designation;
+function whole(x){
+if(x===0)return 'zero';
+let out=[];
+for(const [div,name] of [[10000000,'crore'],[100000,'lakh'],[1000,'thousand'],[1,'']]){
+if(x>=div){
+const q=Math.floor(x/div);
+x%=div;
+out.push(under1000(q)+(name?' '+name:''));
+}
+}
+return out.join(' ');
 }
 
-signatureMode.addEventListener(“change”, updateSignatureControls);
-
-signatureFont.addEventListener(“change”, updatePreview);
-
-typedSignatureText.addEventListener(“input”, updatePreview);
-
-$(“signatureName”).addEventListener(“input”, updatePreview);
-
-$(“signatureDesignation”).addEventListener(“input”, updatePreview);
-
-signatureUpload.addEventListener(“change”, () => {
-const file = signatureUpload.files && signatureUpload.files[0];
-
-if (!file) return;
-
-const allowedTypes = [“image/png”, “image/jpeg”, “image/webp”];
-
-if (!allowedTypes.includes(file.type)) {
-alert(“Please upload a PNG, JPG, or WebP signature image.”);
-signatureUpload.value = “”;
-return;
+let rupees=Math.floor(n),paise=Math.round((n-rupees)*100);
+return (whole(rupees)+' rupees'+(paise?' and '+whole(paise)+' paise':'')+' only').replace(/^./,c=>c.toUpperCase());
 }
 
-if (file.size > 2 * 1024 * 1024) {
-alert(“Please choose a signature image smaller than 2 MB.”);
-signatureUpload.value = “”;
-return;
-}
-
-const reader = new FileReader();
-
-reader.onload = () => {
-if (typeof reader.result !== “string”) {
-alert(“The signature could not be read. Please try another image.”);
-return;
-}
-
-signatureDataUrl = reader.result;
+function updateSignatureControls(){
+const mode=val('signatureMode');
+$('signatureUploadField').hidden=mode!=='upload';
+$('typedSignatureField').hidden=mode!=='typed';
+$('signatureFontField').hidden=mode!=='typed';
 updatePreview();
+}
 
-};
+function updateSignaturePreview(){
+const mode=val('signatureMode');
+const section=$('previewSignatureSection');
+const image=$('previewSignatureImage');
+const typed=$('previewTypedSignature');
 
-reader.onerror = () => {
-alert(“The signature could not be read. Please try another image.”);
-};
+image.hidden=true;
+typed.hidden=true;
+image.removeAttribute('src');
+typed.textContent='';
+section.style.display='none';
 
-reader.readAsDataURL(file);
+if(mode==='upload'&&signatureDataUrl){
+image.src=signatureDataUrl;
+image.hidden=false;
+section.style.display='flex';
+}else if(mode==='typed){
+const text=val('typedSignatureText')||val('signatureName');
+if(text){
+typed.textContent=text;
+typed.className='typed-signature signature-'+(val('signatureFont')||'cursive');
+typed.hidden=false;
+section.style.display='flex';
+}
+}
+
+if(section.style.display!=='none'){
+const name=val('signatureName');
+const designation=val('signatureDesignation');
+$('previewSignatureName').textContent=name;
+$('previewSignatureDesignation').textContent=designation;
+$('previewSignatureName').style.display=name?'block':'none';
+$('previewSignatureDesignation').style.display=designation?'block':'none';
+}
+}
+
+function updatePreview(){
+const accent=val('accentColor')||'#7057ff';
+document.documentElement.style.setProperty('--accent',accent);
+
+$('previewBusinessName').textContent=val('businessName')||'Your Business Name';
+$('previewBusinessAddress').textContent=val('businessAddress');
+$('previewBusinessContact').textContent=[val('businessPhone'),val('businessEmail')].filter(Boolean).join(' · ');
+$('previewBusinessGstin').textContent=val('businessGstin')?'GSTIN: '+val('businessGstin'):'';
+$('previewInvoiceNumber').textContent=val('invoiceNumber')||'—';
+$('previewInvoiceDate').textContent=safeDate('invoiceDate');
+$('previewDueDate').textContent=safeDate('dueDate');
+$('previewCustomerName').textContent=val('customerName')||'Customer name';
+$('previewCustomerAddress').textContent=val('customerAddress');
+$('previewCustomerContact').textContent=val('customerPhone');
+$('previewCustomerGstin').textContent=val('customerGstin')?'GSTIN: '+val('customerGstin'):'';
+$('previewPlaceOfSupply').textContent=val('placeOfSupply')||'—';
+$('previewNotes').textContent=val('notes');
+$('previewPayment').textContent=val('paymentDetails')?'Payment details\n'+val('paymentDetails'):'';
+
+const items=getItems(),tbody=$('previewItems');
+tbody.replaceChildren();
+let subtotal=0;
+
+items.forEach(it=>{
+const amount=it.qty*it.rate;
+subtotal+=amount;
+const tr=document.createElement('tr');
+const td=document.createElement('td');
+const name=document.createElement('strong');
+name.textContent=it.description||'Item';
+td.appendChild(name);
+const q=document.createElement('td');
+q.textContent=it.qty;
+const r=document.createElement('td');
+r.textContent=money(it.rate);
+const a=document.createElement('td');
+a.textContent=money(amount);
+tr.append(td,q,r,a);
+tbody.appendChild(tr);
 });
 
-$(“removeSignature”).addEventListener(“click”, () => {
-signatureDataUrl = “”;
-signatureUpload.value = “”;
-typedSignatureText.value = “”;
-signatureMode.value = “none”;
+if(!items.length){
+const tr=document.createElement('tr');
+tr.innerHTML='<td colspan="4" style="text-align:center;color:#7b8493">No items added</td>';
+tbody.appendChild(tr);
+}
+
+const discount=Math.min(subtotal,Math.max(0,Number(val('discount'))||0));
+const taxable=Math.max(0,subtotal-discount);
+const rate=Math.max(0,Number(val('taxRate'))||0);
+const tax=taxable*rate/100;
+let taxRows='';
+
+if(rate&&val('taxType')==='inter'){
+taxRows='<div class="total-row"><span>IGST ('+rate+'%)</span><strong>'+money(tax)+'</strong></div>';
+}else if(rate){
+taxRows='<div class="total-row"><span>CGST ('+(rate/2)+'%)</span><strong>'+money(tax/2)+'</strong></div><div class="total-row"><span>SGST ('+(rate/2)+'%)</span><strong>'+money(tax/2)+'</strong></div>';
+}
+
+$('previewSubtotal').textContent=money(subtotal);
+$('previewDiscount').textContent='− '+money(discount);
+$('previewTaxRows').innerHTML=taxRows;
+$('previewGrandTotal').textContent=money(taxable+tax);
+$('previewAmountWords').textContent=numberWords(taxable+tax);
+updateSignaturePreview();
+}
+
+function readImage(file,callback){
+if(!file)return;
+if(!['image/png','image/jpeg','image/webp'].includes(file.type)){
+alert('Please select a PNG, JPG or WebP image.');
+return;
+}
+if(file.size>2*1024*1024){
+alert('Image must be 2 MB or smaller.');
+return;
+}
+const reader=new FileReader();
+reader.onload=()=>callback(String(reader.result));
+reader.onerror=()=>alert('Could not read this image. Please try another file.');
+reader.readAsDataURL(file);
+}
+
+$('businessLogo').addEventListener('change',e=>{
+const file=e.target.files&&e.target.files[0];
+if(!file)return;
+readImage(file,data=>{
+logoDataUrl=data;
+$('previewLogo').src=data;
+$('previewLogo').style.display='block';
+});
+});
+
+$('signatureUpload').addEventListener('change',e=>{
+const file=e.target.files&&e.target.files[0];
+signatureDataUrl='';
+
+if(!file){
+updatePreview();
+return;
+}
+
+if(!['image/png','image/jpeg','image/webp'].includes(file.type)){
+alert('Please select a PNG, JPG or WebP signature image.');
+e.target.value='';
+updatePreview();
+return;
+}
+
+if(file.size>2*1024*1024){
+alert('Signature image must be 2 MB or smaller.');
+e.target.value='';
+updatePreview();
+return;
+}
+
+readImage(file,data=>{
+signatureDataUrl=data;
+updatePreview();
+});
+});
+
+$('signatureMode').addEventListener('change',updateSignatureControls);
+$('signatureFont').addEventListener('change',updatePreview);
+$('typedSignatureText').addEventListener('input',updatePreview);
+$('signatureName').addEventListener('input',updatePreview);
+$('signatureDesignation').addEventListener('input',updatePreview);
+
+$('removeSignature').addEventListener('click',()=>{
+signatureDataUrl='';
+$('signatureUpload').value='';
+$('typedSignatureText').value='';
+$('signatureMode').value='none';
+$('signatureFont').value='cursive';
 updateSignatureControls();
 });
-      const MAX_ITEMS = 50;
-      let itemCounter = 0;
-      let logoDataUrl = "";
-      let logoObjectUrl = "";
-      const today = new Date();
-      const dateISO = (date) => {
-        const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-        return local.toISOString().slice(0, 10);
-      };
-      $("issueDate").value = dateISO(today);
-      $("dueDate").value = dateISO(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 14));
-      $("invoiceNumber").value = "INV-" + today.getFullYear() + "-" +
-        String(today.getMonth() + 1).padStart(2, "0") + "-" +
-        String(today.getDate()).padStart(2, "0");
-      const money = (value) => {
-        const currency = $("currency").value || "INR";
-        try {
-          return new Intl.NumberFormat("en-IN", {
-            style: "currency",
-            currency,
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          }).format(Number.isFinite(value) ? value : 0);
-        } catch {
-          return "₹" + (Number(value) || 0).toFixed(2);
-        }
-      };
-      const safeNumber = (value, fallback = 0) => {
-        const n = Number(value);
-        return Number.isFinite(n) ? Math.min(Math.max(n, -1e12), 1e12) : fallback;
-      };
-      const escapeHTML = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-      }[char]));
-      const getValue = (id) => $(id).value.trim();
-      function displayDate(value) {
-        if (!value) return "—";
-        const parts = value.split("-").map(Number);
-        if (parts.length !== 3 || parts.some((n) => !n)) return "—";
-        return new Intl.DateTimeFormat("en-IN", {
-          day: "2-digit", month: "short", year: "numeric", timeZone: "UTC"
-        }).format(new Date(Date.UTC(parts[0], parts[1] - 1, parts[2])));
-      }
-      function addItem(data = {}) {
-        if (itemsEditor.children.length >= MAX_ITEMS) {
-          alert("You can add up to " + MAX_ITEMS + " line items per invoice.");
-          return;
-        }
-        itemCounter += 1;
-        const id = itemCounter;
-        const wrapper = document.createElement("div");
-        wrapper.className = "item-editor";
-        wrapper.dataset.itemId = String(id);
-        wrapper.innerHTML = `
-          <div class="item-editor-head">
-            <strong>Item <span class="item-number">${itemsEditor.children.length + 1}</span></strong>
-            <button class="remove-item" type="button" aria-label="Remove item ${itemsEditor.children.length + 1}">Remove</button>
-          </div>
-          <div class="item-fields">
-            <div class="field">
-              <label for="itemDesc${id}">Description *</label>
-              <input id="itemDesc${id}" class="item-desc" type="text" maxlength="180" placeholder="Product / service" value="${escapeHTML(data.description || "")}">
-            </div>
-            <div class="field">
-              <label for="itemQty${id}">Quantity</label>
-              <input id="itemQty${id}" class="item-qty" type="number" min="0" max="1000000000" step="any" value="${escapeHTML(data.qty ?? 1)}">
-            </div>
-            <div class="field">
-              <label for="itemRate${id}">Unit price</label>
-              <input id="itemRate${id}" class="item-rate" type="number" min="0" max="1000000000" step="any" value="${escapeHTML(data.rate ?? 0)}">
-            </div>
-          </div>
-          <div class="item-extra">
-            <div class="field">
-              <label for="itemDiscount${id}">Discount per unit</label>
-              <input id="itemDiscount${id}" class="item-discount" type="number" min="0" max="1000000000" step="any" value="${escapeHTML(data.discount ?? 0)}">
-            </div>
-            <div class="field">
-              <label for="itemGst${id}">GST rate (%)</label>
-              <select id="itemGst${id}" class="item-gst">
-                ${[0,3,5,12,18,28,40].map((rate) => `<option value="${rate}" ${Number(data.gst ?? 18) === rate ? "selected" : ""}>${rate}%</option>`).join("")}
-              </select>
-            </div>
-          </div>
-        `;
-        wrapper.querySelector(".remove-item").addEventListener("click", () => {
-          wrapper.remove();
-          renumberItems();
-          updatePreview();
-        });
-        wrapper.addEventListener("input", updatePreview);
-        wrapper.addEventListener("change", updatePreview);
-        itemsEditor.appendChild(wrapper);
-        renumberItems();
-        updatePreview();
-      }
-      function renumberItems() {
-        [...itemsEditor.children].forEach((item, index) => {
-          item.querySelector(".item-number").textContent = String(index + 1);
-          item.querySelector(".remove-item").setAttribute("aria-label", "Remove item " + (index + 1));
-        });
-      }
-      function getItems() {
-        return [...itemsEditor.querySelectorAll(".item-editor")].map((node) => {
-          const qty = Math.max(0, safeNumber(node.querySelector(".item-qty").value));
-          const rate = Math.max(0, safeNumber(node.querySelector(".item-rate").value));
-          const discount = Math.min(rate, Math.max(0, safeNumber(node.querySelector(".item-discount").value)));
-          const gst = Math.max(0, safeNumber(node.querySelector(".item-gst").value));
-          const base = Math.max(0, qty * (rate - discount));
-          const tax = $("taxType").value === "none" ? 0 : base * gst / 100;
-          return {
-            description: node.querySelector(".item-desc").value.trim(),
-            qty, rate, discount, gst, base, tax, total: base + tax
-          };
-        });
-      }
-      function amountInWords(amount) {
-        const currency = $("currency").value;
-        const units = {
-          INR: ["rupee", "rupees", "paise"],
-          USD: ["dollar", "dollars", "cents"],
-          EUR: ["euro", "euros", "cents"],
-          GBP: ["pound", "pounds", "pence"],
-          AED: ["dirham", "dirhams", "fils"]
-        }[currency] || ["unit", "units", "minor units"];
-        const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
-        const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
-        const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
-        function underThousand(n) {
-          let out = "";
-          if (n >= 100) {
-            out += ones[Math.floor(n / 100)] + " Hundred ";
-            n %= 100;
-          }
-          if (n >= 20) {
-            out += tens[Math.floor(n / 10)] + " ";
-            n %= 10;
-          } else if (n >= 10) {
-            out += teens[n - 10] + " ";
-            n = 0;
-          }
-          if (n > 0) out += ones[n] + " ";
-          return out.trim();
-        }
-        function integerWords(n) {
-          if (!n) return "Zero";
-          if (n > 999999999999) return String(n);
-          const groups = currency === "INR"
-            ? [[10000000, "Crore"], [100000, "Lakh"], [1000, "Thousand"], [1, ""]]
-            : [[1000000000, "Billion"], [1000000, "Million"], [1000, "Thousand"], [1, ""]];
-          let result = "";
-          for (const [size, label] of groups) {
-            if (n >= size) {
-              const count = Math.floor(n / size);
-              if (count) {
-                result += underThousand(count) + (label ? " " + label : "") + " ";
-                n %= size;
-              }
-            }
-          }
-          return result.trim();
-        }
-        const safeAmount = Math.max(0, Math.min(1e12, Number(amount) || 0));
-        const major = Math.floor(safeAmount + 0.000001);
-        const minor = Math.round((safeAmount - major) * 100);
-        let result = integerWords(major) + " " + (major === 1 ? units[0] : units[1]);
-        if (minor) result += " and " + integerWords(minor) + " " + units[2];
-        return result + " only";
-      }
-      function updatePreview() {
-        const accent = /^#[0-9a-f]{6}$/i.test(accentColor.value) ? accentColor.value : "#ed3434";
-        document.documentElement.style.setProperty("--invoice-accent", accent);
-        $("previewBusinessName").textContent = getValue("businessName") || "Your Business Name";
-        $("previewBusinessAddress").textContent = getValue("businessAddress");
-        $("previewBusinessContact").textContent = [getValue("businessEmail"), getValue("businessPhone")].filter(Boolean).join(" · ");
-        $("previewBusinessGSTIN").textContent = getValue("businessGSTIN") ? "GSTIN: " + getValue("businessGSTIN").toUpperCase() : "";
-        $("previewCustomer").innerHTML = "<strong>" + escapeHTML(getValue("customerName") || "Customer name") + "</strong>" +
-          (getValue("customerAddress") ? "<br>" + escapeHTML(getValue("customerAddress")).replace(/\n/g, "<br>") : "");
-        $("previewCustomerContact").textContent = getValue("customerEmail");
-        $("previewCustomerGSTIN").textContent = getValue("customerGSTIN") ? "GSTIN: " + getValue("customerGSTIN").toUpperCase() : "";
-        $("previewInvoiceNumber").textContent = "Invoice # " + (getValue("invoiceNumber") || "—");
-        $("previewIssueDate").textContent = displayDate(getValue("issueDate"));
-        $("previewDueDate").textContent = displayDate(getValue("dueDate"));
-        $("previewPlace").textContent = getValue("placeOfSupply") || "—";
-        previewLogo.style.display = logoDataUrl ? "block" : "none";
-        if (logoDataUrl) previewLogo.src = logoDataUrl;
-        if (logoDataUrl) {
-          logoThumb.innerHTML = "";
-          const thumb = document.createElement("img");
-          thumb.src = logoDataUrl;
-          thumb.alt = "Uploaded logo preview";
-          logoThumb.appendChild(thumb);
-        } else {
-          logoThumb.textContent = "Logo";
-        }
-        const items = getItems();
-        const taxType = $("taxType").value;
-        let subtotal = 0;
-        let discountTotal = 0;
-        let totalTax = 0;
-        let cgst = 0;
-        let sgst = 0;
-        let igst = 0;
-        if (!items.length) {
-          previewItems.innerHTML = '<tr><td colspan="5">Add an item to begin.</td></tr>';
-        } else {
-          previewItems.innerHTML = items.map((item) => {
-            subtotal += item.qty * item.rate;
-            discountTotal += item.qty * item.discount;
-            totalTax += item.tax;
-            if (taxType === "intra") {
-              cgst += item.tax / 2;
-              sgst += item.tax / 2;
-            } else if (taxType === "inter") {
-              igst += item.tax;
-            }
-            const description = item.description || "Item description";
-            const gstLabel = taxType === "none" ? "—" : item.gst + "%";
-            return `<tr>
-              <td><span class="invoice-item-name">${escapeHTML(description)}</span></td>
-              <td class="num">${item.qty.toLocaleString("en-IN", {maximumFractionDigits: 3})}</td>
-              <td class="num">${money(item.rate)}</td>
-              <td class="num">${gstLabel}</td>
-              <td class="num">${money(item.total)}</td>
-            </tr>`;
-          }).join("");
-        }
-        const taxable = Math.max(0, subtotal - discountTotal);
-        const grandTotal = taxable + totalTax;
-        const rows = [
-          `<div class="total-row"><span>Subtotal</span><span>${money(subtotal)}</span></div>`
-        ];
-        if (discountTotal > 0) rows.push(`<div class="total-row"><span>Discount</span><span>− ${money(discountTotal)}</span></div>`);
-        rows.push(`<div class="total-row"><span>Taxable value</span><span>${money(taxable)}</span></div>`);
-        if (taxType === "intra" && totalTax > 0) {
-          rows.push(`<div class="total-row"><span>CGST</span><span>${money(cgst)}</span></div>`);
-          rows.push(`<div class="total-row"><span>SGST</span><span>${money(sgst)}</span></div>`);
-        } else if (taxType === "inter" && totalTax > 0) {
-          rows.push(`<div class="total-row"><span>IGST</span><span>${money(igst)}</span></div>`);
-        } else if (taxType === "none") {
-          rows.push(`<div class="total-row"><span>GST</span><span>${money(0)}</span></div>`);
-        }
-        rows.push(`<div class="total-row grand-total"><span>Total due</span><span>${money(grandTotal)}</span></div>`);
-        previewTotals.innerHTML = rows.join("");
-        $("previewWords").textContent = amountInWords(grandTotal);
-        const notes = getValue("notes");
-        $("previewNotes").textContent = notes || "Thank you for your business.";
-        $("previewNotesSection").style.display = "block";
-        updateSignaturePreview();
-        // The attribution is only shown in the printed/PDF document, not in the invoice preview.
-        const attribution = document.querySelector(".invoice-attribution");
-        attribution.style.display = "none";
-        form.setAttribute("data-grand-total", String(grandTotal));
-      }
-      function printInvoice() {
-        const business = getValue("businessName");
-        const customer = getValue("customerName");
-        const invoiceNumber = getValue("invoiceNumber");
-        if (!business || !customer || !invoiceNumber || !getValue("issueDate")) {
-          alert("Please enter the business name, customer name, invoice number, and issue date before saving the PDF.");
-          const missing = !business ? $("businessName") :
-            !customer ? $("customerName") :
-            !invoiceNumber ? $("invoiceNumber") : $("issueDate");
-          missing.focus();
-          return;
-        }
-        if (!itemsEditor.children.length) {
-          alert("Please add at least one product or service before saving the PDF.");
-          $("addItemButton").focus();
-          return;
-        }
-        const attribution = document.querySelector(".invoice-attribution");
-        attribution.style.display = "block";
-        const oldTitle = document.title;
-        const cleanNumber = invoiceNumber.replace(/[^a-z0-9_-]/gi, "-").slice(0, 50);
-        document.title = "Invoice-" + cleanNumber;
-        const restore = () => {
-          document.title = oldTitle;
-          attribution.style.display = "none";
-          window.removeEventListener("afterprint", restore);
-        };
-        window.addEventListener("afterprint", restore);
-        window.print();
-        // Fallback for browsers that do not fire afterprint reliably.
-        setTimeout(() => {
-          if (document.title !== oldTitle) restore();
-        }, 2000);
-      }
-      function resetForm() {
-        form.reset();
-          // Reset signature settings
-  signatureDataUrl = "";
 
-  $("signatureUpload").value = "";
-  $("typedSignatureText").value = "";
-  $("signatureMode").value = "none";
-  $("signatureFont").value = "cursive";
+form.addEventListener('input',e=>{
+if(e.target.matches('input:not([type=file]),textarea,select')&&!e.target.closest('.item-row'))updatePreview();
+});
 
-  $("signatureUploadField").hidden = true;
-  $("typedSignatureField").hidden = true;
-        itemsEditor.innerHTML = "";
-        logoDataUrl = "";
-        if (logoObjectUrl) {
-          URL.revokeObjectURL(logoObjectUrl);
-          logoObjectUrl = "";
-        }
-        logoUpload.value = "";
-        accentColor.value = "#ed3434";
-        const now = new Date();
-        $("issueDate").value = dateISO(now);
-        $("dueDate").value = dateISO(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 14));
-        $("invoiceNumber").value = "INV-" + now.getFullYear() + "-" +
-          String(now.getMonth() + 1).padStart(2, "0") + "-" +
-          String(now.getDate()).padStart(2, "0");
-        $("currency").value = "INR";
-        $("taxType").value = "intra";
-        addItem();
-        updatePreview();
-      }
-      function loadSample() {
-        $("businessName").value = "Aarav Business Solutions";
-        $("businessAddress").value = "12 Market Road\nHyderabad, Telangana 500001";
-        $("businessEmail").value = "billing@example.com";
-        $("businessPhone").value = "+91 98765 43210";
-        $("businessGSTIN").value = "";
-        $("customerName").value = "ABC Enterprises";
-        $("customerAddress").value = "45 Business Park\nHyderabad, Telangana 500081";
-        $("customerEmail").value = "accounts@example.com";
-        $("customerGSTIN").value = "";
-        $("placeOfSupply").value = "Telangana";
-        $("currency").value = "INR";
-        $("taxType").value = "intra";
-        $("notes").value = "Payment due within 14 days. Thank you for your business.";
-        $("signatureName").value = "Aarav Kumar";
-$("signatureDesignation").value = "Director";
-signatureMode.value = "typed";
-typedSignatureText.value = "Aarav Kumar";
-signatureFont.value = "cursive";
-signatureDataUrl = "";
-signatureUpload.value = "";
-signatureUploadField.hidden = true;
-typedSignatureField.hidden = false;
-        itemsEditor.innerHTML = "";
-        addItem({description: "Consulting services", qty: 2, rate: 5000, discount: 0, gst: 18});
-        addItem({description: "Implementation support", qty: 1, rate: 2500, discount: 250, gst: 18});
-        updatePreview();
-      }
-      form.addEventListener("input", updatePreview);
-      form.addEventListener("change", updatePreview);
-      $("addItemButton").addEventListener("click", () => addItem());
-      $("clearItemsButton").addEventListener("click", () => {
-        itemsEditor.innerHTML = "";
-        updatePreview();
-      });
-      $("downloadButton").addEventListener("click", printInvoice);
-      $("formDownloadButton").addEventListener("click", printInvoice);
-      $("sampleButton").addEventListener("click", loadSample);
-      $("resetButton").addEventListener("click", resetForm);
-      $("removeLogo").addEventListener("click", () => {
-        logoDataUrl = "";
-        if (logoObjectUrl) {
-          URL.revokeObjectURL(logoObjectUrl);
-          logoObjectUrl = "";
-        }
-        logoUpload.value = "";
-        previewLogo.removeAttribute("src");
-        updatePreview();
-      });
-      logoUpload.addEventListener("change", () => {
-        const file = logoUpload.files && logoUpload.files[0];
-        if (!file) return;
-        const allowedTypes = ["image/png", "image/jpeg", "image/webp"];
-        if (!allowedTypes.includes(file.type)) {
-          alert("Please upload a PNG, JPG, or WebP image.");
-          logoUpload.value = "";
-          return;
-        }
-        if (file.size > 3 * 1024 * 1024) {
-          alert("Please choose a logo smaller than 3 MB.");
-          logoUpload.value = "";
-          return;
-        }
-        const reader = new FileReader();
-        reader.onload = () => {
-          if (typeof reader.result !== "string") {
-            alert("The logo could not be read. Please try another image.");
-            return;
-          }
-          logoDataUrl = reader.result;
-          updatePreview();
-        };
-        reader.onerror = () => alert("The logo could not be read. Please try another image.");
-        reader.readAsDataURL(file);
-      });
-      accentColor.addEventListener("input", updatePreview);
-      // Initialize with one blank line item.
-      addItem();
-      updatePreview();
-    })();
-  </script>
+form.addEventListener('change',e=>{
+if(e.target.matches('input:not([type=file]),textarea,select'))updatePreview();
+});
+
+$('addItem').addEventListener('click',()=>addItem());
+$('printButton').addEventListener('click',()=>window.print());
+$('printButtonTop').addEventListener('click',()=>window.print());
+
+function setToday(){
+const d=new Date();
+const local=new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
+$('invoiceDate').value=local;
+}
+
+function resetForm(){
+form.reset();
+$('itemsContainer').replaceChildren();
+logoDataUrl='';
+signatureDataUrl='';
+$('previewLogo').removeAttribute('src');
+$('previewLogo').style.display='none';
+$('businessLogo').value='';
+$('signatureUpload').value='';
+$('typedSignatureText').value='';
+$('accentColor').value='#7057ff';
+setToday();
+$('itemsContainer').replaceChildren();
+itemCounter=0;
+addItem();
+$('signatureUploadField').hidden=true;
+$('typedSignatureField').hidden=true;
+$('signatureFontField').hidden=true;
+$('signatureMode').value='none';
+$('signatureFont').value='cursive';
+$('signatureName').value='';
+$('signatureDesignation').value='';
+updatePreview();
+}
+
+$('resetButton').addEventListener('click',()=>{
+if(confirm('Reset all invoice fields?'))resetForm();
+});
+
+$('sampleButton').addEventListener('click',()=>{
+$('businessName').value='Aarav Enterprises';
+$('businessAddress').value='12 Business Park, Hyderabad, Telangana 500001';
+$('businessPhone').value='+91 98765 43210';
+$('businessEmail').value='billing@example.com';
+$('businessGstin').value='36ABCDE1234F1Z5';
+$('businessState').value='Telangana / 36';
+$('invoiceNumber').value='INV-2026-001';
+setToday();
+$('dueDate').value='';
+$('customerName').value='Sample Customer Pvt. Ltd.';
+$('customerAddress').value='45 Market Road, Hyderabad, Telangana';
+$('customerPhone').value='accounts@example.com';
+$('customerGstin').value='36XYZAB5678C1Z2';
+$('placeOfSupply').value='Telangana';
+$('discount').value='100';
+$('taxRate').value='18';
+$('taxType').value='intra';
+$('paymentDetails').value='Bank transfer / UPI\nPayment due within 15 days.';
+$('notes').value='Thank you for your business.';
+$('signatureName').value='Aarav Kumar';
+$('signatureDesignation').value='Director';
+$('signatureMode').value='typed';
+$('typedSignatureText').value='Aarav Kumar';
+$('signatureFont').value='cursive';
+signatureDataUrl='';
+$('signatureUpload').value='';
+$('accentColor').value='#7057ff';
+$('itemsContainer').replaceChildren();
+itemCounter=0;
+addItem('Consulting services',2,2500);
+addItem('Implementation support',1,4000);
+updateSignatureControls();
+});
+
+setToday();
+addItem();
+updatePreview();
+})();
+</script>
 </body>
 </html>
