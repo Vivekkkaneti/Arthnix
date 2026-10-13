@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help Center | ARTHNIX</title>
+  <meta name="description" content="Find help using ARTHNIX. Explore frequently asked questions about invoices, inventory, sales, account access, AI-powered tools, and business management.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://arthnix.com/help.html">
+  <meta property="og:title" content="Help Center | ARTHNIX">
+  <meta property="og:description" content="Find answers and guidance for using ARTHNIX business tools.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arthnix.com/help.html">
+  <meta name="theme-color" content="#111111">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages.css">
+  <style>
+    /* =====================================================
+       ARTHNIX HELP CENTER
+       Scoped styles preserve the shared site components.
+       ===================================================== */
+    .help-page {
+      --help-red: #e53935;
+      --help-black: #111111;
+      --help-muted: #686868;
+      --help-border: #e9e9e9;
+      background: #fff;
+      color: var(--help-black);
+      font-family: "DM Sans", sans-serif;
+      overflow: hidden;
+    }
+    .help-page *,
+    .help-page *::before,
+    .help-page *::after {
+      box-sizing: border-box;
+    }
+    .help-page a {
+      color: inherit;
+    }
+    .help-page button,
+    .help-page input {
+      font: inherit;
+    }
+    .help-container {
+      width: min(1160px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+    /* Hero */
+    .help-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 96px 0 88px;
+      background: #101010;
+      color: #fff;
+    }
+    .help-hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      opacity: .15;
+      background-image: radial-gradient(#ffffff 0.7px, transparent 0.7px);
+      background-size: 19px 19px;
+      mask-image: linear-gradient(to bottom, #000, transparent 90%);
+    }
+    .help-hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 400px;
+      height: 400px;
+      right: -130px;
+      top: -230px;
+      border: 1px solid rgba(229, 57, 53, .5);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 35px rgba(229, 57, 53, .045),
+        0 0 0 70px rgba(229, 57, 53, .035);
+    }
+    .help-hero-content {
+      max-width: 790px;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .help-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      color: #ff7773;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .help-eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--help-red);
+      box-shadow: 0 0 14px rgba(229, 57, 53, .8);
+    }
+    .help-hero h1 {
+      max-width: 760px;
+      margin: 0 auto;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(42px, 6vw, 70px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -.055em;
+    }
+    .help-hero h1 span {
+      color: #ff625e;
+    }
+    .help-hero p {
+      max-width: 600px;
+      margin: 22px auto 0;
+      color: #c5c5c5;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    /* Search */
+    .help-search-wrap {
+      position: relative;
+      max-width: 620px;
+      margin: 35px auto 0;
+    }
+    .help-search {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 62px;
+      padding: 8px 9px 8px 20px;
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 18px 55px rgba(0, 0, 0, .2);
+    }
+    .help-search svg {
+      flex: 0 0 auto;
+      width: 21px;
+      height: 21px;
+      color: #777;
+    }
+    .help-search input {
+      flex: 1;
+      min-width: 0;
+      height: 42px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #151515;
+      font-size: 14px;
+    }
+    .help-search input::placeholder {
+      color: #888;
+    }
+    .help-search:focus-within {
+      outline: 3px solid rgba(229, 57, 53, .3);
+      border-color: #ff7773;
+    }
+    .help-search-hint {
+      margin-top: 13px;
+      color: #a9a9a9;
+      font-size: 12px;
+    }
+    /* General section headings */
+    .help-section {
+      padding: 78px 0;
+    }
+    .help-section-heading {
+      margin-bottom: 34px;
+    }
+    .help-section-heading .help-label {
+      display: block;
+      margin-bottom: 11px;
+      color: var(--help-red);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .help-section-heading h2 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(28px, 3.8vw, 42px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.04em;
+    }
+    .help-section-heading p {
+      max-width: 620px;
+      margin: 13px 0 0;
+      color: var(--help-muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    /* Categories */
+    .help-categories {
+      background: #fff;
+    }
+    .help-category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+    .help-category {
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+      padding: 27px;
+      border: 1px solid var(--help-border);
+      border-radius: 13px;
+      background: #fff;
+      text-decoration: none;
+      transition:
+        border-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+    .help-category:hover {
+      transform: translateY(-4px);
+      border-color: #f1aaa8;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .055);
+    }
+    .help-category-icon {
+      display: grid;
+      width: 47px;
+      height: 47px;
+      place-items: center;
+      margin-bottom: 23px;
+      border-radius: 11px;
+      background: #fff0ef;
+      color: var(--help-red);
+    }
+    .help-category-icon svg {
+      width: 23px;
+      height: 23px;
+    }
+    .help-category h3 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+    .help-category p {
+      margin: 9px 0 18px;
+      color: var(--help-muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .help-category-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      color: var(--help-red);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .help-category-link span {
+      transition: transform .2s ease;
+    }
+    .help-category:hover .help-category-link span {
+      transform: translateX(4px);
+    }
+    /* FAQ */
+    .help-faq-section {
+      background: #f8f8f7;
+    }
+    .help-faq-layout {
+      display: grid;
+      grid-template-columns: .75fr 1.5fr;
+      align-items: start;
+      gap: 70px;
+    }
+    .help-faq-intro {
+      position: sticky;
+      top: 35px;
+    }
+    .help-faq-intro p {
+      color: var(--help-muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+    .help-faq-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 13px;
+      color: var(--help-red);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .help-faq-list {
+      border-top: 1px solid #dededc;
+    }
+    .help-faq-item {
+      border-bottom: 1px solid #dededc;
+    }
+    .help-faq-item[hidden] {
+      display: none;
+    }
+    .help-faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      padding: 23px 0;
+      border: 0;
+      background: transparent;
+      color: #171717;
+      text-align: left;
+      cursor: pointer;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+    .help-faq-question:focus-visible {
+      outline: 2px solid var(--help-red);
+      outline-offset: 4px;
+    }
+    .help-faq-toggle {
+      display: grid;
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border: 1px solid #dededc;
+      border-radius: 50%;
+      color: #555;
+      font-size: 19px;
+      font-weight: 400;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .help-faq-question[aria-expanded="true"] .help-faq-toggle {
+      transform: rotate(45deg);
+      border-color: #ffc4c2;
+      background: #fff0ef;
+      color: var(--help-red);
+    }
+    .help-faq-answer {
+      padding: 0 42px 24px 0;
+      color: #656565;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .help-faq-answer p {
+      margin: 0 0 10px;
+    }
+    .help-faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+    .help-faq-answer a {
+      color: var(--help-red);
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+    .help-no-results {
+      display: none;
+      padding: 25px 0;
+      color: var(--help-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .help-no-results.is-visible {
+      display: block;
+    }
+    /* Contact support */
+    .help-support-section {
+      padding: 75px 0 90px;
+      background: #fff;
+    }
+    .help-support-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 35px;
+      overflow: hidden;
+      padding: 48px;
+      border-radius: 16px;
+      background: #111;
+      color: #fff;
+    }
+    .help-support-card::after {
+      content: "";
+      position: absolute;
+      right: 100px;
+      bottom: -220px;
+      width: 360px;
+      height: 360px;
+      border: 1px solid rgba(229, 57, 53, .45);
+      border-radius: 50%;
+      box-shadow: 0 0 0 30px rgba(229, 57, 53, .04);
+      pointer-events: none;
+    }
+    .help-support-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 650px;
+    }
+    .help-support-copy .help-label {
+      display: block;
+      margin-bottom: 12px;
+      color: #ff7773;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .help-support-copy h2 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(27px, 3.4vw, 39px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.04em;
+    }
+    .help-support-copy p {
+      margin: 15px 0 0;
+      color: #bcbcbc;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .help-support-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .help-support-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 49px;
+      padding: 0 21px;
+      border: 1px solid var(--help-red);
+      border-radius: 7px;
+      background: var(--help-red);
+      color: #fff !important;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .help-support-button:hover {
+      border-color: #c92d29;
+      background: #c92d29;
+    }
+    .help-support-email {
+      color: #d2d2d2 !important;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .help-support-email:hover {
+      color: #fff !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    /* Search status */
+    .help-search-status {
+      margin-top: 17px;
+      color: var(--help-muted);
+      font-size: 12px;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .help-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .help-faq-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .help-faq-intro {
+        position: static;
+      }
+      .help-support-card {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 38px;
+      }
+      .help-support-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+    }
+    @media (max-width: 600px) {
+      .help-container {
+        width: min(100% - 34px, 1160px);
+      }
+      .help-hero {
+        padding: 73px 0 65px;
+      }
+      .help-hero h1 {
+        font-size: clamp(39px, 11vw, 54px);
+      }
+      .help-hero p {
+        font-size: 14px;
+      }
+      .help-search {
+        min-height: 58px;
+        padding-left: 14px;
+      }
+      .help-search input {
+        font-size: 12px;
+      }
+      .help-section {
+        padding: 58px 0;
+      }
+      .help-category-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .help-category {
+        min-height: auto;
+        padding: 23px;
+      }
+      .help-category-icon {
+        margin-bottom: 17px;
+      }
+      .help-faq-question {
+        gap: 13px;
+        padding: 20px 0;
+        font-size: 14px;
+      }
+      .help-faq-answer {
+        padding-right: 10px;
+        font-size: 13px;
+      }
+      .help-support-section {
+        padding: 52px 0 65px;
+      }
+      .help-support-card {
+        padding: 29px 23px;
+      }
+      .help-support-actions {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .help-page *,
+      .help-page *::before,
+      .help-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "ARTHNIX Help Center",
+    "url": "https://arthnix.com/help.html",
+    "description": "Help and frequently asked questions about ARTHNIX business management tools.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="help-page">
+    <!-- HERO -->
+    <section class="help-hero">
+      <div class="help-container">
+        <div class="help-hero-content">
+          <span class="help-eyebrow">ARTHNIX Help Center</span>
+          <h1>
+            Answers for your business.<br>
+            <span>All in one place.</span>
+          </h1>
+          <p>
+            Need a hand getting started? Find guidance on business tools,
+            account access, invoices, inventory, sales, and AI-powered features.
+          </p>
+          <div class="help-search-wrap">
+            <label class="help-search" for="help-search-input">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m16 16 4.3 4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <input
+                type="search"
+                id="help-search-input"
+                placeholder="Search invoices, inventory, account access..."
+                autocomplete="off"
+                aria-label="Search help articles and frequently asked questions"
+                aria-controls="help-faq-list"
+              >
+            </label>
+            <div class="help-search-hint">
+              Try searching for “invoice”, “account”, or “AI tools”.
+            </div>
+            <div
+              class="help-search-status"
+              id="help-search-status"
+              aria-live="polite"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- HELP CATEGORIES -->
+    <section class="help-section help-categories" id="help-categories">
+      <div class="help-container">
+        <div class="help-section-heading">
+          <span class="help-label">Explore help</span>
+          <h2>What can we help you with?</h2>
+          <p>
+            Browse the topics below to find answers to common business
+            management questions.
+          </p>
+        </div>
+        <div class="help-category-grid">
+          <a class="help-category" href="#faq-account" data-help-category="account">
+            <div class="help-category-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M5 20c.5-3.4 3.1-5.2 7-5.2s6.5 1.8 7 5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Account & Access</h3>
+            <p>Learn about account access, sign-in issues, and keeping your information up to date.</p>
+            <span class="help-category-link">Explore answers <span>→</span></span>
+          </a>
+          <a class="help-category" href="#faq-invoices" data-help-category="invoices">
+            <div class="help-category-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 3.5h9l4 4V21H6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="M15 3.5V8h4M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Invoices & Billing</h3>
+            <p>Find guidance on invoice creation, business records, and billing-related questions.</p>
+            <span class="help-category-link">Explore answers <span>→</span></span>
+          </a>
+          <a class="help-category" href="#faq-inventory" data-help-category="inventory">
+            <div class="help-category-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="m4.5 7.7 7.5 4.2 7.5-4.2M12 12v8.5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Inventory</h3>
+            <p>Understand inventory tracking, product information, and stock management concepts.</p>
+            <span class="help-category-link">Explore answers <span>→</span></span>
+          </a>
+          <a class="help-category" href="#faq-sales" data-help-category="sales">
+            <div class="help-category-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 19.5V13M10 19.5V8M16 19.5V4.5M22 19.5V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Sales & Business</h3>
+            <p>Explore sales tracking, business workflows, and organizing everyday operations.</p>
+            <span class="help-category-link">Explore answers <span>→</span></span>
+          </a>
+          <a class="help-category" href="#faq-ai" data-help-category="ai">
+            <div class="help-category-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3>AI-Powered Tools</h3>
+            <p>Learn how to approach AI-assisted workflows and verify AI-generated results.</p>
+            <span class="help-category-link">Explore answers <span>→</span></span>
+          </a>
+          <a class="help-category" href="#faq-support" data-help-category="support">
+            <div class="help-category-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 13v-2a8 8 0 0 1 16 0v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M4 12H3a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v-6zm16 0h1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M16 20c-.8.7-2 1-4 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Contact & Support</h3>
+            <p>Find out how to contact us with a question, issue, or suggestion.</p>
+            <span class="help-category-link">Get support <span>→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ -->
+    <section class="help-section help-faq-section" id="help-faq">
+      <div class="help-container">
+        <div class="help-faq-layout">
+          <div class="help-faq-intro">
+            <div class="help-section-heading">
+              <span class="help-label">Frequently asked questions</span>
+              <h2>Quick answers.<br>Less guesswork.</h2>
+              <p>
+                Start with these common questions about ARTHNIX and its
+                intended business management capabilities.
+              </p>
+            </div>
+            <a class="help-faq-contact" href="#faq-support">
+              Still need help? Contact us <span>→</span>
+            </a>
+          </div>
+          <div>
+            <div class="help-faq-list" id="help-faq-list">
+              <article class="help-faq-item" id="faq-general"
+                data-category="general"
+                data-search="what is arthnix about platform business software intelligence every business">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  What is ARTHNIX?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    ARTHNIX is a business software brand focused on simplifying
+                    everyday business operations. Its intended product direction
+                    includes tools for invoices, inventory, sales tracking, and
+                    AI-assisted workflows.
+                  </p>
+                  <p>
+                    Specific features and availability may vary as the platform develops.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-account"
+                data-category="account"
+                data-search="account sign in login password access registration profile">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  How do I access my ARTHNIX account?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    Use the official account access options provided on the
+                    ARTHNIX website, if available. If you cannot sign in, check
+                    your login details and try again.
+                  </p>
+                  <p>
+                    If the issue continues, email
+                    <a href="mailto:uimockup.plus@gmail.com?subject=ARTHNIX%20Account%20Access">
+                      uimockup.plus@gmail.com
+                    </a>
+                    with a description of the issue. Never include your password
+                    or other secret authentication details.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-invoices"
+                data-category="invoices"
+                data-search="invoice create generate billing customer business records tax">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  Can I create invoices with ARTHNIX?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    Invoice creation is part of the ARTHNIX product direction.
+                    Check the currently available product features to confirm
+                    whether invoice tools are available for your account.
+                  </p>
+                  <p>
+                    Before issuing an invoice, verify customer details, amounts,
+                    applicable taxes, and required business information.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-inventory"
+                data-category="inventory"
+                data-search="inventory stock product quantity manage track items">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  Does ARTHNIX support inventory management?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    Inventory management is part of the intended ARTHNIX
+                    offering. Availability may depend on the product version
+                    and features currently released.
+                  </p>
+                  <p>
+                    Always verify stock quantities and product records against
+                    your actual business inventory.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-sales"
+                data-category="sales"
+                data-search="sales tracking business reports revenue performance analytics operations">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  Can I track my business sales?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    Sales tracking and easier business operations are part of
+                    the ARTHNIX vision. Please check the live product
+                    information for the features currently supported.
+                  </p>
+                  <p>
+                    For important financial decisions, review the underlying
+                    business records and confirm the figures independently.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-ai"
+                data-category="ai"
+                data-search="artificial intelligence ai generated answers automation suggestions accuracy">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  Can I rely on AI-generated answers without checking them?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    No. AI-generated outputs can be incomplete, outdated, or
+                    incorrect. Review important results before using them.
+                  </p>
+                  <p>
+                    Verify financial figures, tax calculations, customer
+                    information, inventory records, and other consequential
+                    outputs against reliable source records.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-data"
+                data-category="account"
+                data-search="data privacy personal information security documents upload">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  How should I protect my business information?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    Use strong, unique passwords where accounts are supported,
+                    protect your devices, and avoid sharing login credentials.
+                    Only submit information that is necessary for the feature
+                    you are using.
+                  </p>
+                  <p>
+                    Read the
+                    <a href="privacy.html">Privacy Policy</a>
+                    for information about how the website describes its data
+                    practices. Do not submit confidential information unless
+                    you understand how it will be handled.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-pricing"
+                data-category="general"
+                data-search="pricing subscription fees free trial plan payment cost">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  Where can I find pricing information?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    Refer to the official ARTHNIX website for current pricing
+                    and plan information, where published. Do not assume a
+                    feature is free or available under a particular plan unless
+                    the published terms confirm it.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-support"
+                data-category="support"
+                data-search="contact support help issue bug feedback suggestion email">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  How do I contact ARTHNIX support?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    You can email
+                    <a href="mailto:uimockup.plus@gmail.com?subject=ARTHNIX%20Help%20Request">
+                      uimockup.plus@gmail.com
+                    </a>
+                    with your question or feedback.
+                  </p>
+                  <p>
+                    Include a short description of the issue and the relevant
+                    page or feature. Avoid sending passwords, payment
+                    credentials, or unnecessary sensitive information.
+                  </p>
+                </div>
+              </article>
+              <article class="help-faq-item" id="faq-feedback"
+                data-category="support"
+                data-search="suggest feature request feedback improve product">
+                <button class="help-faq-question" type="button" aria-expanded="false">
+                  How can I suggest a feature?
+                  <span class="help-faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="help-faq-answer" hidden>
+                  <p>
+                    Send your suggestion to
+                    <a href="mailto:uimockup.plus@gmail.com?subject=ARTHNIX%20Feature%20Suggestion">
+                      uimockup.plus@gmail.com
+                    </a>.
+                    Explain the problem you are trying to solve and how the
+                    feature would help your business.
+                  </p>
+                  <p>
+                    Suggestions are not a guarantee that a feature will be
+                    developed or released.
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="help-no-results" id="help-no-results">
+              <strong>No matching questions found.</strong><br>
+              Try a different search term, or contact us for further assistance.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SUPPORT CTA -->
+    <section class="help-support-section">
+      <div class="help-container">
+        <div class="help-support-card">
+          <div class="help-support-copy">
+            <span class="help-label">We're here to help</span>
+            <h2>Couldn't find your answer?</h2>
+            <p>
+              Send us your question or feedback. Tell us what you are trying
+              to do, and include the relevant page or feature so we can better
+              understand your request.
+            </p>
+          </div>
+          <div class="help-support-actions">
+            <a
+              class="help-support-button"
+              href="mailto:uimockup.plus@gmail.com?subject=ARTHNIX%20Help%20Request&body=Hello%20ARTHNIX%20Team%2C%0A%0AI%20need%20help%20with%3A%0A%0APage%20or%20feature%3A%0A%0ADetails%3A%0A"
+            >
+              Email Support <span aria-hidden="true">↗</span>
+            </a>
+            <a class="help-support-email" href="mailto:uimockup.plus@gmail.com">
+              uimockup.plus@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="components.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.getElementById("help-search-input");
+      const faqItems = Array.from(
+        document.querySelectorAll(".help-faq-item")
+      );
+      const noResults = document.getElementById("help-no-results");
+      const searchStatus = document.getElementById("help-search-status");
+      const categoryLinks = document.querySelectorAll("[data-help-category]");
+      if (!searchInput) return;
+      function closeItem(item) {
+        const button = item.querySelector(".help-faq-question");
+        const answer = item.querySelector(".help-faq-answer");
+        button.setAttribute("aria-expanded", "false");
+        answer.hidden = true;
+      }
+      function openItem(item) {
+        const button = item.querySelector(".help-faq-question");
+        const answer = item.querySelector(".help-faq-answer");
+        button.setAttribute("aria-expanded", "true");
+        answer.hidden = false;
+      }
+      function filterFAQs() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
+        faqItems.forEach(function (item) {
+          const question = item.querySelector(".help-faq-question").textContent;
+          const answer = item.querySelector(".help-faq-answer").textContent;
+          const searchText = (
+            question + " " +
+            answer + " " +
+            (item.dataset.search || "") + " " +
+            (item.dataset.category || "")
+          ).toLowerCase();
+          const matches = !query || searchText.includes(query);
+          item.hidden = !matches;
+          if (matches) {
+            visibleCount++;
+            if (query) {
+              openItem(item);
+            } else {
+              closeItem(item);
+            }
+          } else {
+            closeItem(item);
+          }
+        });
+        noResults.classList.toggle("is-visible", visibleCount === 0);
+        searchStatus.textContent = query
+          ? visibleCount + (visibleCount === 1
+              ? " matching question"
+              : " matching questions")
+          : "";
+      }
+      faqItems.forEach(function (item) {
+        const button = item.querySelector(".help-faq-question");
+        button.addEventListener("click", function () {
+          const isExpanded = button.getAttribute("aria-expanded") === "true";
+          if (isExpanded) {
+            closeItem(item);
+          } else {
+            openItem(item);
+          }
+        });
+      });
+      searchInput.addEventListener("input", filterFAQs);
+      categoryLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          const targetId = link.getAttribute("href").slice(1);
+          const target = document.getElementById(targetId);
+          if (!target) return;
+          event.preventDefault();
+          searchInput.value = "";
+          filterFAQs();
+          document.getElementById("help-faq").scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+            block: "start"
+          });
+          const button = target.querySelector(".help-faq-question");
+          if (button) {
+            openItem(target);
+            window.setTimeout(function () {
+              button.focus({ preventScroll: true });
+            }, 250);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
