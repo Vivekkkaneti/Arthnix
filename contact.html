@@ -2,61 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact ARTHNIX | Business AI Tools & Support</title>
-
-<meta
-name=“description”
-content=“Contact ARTHNIX for business enquiries, product support, partnerships, feedback, and questions about our AI-powered business tools.”
-
-  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact ARTHNIX — Let's Build Something</title>
+  <meta name="description" content="Contact ARTHNIX for business enquiries, project discussions, partnerships, and questions about our services. Let's build something meaningful together.">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://arthnix.com/contact.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contact ARTHNIX">
-  <meta
-    property="og:description"
-    content="Questions about ARTHNIX? Get in touch for product support, business enquiries, partnerships, and feedback."
-  >
+  <meta property="og:description" content="Have a project in mind? Contact ARTHNIX to discuss your ideas, requirements, and opportunities.">
   <meta property="og:url" content="https://arthnix.com/contact.html">
-  <meta name="theme-color" content="#ffffff">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="theme-color" content="#090909">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="pages.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact ARTHNIX",
+    "url": "https://arthnix.com/contact.html",
+    "description": "Contact ARTHNIX for business enquiries, project discussions, partnerships, and service-related questions.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com/"
+    }
+  }
+  </script>
   <style>
-    /* =========================================================
+    /* =====================================================
        ARTHNIX CONTACT PAGE
-       Uses the shared navigation, footer, and pages.css.
-       Homepage styles remain untouched.
-       ========================================================= */
+       Matches the main website's black, white and red theme.
+       All page-specific styles are scoped to .contact-page.
+       ===================================================== */
     :root {
-      --contact-ink: #171923;
-      --contact-muted: #707585;
-      --contact-border: #e8eaf0;
-      --contact-surface: #f7f8fb;
-      --contact-accent: #7057ff;
-      --contact-accent-dark: #5a42e5;
-      --contact-radius: 20px;
-      --contact-body-font: "DM Sans", sans-serif;
-      --contact-heading-font: "Manrope", sans-serif;
+      --contact-black: #090909;
+      --contact-black-soft: #111111;
+      --contact-red: #ed3434;
+      --contact-red-hover: #d92727;
+      --contact-white: #ffffff;
+      --contact-paper: #fafaf9;
+      --contact-surface: #f4f4f2;
+      --contact-text: #151515;
+      --contact-muted: #737373;
+      --contact-border: #e9e9e7;
+      --contact-radius: 18px;
+      --contact-container: 1160px;
+    }
+    .contact-page,
+    .contact-page * {
+      box-sizing: border-box;
     }
     .contact-page {
-      color: var(--contact-ink);
-      font-family: var(--contact-body-font);
-      font-weight: 400;
+      background: var(--contact-white);
+      color: var(--contact-text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
       overflow: hidden;
-    }
-    .contact-page *,
-    .contact-page *::before,
-    .contact-page *::after {
-      box-sizing: border-box;
     }
     .contact-page a {
       color: inherit;
+      text-decoration: none;
     }
     .contact-page button,
     .contact-page input,
@@ -64,556 +72,716 @@ content=“Contact ARTHNIX for business enquiries, product support, partnerships
     .contact-page textarea {
       font: inherit;
     }
-    .contact-container {
-      width: min(1120px, calc(100% - 48px));
+    .contact-page button,
+    .contact-page a,
+    .contact-page input,
+    .contact-page select,
+    .contact-page textarea {
+      -webkit-tap-highlight-color: transparent;
+    }
+    .contact-page button:focus-visible,
+    .contact-page a:focus-visible,
+    .contact-page input:focus-visible,
+    .contact-page select:focus-visible,
+    .contact-page textarea:focus-visible {
+      outline: 3px solid rgba(237, 52, 52, 0.45);
+      outline-offset: 3px;
+    }
+    .contact-page .contact-container {
+      width: min(var(--contact-container), calc(100% - 48px));
       margin-inline: auto;
     }
-    .contact-hero {
-      position: relative;
-      padding: 94px 0 78px;
-      background:
-        radial-gradient(
-          ellipse at 50% 0%,
-          rgba(112, 87, 255, 0.09),
-          transparent 57%
-        ),
-        #fff;
-      text-align: center;
-    }
-    .contact-hero::after {
-      position: absolute;
-      right: -130px;
-      bottom: -180px;
-      width: 380px;
-      height: 380px;
-      border: 1px solid rgba(112, 87, 255, 0.08);
-      border-radius: 50%;
-      content: "";
-      pointer-events: none;
-    }
-    .contact-eyebrow {
+    .contact-page .contact-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      margin-bottom: 22px;
-      color: var(--contact-accent-dark);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.8px;
+      gap: 10px;
+      margin: 0 0 22px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 1.5;
       text-transform: uppercase;
     }
-    .contact-eyebrow::before {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--contact-accent);
+    .contact-page .contact-eyebrow::before {
       content: "";
+      width: 22px;
+      height: 2px;
+      flex: 0 0 22px;
+      background: var(--contact-red);
     }
-    .contact-hero h1 {
-      max-width: 850px;
-      margin: 0 auto;
-      font-family: var(--contact-heading-font);
-      font-size: clamp(40px, 6vw, 68px);
-      font-weight: 600;
-      letter-spacing: -2.8px;
-      line-height: 1.1;
-    }
-    .contact-hero h1 span {
-      color: var(--contact-accent);
-    }
-    .contact-hero-description {
-      max-width: 630px;
-      margin: 24px auto 0;
-      color: var(--contact-muted);
-      font-size: 17px;
-      line-height: 1.85;
-    }
-    .contact-hero-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 28px;
-      padding: 10px 15px;
-      border: 1px solid var(--contact-border);
-      border-radius: 100px;
-      background: rgba(255, 255, 255, 0.8);
-      color: #565c6c;
-      font-size: 12px;
-      font-weight: 500;
-    }
-    .contact-hero-note svg {
-      flex-shrink: 0;
-      color: var(--contact-accent);
-    }
-    .contact-main {
-      position: relative;
-      padding: 18px 0 100px;
-      background: #fff;
-    }
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-      align-items: start;
-      gap: 54px;
-    }
-    .contact-intro {
-      padding-top: 14px;
-    }
-    .contact-section-label {
-      margin: 0 0 16px;
-      color: var(--contact-accent-dark);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-    }
-    .contact-intro h2,
-    .contact-form-heading h2,
-    .contact-faq-heading h2 {
+    .contact-page .contact-section-heading {
+      max-width: 650px;
       margin: 0;
-      font-family: var(--contact-heading-font);
-      font-size: clamp(28px, 3.4vw, 40px);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 4vw, 46px);
       font-weight: 600;
-      letter-spacing: -1.3px;
-      line-height: 1.25;
+      letter-spacing: -0.055em;
+      line-height: 1.16;
     }
-    .contact-intro > p:not(.contact-section-label) {
-      margin: 20px 0 0;
+    .contact-page .contact-section-copy {
+      max-width: 560px;
+      margin: 18px 0 0;
       color: var(--contact-muted);
       font-size: 15px;
       line-height: 1.9;
     }
-    .contact-reasons {
-      display: grid;
-      gap: 12px;
-      margin-top: 32px;
+    .contact-page .contact-red-text {
+      color: var(--contact-red);
     }
-    .contact-reason {
+    /* HERO */
+    .contact-page .contact-hero {
+      position: relative;
+      isolation: isolate;
+      padding: 105px 0 94px;
+      overflow: hidden;
+      background: var(--contact-black);
+      color: var(--contact-white);
+    }
+    .contact-page .contact-hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background-image: radial-gradient(
+        rgba(255, 255, 255, 0.12) 0.7px,
+        transparent 0.7px
+      );
+      background-size: 22px 22px;
+      opacity: 0.28;
+      mask-image: linear-gradient(
+        90deg,
+        transparent 5%,
+        black 100%
+      );
+    }
+    .contact-page .contact-hero::after {
+      position: absolute;
+      z-index: -1;
+      top: -180px;
+      right: -130px;
+      width: 530px;
+      height: 530px;
+      content: "";
+      border: 1px solid rgba(237, 52, 52, 0.15);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 55px rgba(237, 52, 52, 0.025),
+        0 0 0 110px rgba(237, 52, 52, 0.02);
+      pointer-events: none;
+    }
+    .contact-page .contact-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
+      align-items: end;
+      gap: 65px;
+    }
+    .contact-page .contact-hero .contact-eyebrow {
+      color: #c8c8c8;
+    }
+    .contact-page .contact-hero h1 {
+      max-width: 780px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(48px, 7.2vw, 84px);
+      font-weight: 600;
+      letter-spacing: -0.075em;
+      line-height: 1.03;
+    }
+    .contact-page .contact-hero h1 .contact-highlight {
+      color: var(--contact-red);
+    }
+    .contact-page .contact-hero-description {
+      max-width: 570px;
+      margin: 26px 0 0;
+      color: #b7b7b7;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+    .contact-page .contact-hero-side {
+      padding: 26px 0 6px 25px;
+      border-left: 1px solid #303030;
+    }
+    .contact-page .contact-hero-side-label {
+      display: block;
+      margin-bottom: 14px;
+      color: #858585;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .contact-page .contact-hero-side p {
+      margin: 0;
+      color: #eeeeee;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.65;
+    }
+    .contact-page .contact-hero-side span {
+      display: block;
+      margin-top: 17px;
+      color: #888888;
+      font-size: 12px;
+    }
+    /* CONTACT REASONS */
+    .contact-page .contact-reasons {
+      padding: 77px 0 83px;
+      border-bottom: 1px solid var(--contact-border);
+      background: var(--contact-paper);
+    }
+    .contact-page .contact-reasons-header {
       display: flex;
-      align-items: flex-start;
-      gap: 15px;
-      padding: 17px;
+      justify-content: space-between;
+      align-items: end;
+      gap: 35px;
+      margin-bottom: 37px;
+    }
+    .contact-page .contact-reasons-header .contact-section-copy {
+      max-width: 370px;
+      margin-top: 0;
+      font-size: 14px;
+    }
+    .contact-page .contact-reason-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .contact-page .contact-reason-card {
+      min-height: 190px;
+      padding: 27px 25px;
       border: 1px solid var(--contact-border);
-      border-radius: 15px;
-      background: #fff;
+      border-radius: var(--contact-radius);
+      background: var(--contact-white);
       transition:
         border-color 180ms ease,
         transform 180ms ease,
         box-shadow 180ms ease;
     }
-    .contact-reason:hover {
-      transform: translateY(-2px);
-      border-color: #d8d0ff;
-      box-shadow: 0 8px 26px rgba(31, 25, 75, 0.04);
+    .contact-page .contact-reason-card:hover {
+      transform: translateY(-3px);
+      border-color: #e5b0b0;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.035);
     }
-    .contact-reason-icon {
-      display: grid;
-      flex: 0 0 43px;
-      width: 43px;
-      height: 43px;
-      place-items: center;
-      border-radius: 12px;
-      background: #f0edff;
-      color: var(--contact-accent-dark);
+    .contact-page .contact-reason-number {
+      display: inline-flex;
+      width: 35px;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: #fff0f0;
+      color: var(--contact-red);
+      font-size: 11px;
+      font-weight: 700;
     }
-    .contact-reason h3 {
-      margin: 1px 0 5px;
-      font-family: var(--contact-heading-font);
-      font-size: 15px;
+    .contact-page .contact-reason-card h3 {
+      margin: 23px 0 8px;
+      font-family: "Manrope", sans-serif;
+      font-size: 18px;
       font-weight: 600;
-      line-height: 1.5;
+      letter-spacing: -0.035em;
+      line-height: 1.4;
     }
-    .contact-reason p {
+    .contact-page .contact-reason-card p {
       margin: 0;
       color: var(--contact-muted);
       font-size: 13px;
-      line-height: 1.7;
-    }
-    .contact-form-card {
-      padding: 36px;
-      border: 1px solid var(--contact-border);
-      border-radius: var(--contact-radius);
-      background: #fff;
-      box-shadow: 0 18px 70px rgba(24, 26, 44, 0.055);
-    }
-    .contact-form-heading {
-      margin-bottom: 28px;
-    }
-    .contact-form-heading h2 {
-      font-size: 29px;
-      letter-spacing: -0.9px;
-    }
-    .contact-form-heading p {
-      margin: 11px 0 0;
-      color: var(--contact-muted);
-      font-size: 14px;
       line-height: 1.8;
     }
-    .contact-form {
+    /* MAIN CONTACT SECTION */
+    .contact-page .contact-main {
+      padding: 100px 0 105px;
+      background: var(--contact-white);
+    }
+    .contact-page .contact-main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      align-items: start;
+      gap: 85px;
+    }
+    .contact-page .contact-intro {
+      position: sticky;
+      top: 30px;
+    }
+    .contact-page .contact-intro h2 {
+      max-width: 440px;
+    }
+    .contact-page .contact-intro > p {
+      max-width: 430px;
+      margin: 20px 0 0;
+      color: var(--contact-muted);
+      font-size: 14px;
+      line-height: 1.95;
+    }
+    .contact-page .contact-detail-list {
+      display: grid;
+      gap: 0;
+      margin-top: 39px;
+      border-top: 1px solid var(--contact-border);
+    }
+    .contact-page .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--contact-border);
+    }
+    .contact-page .contact-detail-icon {
+      display: flex;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--contact-border);
+      border-radius: 12px;
+      color: var(--contact-red);
+    }
+    .contact-page .contact-detail-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .contact-page .contact-detail strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .contact-page .contact-detail p {
+      margin: 0;
+      color: var(--contact-muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .contact-page .contact-detail a {
+      transition: color 160ms ease;
+    }
+    .contact-page .contact-detail a:hover {
+      color: var(--contact-red);
+    }
+    .contact-page .contact-response-note {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 23px;
+      padding: 14px 15px;
+      border-radius: 12px;
+      background: var(--contact-paper);
+      color: var(--contact-muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .contact-page .contact-response-note span {
+      color: var(--contact-red);
+      font-weight: 700;
+    }
+    /* FORM */
+    .contact-page .contact-form-card {
+      padding: 38px;
+      border: 1px solid var(--contact-border);
+      border-radius: 22px;
+      background: var(--contact-white);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.035);
+    }
+    .contact-page .contact-form-heading {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.35;
+    }
+    .contact-page .contact-form-subheading {
+      margin: 9px 0 28px;
+      color: var(--contact-muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .contact-page .contact-form {
       display: grid;
       gap: 19px;
     }
-    .contact-form-row {
+    .contact-page .contact-form-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
-    .contact-field {
+    .contact-page .contact-field {
       display: grid;
       gap: 8px;
       min-width: 0;
     }
-    .contact-field label {
-      color: #333747;
-      font-size: 13px;
-      font-weight: 600;
-    }
-    .contact-field label span {
-      color: #9398a7;
-      font-weight: 400;
-    }
-    .contact-field input,
-    .contact-field select,
-    .contact-field textarea {
-      display: block;
-      width: 100%;
-      min-width: 0;
-      border: 1px solid #dfe2eb;
-      border-radius: 10px;
-      outline: none;
-      background: #fff;
-      color: var(--contact-ink);
-      font-size: 14px;
-      transition:
-        border-color 180ms ease,
-        box-shadow 180ms ease;
-    }
-    .contact-field input,
-    .contact-field select {
-      min-height: 48px;
-      padding: 0 13px;
-    }
-    .contact-field textarea {
-      min-height: 140px;
-      padding: 13px;
-      line-height: 1.7;
-      resize: vertical;
-    }
-    .contact-field input::placeholder,
-    .contact-field textarea::placeholder {
-      color: #a0a4b1;
-    }
-    .contact-field input:focus,
-    .contact-field select:focus,
-    .contact-field textarea:focus {
-      border-color: var(--contact-accent);
-      box-shadow: 0 0 0 3px rgba(112, 87, 255, 0.11);
-    }
-    .contact-field input[aria-invalid="true"],
-    .contact-field select[aria-invalid="true"],
-    .contact-field textarea[aria-invalid="true"] {
-      border-color: #d92d43;
-    }
-    .contact-field-error {
-      display: none;
-      color: #c42339;
+    .contact-page .contact-field label {
+      color: var(--contact-text);
       font-size: 12px;
-      line-height: 1.5;
+      font-weight: 700;
     }
-    .contact-field-error.is-visible {
-      display: block;
+    .contact-page .contact-field label .contact-required {
+      color: var(--contact-red);
     }
-    .contact-consent {
+    .contact-page .contact-field input,
+    .contact-page .contact-field select,
+    .contact-page .contact-field textarea {
+      width: 100%;
+      min-height: 49px;
+      padding: 12px 14px;
+      border: 1px solid #e3e3e0;
+      border-radius: 11px;
+      background: #fff;
+      color: var(--contact-text);
+      font-size: 13px;
+      outline: none;
+      transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+    }
+    .contact-page .contact-field input::placeholder,
+    .contact-page .contact-field textarea::placeholder {
+      color: #a2a2a0;
+    }
+    .contact-page .contact-field input:focus,
+    .contact-page .contact-field select:focus,
+    .contact-page .contact-field textarea:focus {
+      border-color: var(--contact-red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.08);
+    }
+    .contact-page .contact-field select {
+      cursor: pointer;
+    }
+    .contact-page .contact-field textarea {
+      min-height: 145px;
+      resize: vertical;
+      line-height: 1.8;
+    }
+    .contact-page .contact-field .contact-field-hint {
+      color: var(--contact-muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+    .contact-page .contact-consent {
       display: flex;
       align-items: flex-start;
       gap: 10px;
       color: var(--contact-muted);
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1.8;
     }
-    .contact-consent input {
-      flex-shrink: 0;
+    .contact-page .contact-consent input {
       width: 15px;
       height: 15px;
-      margin: 3px 0 0;
-      accent-color: var(--contact-accent);
+      flex: 0 0 15px;
+      margin-top: 3px;
+      accent-color: var(--contact-red);
+      cursor: pointer;
     }
-    .contact-consent a {
-      color: var(--contact-accent-dark);
+    .contact-page .contact-consent a {
+      color: var(--contact-text);
       text-decoration: underline;
+      text-decoration-color: #c8c8c5;
       text-underline-offset: 3px;
     }
-    .contact-submit {
+    .contact-page .contact-consent a:hover {
+      color: var(--contact-red);
+    }
+    .contact-page .contact-submit {
       display: inline-flex;
       width: 100%;
       min-height: 52px;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 13px 20px;
-      border: 0;
+      gap: 11px;
+      padding: 14px 20px;
+      border: 1px solid var(--contact-red);
       border-radius: 11px;
-      background: var(--contact-accent);
-      color: #fff;
+      background: var(--contact-red);
+      color: var(--contact-white);
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
-      font-family: var(--contact-body-font);
-      font-size: 14px;
-      font-weight: 600;
       transition:
-        background 180ms ease,
-        transform 180ms ease,
-        box-shadow 180ms ease;
+        background 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
     }
-    .contact-submit:hover {
+    .contact-page .contact-submit:hover {
       transform: translateY(-1px);
-      background: var(--contact-accent-dark);
-      box-shadow: 0 8px 22px rgba(112, 87, 255, 0.2);
+      border-color: var(--contact-red-hover);
+      background: var(--contact-red-hover);
     }
-    .contact-submit:focus-visible,
-    .contact-reason:focus-visible {
-      outline: 3px solid rgba(112, 87, 255, 0.35);
-      outline-offset: 3px;
-    }
-    .contact-submit:disabled {
-      cursor: wait;
+    .contact-page .contact-submit:disabled {
       opacity: 0.7;
+      cursor: wait;
       transform: none;
     }
-    .contact-form-status {
+    .contact-page .contact-submit svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .contact-page .contact-form-status {
       display: none;
+      margin: 0;
       padding: 13px 15px;
+      border: 1px solid var(--contact-border);
       border-radius: 10px;
-      font-size: 13px;
-      line-height: 1.7;
+      background: var(--contact-paper);
+      color: var(--contact-text);
+      font-size: 12px;
+      line-height: 1.8;
       overflow-wrap: anywhere;
     }
-    .contact-form-status.is-visible {
+    .contact-page .contact-form-status.is-visible {
       display: block;
     }
-    .contact-form-status.is-success {
-      border: 1px solid #b9e5ca;
-      background: #f0fbf4;
-      color: #176c39;
+    .contact-page .contact-form-status.is-error {
+      border-color: #f0c5c5;
+      background: #fff6f6;
+      color: #9b2424;
     }
-    .contact-form-status.is-error {
-      border: 1px solid #f2c5cb;
-      background: #fff5f6;
-      color: #a51e31;
+    .contact-page .contact-form-status.is-success {
+      border-color: #b9ddc3;
+      background: #f3fbf5;
+      color: #216438;
     }
-    .contact-form-footnote {
-      margin: -3px 0 0;
-      color: #9297a5;
+    .contact-page .contact-form-footnote {
+      margin: -4px 0 0;
+      color: #8b8b88;
       font-size: 11px;
-      line-height: 1.7;
+      line-height: 1.8;
       text-align: center;
     }
-    .contact-alternative {
-      margin-top: 22px;
-      padding: 18px;
-      border: 1px solid var(--contact-border);
-      border-radius: 13px;
-      background: var(--contact-surface);
-    }
-    .contact-alternative h3 {
-      margin: 0;
-      font-family: var(--contact-heading-font);
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .contact-alternative p {
-      margin: 7px 0 0;
-      color: var(--contact-muted);
-      font-size: 13px;
-      line-height: 1.8;
-    }
-    .contact-alternative a {
-      color: var(--contact-accent-dark);
-      font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      overflow-wrap: anywhere;
-    }
-    .contact-faq {
-      padding: 88px 0 100px;
+    /* FAQ */
+    .contact-page .contact-faq {
+      padding: 88px 0 94px;
       border-top: 1px solid var(--contact-border);
-      background: #f9f9fc;
+      background: var(--contact-paper);
     }
-    .contact-faq-heading {
-      max-width: 650px;
-      margin: 0 auto 40px;
-      text-align: center;
-    }
-    .contact-faq-heading > p:not(.contact-section-label) {
-      margin: 15px 0 0;
-      color: var(--contact-muted);
-      font-size: 15px;
-      line-height: 1.8;
-    }
-    .contact-faq-list {
+    .contact-page .contact-faq-layout {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+      gap: 80px;
+      align-items: start;
     }
-    .contact-faq-item {
-      padding: 24px;
-      border: 1px solid var(--contact-border);
-      border-radius: 15px;
-      background: #fff;
+    .contact-page .contact-faq-intro {
+      position: sticky;
+      top: 30px;
     }
-    .contact-faq-item h3 {
-      margin: 0;
-      font-family: var(--contact-heading-font);
+    .contact-page .contact-faq-list {
+      border-top: 1px solid var(--contact-border);
+    }
+    .contact-page .contact-faq-item {
+      border-bottom: 1px solid var(--contact-border);
+    }
+    .contact-page .contact-faq-item summary {
+      position: relative;
+      padding: 22px 36px 22px 0;
+      color: var(--contact-text);
+      font-family: "Manrope", sans-serif;
       font-size: 15px;
       font-weight: 600;
+      letter-spacing: -0.02em;
       line-height: 1.6;
+      list-style: none;
+      cursor: pointer;
     }
-    .contact-faq-item p {
-      margin: 10px 0 0;
+    .contact-page .contact-faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .contact-page .contact-faq-item summary::after {
+      position: absolute;
+      top: 22px;
+      right: 4px;
+      content: "+";
+      color: var(--contact-red);
+      font-family: "DM Sans", sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.3;
+      transition: transform 160ms ease;
+    }
+    .contact-page .contact-faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+    .contact-page .contact-faq-answer {
+      max-width: 650px;
+      padding: 0 25px 22px 0;
       color: var(--contact-muted);
       font-size: 13px;
-      line-height: 1.85;
+      line-height: 1.9;
     }
-    .contact-bottom-cta {
-      padding: 64px 0;
-      background: #fff;
+    .contact-page .contact-faq-answer p {
+      margin: 0;
     }
-    .contact-bottom-cta-inner {
+    /* BOTTOM CTA */
+    .contact-page .contact-bottom-cta {
+      padding: 68px 0;
+      background: var(--contact-black);
+      color: var(--contact-white);
+    }
+    .contact-page .contact-bottom-cta-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 28px;
-      padding: 36px 40px;
-      border: 1px solid #e5e0ff;
-      border-radius: 20px;
-      background:
-        radial-gradient(
-          ellipse at 100% 0%,
-          rgba(112, 87, 255, 0.12),
-          transparent 60%
-        ),
-        #f8f7ff;
+      gap: 35px;
     }
-    .contact-bottom-cta h2 {
+    .contact-page .contact-bottom-cta h2 {
+      max-width: 650px;
       margin: 0;
-      font-family: var(--contact-heading-font);
-      font-size: clamp(22px, 3vw, 30px);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(27px, 4vw, 42px);
       font-weight: 600;
-      letter-spacing: -0.8px;
-      line-height: 1.4;
+      letter-spacing: -0.055em;
+      line-height: 1.2;
     }
-    .contact-bottom-cta p {
-      max-width: 600px;
-      margin: 9px 0 0;
-      color: var(--contact-muted);
-      font-size: 14px;
+    .contact-page .contact-bottom-cta p {
+      max-width: 550px;
+      margin: 12px 0 0;
+      color: #a9a9a9;
+      font-size: 13px;
       line-height: 1.8;
     }
-    .contact-bottom-cta a {
+    .contact-page .contact-bottom-cta-button {
       display: inline-flex;
-      flex-shrink: 0;
-      min-height: 46px;
+      min-height: 48px;
+      flex: 0 0 auto;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      padding: 12px 18px;
-      border: 1px solid #ded7ff;
+      gap: 10px;
+      padding: 13px 19px;
+      border: 1px solid var(--contact-red);
       border-radius: 10px;
-      background: #fff;
-      color: var(--contact-accent-dark);
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
+      background: var(--contact-red);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
       transition:
-        border-color 180ms ease,
-        transform 180ms ease;
+        background 160ms ease,
+        transform 160ms ease;
     }
-    .contact-bottom-cta a:hover {
-      transform: translateY(-1px);
-      border-color: var(--contact-accent);
+    .contact-page .contact-bottom-cta-button:hover {
+      transform: translateY(-2px);
+      background: var(--contact-red-hover);
     }
+    .contact-page .contact-bottom-cta-button svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* RESPONSIVE */
     @media (max-width: 900px) {
-      .contact-hero {
-        padding: 76px 0 64px;
-      }
-      .contact-layout {
+      .contact-page .contact-hero-grid {
         grid-template-columns: minmax(0, 1fr);
         gap: 38px;
       }
-      .contact-intro {
-        max-width: 680px;
+      .contact-page .contact-hero-side {
+        max-width: 430px;
       }
-      .contact-form-card {
-        width: 100%;
+      .contact-page .contact-main-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 45px;
       }
-      .contact-bottom-cta-inner {
+      .contact-page .contact-intro,
+      .contact-page .contact-faq-intro {
+        position: static;
+      }
+      .contact-page .contact-detail-list {
+        max-width: 560px;
+      }
+      .contact-page .contact-faq-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 38px;
+      }
+      .contact-page .contact-reasons-header {
         align-items: flex-start;
         flex-direction: column;
+        gap: 15px;
+      }
+      .contact-page .contact-reasons-header .contact-section-copy {
+        max-width: 550px;
       }
     }
-    @media (max-width: 600px) {
-      .contact-container {
-        width: min(100% - 32px, 1120px);
+    @media (max-width: 640px) {
+      .contact-page .contact-container {
+        width: min(100% - 36px, var(--contact-container));
       }
-      .contact-hero {
-        padding: 60px 0 48px;
+      .contact-page .contact-hero {
+        padding: 75px 0 68px;
       }
-      .contact-hero h1 {
-        font-size: clamp(37px, 11vw, 51px);
-        letter-spacing: -1.9px;
+      .contact-page .contact-hero::after {
+        top: -120px;
+        right: -300px;
+        width: 430px;
+        height: 430px;
       }
-      .contact-hero-description {
-        margin-top: 18px;
-        font-size: 15px;
-        line-height: 1.8;
+      .contact-page .contact-hero h1 {
+        font-size: clamp(43px, 12vw, 62px);
       }
-      .contact-hero-note {
-        align-items: flex-start;
-        max-width: 100%;
-        border-radius: 13px;
-        font-size: 11px;
-        line-height: 1.7;
-        text-align: left;
+      .contact-page .contact-hero-description {
+        margin-top: 21px;
+        font-size: 14px;
       }
-      .contact-main {
-        padding: 8px 0 66px;
+      .contact-page .contact-hero-side {
+        padding-left: 19px;
       }
-      .contact-intro h2,
-      .contact-faq-heading h2 {
-        font-size: 31px;
-        letter-spacing: -1px;
+      .contact-page .contact-reasons {
+        padding: 60px 0;
       }
-      .contact-reason {
-        padding: 14px;
+      .contact-page .contact-section-heading {
+        font-size: clamp(29px, 8vw, 38px);
       }
-      .contact-form-card {
-        padding: 23px 18px;
-        border-radius: 16px;
-      }
-      .contact-form-heading h2 {
-        font-size: 26px;
-      }
-      .contact-form-row {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 19px;
-      }
-      .contact-faq {
-        padding: 66px 0;
-      }
-      .contact-faq-list {
+      .contact-page .contact-reason-grid {
         grid-template-columns: minmax(0, 1fr);
         gap: 12px;
       }
-      .contact-faq-item {
-        padding: 20px;
+      .contact-page .contact-reason-card {
+        min-height: 0;
+        padding: 22px;
       }
-      .contact-bottom-cta {
-        padding: 42px 0;
+      .contact-page .contact-reason-card h3 {
+        margin-top: 17px;
       }
-      .contact-bottom-cta-inner {
-        gap: 22px;
-        padding: 25px 21px;
+      .contact-page .contact-main {
+        padding: 68px 0 72px;
       }
-      .contact-bottom-cta a {
+      .contact-page .contact-form-card {
+        padding: 24px 19px;
+        border-radius: 16px;
+      }
+      .contact-page .contact-form-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 19px;
+      }
+      .contact-page .contact-form-heading {
+        font-size: 22px;
+      }
+      .contact-page .contact-faq {
+        padding: 65px 0 70px;
+      }
+      .contact-page .contact-bottom-cta {
+        padding: 54px 0;
+      }
+      .contact-page .contact-bottom-cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .contact-page .contact-bottom-cta-button {
         width: 100%;
       }
     }
@@ -628,576 +796,458 @@ content=“Contact ARTHNIX for business enquiries, product support, partnerships
       }
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact ARTHNIX",
-    "url": "https://arthnix.com/contact.html",
-    "description": "Contact ARTHNIX for product support, business enquiries, partnerships, and feedback.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "ARTHNIX",
-      "url": "https://arthnix.com/"
-    }
-  }
-  </script>
 </head>
 <body>
-  <!-- Shared navigation -->
+  <!-- Shared website navigation -->
   <div id="site-nav"></div>
   <main class="contact-page">
-<!-- Hero -->
-<section class="contact-hero">
+<!-- HERO -->
+<section class="contact-hero" aria-labelledby="contact-title">
   <div class="contact-container">
-    <p class="contact-eyebrow">Contact ARTHNIX</p>
-    <h1>
-      Let's make business<br>
-      <span>work smarter.</span>
-    </h1>
-    <p class="contact-hero-description">
-      Have a question, an idea, or a business requirement?
-      Tell us what you are working on. We welcome product enquiries,
-      feedback, and opportunities to collaborate.
-    </p>
-    <div class="contact-hero-note">
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.8"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="9"></circle>
-        <path d="M12 8v4l2.5 1.5"></path>
-      </svg>
-      Send us your message using the form below.
+    <div class="contact-hero-grid">
+      <div>
+        <p class="contact-eyebrow">Contact ARTHNIX</p>
+        <h1 id="contact-title">
+          Have an idea?<br>
+          <span class="contact-highlight">Let's talk.</span>
+        </h1>
+        <p class="contact-hero-description">
+          Every meaningful project starts with a conversation.
+          Tell us what you're working on, what you're trying to solve,
+          or where you'd like to go next.
+        </p>
+      </div>
+      <aside class="contact-hero-side">
+        <span class="contact-hero-side-label">Start a conversation</span>
+        <p>
+          Clear ideas.<br>
+          Thoughtful execution.<br>
+          <span class="contact-red-text">Meaningful outcomes.</span>
+        </p>
+        <span>Business enquiries · Projects · Partnerships</span>
+      </aside>
     </div>
   </div>
 </section>
-<!-- Contact content -->
-<section class="contact-main">
+<!-- CONTACT REASONS -->
+<section class="contact-reasons" aria-labelledby="contact-reasons-title">
   <div class="contact-container">
-    <div class="contact-layout">
-      <!-- Left information column -->
+    <div class="contact-reasons-header">
+      <div>
+        <p class="contact-eyebrow">How can we help?</p>
+        <h2 class="contact-section-heading" id="contact-reasons-title">
+          A good place to <span class="contact-red-text">start.</span>
+        </h2>
+      </div>
+      <p class="contact-section-copy">
+        Share a little context about your enquiry so we can better
+        understand what you need.
+      </p>
+    </div>
+    <div class="contact-reason-grid">
+      <article class="contact-reason-card">
+        <span class="contact-reason-number">01</span>
+        <h3>Project enquiries</h3>
+        <p>
+          Have a project, an idea, or a challenge you'd like to discuss?
+          Tell us about your goals and requirements.
+        </p>
+      </article>
+      <article class="contact-reason-card">
+        <span class="contact-reason-number">02</span>
+        <h3>Business partnerships</h3>
+        <p>
+          Interested in working together? Reach out to discuss
+          potential collaborations and shared opportunities.
+        </p>
+      </article>
+      <article class="contact-reason-card">
+        <span class="contact-reason-number">03</span>
+        <h3>General enquiries</h3>
+        <p>
+          Questions, feedback, or something else on your mind?
+          Send us a message with the relevant details.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- CONTACT FORM -->
+<section class="contact-main" aria-labelledby="contact-form-section-title">
+  <div class="contact-container">
+    <div class="contact-main-grid">
       <div class="contact-intro">
-        <p class="contact-section-label">How can we help?</p>
-        <h2>
-          The right conversation
-          starts here.
+        <p class="contact-eyebrow">Get in touch</p>
+        <h2 class="contact-section-heading" id="contact-form-section-title">
+          Tell us a little about <span class="contact-red-text">yourself.</span>
         </h2>
         <p>
-          Whether you are exploring our business tools, reporting an
-          issue, or interested in working with us, share a few details
-          and we will understand how best to direct your enquiry.
+          The more context you share, the easier it is to understand
+          your enquiry. Fill out the form and provide the details
+          relevant to your request.
         </p>
-        <div class="contact-reasons">
-          <article class="contact-reason">
-            <div class="contact-reason-icon" aria-hidden="true">
-              <svg
-                width="21"
-                height="21"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-              >
-                <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+        <div class="contact-detail-list">
+          <div class="contact-detail">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
                 <path d="m3 7 9 6 9-6"></path>
               </svg>
             </div>
             <div>
-              <h3>Product enquiries</h3>
+              <strong>Email enquiries</strong>
               <p>
-                Questions about ARTHNIX tools, features, usability,
-                or potential improvements.
+                Use the contact form to describe your enquiry.
+                A direct email address can be added when configured.
               </p>
             </div>
-          </article>
-          <article class="contact-reason">
-            <div class="contact-reason-icon" aria-hidden="true">
-              <svg
-                width="21"
-                height="21"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-              >
-                <path d="M12 3 4 7v5c0 5 3.4 7.8 8 9 4.6-1.2 8-4 8-9V7l-8-4Z"></path>
-                <path d="m9 12 2 2 4-4"></path>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3.5 2"></path>
               </svg>
             </div>
             <div>
-              <h3>Technical support</h3>
+              <strong>Help us understand your request</strong>
               <p>
-                Report a bug, unexpected result, or issue using one
-                of our tools.
+                Include your goals, relevant background, and any
+                important timelines in your message.
               </p>
             </div>
-          </article>
-          <article class="contact-reason">
-            <div class="contact-reason-icon" aria-hidden="true">
-              <svg
-                width="21"
-                height="21"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="10" cy="7" r="4"></circle>
-                <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 21s7-5.5 7-12a7 7 0 1 0-14 0c0 6.5 7 12 7 12Z"></path>
+                <circle cx="12" cy="9" r="2.5"></circle>
               </svg>
             </div>
             <div>
-              <h3>Partnerships & collaboration</h3>
+              <strong>Online enquiries</strong>
               <p>
-                Discuss integrations, business collaborations,
-                or opportunities to work together.
+                You can use this form from anywhere. Include your
+                preferred contact method in your message if relevant.
               </p>
             </div>
-          </article>
-          <article class="contact-reason">
-            <div class="contact-reason-icon" aria-hidden="true">
-              <svg
-                width="21"
-                height="21"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-              >
-                <path d="M12 3v3"></path>
-                <path d="M12 18v3"></path>
-                <path d="M3 12h3"></path>
-                <path d="M18 12h3"></path>
-                <path d="m5.6 5.6 2.1 2.1"></path>
-                <path d="m16.3 16.3 2.1 2.1"></path>
-                <path d="m18.4 5.6-2.1 2.1"></path>
-                <path d="m7.7 16.3-2.1 2.1"></path>
-                <circle cx="12" cy="12" r="4"></circle>
-              </svg>
-            </div>
-            <div>
-              <h3>Feedback & suggestions</h3>
-              <p>
-                Share your experience and help us improve the
-                tools we build.
-              </p>
-            </div>
-          </article>
+          </div>
+        </div>
+        <div class="contact-response-note">
+          <span aria-hidden="true">●</span>
+          <div>
+            Please avoid including passwords, financial account
+            details, or other sensitive personal information in your
+            enquiry.
+          </div>
         </div>
       </div>
-      <!-- Contact form -->
       <div class="contact-form-card">
-        <div class="contact-form-heading">
-          <p class="contact-section-label">Get in touch</p>
-          <h2>Send us a message</h2>
-          <p>
-            Fill in the details below so we can understand your enquiry.
-            Fields marked with * are required.
-          </p>
-        </div>
-        <!--
-          IMPORTANT:
-          This form validates input in the browser but does not send
-          messages to a server by itself.
-          Connect it to your chosen form backend before publishing,
-          or configure the mailto fallback described in the script.
-        -->
-        <form class="contact-form" id="contactForm" novalidate>
+        <h3 class="contact-form-heading">Send us a message</h3>
+        <p class="contact-form-subheading">
+          Fields marked with <span class="contact-red-text">*</span>
+          are required.
+        </p>
+        <form class="contact-form" id="arthnix-contact-form">
           <div class="contact-form-row">
             <div class="contact-field">
-              <label for="contactName">Full name *</label>
+              <label for="contact-name">
+                Full name <span class="contact-required">*</span>
+              </label>
               <input
                 type="text"
-                id="contactName"
+                id="contact-name"
                 name="name"
-                placeholder="Your full name"
+                placeholder="Your name"
                 autocomplete="name"
-                required
                 maxlength="100"
+                required
               >
-              <span
-                class="contact-field-error"
-                id="contactNameError"
-              >Please enter your name.</span>
             </div>
             <div class="contact-field">
-              <label for="contactEmail">Email address *</label>
+              <label for="contact-email">
+                Email address <span class="contact-required">*</span>
+              </label>
               <input
                 type="email"
-                id="contactEmail"
+                id="contact-email"
                 name="email"
                 placeholder="you@example.com"
                 autocomplete="email"
-                required
                 maxlength="254"
+                required
               >
-              <span
-                class="contact-field-error"
-                id="contactEmailError"
-              >Please enter a valid email address.</span>
             </div>
           </div>
           <div class="contact-form-row">
             <div class="contact-field">
-              <label for="contactCompany">
-                Company <span>(optional)</span>
-              </label>
+              <label for="contact-company">Company or organisation</label>
               <input
                 type="text"
-                id="contactCompany"
+                id="contact-company"
                 name="company"
-                placeholder="Company or organisation"
+                placeholder="Optional"
                 autocomplete="organization"
                 maxlength="150"
               >
             </div>
             <div class="contact-field">
-              <label for="contactTopic">Enquiry type *</label>
-              <select
-                id="contactTopic"
-                name="topic"
-                required
-              >
-                <option value="">Choose an enquiry type</option>
-                <option value="Product enquiry">Product enquiry</option>
-                <option value="Technical support">Technical support</option>
-                <option value="Partnership">Partnership</option>
-                <option value="Business enquiry">Business enquiry</option>
-                <option value="Feedback">Feedback or suggestion</option>
+              <label for="contact-topic">
+                Enquiry type <span class="contact-required">*</span>
+              </label>
+              <select id="contact-topic" name="topic" required>
+                <option value="" selected disabled>Select an enquiry</option>
+                <option value="Project enquiry">Project enquiry</option>
+                <option value="Business partnership">Business partnership</option>
+                <option value="Service enquiry">Service enquiry</option>
+                <option value="Feedback">Feedback</option>
+                <option value="General question">General question</option>
                 <option value="Other">Other</option>
               </select>
-              <span
-                class="contact-field-error"
-                id="contactTopicError"
-              >Please select an enquiry type.</span>
             </div>
           </div>
           <div class="contact-field">
-            <label for="contactSubject">Subject *</label>
+            <label for="contact-subject">
+              Subject <span class="contact-required">*</span>
+            </label>
             <input
               type="text"
-              id="contactSubject"
+              id="contact-subject"
               name="subject"
               placeholder="What would you like to discuss?"
-              required
               maxlength="180"
+              required
             >
-            <span
-              class="contact-field-error"
-              id="contactSubjectError"
-            >Please enter a subject.</span>
           </div>
           <div class="contact-field">
-            <label for="contactMessage">Your message *</label>
+            <label for="contact-message">
+              Your message <span class="contact-required">*</span>
+            </label>
             <textarea
-              id="contactMessage"
+              id="contact-message"
               name="message"
-              placeholder="Tell us a little about your question or requirement..."
-              required
+              placeholder="Tell us about your enquiry, goals, and any important details..."
               minlength="10"
               maxlength="5000"
+              required
             ></textarea>
-            <span
-              class="contact-field-error"
-              id="contactMessageError"
-            >Please enter a message of at least 10 characters.</span>
+            <span class="contact-field-hint">
+              Please provide at least 10 characters. Maximum 5,000 characters.
+            </span>
           </div>
-          <label class="contact-consent" for="contactConsent">
+          <label class="contact-consent" for="contact-consent">
             <input
               type="checkbox"
-              id="contactConsent"
+              id="contact-consent"
               name="consent"
               required
             >
             <span>
-              I agree that ARTHNIX may use the information I provide
-              to respond to this enquiry. Please review the
+              I agree that the information I provide may be used to
+              process my enquiry in accordance with the
               <a href="privacy.html">Privacy Policy</a>.
             </span>
           </label>
-          <div
-            class="contact-form-status"
-            id="contactFormStatus"
-            role="status"
-            aria-live="polite"
-          ></div>
-          <button class="contact-submit" id="contactSubmit" type="submit">
-            <span>Prepare message</span>
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              aria-hidden="true"
-            >
+          <button class="contact-submit" type="submit">
+            <span>Send enquiry</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14"></path>
               <path d="m12 5 7 7-7 7"></path>
             </svg>
           </button>
+          <p
+            class="contact-form-status"
+            id="contact-form-status"
+            role="status"
+            aria-live="polite"
+          ></p>
           <p class="contact-form-footnote">
-            Please do not include passwords, payment details,
-            or other sensitive personal information.
+            Your message will not be sent until a delivery method
+            is configured for this form.
           </p>
         </form>
-        <div class="contact-alternative">
-          <h3>Prefer email?</h3>
-          <p>
-            You can also contact us directly at your designated
-            ARTHNIX support email address once it has been configured.
-          </p>
-        </div>
       </div>
     </div>
   </div>
 </section>
-<!-- Frequently asked questions -->
-<section class="contact-faq">
+<!-- FAQ -->
+<section class="contact-faq" aria-labelledby="contact-faq-title">
   <div class="contact-container">
-    <div class="contact-faq-heading">
-      <p class="contact-section-label">Quick answers</p>
-      <h2>Before you reach out</h2>
-      <p>
-        Here are a few helpful details about ARTHNIX and our business tools.
-      </p>
-    </div>
-    <div class="contact-faq-list">
-      <article class="contact-faq-item">
-        <h3>What is ARTHNIX?</h3>
-        <p>
-          ARTHNIX is building accessible business tools and intelligent
-          systems designed to simplify everyday business workflows.
-          Explore the available tools through our website.
+    <div class="contact-faq-layout">
+      <div class="contact-faq-intro">
+        <p class="contact-eyebrow">A few quick answers</p>
+        <h2 class="contact-section-heading" id="contact-faq-title">
+          Before you <span class="contact-red-text">reach out.</span>
+        </h2>
+        <p class="contact-section-copy">
+          A few things that may help you prepare your enquiry.
         </p>
-      </article>
-      <article class="contact-faq-item">
-        <h3>How do I report a problem with a tool?</h3>
-        <p>
-          Choose “Technical support” in the enquiry form. Include the
-          tool name, what you expected to happen, and what happened
-          instead. Avoid sharing sensitive information.
-        </p>
-      </article>
-      <article class="contact-faq-item">
-        <h3>Can my business discuss a partnership?</h3>
-        <p>
-          Yes. Select “Partnership” or “Business enquiry” and describe
-          your proposed collaboration, integration, or business requirement.
-        </p>
-      </article>
-      <article class="contact-faq-item">
-        <h3>How soon will I receive a response?</h3>
-        <p>
-          Response times may vary depending on the type and volume
-          of enquiries. We do not promise a specific response time.
-        </p>
-      </article>
-      <article class="contact-faq-item">
-        <h3>Can I suggest a new feature?</h3>
-        <p>
-          Absolutely. Select “Feedback or suggestion” and explain the
-          problem you are trying to solve or the improvement you would
-          like to see.
-        </p>
-      </article>
-      <article class="contact-faq-item">
-        <h3>Is submitting this form a support guarantee?</h3>
-        <p>
-          No. Submitting an enquiry does not create a service agreement
-          or guarantee a particular outcome. Any commitments will be
-          communicated separately where applicable.
-        </p>
-      </article>
+      </div>
+      <div class="contact-faq-list">
+        <details class="contact-faq-item">
+          <summary>What should I include in my enquiry?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              Briefly explain who you are, what you need, the outcome
+              you're looking for, and any relevant deadlines or
+              requirements. Avoid including confidential or sensitive
+              information.
+            </p>
+          </div>
+        </details>
+        <details class="contact-faq-item">
+          <summary>Can I contact ARTHNIX about a partnership?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              Yes. Select “Business partnership” in the enquiry type
+              field and describe the proposed collaboration, the
+              organisations involved, and what you'd like to explore.
+            </p>
+          </div>
+        </details>
+        <details class="contact-faq-item">
+          <summary>Can I discuss a project before making a commitment?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              You can use the form to introduce your project and explain
+              what you have in mind. Any next steps, scope, timelines,
+              and commercial arrangements would need to be discussed
+              separately.
+            </p>
+          </div>
+        </details>
+        <details class="contact-faq-item">
+          <summary>Has my message been delivered when I submit this form?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              Not yet. This page includes the form interface and
+              client-side validation, but it does not currently send
+              messages to a server or email inbox. A backend form
+              service or configured email workflow must be connected
+              before enquiries can be delivered.
+            </p>
+          </div>
+        </details>
+        <details class="contact-faq-item">
+          <summary>How can I follow up on an enquiry?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              Once an official contact email or enquiry system has been
+              configured, use that channel and include the original
+              enquiry details so the conversation can be identified.
+            </p>
+          </div>
+        </details>
+      </div>
     </div>
   </div>
 </section>
-<!-- Final call to action -->
-<section class="contact-bottom-cta">
+<!-- BOTTOM CTA -->
+<section class="contact-bottom-cta" aria-labelledby="contact-bottom-title">
   <div class="contact-container">
     <div class="contact-bottom-cta-inner">
       <div>
-        <h2>Looking for a business tool?</h2>
+        <h2 id="contact-bottom-title">
+          Have something in mind?
+          <span class="contact-red-text">Let's start there.</span>
+        </h2>
         <p>
-          Explore the available ARTHNIX tools and find a practical
-          starting point for your everyday business tasks.
+          A clear conversation is the first step toward understanding
+          what's possible.
         </p>
       </div>
-      <a href="tools.html">
-        Explore our tools
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          aria-hidden="true"
-        >
-          <path d="M5 12h14"></path>
-          <path d="m12 5 7 7-7 7"></path>
+      <a class="contact-bottom-cta-button" href="#arthnix-contact-form">
+        Go to contact form
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 5v14"></path>
+          <path d="m19 12-7 7-7-7"></path>
         </svg>
       </a>
     </div>
   </div>
 </section>
   </main>
-  <!-- Shared footer -->
+  <!-- Shared website footer -->
   <div id="site-footer"></div>
+  <!-- Existing shared navigation/footer loader -->
   <script src="components.js"></script>
   <script>
     (() => {
       "use strict";
-      const form = document.getElementById("contactForm");
-      const status = document.getElementById("contactFormStatus");
+      const form = document.getElementById("arthnix-contact-form");
+      const status = document.getElementById("contact-form-status");
       if (!form || !status) return;
-      const fields = {
-        name: document.getElementById("contactName"),
-        email: document.getElementById("contactEmail"),
-        topic: document.getElementById("contactTopic"),
-        subject: document.getElementById("contactSubject"),
-        message: document.getElementById("contactMessage"),
-        consent: document.getElementById("contactConsent")
-      };
-      const errors = {
-        name: document.getElementById("contactNameError"),
-        email: document.getElementById("contactEmailError"),
-        topic: document.getElementById("contactTopicError"),
-        subject: document.getElementById("contactSubjectError"),
-        message: document.getElementById("contactMessageError")
-      };
-      function setFieldError(field, errorElement, hasError) {
-        field.setAttribute("aria-invalid", String(hasError));
-        if (errorElement) {
-          errorElement.classList.toggle("is-visible", hasError);
-        }
-      }
+      /*
+       * DELIVERY CONFIGURATION
+       *
+       * This form is not connected to a backend by default.
+       *
+       * Option A:
+       * Add an official receiving email address below to open a prefilled
+       * email draft in the visitor's email application.
+       *
+       * Option B:
+       * Connect a form backend or serverless endpoint and submit the
+       * form data securely from there.
+       *
+       * Do not put private API keys or email-service secrets in this file.
+       */
+      const CONTACT_EMAIL = "";
       function showStatus(message, type) {
         status.textContent = message;
-        status.className =
-          "contact-form-status is-visible is-" + type;
-      }
-      function validateEmail(value) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-      }
-      function validateForm() {
-        let valid = true;
-        const checks = [
-          {
-            field: fields.name,
-            error: errors.name,
-            invalid: !fields.name.value.trim()
-          },
-          {
-            field: fields.email,
-            error: errors.email,
-            invalid: !validateEmail(fields.email.value.trim())
-          },
-          {
-            field: fields.topic,
-            error: errors.topic,
-            invalid: !fields.topic.value
-          },
-          {
-            field: fields.subject,
-            error: errors.subject,
-            invalid: !fields.subject.value.trim()
-          },
-          {
-            field: fields.message,
-            error: errors.message,
-            invalid: fields.message.value.trim().length < 10
-          }
-        ];
-        checks.forEach(({ field, error, invalid }) => {
-          setFieldError(field, error, invalid);
-          if (invalid) valid = false;
-        });
-        if (!fields.consent.checked) {
-          valid = false;
+        status.className = "contact-form-status is-visible";
+        if (type === "error") {
+          status.classList.add("is-error");
+        } else if (type === "success") {
+          status.classList.add("is-success");
         }
-        return valid;
       }
-      Object.entries(errors).forEach(([key, error]) => {
-        const field = fields[key];
-        if (!field) return;
-        field.addEventListener("input", () => {
-          if (key === "email") {
-            setFieldError(field, error, !validateEmail(field.value.trim()));
-          } else if (key === "message") {
-            setFieldError(field, error, field.value.trim().length < 10);
-          } else {
-            setFieldError(field, error, !field.value.trim());
-          }
-        });
-        field.addEventListener("change", () => {
-          if (key === "topic") {
-            setFieldError(field, error, !field.value);
-          }
-        });
-      });
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        status.className = "contact-form-status";
-        status.textContent = "";
-        if (!validateForm()) {
+        if (!form.reportValidity()) return;
+        const formData = new FormData(form);
+        const name = String(formData.get("name") || "").trim();
+        const email = String(formData.get("email") || "").trim();
+        const company = String(formData.get("company") || "").trim();
+        const topic = String(formData.get("topic") || "").trim();
+        const subject = String(formData.get("subject") || "").trim();
+        const message = String(formData.get("message") || "").trim();
+        const consent = formData.get("consent") === "on";
+        if (!name || !email || !topic || !subject || message.length < 10 || !consent) {
           showStatus(
-            "Please check the highlighted fields and accept the privacy notice before continuing.",
-            "error"
-          );
-          const firstInvalid = form.querySelector('[aria-invalid="true"]');
-          if (firstInvalid) {
-            firstInvalid.focus();
-          } else {
-            fields.consent.focus();
-          }
-          return;
-        }
-        /*
-          FORM DELIVERY SETUP REQUIRED
-          This page currently validates the form and prepares an email draft.
-          It does not send data to a server or store submissions.
-          Replace this mailto fallback with your chosen form endpoint
-          (for example, a serverless function or a form service) when ready.
-          Never put private API keys or email-service credentials in this file.
-        */
-        const recipient = ""; // Add your actual public contact email here.
-        if (!recipient) {
-          showStatus(
-            "Your message is ready, but the contact email has not been configured yet. Please configure the recipient email or connect a form backend before publishing this page.",
+            "Please complete all required fields and agree to the privacy notice.",
             "error"
           );
           return;
         }
-        const subject =
-          "[ARTHNIX Contact] " + fields.subject.value.trim();
-        const body = [
-          "Name: " + fields.name.value.trim(),
-          "Email: " + fields.email.value.trim(),
-          "Company: " +
-            (document.getElementById("contactCompany").value.trim() || "Not provided"),
-          "Enquiry type: " + fields.topic.value,
+        if (!CONTACT_EMAIL.trim()) {
+          showStatus(
+            "The form is designed and validated, but message delivery has not been configured yet. Please connect an official contact email or form backend before publishing this form for enquiries.",
+            "error"
+          );
+          return;
+        }
+        const emailSubject = `[ARTHNIX Enquiry] ${subject}`;
+        const emailBody = [
+          "ARTHNIX WEBSITE ENQUIRY",
+          "",
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Company: ${company || "Not provided"}`,
+          `Enquiry type: ${topic}`,
           "",
           "Message:",
-          fields.message.value.trim()
+          message
         ].join("\n");
-        const mailto =
-          "mailto:" + recipient +
-          "?subject=" + encodeURIComponent(subject) +
-          "&body=" + encodeURIComponent(body);
-        window.location.href = mailto;
+        const mailtoUrl =
+          "mailto:" + encodeURIComponent(CONTACT_EMAIL.trim()) +
+          "?subject=" + encodeURIComponent(emailSubject) +
+          "&body=" + encodeURIComponent(emailBody);
         showStatus(
-          "Your email application should open with your message prepared. Please review and send it there.",
+          "Your email application should open with the enquiry prepared. Review it and send it from your email application to complete delivery.",
           "success"
         );
+        window.location.href = mailtoUrl;
       });
     })();
   </script>
