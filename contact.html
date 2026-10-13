@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact ARTHNIX — Let's Build Something</title>
-  <meta name="description" content="Contact ARTHNIX for business enquiries, project discussions, partnerships, and questions about our services. Let's build something meaningful together.">
+  <meta name="description" content="Contact ARTHNIX for business enquiries, project discussions, partnerships, pricing questions, and questions about our services.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://arthnix.com/contact.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contact ARTHNIX">
-  <meta property="og:description" content="Have a project in mind? Contact ARTHNIX to discuss your ideas, requirements, and opportunities.">
+  <meta property="og:description" content="Have a project in mind? Contact ARTHNIX to discuss your ideas, requirements, pricing, and opportunities.">
   <meta property="og:url" content="https://arthnix.com/contact.html">
   <meta name="theme-color" content="#090909">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
     "@type": "ContactPage",
     "name": "Contact ARTHNIX",
     "url": "https://arthnix.com/contact.html",
-    "description": "Contact ARTHNIX for business enquiries, project discussions, partnerships, and service-related questions.",
+    "description": "Contact ARTHNIX for business enquiries, pricing questions, project discussions, partnerships, and service-related questions.",
     "isPartOf": {
       "@type": "WebSite",
       "name": "ARTHNIX",
@@ -33,8 +33,8 @@
   <style>
     /* =====================================================
        ARTHNIX CONTACT PAGE
-       Matches the main website's black, white and red theme.
-       All page-specific styles are scoped to .contact-page.
+       Original design preserved.
+       Black, white and red theme.
        ===================================================== */
     :root {
       --contact-black: #090909;
@@ -798,7 +798,6 @@
   </style>
 </head>
 <body>
-  <!-- Shared website navigation -->
   <div id="site-nav"></div>
   <main class="contact-page">
 <!-- HERO -->
@@ -863,10 +862,10 @@
       </article>
       <article class="contact-reason-card">
         <span class="contact-reason-number">03</span>
-        <h3>General enquiries</h3>
+        <h3>Pricing &amp; plans</h3>
         <p>
-          Questions, feedback, or something else on your mind?
-          Send us a message with the relevant details.
+          Questions about Free, Pro, or Business? Contact us to discuss
+          proposed plan features, usage limits, and launch availability.
         </p>
       </article>
     </div>
@@ -883,8 +882,8 @@
         </h2>
         <p>
           The more context you share, the easier it is to understand
-          your enquiry. Fill out the form and provide the details
-          relevant to your request.
+          your enquiry. Whether you're asking about a project, a
+          partnership, or an ARTHNIX plan, tell us what you need.
         </p>
         <div class="contact-detail-list">
           <div class="contact-detail">
@@ -897,8 +896,9 @@
             <div>
               <strong>Email enquiries</strong>
               <p>
-                Use the contact form to describe your enquiry.
-                A direct email address can be added when configured.
+                Complete the form with your contact details and
+                enquiry. Your email application will prepare a draft
+                when you submit it.
               </p>
             </div>
           </div>
@@ -997,14 +997,36 @@
               </label>
               <select id="contact-topic" name="topic" required>
                 <option value="" selected disabled>Select an enquiry</option>
-                <option value="Project enquiry">Project enquiry</option>
-                <option value="Business partnership">Business partnership</option>
-                <option value="Service enquiry">Service enquiry</option>
+                <option value="Pricing and plans">Pricing &amp; Plans</option>
+                <option value="Free plan enquiry">Free Plan Enquiry</option>
+                <option value="Pro plan enquiry">Pro Plan Enquiry</option>
+                <option value="Business plan enquiry">Business Plan Enquiry</option>
+                <option value="Project enquiry">Project Enquiry</option>
+                <option value="Business partnership">Business Partnership</option>
+                <option value="Service enquiry">Service Enquiry</option>
+                <option value="Feature request">Feature Request</option>
                 <option value="Feedback">Feedback</option>
-                <option value="General question">General question</option>
+                <option value="General question">General Question</option>
                 <option value="Other">Other</option>
               </select>
             </div>
+          </div>
+          <!-- NEW: PLAN SELECTOR -->
+          <div class="contact-field">
+            <label for="contact-plan">
+              Interested plan <span class="contact-required">*</span>
+            </label>
+            <select id="contact-plan" name="plan" required>
+              <option value="" selected disabled>Select a plan</option>
+              <option value="Free - ₹0 forever">Free — ₹0 / forever</option>
+              <option value="Pro - ₹299 per month">Pro — ₹299 / month</option>
+              <option value="Business - ₹799 per month">Business — ₹799 / month</option>
+              <option value="Not sure yet - Help me choose">Not sure yet — Help me choose</option>
+            </select>
+            <span class="contact-field-hint">
+              Pro and Business prices are proposed. Paid subscriptions
+              and billing are not yet available.
+            </span>
           </div>
           <div class="contact-field">
             <label for="contact-subject">
@@ -1026,7 +1048,7 @@
             <textarea
               id="contact-message"
               name="message"
-              placeholder="Tell us about your enquiry, goals, and any important details..."
+              placeholder="Tell us about your enquiry, goals, plan requirements, or any features you'd like to discuss..."
               minlength="10"
               maxlength="5000"
               required
@@ -1062,8 +1084,8 @@
             aria-live="polite"
           ></p>
           <p class="contact-form-footnote">
-            Your message will not be sent until a delivery method
-            is configured for this form.
+            Your email application will open with the enquiry prepared.
+            You must send the email to complete delivery.
           </p>
         </form>
       </div>
@@ -1096,23 +1118,62 @@
           </div>
         </details>
         <details class="contact-faq-item">
-          <summary>Can I contact ARTHNIX about a partnership?</summary>
+          <summary>What is included in the Free plan?</summary>
           <div class="contact-faq-answer">
             <p>
-              Yes. Select “Business partnership” in the enquiry type
-              field and describe the proposed collaboration, the
-              organisations involved, and what you'd like to explore.
+              The proposed Free plan is ₹0 forever and is intended as
+              a starting point for individuals and small businesses.
+              It is planned to include one business workspace, basic
+              GST calculations, limited monthly invoice creation,
+              basic business tools, reports, and one user per workspace.
+              Features and usage limits must be confirmed before launch.
             </p>
           </div>
         </details>
         <details class="contact-faq-item">
-          <summary>Can I discuss a project before making a commitment?</summary>
+          <summary>What is the proposed price of Pro?</summary>
           <div class="contact-faq-answer">
             <p>
-              You can use the form to introduce your project and explain
-              what you have in mind. Any next steps, scope, timelines,
-              and commercial arrangements would need to be discussed
-              separately.
+              The proposed Pro plan is ₹299 per month. It is intended
+              to offer everything in Free, plus higher invoice limits,
+              expanded saved-invoice capacity, advanced reports,
+              additional payroll features, higher AI assistant usage,
+              and additional export options. Billing is not yet available,
+              and features and limits require confirmation.
+            </p>
+          </div>
+        </details>
+        <details class="contact-faq-item">
+          <summary>What is the proposed price of Business?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              The proposed Business plan is ₹799 per month. It is
+              intended for teams managing multiple workflows or
+              workspaces, with expanded storage, higher usage
+              allowances, team-oriented tools, and additional team
+              members. Pricing, team limits, and features must be
+              confirmed before launch.
+            </p>
+          </div>
+        </details>
+        <details class="contact-faq-item">
+          <summary>Can I enquire about a plan before subscribing?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              Yes. Choose the relevant plan in the contact form and
+              explain your questions or requirements. The prices and
+              features are currently proposed. Paid subscriptions
+              and billing are not yet available.
+            </p>
+          </div>
+        </details>
+        <details class="contact-faq-item">
+          <summary>Can I contact ARTHNIX about a partnership?</summary>
+          <div class="contact-faq-answer">
+            <p>
+              Yes. Select “Business Partnership” in the enquiry type
+              field and describe the proposed collaboration, the
+              organisations involved, and what you'd like to explore.
             </p>
           </div>
         </details>
@@ -1120,21 +1181,10 @@
           <summary>Has my message been delivered when I submit this form?</summary>
           <div class="contact-faq-answer">
             <p>
-              Not yet. This page includes the form interface and
-              client-side validation, but it does not currently send
-              messages to a server or email inbox. A backend form
-              service or configured email workflow must be connected
-              before enquiries can be delivered.
-            </p>
-          </div>
-        </details>
-        <details class="contact-faq-item">
-          <summary>How can I follow up on an enquiry?</summary>
-          <div class="contact-faq-answer">
-            <p>
-              Once an official contact email or enquiry system has been
-              configured, use that channel and include the original
-              enquiry details so the conversation can be identified.
+              This form opens a prepared email in the visitor's email
+              application. The visitor must click Send in that
+              application to deliver the enquiry. It does not send
+              emails automatically or store submissions on a server.
             </p>
           </div>
         </details>
@@ -1167,9 +1217,7 @@
   </div>
 </section>
   </main>
-  <!-- Shared website footer -->
   <div id="site-footer"></div>
-  <!-- Existing shared navigation/footer loader -->
   <script src="components.js"></script>
   <script>
     (() => {
@@ -1177,21 +1225,8 @@
       const form = document.getElementById("arthnix-contact-form");
       const status = document.getElementById("contact-form-status");
       if (!form || !status) return;
-      /*
-       * DELIVERY CONFIGURATION
-       *
-       * This form is not connected to a backend by default.
-       *
-       * Option A:
-       * Add an official receiving email address below to open a prefilled
-       * email draft in the visitor's email application.
-       *
-       * Option B:
-       * Connect a form backend or serverless endpoint and submit the
-       * form data securely from there.
-       *
-       * Do not put private API keys or email-service secrets in this file.
-       */
+      // Enquiries are prepared for this email address.
+      // Visitors must send the email from their email application.
       const CONTACT_EMAIL = "uimockup.plus@gmail.com";
       function showStatus(message, type) {
         status.textContent = message;
@@ -1210,24 +1245,26 @@
         const email = String(formData.get("email") || "").trim();
         const company = String(formData.get("company") || "").trim();
         const topic = String(formData.get("topic") || "").trim();
+        const plan = String(formData.get("plan") || "").trim();
         const subject = String(formData.get("subject") || "").trim();
         const message = String(formData.get("message") || "").trim();
         const consent = formData.get("consent") === "on";
-        if (!name || !email || !topic || !subject || message.length < 10 || !consent) {
+        if (
+          !name ||
+          !email ||
+          !topic ||
+          !plan ||
+          !subject ||
+          message.length < 10 ||
+          !consent
+        ) {
           showStatus(
-            "Please complete all required fields and agree to the privacy notice.",
+            "Please complete all required fields, select a plan, and agree to the privacy notice.",
             "error"
           );
           return;
         }
-        if (!CONTACT_EMAIL.trim()) {
-          showStatus(
-            "The form is designed and validated, but message delivery has not been configured yet. Please connect an official contact email or form backend before publishing this form for enquiries.",
-            "error"
-          );
-          return;
-        }
-        const emailSubject = `[ARTHNIX Enquiry] ${subject}`;
+        const emailSubject = `[ARTHNIX ${topic}] ${subject}`;
         const emailBody = [
           "ARTHNIX WEBSITE ENQUIRY",
           "",
@@ -1235,16 +1272,20 @@
           `Email: ${email}`,
           `Company: ${company || "Not provided"}`,
           `Enquiry type: ${topic}`,
+          `Interested plan: ${plan}`,
+          `Subject: ${subject}`,
           "",
           "Message:",
-          message
+          message,
+          "",
+          "Note: Plan prices and features are proposed and may change before launch."
         ].join("\n");
         const mailtoUrl =
-          "mailto:" + encodeURIComponent(CONTACT_EMAIL.trim()) +
+          "mailto:" + CONTACT_EMAIL +
           "?subject=" + encodeURIComponent(emailSubject) +
           "&body=" + encodeURIComponent(emailBody);
         showStatus(
-          "Your email application should open with the enquiry prepared. Review it and send it from your email application to complete delivery.",
+          "Your email application should open with your enquiry prepared. Review the details and click Send in that application to deliver your message.",
           "success"
         );
         window.location.href = mailtoUrl;
