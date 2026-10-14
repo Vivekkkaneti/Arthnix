@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Salary Per Day Calculator — Daily & Hourly Pay | ARTHNIX</title>
+  <meta name="description" content="Calculate your salary per day, per hour, per week, and per year from your monthly salary. Compare the 26-working-day and 30-calendar-day methods using this free ARTHNIX calculator.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#090909">
+  <link rel="canonical" href="https://arthnix.com/tools/salary-per-day-calculator.html">
+  <link rel="icon" href="/logo.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Salary Per Day Calculator | ARTHNIX">
+  <meta property="og:description" content="Convert your monthly salary into daily, hourly, weekly, and annual pay estimates.">
+  <meta property="og:url" content="https://arthnix.com/tools/salary-per-day-calculator.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #090909;
+      --black-soft: #111111;
+      --white: #ffffff;
+      --paper: #fafaf9;
+      --surface: #f4f4f2;
+      --text: #151515;
+      --muted: #737373;
+      --border: #e9e9e7;
+      --red: #ed3434;
+      --red-dark: #d92727;
+      --green: #14804a;
+      --container: 1160px;
+      --radius: 18px;
+      --shadow: 0 12px 40px rgba(0, 0, 0, .055);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, .95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      color: #525252;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 17px;
+      color: white;
+      background: var(--black);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background .2s, transform .2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--red);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+      display: block;
+      background: var(--black);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 67px 0 48px;
+      background:
+        radial-gradient(ellipse at 82% 10%, rgba(237, 52, 52, .07), transparent 35%),
+        var(--paper);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .hero h1 {
+      max-width: 800px;
+      margin: 17px 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(36px, 5.4vw, 62px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -2.8px;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      margin: 0;
+      color: #646464;
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .meta-chip {
+      padding: 7px 12px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: #515151;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Calculator */
+
+    .calculator-section {
+      padding: 15px 0 76px;
+    }
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(330px, .9fr);
+      align-items: start;
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card-heading {
+      padding: 25px 28px 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-heading h2 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      line-height: 1.3;
+      letter-spacing: -.6px;
+    }
+
+    .card-heading p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .form-body {
+      padding: 26px 28px 28px;
+    }
+
+    .field + .field {
+      margin-top: 20px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #414141;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field-hint {
+      display: block;
+      margin-top: 6px;
+      color: #888;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .currency {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      color: #777;
+      pointer-events: none;
+    }
+
+    .field input,
+    .field select {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      padding: 11px 13px;
+      color: var(--text);
+      background: white;
+      border: 1px solid #dededb;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .field input.money {
+      padding-left: 34px;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, .09);
+    }
+
+    .method-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .method-option {
+      display: block;
+      padding: 15px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+
+    .method-option:has(input:checked) {
+      background: #fff8f8;
+      border-color: var(--red);
+    }
+
+    .method-option input {
+      margin: 0 0 10px;
+      accent-color: var(--red);
+    }
+
+    .method-option strong {
+      display: block;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .method-option small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .form-divider {
+      height: 1px;
+      margin: 25px 0;
+      background: var(--border);
+    }
+
+    .form-subheading {
+      margin: 0 0 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 27px;
+    }
+
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 17px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      transition: background .2s, transform .2s, border-color .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: var(--red);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: white;
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: #bdbdbb;
+    }
+
+    /* Results */
+
+    .result-column {
+      display: grid;
+      gap: 18px;
+    }
+
+    .result-card {
+      padding: 26px;
+    }
+
+    .result-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 21px;
+    }
+
+    .result-heading h2 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      line-height: 1.3;
+      letter-spacing: -.6px;
+    }
+
+    .result-heading p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .live-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      color: var(--green);
+      background: #eaf7ef;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .live-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: currentColor;
+      border-radius: 50%;
+    }
+
+    .primary-result {
+      padding: 23px;
+      color: white;
+      background: var(--black);
+      border-radius: 13px;
+    }
+
+    .primary-result-label {
+      color: #c8c8c8;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .primary-result-value {
+      margin: 5px 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(31px, 4vw, 43px);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: -1.5px;
+      overflow-wrap: anywhere;
+    }
+
+    .primary-result-subtitle {
+      color: #bdbdbd;
+      font-size: 11px;
+    }
+
+    .result-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-top: 13px;
+    }
+
+    .stat-box {
+      min-width: 0;
+      padding: 15px;
+      background: var(--surface);
+      border-radius: 10px;
+    }
+
+    .stat-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .stat-box strong {
+      display: block;
+      margin-top: 5px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 800;
+      letter-spacing: -.5px;
+      overflow-wrap: anywhere;
+    }
+
+    .stat-box small {
+      display: block;
+      margin-top: 3px;
+      color: #888;
+      font-size: 10px;
+    }
+
+    .breakdown-card {
+      padding: 24px 25px;
+    }
+
+    .breakdown-card h3 {
+      margin: 0 0 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      padding: 11px 0;
+      border-bottom: 1px solid #f0f0ee;
+      font-size: 12px;
+    }
+
+    .breakdown-row:last-child {
+      border-bottom: 0;
+    }
+
+    .breakdown-row span {
+      color: #6b6b6b;
+    }
+
+    .breakdown-row strong {
+      text-align: right;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .breakdown-row.total {
+      margin-top: 3px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      border-bottom: 0;
+    }
+
+    .breakdown-row.total span,
+    .breakdown-row.total strong {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .info-box {
+      padding: 16px 18px;
+      color: #686868;
+      background: #fffaf0;
+      border: 1px solid #f1e5c8;
+      border-radius: 12px;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .info-box strong {
+      color: #393327;
+    }
+
+    /* Content */
+
+    .content-section {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      margin: 13px 0 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(27px, 4vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -1.4px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--red);
+      background: #fff0f0;
+      border-radius: 11px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .feature-card h3 {
+      margin: 17px 0 8px;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      counter-reset: step;
+    }
+
+    .step {
+      padding: 22px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      counter-increment: step;
+    }
+
+    .step::before {
+      content: "0" counter(step);
+      display: block;
+      margin-bottom: 15px;
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin: 0 0 7px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .faq-item {
+      padding: 19px 21px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+    }
+
+    .faq-item summary {
+      position: relative;
+      padding-right: 25px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      top: -3px;
+      right: 0;
+      color: var(--red);
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .related-tools {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .related-tool {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .related-tool:hover {
+      border-color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .related-tool strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+    }
+
+    .related-tool span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .related-tool .arrow {
+      color: var(--red);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+
+    .site-footer {
+      padding: 58px 0 0;
+      color: white;
+      background: var(--black);
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr 1fr;
+      gap: 36px;
+      padding-bottom: 45px;
+    }
+
+    .site-footer .brand-name {
+      color: white;
+    }
+
+    .footer-brand p {
+      max-width: 280px;
+      margin: 17px 0 0;
+      color: #a7a7a7;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-column h4 {
+      margin: 3px 0 17px;
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-top: 10px;
+      color: #a7a7a7;
+      font-size: 12px;
+      transition: color .2s;
+    }
+
+    .footer-column a:hover,
+    .footer-bottom a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 0;
+      color: #999;
+      border-top: 1px solid #272727;
+      font-size: 11px;
+    }
+
+    .footer-bottom a {
+      color: white;
+    }
+
+    @media (max-width: 950px) {
+      .navbar {
+        gap: 15px;
+      }
+
+      .nav-links {
+        gap: 17px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .result-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+      }
+
+      .result-card {
+        grid-row: span 2;
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container,
+      .navbar {
+        width: min(calc(100% - 30px), var(--container));
+      }
+
+      .navbar {
+        min-height: 68px;
+      }
+
+      .brand-logo {
+        width: 30px;
+        height: 30px;
+      }
+
+      .brand-name {
+        font-size: 18px;
+      }
+
+      .nav-cta {
+        margin-left: auto;
+        padding: 9px 12px;
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: flex;
+        flex-shrink: 0;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 9px 20px 17px;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, .04);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f1ef;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .hero {
+        padding: 49px 0 34px;
+      }
+
+      .hero h1 {
+        font-size: clamp(34px, 9vw, 48px);
+        letter-spacing: -1.8px;
+      }
+
+      .hero-copy {
+        font-size: 14px;
+      }
+
+      .calculator-section {
+        padding: 10px 0 55px;
+      }
+
+      .card-heading {
+        padding: 21px 19px 18px;
+      }
+
+      .form-body {
+        padding: 21px 19px 23px;
+      }
+
+      .result-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .result-card {
+        grid-row: auto;
+      }
+
+      .result-card,
+      .breakdown-card {
+        padding: 21px;
+      }
+
+      .content-section {
+        padding: 52px 0;
+      }
+
+      .feature-grid,
+      .steps,
+      .related-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-main {
+        gap: 30px 20px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .container,
+      .navbar {
+        width: calc(100% - 24px);
+      }
+
+      .nav-cta {
+        padding: 8px 10px;
+      }
+
+      .brand {
+        gap: 6px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+
+      .method-options {
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions .btn {
+        flex: 1 1 100%;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 27px 15px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-column a {
+        font-size: 11px;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .site-footer,
+      .hero,
+      .form-card,
+      .content-section,
+      .form-actions {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .calculator-section {
+        padding: 0;
+      }
+
+      .calculator-layout {
+        display: block;
+      }
+
+      .result-column {
+        display: block;
+      }
+
+      .result-card,
+      .breakdown-card {
+        margin-bottom: 15px;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .primary-result {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ARTHNIX Salary Per Day Calculator",
+    "url": "https://arthnix.com/tools/salary-per-day-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "Calculate daily, hourly, weekly, and annual pay from monthly salary.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+        <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
+        <span class="brand-name">ARTHNIX</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="/tools.html">Free Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+
+      <a class="nav-cta" href="/tools.html">
+        Start Free <span aria-hidden="true">↗</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Free salary tool</div>
+
+        <h1>Know your daily worth.<br><span>Calculate your pay.</span></h1>
+
+        <p class="hero-copy">
+          Convert your monthly salary into daily, hourly, weekly, and annual
+          earnings. Compare the 26-working-day method with the 30-calendar-day
+          method and understand how your pay breaks down.
+        </p>
+
+        <div class="hero-meta">
+          <span class="meta-chip">26-day calculation</span>
+          <span class="meta-chip">30-day calculation</span>
+          <span class="meta-chip">Daily & hourly pay</span>
+          <span class="meta-chip">Free to use</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-section">
+      <div class="container">
+        <div class="calculator-layout">
+
+          <section class="card form-card" aria-labelledby="inputTitle">
+            <div class="card-heading">
+              <h2 id="inputTitle">Enter your salary details</h2>
+              <p>Use your monthly salary and choose how you want to calculate daily pay.</p>
+            </div>
+
+            <form class="form-body" id="salaryForm">
+              <div class="field">
+                <label for="monthlySalary">Monthly salary (₹)</label>
+                <div class="input-wrap">
+                  <span class="currency">₹</span>
+                  <input
+                    class="money"
+                    id="monthlySalary"
+                    name="monthlySalary"
+                    type="number"
+                    min="0"
+                    step="100"
+                    value="35000"
+                    inputmode="decimal"
+                    required
+                  >
+                </div>
+                <span class="field-hint">
+                  Enter the monthly amount you want to use for the calculation,
+                  such as gross salary or take-home salary.
+                </span>
+              </div>
+
+              <div class="form-divider"></div>
+
+              <h3 class="form-subheading">Choose your calculation method</h3>
+
+              <div class="method-options">
+                <label class="method-option">
+                  <input type="radio" name="method" value="26" checked>
+                  <strong>26 working days</strong>
+                  <small>Common estimate that excludes four weekly off days from a 30-day month.</small>
+                </label>
+
+                <label class="method-option">
+                  <input type="radio" name="method" value="30">
+                  <strong>30 calendar days</strong>
+                  <small>Divides the monthly salary by 30, regardless of the actual month's length.</small>
+                </label>
+              </div>
+
+              <div class="field">
+                <label for="workingDays">Custom working days per month (optional)</label>
+                <input
+                  id="workingDays"
+                  name="workingDays"
+                  type="number"
+                  min="1"
+                  max="31"
+                  step="1"
+                  placeholder="Use the selected method"
+                  inputmode="numeric"
+                >
+                <span class="field-hint">
+                  Leave blank to use the selected 26-day or 30-day method.
+                  Enter a number from 1 to 31 to calculate using your own divisor.
+                </span>
+              </div>
+
+              <div class="field">
+                <label for="hoursPerDay">Working hours per day</label>
+                <input
+                  id="hoursPerDay"
+                  name="hoursPerDay"
+                  type="number"
+                  min="1"
+                  max="24"
+                  step="0.5"
+                  value="8"
+                  inputmode="decimal"
+                  required
+                >
+                <span class="field-hint">
+                  Used to estimate hourly pay from daily pay.
+                </span>
+              </div>
+
+              <div class="field">
+                <label for="workingDaysPerWeek">Working days per week</label>
+                <select id="workingDaysPerWeek" name="workingDaysPerWeek">
+                  <option value="5">5 days per week</option>
+                  <option value="5.5">5.5 days per week</option>
+                  <option value="6" selected>6 days per week</option>
+                  <option value="7">7 days per week</option>
+                </select>
+                <span class="field-hint">
+                  Used for the weekly salary estimate.
+                </span>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">
+                  Calculate salary <span aria-hidden="true">↗</span>
+                </button>
+                <button class="btn btn-secondary" type="button" id="resetBtn">
+                  Reset
+                </button>
+                <button class="btn btn-secondary" type="button" id="printBtn">
+                  Print results
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <div class="result-column" aria-live="polite" aria-atomic="false">
+
+            <section class="card result-card" aria-labelledby="resultTitle">
+              <div class="result-heading">
+                <div>
+                  <h2 id="resultTitle">Your salary breakdown</h2>
+                  <p>Calculated using your selected method.</p>
+                </div>
+                <span class="live-badge">Live result</span>
+              </div>
+
+              <div class="primary-result">
+                <div class="primary-result-label">Salary per day</div>
+                <div class="primary-result-value" id="dailySalary">₹1,346.15</div>
+                <div class="primary-result-subtitle" id="dailySubtitle">
+                  Based on 26 days per month
+                </div>
+              </div>
+
+              <div class="result-stats">
+                <div class="stat-box">
+                  <span>Salary per hour</span>
+                  <strong id="hourlySalary">₹168.27</strong>
+                  <small id="hourlySubtitle">Based on 8 hours per day</small>
+                </div>
+
+                <div class="stat-box">
+                  <span>Salary per week</span>
+                  <strong id="weeklySalary">₹8,076.92</strong>
+                  <small id="weeklySubtitle">Estimated weekly earnings</small>
+                </div>
+
+                <div class="stat-box">
+                  <span>Annual salary</span>
+                  <strong id="annualSalary">₹4,20,000</strong>
+                  <small>Monthly salary × 12</small>
+                </div>
+
+                <div class="stat-box">
+                  <span>Salary per month</span>
+                  <strong id="monthlyResult">₹35,000</strong>
+                  <small>Amount entered</small>
+                </div>
+              </div>
+            </section>
+
+            <section class="card breakdown-card" aria-labelledby="breakdownTitle">
+              <h3 id="breakdownTitle">Calculation breakdown</h3>
+
+              <div class="breakdown-row">
+                <span>Monthly salary</span>
+                <strong id="breakMonthly">₹35,000</strong>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Daily calculation divisor</span>
+                <strong id="breakDivisor">26 days</strong>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Daily salary</span>
+                <strong id="breakDaily">₹1,346.15</strong>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Hours per working day</span>
+                <strong id="breakHours">8 hours</strong>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Estimated hourly salary</span>
+                <strong id="breakHourly">₹168.27</strong>
+              </div>
+
+              <div class="breakdown-row total">
+                <span>Annual salary</span>
+                <strong id="breakAnnual">₹4,20,000</strong>
+              </div>
+            </section>
+
+            <aside class="info-box">
+              <strong>Calculation note:</strong>
+              This tool calculates salary equivalents from the monthly amount you
+              enter. It does not determine statutory wage rates, overtime, payroll
+              deductions, paid leave adjustments, or the salary amount legally payable
+              for a particular absence or termination. Employer policies and applicable
+              employment law may use a different calculation method.
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Understand your salary</div>
+          <h2>What can you calculate?</h2>
+          <p>
+            Break your monthly salary into smaller units to help with budgeting,
+            job comparisons, freelance pricing, and understanding your earnings.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">₹</div>
+            <h3>Daily salary</h3>
+            <p>
+              Divide your monthly salary by your chosen number of days to estimate
+              how much your salary represents per day.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">◷</div>
+            <h3>Hourly salary</h3>
+            <p>
+              Divide your calculated daily salary by your working hours per day
+              to estimate the hourly equivalent.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">↗</div>
+            <h3>Weekly and annual salary</h3>
+            <p>
+              Estimate weekly earnings using your workweek settings and calculate
+              annual salary by multiplying monthly salary by twelve.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Simple process</div>
+          <h2>How to calculate salary per day.</h2>
+          <p>
+            Choose a calculation method based on how you want to express your
+            salary. The result is an estimate, not a universal payroll rule.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <h3>Enter monthly salary</h3>
+            <p>Enter your gross monthly salary or take-home salary, depending on the calculation you need.</p>
+          </article>
+
+          <article class="step">
+            <h3>Choose the divisor</h3>
+            <p>Use 26 days, 30 days, or enter a custom number of days for your estimate.</p>
+          </article>
+
+          <article class="step">
+            <h3>Review your results</h3>
+            <p>View your estimated daily, hourly, weekly, and annual salary instantly.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">FAQs</div>
+          <h2>Salary per day calculator FAQs.</h2>
+          <p>Common questions about calculating daily and hourly salary.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I calculate salary per day from monthly salary?</summary>
+            <p>
+              Divide your monthly salary by the number of days used for the calculation.
+              For example, ₹30,000 divided by 26 equals approximately ₹1,153.85 per day.
+              Dividing by 30 gives ₹1,000 per day.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why does the 26-day method give a higher daily salary?</summary>
+            <p>
+              The same monthly salary is divided by fewer days, so the calculated
+              daily amount is higher. The 26-day method is a common estimate, but
+              the correct divisor for a payroll or legal calculation depends on the
+              applicable rules and employment terms.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How is hourly salary calculated?</summary>
+            <p>
+              This calculator divides your estimated daily salary by the number
+              of working hours you enter. If your daily salary is ₹1,200 and you
+              work 8 hours, the estimated hourly equivalent is ₹150.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is daily salary the same as take-home pay per day?</summary>
+            <p>
+              Not necessarily. If you enter gross salary, the result is based on
+              gross salary. If you enter your take-home salary, the result represents
+              a take-home equivalent. The calculator does not apply tax, provident
+              fund, insurance, or other payroll deductions.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I calculate salary using a custom number of days?</summary>
+            <p>
+              Yes. Enter a number from 1 to 31 in the custom working days field.
+              This value overrides the selected 26-day or 30-day method for the
+              daily and hourly calculations.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does the calculator account for holidays and paid leave?</summary>
+            <p>
+              No. It provides a salary equivalent based on the values you enter.
+              It does not adjust for public holidays, paid leave, unpaid leave,
+              overtime, or employer-specific payroll policies.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this salary calculator free?</summary>
+            <p>
+              Yes. You can use the ARTHNIX salary per day calculator without
+              creating an account. The calculations run in your browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Explore more</div>
+          <h2>More free business tools.</h2>
+          <p>Explore other ARTHNIX tools for everyday business calculations and documents.</p>
+        </div>
+
+        <div class="related-tools">
+          <a class="related-tool" href="/tools/profit-calculator.html">
+            <div>
+              <strong>Profit Calculator</strong>
+              <span>Calculate profit and margins.</span>
+            </div>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-tool" href="/tools/income-tax-calculator.html">
+            <div>
+              <strong>Income Tax Calculator</strong>
+              <span>Estimate your income tax.</span>
+            </div>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-tool" href="/tools/invoice-generator.html">
+            <div>
+              <strong>Invoice Generator</strong>
+              <span>Create professional invoices.</span>
+            </div>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+            <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
+            <span class="brand-name">ARTHNIX</span>
+          </a>
+          <p>
+            Intelligence for Every Business. Practical tools and intelligent
+            systems designed to help businesses work smarter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Explore</h4>
+          <a href="/index.html">Home</a>
+          <a href="/platform.html">Platform</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Business Tools</h4>
+          <a href="/tools.html">All Free Tools</a>
+          <a href="/tools/profit-calculator.html">Profit Calculator</a>
+          <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/quotation-generator.html">Quotation Generator</a>
+          <a href="/tools/invoice-number-generator.html">Invoice Number Generator</a>
+          <a href="/tools/income-tax-calculator.html">Income Tax Calculator</a>
+          <a href="/tools/salary-per-day-calculator.html">Salary Per Day Calculator</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Information</h4>
+          <a href="/about.html">About</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/contact.html">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
+        <span>Powered by <a href="https://alphex.ai">Alphex AI</a>.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = (id) => document.getElementById(id);
+      const form = $("salaryForm");
+      const menuToggle = $("menuToggle");
+      const navLinks = $("navLinks");
+
+      const formatINR = (value, decimals = 2) => {
+        const safeValue = Number.isFinite(value) ? value : 0;
+
+        return "₹" + safeValue.toLocaleString("en-IN", {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      };
+
+      const formatINRWhole = (value) => {
+        const safeValue = Number.isFinite(value) ? value : 0;
+
+        return "₹" + Math.round(safeValue).toLocaleString("en-IN");
+      };
+
+      const readNumber = (id) => {
+        const value = Number($(id).value);
+        return Number.isFinite(value) ? value : 0;
+      };
+
+      function getCalculation() {
+        const monthlySalary = Math.max(0, readNumber("monthlySalary"));
+        const hoursPerDay = Math.min(
+          24,
+          Math.max(1, readNumber("hoursPerDay") || 8)
+        );
+
+        const workingDaysPerWeek = Math.min(
+          7,
+          Math.max(1, readNumber("workingDaysPerWeek") || 6)
+        );
+
+        const selectedMethod = Number(
+          form.querySelector('input[name="method"]:checked').value
+        );
+
+        const customDaysInput = $("workingDays").value.trim();
+        const customDays = customDaysInput === ""
+          ? null
+          : Number(customDaysInput);
+
+        const useCustomDays =
+          customDays !== null &&
+          Number.isFinite(customDays) &&
+          customDays >= 1 &&
+          customDays <= 31;
+
+        const divisor = useCustomDays ? customDays : selectedMethod;
+
+        const dailySalary = monthlySalary / divisor;
+        const hourlySalary = dailySalary / hoursPerDay;
+        const annualSalary = monthlySalary * 12;
+
+        /*
+         * Estimate the weekly amount from the daily equivalent and
+         * the number of working days selected for the week.
+         */
+        const weeklySalary = dailySalary * workingDaysPerWeek;
+
+        return {
+          monthlySalary,
+          hoursPerDay,
+          workingDaysPerWeek,
+          selectedMethod,
+          customDays,
+          useCustomDays,
+          divisor,
+          dailySalary,
+          hourlySalary,
+          annualSalary,
+          weeklySalary
+        };
+      }
+
+      function render() {
+        const result = getCalculation();
+
+        $("dailySalary").textContent = formatINR(result.dailySalary);
+        $("dailySubtitle").textContent =
+          "Based on " + result.divisor +
+          (result.useCustomDays ? " custom days per month" :
+            result.selectedMethod === 26
+              ? " working days per month"
+              : " calendar days per month");
+
+        $("hourlySalary").textContent = formatINR(result.hourlySalary);
+        $("hourlySubtitle").textContent =
+          "Based on " + result.hoursPerDay + " hours per day";
+
+        $("weeklySalary").textContent = formatINR(result.weeklySalary);
+        $("weeklySubtitle").textContent =
+          "Based on " + result.workingDaysPerWeek + " working days per week";
+
+        $("annualSalary").textContent = formatINRWhole(result.annualSalary);
+        $("monthlyResult").textContent = formatINRWhole(result.monthlySalary);
+
+        $("breakMonthly").textContent = formatINRWhole(result.monthlySalary);
+        $("breakDivisor").textContent = result.divisor + " days";
+        $("breakDaily").textContent = formatINR(result.dailySalary);
+        $("breakHours").textContent = result.hoursPerDay + " hours";
+        $("breakHourly").textContent = formatINR(result.hourlySalary);
+        $("breakAnnual").textContent = formatINRWhole(result.annualSalary);
+      }
+
+      function validateForm() {
+        const monthly = readNumber("monthlySalary");
+        const hours = readNumber("hoursPerDay");
+        const workingDays = $("workingDays").value.trim();
+
+        if (!Number.isFinite(monthly) || monthly < 0) {
+          $("monthlySalary").setCustomValidity(
+            "Enter a valid monthly salary of zero or more."
+          );
+          $("monthlySalary").reportValidity();
+          return false;
+        }
+
+        $("monthlySalary").setCustomValidity("");
+
+        if (!Number.isFinite(hours) || hours < 1 || hours > 24) {
+          $("hoursPerDay").setCustomValidity(
+            "Enter working hours between 1 and 24."
+          );
+          $("hoursPerDay").reportValidity();
+          return false;
+        }
+
+        $("hoursPerDay").setCustomValidity("");
+
+        if (workingDays !== "") {
+          const days = Number(workingDays);
+
+          if (!Number.isFinite(days) || days < 1 || days > 31) {
+            $("workingDays").setCustomValidity(
+              "Enter a custom divisor between 1 and 31, or leave it blank."
+            );
+            $("workingDays").reportValidity();
+            return false;
+          }
+        }
+
+        $("workingDays").setCustomValidity("");
+        return true;
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (validateForm()) {
+          render();
+        }
+      });
+
+      form.addEventListener("input", (event) => {
+        if (event.target.matches("input, select")) {
+          if (event.target.id === "monthlySalary") {
+            event.target.setCustomValidity("");
+          }
+
+          if (event.target.id === "hoursPerDay") {
+            event.target.setCustomValidity("");
+          }
+
+          if (event.target.id === "workingDays") {
+            event.target.setCustomValidity("");
+          }
+
+          render();
+        }
+      });
+
+      form.addEventListener("change", render);
+
+      $("resetBtn").addEventListener("click", () => {
+        $("monthlySalary").value = 0;
+        $("workingDays").value = "";
+        $("hoursPerDay").value = 8;
+        $("workingDaysPerWeek").value = "6";
+
+        form.querySelector('input[name="method"][value="26"]').checked = true;
+
+        form.querySelectorAll("input").forEach((input) => {
+          input.setCustomValidity("");
+        });
+
+        render();
+      });
+
+      $("printBtn").addEventListener("click", () => {
+        window.print();
+      });
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation menu");
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          navLinks.classList.contains("open") &&
+          !navLinks.contains(event.target) &&
+          !menuToggle.contains(event.target)
+        ) {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation menu");
+        }
+      });
+
+      $("currentYear").textContent = new Date().getFullYear();
+
+      render();
+    })();
+  </script>
+</body>
+</html>
