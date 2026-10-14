@@ -160,179 +160,84 @@
 
     /* NAVBAR */
 
-   .site-header {
-  position: sticky;
-  z-index: 100;
-  top: 0;
-  background: #090909;
-  border-bottom: 1px solid #242424;
-}
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--black);
+      border-bottom: 1px solid #292929;
+    }
 
-.nav-inner {
-  position: relative;
-  width: min(1200px, calc(100% - 40px));
-  min-height: 76px;
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
+    .navbar {
+      width: min(1200px, calc(100% - 48px));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
 
-.site-header .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
 
-.site-header .brand img {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-}
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      border-radius: 9px;
+    }
 
-.site-header .brand-name {
-  color: #fff;
-  font-family: "Manrope", sans-serif;
-  font-size: 23px;
-  font-weight: 800;
-  letter-spacing: -1.2px;
-}
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
 
-.site-header .brand-name span {
-  color: var(--red);
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      margin-left: auto;
+    }
 
-.site-header .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 27px;
-}
+    .nav-links > a:not(.nav-cta) {
+      color: #c6c6c6;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
 
-.site-header .nav-links a {
-  color: #bdbdbd;
-  font-size: 13px;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
+    .nav-links > a:not(.nav-cta):hover {
+      color: white;
+    }
 
-.site-header .nav-links a:hover,
-.site-header .nav-links a.active {
-  color: #fff;
-}
+    .nav-cta {
+      min-height: 42px;
+      padding: 0 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--red);
+      color: white;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
 
-.site-header .nav-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 43px;
-  padding: 0 19px;
-  color: #fff;
-  background: var(--red);
-  border: 1px solid var(--red);
-  border-radius: 9px;
-  font-size: 13px;
-  font-weight: 700;
-  transition: transform 0.2s ease, background 0.2s ease;
-  white-space: nowrap;
-}
+    .nav-cta:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
 
-.site-header .nav-cta:hover {
-  background: var(--red-dark);
-  transform: translateY(-1px);
-}
-
-.mobile-menu-button {
-  display: none;
-  width: 42px;
-  height: 42px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #333;
-  background: #111;
-  border-radius: 10px;
-  color: #fff;
-}
-
-.menu-icon {
-  width: 19px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.menu-icon span {
-  display: block;
-  width: 19px;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-  transition: transform 0.2s ease;
-}
-
-.mobile-menu-button[aria-expanded="true"] .menu-icon span:first-child {
-  transform: translateY(3.5px) rotate(45deg);
-}
-
-.mobile-menu-button[aria-expanded="true"] .menu-icon span:last-child {
-  transform: translateY(-3.5px) rotate(-45deg);
-}
-
-@media (max-width: 980px) {
-  .site-header .nav-links {
-    gap: 17px;
-  }
-}
-
-@media (max-width: 780px) {
-  .nav-inner {
-    min-height: 67px;
-  }
-
-  .mobile-menu-button {
-    display: inline-flex;
-  }
-
-  .site-header .nav-cta {
-    display: none;
-  }
-
-  .site-header .nav-links {
-    position: absolute;
-    top: 100%;
-    left: -15px;
-    right: -15px;
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 10px 20px 17px;
-    background: #090909;
-    border-top: 1px solid #242424;
-    border-bottom: 1px solid #242424;
-  }
-
-  .site-header .nav-links.is-open {
-    display: flex;
-  }
-
-  .site-header .nav-links a {
-    padding: 12px 0;
-    border-bottom: 1px solid #242424;
-  }
-
-  .site-header .nav-links a:last-child {
-    border-bottom: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .site-header .brand-name {
-    font-size: 21px;
-  }
-}
     .menu-toggle {
       display: none;
       width: 43px;
@@ -441,7 +346,7 @@
     .hero-points span::before {
       content: "✓";
       color: var(--green);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     /* SECTIONS */
@@ -523,7 +428,7 @@
       margin-bottom: 3px;
       font-family: "Manrope", sans-serif;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .mode-button small {
@@ -1189,7 +1094,7 @@
     .formula-box strong {
       font-family: "Manrope", sans-serif;
       font-size: clamp(16px, 2.4vw, 22px);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     /* FAQ */
@@ -1344,7 +1249,7 @@
       color: white;
       font-family: "Manrope", sans-serif;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: 0.3px;
     }
 
@@ -1741,34 +1646,26 @@
 
 <body>
   <!-- NAVBAR -->
-   <header class="site-header">
-    <div class="container nav-inner">
-      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-        <img src="/logo.png" alt="ARTHNIX logo" onerror="this.style.display='none'">
-        <span class="brand-name">ARTH<span>NIX</span></span>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="ARTHNIX homepage">
+        <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo" width="38" height="38">
+        <span class="brand-name">ARTHNIX</span>
       </a>
 
-      <nav class="nav-links" id="primaryNav" aria-label="Main navigation">
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
         <a href="/tools.html">Free Tools</a>
         <a href="/platform.html">Platform</a>
-        <a href="/index.html#how-it-works">How It Works</a>
+        <a href="/#how-it-works">How It Works</a>
         <a href="/pricing.html">Pricing</a>
         <a href="/contact.html">Contact</a>
-      </nav>
-
-      <a class="nav-cta" href="/tools.html">Start Free <span aria-hidden="true">↗</span></a>
-
-      <button
-        class="mobile-menu-button"
-        id="mobileMenuButton"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="primaryNav"
-      >
-        <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
-      </button>
-    </div>
+        <a class="nav-cta" href="/tools.html">Start Free <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
   </header>
 
   <main>
