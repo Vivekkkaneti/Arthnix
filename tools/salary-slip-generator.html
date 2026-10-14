@@ -2,18 +2,21 @@
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Salary Slip Generator — ARTHNIX</title>
-  <meta name="description" content="Create a professional salary slip with earnings, deductions, net salary, and print-ready PDF output using the ARTHNIX Salary Slip Generator.">
+  <meta name="description" content="Create a professional salary slip online with ARTHNIX. Enter employee details, earnings, deductions, and generate a printable salary statement.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://arthnix.com/tools/salary-slip-generator.html">
 
   <meta property="og:title" content="Salary Slip Generator — ARTHNIX">
-  <meta property="og:description" content="Generate a clean, professional salary slip in minutes.">
+  <meta property="og:description" content="Generate a professional salary slip with automatic earnings, deductions, and net salary calculations.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arthnix.com/tools/salary-slip-generator.html">
+  <meta property="og:site_name" content="ARTHNIX">
 
-  <link rel="icon" href="/logo.png">
+  <meta name="theme-color" content="#111111">
+  <link rel="icon" type="image/png" href="/logo.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,53 +24,56 @@
 
   <style>
     :root {
-      --bg: #f7f7f5;
+      --red: #ed3434;
+      --red-dark: #d92727;
+      --black: #111111;
+      --dark: #181818;
+      --text: #202020;
+      --muted: #737373;
+      --line: #e8e8e8;
       --surface: #ffffff;
-      --surface-soft: #f1f1ee;
-      --text: #151515;
-      --muted: #707070;
-      --border: #deded9;
-      --accent: #ef3939;
-      --accent-hover: #d92c2c;
-      --success: #16794b;
-      --danger: #b42318;
-      --radius: 18px;
-      --shadow: 0 12px 36px rgba(0, 0, 0, .055);
+      --soft: #f7f7f6;
+      --soft-red: #fff2f2;
+      --radius: 14px;
+      --shadow: 0 12px 35px rgba(0, 0, 0, 0.045);
+      --container: 1180px;
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 100px;
     }
 
     body {
       margin: 0;
-      background: var(--bg);
       color: var(--text);
+      background: var(--surface);
       font-family: "DM Sans", sans-serif;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
 
-    body,
-    input,
-    select,
-    textarea,
-    button {
-      font-family: "DM Sans", sans-serif;
+    body.menu-open {
+      overflow: hidden;
     }
 
     button,
     input,
-    select {
-      font-size: inherit;
+    select,
+    textarea {
+      font: inherit;
     }
 
-    button {
-      cursor: pointer;
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     a {
@@ -75,228 +81,367 @@
       text-decoration: none;
     }
 
-    .container {
-      width: min(1160px, calc(100% - 40px));
-      margin: 0 auto;
+    button {
+      cursor: pointer;
     }
 
-    /* Navigation */
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #101010;
-      color: #fff;
-      border-bottom: 1px solid rgba(255, 255, 255, .1);
-    }
-
-    .nav-inner {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "Manrope", sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -.8px;
-      white-space: nowrap;
-    }
-
-    .brand img {
-      width: 34px;
-      height: 34px;
-      object-fit: contain;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      font-size: 13px;
-      color: #d0d0d0;
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-    }
-
-    .nav-cta {
-      background: var(--accent);
-      color: #fff !important;
-      padding: 10px 17px;
-      border-radius: 8px;
-      font-weight: 700;
-    }
-
-    .nav-cta:hover {
-      background: var(--accent-hover);
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 1px solid #454545;
-      color: #fff;
-      background: transparent;
-      padding: 8px 11px;
-      border-radius: 8px;
-    }
-
-    /* Hero */
-
-    .hero {
-      padding: 62px 0 38px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      color: var(--accent);
-      margin-bottom: 15px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 22px;
-      height: 2px;
-      background: var(--accent);
+    img {
+      display: block;
+      max-width: 100%;
     }
 
     h1,
     h2,
     h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1,
-    h2,
-    h3 {
+    h4 {
+      margin: 0;
+      color: var(--black);
       font-family: "Manrope", sans-serif;
-      letter-spacing: -1px;
+      letter-spacing: -0.045em;
+      line-height: 1.2;
     }
 
-    h1 {
-      font-size: clamp(34px, 5vw, 56px);
-      line-height: 1.08;
-      max-width: 760px;
-      margin-bottom: 18px;
+    p {
+      margin: 0;
     }
 
-    .hero p {
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 16px;
-      margin-bottom: 0;
+    .container {
+      width: min(var(--container), calc(100% - 44px));
+      margin-inline: auto;
     }
 
-    .hero-note {
+    .accent {
+      color: var(--red);
+    }
+
+    .eyebrow {
       display: inline-flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-top: 22px;
-      padding: 12px 15px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: #555;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 17px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 19px;
+      height: 2px;
+      background: var(--red);
+      content: "";
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      z-index: 1000;
+      top: 0;
+      background: #111111;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .nav-shell {
+      position: relative;
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 26px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 11px;
+      color: #ffffff;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links > a:not(.nav-cta) {
+      color: #d1d1d1;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links > a:not(.nav-cta):hover,
+    .nav-links > a.active {
+      color: #ffffff;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      min-height: 41px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid var(--red);
+      border-radius: 8px;
+      background: var(--red);
+      color: #ffffff;
       font-size: 12px;
-      max-width: 740px;
+      font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      border-color: var(--red-dark);
+      background: var(--red-dark);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #373737;
+      border-radius: 9px;
+      background: transparent;
+      color: #ffffff;
+    }
+
+    .menu-toggle svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 57px 0 49px;
+      background: var(--soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero::after {
+      position: absolute;
+      top: -125px;
+      right: -100px;
+      width: 370px;
+      height: 370px;
+      border: 1px solid rgba(237, 52, 52, 0.1);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 45px rgba(237, 52, 52, 0.025),
+        0 0 0 90px rgba(237, 52, 52, 0.02);
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 790px;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 27px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--red);
+    }
+
+    .breadcrumb-separator {
+      color: #b6b6b6;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .hero h1 .accent {
+      font-style: italic;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin-top: 19px;
+      color: #666666;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 23px;
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border: 1px solid #e6e6e6;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.75);
+      color: #555555;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .meta-chip svg {
+      width: 14px;
+      height: 14px;
+      color: var(--red);
     }
 
     /* Main layout */
 
-    .workspace {
+    .tool-section {
+      padding: 57px 0 72px;
+    }
+
+    .section-heading {
+      margin-bottom: 27px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+    }
+
+    .section-heading p {
+      max-width: 660px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .tool-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
       align-items: start;
-      padding-bottom: 70px;
+      gap: 25px;
     }
 
     .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
       overflow: hidden;
-      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #ffffff;
+      box-shadow: var(--shadow);
     }
 
     .panel-header {
-      padding: 23px 25px;
-      border-bottom: 1px solid var(--border);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 15px;
+      padding: 23px 24px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .panel-header h2 {
-      font-size: 20px;
-      margin: 0 0 3px;
+    .panel-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
     }
 
-    .panel-header p {
+    .panel-subtitle {
+      margin-top: 5px;
       color: var(--muted);
       font-size: 12px;
-      margin: 0;
+      line-height: 1.6;
     }
 
-    .step-badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+    .panel-icon {
       display: grid;
-      place-items: center;
-      background: #fff0f0;
-      color: var(--accent);
-      font-weight: 800;
+      width: 42px;
+      height: 42px;
       flex-shrink: 0;
+      place-items: center;
+      border: 1px solid #f6dada;
+      border-radius: 11px;
+      background: var(--soft-red);
+      color: var(--red);
     }
 
-    .form-body {
+    .panel-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .panel-body {
       padding: 24px;
     }
 
-    .section-title {
+    .form-section-title {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin: 8px 0 17px;
-      font-size: 14px;
+      gap: 9px;
+      margin-bottom: 17px;
+      color: #252525;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: -.2px;
+      letter-spacing: -0.015em;
     }
 
-    .section-title:not(:first-child) {
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
+    .form-section-title .step {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      place-items: center;
+      border-radius: 7px;
+      background: var(--soft-red);
+      color: var(--red);
+      font-size: 11px;
     }
 
-    .section-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
+    .form-divider {
+      height: 1px;
+      margin: 25px 0;
+      background: var(--line);
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 17px 14px;
+      gap: 17px 15px;
     }
 
     .field {
@@ -307,105 +452,84 @@
       grid-column: 1 / -1;
     }
 
-    label {
+    .field label {
       display: block;
       margin-bottom: 7px;
-      color: #3e3e3e;
+      color: #393939;
       font-size: 12px;
       font-weight: 700;
     }
 
-    .optional {
-      color: #929292;
+    .field label .optional {
+      color: #969696;
       font-weight: 400;
     }
 
-    input,
-    select {
+    .field input,
+    .field select,
+    .field textarea {
       display: block;
       width: 100%;
-      min-width: 0;
-      padding: 12px 13px;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid #d9d9d3;
-      border-radius: 9px;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid #dedede;
+      border-radius: 8px;
       outline: none;
-      transition: border-color .2s, box-shadow .2s;
+      background: #ffffff;
+      color: #202020;
+      font-size: 13px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    input:focus,
-    select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(239, 57, 57, .1);
+    .field textarea {
+      min-height: 78px;
+      resize: vertical;
     }
 
-    input::placeholder {
-      color: #aaa;
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #a0a0a0;
     }
 
-    .input-help {
-      color: #888;
-      font-size: 10px;
-      margin-top: 5px;
-      line-height: 1.5;
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
     }
 
-    .salary-input {
+    .field input[aria-invalid="true"],
+    .field select[aria-invalid="true"] {
+      border-color: var(--red);
+    }
+
+    .field-help {
+      display: block;
+      margin-top: 6px;
+      color: #888888;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .money-input {
       position: relative;
     }
 
-    .salary-input input {
-      padding-left: 31px;
-    }
-
-    .currency-symbol {
+    .money-input .currency-symbol {
       position: absolute;
-      left: 12px;
       top: 50%;
-      transform: translateY(-50%);
-      color: #888;
+      left: 12px;
+      color: #777777;
       font-size: 13px;
+      transform: translateY(-50%);
       pointer-events: none;
     }
 
-    .check-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-top: 19px;
-      padding: 13px;
-      background: var(--surface-soft);
-      border-radius: 10px;
+    .money-input input {
+      padding-left: 30px;
     }
 
-    .check-row input {
-      width: 16px;
-      height: 16px;
-      margin-top: 3px;
-      flex-shrink: 0;
-      accent-color: var(--accent);
-    }
-
-    .check-row label {
-      margin: 0;
-      line-height: 1.6;
-      font-weight: 500;
-    }
-
-    .check-row strong {
-      display: block;
-      font-size: 12px;
-    }
-
-    .check-row small {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 2px;
-    }
-
-    .form-actions {
+    .salary-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -413,437 +537,779 @@
     }
 
     .btn {
-      border: 1px solid transparent;
-      border-radius: 9px;
-      padding: 12px 17px;
       display: inline-flex;
-      justify-content: center;
+      min-height: 44px;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      font-weight: 700;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-radius: 8px;
       font-size: 12px;
-      transition: background .2s, transform .2s;
+      font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
+    .btn svg {
+      width: 16px;
+      height: 16px;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #fff;
+      background: var(--red);
+      color: #ffffff;
     }
 
     .btn-primary:hover {
-      background: var(--accent-hover);
+      background: var(--red-dark);
     }
 
     .btn-secondary {
-      background: #fff;
-      color: #222;
-      border-color: var(--border);
+      border-color: #dedede;
+      background: #ffffff;
+      color: #303030;
     }
 
     .btn-secondary:hover {
-      background: #f5f5f2;
+      border-color: #bbbbbb;
+      background: #f8f8f8;
     }
 
-    .btn-dark {
-      background: #111;
-      color: #fff;
-    }
-
-    .btn-dark:hover {
-      background: #333;
+    .btn-block {
+      flex: 1;
     }
 
     .form-error {
       display: none;
-      color: var(--danger);
-      background: #fff1f0;
-      border: 1px solid #ffd5d2;
-      padding: 11px 13px;
+      margin-top: 16px;
+      padding: 12px 14px;
+      border: 1px solid #f0c7c7;
       border-radius: 8px;
-      margin-top: 17px;
+      background: #fff4f4;
+      color: #a82121;
       font-size: 12px;
+      line-height: 1.7;
     }
 
-    /* Results */
+    .form-error.visible {
+      display: block;
+    }
+
+    /* Salary slip preview */
 
     .preview-panel {
       position: sticky;
-      top: 94px;
+      top: 96px;
     }
 
-    .preview-tools {
+    .preview-header-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
 
-    .preview-tools button {
-      background: #fff;
-      border: 1px solid var(--border);
-      padding: 7px 10px;
-      border-radius: 7px;
-      font-size: 11px;
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border: 1px solid #d9eddf;
+      border-radius: 6px;
+      background: #f1fbf4;
+      color: #277743;
+      font-size: 10px;
       font-weight: 700;
+      white-space: nowrap;
     }
 
-    .preview-tools button:hover {
-      border-color: var(--accent);
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2b9b53;
     }
 
     .preview-wrap {
-      padding: 23px;
-      background: #eeeee9;
+      padding: 20px;
+      background: #f6f6f5;
     }
 
     .salary-slip {
-      width: 100%;
-      background: #fff;
-      border: 1px solid #dcdcdc;
-      padding: 25px 22px;
-      color: #171717;
-      overflow-wrap: anywhere;
-    }
-
-    .slip-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      align-items: flex-start;
-      padding-bottom: 20px;
-      border-bottom: 2px solid #191919;
+      padding: 26px 23px;
+      border: 1px solid #e7e7e7;
+      background: #ffffff;
+      color: #252525;
     }
 
     .slip-company {
-      min-width: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--red);
     }
 
-    .slip-company h3 {
-      font-size: 21px;
-      margin: 0 0 5px;
+    .slip-company-name {
+      max-width: 250px;
+      overflow-wrap: anywhere;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.3;
+    }
+
+    .slip-company-details {
+      max-width: 245px;
+      margin-top: 6px;
+      color: #777777;
+      font-size: 10px;
+      line-height: 1.65;
       overflow-wrap: anywhere;
     }
 
-    .slip-company p {
-      color: #696969;
-      font-size: 10px;
-      line-height: 1.6;
-      margin: 0;
-      white-space: pre-line;
-    }
-
-    .slip-label {
-      text-align: right;
+    .slip-logo {
+      display: grid;
+      width: 40px;
+      height: 40px;
       flex-shrink: 0;
-    }
-
-    .slip-label span {
-      display: block;
-      color: #777;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1.1px;
-      text-transform: uppercase;
-    }
-
-    .slip-label strong {
-      display: block;
+      place-items: center;
+      border-radius: 9px;
+      background: #111111;
+      color: #ffffff;
       font-family: "Manrope", sans-serif;
       font-size: 15px;
-      margin-top: 4px;
+      font-weight: 800;
     }
 
-    .slip-period {
-      margin: 17px 0;
-      padding: 11px 12px;
-      background: #f5f5f2;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 10px;
+    .slip-heading {
+      padding: 18px 0;
+      text-align: center;
     }
 
-    .slip-period strong {
+    .slip-heading h3 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+    }
+
+    .slip-heading p {
+      margin-top: 5px;
+      color: #777777;
       font-size: 11px;
     }
 
-    .employee-details {
+    .slip-employee-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px 15px;
-      margin-bottom: 22px;
+      gap: 0 15px;
+      padding: 13px 0;
+      border-top: 1px solid #eeeeee;
+      border-bottom: 1px solid #eeeeee;
     }
 
-    .detail-item span {
+    .slip-info-item {
+      min-width: 0;
+      padding: 6px 0;
+    }
+
+    .slip-info-label {
       display: block;
-      color: #777;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: .4px;
       margin-bottom: 3px;
+      color: #858585;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.035em;
     }
 
-    .detail-item strong {
+    .slip-info-value {
       display: block;
+      overflow-wrap: anywhere;
+      color: #222222;
       font-size: 11px;
       font-weight: 700;
+    }
+
+    .slip-section-title {
+      margin: 19px 0 8px;
+      font-family: "Manrope", sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.015em;
+      text-transform: uppercase;
     }
 
     .slip-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 10px;
-      margin-bottom: 18px;
+      table-layout: fixed;
+      font-size: 11px;
     }
 
     .slip-table th {
-      padding: 10px 8px;
-      text-align: left;
-      background: #181818;
-      color: #fff;
+      padding: 9px 8px;
+      background: #f6f6f6;
+      color: #666666;
       font-size: 9px;
+      font-weight: 700;
+      text-align: left;
       text-transform: uppercase;
-      letter-spacing: .5px;
+      letter-spacing: 0.025em;
     }
 
     .slip-table th:last-child,
     .slip-table td:last-child {
       text-align: right;
-      white-space: nowrap;
     }
 
     .slip-table td {
       padding: 9px 8px;
-      border-bottom: 1px solid #e9e9e9;
+      border-bottom: 1px solid #eeeeee;
+      overflow-wrap: anywhere;
     }
 
-    .slip-table .subtotal td {
+    .slip-table .total-row td {
+      background: #fafafa;
       font-weight: 800;
-      background: #f6f6f3;
-      border-bottom: 1px solid #ddd;
     }
 
-    .net-salary {
-      background: #fff0f0;
-      border: 1px solid #ffd5d5;
-      padding: 16px;
-      margin-top: 17px;
+    .slip-table .total-row td:last-child {
+      color: #222222;
     }
 
-    .net-salary-label {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      color: #6b2424;
+    .slip-table .deduction-amount {
+      color: #b52d2d;
+    }
+
+    .net-pay-box {
+      margin-top: 18px;
+      padding: 15px;
+      border: 1px solid #f2d0d0;
+      border-radius: 9px;
+      background: #fff6f6;
+    }
+
+    .net-pay-label {
+      color: #777777;
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: .7px;
     }
 
-    .net-salary-amount {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(22px, 2.7vw, 30px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: #b62020;
-      margin-top: 7px;
-    }
-
-    .net-words {
-      color: #6e4646;
-      font-size: 9px;
+    .net-pay-amount {
       margin-top: 5px;
-      line-height: 1.6;
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(23px, 3vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
     }
 
-    .slip-note {
-      color: #777;
+    .net-pay-words {
+      margin-top: 7px;
+      color: #666666;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .slip-footer {
+      margin-top: 22px;
+      padding-top: 12px;
+      border-top: 1px solid #eeeeee;
+      color: #888888;
       font-size: 9px;
       line-height: 1.7;
-      margin-top: 18px;
-      padding-top: 12px;
-      border-top: 1px solid #e3e3e3;
+      text-align: center;
     }
 
-    .signature-row {
+    .slip-disclaimer {
+      margin-top: 12px;
+      color: #888888;
+      font-size: 10px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .preview-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      padding: 17px 20px 20px;
+      border-top: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .preview-actions .btn {
+      flex: 1;
+      min-width: 130px;
+    }
+
+    /* Highlights */
+
+    .trust-strip {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      margin-top: 35px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 25px;
     }
 
-    .signature {
-      padding-top: 8px;
-      border-top: 1px solid #aaa;
-      font-size: 9px;
-      color: #777;
+    .trust-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #ffffff;
     }
 
-    .preview-footnote {
-      padding: 15px 23px 21px;
+    .trust-icon {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      flex-shrink: 0;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--soft-red);
+      color: var(--red);
+    }
+
+    .trust-icon svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .trust-card h3 {
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .trust-card p {
       color: var(--muted);
       font-size: 11px;
+      line-height: 1.7;
     }
 
-    .preview-footnote strong {
-      color: #444;
+    /* Educational content */
+
+    .content-section {
+      padding: 70px 0;
+      border-top: 1px solid var(--line);
     }
 
-    /* Supporting information */
-
-    .info-section {
-      padding: 0 0 75px;
-    }
-
-    .section-heading {
-      max-width: 670px;
-      margin-bottom: 28px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(26px, 3vw, 36px);
-      margin-bottom: 10px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      margin-bottom: 0;
-      font-size: 14px;
-    }
-
-    .info-grid {
+    .content-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      align-items: start;
+      gap: 65px;
     }
 
-    .info-card {
-      padding: 23px;
-      border: 1px solid var(--border);
-      background: #fff;
-      border-radius: 14px;
+    .content-heading h2 {
+      font-size: clamp(27px, 3.4vw, 37px);
+      font-weight: 800;
     }
 
-    .info-number {
-      display: inline-grid;
+    .content-heading p {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .steps {
+      display: grid;
+      gap: 22px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .step-number {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
       place-items: center;
-      width: 34px;
-      height: 34px;
+      border: 1px solid #f1caca;
       border-radius: 10px;
-      background: #fff0f0;
-      color: var(--accent);
+      background: var(--soft-red);
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
       font-size: 12px;
       font-weight: 800;
-      margin-bottom: 15px;
     }
 
-    .info-card h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
+    .step-item h3 {
+      margin: 3px 0 6px;
+      font-size: 15px;
+      font-weight: 800;
     }
 
-    .info-card p {
-      font-size: 12px;
+    .step-item p {
       color: var(--muted);
-      margin: 0;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .info-note {
+      margin-top: 26px;
+      padding: 18px 20px;
+      border-left: 3px solid var(--red);
+      border-radius: 0 9px 9px 0;
+      background: #f8f8f7;
+      color: #666666;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .info-note strong {
+      color: #242424;
+    }
+
+    /* FAQ */
+
+    .faq-section {
+      padding: 70px 0;
+      border-top: 1px solid var(--line);
+      background: #fafaf9;
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      align-items: start;
+      gap: 65px;
+    }
+
+    .faq-heading h2 {
+      font-size: clamp(27px, 3.3vw, 36px);
+      font-weight: 800;
+    }
+
+    .faq-heading p {
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 13px;
       line-height: 1.8;
     }
 
     .faq-list {
-      max-width: 850px;
       display: grid;
       gap: 10px;
     }
 
-    details {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 17px 19px;
+    .faq-item {
+      overflow: hidden;
+      border: 1px solid #e7e7e7;
+      border-radius: 10px;
+      background: #ffffff;
     }
 
-    summary {
-      cursor: pointer;
+    .faq-question {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 17px 19px;
+      border: 0;
+      background: transparent;
+      color: #222222;
+      font-family: "Manrope", sans-serif;
       font-size: 13px;
+      font-weight: 800;
+      text-align: left;
+    }
+
+    .faq-question svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      color: var(--red);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-question[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 19px 18px;
+      color: #696969;
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .faq-answer[hidden] {
+      display: none;
+    }
+
+    /* CTA */
+
+    .cta-section {
+      padding: 60px 0;
+    }
+
+    .cta-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 38px 42px;
+      border-radius: 15px;
+      background: #111111;
+    }
+
+    .cta-card::after {
+      position: absolute;
+      top: -100px;
+      right: 120px;
+      width: 270px;
+      height: 270px;
+      border: 1px solid rgba(237, 52, 52, 0.28);
+      border-radius: 50%;
+      box-shadow: 0 0 0 38px rgba(237, 52, 52, 0.04);
+      content: "";
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 650px;
+    }
+
+    .cta-content h2 {
+      color: #ffffff;
+      font-size: clamp(25px, 3vw, 34px);
       font-weight: 800;
     }
 
-    details p {
-      margin: 12px 0 0;
-      font-size: 12px;
-      color: var(--muted);
+    .cta-content p {
+      margin-top: 10px;
+      color: #bcbcbc;
+      font-size: 13px;
       line-height: 1.8;
+    }
+
+    .cta-card .btn {
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
     }
 
     /* Footer */
 
-    .footer {
-      background: #101010;
-      color: #fff;
-      padding: 52px 0 22px;
+    .site-footer {
+      padding: 55px 0 23px;
+      background: #111111;
+      color: #b9b9b9;
     }
 
-    .footer-grid {
+    .footer-top {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 30px;
-      padding-bottom: 35px;
+      grid-template-columns: 1.35fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 42px;
     }
 
-    .footer-brand p {
-      max-width: 290px;
-      margin-top: 15px;
-      color: #aaa;
-      font-size: 12px;
-      line-height: 1.8;
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: #ffffff;
     }
 
-    .footer h3 {
-      font-family: "DM Sans", sans-serif;
+    .footer-brand img {
+      width: 35px;
+      height: 35px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .footer-brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .footer-brand-name span {
+      color: var(--red);
+    }
+
+    .footer-description {
+      max-width: 280px;
+      color: #a9a9a9;
       font-size: 12px;
-      letter-spacing: 0;
-      margin-bottom: 15px;
+      line-height: 1.9;
+    }
+
+    .footer-powered {
+      margin-top: 12px;
+      color: #777777;
+      font-size: 11px;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 17px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.015em;
     }
 
     .footer-links {
       display: grid;
-      gap: 10px;
+      gap: 11px;
     }
 
     .footer-links a {
-      color: #aaa;
+      width: fit-content;
+      color: #aaaaaa;
       font-size: 12px;
+      transition: color 0.2s ease;
     }
 
     .footer-links a:hover {
-      color: #fff;
+      color: #ffffff;
     }
 
     .footer-bottom {
-      border-top: 1px solid #333;
-      padding-top: 18px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-      color: #888;
+      gap: 18px;
+      padding-top: 21px;
+      border-top: 1px solid #303030;
+      color: #818181;
       font-size: 11px;
     }
 
-    .footer-bottom a {
-      color: #aaa;
+    .footer-bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #ffffff;
     }
 
     /* Responsive */
 
-    @media (max-width: 960px) {
-      .workspace {
-        grid-template-columns: 1fr;
+    @media (max-width: 1000px) {
+      .nav-links {
+        gap: 18px;
+      }
+
+      .tool-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+        gap: 18px;
+      }
+
+      .panel-header {
+        padding: 20px;
+      }
+
+      .panel-body {
+        padding: 20px;
+      }
+
+      .preview-wrap {
+        padding: 14px;
+      }
+
+      .salary-slip {
+        padding: 21px 17px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1.3fr 1fr 1fr;
+      }
+
+      .footer-top > :first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 32px, var(--container));
+      }
+
+      .nav-shell {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        z-index: 1001;
+        top: 68px;
+        right: 0;
+        left: 0;
+        display: none;
+        max-height: calc(100dvh - 68px);
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+        padding: 12px 22px 22px;
+        border-bottom: 1px solid #333333;
+        background: #111111;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links > a:not(.nav-cta) {
+        padding: 14px 2px;
+        border-bottom: 1px solid #292929;
+        font-size: 14px;
+      }
+
+      .nav-links .nav-cta {
+        margin-top: 14px;
+      }
+
+      .hero {
+        padding: 39px 0 37px;
+      }
+
+      .hero::after {
+        right: -230px;
+        opacity: 0.7;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .tool-section {
+        padding: 40px 0 50px;
+      }
+
+      .tool-layout {
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .preview-panel {
@@ -851,90 +1317,103 @@
       }
 
       .preview-wrap {
-        padding: 22px;
+        padding: 18px;
       }
 
       .salary-slip {
-        max-width: 620px;
+        max-width: 520px;
         margin: 0 auto;
+        padding: 27px 24px;
       }
 
-      .nav-links {
-        gap: 16px;
+      .trust-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .content-section,
+      .faq-section {
+        padding: 49px 0;
+      }
+
+      .content-grid,
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .cta-section {
+        padding: 40px 0;
+      }
+
+      .cta-card {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 30px 25px;
+      }
+
+      .cta-card::after {
+        right: -100px;
+      }
+
+      .footer-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 25px;
+      }
+
+      .footer-top > :first-child {
+        grid-column: 1 / -1;
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 420px) {
       .container {
-        width: min(100% - 28px, 1160px);
+        width: calc(100% - 26px);
       }
 
-      .nav-inner {
-        min-height: 66px;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 66px;
-        padding: 18px 22px 22px;
-        background: #101010;
-        border-top: 1px solid #333;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 11px 0;
-      }
-
-      .nav-links .nav-cta {
-        text-align: center;
-        margin-top: 8px;
-      }
-
-      .hero {
-        padding-top: 42px;
-      }
-
-      .workspace {
-        gap: 18px;
-        padding-bottom: 50px;
-      }
-
-      .panel-header {
-        padding: 19px;
-      }
-
-      .form-body {
-        padding: 19px;
-      }
-
-      .preview-wrap {
-        padding: 12px;
-      }
-
-      .salary-slip {
-        padding: 18px 14px;
-      }
-
-      .slip-company h3 {
+      .brand-name {
         font-size: 17px;
       }
 
-      .slip-label strong {
-        font-size: 12px;
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .panel-header,
+      .panel-body {
+        padding: 17px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .salary-actions {
+        flex-direction: column;
+      }
+
+      .salary-actions .btn {
+        width: 100%;
+      }
+
+      .preview-wrap {
+        padding: 10px;
+      }
+
+      .salary-slip {
+        padding: 20px 13px;
+      }
+
+      .slip-company-name {
+        font-size: 16px;
+      }
+
+      .slip-table {
+        font-size: 10px;
       }
 
       .slip-table th,
@@ -942,65 +1421,41 @@
         padding: 8px 5px;
       }
 
-      .info-grid {
-        grid-template-columns: 1fr;
+      .preview-actions {
+        padding: 14px;
       }
 
-      .footer-grid {
+      .preview-actions .btn {
+        min-width: 100%;
+      }
+
+      .footer-top {
         grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .form-grid {
-        grid-template-columns: 1fr;
+        gap: 27px 18px;
       }
 
-      .field.full {
-        grid-column: auto;
-      }
-
-      .form-actions .btn {
-        flex: 1 1 100%;
-      }
-
-      .employee-details {
-        gap: 10px;
-      }
-
-      .slip-period {
+      .footer-bottom {
+        align-items: flex-start;
         flex-direction: column;
       }
 
-      .slip-top {
-        flex-direction: column;
-      }
-
-      .slip-label {
-        text-align: left;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .preview-tools {
-        flex-wrap: wrap;
+      .footer-bottom-links {
+        gap: 12px;
       }
     }
 
-    /* Print: print only the salary slip */
+    /* Print only the generated salary slip */
 
     @page {
-      size: A4;
+      size: A4 portrait;
       margin: 12mm;
     }
 
     @media print {
-      html,
       body {
-        background: #fff !important;
-        color: #000 !important;
+        background: #ffffff !important;
+        color: #000000;
+        font-size: 11px;
       }
 
       body * {
@@ -1013,42 +1468,37 @@
       }
 
       #salarySlip {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        padding: 8mm;
-        border: 0;
-        box-shadow: none;
-        font-family: Arial, sans-serif;
-        -webkit-print-color-adjust: exact;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8mm !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
         print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
       }
 
-      .salary-slip {
-        border: 0;
-      }
-
-      .slip-table th {
-        background: #181818 !important;
-        color: #fff !important;
-      }
-
-      .net-salary {
-        background: #fff0f0 !important;
-      }
-
-      .slip-period,
-      .slip-table .subtotal td {
-        background: #f5f5f2 !important;
-      }
-
-      .net-salary,
-      .slip-period,
+      .slip-company,
+      .slip-heading,
+      .slip-employee-grid,
+      .slip-section-title,
       .slip-table,
-      .signature-row {
+      .net-pay-box,
+      .slip-footer,
+      .slip-disclaimer {
+        visibility: visible !important;
+      }
+
+      .slip-table th,
+      .slip-table td {
+        padding: 10px 8px !important;
+      }
+
+      .net-pay-box {
         break-inside: avoid;
       }
     }
@@ -1057,504 +1507,795 @@
 
 <body>
 
-  <!-- ARTHNIX Navigation -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a class="brand" href="/" aria-label="ARTHNIX home">
-        <img src="/logo.png" alt="ARTHNIX logo" onerror="this.style.display='none'">
-        <span>ARTHNIX</span>
+  <!-- Header: inline implementation matching the ARTHNIX reference -->
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+        <img src="/logo.png" alt="ARTHNIX logo" width="38" height="38">
+        <span class="brand-name">ARTH<span>NIX</span></span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks">
-        Menu ☰
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
       </button>
 
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="/tools.html">Tools</a>
+        <a href="/tools.html" class="active">Tools</a>
         <a href="/platform.html">Platform</a>
-        <a href="/#how-it-works">How it works</a>
+        <a href="/index.html#how-it-works">How It Works</a>
         <a href="/pricing.html">Pricing</a>
         <a href="/contact.html">Contact</a>
-        <a href="/tools.html" class="nav-cta">Explore tools ↗</a>
+        <a href="/tools.html" class="nav-cta">Start Free <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
-      <div class="container">
-        <div class="eyebrow">ARTHNIX Business Tools</div>
-        <h1>Salary Slip <span style="color:var(--accent)">Generator.</span></h1>
-        <p>
-          Create a clear, professional salary slip with employee details,
-          earnings, deductions, net pay, and a print-ready layout.
+      <div class="container hero-inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span class="breadcrumb-separator" aria-hidden="true">/</span>
+          <a href="/tools.html">Business Tools</a>
+          <span class="breadcrumb-separator" aria-hidden="true">/</span>
+          <span aria-current="page">Salary Slip Generator</span>
+        </nav>
+
+        <span class="eyebrow">Free business tool</span>
+
+        <h1>
+          Salary Slip <span class="accent">Generator.</span>
+        </h1>
+
+        <p class="hero-description">
+          Create a clear, professional salary slip in minutes. Enter employee
+          information, add earnings and deductions, review the calculated net
+          salary, and print or save the statement as a PDF.
         </p>
 
-        <div class="hero-note">
-          <span aria-hidden="true">ⓘ</span>
-          <span>
-            This tool creates a salary slip preview from the information you enter.
-            Verify your figures and company payroll rules before issuing it as an official document.
+        <div class="hero-meta">
+          <span class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 3v18m5-14H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            Indian Rupee (₹)
+          </span>
+          <span class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+              <path d="M8 7h8M8 11h2m4 0h2m-8 4h2m4 0h2"></path>
+            </svg>
+            Automatic calculations
+          </span>
+          <span class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path>
+              <path d="M14 3v6h5M9 14h6m-6 3h6"></path>
+            </svg>
+            Print or save as PDF
           </span>
         </div>
       </div>
     </section>
 
-    <section class="container workspace" aria-label="Salary slip generator">
-
-      <!-- Input Form -->
-      <section class="panel">
-        <div class="panel-header">
-          <div>
-            <h2>Salary details</h2>
-            <p>Enter employee information and monthly payroll amounts.</p>
-          </div>
-          <div class="step-badge">01</div>
+    <!-- Salary Slip Generator -->
+    <section class="tool-section" aria-labelledby="generatorHeading">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Create your salary slip</span>
+          <h2 id="generatorHeading">Your salary statement, <span class="accent">simplified.</span></h2>
+          <p>
+            Fill in the details below. The preview updates automatically as
+            you enter your employee information, earnings, and deductions.
+          </p>
         </div>
 
-        <form class="form-body" id="salaryForm">
-          <div class="section-title">
-            <span class="section-dot"></span>
-            Company information
-          </div>
-
-          <div class="form-grid">
-            <div class="field full">
-              <label for="companyName">Company name *</label>
-              <input id="companyName" name="companyName" type="text" placeholder="e.g. ARTHNIX Technologies" maxlength="120" required>
+        <div class="tool-layout">
+          <!-- Input panel -->
+          <section class="panel" aria-labelledby="detailsHeading">
+            <div class="panel-header">
+              <div>
+                <h3 class="panel-title" id="detailsHeading">Salary details</h3>
+                <p class="panel-subtitle">Complete the sections to build your salary slip.</p>
+              </div>
+              <span class="panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                  <path d="M8 7h8M8 11h8M8 15h3m2 0h3"></path>
+                </svg>
+              </span>
             </div>
 
-            <div class="field full">
-              <label for="companyAddress">Company address <span class="optional">(optional)</span></label>
-              <input id="companyAddress" name="companyAddress" type="text" placeholder="Office address" maxlength="240">
+            <div class="panel-body">
+              <form id="salaryForm" novalidate>
+                <div class="form-section-title">
+                  <span class="step">01</span>
+                  Company information
+                </div>
+
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="companyName">Company name <span class="optional">(required)</span></label>
+                    <input id="companyName" name="companyName" type="text" maxlength="100" placeholder="e.g. ABC Technologies" value="Your Company Name" required autocomplete="organization">
+                  </div>
+
+                  <div class="field full">
+                    <label for="companyAddress">Company address <span class="optional">(optional)</span></label>
+                    <textarea id="companyAddress" name="companyAddress" maxlength="250" placeholder="Office address, city, state, PIN code"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="form-section-title">
+                  <span class="step">02</span>
+                  Employee information
+                </div>
+
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="employeeName">Employee full name <span class="optional">(required)</span></label>
+                    <input id="employeeName" name="employeeName" type="text" maxlength="100" placeholder="Enter employee's full name" required autocomplete="name">
+                  </div>
+
+                  <div class="field">
+                    <label for="employeeId">Employee ID</label>
+                    <input id="employeeId" name="employeeId" type="text" maxlength="50" placeholder="e.g. EMP001">
+                  </div>
+
+                  <div class="field">
+                    <label for="department">Department</label>
+                    <input id="department" name="department" type="text" maxlength="80" placeholder="e.g. Engineering">
+                  </div>
+
+                  <div class="field">
+                    <label for="designation">Designation</label>
+                    <input id="designation" name="designation" type="text" maxlength="80" placeholder="e.g. Software Engineer">
+                  </div>
+
+                  <div class="field">
+                    <label for="paymentMode">Payment mode</label>
+                    <select id="paymentMode" name="paymentMode">
+                      <option value="Bank Transfer" selected>Bank Transfer</option>
+                      <option value="Cash">Cash</option>
+                      <option value="Cheque">Cheque</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="payMonth">Salary month <span class="optional">(required)</span></label>
+                    <input id="payMonth" name="payMonth" type="month" required>
+                  </div>
+
+                  <div class="field">
+                    <label for="payDate">Payment date</label>
+                    <input id="payDate" name="payDate" type="date">
+                  </div>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="form-section-title">
+                  <span class="step">03</span>
+                  Earnings
+                </div>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="basicSalary">Basic salary (₹) <span class="optional">(required)</span></label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="basicSalary" name="basicSalary" type="number" min="0" max="1000000000" step="0.01" placeholder="25000" value="25000" required inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="hra">House rent allowance (₹)</label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="hra" name="hra" type="number" min="0" max="1000000000" step="0.01" value="10000" inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="specialAllowance">Special allowance (₹)</label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="specialAllowance" name="specialAllowance" type="number" min="0" max="1000000000" step="0.01" value="5000" inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="otherEarnings">Other earnings (₹)</label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="otherEarnings" name="otherEarnings" type="number" min="0" max="1000000000" step="0.01" value="0" inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field full">
+                    <label for="otherEarningsLabel">Other earnings description <span class="optional">(optional)</span></label>
+                    <input id="otherEarningsLabel" name="otherEarningsLabel" type="text" maxlength="60" placeholder="e.g. Performance bonus">
+                    <span class="field-help">This description appears on the salary slip when other earnings are greater than zero.</span>
+                  </div>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="form-section-title">
+                  <span class="step">04</span>
+                  Deductions
+                </div>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="pf">Provident fund (₹)</label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="pf" name="pf" type="number" min="0" max="1000000000" step="0.01" value="1800" inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="professionalTax">Professional tax (₹)</label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="professionalTax" name="professionalTax" type="number" min="0" max="1000000000" step="0.01" value="200" inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="incomeTax">Income tax / TDS (₹)</label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="incomeTax" name="incomeTax" type="number" min="0" max="1000000000" step="0.01" value="0" inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="otherDeductions">Other deductions (₹)</label>
+                    <div class="money-input">
+                      <span class="currency-symbol" aria-hidden="true">₹</span>
+                      <input id="otherDeductions" name="otherDeductions" type="number" min="0" max="1000000000" step="0.01" value="0" inputmode="decimal">
+                    </div>
+                  </div>
+
+                  <div class="field full">
+                    <label for="otherDeductionsLabel">Other deductions description <span class="optional">(optional)</span></label>
+                    <input id="otherDeductionsLabel" name="otherDeductionsLabel" type="text" maxlength="60" placeholder="e.g. Salary advance recovery">
+                    <span class="field-help">Enter deductions applicable to the employee according to your payroll records.</span>
+                  </div>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="form-section-title">
+                  <span class="step">05</span>
+                  Attendance and notes
+                </div>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="workingDays">Working days</label>
+                    <input id="workingDays" name="workingDays" type="number" min="0" max="366" step="1" placeholder="26" value="26" inputmode="numeric">
+                  </div>
+
+                  <div class="field">
+                    <label for="paidDays">Paid days</label>
+                    <input id="paidDays" name="paidDays" type="number" min="0" max="366" step="1" placeholder="26" value="26" inputmode="numeric">
+                  </div>
+
+                  <div class="field full">
+                    <label for="notes">Additional note <span class="optional">(optional)</span></label>
+                    <textarea id="notes" name="notes" maxlength="300" placeholder="Add any relevant payroll note."></textarea>
+                  </div>
+                </div>
+
+                <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
+
+                <div class="salary-actions">
+                  <button class="btn btn-primary btn-block" type="button" id="generateBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                      <path d="M5 3h11l4 4v14H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path>
+                      <path d="M8 3v6h8V3M8 21v-7h8v7"></path>
+                    </svg>
+                    Update salary slip
+                  </button>
+
+                  <button class="btn btn-secondary" type="button" id="resetBtn">
+                    Reset
+                  </button>
+                </div>
+              </form>
             </div>
+          </section>
 
-            <div class="field">
-              <label for="slipMonth">Salary month *</label>
-              <input id="slipMonth" name="slipMonth" type="month" required>
-            </div>
-
-            <div class="field">
-              <label for="slipNumber">Slip / reference number</label>
-              <input id="slipNumber" name="slipNumber" type="text" placeholder="e.g. PAY-2026-001" maxlength="60">
-            </div>
-          </div>
-
-          <div class="section-title">
-            <span class="section-dot"></span>
-            Employee information
-          </div>
-
-          <div class="form-grid">
-            <div class="field">
-              <label for="employeeName">Employee name *</label>
-              <input id="employeeName" name="employeeName" type="text" placeholder="Full name" maxlength="120" required>
-            </div>
-
-            <div class="field">
-              <label for="employeeId">Employee ID</label>
-              <input id="employeeId" name="employeeId" type="text" placeholder="e.g. EMP-001" maxlength="60">
-            </div>
-
-            <div class="field">
-              <label for="designation">Designation</label>
-              <input id="designation" name="designation" type="text" placeholder="Job title" maxlength="120">
-            </div>
-
-            <div class="field">
-              <label for="department">Department</label>
-              <input id="department" name="department" type="text" placeholder="Department name" maxlength="120">
-            </div>
-
-            <div class="field">
-              <label for="joiningDate">Date of joining</label>
-              <input id="joiningDate" name="joiningDate" type="date">
-            </div>
-
-            <div class="field">
-              <label for="payDays">Paid days</label>
-              <input id="payDays" name="payDays" type="number" min="0" max="31" step="0.5" placeholder="e.g. 30">
-            </div>
-          </div>
-
-          <div class="section-title">
-            <span class="section-dot"></span>
-            Earnings (₹)
-          </div>
-
-          <div class="form-grid">
-            <div class="field">
-              <label for="basic">Basic salary *</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="basic" name="basic" type="number" min="0" step="0.01" value="20000" required>
+          <!-- Preview panel -->
+          <section class="panel preview-panel" aria-labelledby="previewHeading">
+            <div class="panel-header">
+              <div>
+                <h3 class="panel-title" id="previewHeading">Live salary slip</h3>
+                <p class="panel-subtitle">Review your statement before printing.</p>
+              </div>
+              <div class="preview-header-actions">
+                <span class="status-badge">
+                  <span class="status-dot"></span>
+                  Live preview
+                </span>
               </div>
             </div>
 
-            <div class="field">
-              <label for="hra">House rent allowance (HRA)</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="hra" name="hra" type="number" min="0" step="0.01" value="8000">
-              </div>
+            <div class="preview-wrap">
+              <article class="salary-slip" id="salarySlip" aria-label="Generated salary slip">
+                <div class="slip-company">
+                  <div>
+                    <div class="slip-company-name" id="outCompanyName">Your Company Name</div>
+                    <div class="slip-company-details" id="outCompanyAddress">Company address not provided</div>
+                  </div>
+                  <div class="slip-logo" aria-hidden="true">A</div>
+                </div>
+
+                <div class="slip-heading">
+                  <h3>SALARY SLIP</h3>
+                  <p id="outPayPeriod">Salary period: —</p>
+                </div>
+
+                <div class="slip-employee-grid">
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Employee name</span>
+                    <span class="slip-info-value" id="outEmployeeName">Not provided</span>
+                  </div>
+
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Employee ID</span>
+                    <span class="slip-info-value" id="outEmployeeId">—</span>
+                  </div>
+
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Department</span>
+                    <span class="slip-info-value" id="outDepartment">—</span>
+                  </div>
+
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Designation</span>
+                    <span class="slip-info-value" id="outDesignation">—</span>
+                  </div>
+
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Payment mode</span>
+                    <span class="slip-info-value" id="outPaymentMode">Bank Transfer</span>
+                  </div>
+
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Payment date</span>
+                    <span class="slip-info-value" id="outPayDate">—</span>
+                  </div>
+
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Working days</span>
+                    <span class="slip-info-value" id="outWorkingDays">26</span>
+                  </div>
+
+                  <div class="slip-info-item">
+                    <span class="slip-info-label">Paid days</span>
+                    <span class="slip-info-value" id="outPaidDays">26</span>
+                  </div>
+                </div>
+
+                <div class="slip-section-title">Earnings</div>
+
+                <table class="slip-table" aria-label="Salary earnings">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="width:70%">Description</th>
+                      <th scope="col" style="width:30%">Amount (₹)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="earningsRows">
+                    <tr><td>Basic salary</td><td>₹25,000.00</td></tr>
+                    <tr><td>House rent allowance</td><td>₹10,000.00</td></tr>
+                    <tr><td>Special allowance</td><td>₹5,000.00</td></tr>
+                    <tr class="total-row"><td>Total earnings</td><td>₹40,000.00</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="slip-section-title">Deductions</div>
+
+                <table class="slip-table" aria-label="Salary deductions">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="width:70%">Description</th>
+                      <th scope="col" style="width:30%">Amount (₹)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="deductionRows">
+                    <tr><td>Provident fund</td><td>₹1,800.00</td></tr>
+                    <tr><td>Professional tax</td><td>₹200.00</td></tr>
+                    <tr class="total-row"><td>Total deductions</td><td>₹2,000.00</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="net-pay-box">
+                  <div class="net-pay-label">Net salary payable</div>
+                  <div class="net-pay-amount" id="outNetSalary">₹38,000.00</div>
+                  <p class="net-pay-words" id="outAmountWords">Rupees Thirty-Eight Thousand Only</p>
+                </div>
+
+                <div class="slip-footer">
+                  This salary statement is generated from the information entered by the user.
+                  Please verify the details against the official payroll records.
+                </div>
+
+                <div class="slip-disclaimer" id="outNotes" hidden></div>
+              </article>
             </div>
 
-            <div class="field">
-              <label for="specialAllowance">Special allowance</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="specialAllowance" name="specialAllowance" type="number" min="0" step="0.01" value="4000">
-              </div>
+            <div class="preview-actions">
+              <button class="btn btn-primary" type="button" id="printBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <path d="M7 14h10v7H7z"></path>
+                </svg>
+                Print / Save PDF
+              </button>
+
+              <button class="btn btn-secondary" type="button" id="downloadBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4"></path>
+                </svg>
+                Download HTML
+              </button>
             </div>
-
-            <div class="field">
-              <label for="conveyance">Conveyance allowance</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="conveyance" name="conveyance" type="number" min="0" step="0.01" value="1600">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="medical">Other allowance</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="medical" name="medical" type="number" min="0" step="0.01" value="0">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="bonus">Bonus / incentive</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="bonus" name="bonus" type="number" min="0" step="0.01" value="0">
-              </div>
-            </div>
-          </div>
-
-          <div class="section-title">
-            <span class="section-dot"></span>
-            Deductions (₹)
-          </div>
-
-          <div class="form-grid">
-            <div class="field">
-              <label for="pf">Provident fund (PF)</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="pf" name="pf" type="number" min="0" step="0.01" value="1800">
-              </div>
-              <div class="input-help">Enter the employee deduction applicable to your payroll.</div>
-            </div>
-
-            <div class="field">
-              <label for="esi">Employee insurance (ESI)</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="esi" name="esi" type="number" min="0" step="0.01" value="0">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="professionalTax">Professional tax</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="professionalTax" name="professionalTax" type="number" min="0" step="0.01" value="200">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="tds">Income tax / TDS</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="tds" name="tds" type="number" min="0" step="0.01" value="0">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="loan">Loan / advance recovery</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="loan" name="loan" type="number" min="0" step="0.01" value="0">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="otherDeduction">Other deductions</label>
-              <div class="salary-input">
-                <span class="currency-symbol">₹</span>
-                <input id="otherDeduction" name="otherDeduction" type="number" min="0" step="0.01" value="0">
-              </div>
-            </div>
-          </div>
-
-          <div class="check-row">
-            <input type="checkbox" id="showBank" name="showBank">
-            <label for="showBank">
-              <strong>Include bank payment details</strong>
-              <small>Optional. Use only if appropriate for your organization and employee.</small>
-            </label>
-          </div>
-
-          <div class="form-grid" id="bankFields" hidden style="margin-top:16px">
-            <div class="field">
-              <label for="bankName">Bank name</label>
-              <input id="bankName" name="bankName" type="text" maxlength="100" placeholder="Bank name">
-            </div>
-
-            <div class="field">
-              <label for="accountLastFour">Account last four digits</label>
-              <input id="accountLastFour" name="accountLastFour" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="1234">
-              <div class="input-help">Do not enter a full bank account number.</div>
-            </div>
-          </div>
-
-          <div class="field full" style="margin-top:17px">
-            <label for="notes">Additional note <span class="optional">(optional)</span></label>
-            <input id="notes" name="notes" type="text" maxlength="240" placeholder="e.g. Payment processed by bank transfer">
-          </div>
-
-          <div class="form-error" id="formError" role="alert"></div>
-
-          <div class="form-actions">
-            <button class="btn btn-primary" type="submit">Update salary slip ↗</button>
-            <button class="btn btn-secondary" type="button" id="resetButton">Reset form</button>
-          </div>
-        </form>
-      </section>
-
-      <!-- Salary Slip Preview -->
-      <section class="panel preview-panel">
-        <div class="panel-header">
-          <div>
-            <h2>Salary slip preview</h2>
-            <p>Your slip updates as you enter the details.</p>
-          </div>
-          <div class="preview-tools">
-            <button type="button" id="printButton">Print / PDF ↓</button>
-          </div>
+          </section>
         </div>
 
-        <div class="preview-wrap">
-          <article class="salary-slip" id="salarySlip" aria-label="Generated salary slip">
-            <div class="slip-top">
-              <div class="slip-company">
-                <h3 id="outCompany">Your Company</h3>
-                <p id="outAddress">Company address</p>
-              </div>
-              <div class="slip-label">
-                <span>Salary slip</span>
-                <strong id="outSlipNumber">—</strong>
-              </div>
+        <div class="trust-strip">
+          <article class="trust-card">
+            <span class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="m5 12 4 4L19 6"></path>
+                <circle cx="12" cy="12" r="9"></circle>
+              </svg>
+            </span>
+            <div>
+              <h3>Automatic calculations</h3>
+              <p>Total earnings, deductions, and net salary update as you edit the form.</p>
             </div>
+          </article>
 
-            <div class="slip-period">
-              <span>Salary period</span>
-              <strong id="outMonth">—</strong>
+          <article class="trust-card">
+            <span class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path>
+                <path d="M14 3v6h5M9 14h6m-6 3h6"></path>
+              </svg>
+            </span>
+            <div>
+              <h3>Printable format</h3>
+              <p>Print your salary statement or use your browser's print dialog to save it as a PDF.</p>
             </div>
+          </article>
 
-            <div class="employee-details">
-              <div class="detail-item">
-                <span>Employee name</span>
-                <strong id="outEmployee">—</strong>
-              </div>
-              <div class="detail-item">
-                <span>Employee ID</span>
-                <strong id="outEmployeeId">—</strong>
-              </div>
-              <div class="detail-item">
-                <span>Designation</span>
-                <strong id="outDesignation">—</strong>
-              </div>
-              <div class="detail-item">
-                <span>Department</span>
-                <strong id="outDepartment">—</strong>
-              </div>
-              <div class="detail-item">
-                <span>Date of joining</span>
-                <strong id="outJoiningDate">—</strong>
-              </div>
-              <div class="detail-item">
-                <span>Paid days</span>
-                <strong id="outPayDays">—</strong>
-              </div>
-              <div class="detail-item" id="outBankDetail" hidden>
-                <span>Bank payment</span>
-                <strong id="outBank">—</strong>
-              </div>
-            </div>
-
-            <table class="slip-table">
-              <thead>
-                <tr>
-                  <th>Earnings</th>
-                  <th>Amount (₹)</th>
-                </tr>
-              </thead>
-              <tbody id="earningsRows">
-                <tr><td>Basic salary</td><td>20,000.00</td></tr>
-              </tbody>
-              <tfoot>
-                <tr class="subtotal">
-                  <td>Gross earnings</td>
-                  <td id="outGross">₹ 33,600.00</td>
-                </tr>
-              </tfoot>
-            </table>
-
-            <table class="slip-table">
-              <thead>
-                <tr>
-                  <th>Deductions</th>
-                  <th>Amount (₹)</th>
-                </tr>
-              </thead>
-              <tbody id="deductionRows">
-                <tr><td>Provident fund (PF)</td><td>1,800.00</td></tr>
-              </tbody>
-              <tfoot>
-                <tr class="subtotal">
-                  <td>Total deductions</td>
-                  <td id="outDeductions">₹ 2,000.00</td>
-                </tr>
-              </tfoot>
-            </table>
-
-            <div class="net-salary">
-              <div class="net-salary-label">
-                <span>Net salary payable</span>
-                <span>INR</span>
-              </div>
-              <div class="net-salary-amount" id="outNet">₹ 31,600.00</div>
-              <div class="net-words" id="outWords">Rupees thirty-one thousand six hundred only.</div>
-            </div>
-
-            <div class="slip-note">
-              <div id="outNote">This is a salary slip generated from the information provided.</div>
-              <div style="margin-top:6px">Computer-generated document. Signature is not required unless your organization's policy says otherwise.</div>
-            </div>
-
-            <div class="signature-row">
-              <div class="signature">Employee acknowledgement</div>
-              <div class="signature">Authorized signatory</div>
+          <article class="trust-card">
+            <span class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"></path>
+              </svg>
+            </span>
+            <div>
+              <h3>Privacy-conscious</h3>
+              <p>This page calculates the slip in your browser and does not send the form to a payroll server.</p>
             </div>
           </article>
         </div>
+      </div>
+    </section>
 
-        <div class="preview-footnote">
-          <strong>Before issuing:</strong> Verify payroll amounts, applicable deductions, employee details, and company requirements. This generator does not determine statutory deductions automatically.
+    <!-- How it works -->
+    <section class="content-section" id="how-it-works">
+      <div class="container content-grid">
+        <div class="content-heading">
+          <span class="eyebrow">How it works</span>
+          <h2>A salary slip in <span class="accent">three steps.</span></h2>
+          <p>
+            Use the generator to prepare a salary statement from the payroll
+            figures you already have. Check every amount before sharing or
+            printing the document.
+          </p>
+
+          <div class="info-note">
+            <strong>Important:</strong> This tool creates a salary statement
+            from manually entered information. It does not verify employment,
+            calculate statutory payroll liabilities, or certify that a document
+            is an official employer-issued payslip.
+          </div>
         </div>
-      </section>
+
+        <div class="steps">
+          <article class="step-item">
+            <span class="step-number">01</span>
+            <div>
+              <h3>Enter company and employee details</h3>
+              <p>
+                Add the company name, employee name, employee ID, department,
+                designation, salary month, payment date, and attendance details.
+              </p>
+            </div>
+          </article>
+
+          <article class="step-item">
+            <span class="step-number">02</span>
+            <div>
+              <h3>Add earnings and deductions</h3>
+              <p>
+                Enter basic salary, house rent allowance, special allowance,
+                other earnings, provident fund, professional tax, income tax,
+                and any other applicable deductions.
+              </p>
+            </div>
+          </article>
+
+          <article class="step-item">
+            <span class="step-number">03</span>
+            <div>
+              <h3>Review and export your salary slip</h3>
+              <p>
+                Check the preview and net salary. Choose Print / Save PDF to
+                print the slip or save it as a PDF through your browser.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section class="container info-section">
-      <div class="section-heading">
-        <div class="eyebrow">How it works</div>
-        <h2>A clear salary breakdown, without the busywork.</h2>
-        <p>Enter your monthly payroll values, review the totals, and print or save the finished layout.</p>
-      </div>
+    <!-- Calculation guide -->
+    <section class="content-section">
+      <div class="container content-grid">
+        <div class="content-heading">
+          <span class="eyebrow">Understand the numbers</span>
+          <h2>How is net salary <span class="accent">calculated?</span></h2>
+          <p>
+            The generator uses the earnings and deductions you enter to
+            calculate the amount payable for the selected salary period.
+          </p>
+        </div>
 
-      <div class="info-grid">
-        <article class="info-card">
-          <div class="info-number">01</div>
-          <h3>Add employee details</h3>
-          <p>Enter the company, employee, salary month, designation, and optional payroll reference information.</p>
-        </article>
+        <div class="steps">
+          <article class="step-item">
+            <span class="step-number">+</span>
+            <div>
+              <h3>Total earnings</h3>
+              <p>
+                Basic salary + house rent allowance + special allowance +
+                other earnings.
+              </p>
+            </div>
+          </article>
 
-        <article class="info-card">
-          <div class="info-number">02</div>
-          <h3>Enter earnings and deductions</h3>
-          <p>Provide the amounts used by your payroll. The generator adds the earnings and deductions to calculate net salary.</p>
-        </article>
+          <article class="step-item">
+            <span class="step-number">−</span>
+            <div>
+              <h3>Total deductions</h3>
+              <p>
+                Provident fund + professional tax + income tax / TDS +
+                other deductions.
+              </p>
+            </div>
+          </article>
 
-        <article class="info-card">
-          <div class="info-number">03</div>
-          <h3>Print or save as PDF</h3>
-          <p>Choose Print / PDF and select “Save as PDF” in your browser's print dialog to save a copy.</p>
-        </article>
+          <article class="step-item">
+            <span class="step-number">=</span>
+            <div>
+              <h3>Net salary payable</h3>
+              <p>
+                Total earnings − total deductions. The result is the estimated
+                take-home amount based on the figures entered.
+              </p>
+            </div>
+          </article>
+
+          <div class="info-note">
+            <strong>Payroll accuracy:</strong> Tax, provident fund, professional
+            tax, leave adjustments, and other deductions depend on applicable
+            rules and the employee's circumstances. Enter the actual values
+            supplied by your payroll team rather than relying on example amounts.
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="container info-section">
-      <div class="section-heading">
-        <div class="eyebrow">Frequently asked questions</div>
-        <h2>Salary slip generator FAQs.</h2>
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container faq-layout">
+        <div class="faq-heading">
+          <span class="eyebrow">Frequently asked questions</span>
+          <h2>Things you should <span class="accent">know.</span></h2>
+          <p>
+            Quick answers about generating, calculating, and exporting salary slips.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="true" aria-controls="faqAnswer1">
+              Is this salary slip generator free?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faqAnswer1">
+              Yes. You can enter salary details, preview the statement, and
+              print or download the generated HTML file without paying for
+              this tool.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer2">
+              How do I save the salary slip as a PDF?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faqAnswer2" hidden>
+              Click Print / Save PDF. In the browser's print window, select
+              Save as PDF as the destination, check the page preview, and save
+              the file. The exact wording depends on your browser and operating system.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer3">
+              Does the tool calculate income tax and provident fund automatically?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faqAnswer3" hidden>
+              No. Enter the applicable income tax, provident fund, professional
+              tax, and other deduction amounts from your payroll records. The
+              tool adds the values and calculates net salary but does not determine
+              statutory contributions or tax liability.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer4">
+              Does this generate an official company payslip?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faqAnswer4" hidden>
+              It generates a salary statement based on your entries. It is not
+              authenticated, verified, or issued by an employer. Use official
+              payroll software or your employer's payroll team for an official
+              payslip.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer5">
+              Are my salary details sent to a server?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faqAnswer5" hidden>
+              The calculations on this page run in your browser. This page does
+              not submit the salary form to a payroll backend. Avoid entering
+              sensitive information on shared devices, and remember that normal
+              website hosting and analytics may operate separately from the form.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faqAnswer6">
+              What happens if deductions exceed earnings?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faqAnswer6" hidden>
+              The generator displays the arithmetic result, including a negative
+              amount if deductions exceed earnings. Check your entries and
+              confirm any unusual result with the responsible payroll team.
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="faq-list">
-        <details>
-          <summary>How is net salary calculated?</summary>
-          <p>Net salary payable is calculated as gross earnings minus total deductions. Gross earnings are the sum of the earning fields, and total deductions are the sum of the deduction fields you enter.</p>
-        </details>
-
-        <details>
-          <summary>Does this tool automatically calculate PF, ESI, or income tax?</summary>
-          <p>No. These deductions depend on the employee's circumstances, applicable rules, and payroll policy. Enter the correct amounts supplied by your payroll team or calculated using the relevant official rules.</p>
-        </details>
-
-        <details>
-          <summary>Can I download the salary slip as a PDF?</summary>
-          <p>Yes. Select Print / PDF, then choose “Save as PDF” in your browser's print dialog. The print layout is designed to include the salary slip rather than the form.</p>
-        </details>
-
-        <details>
-          <summary>Is this an official or verified salary slip?</summary>
-          <p>No. This tool creates a formatted document using user-entered information. It does not verify employment, salary, or deductions, and it does not issue a company-certified payslip. Use it only when you are authorized to prepare the document.</p>
-        </details>
-
-        <details>
-          <summary>Are my salary details uploaded or saved?</summary>
-          <p>This page performs calculations in your browser and does not contain a server submission feature. Avoid using the tool on shared devices, and close the page when you finish. Browser extensions, device monitoring, or your browser environment may have their own data-handling behavior.</p>
-        </details>
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-content">
+            <h2>More useful tools. <span class="accent">Less busywork.</span></h2>
+            <p>
+              Explore ARTHNIX tools designed to simplify everyday business
+              calculations, documents, and workflows.
+            </p>
+          </div>
+          <a href="/tools.html" class="btn btn-primary">
+            Explore free tools <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- ARTHNIX Footer -->
-  <footer class="footer">
+  <!-- Footer: inline implementation matching the ARTHNIX reference -->
+  <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="brand" href="/" aria-label="ARTHNIX home">
-            <img src="/logo.png" alt="" onerror="this.style.display='none'">
-            <span>ARTHNIX</span>
+      <div class="footer-top">
+        <div>
+          <a class="footer-brand" href="/index.html" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="ARTHNIX logo" width="35" height="35">
+            <span class="footer-brand-name">ARTH<span>NIX</span></span>
           </a>
-          <p>Intelligence for Every Business. Practical tools and intelligent systems designed to simplify everyday work.</p>
+
+          <p class="footer-description">
+            Intelligence for Every Business. Practical AI-powered tools and
+            systems designed to make everyday work simpler.
+          </p>
+
+          <p class="footer-powered">Powered by Alphex AI</p>
         </div>
 
-        <div>
+        <div class="footer-column">
           <h3>Explore</h3>
           <div class="footer-links">
-            <a href="/tools.html">All tools</a>
             <a href="/platform.html">Platform</a>
-            <a href="/#how-it-works">How it works</a>
+            <a href="/index.html#how-it-works">How It Works</a>
             <a href="/pricing.html">Pricing</a>
+            <a href="/tools.html">Free Tools</a>
           </div>
         </div>
 
-        <div>
-          <h3>Business tools</h3>
+        <div class="footer-column">
+          <h3>Business Tools</h3>
           <div class="footer-links">
-            <a href="/tools/attendance-calculator.html">Attendance calculator</a>
-            <a href="/tools/salary-slip-generator.html">Salary slip generator</a>
-            <a href="/tools.html">Explore tools</a>
+            <a href="/tools/gst-calculator.html">GST Calculator</a>
+            <a href="/tools/invoice-generator.html">Invoice Generator</a>
+            <a href="/tools/profit-margin-calculator.html">Profit Calculator</a>
+            <a href="/tools/quotation-generator.html">Quotation Generator</a>
+            <a href="/tools/salary-slip-generator.html">Salary Slip Generator</a>
           </div>
         </div>
 
-        <div>
+        <div class="footer-column">
           <h3>Information</h3>
           <div class="footer-links">
             <a href="/about.html">About</a>
+            <a href="/help.html">Help Center</a>
+            <a href="/blog.html">Blog</a>
             <a href="/contact.html">Contact</a>
-            <a href="/privacy.html">Privacy policy</a>
-            <a href="/terms.html">Terms of use</a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
-        <span>Powered by <a href="/">Alphex AI</a></span>
+        <p>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</p>
+
+        <div class="footer-bottom-links">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -1563,381 +2304,766 @@
     (() => {
       "use strict";
 
-      const form = document.getElementById("salaryForm");
-      const formError = document.getElementById("formError");
-      const showBank = document.getElementById("showBank");
-      const bankFields = document.getElementById("bankFields");
+      const $ = (id) => document.getElementById(id);
 
-      const earningFields = [
-        ["basic", "Basic salary"],
-        ["hra", "House rent allowance (HRA)"],
-        ["specialAllowance", "Special allowance"],
-        ["conveyance", "Conveyance allowance"],
-        ["medical", "Other allowance"],
-        ["bonus", "Bonus / incentive"]
-      ];
+      const form = $("salaryForm");
+      const formError = $("formError");
+      const generateBtn = $("generateBtn");
+      const resetBtn = $("resetBtn");
+      const printBtn = $("printBtn");
+      const downloadBtn = $("downloadBtn");
 
-      const deductionFields = [
-        ["pf", "Provident fund (PF)"],
-        ["esi", "Employee insurance (ESI)"],
-        ["professionalTax", "Professional tax"],
-        ["tds", "Income tax / TDS"],
-        ["loan", "Loan / advance recovery"],
-        ["otherDeduction", "Other deductions"]
-      ];
+      const defaultFormValues = {
+        companyName: "Your Company Name",
+        companyAddress: "",
+        employeeName: "",
+        employeeId: "",
+        department: "",
+        designation: "",
+        paymentMode: "Bank Transfer",
+        basicSalary: "25000",
+        hra: "10000",
+        specialAllowance: "5000",
+        otherEarnings: "0",
+        otherEarningsLabel: "",
+        pf: "1800",
+        professionalTax: "200",
+        incomeTax: "0",
+        otherDeductions: "0",
+        otherDeductionsLabel: "",
+        workingDays: "26",
+        paidDays: "26",
+        notes: ""
+      };
 
-      const money = new Intl.NumberFormat("en-IN", {
+      const currencyFormatter = new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
 
-      function getValue(id) {
-        const el = document.getElementById(id);
-        return el ? el.value.trim() : "";
+      const numberFormatter = new Intl.NumberFormat("en-IN", {
+        maximumFractionDigits: 2
+      });
+
+      const textFields = [
+        "companyName",
+        "companyAddress",
+        "employeeName",
+        "employeeId",
+        "department",
+        "designation",
+        "paymentMode",
+        "otherEarningsLabel",
+        "otherDeductionsLabel",
+        "notes"
+      ];
+
+      const numericFields = [
+        "basicSalary",
+        "hra",
+        "specialAllowance",
+        "otherEarnings",
+        "pf",
+        "professionalTax",
+        "incomeTax",
+        "otherDeductions",
+        "workingDays",
+        "paidDays"
+      ];
+
+      function money(value) {
+        return currencyFormatter.format(value);
       }
 
-      function getNumber(id) {
-        const raw = getValue(id);
-        if (raw === "") return 0;
+      function safeNumber(id) {
+        const element = $(id);
+        const raw = element.value.trim();
+
+        if (raw === "") {
+          return 0;
+        }
+
         const value = Number(raw);
-        return Number.isFinite(value) ? value : 0;
-      }
 
-      function formatMoney(value) {
-        return "₹ " + money.format(value);
-      }
+        if (!Number.isFinite(value)) {
+          return NaN;
+        }
 
-      function escapeHTML(value) {
-        return String(value).replace(/[&<>"']/g, char => ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;"
-        })[char]);
+        return value;
       }
 
       function setText(id, value) {
-        const element = document.getElementById(id);
-        if (element) element.textContent = value || "—";
+        $(id).textContent = value;
+      }
+
+      function safeText(id, value, fallback = "—") {
+        const cleaned = String(value ?? "").trim();
+        setText(id, cleaned || fallback);
       }
 
       function formatMonth(value) {
-        if (!value) return "—";
+        if (!value) {
+          return "—";
+        }
+
         const parts = value.split("-");
-        if (parts.length !== 2) return value;
-        const date = new Date(Number(parts[0]), Number(parts[1]) - 1, 1);
-        return date.toLocaleDateString("en-IN", {
+        if (parts.length !== 2) {
+          return "—";
+        }
+
+        const year = Number(parts[0]);
+        const month = Number(parts[1]);
+
+        if (!year || month < 1 || month > 12) {
+          return "—";
+        }
+
+        return new Intl.DateTimeFormat("en-IN", {
           month: "long",
           year: "numeric"
-        });
+        }).format(new Date(year, month - 1, 1));
       }
 
       function formatDate(value) {
-        if (!value) return "—";
+        if (!value) {
+          return "—";
+        }
+
         const parts = value.split("-");
-        if (parts.length !== 3) return value;
-        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        if (parts.length !== 3) {
+          return "—";
+        }
+
+        const [year, month, day] = parts.map(Number);
+        const date = new Date(year, month - 1, day);
+
+        if (
+          date.getFullYear() !== year ||
+          date.getMonth() !== month - 1 ||
+          date.getDate() !== day
+        ) {
+          return "—";
+        }
+
+        return new Intl.DateTimeFormat("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        }).format(date);
       }
 
       function amountInWords(amount) {
-        if (!Number.isFinite(amount) || amount < 0) {
-          return "Amount not available.";
+        if (!Number.isFinite(amount)) {
+          return "Amount unavailable";
         }
 
-        const rupees = Math.floor(amount + 0.000001);
-        const paise = Math.round((amount - rupees) * 100);
+        if (amount < 0) {
+          return "Negative amount: " + amountInWords(Math.abs(amount));
+        }
+
+        const roundedPaise = Math.round(amount * 100);
+        const rupees = Math.floor(roundedPaise / 100);
+        const paise = roundedPaise % 100;
 
         const ones = [
-          "", "one", "two", "three", "four", "five", "six",
-          "seven", "eight", "nine", "ten", "eleven", "twelve",
-          "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
-          "eighteen", "nineteen"
+          "", "One", "Two", "Three", "Four", "Five", "Six",
+          "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+          "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+          "Eighteen", "Nineteen"
         ];
 
         const tens = [
-          "", "", "twenty", "thirty", "forty", "fifty",
-          "sixty", "seventy", "eighty", "ninety"
+          "", "", "Twenty", "Thirty", "Forty", "Fifty",
+          "Sixty", "Seventy", "Eighty", "Ninety"
         ];
 
-        function underThousand(number) {
+        function underThousand(n) {
           let words = "";
 
-          if (number >= 100) {
-            words += ones[Math.floor(number / 100)] + " hundred";
-            number %= 100;
-            if (number) words += " ";
+          if (n >= 100) {
+            words += ones[Math.floor(n / 100)] + " Hundred";
+            n %= 100;
+
+            if (n > 0) {
+              words += " ";
+            }
           }
 
-          if (number >= 20) {
-            words += tens[Math.floor(number / 10)];
-            number %= 10;
-            if (number) words += "-" + ones[number];
-          } else if (number > 0) {
-            words += ones[number];
+          if (n >= 20) {
+            words += tens[Math.floor(n / 10)];
+            n %= 10;
+
+            if (n > 0) {
+              words += " " + ones[n];
+            }
+          } else if (n > 0) {
+            words += ones[n];
           }
 
           return words;
         }
 
-        function indianNumber(number) {
-          if (number === 0) return "zero";
+        function integerToWords(n) {
+          if (n === 0) {
+            return "Zero";
+          }
 
-          const chunks = [
-            ["crore", 10000000],
-            ["lakh", 100000],
-            ["thousand", 1000],
-            ["", 1]
+          const units = [
+            { value: 10000000, label: "Crore" },
+            { value: 100000, label: "Lakh" },
+            { value: 1000, label: "Thousand" },
+            { value: 1, label: "" }
           ];
 
-          const result = [];
+          const parts = [];
 
-          for (const [label, divisor] of chunks) {
-            const count = Math.floor(number / divisor);
+          for (const unit of units) {
+            if (n >= unit.value) {
+              const count = Math.floor(n / unit.value);
+              n %= unit.value;
 
-            if (count > 0) {
-              result.push(underThousand(count) + (label ? " " + label : ""));
-              number %= divisor;
+              if (unit.value === 1) {
+                if (count > 0) {
+                  parts.push(underThousand(count));
+                }
+              } else {
+                parts.push(underThousand(count) + " " + unit.label);
+              }
             }
           }
 
-          return result.join(" ");
+          return parts.join(" ");
         }
 
-        let result = "Rupees " + indianNumber(rupees);
+        let result = "Rupees " + integerToWords(rupees);
 
         if (paise > 0) {
-          result += " and " + indianNumber(paise) + " paise";
+          result += " and " + integerToWords(paise) + " Paise";
         }
 
-        return result + " only.";
+        return result + " Only";
       }
 
-      function renderRows(containerId, fields, total) {
-        const container = document.getElementById(containerId);
+      function createRow(label, amount, options = {}) {
+        const tr = document.createElement("tr");
 
-        const rows = fields
-          .map(([id, label]) => ({
-            label,
-            value: Math.round(getNumber(id) * 100) / 100
-          }))
-          .filter(item => item.value !== 0)
-          .map(item => `
-            <tr>
-              <td>${escapeHTML(item.label)}</td>
-              <td>${money.format(item.value)}</td>
-            </tr>
-          `);
-
-        if (rows.length === 0) {
-          rows.push('<tr><td colspan="2" style="color:#777;text-align:center">No amounts entered</td></tr>');
+        if (options.total) {
+          tr.className = "total-row";
         }
 
-        container.innerHTML = rows.join("");
+        const labelCell = document.createElement("td");
+        labelCell.textContent = label;
+
+        const amountCell = document.createElement("td");
+        amountCell.textContent = money(amount);
+
+        if (options.deduction) {
+          amountCell.className = "deduction-amount";
+        }
+
+        tr.append(labelCell, amountCell);
+        return tr;
       }
 
-      function updateSlip() {
-        const company = getValue("companyName") || "Your Company";
-        const address = getValue("companyAddress");
-        const month = getValue("slipMonth");
-        const slipNumber = getValue("slipNumber");
-        const employee = getValue("employeeName");
-        const employeeId = getValue("employeeId");
-        const designation = getValue("designation");
-        const department = getValue("department");
-        const joiningDate = getValue("joiningDate");
-        const payDays = getValue("payDays");
-        const notes = getValue("notes");
+      function setRows(containerId, rows, totalLabel, totalAmount, isDeduction = false) {
+        const container = $(containerId);
+        const fragment = document.createDocumentFragment();
 
-        const gross = earningFields.reduce(
-          (sum, [id]) => sum + getNumber(id), 0
+        rows.forEach((row) => {
+          if (row.amount > 0) {
+            fragment.appendChild(
+              createRow(row.label, row.amount, { deduction: isDeduction })
+            );
+          }
+        });
+
+        fragment.appendChild(
+          createRow(totalLabel, totalAmount, { total: true })
         );
 
-        const totalDeductions = deductionFields.reduce(
-          (sum, [id]) => sum + getNumber(id), 0
-        );
+        container.replaceChildren(fragment);
+      }
 
-        const net = Math.round((gross - totalDeductions) * 100) / 100;
+      function clearErrors() {
+        formError.textContent = "";
+        formError.classList.remove("visible");
 
-        setText("outCompany", company);
-        setText("outAddress", address || "");
-        document.getElementById("outAddress").style.display = address ? "block" : "none";
+        form.querySelectorAll('[aria-invalid="true"]').forEach((element) => {
+          element.removeAttribute("aria-invalid");
+        });
+      }
 
-        setText("outMonth", formatMonth(month));
-        setText("outSlipNumber", slipNumber || "Not provided");
-        setText("outEmployee", employee || "Employee name");
-        setText("outEmployeeId", employeeId || "Not provided");
-        setText("outDesignation", designation || "Not provided");
-        setText("outDepartment", department || "Not provided");
-        setText("outJoiningDate", formatDate(joiningDate));
-        setText("outPayDays", payDays === "" ? "Not provided" : payDays);
+      function showErrors(messages, invalidIds = []) {
+        formError.textContent = messages.join(" ");
+        formError.classList.add("visible");
 
-        renderRows("earningsRows", earningFields, gross);
-        renderRows("deductionRows", deductionFields, totalDeductions);
-
-        setText("outGross", formatMoney(gross));
-        setText("outDeductions", formatMoney(totalDeductions));
-        setText("outNet", formatMoney(net));
-
-        const words = net < 0
-          ? "Deductions exceed gross earnings. Please verify the entered amounts."
-          : amountInWords(net);
-
-        setText("outWords", words);
-        setText(
-          "outNote",
-          notes || "This is a salary slip generated from the information provided."
-        );
-
-        const bankEnabled = showBank.checked;
-        const bankName = getValue("bankName");
-        const lastFour = getValue("accountLastFour");
-
-        document.getElementById("outBankDetail").hidden = !bankEnabled;
-
-        if (bankEnabled) {
-          let bankText = bankName || "Bank not provided";
-          if (lastFour) bankText += " •••• " + lastFour;
-          setText("outBank", bankText);
-        }
+        invalidIds.forEach((id) => {
+          $(id).setAttribute("aria-invalid", "true");
+        });
       }
 
       function validateForm() {
-        const positiveFields = [
-          ...earningFields.map(([id]) => id),
-          ...deductionFields.map(([id]) => id)
+        clearErrors();
+
+        const errors = [];
+        const invalidIds = [];
+
+        const requiredFields = [
+          ["companyName", "Enter the company name."],
+          ["employeeName", "Enter the employee's full name."],
+          ["payMonth", "Select the salary month."]
         ];
 
-        for (const id of positiveFields) {
-          const element = document.getElementById(id);
-          const value = Number(element.value);
+        requiredFields.forEach(([id, message]) => {
+          if (!$(id).value.trim()) {
+            errors.push(message);
+            invalidIds.push(id);
+          }
+        });
 
-          if (element.value.trim() === "" || !Number.isFinite(value) || value < 0) {
-            return "Enter a valid, non-negative amount for every earnings and deductions field.";
+        numericFields.forEach((id) => {
+          const element = $(id);
+          const value = safeNumber(id);
+
+          if (!Number.isFinite(value)) {
+            errors.push("Enter a valid number for " + element.labels[0].textContent.replace("(₹)", "").trim() + ".");
+            invalidIds.push(id);
+            return;
+          }
+
+          const min = Number(element.min);
+          const max = Number(element.max);
+
+          if (value < min || value > max) {
+            errors.push(element.labels[0].textContent.replace("(₹)", "").trim() + " must be between " + numberFormatter.format(min) + " and " + numberFormatter.format(max) + ".");
+            invalidIds.push(id);
+          }
+        });
+
+        const workingDays = safeNumber("workingDays");
+        const paidDays = safeNumber("paidDays");
+
+        if (
+          Number.isFinite(workingDays) &&
+          Number.isFinite(paidDays) &&
+          paidDays > workingDays
+        ) {
+          errors.push("Paid days cannot exceed working days.");
+          invalidIds.push("paidDays");
+        }
+
+        const earnings = [
+          safeNumber("basicSalary"),
+          safeNumber("hra"),
+          safeNumber("specialAllowance"),
+          safeNumber("otherEarnings")
+        ];
+
+        const deductions = [
+          safeNumber("pf"),
+          safeNumber("professionalTax"),
+          safeNumber("incomeTax"),
+          safeNumber("otherDeductions")
+        ];
+
+        if (
+          earnings.every(Number.isFinite) &&
+          deductions.every(Number.isFinite)
+        ) {
+          const totalEarnings = earnings.reduce((sum, amount) => sum + amount, 0);
+          const totalDeductions = deductions.reduce((sum, amount) => sum + amount, 0);
+
+          if (!Number.isFinite(totalEarnings) || !Number.isFinite(totalDeductions)) {
+            errors.push("The entered amounts are too large to calculate safely.");
           }
         }
 
-        const gross = earningFields.reduce(
-          (sum, [id]) => sum + getNumber(id), 0
-        );
-
-        const deductions = deductionFields.reduce(
-          (sum, [id]) => sum + getNumber(id), 0
-        );
-
-        if (deductions > gross) {
-          return "Total deductions exceed gross earnings. Please check the amounts before generating the salary slip.";
+        if (errors.length) {
+          showErrors([...new Set(errors)], [...new Set(invalidIds)]);
+          return false;
         }
 
-        const payDays = getValue("payDays");
-
-        if (payDays !== "" && (getNumber("payDays") < 0 || getNumber("payDays") > 31)) {
-          return "Paid days must be between 0 and 31.";
-        }
-
-        const lastFour = getValue("accountLastFour");
-        if (showBank.checked && lastFour && !/^\d{4}$/.test(lastFour)) {
-          return "Enter exactly four digits for the bank account suffix, or leave it blank.";
-        }
-
-        return "";
+        return true;
       }
 
-      function showError(message) {
-        formError.textContent = message;
-        formError.style.display = message ? "block" : "none";
+      function renderPreview() {
+        const companyName = $("companyName").value.trim();
+        const companyAddress = $("companyAddress").value.trim();
+        const employeeName = $("employeeName").value.trim();
+
+        safeText("outCompanyName", companyName, "Your Company Name");
+        safeText("outCompanyAddress", companyAddress, "Company address not provided");
+        safeText("outEmployeeName", employeeName, "Not provided");
+        safeText("outEmployeeId", $("employeeId").value);
+        safeText("outDepartment", $("department").value);
+        safeText("outDesignation", $("designation").value);
+        safeText("outPaymentMode", $("paymentMode").value, "Bank Transfer");
+        safeText("outPayPeriod", "Salary period: " + formatMonth($("payMonth").value));
+        safeText("outPayDate", formatDate($("payDate").value));
+        safeText("outWorkingDays", $("workingDays").value || "—");
+        safeText("outPaidDays", $("paidDays").value || "—");
+
+        const basicSalary = safeNumber("basicSalary");
+        const hra = safeNumber("hra");
+        const specialAllowance = safeNumber("specialAllowance");
+        const otherEarnings = safeNumber("otherEarnings");
+
+        const pf = safeNumber("pf");
+        const professionalTax = safeNumber("professionalTax");
+        const incomeTax = safeNumber("incomeTax");
+        const otherDeductions = safeNumber("otherDeductions");
+
+        const totalEarnings = basicSalary + hra + specialAllowance + otherEarnings;
+        const totalDeductions = pf + professionalTax + incomeTax + otherDeductions;
+        const netSalary = totalEarnings - totalDeductions;
+
+        const earnings = [
+          { label: "Basic salary", amount: basicSalary },
+          { label: "House rent allowance", amount: hra },
+          { label: "Special allowance", amount: specialAllowance },
+          {
+            label: $("otherEarningsLabel").value.trim() || "Other earnings",
+            amount: otherEarnings
+          }
+        ];
+
+        const deductions = [
+          { label: "Provident fund", amount: pf },
+          { label: "Professional tax", amount: professionalTax },
+          { label: "Income tax / TDS", amount: incomeTax },
+          {
+            label: $("otherDeductionsLabel").value.trim() || "Other deductions",
+            amount: otherDeductions
+          }
+        ];
+
+        setRows("earningsRows", earnings, "Total earnings", totalEarnings);
+        setRows("deductionRows", deductions, "Total deductions", totalDeductions, true);
+
+        setText("outNetSalary", money(netSalary));
+        setText("outAmountWords", amountInWords(netSalary));
+
+        const notes = $("notes").value.trim();
+        const notesElement = $("outNotes");
+
+        if (notes) {
+          notesElement.hidden = false;
+          notesElement.textContent = "Note: " + notes;
+        } else {
+          notesElement.hidden = true;
+          notesElement.textContent = "";
+        }
       }
 
-      form.addEventListener("input", () => {
-        showError("");
-        updateSlip();
-      });
+      function updatePreview() {
+        clearErrors();
+        renderPreview();
+      }
 
-      form.addEventListener("change", () => {
-        showError("");
-        updateSlip();
-      });
-
-      form.addEventListener("submit", event => {
-        event.preventDefault();
-
-        if (!form.reportValidity()) return;
-
-        const error = validateForm();
-
-        if (error) {
-          showError(error);
+      function handleGenerate() {
+        if (!validateForm()) {
+          formError.scrollIntoView({ behavior: "smooth", block: "center" });
           return;
         }
 
-        showError("");
-        updateSlip();
+        renderPreview();
+        clearErrors();
+      }
 
-        document.getElementById("salarySlip").scrollIntoView({
-          behavior: "smooth",
-          block: "nearest"
+      function resetForm() {
+        form.reset();
+
+        Object.entries(defaultFormValues).forEach(([id, value]) => {
+          $(id).value = value;
         });
-      });
 
-      showBank.addEventListener("change", () => {
-        bankFields.hidden = !showBank.checked;
-        updateSlip();
-      });
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
 
-      document.getElementById("printButton").addEventListener("click", () => {
-        if (!form.reportValidity()) return;
+        $("payMonth").value = year + "-" + month;
+        $("payDate").value = "";
 
-        const error = validateForm();
+        clearErrors();
+        renderPreview();
+      }
 
-        if (error) {
-          showError(error);
+      function downloadHTML() {
+        if (!validateForm()) {
+          formError.scrollIntoView({ behavior: "smooth", block: "center" });
           return;
         }
 
-        showError("");
-        updateSlip();
+        renderPreview();
+
+        const slip = $("salarySlip").cloneNode(true);
+
+        slip.style.position = "static";
+        slip.style.width = "100%";
+        slip.style.maxWidth = "760px";
+        slip.style.margin = "0 auto";
+        slip.style.boxShadow = "none";
+
+        const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salary Slip - ${escapeHTML($("employeeName").value.trim())}</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    max-width: 820px;
+    margin: 30px auto;
+    padding: 20px;
+    color: #252525;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .salary-slip {
+    padding: 26px;
+    border: 1px solid #e7e7e7;
+  }
+  .slip-company {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ed3434;
+  }
+  .slip-company-name {
+    max-width: 80%;
+    overflow-wrap: anywhere;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .slip-company-details {
+    margin-top: 6px;
+    color: #777;
+    font-size: 11px;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+  }
+  .slip-logo {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 9px;
+    background: #111;
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    line-height: 40px;
+  }
+  .slip-heading {
+    padding: 18px 0;
+    text-align: center;
+  }
+  .slip-heading h3 { margin: 0; font-size: 18px; }
+  .slip-heading p { margin: 5px 0 0; color: #777; }
+  .slip-employee-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 15px;
+    padding: 13px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+  .slip-info-item { padding: 6px 0; overflow-wrap: anywhere; }
+  .slip-info-label {
+    display: block;
+    color: #858585;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .slip-info-value { display: block; font-size: 11px; font-weight: 700; }
+  .slip-section-title {
+    margin: 19px 0 8px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .slip-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .slip-table th {
+    padding: 9px 8px;
+    background: #f6f6f6;
+    color: #666;
+    font-size: 9px;
+    text-align: left;
+  }
+  .slip-table th:last-child, .slip-table td:last-child { text-align: right; }
+  .slip-table td { padding: 9px 8px; border-bottom: 1px solid #eee; overflow-wrap: anywhere; }
+  .slip-table .total-row td { background: #fafafa; font-weight: 800; }
+  .slip-table .deduction-amount { color: #b52d2d; }
+  .net-pay-box {
+    margin-top: 18px;
+    padding: 15px;
+    border: 1px solid #f2d0d0;
+    border-radius: 9px;
+    background: #fff6f6;
+  }
+  .net-pay-label { color: #777; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+  .net-pay-amount { margin-top: 5px; color: #ed3434; font-size: 28px; font-weight: 800; overflow-wrap: anywhere; }
+  .net-pay-words { margin-top: 7px; color: #666; font-size: 10px; }
+  .slip-footer, .slip-disclaimer {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    color: #888;
+    font-size: 10px;
+    text-align: center;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  @media print {
+    body { margin: 0; padding: 0; }
+    .salary-slip { border: 0; }
+  }
+</style>
+</head>
+<body>
+${slip.outerHTML}
+</body>
+</html>`;
+
+        const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        const employeeName = $("employeeName").value.trim() || "Employee";
+        const payMonth = $("payMonth").value || "salary";
+        const safeFilename = (employeeName + "-salary-slip-" + payMonth)
+          .replace(/[^a-zA-Z0-9_-]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .slice(0, 100);
+
+        link.href = url;
+        link.download = (safeFilename || "salary-slip") + ".html";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, (character) => {
+          const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+          };
+
+          return entities[character];
+        });
+      }
+
+      generateBtn.addEventListener("click", handleGenerate);
+
+      resetBtn.addEventListener("click", () => {
+        resetForm();
+      });
+
+      printBtn.addEventListener("click", () => {
+        if (!validateForm()) {
+          formError.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+
+        renderPreview();
         window.print();
       });
 
-      document.getElementById("resetButton").addEventListener("click", () => {
-        const confirmed = window.confirm(
-          "Reset all salary slip fields to their default values?"
-        );
+      downloadBtn.addEventListener("click", downloadHTML);
 
-        if (!confirmed) return;
+      form.addEventListener("input", updatePreview);
+      form.addEventListener("change", updatePreview);
 
-        form.reset();
-        bankFields.hidden = true;
-        showError("");
-        updateSlip();
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        handleGenerate();
       });
 
-      document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+      // FAQ accordion
+      document.querySelectorAll(".faq-question").forEach((button) => {
+        button.addEventListener("click", () => {
+          const expanded = button.getAttribute("aria-expanded") === "true";
+          const answer = $(button.getAttribute("aria-controls"));
 
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.getElementById("navLinks");
-
-      menuToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.toggle("open");
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.textContent = isOpen ? "Close ✕" : "Menu ☰";
-      });
-
-      navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.textContent = "Menu ☰";
+          button.setAttribute("aria-expanded", String(!expanded));
+          answer.hidden = expanded;
         });
       });
 
-      // Default salary month to the current local month.
-      const now = new Date();
-      document.getElementById("slipMonth").value =
-        `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+      // Mobile navigation
+      const menuToggle = $("menuToggle");
+      const navLinks = $("navLinks");
 
-      updateSlip();
+      function closeMenu() {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        document.body.classList.remove("menu-open");
+      }
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+        document.body.classList.toggle("menu-open", isOpen);
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          navLinks.classList.contains("open") &&
+          !navLinks.contains(event.target) &&
+          !menuToggle.contains(event.target)
+        ) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 760) {
+          closeMenu();
+        }
+      });
+
+      // Footer year
+      $("currentYear").textContent = new Date().getFullYear();
+
+      // Initialize salary period with the current month
+      const now = new Date();
+      $("payMonth").value =
+        now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
+
+      // Initialize the preview
+      renderPreview();
     })();
   </script>
 </body>
