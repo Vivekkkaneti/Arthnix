@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Salary Slip Generator — ARTHNIX</title>
+  <meta name="description" content="Create a professional salary slip with earnings, deductions, net salary, and print-ready PDF output using the ARTHNIX Salary Slip Generator.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://arthnix.com/tools/salary-slip-generator.html">
+
+  <meta property="og:title" content="Salary Slip Generator — ARTHNIX">
+  <meta property="og:description" content="Generate a clean, professional salary slip in minutes.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --surface: #ffffff;
+      --surface-soft: #f1f1ee;
+      --text: #151515;
+      --muted: #707070;
+      --border: #deded9;
+      --accent: #ef3939;
+      --accent-hover: #d92c2c;
+      --success: #16794b;
+      --danger: #b42318;
+      --radius: 18px;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .055);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+
+    body,
+    input,
+    select,
+    textarea,
+    button {
+      font-family: "DM Sans", sans-serif;
+    }
+
+    button,
+    input,
+    select {
+      font-size: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Navigation */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #101010;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Manrope", sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.8px;
+      white-space: nowrap;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 13px;
+      color: #d0d0d0;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 10px 17px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-hover);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid #454545;
+      color: #fff;
+      background: transparent;
+      padding: 8px 11px;
+      border-radius: 8px;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 62px 0 38px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Manrope", sans-serif;
+      letter-spacing: -1px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.08;
+      max-width: 760px;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+
+    .hero-note {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 22px;
+      padding: 12px 15px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #555;
+      font-size: 12px;
+      max-width: 740px;
+    }
+
+    /* Main layout */
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 70px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .panel-header {
+      padding: 23px 25px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .panel-header h2 {
+      font-size: 20px;
+      margin: 0 0 3px;
+    }
+
+    .panel-header p {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .step-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: #fff0f0;
+      color: var(--accent);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .form-body {
+      padding: 24px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0 17px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+    }
+
+    .section-title:not(:first-child) {
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px 14px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #3e3e3e;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .optional {
+      color: #929292;
+      font-weight: 400;
+    }
+
+    input,
+    select {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      padding: 12px 13px;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid #d9d9d3;
+      border-radius: 9px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(239, 57, 57, .1);
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    .input-help {
+      color: #888;
+      font-size: 10px;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .salary-input {
+      position: relative;
+    }
+
+    .salary-input input {
+      padding-left: 31px;
+    }
+
+    .currency-symbol {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 19px;
+      padding: 13px;
+      background: var(--surface-soft);
+      border-radius: 10px;
+    }
+
+    .check-row input {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+    }
+
+    .check-row label {
+      margin: 0;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .check-row strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .check-row small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 9px;
+      padding: 12px 17px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 12px;
+      transition: background .2s, transform .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: #222;
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: #f5f5f2;
+    }
+
+    .btn-dark {
+      background: #111;
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      background: #333;
+    }
+
+    .form-error {
+      display: none;
+      color: var(--danger);
+      background: #fff1f0;
+      border: 1px solid #ffd5d2;
+      padding: 11px 13px;
+      border-radius: 8px;
+      margin-top: 17px;
+      font-size: 12px;
+    }
+
+    /* Results */
+
+    .preview-panel {
+      position: sticky;
+      top: 94px;
+    }
+
+    .preview-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-tools button {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 7px 10px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .preview-tools button:hover {
+      border-color: var(--accent);
+    }
+
+    .preview-wrap {
+      padding: 23px;
+      background: #eeeee9;
+    }
+
+    .salary-slip {
+      width: 100%;
+      background: #fff;
+      border: 1px solid #dcdcdc;
+      padding: 25px 22px;
+      color: #171717;
+      overflow-wrap: anywhere;
+    }
+
+    .slip-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: flex-start;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #191919;
+    }
+
+    .slip-company {
+      min-width: 0;
+    }
+
+    .slip-company h3 {
+      font-size: 21px;
+      margin: 0 0 5px;
+      overflow-wrap: anywhere;
+    }
+
+    .slip-company p {
+      color: #696969;
+      font-size: 10px;
+      line-height: 1.6;
+      margin: 0;
+      white-space: pre-line;
+    }
+
+    .slip-label {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .slip-label span {
+      display: block;
+      color: #777;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .slip-label strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      margin-top: 4px;
+    }
+
+    .slip-period {
+      margin: 17px 0;
+      padding: 11px 12px;
+      background: #f5f5f2;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 10px;
+    }
+
+    .slip-period strong {
+      font-size: 11px;
+    }
+
+    .employee-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 15px;
+      margin-bottom: 22px;
+    }
+
+    .detail-item span {
+      display: block;
+      color: #777;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      margin-bottom: 3px;
+    }
+
+    .detail-item strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .slip-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-bottom: 18px;
+    }
+
+    .slip-table th {
+      padding: 10px 8px;
+      text-align: left;
+      background: #181818;
+      color: #fff;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .slip-table th:last-child,
+    .slip-table td:last-child {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .slip-table td {
+      padding: 9px 8px;
+      border-bottom: 1px solid #e9e9e9;
+    }
+
+    .slip-table .subtotal td {
+      font-weight: 800;
+      background: #f6f6f3;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .net-salary {
+      background: #fff0f0;
+      border: 1px solid #ffd5d5;
+      padding: 16px;
+      margin-top: 17px;
+    }
+
+    .net-salary-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      color: #6b2424;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+    }
+
+    .net-salary-amount {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(22px, 2.7vw, 30px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #b62020;
+      margin-top: 7px;
+    }
+
+    .net-words {
+      color: #6e4646;
+      font-size: 9px;
+      margin-top: 5px;
+      line-height: 1.6;
+    }
+
+    .slip-note {
+      color: #777;
+      font-size: 9px;
+      line-height: 1.7;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #e3e3e3;
+    }
+
+    .signature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 35px;
+    }
+
+    .signature {
+      padding-top: 8px;
+      border-top: 1px solid #aaa;
+      font-size: 9px;
+      color: #777;
+    }
+
+    .preview-footnote {
+      padding: 15px 23px 21px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .preview-footnote strong {
+      color: #444;
+    }
+
+    /* Supporting information */
+
+    .info-section {
+      padding: 0 0 75px;
+    }
+
+    .section-heading {
+      max-width: 670px;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(26px, 3vw, 36px);
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .info-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 14px;
+    }
+
+    .info-number {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #fff0f0;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .info-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    .faq-list {
+      max-width: 850px;
+      display: grid;
+      gap: 10px;
+    }
+
+    details {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 17px 19px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    details p {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* Footer */
+
+    .footer {
+      background: #101010;
+      color: #fff;
+      padding: 52px 0 22px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 30px;
+      padding-bottom: 35px;
+    }
+
+    .footer-brand p {
+      max-width: 290px;
+      margin-top: 15px;
+      color: #aaa;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .footer h3 {
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0;
+      margin-bottom: 15px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: #888;
+      font-size: 11px;
+    }
+
+    .footer-bottom a {
+      color: #aaa;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 960px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-panel {
+        position: static;
+      }
+
+      .preview-wrap {
+        padding: 22px;
+      }
+
+      .salary-slip {
+        max-width: 620px;
+        margin: 0 auto;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .nav-inner {
+        min-height: 66px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 66px;
+        padding: 18px 22px 22px;
+        background: #101010;
+        border-top: 1px solid #333;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 11px 0;
+      }
+
+      .nav-links .nav-cta {
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .workspace {
+        gap: 18px;
+        padding-bottom: 50px;
+      }
+
+      .panel-header {
+        padding: 19px;
+      }
+
+      .form-body {
+        padding: 19px;
+      }
+
+      .preview-wrap {
+        padding: 12px;
+      }
+
+      .salary-slip {
+        padding: 18px 14px;
+      }
+
+      .slip-company h3 {
+        font-size: 17px;
+      }
+
+      .slip-label strong {
+        font-size: 12px;
+      }
+
+      .slip-table th,
+      .slip-table td {
+        padding: 8px 5px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .form-actions .btn {
+        flex: 1 1 100%;
+      }
+
+      .employee-details {
+        gap: 10px;
+      }
+
+      .slip-period {
+        flex-direction: column;
+      }
+
+      .slip-top {
+        flex-direction: column;
+      }
+
+      .slip-label {
+        text-align: left;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-tools {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Print: print only the salary slip */
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      html,
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+
+      body * {
+        visibility: hidden !important;
+      }
+
+      #salarySlip,
+      #salarySlip * {
+        visibility: visible !important;
+      }
+
+      #salarySlip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 8mm;
+        border: 0;
+        box-shadow: none;
+        font-family: Arial, sans-serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .salary-slip {
+        border: 0;
+      }
+
+      .slip-table th {
+        background: #181818 !important;
+        color: #fff !important;
+      }
+
+      .net-salary {
+        background: #fff0f0 !important;
+      }
+
+      .slip-period,
+      .slip-table .subtotal td {
+        background: #f5f5f2 !important;
+      }
+
+      .net-salary,
+      .slip-period,
+      .slip-table,
+      .signature-row {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ARTHNIX Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="/" aria-label="ARTHNIX home">
+        <img src="/logo.png" alt="ARTHNIX logo" onerror="this.style.display='none'">
+        <span>ARTHNIX</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+        Menu ☰
+      </button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="/tools.html">Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/#how-it-works">How it works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/tools.html" class="nav-cta">Explore tools ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">ARTHNIX Business Tools</div>
+        <h1>Salary Slip <span style="color:var(--accent)">Generator.</span></h1>
+        <p>
+          Create a clear, professional salary slip with employee details,
+          earnings, deductions, net pay, and a print-ready layout.
+        </p>
+
+        <div class="hero-note">
+          <span aria-hidden="true">ⓘ</span>
+          <span>
+            This tool creates a salary slip preview from the information you enter.
+            Verify your figures and company payroll rules before issuing it as an official document.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container workspace" aria-label="Salary slip generator">
+
+      <!-- Input Form -->
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Salary details</h2>
+            <p>Enter employee information and monthly payroll amounts.</p>
+          </div>
+          <div class="step-badge">01</div>
+        </div>
+
+        <form class="form-body" id="salaryForm">
+          <div class="section-title">
+            <span class="section-dot"></span>
+            Company information
+          </div>
+
+          <div class="form-grid">
+            <div class="field full">
+              <label for="companyName">Company name *</label>
+              <input id="companyName" name="companyName" type="text" placeholder="e.g. ARTHNIX Technologies" maxlength="120" required>
+            </div>
+
+            <div class="field full">
+              <label for="companyAddress">Company address <span class="optional">(optional)</span></label>
+              <input id="companyAddress" name="companyAddress" type="text" placeholder="Office address" maxlength="240">
+            </div>
+
+            <div class="field">
+              <label for="slipMonth">Salary month *</label>
+              <input id="slipMonth" name="slipMonth" type="month" required>
+            </div>
+
+            <div class="field">
+              <label for="slipNumber">Slip / reference number</label>
+              <input id="slipNumber" name="slipNumber" type="text" placeholder="e.g. PAY-2026-001" maxlength="60">
+            </div>
+          </div>
+
+          <div class="section-title">
+            <span class="section-dot"></span>
+            Employee information
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="employeeName">Employee name *</label>
+              <input id="employeeName" name="employeeName" type="text" placeholder="Full name" maxlength="120" required>
+            </div>
+
+            <div class="field">
+              <label for="employeeId">Employee ID</label>
+              <input id="employeeId" name="employeeId" type="text" placeholder="e.g. EMP-001" maxlength="60">
+            </div>
+
+            <div class="field">
+              <label for="designation">Designation</label>
+              <input id="designation" name="designation" type="text" placeholder="Job title" maxlength="120">
+            </div>
+
+            <div class="field">
+              <label for="department">Department</label>
+              <input id="department" name="department" type="text" placeholder="Department name" maxlength="120">
+            </div>
+
+            <div class="field">
+              <label for="joiningDate">Date of joining</label>
+              <input id="joiningDate" name="joiningDate" type="date">
+            </div>
+
+            <div class="field">
+              <label for="payDays">Paid days</label>
+              <input id="payDays" name="payDays" type="number" min="0" max="31" step="0.5" placeholder="e.g. 30">
+            </div>
+          </div>
+
+          <div class="section-title">
+            <span class="section-dot"></span>
+            Earnings (₹)
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="basic">Basic salary *</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="basic" name="basic" type="number" min="0" step="0.01" value="20000" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="hra">House rent allowance (HRA)</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="hra" name="hra" type="number" min="0" step="0.01" value="8000">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="specialAllowance">Special allowance</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="specialAllowance" name="specialAllowance" type="number" min="0" step="0.01" value="4000">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="conveyance">Conveyance allowance</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="conveyance" name="conveyance" type="number" min="0" step="0.01" value="1600">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="medical">Other allowance</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="medical" name="medical" type="number" min="0" step="0.01" value="0">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="bonus">Bonus / incentive</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="bonus" name="bonus" type="number" min="0" step="0.01" value="0">
+              </div>
+            </div>
+          </div>
+
+          <div class="section-title">
+            <span class="section-dot"></span>
+            Deductions (₹)
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="pf">Provident fund (PF)</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="pf" name="pf" type="number" min="0" step="0.01" value="1800">
+              </div>
+              <div class="input-help">Enter the employee deduction applicable to your payroll.</div>
+            </div>
+
+            <div class="field">
+              <label for="esi">Employee insurance (ESI)</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="esi" name="esi" type="number" min="0" step="0.01" value="0">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="professionalTax">Professional tax</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="professionalTax" name="professionalTax" type="number" min="0" step="0.01" value="200">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="tds">Income tax / TDS</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="tds" name="tds" type="number" min="0" step="0.01" value="0">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="loan">Loan / advance recovery</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="loan" name="loan" type="number" min="0" step="0.01" value="0">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="otherDeduction">Other deductions</label>
+              <div class="salary-input">
+                <span class="currency-symbol">₹</span>
+                <input id="otherDeduction" name="otherDeduction" type="number" min="0" step="0.01" value="0">
+              </div>
+            </div>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="showBank" name="showBank">
+            <label for="showBank">
+              <strong>Include bank payment details</strong>
+              <small>Optional. Use only if appropriate for your organization and employee.</small>
+            </label>
+          </div>
+
+          <div class="form-grid" id="bankFields" hidden style="margin-top:16px">
+            <div class="field">
+              <label for="bankName">Bank name</label>
+              <input id="bankName" name="bankName" type="text" maxlength="100" placeholder="Bank name">
+            </div>
+
+            <div class="field">
+              <label for="accountLastFour">Account last four digits</label>
+              <input id="accountLastFour" name="accountLastFour" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="1234">
+              <div class="input-help">Do not enter a full bank account number.</div>
+            </div>
+          </div>
+
+          <div class="field full" style="margin-top:17px">
+            <label for="notes">Additional note <span class="optional">(optional)</span></label>
+            <input id="notes" name="notes" type="text" maxlength="240" placeholder="e.g. Payment processed by bank transfer">
+          </div>
+
+          <div class="form-error" id="formError" role="alert"></div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Update salary slip ↗</button>
+            <button class="btn btn-secondary" type="button" id="resetButton">Reset form</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Salary Slip Preview -->
+      <section class="panel preview-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Salary slip preview</h2>
+            <p>Your slip updates as you enter the details.</p>
+          </div>
+          <div class="preview-tools">
+            <button type="button" id="printButton">Print / PDF ↓</button>
+          </div>
+        </div>
+
+        <div class="preview-wrap">
+          <article class="salary-slip" id="salarySlip" aria-label="Generated salary slip">
+            <div class="slip-top">
+              <div class="slip-company">
+                <h3 id="outCompany">Your Company</h3>
+                <p id="outAddress">Company address</p>
+              </div>
+              <div class="slip-label">
+                <span>Salary slip</span>
+                <strong id="outSlipNumber">—</strong>
+              </div>
+            </div>
+
+            <div class="slip-period">
+              <span>Salary period</span>
+              <strong id="outMonth">—</strong>
+            </div>
+
+            <div class="employee-details">
+              <div class="detail-item">
+                <span>Employee name</span>
+                <strong id="outEmployee">—</strong>
+              </div>
+              <div class="detail-item">
+                <span>Employee ID</span>
+                <strong id="outEmployeeId">—</strong>
+              </div>
+              <div class="detail-item">
+                <span>Designation</span>
+                <strong id="outDesignation">—</strong>
+              </div>
+              <div class="detail-item">
+                <span>Department</span>
+                <strong id="outDepartment">—</strong>
+              </div>
+              <div class="detail-item">
+                <span>Date of joining</span>
+                <strong id="outJoiningDate">—</strong>
+              </div>
+              <div class="detail-item">
+                <span>Paid days</span>
+                <strong id="outPayDays">—</strong>
+              </div>
+              <div class="detail-item" id="outBankDetail" hidden>
+                <span>Bank payment</span>
+                <strong id="outBank">—</strong>
+              </div>
+            </div>
+
+            <table class="slip-table">
+              <thead>
+                <tr>
+                  <th>Earnings</th>
+                  <th>Amount (₹)</th>
+                </tr>
+              </thead>
+              <tbody id="earningsRows">
+                <tr><td>Basic salary</td><td>20,000.00</td></tr>
+              </tbody>
+              <tfoot>
+                <tr class="subtotal">
+                  <td>Gross earnings</td>
+                  <td id="outGross">₹ 33,600.00</td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <table class="slip-table">
+              <thead>
+                <tr>
+                  <th>Deductions</th>
+                  <th>Amount (₹)</th>
+                </tr>
+              </thead>
+              <tbody id="deductionRows">
+                <tr><td>Provident fund (PF)</td><td>1,800.00</td></tr>
+              </tbody>
+              <tfoot>
+                <tr class="subtotal">
+                  <td>Total deductions</td>
+                  <td id="outDeductions">₹ 2,000.00</td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <div class="net-salary">
+              <div class="net-salary-label">
+                <span>Net salary payable</span>
+                <span>INR</span>
+              </div>
+              <div class="net-salary-amount" id="outNet">₹ 31,600.00</div>
+              <div class="net-words" id="outWords">Rupees thirty-one thousand six hundred only.</div>
+            </div>
+
+            <div class="slip-note">
+              <div id="outNote">This is a salary slip generated from the information provided.</div>
+              <div style="margin-top:6px">Computer-generated document. Signature is not required unless your organization's policy says otherwise.</div>
+            </div>
+
+            <div class="signature-row">
+              <div class="signature">Employee acknowledgement</div>
+              <div class="signature">Authorized signatory</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="preview-footnote">
+          <strong>Before issuing:</strong> Verify payroll amounts, applicable deductions, employee details, and company requirements. This generator does not determine statutory deductions automatically.
+        </div>
+      </section>
+    </section>
+
+    <section class="container info-section">
+      <div class="section-heading">
+        <div class="eyebrow">How it works</div>
+        <h2>A clear salary breakdown, without the busywork.</h2>
+        <p>Enter your monthly payroll values, review the totals, and print or save the finished layout.</p>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="info-number">01</div>
+          <h3>Add employee details</h3>
+          <p>Enter the company, employee, salary month, designation, and optional payroll reference information.</p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-number">02</div>
+          <h3>Enter earnings and deductions</h3>
+          <p>Provide the amounts used by your payroll. The generator adds the earnings and deductions to calculate net salary.</p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-number">03</div>
+          <h3>Print or save as PDF</h3>
+          <p>Choose Print / PDF and select “Save as PDF” in your browser's print dialog to save a copy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container info-section">
+      <div class="section-heading">
+        <div class="eyebrow">Frequently asked questions</div>
+        <h2>Salary slip generator FAQs.</h2>
+      </div>
+
+      <div class="faq-list">
+        <details>
+          <summary>How is net salary calculated?</summary>
+          <p>Net salary payable is calculated as gross earnings minus total deductions. Gross earnings are the sum of the earning fields, and total deductions are the sum of the deduction fields you enter.</p>
+        </details>
+
+        <details>
+          <summary>Does this tool automatically calculate PF, ESI, or income tax?</summary>
+          <p>No. These deductions depend on the employee's circumstances, applicable rules, and payroll policy. Enter the correct amounts supplied by your payroll team or calculated using the relevant official rules.</p>
+        </details>
+
+        <details>
+          <summary>Can I download the salary slip as a PDF?</summary>
+          <p>Yes. Select Print / PDF, then choose “Save as PDF” in your browser's print dialog. The print layout is designed to include the salary slip rather than the form.</p>
+        </details>
+
+        <details>
+          <summary>Is this an official or verified salary slip?</summary>
+          <p>No. This tool creates a formatted document using user-entered information. It does not verify employment, salary, or deductions, and it does not issue a company-certified payslip. Use it only when you are authorized to prepare the document.</p>
+        </details>
+
+        <details>
+          <summary>Are my salary details uploaded or saved?</summary>
+          <p>This page performs calculations in your browser and does not contain a server submission feature. Avoid using the tool on shared devices, and close the page when you finish. Browser extensions, device monitoring, or your browser environment may have their own data-handling behavior.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ARTHNIX Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="" onerror="this.style.display='none'">
+            <span>ARTHNIX</span>
+          </a>
+          <p>Intelligence for Every Business. Practical tools and intelligent systems designed to simplify everyday work.</p>
+        </div>
+
+        <div>
+          <h3>Explore</h3>
+          <div class="footer-links">
+            <a href="/tools.html">All tools</a>
+            <a href="/platform.html">Platform</a>
+            <a href="/#how-it-works">How it works</a>
+            <a href="/pricing.html">Pricing</a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Business tools</h3>
+          <div class="footer-links">
+            <a href="/tools/attendance-calculator.html">Attendance calculator</a>
+            <a href="/tools/salary-slip-generator.html">Salary slip generator</a>
+            <a href="/tools.html">Explore tools</a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Information</h3>
+          <div class="footer-links">
+            <a href="/about.html">About</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/privacy.html">Privacy policy</a>
+            <a href="/terms.html">Terms of use</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
+        <span>Powered by <a href="/">Alphex AI</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const form = document.getElementById("salaryForm");
+      const formError = document.getElementById("formError");
+      const showBank = document.getElementById("showBank");
+      const bankFields = document.getElementById("bankFields");
+
+      const earningFields = [
+        ["basic", "Basic salary"],
+        ["hra", "House rent allowance (HRA)"],
+        ["specialAllowance", "Special allowance"],
+        ["conveyance", "Conveyance allowance"],
+        ["medical", "Other allowance"],
+        ["bonus", "Bonus / incentive"]
+      ];
+
+      const deductionFields = [
+        ["pf", "Provident fund (PF)"],
+        ["esi", "Employee insurance (ESI)"],
+        ["professionalTax", "Professional tax"],
+        ["tds", "Income tax / TDS"],
+        ["loan", "Loan / advance recovery"],
+        ["otherDeduction", "Other deductions"]
+      ];
+
+      const money = new Intl.NumberFormat("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      function getValue(id) {
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : "";
+      }
+
+      function getNumber(id) {
+        const raw = getValue(id);
+        if (raw === "") return 0;
+        const value = Number(raw);
+        return Number.isFinite(value) ? value : 0;
+      }
+
+      function formatMoney(value) {
+        return "₹ " + money.format(value);
+      }
+
+      function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, char => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[char]);
+      }
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value || "—";
+      }
+
+      function formatMonth(value) {
+        if (!value) return "—";
+        const parts = value.split("-");
+        if (parts.length !== 2) return value;
+        const date = new Date(Number(parts[0]), Number(parts[1]) - 1, 1);
+        return date.toLocaleDateString("en-IN", {
+          month: "long",
+          year: "numeric"
+        });
+      }
+
+      function formatDate(value) {
+        if (!value) return "—";
+        const parts = value.split("-");
+        if (parts.length !== 3) return value;
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+      }
+
+      function amountInWords(amount) {
+        if (!Number.isFinite(amount) || amount < 0) {
+          return "Amount not available.";
+        }
+
+        const rupees = Math.floor(amount + 0.000001);
+        const paise = Math.round((amount - rupees) * 100);
+
+        const ones = [
+          "", "one", "two", "three", "four", "five", "six",
+          "seven", "eight", "nine", "ten", "eleven", "twelve",
+          "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
+          "eighteen", "nineteen"
+        ];
+
+        const tens = [
+          "", "", "twenty", "thirty", "forty", "fifty",
+          "sixty", "seventy", "eighty", "ninety"
+        ];
+
+        function underThousand(number) {
+          let words = "";
+
+          if (number >= 100) {
+            words += ones[Math.floor(number / 100)] + " hundred";
+            number %= 100;
+            if (number) words += " ";
+          }
+
+          if (number >= 20) {
+            words += tens[Math.floor(number / 10)];
+            number %= 10;
+            if (number) words += "-" + ones[number];
+          } else if (number > 0) {
+            words += ones[number];
+          }
+
+          return words;
+        }
+
+        function indianNumber(number) {
+          if (number === 0) return "zero";
+
+          const chunks = [
+            ["crore", 10000000],
+            ["lakh", 100000],
+            ["thousand", 1000],
+            ["", 1]
+          ];
+
+          const result = [];
+
+          for (const [label, divisor] of chunks) {
+            const count = Math.floor(number / divisor);
+
+            if (count > 0) {
+              result.push(underThousand(count) + (label ? " " + label : ""));
+              number %= divisor;
+            }
+          }
+
+          return result.join(" ");
+        }
+
+        let result = "Rupees " + indianNumber(rupees);
+
+        if (paise > 0) {
+          result += " and " + indianNumber(paise) + " paise";
+        }
+
+        return result + " only.";
+      }
+
+      function renderRows(containerId, fields, total) {
+        const container = document.getElementById(containerId);
+
+        const rows = fields
+          .map(([id, label]) => ({
+            label,
+            value: Math.round(getNumber(id) * 100) / 100
+          }))
+          .filter(item => item.value !== 0)
+          .map(item => `
+            <tr>
+              <td>${escapeHTML(item.label)}</td>
+              <td>${money.format(item.value)}</td>
+            </tr>
+          `);
+
+        if (rows.length === 0) {
+          rows.push('<tr><td colspan="2" style="color:#777;text-align:center">No amounts entered</td></tr>');
+        }
+
+        container.innerHTML = rows.join("");
+      }
+
+      function updateSlip() {
+        const company = getValue("companyName") || "Your Company";
+        const address = getValue("companyAddress");
+        const month = getValue("slipMonth");
+        const slipNumber = getValue("slipNumber");
+        const employee = getValue("employeeName");
+        const employeeId = getValue("employeeId");
+        const designation = getValue("designation");
+        const department = getValue("department");
+        const joiningDate = getValue("joiningDate");
+        const payDays = getValue("payDays");
+        const notes = getValue("notes");
+
+        const gross = earningFields.reduce(
+          (sum, [id]) => sum + getNumber(id), 0
+        );
+
+        const totalDeductions = deductionFields.reduce(
+          (sum, [id]) => sum + getNumber(id), 0
+        );
+
+        const net = Math.round((gross - totalDeductions) * 100) / 100;
+
+        setText("outCompany", company);
+        setText("outAddress", address || "");
+        document.getElementById("outAddress").style.display = address ? "block" : "none";
+
+        setText("outMonth", formatMonth(month));
+        setText("outSlipNumber", slipNumber || "Not provided");
+        setText("outEmployee", employee || "Employee name");
+        setText("outEmployeeId", employeeId || "Not provided");
+        setText("outDesignation", designation || "Not provided");
+        setText("outDepartment", department || "Not provided");
+        setText("outJoiningDate", formatDate(joiningDate));
+        setText("outPayDays", payDays === "" ? "Not provided" : payDays);
+
+        renderRows("earningsRows", earningFields, gross);
+        renderRows("deductionRows", deductionFields, totalDeductions);
+
+        setText("outGross", formatMoney(gross));
+        setText("outDeductions", formatMoney(totalDeductions));
+        setText("outNet", formatMoney(net));
+
+        const words = net < 0
+          ? "Deductions exceed gross earnings. Please verify the entered amounts."
+          : amountInWords(net);
+
+        setText("outWords", words);
+        setText(
+          "outNote",
+          notes || "This is a salary slip generated from the information provided."
+        );
+
+        const bankEnabled = showBank.checked;
+        const bankName = getValue("bankName");
+        const lastFour = getValue("accountLastFour");
+
+        document.getElementById("outBankDetail").hidden = !bankEnabled;
+
+        if (bankEnabled) {
+          let bankText = bankName || "Bank not provided";
+          if (lastFour) bankText += " •••• " + lastFour;
+          setText("outBank", bankText);
+        }
+      }
+
+      function validateForm() {
+        const positiveFields = [
+          ...earningFields.map(([id]) => id),
+          ...deductionFields.map(([id]) => id)
+        ];
+
+        for (const id of positiveFields) {
+          const element = document.getElementById(id);
+          const value = Number(element.value);
+
+          if (element.value.trim() === "" || !Number.isFinite(value) || value < 0) {
+            return "Enter a valid, non-negative amount for every earnings and deductions field.";
+          }
+        }
+
+        const gross = earningFields.reduce(
+          (sum, [id]) => sum + getNumber(id), 0
+        );
+
+        const deductions = deductionFields.reduce(
+          (sum, [id]) => sum + getNumber(id), 0
+        );
+
+        if (deductions > gross) {
+          return "Total deductions exceed gross earnings. Please check the amounts before generating the salary slip.";
+        }
+
+        const payDays = getValue("payDays");
+
+        if (payDays !== "" && (getNumber("payDays") < 0 || getNumber("payDays") > 31)) {
+          return "Paid days must be between 0 and 31.";
+        }
+
+        const lastFour = getValue("accountLastFour");
+        if (showBank.checked && lastFour && !/^\d{4}$/.test(lastFour)) {
+          return "Enter exactly four digits for the bank account suffix, or leave it blank.";
+        }
+
+        return "";
+      }
+
+      function showError(message) {
+        formError.textContent = message;
+        formError.style.display = message ? "block" : "none";
+      }
+
+      form.addEventListener("input", () => {
+        showError("");
+        updateSlip();
+      });
+
+      form.addEventListener("change", () => {
+        showError("");
+        updateSlip();
+      });
+
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const error = validateForm();
+
+        if (error) {
+          showError(error);
+          return;
+        }
+
+        showError("");
+        updateSlip();
+
+        document.getElementById("salarySlip").scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+      });
+
+      showBank.addEventListener("change", () => {
+        bankFields.hidden = !showBank.checked;
+        updateSlip();
+      });
+
+      document.getElementById("printButton").addEventListener("click", () => {
+        if (!form.reportValidity()) return;
+
+        const error = validateForm();
+
+        if (error) {
+          showError(error);
+          return;
+        }
+
+        showError("");
+        updateSlip();
+        window.print();
+      });
+
+      document.getElementById("resetButton").addEventListener("click", () => {
+        const confirmed = window.confirm(
+          "Reset all salary slip fields to their default values?"
+        );
+
+        if (!confirmed) return;
+
+        form.reset();
+        bankFields.hidden = true;
+        showError("");
+        updateSlip();
+      });
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.textContent = isOpen ? "Close ✕" : "Menu ☰";
+      });
+
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.textContent = "Menu ☰";
+        });
+      });
+
+      // Default salary month to the current local month.
+      const now = new Date();
+      document.getElementById("slipMonth").value =
+        `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+
+      updateSlip();
+    })();
+  </script>
+</body>
+</html>
