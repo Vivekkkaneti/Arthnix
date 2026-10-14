@@ -10,6 +10,7 @@
     content="Calculate employee incentives, sales commissions, target achievement, and performance bonuses with the free ARTHNIX Incentive Calculator."
   >
   <meta name="theme-color" content="#090909">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://arthnix.com/tools/incentive-calculator.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +34,7 @@
       --red-dark: #d92727;
       --radius: 18px;
       --container: 1160px;
+      --green: #18864b;
     }
 
     * {
@@ -151,6 +153,17 @@
     .button-outline-light:hover {
       border-color: #aaaaa5;
       background: #fafaf8;
+    }
+
+    .button-outline-dark {
+      border-color: #383838;
+      color: var(--white);
+      background: transparent;
+    }
+
+    .button-outline-dark:hover {
+      border-color: #777777;
+      background: #171717;
     }
 
     .arrow {
@@ -375,11 +388,6 @@
       .nav-links a:last-child {
         border-bottom: 0;
       }
-
-      .nav-links a:hover,
-      .nav-links a:focus-visible {
-        color: var(--red);
-      }
     }
 
     @media (max-width: 380px) {
@@ -409,12 +417,14 @@
       }
     }
 
-    /* PAGE HERO */
+    /* =====================================================
+       PAGE HERO
+       ===================================================== */
 
     .page-hero {
       position: relative;
       overflow: hidden;
-      padding: 82px 0 76px;
+      padding: 84px 0 76px;
       background: var(--black);
       color: var(--white);
     }
@@ -422,15 +432,15 @@
     .page-hero::before {
       position: absolute;
       content: "";
-      width: 540px;
-      height: 540px;
-      top: -260px;
-      right: -100px;
+      width: 560px;
+      height: 560px;
+      top: -210px;
+      right: -120px;
       border-radius: 50%;
       background: radial-gradient(
         circle,
-        rgba(237, 52, 52, 0.17) 0%,
-        rgba(237, 52, 52, 0.04) 42%,
+        rgba(237, 52, 52, 0.13) 0%,
+        rgba(237, 52, 52, 0.035) 40%,
         transparent 70%
       );
       pointer-events: none;
@@ -440,17 +450,20 @@
       position: absolute;
       content: "";
       inset: 0;
-      opacity: 0.15;
+      opacity: 0.12;
       background-image: radial-gradient(#6b6b6b 0.6px, transparent 0.6px);
       background-size: 27px 27px;
-      mask-image: linear-gradient(to bottom, black, transparent 95%);
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
       pointer-events: none;
     }
 
-    .page-hero-inner {
+    .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 850px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 50px;
     }
 
     .page-hero .eyebrow {
@@ -462,37 +475,44 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 9px;
-      margin-bottom: 25px;
+      margin-bottom: 24px;
       color: #999999;
       font-size: 12px;
+    }
+
+    .breadcrumbs a {
+      transition: color 180ms ease;
     }
 
     .breadcrumbs a:hover {
       color: #ffffff;
     }
 
-    .breadcrumbs span {
+    .breadcrumbs span[aria-hidden="true"] {
       color: var(--red);
     }
 
     .page-hero h1 {
-      max-width: 800px;
+      max-width: 780px;
       margin-top: 23px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(43px, 6.2vw, 72px);
+      font-size: clamp(43px, 5.6vw, 70px);
       line-height: 1.07;
       font-weight: 600;
       letter-spacing: -3.8px;
     }
 
     .page-hero h1 span {
+      display: block;
+      margin-top: 6px;
       color: #888888;
+      font-weight: 500;
     }
 
-    .page-hero-description {
-      max-width: 650px;
+    .hero-description {
+      max-width: 620px;
       margin-top: 22px;
-      color: #aaaaaa;
+      color: #a9a9a9;
       font-size: 15px;
       line-height: 1.9;
     }
@@ -500,9 +520,9 @@
     .hero-points {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 27px;
-      color: #b5b5b5;
+      gap: 18px;
+      margin-top: 24px;
+      color: #a4a4a4;
       font-size: 11px;
     }
 
@@ -514,112 +534,144 @@
 
     .hero-points span::before {
       content: "✓";
-      color: #ffffff;
+      color: #e5e5e5;
       font-size: 13px;
     }
 
-    /* TOOL INTRO */
+    .hero-stat {
+      min-width: 205px;
+      padding: 25px;
+      border: 1px solid #333333;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.025);
+    }
 
-    .tool-section {
+    .hero-stat-label {
+      color: #a0a0a0;
+      font-size: 11px;
+    }
+
+    .hero-stat-value {
+      margin-top: 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: 35px;
+      font-weight: 700;
+      letter-spacing: -1.4px;
+    }
+
+    .hero-stat-note {
+      margin-top: 8px;
+      color: #888888;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    /* =====================================================
+       MAIN CALCULATOR
+       ===================================================== */
+
+    .calculator-section {
       padding: 75px 0 95px;
       background: var(--paper);
     }
 
-    .tool-intro {
-      max-width: 760px;
-      margin-bottom: 34px;
+    .section-heading {
+      max-width: 720px;
     }
 
-    .tool-intro h2 {
-      margin-top: 15px;
+    .section-heading h2 {
+      margin-top: 18px;
       font-family: "Manrope", sans-serif;
       font-size: clamp(30px, 4vw, 43px);
-      font-weight: 650;
-      line-height: 1.2;
+      line-height: 1.15;
       letter-spacing: -1.7px;
+      font-weight: 600;
     }
 
-    .tool-intro p {
-      max-width: 680px;
-      margin-top: 14px;
+    .section-heading p {
+      max-width: 620px;
+      margin-top: 15px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.9;
     }
 
-    /* CALCULATOR LAYOUT */
-
     .calculator-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.92fr);
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.78fr);
       align-items: start;
-      gap: 22px;
+      gap: 25px;
+      margin-top: 38px;
     }
 
-    .calculator-card,
-    .result-card {
+    .calculator-form,
+    .result-panel {
       min-width: 0;
       border: 1px solid var(--border);
       border-radius: 12px;
       background: var(--white);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.025);
     }
 
-    .card-heading {
-      padding: 24px 25px 21px;
+    .calculator-form {
+      overflow: hidden;
+    }
+
+    .form-header {
+      padding: 25px 27px;
       border-bottom: 1px solid var(--border);
     }
 
-    .card-heading h3 {
+    .form-header h3 {
       font-family: "Manrope", sans-serif;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
-      letter-spacing: -0.6px;
+      letter-spacing: -0.5px;
     }
 
-    .card-heading p {
+    .form-header p {
       margin-top: 7px;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.7;
     }
 
-    .form-content {
-      padding: 24px 25px 26px;
+    .form-body {
+      padding: 26px 27px 28px;
     }
 
     .form-section + .form-section {
-      margin-top: 28px;
-      padding-top: 25px;
+      margin-top: 31px;
+      padding-top: 28px;
       border-top: 1px solid var(--border);
     }
 
     .form-section-title {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 11px;
+      margin-bottom: 19px;
       font-family: "Manrope", sans-serif;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 750;
     }
 
-    .form-section-title span {
-      width: 28px;
-      height: 28px;
+    .section-icon {
+      width: 32px;
+      height: 32px;
       display: grid;
       place-items: center;
-      border: 1px solid #f1dada;
-      border-radius: 7px;
-      background: #fff8f8;
+      border: 1px solid #eeeeeb;
+      border-radius: 8px;
+      background: #fffafa;
       color: var(--red);
-      font-size: 11px;
+      font-size: 14px;
+      flex-shrink: 0;
     }
 
-    .field-grid {
+    .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 17px 14px;
+      gap: 18px 15px;
     }
 
     .field {
@@ -633,7 +685,7 @@
     .field label {
       display: block;
       margin-bottom: 8px;
-      color: #393939;
+      color: #424242;
       font-size: 12px;
       font-weight: 650;
     }
@@ -649,20 +701,22 @@
       background: #ffffff;
       color: var(--text);
       font-size: 13px;
-      transition: border-color 160ms ease, box-shadow 160ms ease;
+      transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
     }
 
     .field input:focus,
     .field select:focus {
       border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.08);
     }
 
     .field input::placeholder {
-      color: #a1a1a1;
+      color: #a5a5a5;
     }
 
-    .field-help {
+    .field-hint {
       display: block;
       margin-top: 6px;
       color: #888888;
@@ -670,103 +724,286 @@
       line-height: 1.6;
     }
 
-    .field input[type="number"] {
-      font-variant-numeric: tabular-nums;
+    .type-description {
+      margin-top: 12px;
+      padding: 12px 13px;
+      border: 1px solid #eeeeeb;
+      border-radius: 7px;
+      background: #fafaf9;
+      color: #707070;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .type-description strong {
+      color: #333333;
+    }
+
+    .tier-box {
+      margin-top: 18px;
+      padding: 17px;
+      border: 1px solid #eeeeeb;
+      border-radius: 9px;
+      background: #fafaf9;
+    }
+
+    .tier-box h4 {
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .tier-box > p {
+      margin-top: 5px;
+      color: #777777;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .tier-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 13px;
+    }
+
+    .tier-row .field label {
+      font-size: 11px;
+    }
+
+    .tier-row .field input {
+      min-height: 40px;
+      background: #ffffff;
     }
 
     .form-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 28px;
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
     }
 
     .form-actions .button {
-      flex: 1;
+      min-height: 44px;
+      font-size: 12px;
     }
 
-    .form-actions .button-outline-light {
-      flex: 0 0 auto;
-    }
-
-    .form-error {
+    .form-message {
       display: none;
-      margin-top: 15px;
+      margin-top: 16px;
       padding: 12px 14px;
-      border: 1px solid #f2c8c8;
+      border: 1px solid #f0c6c6;
       border-radius: 7px;
-      background: #fff5f5;
-      color: #a92222;
+      background: #fff6f6;
+      color: #a62222;
       font-size: 12px;
       line-height: 1.7;
     }
 
-    .form-error.is-visible {
+    .form-message.is-visible {
       display: block;
     }
 
-    /* RESULTS */
+    /* RESULT PANEL */
 
-    .result-card {
+    .result-panel {
       position: sticky;
       top: 98px;
       overflow: hidden;
     }
 
-    .result-top {
-      padding: 26px;
-      background: #101010;
-      color: #ffffff;
+    .result-header {
+      padding: 23px 24px;
+      background: var(--black);
+      color: var(--white);
     }
 
-    .result-label {
-      color: #b8b8b8;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+    .result-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .result-total {
-      margin-top: 13px;
+    .result-header h3 {
       font-family: "Manrope", sans-serif;
-      font-size: clamp(34px, 4vw, 46px);
+      font-size: 17px;
       font-weight: 700;
-      letter-spacing: -1.8px;
+      letter-spacing: -0.4px;
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border: 1px solid #343434;
+      border-radius: 5px;
+      color: #c2c2c2;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    .live-pill::before {
+      width: 6px;
+      height: 6px;
+      content: "";
+      border-radius: 50%;
+      background: #76c995;
+    }
+
+    .result-header p {
+      margin-top: 9px;
+      color: #a2a2a2;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .result-body {
+      padding: 24px;
+    }
+
+    .result-amount-card {
+      padding: 22px;
+      border: 1px solid #f1d4d4;
+      border-radius: 9px;
+      background: #fff8f8;
+    }
+
+    .result-amount-label {
+      color: #737373;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .result-amount {
+      overflow-wrap: anywhere;
+      margin-top: 11px;
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(29px, 3vw, 38px);
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -1.4px;
+    }
+
+    .result-amount-caption {
+      margin-top: 8px;
+      color: #888888;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .result-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 13px;
+    }
+
+    .metric-card {
+      min-width: 0;
+      padding: 15px 13px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .metric-label {
+      color: #777777;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .metric-value {
+      overflow-wrap: anywhere;
+      margin-top: 8px;
+      font-family: "Manrope", sans-serif;
+      font-size: 18px;
+      font-weight: 750;
+      letter-spacing: -0.5px;
+    }
+
+    .result-breakdown {
+      margin-top: 27px;
+    }
+
+    .result-breakdown h4 {
+      margin-bottom: 14px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eeeeeb;
+      font-size: 12px;
+    }
+
+    .breakdown-row span:first-child {
+      color: #6f6f6f;
+    }
+
+    .breakdown-row strong {
+      color: #252525;
+      font-weight: 700;
+      text-align: right;
       overflow-wrap: anywhere;
     }
 
-    .result-description {
-      margin-top: 9px;
-      color: #a4a4a4;
-      font-size: 12px;
-      line-height: 1.8;
+    .breakdown-row.total {
+      margin-top: 3px;
+      padding-top: 15px;
+      border-bottom: 0;
+      font-size: 13px;
     }
 
-    .achievement-wrap {
+    .breakdown-row.total span:first-child,
+    .breakdown-row.total strong {
+      color: var(--text);
+      font-weight: 750;
+    }
+
+    .achievement-box {
       margin-top: 24px;
-      padding-top: 19px;
-      border-top: 1px solid #303030;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #fafaf9;
     }
 
-    .achievement-head {
+    .achievement-top {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      color: #cccccc;
-      font-size: 11px;
+      align-items: center;
+      gap: 10px;
     }
 
-    .achievement-head strong {
-      color: #ffffff;
+    .achievement-top h4 {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .achievement-percent {
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
     }
 
     .progress-track {
       height: 7px;
-      margin-top: 11px;
       overflow: hidden;
-      border-radius: 10px;
-      background: #333333;
+      margin-top: 14px;
+      border-radius: 20px;
+      background: #e8e8e5;
     }
 
     .progress-fill {
@@ -777,54 +1014,8 @@
       transition: width 250ms ease;
     }
 
-    .progress-caption {
-      margin-top: 8px;
-      color: #888888;
-      font-size: 10px;
-      line-height: 1.6;
-    }
-
-    .result-body {
-      padding: 22px 25px 25px;
-    }
-
-    .result-body h4 {
-      margin-bottom: 15px;
-      font-family: "Manrope", sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 12px 0;
-      border-bottom: 1px solid #efefed;
-      font-size: 12px;
-    }
-
-    .result-row span:first-child {
-      color: var(--muted);
-    }
-
-    .result-row strong {
-      text-align: right;
-      font-size: 12px;
-      font-weight: 700;
-      overflow-wrap: anywhere;
-    }
-
-    .result-row:last-of-type {
-      border-bottom: 0;
-    }
-
-    .result-note {
-      margin-top: 17px;
-      padding: 13px;
-      border: 1px solid #eeeeeb;
-      border-radius: 7px;
-      background: #fafaf8;
+    .achievement-note {
+      margin-top: 10px;
       color: #777777;
       font-size: 10px;
       line-height: 1.8;
@@ -833,210 +1024,230 @@
     .result-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 19px;
+      gap: 9px;
+      margin-top: 22px;
     }
 
     .result-actions .button {
       width: 100%;
       min-height: 43px;
-      padding: 0 10px;
+      padding-inline: 10px;
       font-size: 11px;
     }
 
-    /* SUMMARY FOR PRINT */
-
-    .print-summary {
-      display: none;
+    .privacy-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-top: 18px;
+      padding-top: 17px;
+      border-top: 1px solid var(--border);
+      color: #858585;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    /* EXPLANATION SECTIONS */
+    .privacy-note span {
+      color: var(--red);
+      font-size: 13px;
+    }
 
-    .info-section {
-      padding: 92px 0;
+    /* HOW IT WORKS */
+
+    .workflow-section {
+      padding: 100px 0;
       background: var(--white);
     }
 
-    .section-heading {
-      max-width: 720px;
+    .section-heading.centered {
+      margin-inline: auto;
+      text-align: center;
     }
 
-    .section-heading h2 {
-      margin-top: 20px;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(34px, 4.2vw, 53px);
-      line-height: 1.12;
-      letter-spacing: -2.4px;
-      font-weight: 600;
+    .section-heading.centered .eyebrow {
+      justify-content: center;
     }
 
-    .section-heading p {
-      max-width: 600px;
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.85;
+    .section-heading.centered p {
+      margin-inline: auto;
     }
 
-    .steps-grid {
+    .workflow-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
-      margin-top: 48px;
+      gap: 30px;
+      margin-top: 52px;
     }
 
-    .step-card {
-      padding-top: 23px;
-      border-top: 1px solid #dededb;
+    .workflow-card {
+      padding-top: 24px;
+      border-top: 1px solid #dcdcd8;
     }
 
-    .step-number {
+    .workflow-number {
       color: var(--red);
       font-family: "Manrope", sans-serif;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 1px;
     }
 
-    .step-card h3 {
-      margin-top: 17px;
+    .workflow-card h3 {
+      margin-top: 19px;
       font-family: "Manrope", sans-serif;
       font-size: 19px;
       font-weight: 700;
       letter-spacing: -0.5px;
     }
 
-    .step-card p {
-      margin-top: 10px;
+    .workflow-card p {
+      max-width: 330px;
+      margin-top: 12px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.9;
     }
 
-    .details-section {
-      padding: 85px 0;
+    /* INFORMATION PANEL */
+
+    .info-section {
+      padding: 0 0 100px;
+      background: var(--white);
+    }
+
+    .info-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 36px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       background: var(--paper);
     }
 
-    .details-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      align-items: start;
-      gap: 70px;
-    }
-
-    .details-copy h2 {
-      margin-top: 18px;
+    .info-panel h3 {
       font-family: "Manrope", sans-serif;
-      font-size: clamp(32px, 4vw, 45px);
-      line-height: 1.15;
-      letter-spacing: -1.8px;
-      font-weight: 650;
+      font-size: 20px;
+      font-weight: 750;
+      letter-spacing: -0.5px;
     }
 
-    .details-copy p {
-      margin-top: 15px;
+    .info-panel p {
+      margin-top: 12px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.9;
     }
 
-    .details-list {
-      border-top: 1px solid #e2e2de;
-    }
-
-    .details-item {
-      padding: 21px 0;
-      border-bottom: 1px solid #e2e2de;
-    }
-
-    .details-item h3 {
-      font-family: "Manrope", sans-serif;
-      font-size: 15px;
-      font-weight: 750;
-    }
-
-    .details-item p {
-      margin-top: 8px;
+    .info-panel ul {
+      margin-top: 15px;
+      padding-left: 19px;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.8;
+      line-height: 2;
     }
 
-    .disclaimer {
-      margin-top: 30px;
-      padding: 18px 20px;
-      border: 1px solid #f0d5d5;
-      border-radius: 8px;
-      background: #fff9f9;
-      color: #6e4c4c;
-      font-size: 12px;
+    /* FAQ */
+
+    .faq-section {
+      padding: 0 0 105px;
+      background: var(--white);
+    }
+
+    .faq-list {
+      max-width: 850px;
+      margin: 38px auto 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item summary {
+      position: relative;
+      padding: 22px 38px 22px 0;
+      cursor: pointer;
+      list-style: none;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      position: absolute;
+      top: 21px;
+      right: 5px;
+      content: "+";
+      color: var(--red);
+      font-family: "DM Sans", sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      max-width: 780px;
+      padding: 0 25px 22px 0;
+      color: var(--muted);
+      font-size: 13px;
       line-height: 1.9;
-    }
-
-    .disclaimer strong {
-      color: #352222;
     }
 
     /* RELATED TOOLS */
 
     .related-section {
-      padding: 90px 0;
-      background: var(--white);
-    }
-
-    .related-heading {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .related-heading h2 {
-      margin-top: 15px;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(31px, 4vw, 44px);
-      line-height: 1.15;
-      letter-spacing: -1.8px;
-      font-weight: 650;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+      background: var(--paper);
     }
 
     .related-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 35px;
+      margin-top: 32px;
     }
 
     .related-card {
-      padding: 23px;
+      padding: 22px;
       border: 1px solid var(--border);
       border-radius: 9px;
-      transition: transform 180ms ease, border-color 180ms ease;
+      background: var(--white);
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease;
     }
 
     .related-card:hover {
       transform: translateY(-3px);
-      border-color: #d0d0cb;
+      border-color: #d2d2ce;
     }
 
     .related-card .tool-icon {
-      width: 39px;
-      height: 39px;
+      width: 37px;
+      height: 37px;
       display: grid;
       place-items: center;
       border: 1px solid #eeeeeb;
-      border-radius: 9px;
-      background: #fffafa;
+      border-radius: 8px;
       color: var(--red);
+      background: #fffafa;
       font-size: 15px;
       font-weight: 700;
     }
 
     .related-card h3 {
-      margin-top: 18px;
+      margin-top: 17px;
       font-family: "Manrope", sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 750;
     }
 
@@ -1049,8 +1260,9 @@
 
     .related-card .text-link {
       display: inline-flex;
+      align-items: center;
       gap: 7px;
-      margin-top: 15px;
+      margin-top: 16px;
       font-size: 11px;
       font-weight: 700;
     }
@@ -1059,7 +1271,9 @@
       color: var(--red);
     }
 
-    /* FOOTER — MATCHES THE ARTHNIX REFERENCE */
+    /* =====================================================
+       FOOTER — MATCHES THE ARTHNIX REFERENCE
+       ===================================================== */
 
     .site-footer {
       padding: 57px 0 25px;
@@ -1155,42 +1369,63 @@
       font-weight: 600;
     }
 
-    /* RESPONSIVE */
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
 
     @media (max-width: 1050px) {
-      .calculator-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
-      }
-
-      .footer-main {
+      .hero-inner {
         gap: 30px;
       }
 
-      .details-grid {
-        gap: 40px;
+      .hero-stat {
+        min-width: 180px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(310px, 0.78fr);
+        gap: 17px;
+      }
+
+      .form-header,
+      .form-body {
+        padding-left: 21px;
+        padding-right: 21px;
+      }
+
+      .result-body {
+        padding: 19px;
+      }
+
+      .footer-main {
+        gap: 32px;
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 850px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero-stat {
+        max-width: 280px;
+      }
+
       .calculator-layout {
         grid-template-columns: 1fr;
       }
 
-      .result-card {
+      .result-panel {
         position: static;
       }
 
-      .result-top {
-        padding: 25px;
+      .result-body {
+        padding: 24px;
       }
 
-      .result-total {
-        font-size: 43px;
-      }
-
-      .details-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
+      .workflow-grid {
+        gap: 20px;
       }
     }
 
@@ -1200,27 +1435,48 @@
       }
 
       .page-hero {
-        padding: 68px 0 62px;
+        padding: 67px 0 59px;
       }
 
       .page-hero h1 {
-        letter-spacing: -2.5px;
+        font-size: clamp(42px, 9vw, 62px);
+        letter-spacing: -2.8px;
       }
 
-      .tool-section,
-      .info-section,
-      .details-section,
+      .calculator-section,
+      .workflow-section {
+        padding: 75px 0;
+      }
+
+      .info-section {
+        padding-bottom: 75px;
+      }
+
+      .info-panel {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 28px;
+      }
+
+      .faq-section {
+        padding-bottom: 75px;
+      }
+
       .related-section {
         padding: 70px 0;
       }
 
-      .steps-grid {
-        gap: 20px;
+      .workflow-grid {
+        grid-template-columns: 1fr;
+        gap: 27px;
       }
 
-      .related-heading {
-        align-items: flex-start;
-        flex-direction: column;
+      .workflow-card p {
+        max-width: 100%;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .footer-main {
@@ -1229,88 +1485,105 @@
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 520px) {
       .container {
         width: calc(100% - 36px);
       }
 
       .page-hero {
-        padding-top: 58px;
+        padding-top: 52px;
+      }
+
+      .breadcrumbs {
+        font-size: 11px;
       }
 
       .page-hero h1 {
-        font-size: clamp(40px, 11vw, 57px);
+        font-size: clamp(39px, 11vw, 53px);
         letter-spacing: -2.5px;
       }
 
-      .page-hero-description {
+      .hero-description {
         font-size: 14px;
       }
 
       .hero-points {
-        gap: 12px;
+        gap: 11px;
       }
 
-      .tool-section,
-      .info-section,
-      .details-section,
-      .related-section {
-        padding: 58px 0;
+      .hero-stat {
+        max-width: 100%;
       }
 
-      .tool-intro h2,
+      .calculator-section,
+      .workflow-section {
+        padding: 60px 0;
+      }
+
       .section-heading h2 {
+        font-size: 34px;
         letter-spacing: -1.5px;
       }
 
-      .card-heading,
-      .form-content {
-        padding-left: 18px;
-        padding-right: 18px;
+      .form-header {
+        padding: 21px 18px;
       }
 
-      .field-grid {
+      .form-body {
+        padding: 22px 18px;
+      }
+
+      .form-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 16px;
       }
 
       .field.full {
         grid-column: auto;
       }
 
+      .tier-row {
+        grid-template-columns: 1fr;
+      }
+
       .form-actions {
         flex-direction: column;
       }
 
-      .form-actions .button,
-      .form-actions .button-outline-light {
+      .form-actions .button {
         width: 100%;
       }
 
-      .result-top {
-        padding: 22px 19px;
+      .result-header {
+        padding: 21px 18px;
       }
 
       .result-body {
-        padding: 20px 19px 22px;
+        padding: 18px;
       }
 
-      .result-total {
-        font-size: 38px;
+      .result-amount-card {
+        padding: 19px;
       }
 
-      .steps-grid,
+      .result-amount {
+        font-size: 32px;
+      }
+
+      .metric-value {
+        font-size: 16px;
+      }
+
+      .result-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .info-panel {
+        padding: 23px 19px;
+      }
+
       .related-grid {
         grid-template-columns: 1fr;
-        gap: 27px;
-      }
-
-      .step-card {
-        padding-top: 20px;
-      }
-
-      .related-card {
-        padding: 21px;
       }
 
       .footer-main {
@@ -1340,11 +1613,13 @@
       }
     }
 
-    /* PRINT / SAVE AS PDF */
+    /* =====================================================
+       PRINT — PRINT ONLY THE INCENTIVE SUMMARY
+       ===================================================== */
 
     @page {
       size: A4;
-      margin: 14mm;
+      margin: 12mm;
     }
 
     @media print {
@@ -1354,157 +1629,92 @@
         min-width: 0;
         background: #ffffff !important;
         color: #111111 !important;
-        font-size: 10pt;
+        font-family: Arial, sans-serif !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       .site-header,
       .page-hero,
-      .tool-intro,
-      .calculator-card,
+      .calculator-form,
+      .workflow-section,
       .info-section,
-      .details-section,
+      .faq-section,
       .related-section,
       .site-footer,
-      .screen-only {
+      .no-print {
         display: none !important;
       }
 
-      .tool-section {
+      body.printing-results .calculator-section {
         display: block !important;
         padding: 0 !important;
         background: #ffffff !important;
       }
 
-      .container {
-        width: 100% !important;
-        max-width: none !important;
-        margin: 0 !important;
-      }
-
-      .calculator-layout {
-        display: block !important;
-      }
-
-      .result-card {
+      body.printing-results .calculator-section > .container > .section-heading {
         display: none !important;
       }
 
-      .print-summary {
+      body.printing-results .calculator-layout {
         display: block !important;
-        width: 100%;
-        color: #111111;
-        font-family: Arial, sans-serif;
+        margin: 0 !important;
       }
 
-      .print-summary h1 {
-        margin-bottom: 5px;
-        font-size: 21pt;
-        text-align: center;
+      body.printing-results .result-panel {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        border: 1px solid #cccccc !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
       }
 
-      .print-summary .print-company {
-        margin-bottom: 4px;
-        font-size: 15pt;
-        font-weight: 700;
-        text-align: center;
+      body.printing-results .result-header {
+        padding: 22px !important;
+        background: #111111 !important;
+        color: #ffffff !important;
       }
 
-      .print-summary .print-contact {
-        margin-bottom: 18px;
-        font-size: 9pt;
-        text-align: center;
+      body.printing-results .result-body {
+        padding: 20px !important;
       }
 
-      .print-summary .print-title {
-        margin: 13px 0;
-        padding: 9px;
-        border: 1px solid #cccccc;
-        font-size: 11pt;
-        font-weight: 700;
-        text-align: center;
+      body.printing-results .result-amount-card,
+      body.printing-results .metric-card,
+      body.printing-results .achievement-box {
+        break-inside: avoid;
       }
 
-      .print-summary .print-period {
-        margin-bottom: 14px;
-        font-size: 10pt;
-        text-align: center;
+      body.printing-results .result-actions,
+      body.printing-results .privacy-note {
+        display: none !important;
       }
 
-      .print-details-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5px 20px;
-        margin-bottom: 16px;
-        font-size: 9pt;
+      body.printing-results .breakdown-row {
+        break-inside: avoid;
       }
 
-      .print-details-grid p {
-        padding: 5px 0;
-        border-bottom: 1px solid #eeeeee;
-        overflow-wrap: anywhere;
+      body.printing-results .result-amount {
+        font-size: 30px !important;
       }
 
-      .print-summary table {
-        width: 100%;
-        margin: 12px 0;
-        border-collapse: collapse;
-        font-size: 9pt;
+      body.printing-results .result-metrics {
+        grid-template-columns: 1fr 1fr !important;
       }
 
-      .print-summary th,
-      .print-summary td {
-        padding: 8px;
-        border: 1px solid #cccccc;
-        text-align: left;
+      body.printing-results .progress-fill {
+        background: #ed3434 !important;
       }
 
-      .print-summary th:last-child,
-      .print-summary td:last-child {
-        text-align: right;
+      body.printing-results .result-header p,
+      body.printing-results .result-header h3,
+      body.printing-results .live-pill {
+        color: #ffffff !important;
       }
 
-      .print-summary th {
-        background: #f2f2f2 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .print-summary .print-total {
-        margin-top: 13px;
-        padding: 12px;
-        border: 2px solid #222222;
-        text-align: center;
-      }
-
-      .print-summary .print-total span {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 10pt;
-      }
-
-      .print-summary .print-total strong {
-        font-size: 19pt;
-      }
-
-      .print-summary .print-footnote {
-        margin-top: 24px;
-        color: #555555;
-        font-size: 8pt;
-        line-height: 1.6;
-      }
-
-      .print-signatures {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        margin-top: 55px;
-      }
-
-      .print-signatures div {
-        padding-top: 8px;
-        border-top: 1px solid #555555;
-        font-size: 9pt;
-        text-align: center;
+      body.printing-results .result-breakdown h4 {
+        color: #111111 !important;
       }
     }
   </style>
@@ -1548,80 +1758,100 @@
   <main>
     <!-- PAGE HERO -->
     <section class="page-hero">
-      <div class="container page-hero-inner">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-          <a href="/index.html">Home</a>
-          <span aria-hidden="true">/</span>
-          <a href="/tools.html">Free Tools</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Incentive Calculator</span>
-        </nav>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="/tools.html">Free Tools</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Incentive Calculator</span>
+          </nav>
 
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Free Business Tool
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Free Business Tool
+          </div>
+
+          <h1>
+            Incentive Calculator
+            <span>Reward performance with clarity.</span>
+          </h1>
+
+          <p class="hero-description">
+            Calculate sales commissions, employee incentives, performance
+            bonuses, and target achievement. Enter your own incentive rules
+            and see an instant breakdown of the estimated payout.
+          </p>
+
+          <div class="hero-points">
+            <span>Live calculations</span>
+            <span>Indian Rupee format</span>
+            <span>Print-ready summary</span>
+          </div>
         </div>
 
-        <h1>
-          Incentive Calculator.
-          <span>Reward performance clearly.</span>
-        </h1>
-
-        <p class="page-hero-description">
-          Estimate employee incentives, sales commissions, target achievement,
-          and performance bonuses using a straightforward calculator designed
-          for everyday business needs.
-        </p>
-
-        <div class="hero-points">
-          <span>Commission and target-based calculations</span>
-          <span>Indian rupee formatting</span>
-          <span>Print or save as PDF</span>
-        </div>
+        <aside class="hero-stat" aria-label="Calculator overview">
+          <div class="hero-stat-label">Your incentive estimate</div>
+          <div class="hero-stat-value">₹ 0.00</div>
+          <div class="hero-stat-note">
+            Your results update automatically as you change the values in
+            the calculator.
+          </div>
+        </aside>
       </div>
     </section>
 
     <!-- CALCULATOR -->
-    <section class="tool-section" id="tools">
+    <section class="calculator-section" id="tools">
       <div class="container">
-        <div class="tool-intro screen-only">
+        <div class="section-heading">
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
-            Calculate Incentives
+            Calculate Your Payout
           </div>
+
           <h2>
-            Understand the numbers.<br>
-            <span class="accent">Plan rewards with clarity.</span>
+            Your numbers.<br>
+            <span class="accent">Your incentive rules.</span>
           </h2>
+
           <p>
-            Enter your sales target, actual performance, incentive rate, and
-            any additional bonus. The calculator updates the estimated payout
-            as you change the figures.
+            Select a calculation method, enter the relevant performance
+            figures, and adjust the incentive structure to match your
+            company's policy.
           </p>
         </div>
 
         <div class="calculator-layout">
-          <section class="calculator-card screen-only" aria-labelledby="formTitle">
-            <div class="card-heading">
-              <h3 id="formTitle">Incentive details</h3>
-              <p>Enter your performance and incentive plan information below.</p>
+          <!-- INPUT FORM -->
+          <form class="calculator-form" id="incentiveForm">
+            <div class="form-header">
+              <h3>Incentive details</h3>
+              <p>
+                Enter your performance information and incentive structure.
+                All calculations are estimates.
+              </p>
             </div>
 
-            <form id="incentiveForm" class="form-content">
-              <div class="form-section">
+            <div class="form-body">
+              <!-- EMPLOYEE DETAILS -->
+              <section class="form-section">
                 <h4 class="form-section-title">
-                  <span>01</span>
+                  <span class="section-icon" aria-hidden="true">01</span>
                   Employee and period
                 </h4>
 
-                <div class="field-grid">
+                <div class="form-grid">
                   <div class="field">
-                    <label for="employeeName">Employee name</label>
+                    <label for="employeeName">Employee name (optional)</label>
                     <input
                       id="employeeName"
                       name="employeeName"
                       type="text"
+                      maxlength="100"
                       placeholder="e.g. Rahul Sharma"
+                      autocomplete="name"
                     >
                   </div>
 
@@ -1631,80 +1861,144 @@
                       id="employeeId"
                       name="employeeId"
                       type="text"
+                      maxlength="50"
                       placeholder="e.g. EMP-102"
                     >
                   </div>
 
                   <div class="field">
-                    <label for="companyName">Company name (optional)</label>
-                    <input
-                      id="companyName"
-                      name="companyName"
-                      type="text"
-                      placeholder="e.g. ABC Enterprises"
-                    >
+                    <label for="period">Incentive period</label>
+                    <select id="period" name="period">
+                      <option value="Monthly">Monthly</option>
+                      <option value="Weekly">Weekly</option>
+                      <option value="Quarterly">Quarterly</option>
+                      <option value="Yearly">Yearly</option>
+                      <option value="Custom">Custom period</option>
+                    </select>
                   </div>
 
                   <div class="field">
-                    <label for="period">Incentive period</label>
+                    <label for="periodLabel">Period label (optional)</label>
                     <input
-                      id="period"
-                      name="period"
-                      type="month"
+                      id="periodLabel"
+                      name="periodLabel"
+                      type="text"
+                      maxlength="80"
+                      placeholder="e.g. October 2026"
                     >
                   </div>
                 </div>
-              </div>
+              </section>
 
-              <div class="form-section">
+              <!-- INCENTIVE METHOD -->
+              <section class="form-section">
                 <h4 class="form-section-title">
-                  <span>02</span>
-                  Sales performance
+                  <span class="section-icon" aria-hidden="true">02</span>
+                  Incentive method
                 </h4>
 
-                <div class="field-grid">
-                  <div class="field">
-                    <label for="target">Sales target (₹)</label>
-                    <input
-                      id="target"
-                      name="target"
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value="500000"
-                      required
-                    >
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="incentiveType">Select calculation method</label>
+                    <select id="incentiveType" name="incentiveType">
+                      <option value="commission">Commission on sales</option>
+                      <option value="target">Target achievement bonus</option>
+                      <option value="fixed">Fixed performance bonus</option>
+                      <option value="tiered">Tiered sales commission</option>
+                    </select>
                   </div>
+                </div>
 
+                <div class="type-description" id="typeDescription" aria-live="polite">
+                  <strong>Commission on sales:</strong>
+                  Calculate incentive as a percentage of eligible sales.
+                </div>
+              </section>
+
+              <!-- SALES PERFORMANCE -->
+              <section class="form-section">
+                <h4 class="form-section-title">
+                  <span class="section-icon" aria-hidden="true">03</span>
+                  Performance figures
+                </h4>
+
+                <div class="form-grid">
                   <div class="field">
-                    <label for="actualSales">Actual sales (₹)</label>
+                    <label for="salesAmount">Eligible sales amount (₹)</label>
                     <input
-                      id="actualSales"
-                      name="actualSales"
+                      id="salesAmount"
+                      name="salesAmount"
                       type="number"
                       min="0"
+                      max="1000000000000"
                       step="0.01"
-                      value="600000"
+                      value="100000"
+                      inputmode="decimal"
                       required
                     >
-                  </div>
-
-                  <div class="field">
-                    <label for="targetRate">Target achievement rate (%)</label>
-                    <input
-                      id="targetRate"
-                      name="targetRate"
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value="100"
-                      required
-                    >
-                    <small class="field-help">
-                      Minimum achievement required before incentives apply.
+                    <small class="field-hint">
+                      Sales eligible for incentive calculation.
                     </small>
                   </div>
 
+                  <div class="field">
+                    <label for="salesTarget">Sales target (₹)</label>
+                    <input
+                      id="salesTarget"
+                      name="salesTarget"
+                      type="number"
+                      min="0"
+                      max="1000000000000"
+                      step="0.01"
+                      value="100000"
+                      inputmode="decimal"
+                    >
+                    <small class="field-hint">
+                      Used for target achievement calculations.
+                    </small>
+                  </div>
+
+                  <div class="field">
+                    <label for="unitsSold">Units sold (optional)</label>
+                    <input
+                      id="unitsSold"
+                      name="unitsSold"
+                      type="number"
+                      min="0"
+                      max="1000000000"
+                      step="1"
+                      value="0"
+                      inputmode="numeric"
+                    >
+                  </div>
+
+                  <div class="field">
+                    <label for="fixedBonus">Additional fixed bonus (₹)</label>
+                    <input
+                      id="fixedBonus"
+                      name="fixedBonus"
+                      type="number"
+                      min="0"
+                      max="1000000000000"
+                      step="0.01"
+                      value="0"
+                      inputmode="decimal"
+                    >
+                    <small class="field-hint">
+                      Optional extra bonus added to the calculated incentive.
+                    </small>
+                  </div>
+                </div>
+              </section>
+
+              <!-- COMMISSION SETTINGS -->
+              <section class="form-section" id="commissionSettings">
+                <h4 class="form-section-title">
+                  <span class="section-icon" aria-hidden="true">04</span>
+                  Incentive structure
+                </h4>
+
+                <div class="form-grid" id="commissionFields">
                   <div class="field">
                     <label for="commissionRate">Commission rate (%)</label>
                     <input
@@ -1712,372 +2006,562 @@
                       name="commissionRate"
                       type="number"
                       min="0"
+                      max="100000"
                       step="0.01"
-                      value="2"
-                      required
+                      value="5"
+                      inputmode="decimal"
                     >
-                    <small class="field-help">
-                      Applied to eligible actual sales once the target threshold is met.
+                  </div>
+
+                  <div class="field">
+                    <label for="minimumAchievement">Minimum achievement (%)</label>
+                    <input
+                      id="minimumAchievement"
+                      name="minimumAchievement"
+                      type="number"
+                      min="0"
+                      max="100000"
+                      step="0.01"
+                      value="0"
+                      inputmode="decimal"
+                    >
+                    <small class="field-hint">
+                      Set a threshold below which no commission is earned.
                     </small>
                   </div>
                 </div>
-              </div>
 
-              <div class="form-section">
+                <div id="targetFields" hidden>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="targetBonus">Target bonus (₹)</label>
+                      <input
+                        id="targetBonus"
+                        name="targetBonus"
+                        type="number"
+                        min="0"
+                        max="1000000000000"
+                        step="0.01"
+                        value="5000"
+                        inputmode="decimal"
+                      >
+                    </div>
+
+                    <div class="field">
+                      <label for="targetThreshold">Required achievement (%)</label>
+                      <input
+                        id="targetThreshold"
+                        name="targetThreshold"
+                        type="number"
+                        min="0"
+                        max="100000"
+                        step="0.01"
+                        value="100"
+                        inputmode="decimal"
+                      >
+                    </div>
+                  </div>
+
+                  <div class="type-description">
+                    The target bonus is awarded when sales achievement meets
+                    or exceeds the threshold you enter.
+                  </div>
+                </div>
+
+                <div id="fixedFields" hidden>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="performanceBonus">Performance bonus (₹)</label>
+                      <input
+                        id="performanceBonus"
+                        name="performanceBonus"
+                        type="number"
+                        min="0"
+                        max="1000000000000"
+                        step="0.01"
+                        value="5000"
+                        inputmode="decimal"
+                      >
+                    </div>
+                  </div>
+
+                  <div class="type-description">
+                    The performance bonus is a fixed amount. It is not
+                    automatically linked to sales achievement.
+                  </div>
+                </div>
+
+                <div id="tierFields" hidden>
+                  <div class="type-description">
+                    <strong>Progressive commission:</strong>
+                    Each commission rate applies only to the sales amount
+                    within its corresponding tier. The first tier starts
+                    from ₹0.
+                  </div>
+
+                  <div class="tier-box">
+                    <h4>Tier 1 — Entry sales</h4>
+                    <p>Commission on sales up to the first limit.</p>
+
+                    <div class="tier-row">
+                      <div class="field">
+                        <label for="tier1Limit">Sales limit (₹)</label>
+                        <input
+                          id="tier1Limit"
+                          name="tier1Limit"
+                          type="number"
+                          min="0"
+                          max="1000000000000"
+                          step="0.01"
+                          value="50000"
+                        >
+                      </div>
+
+                      <div class="field">
+                        <label for="tier1Rate">Commission (%)</label>
+                        <input
+                          id="tier1Rate"
+                          name="tier1Rate"
+                          type="number"
+                          min="0"
+                          max="100000"
+                          step="0.01"
+                          value="3"
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tier-box">
+                    <h4>Tier 2 — Mid-level sales</h4>
+                    <p>Commission on sales above Tier 1 up to this limit.</p>
+
+                    <div class="tier-row">
+                      <div class="field">
+                        <label for="tier2Limit">Sales limit (₹)</label>
+                        <input
+                          id="tier2Limit"
+                          name="tier2Limit"
+                          type="number"
+                          min="0"
+                          max="1000000000000"
+                          step="0.01"
+                          value="100000"
+                        >
+                      </div>
+
+                      <div class="field">
+                        <label for="tier2Rate">Commission (%)</label>
+                        <input
+                          id="tier2Rate"
+                          name="tier2Rate"
+                          type="number"
+                          min="0"
+                          max="100000"
+                          step="0.01"
+                          value="5"
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tier-box">
+                    <h4>Tier 3 — Higher sales</h4>
+                    <p>Commission on all sales above the Tier 2 limit.</p>
+
+                    <div class="tier-row">
+                      <div class="field">
+                        <label for="tier3Rate">Commission (%)</label>
+                        <input
+                          id="tier3Rate"
+                          name="tier3Rate"
+                          type="number"
+                          min="0"
+                          max="100000"
+                          step="0.01"
+                          value="7"
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- DEDUCTIONS -->
+              <section class="form-section">
                 <h4 class="form-section-title">
-                  <span>03</span>
-                  Additional rewards
+                  <span class="section-icon" aria-hidden="true">05</span>
+                  Adjustments and deductions
                 </h4>
 
-                <div class="field-grid">
+                <div class="form-grid">
                   <div class="field">
-                    <label for="fixedBonus">Fixed performance bonus (₹)</label>
+                    <label for="otherAddition">Other additions (₹)</label>
                     <input
-                      id="fixedBonus"
-                      name="fixedBonus"
+                      id="otherAddition"
+                      name="otherAddition"
                       type="number"
                       min="0"
+                      max="1000000000000"
                       step="0.01"
                       value="0"
+                      inputmode="decimal"
                     >
                   </div>
 
                   <div class="field">
-                    <label for="extraBonus">Additional bonus (₹)</label>
-                    <input
-                      id="extraBonus"
-                      name="extraBonus"
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value="0"
-                    >
-                  </div>
-
-                  <div class="field">
-                    <label for="deductions">Adjustments or deductions (₹)</label>
+                    <label for="deductions">Total deductions (₹)</label>
                     <input
                       id="deductions"
                       name="deductions"
                       type="number"
                       min="0"
+                      max="1000000000000"
                       step="0.01"
                       value="0"
+                      inputmode="decimal"
                     >
-                    <small class="field-help">
-                      Optional amount subtracted from the calculated incentive.
-                    </small>
-                  </div>
-
-                  <div class="field">
-                    <label for="commissionBasis">Commission basis</label>
-                    <select id="commissionBasis" name="commissionBasis">
-                      <option value="actual">Actual sales</option>
-                      <option value="excess">Sales above target only</option>
-                    </select>
-                    <small class="field-help">
-                      Select how your company's plan defines commissionable sales.
+                    <small class="field-hint">
+                      Enter applicable deductions based on your policy.
                     </small>
                   </div>
                 </div>
-              </div>
+              </section>
 
               <div class="form-actions">
                 <button class="button button-primary" type="submit">
                   Calculate Incentive <span class="arrow">↗</span>
                 </button>
-                <button class="button button-outline-light" type="reset">
-                  Reset
+
+                <button class="button button-outline-light" id="resetButton" type="button">
+                  Reset Calculator
                 </button>
               </div>
 
               <div
-                class="form-error"
-                id="formError"
+                class="form-message"
+                id="formMessage"
                 role="alert"
-                aria-live="polite"
+                aria-live="assertive"
               ></div>
-            </form>
-          </section>
+            </div>
+          </form>
 
           <!-- RESULTS -->
-          <aside class="result-card" aria-labelledby="resultHeading" aria-live="polite">
-            <div class="result-top">
-              <div class="result-label" id="resultHeading">Estimated net incentive</div>
-              <div class="result-total" id="netIncentive">₹12,000.00</div>
-              <p class="result-description" id="resultDescription">
-                Based on the values entered in this calculator.
-              </p>
+          <aside class="result-panel" id="resultPanel" aria-label="Incentive calculation results">
+            <div class="result-header">
+              <div class="result-header-top">
+                <h3>Incentive summary</h3>
+                <span class="live-pill">Live calculation</span>
+              </div>
 
-              <div class="achievement-wrap">
-                <div class="achievement-head">
-                  <span>Target achievement</span>
-                  <strong id="achievementPercent">120.00%</strong>
+              <p id="resultPeriod">Estimated incentive for your selected period.</p>
+            </div>
+
+            <div class="result-body" aria-live="polite">
+              <div class="result-amount-card">
+                <div class="result-amount-label">Estimated net incentive</div>
+                <div class="result-amount" id="netIncentive">₹0.00</div>
+                <div class="result-amount-caption">
+                  After the deductions entered in this calculator.
                 </div>
+              </div>
+
+              <div class="result-metrics">
+                <div class="metric-card">
+                  <div class="metric-label">Base incentive</div>
+                  <div class="metric-value" id="baseIncentive">₹0.00</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Target achievement</div>
+                  <div class="metric-value" id="achievementMetric">0%</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Additional earnings</div>
+                  <div class="metric-value" id="additionalEarnings">₹0.00</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Total deductions</div>
+                  <div class="metric-value" id="deductionMetric">₹0.00</div>
+                </div>
+              </div>
+
+              <div class="result-breakdown">
+                <h4>Calculation breakdown</h4>
+
+                <div class="breakdown-row">
+                  <span>Employee</span>
+                  <strong id="summaryEmployee">Not specified</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Calculation method</span>
+                  <strong id="summaryMethod">Commission on sales</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Eligible sales</span>
+                  <strong id="summarySales">₹1,00,000.00</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Sales target</span>
+                  <strong id="summaryTarget">₹1,00,000.00</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Base incentive</span>
+                  <strong id="summaryBase">₹5,000.00</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Additional bonus / additions</span>
+                  <strong id="summaryAdditions">₹0.00</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Total deductions</span>
+                  <strong id="summaryDeductions">₹0.00</strong>
+                </div>
+
+                <div class="breakdown-row total">
+                  <span>Net incentive</span>
+                  <strong id="summaryNet">₹5,000.00</strong>
+                </div>
+              </div>
+
+              <div class="achievement-box">
+                <div class="achievement-top">
+                  <h4>Target progress</h4>
+                  <span class="achievement-percent" id="achievementPercent">100%</span>
+                </div>
+
                 <div
                   class="progress-track"
+                  id="progressTrack"
                   role="progressbar"
-                  aria-label="Target achievement"
+                  aria-label="Sales target achievement"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="100"
-                  id="achievementProgress"
                 >
                   <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <p class="progress-caption" id="achievementCaption">
-                  Target achieved.
+
+                <p class="achievement-note" id="achievementNote">
+                  Sales are equal to the entered target.
                 </p>
               </div>
-            </div>
 
-            <div class="result-body">
-              <h4>Incentive breakdown</h4>
-
-              <div class="result-row">
-                <span>Sales target</span>
-                <strong id="resultTarget">₹5,00,000.00</strong>
-              </div>
-
-              <div class="result-row">
-                <span>Actual sales</span>
-                <strong id="resultSales">₹6,00,000.00</strong>
-              </div>
-
-              <div class="result-row">
-                <span>Commissionable sales</span>
-                <strong id="resultCommissionable">₹6,00,000.00</strong>
-              </div>
-
-              <div class="result-row">
-                <span>Sales commission</span>
-                <strong id="resultCommission">₹12,000.00</strong>
-              </div>
-
-              <div class="result-row">
-                <span>Fixed performance bonus</span>
-                <strong id="resultFixedBonus">₹0.00</strong>
-              </div>
-
-              <div class="result-row">
-                <span>Additional bonus</span>
-                <strong id="resultExtraBonus">₹0.00</strong>
-              </div>
-
-              <div class="result-row">
-                <span>Adjustments / deductions</span>
-                <strong id="resultDeductions">−₹0.00</strong>
-              </div>
-
-              <div class="result-row">
-                <span><strong>Gross incentive</strong></span>
-                <strong id="resultGross">₹12,000.00</strong>
-              </div>
-
-              <div class="result-note" id="resultNote">
-                This is an estimate based on the incentive rules selected here.
-                Actual company policy may use different thresholds, eligible sales,
-                exclusions, or payout conditions.
-              </div>
-
-              <div class="result-actions screen-only">
-                <button class="button button-primary" type="button" id="printButton">
-                  Print / Save PDF
+              <div class="result-actions">
+                <button class="button button-primary" id="printButton" type="button">
+                  Print Summary ↗
                 </button>
-                <button class="button button-outline-light" type="button" id="copyButton">
-                  Copy Summary
+
+                <button class="button button-outline-light" id="downloadButton" type="button">
+                  Export CSV ↓
                 </button>
+              </div>
+
+              <div class="privacy-note">
+                <span aria-hidden="true">●</span>
+                <p>
+                  Your entries are processed in this page. This calculator
+                  does not send your employee or sales details to ARTHNIX.
+                </p>
               </div>
             </div>
           </aside>
         </div>
-
-        <!-- PRINTABLE SUMMARY -->
-        <section class="print-summary" id="printSummary" aria-label="Printable incentive summary">
-          <div class="print-company" id="printCompany"></div>
-          <div class="print-contact">Employee Incentive Statement</div>
-          <h1>INCENTIVE SUMMARY</h1>
-          <div class="print-period" id="printPeriod"></div>
-
-          <div class="print-details-grid">
-            <p><strong>Employee:</strong> <span id="printEmployee"></span></p>
-            <p><strong>Employee ID:</strong> <span id="printEmployeeId"></span></p>
-            <p><strong>Sales target:</strong> <span id="printTarget"></span></p>
-            <p><strong>Actual sales:</strong> <span id="printSales"></span></p>
-            <p><strong>Target achievement:</strong> <span id="printAchievement"></span></p>
-            <p><strong>Commission basis:</strong> <span id="printBasis"></span></p>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Component</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Sales commission</td>
-                <td id="printCommission"></td>
-              </tr>
-              <tr>
-                <td>Fixed performance bonus</td>
-                <td id="printFixedBonus"></td>
-              </tr>
-              <tr>
-                <td>Additional bonus</td>
-                <td id="printExtraBonus"></td>
-              </tr>
-              <tr>
-                <td>Gross incentive</td>
-                <td id="printGross"></td>
-              </tr>
-              <tr>
-                <td>Adjustments / deductions</td>
-                <td id="printDeductions"></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="print-total">
-            <span>Estimated net incentive</span>
-            <strong id="printNet"></strong>
-          </div>
-
-          <div class="print-signatures">
-            <div>Employee acknowledgement</div>
-            <div>Authorized signatory</div>
-          </div>
-
-          <p class="print-footnote">
-            This document is generated from user-entered information for estimation
-            purposes. It is not a payroll approval or proof of payment. Verify the
-            figures and applicable company incentive policy before issuing or relying
-            on this statement.
-          </p>
-        </section>
       </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="info-section" id="how-it-works">
+    <section class="workflow-section" id="how-it-works">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading centered">
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
             How It Works
           </div>
+
           <h2>
-            Calculate in three <span class="accent">simple steps.</span>
+            Calculate incentives<br>
+            <span class="accent">in three simple steps.</span>
           </h2>
+
           <p>
-            Use your organization's incentive policy and enter the relevant
-            performance figures to estimate a payout.
+            Enter the performance figures, select your calculation method,
+            and review the resulting incentive estimate.
           </p>
         </div>
 
-        <div class="steps-grid">
-          <article class="step-card">
-            <div class="step-number">STEP 01</div>
-            <h3>Enter your target</h3>
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <div class="workflow-number">STEP 01</div>
+            <h3>Enter your performance</h3>
             <p>
-              Add the sales target and actual sales achieved for the relevant
-              incentive period.
+              Add the eligible sales amount, target, and any other
+              performance figures relevant to your incentive policy.
             </p>
           </article>
 
-          <article class="step-card">
-            <div class="step-number">STEP 02</div>
-            <h3>Set your incentive rules</h3>
+          <article class="workflow-card">
+            <div class="workflow-number">STEP 02</div>
+            <h3>Choose your incentive rules</h3>
             <p>
-              Enter the required achievement threshold, commission rate,
-              bonuses, and any adjustments from your company's plan.
+              Use a percentage commission, a target bonus, a fixed
+              performance bonus, or a progressive tiered commission.
             </p>
           </article>
 
-          <article class="step-card">
-            <div class="step-number">STEP 03</div>
+          <article class="workflow-card">
+            <div class="workflow-number">STEP 03</div>
             <h3>Review and export</h3>
             <p>
-              Review the breakdown and print the summary or save it as a PDF
-              using your browser's print dialog.
+              Review your calculation, account for entered deductions,
+              and print the summary or export the figures to a CSV file.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- CALCULATION DETAILS -->
-    <section class="details-section">
-      <div class="container details-grid">
-        <div class="details-copy">
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Calculation Method
-          </div>
-          <h2>
-            Clear inputs.<br>
-            <span class="accent">Transparent estimates.</span>
-          </h2>
-          <p>
-            The calculator uses the rates and rules you provide. It does not
-            assume that every organization calculates incentives in the same way.
-          </p>
+    <!-- IMPORTANT INFORMATION -->
+    <section class="info-section">
+      <div class="container">
+        <div class="info-panel">
+          <div>
+            <h3>What does this calculator include?</h3>
+            <p>
+              The calculator supports several common incentive structures.
+              You can adjust the rates and thresholds to reflect your own
+              company policy.
+            </p>
 
-          <div class="disclaimer">
-            <strong>Important:</strong> This calculator provides an estimate only.
-            Check your employment agreement, company incentive policy, eligible
-            revenue rules, refund adjustments, and approval requirements before
-            finalizing a payout. Tax treatment may vary depending on your
-            circumstances.
+            <ul>
+              <li>Percentage-based sales commission.</li>
+              <li>Target achievement and threshold-based bonuses.</li>
+              <li>Fixed performance bonuses.</li>
+              <li>Progressive commission across three sales tiers.</li>
+              <li>Additional earnings and deductions.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Understand your estimate</h3>
+            <p>
+              The result is based entirely on the figures and rules entered.
+              It does not establish your legal entitlement to an incentive
+              or determine the terms of an employment agreement.
+            </p>
+
+            <p>
+              Incentive policies may use eligible revenue, collected
+              payments, profit, returns, cancellations, quotas, or other
+              conditions. Confirm the applicable rules with your employer
+              before using this estimate for payroll.
+            </p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="details-list">
-          <article class="details-item">
-            <h3>Target achievement</h3>
-            <p>
-              Calculated as actual sales divided by the sales target, multiplied
-              by 100. If the target is zero, the calculator displays achievement
-              as not applicable.
-            </p>
-          </article>
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-heading centered">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Frequently Asked Questions
+          </div>
 
-          <article class="details-item">
-            <h3>Sales commission</h3>
-            <p>
-              The commission rate is applied either to all actual sales or only
-              to sales above the target, depending on the selected commission basis.
-              Commission is applied only when the achievement threshold is met.
-            </p>
-          </article>
+          <h2>
+            Incentive calculation,<br>
+            <span class="accent">explained.</span>
+          </h2>
 
-          <article class="details-item">
-            <h3>Gross and net incentive</h3>
-            <p>
-              Gross incentive is the sales commission plus the fixed and additional
-              bonuses. The estimated net incentive is the gross incentive minus
-              entered adjustments or deductions, with a minimum displayed payout of
-              zero.
-            </p>
-          </article>
+          <p>
+            Understand how the calculator handles common incentive structures.
+          </p>
+        </div>
 
-          <article class="details-item">
-            <h3>Company-specific incentive policies</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How is a sales commission calculated?</summary>
             <p>
-              Some plans use tiered rates, product-specific commissions, collection
-              targets, caps, returns, or manager approvals. Enter figures according
-              to your plan; this tool does not automatically determine those rules.
+              For percentage-based commission, the calculator multiplies
+              eligible sales by the entered commission rate. For example,
+              ₹1,00,000 in eligible sales at 5% produces a base commission
+              of ₹5,000, provided the configured minimum achievement
+              threshold is met.
             </p>
-          </article>
+          </details>
 
-          <article class="details-item">
-            <h3>Your data and privacy</h3>
+          <details class="faq-item">
+            <summary>How does the target achievement bonus work?</summary>
             <p>
-              Calculations are performed in your browser. This page does not send
-              the details you enter to ARTHNIX through the calculator.
+              The calculator divides eligible sales by the sales target to
+              determine achievement. If achievement meets or exceeds the
+              threshold you enter, the configured target bonus is included.
+              If the target is zero, the achievement percentage is shown as
+              unavailable rather than dividing by zero.
             </p>
-          </article>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is a tiered sales commission?</summary>
+            <p>
+              A progressive tiered commission applies different rates to
+              different portions of eligible sales. For example, the first
+              rate applies to sales within Tier 1, the second rate applies
+              to sales above the first limit up to the second limit, and
+              the third rate applies to sales above the second limit.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I calculate incentives in Indian rupees?</summary>
+            <p>
+              Yes. All monetary amounts are displayed in Indian Rupees (₹)
+              using Indian number formatting. Enter all monetary values in
+              the same currency for a meaningful result.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I print or save the incentive calculation?</summary>
+            <p>
+              Yes. Choose Print Summary to open your browser's print
+              dialogue. From there, select a printer or choose Save as PDF
+              if your browser and device provide that option. Export CSV
+              creates a spreadsheet-compatible summary of the calculation.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does the calculator automatically calculate tax?</summary>
+            <p>
+              No. It does not determine income tax, payroll withholding,
+              statutory contributions, or other mandatory deductions.
+              Enter only deductions established by your applicable payroll
+              rules and verify them with your payroll team.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Are my employee details uploaded anywhere?</summary>
+            <p>
+              The calculator performs its calculations locally in your
+              browser and does not submit your entered employee or sales
+              details to ARTHNIX. Avoid entering sensitive personal or
+              confidential business information on devices you do not
+              control.
+            </p>
+          </details>
         </div>
       </div>
     </section>
@@ -2085,44 +2569,47 @@
     <!-- RELATED TOOLS -->
     <section class="related-section">
       <div class="container">
-        <div class="related-heading">
-          <div>
-            <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
-              Explore More
-            </div>
-            <h2>More useful business tools.</h2>
+        <div class="section-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Explore More
           </div>
 
-          <a href="/tools.html" class="button button-outline-light">
-            View All Tools <span class="arrow">↗</span>
-          </a>
+          <h2>
+            More useful tools<br>
+            <span class="accent">for your business.</span>
+          </h2>
+
+          <p>
+            Explore other ARTHNIX tools for calculations and everyday
+            business documents.
+          </p>
         </div>
 
         <div class="related-grid">
           <article class="related-card">
-            <div class="tool-icon">%</div>
-            <h3>Profit Calculator</h3>
-            <p>Calculate selling price, profit amount, margin, and markup.</p>
-            <a href="/tools/profit-calculator.html" class="text-link">
-              Calculate profit <span>↗</span>
+            <div class="tool-icon">₹</div>
+            <h3>GST Calculator</h3>
+            <p>Calculate GST amounts, inclusive prices, and pre-tax totals.</p>
+            <a class="text-link" href="/tools/gst-calculator.html">
+              Open calculator <span>↗</span>
             </a>
           </article>
 
           <article class="related-card">
-            <div class="tool-icon">₹</div>
-            <h3>GST Calculator</h3>
-            <p>Calculate GST, tax-inclusive totals, and pre-tax amounts.</p>
-            <a href="/tools/gst-calculator.html" class="text-link">
-              Calculate GST <span>↗</span>
+            <div class="tool-icon">%</div>
+            <h3>Profit Calculator</h3>
+            <p>Calculate profit, margin, markup, and selling price.</p>
+            <a class="text-link" href="/tools/profit-calculator.html">
+              Calculate profit <span>↗</span>
             </a>
           </article>
 
           <article class="related-card">
             <div class="tool-icon">▤</div>
             <h3>Invoice Generator</h3>
-            <p>Create a professional invoice for your customers and services.</p>
-            <a href="/tools/invoice-generator.html" class="text-link">
+            <p>Create professional invoices with your business details.</p>
+            <a class="text-link" href="/tools/invoice-generator.html">
               Create invoice <span>↗</span>
             </a>
           </article>
@@ -2140,6 +2627,7 @@
             <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
             <span>ARTHNIX</span>
           </a>
+
           <p class="footer-tagline">Intelligence for Every Business.</p>
           <p class="footer-powered">Powered by Alphex AI</p>
         </div>
@@ -2178,6 +2666,7 @@
         <p class="copyright">
           © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
         </p>
+
         <p class="powered-by">
           An independent product brand · <strong>Powered by Alphex AI</strong>
         </p>
@@ -2188,6 +2677,10 @@
   <script>
     (() => {
       "use strict";
+
+      /* =====================================================
+         MOBILE NAVIGATION — MATCHES THE REFERENCE
+         ===================================================== */
 
       const menuButton = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
@@ -2227,7 +2720,9 @@
         });
 
         navLinks.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => setMenuState(false));
+          link.addEventListener("click", () => {
+            setMenuState(false);
+          });
         });
 
         document.addEventListener("click", (event) => {
@@ -2261,8 +2756,46 @@
         currentYear.textContent = new Date().getFullYear();
       }
 
+      /* =====================================================
+         INCENTIVE CALCULATOR
+         ===================================================== */
+
       const form = document.getElementById("incentiveForm");
-      const formError = document.getElementById("formError");
+      const incentiveType = document.getElementById("incentiveType");
+      const typeDescription = document.getElementById("typeDescription");
+      const formMessage = document.getElementById("formMessage");
+      const resetButton = document.getElementById("resetButton");
+      const printButton = document.getElementById("printButton");
+      const downloadButton = document.getElementById("downloadButton");
+
+      const typeDescriptions = {
+        commission:
+          "<strong>Commission on sales:</strong> Calculate incentive as a percentage of eligible sales. The configured minimum achievement threshold must be met.",
+
+        target:
+          "<strong>Target achievement bonus:</strong> Award the configured target bonus when the sales achievement percentage meets or exceeds your selected threshold.",
+
+        fixed:
+          "<strong>Fixed performance bonus:</strong> Use a predetermined performance bonus. This amount is not automatically linked to sales achievement.",
+
+        tiered:
+          "<strong>Tiered sales commission:</strong> Apply progressively different commission rates to sales within three tiers. Each rate applies only to its corresponding sales portion."
+      };
+
+      const methodLabels = {
+        commission: "Commission on sales",
+        target: "Target achievement bonus",
+        fixed: "Fixed performance bonus",
+        tiered: "Tiered sales commission"
+      };
+
+      const allMethodFields = [
+        "commissionFields",
+        "targetFields",
+        "fixedFields",
+        "tierFields"
+      ];
+
       const moneyFormatter = new Intl.NumberFormat("en-IN", {
         style: "currency",
         currency: "INR",
@@ -2271,329 +2804,538 @@
       });
 
       const numberFormatter = new Intl.NumberFormat("en-IN", {
-        minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
 
-      const fields = [
-        "employeeName",
-        "employeeId",
-        "companyName",
-        "period",
-        "target",
-        "actualSales",
-        "targetRate",
-        "commissionRate",
-        "fixedBonus",
-        "extraBonus",
-        "deductions",
-        "commissionBasis"
-      ];
-
-      function getValue(id) {
-        const element = document.getElementById(id);
-
-        if (!element) return "";
-
-        if (element.type === "number") {
-          const value = Number(element.value);
-          return Number.isFinite(value) ? value : 0;
-        }
-
-        return element.value.trim();
-      }
-
       function money(value) {
-        return moneyFormatter.format(Number.isFinite(value) ? value : 0);
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return moneyFormatter.format(safeValue);
       }
 
-      function percentage(value) {
-        return `${numberFormatter.format(value)}%`;
+      function number(value) {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return numberFormatter.format(safeValue);
       }
 
-      function setText(id, value) {
+      function getNumber(id) {
         const element = document.getElementById(id);
 
-        if (element) {
-          element.textContent = value;
+        if (!element || element.value.trim() === "") {
+          return 0;
         }
+
+        const value = Number(element.value);
+
+        return Number.isFinite(value) ? value : 0;
       }
 
-      function showError(message) {
-        formError.textContent = message;
-        formError.classList.add("is-visible");
+      function getText(id, fallback = "") {
+        const element = document.getElementById(id);
+
+        if (!element) return fallback;
+
+        const value = element.value.trim();
+
+        return value || fallback;
       }
 
-      function clearError() {
-        formError.textContent = "";
-        formError.classList.remove("is-visible");
+      function showMessage(message) {
+        formMessage.textContent = message;
+        formMessage.classList.add("is-visible");
       }
 
-      function formatPeriod(value) {
-        if (!value) return "Not specified";
+      function clearMessage() {
+        formMessage.textContent = "";
+        formMessage.classList.remove("is-visible");
+      }
 
-        const parts = value.split("-");
+      function updateMethodFields() {
+        const selectedType = incentiveType.value;
 
-        if (parts.length !== 2) return value;
+        typeDescription.innerHTML =
+          typeDescriptions[selectedType] || typeDescriptions.commission;
 
-        const date = new Date(Number(parts[0]), Number(parts[1]) - 1, 1);
+        const activeSectionByType = {
+          commission: "commissionFields",
+          target: "targetFields",
+          fixed: "fixedFields",
+          tiered: "tierFields"
+        };
 
-        return date.toLocaleDateString("en-IN", {
-          month: "long",
-          year: "numeric"
+        allMethodFields.forEach((sectionId) => {
+          const section = document.getElementById(sectionId);
+          const isActive = sectionId === activeSectionByType[selectedType];
+
+          section.hidden = !isActive;
+
+          section.querySelectorAll("input, select").forEach((input) => {
+            input.disabled = !isActive;
+          });
         });
       }
 
-      function calculate() {
-        clearError();
-
-        const target = getValue("target");
-        const actualSales = getValue("actualSales");
-        const targetRate = getValue("targetRate");
-        const commissionRate = getValue("commissionRate");
-        const fixedBonus = getValue("fixedBonus");
-        const extraBonus = getValue("extraBonus");
-        const deductions = getValue("deductions");
-        const commissionBasis = getValue("commissionBasis");
-
-        const numericFields = [
-          ["Sales target", target],
-          ["Actual sales", actualSales],
-          ["Target achievement rate", targetRate],
-          ["Commission rate", commissionRate],
-          ["Fixed performance bonus", fixedBonus],
-          ["Additional bonus", extraBonus],
-          ["Adjustments or deductions", deductions]
+      function getValidationError() {
+        const requiredNonNegative = [
+          ["salesAmount", "Eligible sales amount"],
+          ["salesTarget", "Sales target"],
+          ["unitsSold", "Units sold"],
+          ["fixedBonus", "Additional fixed bonus"],
+          ["otherAddition", "Other additions"],
+          ["deductions", "Total deductions"]
         ];
 
-        for (const [label, value] of numericFields) {
+        const selectedType = incentiveType.value;
+
+        if (!Object.prototype.hasOwnProperty.call(methodLabels, selectedType)) {
+          return "Select a valid incentive calculation method.";
+        }
+
+        for (const [id, label] of requiredNonNegative) {
+          const element = document.getElementById(id);
+
+          if (element.value.trim() === "") {
+            if (id === "salesAmount") {
+              return "Enter an eligible sales amount.";
+            }
+
+            continue;
+          }
+
+          const value = Number(element.value);
+
           if (!Number.isFinite(value) || value < 0) {
-            showError(`${label} must be a valid non-negative number.`);
-            return null;
+            return label + " must be a valid non-negative number.";
+          }
+
+          if (value > Number(element.max || Infinity)) {
+            return label + " exceeds the supported input range.";
           }
         }
 
-        const employeeName = getValue("employeeName");
-        const employeeId = getValue("employeeId");
-        const companyName = getValue("companyName");
-        const period = getValue("period");
+        const activeSectionByType = {
+          commission: "commissionFields",
+          target: "targetFields",
+          fixed: "fixedFields",
+          tiered: "tierFields"
+        };
 
-        const achievement = target > 0
-          ? (actualSales / target) * 100
-          : null;
-
-        const eligible = achievement !== null && achievement >= targetRate;
-
-        let commissionableSales = 0;
-
-        if (eligible) {
-          commissionableSales = commissionBasis === "excess"
-            ? Math.max(0, actualSales - target)
-            : actualSales;
-        }
-
-        const commission = commissionableSales * (commissionRate / 100);
-        const gross = commission + fixedBonus + extraBonus;
-        const net = Math.max(0, gross - deductions);
-        const actualNetAfterDeductions = gross - deductions;
-
-        setText("netIncentive", money(net));
-        setText(
-          "resultDescription",
-          eligible
-            ? "Estimated payout based on your entered incentive rules."
-            : "The achievement threshold has not been met, so commission is not applied."
+        const activeSection = document.getElementById(
+          activeSectionByType[selectedType]
         );
 
-        setText("achievementPercent", achievement === null
-          ? "N/A"
-          : percentage(achievement));
+        for (const input of activeSection.querySelectorAll("input")) {
+          if (input.disabled || input.value.trim() === "") {
+            continue;
+          }
 
-        const progress = achievement === null
-          ? 0
-          : Math.min(100, Math.max(0, achievement));
+          const value = Number(input.value);
 
-        const progressFill = document.getElementById("progressFill");
-        const progressBar = document.getElementById("achievementProgress");
+          if (!Number.isFinite(value) || value < 0) {
+            const label = input.labels && input.labels[0]
+              ? input.labels[0].textContent
+              : input.name;
 
-        progressFill.style.width = `${progress}%`;
-        progressBar.setAttribute("aria-valuenow", String(progress));
+            return label + " must be a valid non-negative number.";
+          }
 
-        let achievementCaption = "Target achievement cannot be calculated when the target is zero.";
+          if (value > Number(input.max || Infinity)) {
+            const label = input.labels && input.labels[0]
+              ? input.labels[0].textContent
+              : input.name;
 
-        if (achievement !== null) {
-          if (eligible) {
-            achievementCaption = `Required threshold of ${percentage(targetRate)} met.`;
-          } else {
-            achievementCaption = `Below the required threshold of ${percentage(targetRate)}.`;
+            return label + " exceeds the supported input range.";
           }
         }
 
-        setText("achievementCaption", achievementCaption);
+        if (selectedType === "tiered") {
+          const tier1Limit = getNumber("tier1Limit");
+          const tier2Limit = getNumber("tier2Limit");
 
-        setText("resultTarget", money(target));
-        setText("resultSales", money(actualSales));
-        setText("resultCommissionable", money(commissionableSales));
-        setText("resultCommission", money(commission));
-        setText("resultFixedBonus", money(fixedBonus));
-        setText("resultExtraBonus", money(extraBonus));
-        setText("resultDeductions", `−${money(deductions)}`);
-        setText("resultGross", money(gross));
+          if (tier1Limit <= 0) {
+            return "Tier 1 sales limit must be greater than zero.";
+          }
 
-        let note = eligible
-          ? "Commission is calculated using the selected commission basis and rate."
-          : "The required target achievement threshold was not met. Sales commission is set to zero; entered bonuses remain included.";
-
-        if (actualNetAfterDeductions < 0) {
-          note += " Entered adjustments exceed the gross incentive. The displayed net incentive is limited to ₹0.00.";
+          if (tier2Limit <= tier1Limit) {
+            return "Tier 2 sales limit must be greater than the Tier 1 limit.";
+          }
         }
 
-        note += " Verify these figures against your company's actual incentive policy.";
+        if (selectedType === "commission") {
+          const minimum = getNumber("minimumAchievement");
 
-        setText("resultNote", note);
+          if (minimum > 0 && getNumber("salesTarget") <= 0) {
+            return "Enter a sales target greater than zero to apply the minimum achievement threshold.";
+          }
+        }
 
-        /* Printable summary */
-        setText("printCompany", companyName || "Company Name Not Provided");
-        setText("printPeriod", `Incentive period: ${formatPeriod(period)}`);
-        setText("printEmployee", employeeName || "Not provided");
-        setText("printEmployeeId", employeeId || "Not provided");
-        setText("printTarget", money(target));
-        setText("printSales", money(actualSales));
-        setText("printAchievement", achievement === null ? "N/A" : percentage(achievement));
-        setText(
-          "printBasis",
-          commissionBasis === "excess"
-            ? "Sales above target only"
-            : "Actual sales"
+        if (
+          selectedType === "target" &&
+          getNumber("salesTarget") <= 0
+        ) {
+          return "Enter a sales target greater than zero to calculate target achievement bonus.";
+        }
+
+        return "";
+      }
+
+      function calculateTieredCommission(sales) {
+        const limit1 = getNumber("tier1Limit");
+        const limit2 = getNumber("tier2Limit");
+
+        const rate1 = getNumber("tier1Rate") / 100;
+        const rate2 = getNumber("tier2Rate") / 100;
+        const rate3 = getNumber("tier3Rate") / 100;
+
+        const tier1Sales = Math.min(sales, limit1);
+        const tier2Sales = Math.max(
+          0,
+          Math.min(sales, limit2) - limit1
         );
-        setText("printCommission", money(commission));
-        setText("printFixedBonus", money(fixedBonus));
-        setText("printExtraBonus", money(extraBonus));
-        setText("printGross", money(gross));
-        setText("printDeductions", money(deductions));
-        setText("printNet", money(net));
+        const tier3Sales = Math.max(0, sales - limit2);
+
+        const tier1Commission = tier1Sales * rate1;
+        const tier2Commission = tier2Sales * rate2;
+        const tier3Commission = tier3Sales * rate3;
 
         return {
-          employeeName: employeeName || "Not provided",
-          employeeId: employeeId || "Not provided",
-          companyName: companyName || "Not provided",
-          period: formatPeriod(period),
-          target,
-          actualSales,
-          achievement,
-          commissionableSales,
-          commissionRate,
-          commission,
-          fixedBonus,
-          extraBonus,
-          deductions,
-          gross,
-          net,
-          eligible,
-          commissionBasis
+          total:
+            tier1Commission +
+            tier2Commission +
+            tier3Commission,
+
+          tier1Sales,
+          tier2Sales,
+          tier3Sales,
+
+          tier1Commission,
+          tier2Commission,
+          tier3Commission
         };
       }
 
-      function copySummary() {
+      function calculate() {
+        clearMessage();
+
+        const validationError = getValidationError();
+
+        if (validationError) {
+          showMessage(validationError);
+          return null;
+        }
+
+        const sales = getNumber("salesAmount");
+        const target = getNumber("salesTarget");
+        const deductions = getNumber("deductions");
+        const fixedBonus = getNumber("fixedBonus");
+        const otherAddition = getNumber("otherAddition");
+
+        const achievement = target > 0
+          ? (sales / target) * 100
+          : null;
+
+        let baseIncentive = 0;
+        let commissionDetails = null;
+
+        const selectedType = incentiveType.value;
+
+        if (selectedType === "commission") {
+          const minimumAchievement = getNumber("minimumAchievement");
+
+          if (achievement !== null && achievement < minimumAchievement) {
+            baseIncentive = 0;
+          } else {
+            baseIncentive =
+              sales * (getNumber("commissionRate") / 100);
+          }
+        }
+
+        if (selectedType === "target") {
+          const requiredAchievement = getNumber("targetThreshold");
+          const targetBonus = getNumber("targetBonus");
+
+          baseIncentive =
+            achievement !== null && achievement >= requiredAchievement
+              ? targetBonus
+              : 0;
+        }
+
+        if (selectedType === "fixed") {
+          baseIncentive = getNumber("performanceBonus");
+        }
+
+        if (selectedType === "tiered") {
+          commissionDetails = calculateTieredCommission(sales);
+          baseIncentive = commissionDetails.total;
+        }
+
+        const additionalEarnings = fixedBonus + otherAddition;
+        const grossIncentive = baseIncentive + additionalEarnings;
+        const netIncentive = grossIncentive - deductions;
+
+        const result = {
+          employeeName: getText("employeeName", "Not specified"),
+          employeeId: getText("employeeId", "Not specified"),
+          period: getText("periodLabel", getText("period", "Monthly")),
+          method: methodLabels[selectedType],
+          sales,
+          target,
+          achievement,
+          baseIncentive,
+          fixedBonus,
+          otherAddition,
+          additionalEarnings,
+          deductions,
+          grossIncentive,
+          netIncentive,
+          unitsSold: getNumber("unitsSold"),
+          commissionDetails
+        };
+
+        renderResults(result);
+
+        return result;
+      }
+
+      function renderResults(result) {
+        document.getElementById("netIncentive").textContent =
+          money(result.netIncentive);
+
+        document.getElementById("baseIncentive").textContent =
+          money(result.baseIncentive);
+
+        document.getElementById("achievementMetric").textContent =
+          result.achievement === null
+            ? "N/A"
+            : number(result.achievement) + "%";
+
+        document.getElementById("additionalEarnings").textContent =
+          money(result.additionalEarnings);
+
+        document.getElementById("deductionMetric").textContent =
+          money(result.deductions);
+
+        document.getElementById("summaryEmployee").textContent =
+          result.employeeName;
+
+        document.getElementById("summaryMethod").textContent =
+          result.method;
+
+        document.getElementById("summarySales").textContent =
+          money(result.sales);
+
+        document.getElementById("summaryTarget").textContent =
+          result.target > 0 ? money(result.target) : "Not set";
+
+        document.getElementById("summaryBase").textContent =
+          money(result.baseIncentive);
+
+        document.getElementById("summaryAdditions").textContent =
+          money(result.additionalEarnings);
+
+        document.getElementById("summaryDeductions").textContent =
+          money(result.deductions);
+
+        document.getElementById("summaryNet").textContent =
+          money(result.netIncentive);
+
+        document.getElementById("resultPeriod").textContent =
+          result.period + " incentive estimate" +
+          (result.employeeName !== "Not specified"
+            ? " for " + result.employeeName + "."
+            : ".");
+
+        const achievementText = result.achievement === null
+          ? "N/A"
+          : number(result.achievement) + "%";
+
+        document.getElementById("achievementPercent").textContent =
+          achievementText;
+
+        const progressFill = document.getElementById("progressFill");
+        const progressTrack = document.getElementById("progressTrack");
+
+        const progressValue = result.achievement === null
+          ? 0
+          : Math.min(100, Math.max(0, result.achievement));
+
+        progressFill.style.width = progressValue + "%";
+
+        progressTrack.setAttribute(
+          "aria-valuenow",
+          String(Math.round(progressValue))
+        );
+
+        progressTrack.setAttribute(
+          "aria-valuetext",
+          achievementText + " target achievement"
+        );
+
+        let achievementNote = "";
+
+        if (result.achievement === null) {
+          achievementNote =
+            "Enter a target greater than zero to calculate achievement.";
+        } else if (result.achievement < 100) {
+          achievementNote =
+            number(100 - result.achievement) +
+            "% more achievement is needed to reach the target.";
+        } else if (result.achievement === 100) {
+          achievementNote =
+            "Sales are equal to the entered target.";
+        } else {
+          achievementNote =
+            "Sales exceed the target by " +
+            number(result.achievement - 100) + "%.";
+        }
+
+        document.getElementById("achievementNote").textContent =
+          achievementNote;
+
+        const heroAmount = document.querySelector(".hero-stat-value");
+
+        if (heroAmount) {
+          heroAmount.textContent = money(result.netIncentive);
+        }
+
+        const netElement = document.getElementById("netIncentive");
+
+        netElement.style.color =
+          result.netIncentive < 0 ? "#b42323" : "#151515";
+      }
+
+      function exportCSV() {
         const result = calculate();
 
         if (!result) return;
 
-        const summary = [
-          "ARTHNIX — Incentive Summary",
-          `Company: ${result.companyName}`,
-          `Employee: ${result.employeeName}`,
-          `Employee ID: ${result.employeeId}`,
-          `Period: ${result.period}`,
-          `Sales target: ${money(result.target)}`,
-          `Actual sales: ${money(result.actualSales)}`,
-          `Target achievement: ${result.achievement === null ? "N/A" : percentage(result.achievement)}`,
-          `Commissionable sales: ${money(result.commissionableSales)}`,
-          `Sales commission: ${money(result.commission)}`,
-          `Fixed performance bonus: ${money(result.fixedBonus)}`,
-          `Additional bonus: ${money(result.extraBonus)}`,
-          `Gross incentive: ${money(result.gross)}`,
-          `Adjustments / deductions: ${money(result.deductions)}`,
-          `Estimated net incentive: ${money(result.net)}`,
-          "",
-          "Estimate only. Verify all amounts against the applicable company incentive policy."
-        ].join("\n");
+        const rows = [
+          ["ARTHNIX Incentive Calculator Summary"],
+          ["Employee", result.employeeName],
+          ["Employee ID", result.employeeId],
+          ["Period", result.period],
+          ["Calculation method", result.method],
+          ["Eligible sales (INR)", result.sales.toFixed(2)],
+          ["Sales target (INR)", result.target.toFixed(2)],
+          [
+            "Target achievement (%)",
+            result.achievement === null
+              ? "N/A"
+              : result.achievement.toFixed(2)
+          ],
+          ["Base incentive (INR)", result.baseIncentive.toFixed(2)],
+          ["Fixed bonus (INR)", result.fixedBonus.toFixed(2)],
+          ["Other additions (INR)", result.otherAddition.toFixed(2)],
+          ["Total additional earnings (INR)", result.additionalEarnings.toFixed(2)],
+          ["Total deductions (INR)", result.deductions.toFixed(2)],
+          ["Gross incentive (INR)", result.grossIncentive.toFixed(2)],
+          ["Net incentive (INR)", result.netIncentive.toFixed(2)],
+          ["Units sold", result.unitsSold],
+          [""],
+          ["Note", "Estimate based on user-entered values and rules."]
+        ];
 
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(summary)
-            .then(() => {
-              const button = document.getElementById("copyButton");
-              const original = button.textContent;
-              button.textContent = "Copied!";
-              window.setTimeout(() => {
-                button.textContent = original;
-              }, 1600);
-            })
-            .catch(() => fallbackCopy(summary));
-        } else {
-          fallbackCopy(summary);
-        }
-      }
-
-      function fallbackCopy(text) {
-        const temporary = document.createElement("textarea");
-        temporary.value = text;
-        temporary.setAttribute("readonly", "");
-        temporary.style.position = "fixed";
-        temporary.style.opacity = "0";
-        document.body.appendChild(temporary);
-        temporary.select();
-
-        try {
-          document.execCommand("copy");
-          const button = document.getElementById("copyButton");
-          const original = button.textContent;
-          button.textContent = "Copied!";
-          window.setTimeout(() => {
-            button.textContent = original;
-          }, 1600);
-        } catch (error) {
-          showError("Unable to copy automatically. Please select and copy the summary manually.");
+        if (result.commissionDetails) {
+          rows.push(
+            ["Tier 1 sales (INR)", result.commissionDetails.tier1Sales.toFixed(2)],
+            ["Tier 1 commission (INR)", result.commissionDetails.tier1Commission.toFixed(2)],
+            ["Tier 2 sales (INR)", result.commissionDetails.tier2Sales.toFixed(2)],
+            ["Tier 2 commission (INR)", result.commissionDetails.tier2Commission.toFixed(2)],
+            ["Tier 3 sales (INR)", result.commissionDetails.tier3Sales.toFixed(2)],
+            ["Tier 3 commission (INR)", result.commissionDetails.tier3Commission.toFixed(2)]
+          );
         }
 
-        temporary.remove();
+        function escapeCSVCell(value) {
+          let text = String(value ?? "");
+
+          if (/^[=+\-@]/.test(text)) {
+            text = "'" + text;
+          }
+
+          return '"' + text.replace(/"/g, '""') + '"';
+        }
+
+        const csv = "\uFEFF" + rows
+          .map((row) => row.map(escapeCSVCell).join(","))
+          .join("\r\n");
+
+        const blob = new Blob([csv], {
+          type: "text/csv;charset=utf-8;"
+        });
+
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+
+        anchor.href = url;
+        anchor.download = "arthnix-incentive-summary.csv";
+        anchor.style.display = "none";
+
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
       }
-
-      /* Default period to the current month. */
-      const periodField = document.getElementById("period");
-      const now = new Date();
-
-      periodField.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        calculate();
-      });
 
-      fields.forEach((id) => {
-        const element = document.getElementById(id);
+        const result = calculate();
 
-        if (!element) return;
-
-        element.addEventListener("input", calculate);
-        element.addEventListener("change", calculate);
-      });
-
-      form.addEventListener("reset", () => {
-        window.setTimeout(() => {
-          clearError();
-          calculate();
-        }, 0);
-      });
-
-      document.getElementById("printButton").addEventListener("click", () => {
-        if (calculate()) {
-          window.print();
+        if (result) {
+          document.getElementById("resultPanel").scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+            block: "nearest"
+          });
         }
       });
 
-      document.getElementById("copyButton").addEventListener("click", copySummary);
+      form.addEventListener("input", () => {
+        calculate();
+      });
 
+      form.addEventListener("change", () => {
+        updateMethodFields();
+        calculate();
+      });
+
+      incentiveType.addEventListener("change", () => {
+        updateMethodFields();
+        calculate();
+      });
+
+      resetButton.addEventListener("click", () => {
+        form.reset();
+        clearMessage();
+        updateMethodFields();
+        calculate();
+      });
+
+      printButton.addEventListener("click", () => {
+        const result = calculate();
+
+        if (!result) return;
+
+        document.body.classList.add("printing-results");
+
+        const cleanup = () => {
+          document.body.classList.remove("printing-results");
+          window.removeEventListener("afterprint", cleanup);
+        };
+
+        window.addEventListener("afterprint", cleanup);
+
+        window.print();
+
+        /* Fallback for browsers that do not reliably fire afterprint. */
+        setTimeout(cleanup, 1500);
+      });
+
+      downloadButton.addEventListener("click", exportCSV);
+
+      updateMethodFields();
       calculate();
     })();
   </script>
