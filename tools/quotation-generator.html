@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Free Quotation Generator — ARTHNIX</title>
   <meta
     name="description"
@@ -12,14 +11,12 @@
   <meta name="theme-color" content="#090909">
   <link rel="canonical" href="https://arthnix.com/tools/quotation-generator.html">
   <link rel="icon" type="image/png" href="/logo.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
-
   <style>
     :root {
       --black: #090909;
@@ -37,16 +34,13 @@
       --radius: 16px;
       --shadow: 0 16px 48px rgba(0, 0, 0, 0.055);
     }
-
     * {
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 100px;
     }
-
     body {
       margin: 0;
       background: var(--paper);
@@ -56,7 +50,6 @@
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
-
     body,
     button,
     input,
@@ -64,47 +57,39 @@
     select {
       font-family: "DM Sans", sans-serif;
     }
-
     button,
     input,
     textarea,
     select {
       font-size: inherit;
     }
-
     button {
       cursor: pointer;
     }
-
     a {
       color: inherit;
       text-decoration: none;
     }
-
     img {
       max-width: 100%;
     }
-
     .container {
       width: min(var(--container), calc(100% - 48px));
       margin-inline: auto;
     }
-
     /* =====================================================
-       NAVBAR — ARTHNIX HOMEPAGE STYLE
+       NAVBAR — MATCHES ARTHNIX HOMEPAGE
        ===================================================== */
-
     .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
       width: 100%;
-      background: rgba(9, 9, 9, 0.96);
+      background: #090909;
       border-bottom: 1px solid #292929;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
-
     .navbar {
       position: relative;
       width: min(1200px, calc(100% - 64px));
@@ -115,80 +100,70 @@
       justify-content: space-between;
       gap: 28px;
     }
-
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
       flex-shrink: 0;
     }
-
     .brand-logo {
       width: 38px;
       height: 38px;
       object-fit: contain;
     }
-
     .brand-name {
       font-family: "Manrope", sans-serif;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
       letter-spacing: -0.8px;
       color: #ffffff;
     }
-
     .nav-links {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 28px;
-      margin-left: auto;
+      gap: 27px;
     }
-
     .nav-links a {
-      color: #b8b8b8;
+      color: #bcbcbc;
       font-size: 13px;
       font-weight: 600;
       white-space: nowrap;
       transition: color 0.2s ease;
     }
-
-    .nav-links a:hover {
-      color: #ffffff;
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: #ed3434;
     }
-
     .nav-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 43px;
-      padding: 0 19px;
-      border: 1px solid #ffffff;
+      gap: 9px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid #ed3434;
       border-radius: 7px;
-      background: #ffffff;
-      color: #090909;
-      font-size: 13px;
+      background: #ed3434;
+      color: #ffffff;
+      font-size: 12px;
       font-weight: 700;
       white-space: nowrap;
       transition:
         background 0.2s ease,
-        color 0.2s ease,
         border-color 0.2s ease,
         transform 0.2s ease;
     }
-
-    .nav-cta:hover {
-      border-color: #d9d9d9;
-      background: #d9d9d9;
-      color: #090909;
+    .nav-cta:hover,
+    .nav-cta:focus-visible {
+      border-color: #d92727;
+      background: #d92727;
+      color: #ffffff;
       transform: translateY(-1px);
     }
-
     .menu-toggle {
       display: none;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       padding: 10px;
       border: 1px solid #333333;
       border-radius: 8px;
@@ -197,19 +172,34 @@
       justify-content: center;
       flex-direction: column;
       gap: 5px;
+      cursor: pointer;
     }
-
     .menu-toggle span {
+      display: block;
       width: 18px;
       height: 2px;
-      background: #ffffff;
       border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
     }
-
+    .menu-toggle.is-active span:first-child {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+    .menu-toggle.is-active span:last-child {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+    .brand:focus-visible,
+    .nav-links a:focus-visible,
+    .nav-cta:focus-visible,
+    .menu-toggle:focus-visible {
+      outline: 2px solid #ed3434;
+      outline-offset: 4px;
+    }
     /* =====================================================
        HERO
        ===================================================== */
-
     .hero {
       padding: 76px 0 57px;
       overflow: hidden;
@@ -222,11 +212,9 @@
         ),
         var(--paper);
     }
-
     .hero-inner {
       max-width: 850px;
     }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -238,14 +226,12 @@
       letter-spacing: 1.6px;
       text-transform: uppercase;
     }
-
     .eyebrow::before {
       content: "";
       width: 23px;
       height: 2px;
       background: var(--red);
     }
-
     h1,
     h2,
     h3,
@@ -254,7 +240,6 @@
       font-family: "Manrope", sans-serif;
       letter-spacing: -1.1px;
     }
-
     .hero h1 {
       max-width: 790px;
       margin-bottom: 23px;
@@ -263,11 +248,9 @@
       line-height: 1.08;
       letter-spacing: -3.5px;
     }
-
     .accent {
       color: var(--red);
     }
-
     .hero-description {
       max-width: 690px;
       margin: 0;
@@ -275,14 +258,12 @@
       font-size: 16px;
       line-height: 1.9;
     }
-
     .hero-points {
       display: flex;
       flex-wrap: wrap;
       gap: 12px 25px;
       margin-top: 30px;
     }
-
     .hero-point {
       display: inline-flex;
       align-items: center;
@@ -291,7 +272,6 @@
       font-size: 13px;
       font-weight: 600;
     }
-
     .check-icon {
       display: inline-flex;
       align-items: center;
@@ -305,15 +285,12 @@
       font-weight: 800;
       flex-shrink: 0;
     }
-
     /* =====================================================
        TOOL INTRO
        ===================================================== */
-
     .tool-section {
       padding: 44px 0 85px;
     }
-
     .tool-heading {
       display: flex;
       align-items: flex-end;
@@ -321,20 +298,17 @@
       gap: 24px;
       margin-bottom: 25px;
     }
-
     .tool-heading h2 {
       margin-bottom: 5px;
       font-size: 27px;
       font-weight: 800;
       letter-spacing: -1px;
     }
-
     .tool-heading p {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
     }
-
     .privacy-note {
       display: inline-flex;
       align-items: center;
@@ -344,29 +318,24 @@
       font-weight: 600;
       white-space: nowrap;
     }
-
     .privacy-note svg {
       width: 16px;
       height: 16px;
       flex-shrink: 0;
     }
-
     /* =====================================================
        TOOL WORKSPACE
        ===================================================== */
-
     .workspace {
       display: grid;
       grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
       align-items: start;
       gap: 25px;
     }
-
     .editor-column,
     .preview-column {
       min-width: 0;
     }
-
     .editor-card,
     .preview-card {
       border: 1px solid var(--border);
@@ -375,7 +344,6 @@
       box-shadow: var(--shadow);
       overflow: hidden;
     }
-
     .card-header {
       display: flex;
       align-items: center;
@@ -384,20 +352,17 @@
       padding: 20px 22px;
       border-bottom: 1px solid var(--border);
     }
-
     .card-header h3 {
       margin: 0;
       font-size: 16px;
       font-weight: 800;
       letter-spacing: -0.4px;
     }
-
     .card-header p {
       margin: 3px 0 0;
       color: var(--muted);
       font-size: 11px;
     }
-
     .live-badge {
       display: inline-flex;
       align-items: center;
@@ -411,7 +376,6 @@
       font-weight: 800;
       white-space: nowrap;
     }
-
     .live-badge::before {
       content: "";
       width: 6px;
@@ -419,30 +383,25 @@
       border-radius: 50%;
       background: #37a85b;
     }
-
     .editor-body {
       padding: 22px;
     }
-
     .form-section {
       padding-bottom: 24px;
       margin-bottom: 24px;
       border-bottom: 1px solid var(--border);
     }
-
     .form-section:last-child {
       padding-bottom: 0;
       margin-bottom: 0;
       border-bottom: 0;
     }
-
     .section-heading {
       display: flex;
       align-items: flex-start;
       gap: 11px;
       margin-bottom: 19px;
     }
-
     .section-number {
       display: flex;
       align-items: center;
@@ -456,34 +415,28 @@
       font-size: 12px;
       font-weight: 800;
     }
-
     .section-heading h4 {
       margin: 0;
       font-size: 14px;
       font-weight: 800;
       letter-spacing: -0.3px;
     }
-
     .section-heading p {
       margin: 3px 0 0;
       color: var(--muted);
       font-size: 11px;
     }
-
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px 13px;
     }
-
     .field {
       min-width: 0;
     }
-
     .field.full {
       grid-column: 1 / -1;
     }
-
     .field label {
       display: block;
       margin-bottom: 7px;
@@ -491,12 +444,10 @@
       font-size: 11px;
       font-weight: 700;
     }
-
     .field label .optional {
       color: #969696;
       font-weight: 500;
     }
-
     .field input,
     .field select,
     .field textarea {
@@ -515,42 +466,35 @@
         border-color 0.2s ease,
         box-shadow 0.2s ease;
     }
-
     .field textarea {
       min-height: 82px;
       resize: vertical;
       line-height: 1.65;
     }
-
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
       border-color: var(--red);
       box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.08);
     }
-
     .field input[type="color"] {
       min-height: 43px;
       padding: 5px;
       cursor: pointer;
     }
-
     .field input[type="file"] {
       padding: 9px;
       font-size: 11px;
     }
-
     .field-help {
       margin-top: 5px;
       color: #898989;
       font-size: 10px;
       line-height: 1.5;
     }
-
     /* =====================================================
        LINE ITEMS
        ===================================================== */
-
     .items-heading {
       display: flex;
       align-items: center;
@@ -558,13 +502,11 @@
       gap: 12px;
       margin-bottom: 13px;
     }
-
     .items-heading h4 {
       margin: 0;
       font-size: 14px;
       font-weight: 800;
     }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -580,56 +522,46 @@
       font-weight: 700;
       transition: 0.2s ease;
     }
-
     .btn:hover {
       border-color: #c8c8c5;
       background: #f7f7f5;
     }
-
     .btn-primary {
       border-color: var(--black);
       background: var(--black);
       color: var(--white);
     }
-
     .btn-primary:hover {
       border-color: var(--red);
       background: var(--red);
       color: var(--white);
     }
-
     .btn-red {
       border-color: var(--red);
       background: var(--red);
       color: var(--white);
     }
-
     .btn-red:hover {
       border-color: var(--red-dark);
       background: var(--red-dark);
     }
-
     .btn-danger {
       color: #cf2929;
     }
-
     .btn-danger:hover {
       border-color: #f0c6c6;
       background: #fff6f6;
     }
-
     .item-list {
       display: grid;
       gap: 13px;
     }
-
     .item-row {
       padding: 14px;
       border: 1px solid var(--border);
       border-radius: 10px;
       background: #fdfdfc;
     }
-
     .item-row-top {
       display: flex;
       align-items: center;
@@ -637,12 +569,10 @@
       gap: 12px;
       margin-bottom: 12px;
     }
-
     .item-row-title {
       font-size: 11px;
       font-weight: 800;
     }
-
     .item-remove {
       padding: 3px 6px;
       border: 0;
@@ -652,28 +582,23 @@
       font-size: 10px;
       font-weight: 700;
     }
-
     .item-remove:hover {
       background: #fff0f0;
     }
-
     .item-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
-
     .item-grid .field label {
       font-size: 10px;
     }
-
     .item-grid .field input,
     .item-grid .field select {
       min-height: 39px;
       padding: 8px 9px;
       font-size: 11px;
     }
-
     .item-line-total {
       display: flex;
       align-items: center;
@@ -685,39 +610,32 @@
       color: var(--muted);
       font-size: 10px;
     }
-
     .item-line-total strong {
       color: var(--text);
       font-size: 12px;
     }
-
     .editor-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 9px;
       margin-top: 22px;
     }
-
     .editor-actions .btn {
       flex: 1 1 auto;
     }
-
     .editor-disclaimer {
       margin: 18px 0 0;
       color: #858585;
       font-size: 10px;
       line-height: 1.8;
     }
-
     /* =====================================================
        PREVIEW PANEL
        ===================================================== */
-
     .preview-card {
       position: sticky;
       top: 99px;
     }
-
     .preview-toolbar {
       display: flex;
       align-items: center;
@@ -727,38 +645,32 @@
       border-bottom: 1px solid var(--border);
       background: #fff;
     }
-
     .preview-toolbar strong {
       display: block;
       font-size: 12px;
       font-weight: 800;
     }
-
     .preview-toolbar span {
       display: block;
       margin-top: 2px;
       color: var(--muted);
       font-size: 10px;
     }
-
     .preview-toolbar-actions {
       display: flex;
       gap: 7px;
       flex-shrink: 0;
     }
-
     .preview-toolbar-actions .btn {
       min-height: 34px;
       padding: 0 10px;
       font-size: 10px;
     }
-
     .preview-canvas {
       padding: 22px;
       background: #f1f1ef;
       overflow: auto;
     }
-
     .quotation-paper {
       width: 100%;
       max-width: 680px;
@@ -773,13 +685,11 @@
       line-height: 1.6;
       overflow-wrap: anywhere;
     }
-
     .quotation-topline {
       height: 4px;
       margin: -32px -32px 27px;
       background: var(--accent);
     }
-
     .quotation-header {
       display: flex;
       justify-content: space-between;
@@ -787,12 +697,10 @@
       gap: 18px;
       margin-bottom: 29px;
     }
-
     .quotation-seller {
       flex: 1;
       min-width: 0;
     }
-
     .quotation-logo {
       display: none;
       max-width: 100px;
@@ -801,7 +709,6 @@
       object-fit: contain;
       object-position: left center;
     }
-
     .quotation-seller-name {
       margin-bottom: 6px;
       color: #161616;
@@ -810,19 +717,16 @@
       font-weight: 800;
       line-height: 1.3;
     }
-
     .quotation-seller-details {
       color: #777;
       font-size: 9px;
       line-height: 1.8;
       white-space: pre-line;
     }
-
     .quotation-title-block {
       flex-shrink: 0;
       text-align: right;
     }
-
     .quotation-title {
       margin: 0 0 6px;
       color: var(--accent);
@@ -832,29 +736,24 @@
       line-height: 1.2;
       letter-spacing: -1px;
     }
-
     .quotation-number {
       color: #666;
       font-size: 10px;
     }
-
     .quotation-number strong {
       color: #222;
     }
-
     .quotation-rule {
       height: 1px;
       margin: 0 0 22px;
       background: #e8e8e8;
     }
-
     .quotation-meta {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 20px;
       margin-bottom: 25px;
     }
-
     .preview-label {
       margin-bottom: 8px;
       color: #929292;
@@ -863,60 +762,51 @@
       letter-spacing: 1.2px;
       text-transform: uppercase;
     }
-
     .preview-customer-name {
       margin-bottom: 5px;
       color: #222;
       font-size: 12px;
       font-weight: 800;
     }
-
     .preview-customer-details {
       color: #707070;
       font-size: 9px;
       line-height: 1.9;
       white-space: pre-line;
     }
-
     .preview-dates {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-bottom: 15px;
     }
-
     .preview-date-box {
       padding: 10px;
       border: 1px solid #ededed;
       border-radius: 5px;
       background: #fcfcfc;
     }
-
     .preview-date-box span {
       display: block;
       margin-bottom: 4px;
       color: #858585;
       font-size: 8px;
     }
-
     .preview-date-box strong {
       font-size: 10px;
       font-weight: 700;
     }
-
     .preview-table-wrap {
       width: 100%;
       overflow-x: auto;
       margin: 0 0 20px;
     }
-
     .quotation-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 8px;
       table-layout: fixed;
     }
-
     .quotation-table th {
       padding: 10px 6px;
       background: var(--accent);
@@ -926,81 +816,68 @@
       text-align: left;
       overflow-wrap: anywhere;
     }
-
     .quotation-table td {
       padding: 10px 6px;
       border-bottom: 1px solid #ededed;
       vertical-align: top;
       overflow-wrap: anywhere;
     }
-
     .quotation-table th:first-child,
     .quotation-table td:first-child {
       width: 8%;
       text-align: center;
     }
-
     .quotation-table th:nth-child(2),
     .quotation-table td:nth-child(2) {
       width: 35%;
     }
-
     .quotation-table th:nth-child(3),
     .quotation-table td:nth-child(3) {
       width: 11%;
       text-align: right;
     }
-
     .quotation-table th:nth-child(4),
     .quotation-table td:nth-child(4) {
       width: 20%;
       text-align: right;
     }
-
     .quotation-table th:nth-child(5),
     .quotation-table td:nth-child(5) {
       width: 26%;
       text-align: right;
     }
-
     .preview-item-name {
       font-weight: 700;
       color: #262626;
     }
-
     .preview-item-sub {
       display: block;
       margin-top: 3px;
       color: #888;
       font-size: 8px;
     }
-
     .preview-bottom {
       display: grid;
       grid-template-columns: 1fr 0.9fr;
       gap: 24px;
       align-items: start;
     }
-
     .preview-terms {
       color: #777;
       font-size: 9px;
       line-height: 1.9;
       white-space: pre-line;
     }
-
     .preview-terms strong {
       display: block;
       margin-bottom: 5px;
       color: #333;
       font-size: 9px;
     }
-
     .totals {
       display: grid;
       gap: 8px;
     }
-
     .total-row {
       display: flex;
       align-items: flex-start;
@@ -1009,13 +886,11 @@
       color: #707070;
       font-size: 9px;
     }
-
     .total-row strong {
       color: #252525;
       font-weight: 700;
       text-align: right;
     }
-
     .total-row.grand-total {
       margin-top: 3px;
       padding: 12px 10px;
@@ -1025,12 +900,10 @@
       font-size: 11px;
       font-weight: 700;
     }
-
     .total-row.grand-total strong {
       color: #fff;
       font-size: 13px;
     }
-
     .amount-words {
       margin-top: 18px;
       padding: 11px;
@@ -1038,21 +911,18 @@
       border-radius: 5px;
       background: #fcfcfc;
     }
-
     .amount-words span {
       display: block;
       margin-bottom: 3px;
       color: #858585;
       font-size: 8px;
     }
-
     .amount-words strong {
       display: block;
       color: #333;
       font-size: 9px;
       line-height: 1.6;
     }
-
     .quotation-footer {
       display: flex;
       align-items: flex-end;
@@ -1062,20 +932,17 @@
       padding-top: 20px;
       border-top: 1px solid #ededed;
     }
-
     .quotation-footer-note {
       max-width: 65%;
       color: #999;
       font-size: 8px;
       line-height: 1.8;
     }
-
     .quotation-signature {
       min-width: 100px;
       max-width: 150px;
       text-align: center;
     }
-
     .signature-image {
       display: none;
       max-width: 120px;
@@ -1083,24 +950,20 @@
       margin: 0 auto 5px;
       object-fit: contain;
     }
-
     .signature-line {
       width: 100%;
       height: 1px;
       margin-bottom: 7px;
       background: #d6d6d6;
     }
-
     .signature-name {
       font-size: 9px;
       font-weight: 700;
     }
-
     .signature-label {
       color: #929292;
       font-size: 8px;
     }
-
     .preview-bottom-note {
       margin-top: 25px;
       padding-top: 12px;
@@ -1109,20 +972,16 @@
       font-size: 8px;
       text-align: center;
     }
-
     /* =====================================================
        INFORMATION SECTION
        ===================================================== */
-
     .info-section {
       padding: 0 0 85px;
     }
-
     .info-heading {
       max-width: 700px;
       margin-bottom: 29px;
     }
-
     .info-heading h2 {
       margin-bottom: 10px;
       font-size: clamp(28px, 4vw, 39px);
@@ -1130,27 +989,23 @@
       line-height: 1.2;
       letter-spacing: -1.7px;
     }
-
     .info-heading p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.9;
     }
-
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
-
     .step-card {
       padding: 25px;
       border: 1px solid var(--border);
       border-radius: 13px;
       background: #fff;
     }
-
     .step-index {
       display: flex;
       align-items: center;
@@ -1165,90 +1020,75 @@
       font-size: 13px;
       font-weight: 800;
     }
-
     .step-card h3 {
       margin-bottom: 9px;
       font-size: 16px;
       font-weight: 800;
       letter-spacing: -0.5px;
     }
-
     .step-card p {
       margin: 0;
       color: #737373;
       font-size: 12px;
       line-height: 1.9;
     }
-
     .faq-list {
       display: grid;
       gap: 11px;
       max-width: 850px;
     }
-
     .faq-item {
       padding: 19px 21px;
       border: 1px solid var(--border);
       border-radius: 10px;
       background: #fff;
     }
-
     .faq-item h3 {
       margin: 0 0 7px;
       font-size: 14px;
       font-weight: 800;
       letter-spacing: -0.3px;
     }
-
     .faq-item p {
       margin: 0;
       color: #737373;
       font-size: 12px;
       line-height: 1.9;
     }
-
     /* =====================================================
-       FOOTER — ARTHNIX HOMEPAGE STYLE
+       FOOTER — PRESERVED
        ===================================================== */
-
     .site-footer {
       background: #090909;
       color: #ffffff;
     }
-
     .footer-main {
       display: grid;
       grid-template-columns: 1.5fr repeat(3, 1fr);
       gap: 45px;
       padding: 62px 0 48px;
     }
-
     .footer-brand {
       max-width: 290px;
     }
-
     .footer-brand .brand {
       margin-bottom: 19px;
     }
-
     .footer-brand .brand-name {
       color: #ffffff;
     }
-
     .footer-brand p {
       margin: 0;
       color: #a2a2a2;
       font-size: 12px;
       line-height: 1.9;
     }
-
     .footer-powered {
       display: inline-block;
       margin-top: 13px;
       color: #8e8e8e;
       font-size: 11px;
     }
-
     .footer-column h4 {
       margin: 4px 0 18px;
       color: #ffffff;
@@ -1257,7 +1097,6 @@
       font-weight: 800;
       letter-spacing: 0;
     }
-
     .footer-column a {
       display: block;
       width: fit-content;
@@ -1266,11 +1105,9 @@
       font-size: 11px;
       transition: color 0.2s ease;
     }
-
     .footer-column a:hover {
       color: #ffffff;
     }
-
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -1281,70 +1118,55 @@
       color: #8e8e8e;
       font-size: 10px;
     }
-
     .footer-bottom a {
       color: #d0d0d0;
       transition: color 0.2s ease;
     }
-
     .footer-bottom a:hover {
       color: #ffffff;
     }
-
     /* =====================================================
-       RESPONSIVE
+       RESPONSIVE NAVBAR AND PAGE
        ===================================================== */
-
     @media (max-width: 1050px) {
       .navbar {
         gap: 18px;
       }
-
       .nav-links {
         gap: 19px;
       }
-
       .workspace {
         grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
         gap: 18px;
       }
-
       .quotation-paper {
         padding: 24px;
       }
-
       .quotation-topline {
         margin: -24px -24px 23px;
       }
-
       .preview-canvas {
         padding: 14px;
       }
-
       .footer-main {
         gap: 30px;
       }
     }
-
     @media (max-width: 780px) {
       .container,
       .navbar {
         width: min(calc(100% - 32px), 1200px);
       }
-
       .navbar {
         min-height: 70px;
       }
-
       .brand-logo {
         width: 34px;
         height: 34px;
       }
-
       .brand-name {
         font-size: 19px;
       }
-
       .nav-links {
         position: absolute;
         top: calc(100% + 1px);
@@ -1355,260 +1177,236 @@
         align-items: stretch;
         gap: 0;
         padding: 9px 16px 16px;
+        margin-left: 0;
         border: 1px solid #292929;
         border-top: 0;
         background: #090909;
         box-shadow: 0 15px 24px rgba(0, 0, 0, 0.2);
       }
-
       .nav-links.is-open {
         display: flex;
       }
-
       .nav-links a {
         padding: 13px 8px;
         border-bottom: 1px solid #242424;
-        color: #b8b8b8;
+        color: #bcbcbc;
         font-size: 13px;
       }
-
-      .nav-links a:hover {
-        color: #ffffff;
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: #ed3434;
       }
-
       .nav-links a:last-child {
         border-bottom: 0;
       }
-
       .nav-cta {
         margin-left: auto;
-        min-height: 39px;
+        min-height: 40px;
         padding: 0 13px;
-        font-size: 11px;
+        font-size: 12px;
       }
-
       .menu-toggle {
         display: flex;
+        flex-shrink: 0;
       }
-
       .hero {
         padding: 58px 0 43px;
       }
-
       .hero h1 {
         font-size: clamp(40px, 9vw, 61px);
         letter-spacing: -2.4px;
       }
-
       .hero-description {
         font-size: 14px;
       }
-
       .tool-section {
         padding: 33px 0 65px;
       }
-
       .tool-heading {
         align-items: flex-start;
         flex-direction: column;
         gap: 12px;
       }
-
       .workspace {
         display: flex;
         flex-direction: column;
       }
-
       .preview-column {
         order: 1;
         width: 100%;
       }
-
       .editor-column {
         order: 2;
         width: 100%;
       }
-
       .preview-card {
         position: static;
       }
-
       .quotation-paper {
         max-width: 100%;
       }
-
       .preview-canvas {
         padding: 18px;
       }
-
       .steps-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
       .footer-main {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 35px 25px;
       }
-
       .footer-brand {
         grid-column: 1 / -1;
         max-width: 380px;
       }
     }
-
     @media (max-width: 480px) {
       .container,
       .navbar {
         width: calc(100% - 28px);
       }
-
       .navbar {
         gap: 9px;
       }
-
       .brand {
         gap: 7px;
       }
-
       .brand-logo {
         width: 30px;
         height: 30px;
       }
-
       .brand-name {
         font-size: 17px;
       }
-
       .nav-cta {
         min-height: 36px;
         padding: 0 10px;
         font-size: 10px;
       }
-
+      .menu-toggle {
+        width: 38px;
+        height: 38px;
+      }
       .hero {
         padding: 45px 0 37px;
       }
-
       .hero h1 {
         font-size: 39px;
         letter-spacing: -2px;
       }
-
       .hero-description {
         font-size: 13px;
       }
-
       .hero-points {
         gap: 10px 15px;
       }
-
       .hero-point {
         font-size: 11px;
       }
-
       .tool-heading h2 {
         font-size: 23px;
       }
-
       .card-header,
       .editor-body {
         padding: 17px;
       }
-
       .preview-toolbar {
         align-items: flex-start;
         flex-direction: column;
       }
-
       .preview-toolbar-actions {
         width: 100%;
       }
-
       .preview-toolbar-actions .btn {
         flex: 1;
       }
-
       .preview-canvas {
         padding: 8px;
       }
-
       .quotation-paper {
         padding: 18px;
         font-size: 9px;
       }
-
       .quotation-topline {
         margin: -18px -18px 20px;
       }
-
       .quotation-header {
         gap: 10px;
       }
-
       .quotation-title {
         font-size: 20px;
       }
-
       .quotation-seller-name {
         font-size: 12px;
       }
-
       .quotation-seller-details {
         font-size: 8px;
       }
-
       .quotation-meta {
         gap: 10px;
       }
-
       .preview-bottom {
         grid-template-columns: 1fr;
         gap: 20px;
       }
-
       .quotation-footer {
         margin-top: 25px;
       }
-
       .form-grid {
         gap: 13px 9px;
       }
-
       .field input,
       .field select,
       .field textarea {
         padding: 9px;
         font-size: 11px;
       }
-
       .steps-grid {
         grid-template-columns: 1fr;
       }
-
       .step-card {
         padding: 21px;
       }
-
       .footer-main {
         gap: 30px 15px;
       }
-
       .footer-bottom {
         align-items: flex-start;
         flex-direction: column;
         gap: 8px;
       }
     }
-
+    @media (max-width: 380px) {
+      .navbar {
+        gap: 7px;
+      }
+      .brand {
+        gap: 5px;
+      }
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+      .brand-name {
+        font-size: 16px;
+      }
+      .nav-cta {
+        gap: 5px;
+        padding-inline: 8px;
+        font-size: 10px;
+      }
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
     /* =====================================================
        PRINT / SAVE AS PDF
        ===================================================== */
-
     @page {
       size: A4;
       margin: 12mm;
     }
-
     @media print {
       html,
       body {
@@ -1618,21 +1416,17 @@
         padding: 0 !important;
         background: #fff !important;
       }
-
       body {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
-
       body * {
         visibility: hidden !important;
       }
-
       #printDocument,
       #printDocument * {
         visibility: visible !important;
       }
-
       #printDocument {
         position: absolute !important;
         inset: 0 auto auto 0 !important;
@@ -1645,11 +1439,9 @@
         box-shadow: none !important;
         font-size: 10px !important;
       }
-
       .quotation-topline {
         margin-top: 0 !important;
       }
-
       .quotation-paper {
         width: 100% !important;
         max-width: none !important;
@@ -1657,11 +1449,9 @@
         margin: 0 !important;
         box-shadow: none !important;
       }
-
       .quotation-table thead {
         display: table-header-group;
       }
-
       .quotation-table tr,
       .quotation-meta,
       .preview-bottom,
@@ -1669,14 +1459,12 @@
         break-inside: avoid;
         page-break-inside: avoid;
       }
-
       .quotation-table th,
       .total-row.grand-total,
       .quotation-topline {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
-
       .print-attribution {
         display: block !important;
         margin-top: 22px;
@@ -1685,985 +1473,821 @@
         text-align: center;
       }
     }
-
     .print-attribution {
       display: none;
     }
   </style>
 </head>
-
 <body>
-
   <!-- =====================================================
        NAVBAR — ARTHNIX HOMEPAGE STYLE
        ===================================================== -->
-
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="ARTHNIX home">
+        <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
+        <span class="brand-name">ARTHNIX</span>
+      </a>
+  <div class="nav-links" id="navLinks">
+    <a href="/tools.html">Free Tools</a>
+    <a href="/platform.html">Platform</a>
+    <a href="/#how-it-works">How It Works</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <a class="nav-cta" href="/tools.html">
+    Start Free <span aria-hidden="true">↗</span>
+  </a>
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="navLinks"
+  >
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+  </header>
+  <main>
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="eyebrow">Free Business Tool</div>
+      <h1>
+        Create quotations.<br>
+        <span class="accent">Win business professionally.</span>
+      </h1>
+      <p class="hero-description">
+        Create clean, professional quotations for your customers in minutes.
+        Add your business details, products, pricing and GST, then print or
+        save your quotation as a PDF. No account or paid subscription required.
+      </p>
+      <div class="hero-points">
+        <span class="hero-point">
+          <span class="check-icon">✓</span>
+          Free to use
+        </span>
+        <span class="hero-point">
+          <span class="check-icon">✓</span>
+          Live quotation preview
+        </span>
+        <span class="hero-point">
+          <span class="check-icon">✓</span>
+          GST and discount calculations
+        </span>
+        <span class="hero-point">
+          <span class="check-icon">✓</span>
+          Print or save as PDF
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- =====================================================
+     QUOTATION GENERATOR
+     ===================================================== -->
+<section class="tool-section" id="quotation-generator">
+  <div class="container">
+    <div class="tool-heading">
+      <div>
+        <h2>Quotation Generator</h2>
+        <p>Enter your details and prepare a customer-ready quotation.</p>
+      </div>
+      <div class="privacy-note">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect
+            x="5"
+            y="10"
+            width="14"
+            height="11"
+            rx="2"
+            stroke="currentColor"
+            stroke-width="1.8"
+          />
+          <path
+            d="M8 10V7a4 4 0 0 1 8 0v3"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </svg>
+        Your entries stay in this browser session
+      </div>
+    </div>
+    <div class="workspace">
+      <!-- EDITOR -->
+      <div class="editor-column">
+        <div class="editor-card">
+          <div class="card-header">
+            <div>
+              <h3>Quotation Details</h3>
+              <p>Complete the sections below.</p>
+            </div>
+            <span class="live-badge">Live Preview</span>
+          </div>
+          <div class="editor-body">
+            <form id="quotationForm" autocomplete="on">
+              <!-- BUSINESS -->
+              <section class="form-section">
+                <div class="section-heading">
+                  <span class="section-number">01</span>
+                  <div>
+                    <h4>Your Business</h4>
+                    <p>Information displayed on your quotation.</p>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="businessName">Business name *</label>
+                    <input
+                      id="businessName"
+                      type="text"
+                      placeholder="e.g. ARTHNIX Solutions"
+                      required
+                    >
+                  </div>
+                  <div class="field full">
+                    <label for="businessAddress">Business address</label>
+                    <textarea
+                      id="businessAddress"
+                      placeholder="Street, city, state and postal code"
+                    ></textarea>
+                  </div>
+                  <div class="field">
+                    <label for="businessEmail">Email address</label>
+                    <input
+                      id="businessEmail"
+                      type="email"
+                      placeholder="hello@example.com"
+                    >
+                  </div>
+                  <div class="field">
+                    <label for="businessPhone">Phone number</label>
+                    <input
+                      id="businessPhone"
+                      type="tel"
+                      placeholder="+91 98765 43210"
+                    >
+                  </div>
+                  <div class="field">
+                    <label for="businessGstin">
+                      GSTIN <span class="optional">(optional)</span>
+                    </label>
+                    <input
+                      id="businessGstin"
+                      type="text"
+                      placeholder="15-character GSTIN"
+                      maxlength="15"
+                    >
+                  </div>
+                  <div class="field">
+                    <label for="businessLogo">Business logo</label>
+                    <input
+                      id="businessLogo"
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp"
+                    >
+                    <div class="field-help">PNG, JPG or WebP. Maximum 3 MB.</div>
+                  </div>
+                  <div class="field">
+                    <label for="accentColor">Quotation accent colour</label>
+                    <input
+                      id="accentColor"
+                      type="color"
+                      value="#ed3434"
+                    >
+                  </div>
+                </div>
+              </section>
+              <!-- CUSTOMER -->
+              <section class="form-section">
+                <div class="section-heading">
+                  <span class="section-number">02</span>
+                  <div>
+                    <h4>Customer Details</h4>
+                    <p>Who is receiving this quotation?</p>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="customerName">Customer or company name *</label>
+                    <input
+                      id="customerName"
+                      type="text"
+                      placeholder="e.g. ABC Technologies"
+                      required
+                    >
+                  </div>
+                  <div class="field full">
+                    <label for="customerAddress">Customer address</label>
+                    <textarea
+                      id="customerAddress"
+                      placeholder="Customer billing address"
+                    ></textarea>
+                  </div>
+                  <div class="field">
+                    <label for="customerEmail">Customer email</label>
+                    <input
+                      id="customerEmail"
+                      type="email"
+                      placeholder="customer@example.com"
+                    >
+                  </div>
+                  <div class="field">
+                    <label for="customerGstin">Customer GSTIN</label>
+                    <input
+                      id="customerGstin"
+                      type="text"
+                      placeholder="Optional GSTIN"
+                      maxlength="15"
+                    >
+                  </div>
+                </div>
+              </section>
+              <!-- QUOTATION INFORMATION -->
+              <section class="form-section">
+                <div class="section-heading">
+                  <span class="section-number">03</span>
+                  <div>
+                    <h4>Quotation Information</h4>
+                    <p>Set the reference number, dates and tax treatment.</p>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="quotationNumber">Quotation number *</label>
+                    <input
+                      id="quotationNumber"
+                      type="text"
+                      required
+                    >
+                  </div>
+                  <div class="field">
+                    <label for="currency">Currency</label>
+                    <select id="currency">
+                      <option value="INR">INR — Indian Rupee</option>
+                      <option value="USD">USD — US Dollar</option>
+                      <option value="EUR">EUR — Euro</option>
+                      <option value="GBP">GBP — British Pound</option>
+                      <option value="AED">AED — UAE Dirham</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="quotationDate">Quotation date *</label>
+                    <input id="quotationDate" type="date" required>
+                  </div>
+                  <div class="field">
+                    <label for="validUntil">Valid until *</label>
+                    <input id="validUntil" type="date" required>
+                  </div>
+                  <div class="field full">
+                    <label for="placeOfSupply">Place of supply</label>
+                    <input
+                      id="placeOfSupply"
+                      type="text"
+                      placeholder="e.g. Telangana"
+                    >
+                  </div>
+                  <div class="field full">
+                    <label for="gstTreatment">GST treatment</label>
+                    <select id="gstTreatment">
+                      <option value="intra">
+                        Intra-state — CGST + SGST
+                      </option>
+                      <option value="inter">
+                        Inter-state — IGST
+                      </option>
+                      <option value="none">
+                        No GST / Tax not applicable
+                      </option>
+                    </select>
+                    <div class="field-help">
+                      Choose the applicable treatment based on your transaction.
+                      Confirm tax requirements with your accountant.
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- ITEMS -->
+              <section class="form-section">
+                <div class="section-heading">
+                  <span class="section-number">04</span>
+                  <div>
+                    <h4>Products &amp; Services</h4>
+                    <p>Add each item with its price, quantity and applicable tax.</p>
+                  </div>
+                </div>
+                <div class="items-heading">
+                  <h4>Quotation Items</h4>
+                  <button
+                    class="btn"
+                    id="addItemButton"
+                    type="button"
+                  >
+                    + Add Item
+                  </button>
+                </div>
+                <div class="item-list" id="itemList"></div>
+                <div class="field-help" style="margin-top:12px">
+                  Maximum 50 items. Discounts are applied per unit before tax.
+                </div>
+              </section>
+              <!-- ADDITIONAL DETAILS -->
+              <section class="form-section">
+                <div class="section-heading">
+                  <span class="section-number">05</span>
+                  <div>
+                    <h4>Additional Details</h4>
+                    <p>Include terms, notes and authorisation details.</p>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="notes">Notes</label>
+                    <textarea
+                      id="notes"
+                      placeholder="Additional information for your customer"
+                    ></textarea>
+                  </div>
+                  <div class="field full">
+                    <label for="paymentTerms">Terms and conditions</label>
+                    <textarea
+                      id="paymentTerms"
+                      placeholder="e.g. 50% advance payment. Final delivery subject to confirmation."
+                    ></textarea>
+                  </div>
+                  <div class="field">
+                    <label for="signatoryName">Authorised signatory</label>
+                    <input
+                      id="signatoryName"
+                      type="text"
+                      placeholder="Name or designation"
+                    >
+                  </div>
+                  <div class="field">
+                    <label for="signatureUpload">Signature image</label>
+                    <input
+                      id="signatureUpload"
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp"
+                    >
+                    <div class="field-help">Optional. Maximum 2 MB.</div>
+                  </div>
+                </div>
+              </section>
+            </form>
+            <div class="editor-actions">
+              <button class="btn" id="loadSampleButton" type="button">
+                Load Sample
+              </button>
+              <button class="btn btn-danger" id="resetButton" type="button">
+                Reset
+              </button>
+              <button class="btn btn-primary" id="printButton" type="button">
+                Print / Save PDF ↗
+              </button>
+            </div>
+            <p class="editor-disclaimer">
+              This tool prepares a quotation for your business use. It does not
+              issue a tax invoice or verify tax compliance. Check all prices,
+              tax rates, customer details and terms before sending the document.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- LIVE PREVIEW -->
+      <div class="preview-column">
+        <div class="preview-card">
+          <div class="preview-toolbar">
+            <div>
+              <strong>Live Quotation Preview</strong>
+              <span>Updates as you edit the form.</span>
+            </div>
+            <div class="preview-toolbar-actions">
+              <button class="btn" id="previewSampleButton" type="button">
+                Sample
+              </button>
+              <button class="btn btn-red" id="previewPrintButton" type="button">
+                Save PDF ↗
+              </button>
+            </div>
+          </div>
+          <div class="preview-canvas">
+            <article
+              class="quotation-paper"
+              id="printDocument"
+              aria-label="Quotation preview"
+            >
+              <div class="quotation-topline" id="quotationTopline"></div>
+              <header class="quotation-header">
+                <div class="quotation-seller">
+                  <img
+                    class="quotation-logo"
+                    id="previewLogo"
+                    alt="Business logo"
+                  >
+                  <div
+                    class="quotation-seller-name"
+                    id="previewBusinessName"
+                  >
+                    Your Business Name
+                  </div>
+                  <div
+                    class="quotation-seller-details"
+                    id="previewBusinessDetails"
+                  >
+                    Add your business details
+                  </div>
+                </div>
+                <div class="quotation-title-block">
+                  <h2 class="quotation-title">QUOTATION</h2>
+                  <div class="quotation-number">
+                    No. <strong id="previewQuotationNumber">QUO-0001</strong>
+                  </div>
+                </div>
+              </header>
+              <div class="quotation-rule"></div>
+              <section class="quotation-meta">
+                <div>
+                  <div class="preview-label">Quotation prepared for</div>
+                  <div
+                    class="preview-customer-name"
+                    id="previewCustomerName"
+                  >
+                    Customer Name
+                  </div>
+                  <div
+                    class="preview-customer-details"
+                    id="previewCustomerDetails"
+                  >
+                    Customer address and contact information
+                  </div>
+                </div>
+                <div>
+                  <div class="preview-label">Quotation Details</div>
+                  <div class="preview-dates">
+                    <div class="preview-date-box">
+                      <span>Quotation Date</span>
+                      <strong id="previewQuotationDate">—</strong>
+                    </div>
+                    <div class="preview-date-box">
+                      <span>Valid Until</span>
+                      <strong id="previewValidUntil">—</strong>
+                    </div>
+                  </div>
+                  <div
+                    class="preview-customer-details"
+                    id="previewPlaceOfSupply"
+                  ></div>
+                </div>
+              </section>
+              <div class="preview-table-wrap">
+                <table class="quotation-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Item Description</th>
+                      <th>Qty</th>
+                      <th>Unit Price</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="previewItems">
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <span class="preview-item-name">Your product or service</span>
+                      </td>
+                      <td>1</td>
+                      <td>₹0.00</td>
+                      <td>₹0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <section class="preview-bottom">
+                <div>
+                  <div class="preview-terms" id="previewNotesBlock">
+                    <strong>Notes</strong>
+                    <span id="previewNotes">Thank you for considering our proposal.</span>
+                  </div>
+                  <div
+                    class="preview-terms"
+                    id="previewTermsBlock"
+                    style="margin-top:16px"
+                  >
+                    <strong>Terms &amp; Conditions</strong>
+                    <span id="previewTerms">
+                      Please confirm the quotation before proceeding.
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div class="totals">
+                    <div class="total-row">
+                      <span>Subtotal</span>
+                      <strong id="previewSubtotal">₹0.00</strong>
+                    </div>
+                    <div class="total-row">
+                      <span>Discount</span>
+                      <strong id="previewDiscount">− ₹0.00</strong>
+                    </div>
+                    <div class="total-row">
+                      <span>Taxable Amount</span>
+                      <strong id="previewTaxable">₹0.00</strong>
+                    </div>
+                    <div class="total-row" id="cgstRow">
+                      <span>CGST</span>
+                      <strong id="previewCGST">₹0.00</strong>
+                    </div>
+                    <div class="total-row" id="sgstRow">
+                      <span>SGST</span>
+                      <strong id="previewSGST">₹0.00</strong>
+                    </div>
+                    <div class="total-row" id="igstRow" style="display:none">
+                      <span>IGST</span>
+                      <strong id="previewIGST">₹0.00</strong>
+                    </div>
+                    <div class="total-row grand-total">
+                      <span>Grand Total</span>
+                      <strong id="previewGrandTotal">₹0.00</strong>
+                    </div>
+                  </div>
+                  <div class="amount-words">
+                    <span>Amount in Words</span>
+                    <strong id="previewAmountWords">Zero Rupees Only</strong>
+                  </div>
+                </div>
+              </section>
+              <footer class="quotation-footer">
+                <div class="quotation-footer-note">
+                  This quotation is subject to the terms and validity stated
+                  above. Prices and availability may change after the validity
+                  period unless otherwise agreed in writing.
+                </div>
+                <div class="quotation-signature">
+                  <img
+                    class="signature-image"
+                    id="previewSignature"
+                    alt="Authorised signature"
+                  >
+                  <div class="signature-line"></div>
+                  <div
+                    class="signature-name"
+                    id="previewSignatoryName"
+                  >
+                    Authorised Signatory
+                  </div>
+                  <div class="signature-label">For the supplier</div>
+                </div>
+              </footer>
+              <div class="preview-bottom-note">
+                Generated with ARTHNIX Business Tools
+              </div>
+              <div class="print-attribution">
+                Prepared using ARTHNIX Business Tools.
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- =====================================================
+     HOW IT WORKS
+     ===================================================== -->
+<section class="info-section">
+  <div class="container">
+    <div class="info-heading">
+      <div class="eyebrow">Simple Workflow</div>
+      <h2>
+        From pricing to a professional
+        <span class="accent">quotation in minutes.</span>
+      </h2>
+      <p>
+        Prepare a clear quotation for products, services or business proposals
+        without needing dedicated invoicing software.
+      </p>
+    </div>
+    <div class="steps-grid">
+      <article class="step-card">
+        <div class="step-index">01</div>
+        <h3>Enter your details</h3>
+        <p>
+          Add your business information, customer details, quotation number
+          and validity date.
+        </p>
+      </article>
+      <article class="step-card">
+        <div class="step-index">02</div>
+        <h3>Add products or services</h3>
+        <p>
+          Enter quantities, unit prices, discounts and applicable GST rates.
+          The totals update automatically.
+        </p>
+      </article>
+      <article class="step-card">
+        <div class="step-index">03</div>
+        <h3>Print or save as PDF</h3>
+        <p>
+          Review the live preview and create a printable quotation to share
+          with your customer.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- =====================================================
+     FAQ
+     ===================================================== -->
+<section class="info-section" style="padding-top:0">
+  <div class="container">
+    <div class="info-heading">
+      <div class="eyebrow">Common Questions</div>
+      <h2>Quotation Generator <span class="accent">FAQs</span></h2>
+      <p>Understand what this tool can do before preparing your quotation.</p>
+    </div>
+    <div class="faq-list">
+      <article class="faq-item">
+        <h3>Is the ARTHNIX Quotation Generator free?</h3>
+        <p>
+          Yes. You can enter your details, add line items, preview the
+          quotation and use your browser's print function to save it as a PDF.
+        </p>
+      </article>
+      <article class="faq-item">
+        <h3>Can I add GST to my quotation?</h3>
+        <p>
+          Yes. You can select a GST rate for each item and choose intra-state,
+          inter-state or no-GST treatment. Verify the correct tax treatment
+          and rates for your particular transaction before sharing the document.
+        </p>
+      </article>
+      <article class="faq-item">
+        <h3>Can I include my company logo and signature?</h3>
+        <p>
+          Yes. You can upload a logo and an optional signature image. The
+          images are used locally to customise the quotation preview.
+        </p>
+      </article>
+      <article class="faq-item">
+        <h3>Is a quotation the same as a tax invoice?</h3>
+        <p>
+          No. A quotation generally communicates proposed prices and terms
+          before an order is confirmed. It is not a substitute for a tax
+          invoice or other document required by applicable law.
+        </p>
+      </article>
+      <article class="faq-item">
+        <h3>Are my quotation details uploaded to ARTHNIX?</h3>
+        <p>
+          This page generates the quotation in your browser and does not
+          send its form details to an ARTHNIX backend. Your browser may still
+          retain information according to your browser settings, and any
+          external service you use separately is governed by its own policies.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+  </main>
+  <!-- =====================================================
+       FOOTER — PRESERVED
+       ===================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+  <div class="footer-main">
+    <div class="footer-brand">
       <a class="brand" href="/index.html" aria-label="ARTHNIX home">
         <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
         <span class="brand-name">ARTHNIX</span>
       </a>
-
-      <div class="nav-links" id="navLinks">
-        <a href="/tools.html">Free Tools</a>
-        <a href="/platform.html">Platform</a>
-        <a href="/#how-it-works">How It Works</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/contact.html">Contact</a>
-      </div>
-
-      <a class="nav-cta" href="/tools.html">
-        Start Free <span aria-hidden="true">↗</span>
-      </a>
-
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
-
-    <section class="hero">
-      <div class="container">
-        <div class="hero-inner">
-
-          <div class="eyebrow">Free Business Tool</div>
-
-          <h1>
-            Create quotations.<br>
-            <span class="accent">Win business professionally.</span>
-          </h1>
-
-          <p class="hero-description">
-            Create clean, professional quotations for your customers in minutes.
-            Add your business details, products, pricing and GST, then print or
-            save your quotation as a PDF. No account or paid subscription required.
-          </p>
-
-          <div class="hero-points">
-            <span class="hero-point">
-              <span class="check-icon">✓</span>
-              Free to use
-            </span>
-
-            <span class="hero-point">
-              <span class="check-icon">✓</span>
-              Live quotation preview
-            </span>
-
-            <span class="hero-point">
-              <span class="check-icon">✓</span>
-              GST and discount calculations
-            </span>
-
-            <span class="hero-point">
-              <span class="check-icon">✓</span>
-              Print or save as PDF
-            </span>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
-         QUOTATION GENERATOR
-         ===================================================== -->
-
-    <section class="tool-section" id="quotation-generator">
-      <div class="container">
-
-        <div class="tool-heading">
-          <div>
-            <h2>Quotation Generator</h2>
-            <p>Enter your details and prepare a customer-ready quotation.</p>
-          </div>
-
-          <div class="privacy-note">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect
-                x="5"
-                y="10"
-                width="14"
-                height="11"
-                rx="2"
-                stroke="currentColor"
-                stroke-width="1.8"
-              />
-              <path
-                d="M8 10V7a4 4 0 0 1 8 0v3"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-              />
-            </svg>
-            Your entries stay in this browser session
-          </div>
-        </div>
-
-        <div class="workspace">
-
-          <!-- EDITOR -->
-
-          <div class="editor-column">
-            <div class="editor-card">
-
-              <div class="card-header">
-                <div>
-                  <h3>Quotation Details</h3>
-                  <p>Complete the sections below.</p>
-                </div>
-                <span class="live-badge">Live Preview</span>
-              </div>
-
-              <div class="editor-body">
-
-                <form id="quotationForm" autocomplete="on">
-
-                  <!-- BUSINESS -->
-
-                  <section class="form-section">
-                    <div class="section-heading">
-                      <span class="section-number">01</span>
-                      <div>
-                        <h4>Your Business</h4>
-                        <p>Information displayed on your quotation.</p>
-                      </div>
-                    </div>
-
-                    <div class="form-grid">
-
-                      <div class="field full">
-                        <label for="businessName">Business name *</label>
-                        <input
-                          id="businessName"
-                          type="text"
-                          placeholder="e.g. ARTHNIX Solutions"
-                          required
-                        >
-                      </div>
-
-                      <div class="field full">
-                        <label for="businessAddress">Business address</label>
-                        <textarea
-                          id="businessAddress"
-                          placeholder="Street, city, state and postal code"
-                        ></textarea>
-                      </div>
-
-                      <div class="field">
-                        <label for="businessEmail">Email address</label>
-                        <input
-                          id="businessEmail"
-                          type="email"
-                          placeholder="hello@example.com"
-                        >
-                      </div>
-
-                      <div class="field">
-                        <label for="businessPhone">Phone number</label>
-                        <input
-                          id="businessPhone"
-                          type="tel"
-                          placeholder="+91 98765 43210"
-                        >
-                      </div>
-
-                      <div class="field">
-                        <label for="businessGstin">
-                          GSTIN <span class="optional">(optional)</span>
-                        </label>
-                        <input
-                          id="businessGstin"
-                          type="text"
-                          placeholder="15-character GSTIN"
-                          maxlength="15"
-                        >
-                      </div>
-
-                      <div class="field">
-                        <label for="businessLogo">Business logo</label>
-                        <input
-                          id="businessLogo"
-                          type="file"
-                          accept="image/png,image/jpeg,image/webp"
-                        >
-                        <div class="field-help">PNG, JPG or WebP. Maximum 3 MB.</div>
-                      </div>
-
-                      <div class="field">
-                        <label for="accentColor">Quotation accent colour</label>
-                        <input
-                          id="accentColor"
-                          type="color"
-                          value="#ed3434"
-                        >
-                      </div>
-
-                    </div>
-                  </section>
-
-                  <!-- CUSTOMER -->
-
-                  <section class="form-section">
-                    <div class="section-heading">
-                      <span class="section-number">02</span>
-                      <div>
-                        <h4>Customer Details</h4>
-                        <p>Who is receiving this quotation?</p>
-                      </div>
-                    </div>
-
-                    <div class="form-grid">
-
-                      <div class="field full">
-                        <label for="customerName">Customer or company name *</label>
-                        <input
-                          id="customerName"
-                          type="text"
-                          placeholder="e.g. ABC Technologies"
-                          required
-                        >
-                      </div>
-
-                      <div class="field full">
-                        <label for="customerAddress">Customer address</label>
-                        <textarea
-                          id="customerAddress"
-                          placeholder="Customer billing address"
-                        ></textarea>
-                      </div>
-
-                      <div class="field">
-                        <label for="customerEmail">Customer email</label>
-                        <input
-                          id="customerEmail"
-                          type="email"
-                          placeholder="customer@example.com"
-                        >
-                      </div>
-
-                      <div class="field">
-                        <label for="customerGstin">Customer GSTIN</label>
-                        <input
-                          id="customerGstin"
-                          type="text"
-                          placeholder="Optional GSTIN"
-                          maxlength="15"
-                        >
-                      </div>
-
-                    </div>
-                  </section>
-
-                  <!-- QUOTATION INFORMATION -->
-
-                  <section class="form-section">
-                    <div class="section-heading">
-                      <span class="section-number">03</span>
-                      <div>
-                        <h4>Quotation Information</h4>
-                        <p>Set the reference number, dates and tax treatment.</p>
-                      </div>
-                    </div>
-
-                    <div class="form-grid">
-
-                      <div class="field">
-                        <label for="quotationNumber">Quotation number *</label>
-                        <input
-                          id="quotationNumber"
-                          type="text"
-                          required
-                        >
-                      </div>
-
-                      <div class="field">
-                        <label for="currency">Currency</label>
-                        <select id="currency">
-                          <option value="INR">INR — Indian Rupee</option>
-                          <option value="USD">USD — US Dollar</option>
-                          <option value="EUR">EUR — Euro</option>
-                          <option value="GBP">GBP — British Pound</option>
-                          <option value="AED">AED — UAE Dirham</option>
-                        </select>
-                      </div>
-
-                      <div class="field">
-                        <label for="quotationDate">Quotation date *</label>
-                        <input id="quotationDate" type="date" required>
-                      </div>
-
-                      <div class="field">
-                        <label for="validUntil">Valid until *</label>
-                        <input id="validUntil" type="date" required>
-                      </div>
-
-                      <div class="field full">
-                        <label for="placeOfSupply">Place of supply</label>
-                        <input
-                          id="placeOfSupply"
-                          type="text"
-                          placeholder="e.g. Telangana"
-                        >
-                      </div>
-
-                      <div class="field full">
-                        <label for="gstTreatment">GST treatment</label>
-                        <select id="gstTreatment">
-                          <option value="intra">
-                            Intra-state — CGST + SGST
-                          </option>
-                          <option value="inter">
-                            Inter-state — IGST
-                          </option>
-                          <option value="none">
-                            No GST / Tax not applicable
-                          </option>
-                        </select>
-                        <div class="field-help">
-                          Choose the applicable treatment based on your transaction.
-                          Confirm tax requirements with your accountant.
-                        </div>
-                      </div>
-
-                    </div>
-                  </section>
-
-                  <!-- ITEMS -->
-
-                  <section class="form-section">
-                    <div class="section-heading">
-                      <span class="section-number">04</span>
-                      <div>
-                        <h4>Products &amp; Services</h4>
-                        <p>Add each item with its price, quantity and applicable tax.</p>
-                      </div>
-                    </div>
-
-                    <div class="items-heading">
-                      <h4>Quotation Items</h4>
-                      <button
-                        class="btn"
-                        id="addItemButton"
-                        type="button"
-                      >
-                        + Add Item
-                      </button>
-                    </div>
-
-                    <div class="item-list" id="itemList"></div>
-
-                    <div class="field-help" style="margin-top:12px">
-                      Maximum 50 items. Discounts are applied per unit before tax.
-                    </div>
-                  </section>
-
-                  <!-- ADDITIONAL DETAILS -->
-
-                  <section class="form-section">
-                    <div class="section-heading">
-                      <span class="section-number">05</span>
-                      <div>
-                        <h4>Additional Details</h4>
-                        <p>Include terms, notes and authorisation details.</p>
-                      </div>
-                    </div>
-
-                    <div class="form-grid">
-
-                      <div class="field full">
-                        <label for="notes">Notes</label>
-                        <textarea
-                          id="notes"
-                          placeholder="Additional information for your customer"
-                        ></textarea>
-                      </div>
-
-                      <div class="field full">
-                        <label for="paymentTerms">Terms and conditions</label>
-                        <textarea
-                          id="paymentTerms"
-                          placeholder="e.g. 50% advance payment. Final delivery subject to confirmation."
-                        ></textarea>
-                      </div>
-
-                      <div class="field">
-                        <label for="signatoryName">Authorised signatory</label>
-                        <input
-                          id="signatoryName"
-                          type="text"
-                          placeholder="Name or designation"
-                        >
-                      </div>
-
-                      <div class="field">
-                        <label for="signatureUpload">Signature image</label>
-                        <input
-                          id="signatureUpload"
-                          type="file"
-                          accept="image/png,image/jpeg,image/webp"
-                        >
-                        <div class="field-help">Optional. Maximum 2 MB.</div>
-                      </div>
-
-                    </div>
-                  </section>
-
-                </form>
-
-                <div class="editor-actions">
-                  <button class="btn" id="loadSampleButton" type="button">
-                    Load Sample
-                  </button>
-
-                  <button class="btn btn-danger" id="resetButton" type="button">
-                    Reset
-                  </button>
-
-                  <button class="btn btn-primary" id="printButton" type="button">
-                    Print / Save PDF ↗
-                  </button>
-                </div>
-
-                <p class="editor-disclaimer">
-                  This tool prepares a quotation for your business use. It does not
-                  issue a tax invoice or verify tax compliance. Check all prices,
-                  tax rates, customer details and terms before sending the document.
-                </p>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- LIVE PREVIEW -->
-
-          <div class="preview-column">
-            <div class="preview-card">
-
-              <div class="preview-toolbar">
-                <div>
-                  <strong>Live Quotation Preview</strong>
-                  <span>Updates as you edit the form.</span>
-                </div>
-
-                <div class="preview-toolbar-actions">
-                  <button class="btn" id="previewSampleButton" type="button">
-                    Sample
-                  </button>
-
-                  <button class="btn btn-red" id="previewPrintButton" type="button">
-                    Save PDF ↗
-                  </button>
-                </div>
-              </div>
-
-              <div class="preview-canvas">
-                <article
-                  class="quotation-paper"
-                  id="printDocument"
-                  aria-label="Quotation preview"
-                >
-
-                  <div class="quotation-topline" id="quotationTopline"></div>
-
-                  <header class="quotation-header">
-
-                    <div class="quotation-seller">
-                      <img
-                        class="quotation-logo"
-                        id="previewLogo"
-                        alt="Business logo"
-                      >
-
-                      <div
-                        class="quotation-seller-name"
-                        id="previewBusinessName"
-                      >
-                        Your Business Name
-                      </div>
-
-                      <div
-                        class="quotation-seller-details"
-                        id="previewBusinessDetails"
-                      >
-                        Add your business details
-                      </div>
-                    </div>
-
-                    <div class="quotation-title-block">
-                      <h2 class="quotation-title">QUOTATION</h2>
-
-                      <div class="quotation-number">
-                        No. <strong id="previewQuotationNumber">QUO-0001</strong>
-                      </div>
-                    </div>
-
-                  </header>
-
-                  <div class="quotation-rule"></div>
-
-                  <section class="quotation-meta">
-
-                    <div>
-                      <div class="preview-label">Quotation prepared for</div>
-
-                      <div
-                        class="preview-customer-name"
-                        id="previewCustomerName"
-                      >
-                        Customer Name
-                      </div>
-
-                      <div
-                        class="preview-customer-details"
-                        id="previewCustomerDetails"
-                      >
-                        Customer address and contact information
-                      </div>
-                    </div>
-
-                    <div>
-                      <div class="preview-label">Quotation Details</div>
-
-                      <div class="preview-dates">
-                        <div class="preview-date-box">
-                          <span>Quotation Date</span>
-                          <strong id="previewQuotationDate">—</strong>
-                        </div>
-
-                        <div class="preview-date-box">
-                          <span>Valid Until</span>
-                          <strong id="previewValidUntil">—</strong>
-                        </div>
-                      </div>
-
-                      <div
-                        class="preview-customer-details"
-                        id="previewPlaceOfSupply"
-                      ></div>
-                    </div>
-
-                  </section>
-
-                  <div class="preview-table-wrap">
-                    <table class="quotation-table">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Item Description</th>
-                          <th>Qty</th>
-                          <th>Unit Price</th>
-                          <th>Amount</th>
-                        </tr>
-                      </thead>
-
-                      <tbody id="previewItems">
-                        <tr>
-                          <td>1</td>
-                          <td>
-                            <span class="preview-item-name">Your product or service</span>
-                          </td>
-                          <td>1</td>
-                          <td>₹0.00</td>
-                          <td>₹0.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <section class="preview-bottom">
-
-                    <div>
-
-                      <div class="preview-terms" id="previewNotesBlock">
-                        <strong>Notes</strong>
-                        <span id="previewNotes">Thank you for considering our proposal.</span>
-                      </div>
-
-                      <div
-                        class="preview-terms"
-                        id="previewTermsBlock"
-                        style="margin-top:16px"
-                      >
-                        <strong>Terms &amp; Conditions</strong>
-                        <span id="previewTerms">
-                          Please confirm the quotation before proceeding.
-                        </span>
-                      </div>
-
-                    </div>
-
-                    <div>
-
-                      <div class="totals">
-
-                        <div class="total-row">
-                          <span>Subtotal</span>
-                          <strong id="previewSubtotal">₹0.00</strong>
-                        </div>
-
-                        <div class="total-row">
-                          <span>Discount</span>
-                          <strong id="previewDiscount">− ₹0.00</strong>
-                        </div>
-
-                        <div class="total-row">
-                          <span>Taxable Amount</span>
-                          <strong id="previewTaxable">₹0.00</strong>
-                        </div>
-
-                        <div class="total-row" id="cgstRow">
-                          <span>CGST</span>
-                          <strong id="previewCGST">₹0.00</strong>
-                        </div>
-
-                        <div class="total-row" id="sgstRow">
-                          <span>SGST</span>
-                          <strong id="previewSGST">₹0.00</strong>
-                        </div>
-
-                        <div class="total-row" id="igstRow" style="display:none">
-                          <span>IGST</span>
-                          <strong id="previewIGST">₹0.00</strong>
-                        </div>
-
-                        <div class="total-row grand-total">
-                          <span>Grand Total</span>
-                          <strong id="previewGrandTotal">₹0.00</strong>
-                        </div>
-
-                      </div>
-
-                      <div class="amount-words">
-                        <span>Amount in Words</span>
-                        <strong id="previewAmountWords">Zero Rupees Only</strong>
-                      </div>
-
-                    </div>
-
-                  </section>
-
-                  <footer class="quotation-footer">
-
-                    <div class="quotation-footer-note">
-                      This quotation is subject to the terms and validity stated
-                      above. Prices and availability may change after the validity
-                      period unless otherwise agreed in writing.
-                    </div>
-
-                    <div class="quotation-signature">
-                      <img
-                        class="signature-image"
-                        id="previewSignature"
-                        alt="Authorised signature"
-                      >
-
-                      <div class="signature-line"></div>
-
-                      <div
-                        class="signature-name"
-                        id="previewSignatoryName"
-                      >
-                        Authorised Signatory
-                      </div>
-
-                      <div class="signature-label">For the supplier</div>
-                    </div>
-
-                  </footer>
-
-                  <div class="preview-bottom-note">
-                    Generated with ARTHNIX Business Tools
-                  </div>
-
-                  <div class="print-attribution">
-                    Prepared using ARTHNIX Business Tools.
-                  </div>
-
-                </article>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
-         HOW IT WORKS
-         ===================================================== -->
-
-    <section class="info-section">
-      <div class="container">
-
-        <div class="info-heading">
-          <div class="eyebrow">Simple Workflow</div>
-
-          <h2>
-            From pricing to a professional
-            <span class="accent">quotation in minutes.</span>
-          </h2>
-
-          <p>
-            Prepare a clear quotation for products, services or business proposals
-            without needing dedicated invoicing software.
-          </p>
-        </div>
-
-        <div class="steps-grid">
-
-          <article class="step-card">
-            <div class="step-index">01</div>
-            <h3>Enter your details</h3>
-            <p>
-              Add your business information, customer details, quotation number
-              and validity date.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-index">02</div>
-            <h3>Add products or services</h3>
-            <p>
-              Enter quantities, unit prices, discounts and applicable GST rates.
-              The totals update automatically.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-index">03</div>
-            <h3>Print or save as PDF</h3>
-            <p>
-              Review the live preview and create a printable quotation to share
-              with your customer.
-            </p>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =====================================================
-         FAQ
-         ===================================================== -->
-
-    <section class="info-section" style="padding-top:0">
-      <div class="container">
-
-        <div class="info-heading">
-          <div class="eyebrow">Common Questions</div>
-          <h2>Quotation Generator <span class="accent">FAQs</span></h2>
-          <p>Understand what this tool can do before preparing your quotation.</p>
-        </div>
-
-        <div class="faq-list">
-
-          <article class="faq-item">
-            <h3>Is the ARTHNIX Quotation Generator free?</h3>
-            <p>
-              Yes. You can enter your details, add line items, preview the
-              quotation and use your browser's print function to save it as a PDF.
-            </p>
-          </article>
-
-          <article class="faq-item">
-            <h3>Can I add GST to my quotation?</h3>
-            <p>
-              Yes. You can select a GST rate for each item and choose intra-state,
-              inter-state or no-GST treatment. Verify the correct tax treatment
-              and rates for your particular transaction before sharing the document.
-            </p>
-          </article>
-
-          <article class="faq-item">
-            <h3>Can I include my company logo and signature?</h3>
-            <p>
-              Yes. You can upload a logo and an optional signature image. The
-              images are used locally to customise the quotation preview.
-            </p>
-          </article>
-
-          <article class="faq-item">
-            <h3>Is a quotation the same as a tax invoice?</h3>
-            <p>
-              No. A quotation generally communicates proposed prices and terms
-              before an order is confirmed. It is not a substitute for a tax
-              invoice or other document required by applicable law.
-            </p>
-          </article>
-
-          <article class="faq-item">
-            <h3>Are my quotation details uploaded to ARTHNIX?</h3>
-            <p>
-              This page generates the quotation in your browser and does not
-              send its form details to an ARTHNIX backend. Your browser may still
-              retain information according to your browser settings, and any
-              external service you use separately is governed by its own policies.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- =====================================================
-       FOOTER — ARTHNIX HOMEPAGE STYLE
-       ===================================================== -->
-
-  <footer class="site-footer">
-    <div class="container">
-
-      <div class="footer-main">
-
-        <div class="footer-brand">
-          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-            <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
-            <span class="brand-name">ARTHNIX</span>
-          </a>
-
-          <p>
-            Intelligence for Every Business. Practical tools and intelligent
-            systems designed to help businesses work smarter.
-          </p>
-
-          <span class="footer-powered">Powered by Alphex AI</span>
-        </div>
-
-        <div class="footer-column">
-          <h4>Explore</h4>
-          <a href="/platform.html">Platform</a>
-          <a href="/#how-it-works">How It Works</a>
-          <a href="/pricing.html">Pricing</a>
-          <a href="/tools.html">Free Tools</a>
-        </div>
-
-        <div class="footer-column">
-          <h4>Business Tools</h4>
-          <a href="/tools/gst-calculator.html">GST Calculator</a>
-          <a href="/tools/invoice-generator.html">Invoice Generator</a>
-          <a href="/tools/profit-calculator.html">Profit Calculator</a>
-          <a href="/tools/quotation-generator.html">Quotation Generator</a>
-        </div>
-
-        <div class="footer-column">
-          <h4>Information</h4>
-          <a href="/about.html">About ARTHNIX</a>
-          <a href="/help.html">Help Centre</a>
-          <a href="/blog.html">Blog</a>
-          <a href="/contact.html">Contact</a>
-          <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Use</a>
-          <a href="/disclaimer.html">Disclaimer</a>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <span>
-          © <span id="currentYear"></span> ARTHNIX. All rights reserved.
-        </span>
-
-        <span>
-          An independent product brand · Powered by
-          <a href="https://alphex.ai">Alphex AI</a>
-        </span>
-      </div>
-
+      <p>
+        Intelligence for Every Business. Practical tools and intelligent
+        systems designed to help businesses work smarter.
+      </p>
+      <span class="footer-powered">Powered by Alphex AI</span>
     </div>
+    <div class="footer-column">
+      <h4>Explore</h4>
+      <a href="/platform.html">Platform</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/tools.html">Free Tools</a>
+    </div>
+    <div class="footer-column">
+      <h4>Business Tools</h4>
+      <a href="/tools/gst-calculator.html">GST Calculator</a>
+      <a href="/tools/invoice-generator.html">Invoice Generator</a>
+      <a href="/tools/profit-calculator.html">Profit Calculator</a>
+      <a href="/tools/quotation-generator.html">Quotation Generator</a>
+    </div>
+    <div class="footer-column">
+      <h4>Information</h4>
+      <a href="/about.html">About ARTHNIX</a>
+      <a href="/help.html">Help Centre</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>
+      © <span id="currentYear"></span> ARTHNIX. All rights reserved.
+    </span>
+    <span>
+      An independent product brand · Powered by
+      <a href="https://alphex.ai">Alphex AI</a>
+    </span>
+  </div>
+</div>
   </footer>
-
   <script>
     "use strict";
-
     /* =====================================================
        NAVIGATION — ARTHNIX HOMEPAGE STYLE
        ===================================================== */
-
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
-
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("is-open");
-
+    function setMenuState(isOpen) {
+      navLinks.classList.toggle("is-open", isOpen);
+      menuToggle.classList.toggle("is-active", isOpen);
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       menuToggle.setAttribute(
         "aria-label",
         isOpen ? "Close navigation menu" : "Open navigation menu"
       );
+    }
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.contains("is-open");
+      setMenuState(!isOpen);
     });
-
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
-        navLinks.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        setMenuState(false);
       });
     });
-
+    document.addEventListener("click", (event) => {
+      if (
+        !navLinks.contains(event.target) &&
+        !menuToggle.contains(event.target)
+      ) {
+        setMenuState(false);
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setMenuState(false);
+        menuToggle.focus();
+      }
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 780) {
+        setMenuState(false);
+      }
+    });
     document.getElementById("currentYear").textContent =
       new Date().getFullYear();
-
     /* =====================================================
        HELPERS
        ===================================================== */
-
     const $ = (id) => document.getElementById(id);
-
     const MAX_ITEMS = 50;
     const MAX_LOGO_BYTES = 3 * 1024 * 1024;
     const MAX_SIGNATURE_BYTES = 2 * 1024 * 1024;
-
     let itemCounter = 0;
     let logoDataUrl = "";
     let signatureDataUrl = "";
-
     function localISODate(date = new Date()) {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const day = String(date.getDate()).padStart(2, "0");
-
       return `${year}-${month}-${day}`;
     }
-
     function formatDate(value) {
       if (!value) return "—";
-
       const parts = value.split("-");
-
       if (parts.length !== 3) return value;
-
       const date = new Date(
         Number(parts[0]),
         Number(parts[1]) - 1,
         Number(parts[2])
       );
-
       return date.toLocaleDateString("en-IN", {
         day: "2-digit",
         month: "short",
         year: "numeric"
       });
     }
-
     function escapeHTML(value) {
       return String(value ?? "").replace(/[&<>"']/g, (character) => {
         const map = {
@@ -2673,34 +2297,25 @@
           '"': "&quot;",
           "'": "&#39;"
         };
-
         return map[character];
       });
     }
-
     function safeMultiline(value) {
       return escapeHTML(value).replace(/\n/g, "<br>");
     }
-
     function numberValue(value) {
       const parsed = Number(value);
-
       if (!Number.isFinite(parsed)) return 0;
-
       return parsed;
     }
-
     function clamp(value, min, max) {
       return Math.min(max, Math.max(min, value));
     }
-
     function getCurrency() {
       return $("currency").value || "INR";
     }
-
     function money(value) {
       const amount = Number.isFinite(Number(value)) ? Number(value) : 0;
-
       try {
         return new Intl.NumberFormat("en-IN", {
           style: "currency",
@@ -2712,49 +2327,38 @@
         return `${getCurrency()} ${amount.toFixed(2)}`;
       }
     }
-
     function formatNumber(value) {
       return new Intl.NumberFormat("en-IN", {
         maximumFractionDigits: 3
       }).format(value);
     }
-
     function setValue(id, value) {
       $(id).value = value;
     }
-
     function getValue(id) {
       return $(id).value.trim();
     }
-
     function getItemRows() {
       return [...$("itemList").querySelectorAll(".item-row")];
     }
-
     /* =====================================================
        LINE ITEM CREATION
        ===================================================== */
-
     function addItem(data = {}) {
       const currentItems = getItemRows();
-
       if (currentItems.length >= MAX_ITEMS) {
         alert(`You can add a maximum of ${MAX_ITEMS} items.`);
         return;
       }
-
       itemCounter += 1;
-
       const row = document.createElement("div");
       row.className = "item-row";
       row.dataset.itemId = String(itemCounter);
-
       const description = data.description ?? "";
       const quantity = data.quantity ?? 1;
       const unitPrice = data.unitPrice ?? 0;
       const discount = data.discount ?? 0;
       const gstRate = data.gstRate ?? 18;
-
       row.innerHTML = `
         <div class="item-row-top">
           <span class="item-row-title">Item ${currentItems.length + 1}</span>
@@ -2764,9 +2368,7 @@
             aria-label="Remove item"
           >Remove</button>
         </div>
-
         <div class="item-grid">
-
           <div class="field full">
             <label>Description *</label>
             <input
@@ -2777,7 +2379,6 @@
               value="${escapeHTML(description)}"
             >
           </div>
-
           <div class="field">
             <label>Quantity</label>
             <input
@@ -2789,7 +2390,6 @@
               value="${escapeHTML(quantity)}"
             >
           </div>
-
           <div class="field">
             <label>Unit Price</label>
             <input
@@ -2801,7 +2401,6 @@
               value="${escapeHTML(unitPrice)}"
             >
           </div>
-
           <div class="field">
             <label>Discount per unit</label>
             <input
@@ -2813,7 +2412,6 @@
               value="${escapeHTML(discount)}"
             >
           </div>
-
           <div class="field">
             <label>GST Rate</label>
             <select class="item-gst">
@@ -2824,81 +2422,63 @@
               <option value="28" ${Number(gstRate) === 28 ? "selected" : ""}>28%</option>
             </select>
           </div>
-
         </div>
-
         <div class="item-line-total">
           <span>Line total before GST</span>
           <strong class="item-total-value">₹0.00</strong>
         </div>
       `;
-
       $("itemList").appendChild(row);
-
       row.querySelectorAll("input, select").forEach((control) => {
         control.addEventListener("input", renderQuotation);
         control.addEventListener("change", renderQuotation);
       });
-
       row.querySelector(".item-remove").addEventListener("click", () => {
         if (getItemRows().length <= 1) {
           alert("Keep at least one quotation item.");
           return;
         }
-
         row.remove();
         renumberItems();
         renderQuotation();
       });
-
       renumberItems();
       renderQuotation();
     }
-
     function renumberItems() {
       getItemRows().forEach((row, index) => {
         row.querySelector(".item-row-title").textContent = `Item ${index + 1}`;
       });
     }
-
     function readItems() {
       return getItemRows().map((row) => {
         const description =
           row.querySelector(".item-description").value.trim();
-
         const rawQuantity = numberValue(
           row.querySelector(".item-quantity").value
         );
-
         const rawPrice = numberValue(
           row.querySelector(".item-price").value
         );
-
         const rawDiscount = numberValue(
           row.querySelector(".item-discount").value
         );
-
         const rawGst = numberValue(
           row.querySelector(".item-gst").value
         );
-
         const quantity = Math.max(0, rawQuantity);
         const unitPrice = Math.max(0, rawPrice);
         const discount = clamp(rawDiscount, 0, unitPrice);
         const gstRate = clamp(rawGst, 0, 100);
-
         const subtotal = quantity * unitPrice;
         const discountTotal = quantity * discount;
         const taxable = Math.max(0, subtotal - discountTotal);
         const tax = $("gstTreatment").value === "none"
           ? 0
           : taxable * gstRate / 100;
-
         const total = taxable + tax;
-
         row.querySelector(".item-total-value").textContent =
           money(taxable);
-
         return {
           description,
           quantity,
@@ -2913,35 +2493,28 @@
         };
       });
     }
-
     /* =====================================================
        AMOUNT IN WORDS
        ===================================================== */
-
     const ones = [
       "Zero", "One", "Two", "Three", "Four",
       "Five", "Six", "Seven", "Eight", "Nine"
     ];
-
     const teens = [
       "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen",
       "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
     ];
-
     const tens = [
       "", "", "Twenty", "Thirty", "Forty",
       "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"
     ];
-
     function underThousandWords(number) {
       let n = Math.floor(number);
       const parts = [];
-
       if (n >= 100) {
         parts.push(`${ones[Math.floor(n / 100)]} Hundred`);
         n %= 100;
       }
-
       if (n >= 20) {
         parts.push(tens[Math.floor(n / 10)]);
         n %= 10;
@@ -2949,52 +2522,39 @@
         parts.push(teens[n - 10]);
         n = 0;
       }
-
       if (n > 0) {
         parts.push(ones[n]);
       }
-
       return parts.join(" ");
     }
-
     function integerToWords(number) {
       let n = Math.floor(Math.abs(number));
-
       if (n === 0) return "Zero";
-
       if (n > 999999999999) {
         return n.toLocaleString("en-IN");
       }
-
       const groups = [];
-
       if (n >= 10000000) {
         groups.push(`${underThousandWords(Math.floor(n / 10000000))} Crore`);
         n %= 10000000;
       }
-
       if (n >= 100000) {
         groups.push(`${underThousandWords(Math.floor(n / 100000))} Lakh`);
         n %= 100000;
       }
-
       if (n >= 1000) {
         groups.push(`${underThousandWords(Math.floor(n / 1000))} Thousand`);
         n %= 1000;
       }
-
       if (n > 0) {
         groups.push(underThousandWords(n));
       }
-
       return groups.join(" ");
     }
-
     function amountInWords(amount) {
       const absolute = Math.abs(Number(amount) || 0);
       const whole = Math.floor(absolute + 0.0000001);
       const cents = Math.round((absolute - whole) * 100);
-
       const currencyNames = {
         INR: ["Rupee", "Rupees", "Paise"],
         USD: ["Dollar", "Dollars", "Cents"],
@@ -3002,35 +2562,27 @@
         GBP: ["Pound", "Pounds", "Pence"],
         AED: ["Dirham", "Dirhams", "Fils"]
       };
-
       const names = currencyNames[getCurrency()] || [
         getCurrency(),
         getCurrency(),
         "Minor Units"
       ];
-
       let result = integerToWords(whole);
-
       result += ` ${whole === 1 ? names[0] : names[1]}`;
-
       if (cents > 0) {
         result += ` and ${integerToWords(cents)} ${names[2]}`;
       }
-
       return `${result} Only`;
     }
-
     /* =====================================================
        TOTAL CALCULATIONS
        ===================================================== */
-
     function calculateTotals(items) {
       const totals = items.reduce((acc, item) => {
         acc.subtotal += item.subtotal;
         acc.discount += item.discountTotal;
         acc.taxable += item.taxable;
         acc.tax += item.tax;
-
         return acc;
       }, {
         subtotal: 0,
@@ -3038,9 +2590,7 @@
         taxable: 0,
         tax: 0
       });
-
       const treatment = $("gstTreatment").value;
-
       if (treatment === "intra") {
         totals.cgst = totals.tax / 2;
         totals.sgst = totals.tax - totals.cgst;
@@ -3054,93 +2604,65 @@
         totals.sgst = 0;
         totals.igst = 0;
       }
-
       totals.grandTotal = totals.taxable + totals.tax;
-
       return totals;
     }
-
     /* =====================================================
        RENDER LIVE PREVIEW
        ===================================================== */
-
     function renderQuotation() {
       const color = /^#[0-9a-fA-F]{6}$/.test(getValue("accentColor"))
         ? getValue("accentColor")
         : "#ed3434";
-
       document.documentElement.style.setProperty("--accent", color);
-
       $("quotationTopline").style.background = color;
-
       $("previewBusinessName").textContent =
         getValue("businessName") || "Your Business Name";
-
       const sellerDetails = [];
-
       if (getValue("businessAddress")) {
         sellerDetails.push(getValue("businessAddress"));
       }
-
       if (getValue("businessEmail")) {
         sellerDetails.push(getValue("businessEmail"));
       }
-
       if (getValue("businessPhone")) {
         sellerDetails.push(getValue("businessPhone"));
       }
-
       if (getValue("businessGstin")) {
         sellerDetails.push(`GSTIN: ${getValue("businessGstin")}`);
       }
-
       $("previewBusinessDetails").textContent =
         sellerDetails.join("\n") || "Add your business details";
-
       $("previewCustomerName").textContent =
         getValue("customerName") || "Customer Name";
-
       const customerDetails = [];
-
       if (getValue("customerAddress")) {
         customerDetails.push(getValue("customerAddress"));
       }
-
       if (getValue("customerEmail")) {
         customerDetails.push(getValue("customerEmail"));
       }
-
       if (getValue("customerGstin")) {
         customerDetails.push(`GSTIN: ${getValue("customerGstin")}`);
       }
-
       $("previewCustomerDetails").textContent =
         customerDetails.join("\n") || "Customer address and contact information";
-
       $("previewQuotationNumber").textContent =
         getValue("quotationNumber") || "QUO-0001";
-
       $("previewQuotationDate").textContent =
         formatDate(getValue("quotationDate"));
-
       $("previewValidUntil").textContent =
         formatDate(getValue("validUntil"));
-
       const place = getValue("placeOfSupply");
-
       $("previewPlaceOfSupply").textContent =
         place ? `Place of Supply: ${place}` : "";
-
       const items = readItems();
       const totals = calculateTotals(items);
-
       $("previewItems").innerHTML = items.map((item, index) => {
         const description = item.description || "Product or service";
-
         const detail = item.gstRate > 0
           ? `${formatNumber(item.gstRate)}% GST`
           : "No GST";
-
         return `
           <tr>
             <td>${index + 1}</td>
@@ -3154,7 +2676,6 @@
           </tr>
         `;
       }).join("");
-
       $("previewSubtotal").textContent = money(totals.subtotal);
       $("previewDiscount").textContent = `− ${money(totals.discount)}`;
       $("previewTaxable").textContent = money(totals.taxable);
@@ -3163,100 +2684,76 @@
       $("previewIGST").textContent = money(totals.igst);
       $("previewGrandTotal").textContent = money(totals.grandTotal);
       $("previewAmountWords").textContent = amountInWords(totals.grandTotal);
-
       const treatment = $("gstTreatment").value;
-
       $("cgstRow").style.display =
         treatment === "intra" ? "flex" : "none";
-
       $("sgstRow").style.display =
         treatment === "intra" ? "flex" : "none";
-
       $("igstRow").style.display =
         treatment === "inter" ? "flex" : "none";
-
       $("previewNotes").innerHTML =
         safeMultiline(getValue("notes") || "Thank you for considering our proposal.");
-
       $("previewTerms").innerHTML =
         safeMultiline(
           getValue("paymentTerms") ||
           "Please confirm this quotation before proceeding."
         );
-
       $("previewSignatoryName").textContent =
         getValue("signatoryName") || "Authorised Signatory";
-
       $("previewLogo").style.display = logoDataUrl ? "block" : "none";
-
       if (logoDataUrl) {
         $("previewLogo").src = logoDataUrl;
       } else {
         $("previewLogo").removeAttribute("src");
       }
-
       $("previewSignature").style.display =
         signatureDataUrl ? "block" : "none";
-
       if (signatureDataUrl) {
         $("previewSignature").src = signatureDataUrl;
       } else {
         $("previewSignature").removeAttribute("src");
       }
-
       $("previewNotesBlock").style.display =
         getValue("notes") ? "block" : "none";
-
       $("previewTermsBlock").style.display =
         getValue("paymentTerms") ? "block" : "none";
     }
-
     /* =====================================================
        IMAGE UPLOADS
        ===================================================== */
-
     function readImageFile(file, maxBytes) {
       return new Promise((resolve, reject) => {
         if (!file) {
           resolve("");
           return;
         }
-
         if (!file.type.startsWith("image/")) {
           reject(new Error("Please select a valid image file."));
           return;
         }
-
         if (file.size > maxBytes) {
           reject(new Error(
             `The image is too large. Maximum size is ${Math.round(maxBytes / 1024 / 1024)} MB.`
           ));
           return;
         }
-
         const reader = new FileReader();
-
         reader.onload = () => {
           resolve(String(reader.result || ""));
         };
-
         reader.onerror = () => {
           reject(new Error("The image could not be read."));
         };
-
         reader.readAsDataURL(file);
       });
     }
-
     $("businessLogo").addEventListener("change", async (event) => {
       const file = event.target.files[0];
-
       if (!file) {
         logoDataUrl = "";
         renderQuotation();
         return;
       }
-
       try {
         logoDataUrl = await readImageFile(file, MAX_LOGO_BYTES);
         renderQuotation();
@@ -3267,16 +2764,13 @@
         alert(error.message);
       }
     });
-
     $("signatureUpload").addEventListener("change", async (event) => {
       const file = event.target.files[0];
-
       if (!file) {
         signatureDataUrl = "";
         renderQuotation();
         return;
       }
-
       try {
         signatureDataUrl = await readImageFile(file, MAX_SIGNATURE_BYTES);
         renderQuotation();
@@ -3287,17 +2781,13 @@
         alert(error.message);
       }
     });
-
     /* =====================================================
        SAMPLE QUOTATION
        ===================================================== */
-
     function loadSample() {
       const today = new Date();
       const validity = new Date(today);
-
       validity.setDate(validity.getDate() + 15);
-
       setValue("businessName", "Vertex Digital Solutions");
       setValue(
         "businessAddress",
@@ -3329,16 +2819,12 @@
       );
       setValue("signatoryName", "Authorised Representative");
       setValue("accentColor", "#ed3434");
-
       logoDataUrl = "";
       signatureDataUrl = "";
-
       $("businessLogo").value = "";
       $("signatureUpload").value = "";
-
       $("itemList").innerHTML = "";
       itemCounter = 0;
-
       addItem({
         description: "Website Design and Development",
         quantity: 1,
@@ -3346,7 +2832,6 @@
         discount: 0,
         gstRate: 18
       });
-
       addItem({
         description: "Website Maintenance",
         quantity: 3,
@@ -3354,124 +2839,85 @@
         discount: 250,
         gstRate: 18
       });
-
       renderQuotation();
     }
-
     /* =====================================================
        RESET
        ===================================================== */
-
     function resetQuotation() {
       const confirmed = window.confirm(
         "Reset the quotation and clear all entered details?"
       );
-
       if (!confirmed) return;
-
       $("quotationForm").reset();
-
       logoDataUrl = "";
       signatureDataUrl = "";
       itemCounter = 0;
-
       $("itemList").innerHTML = "";
-
       const today = new Date();
       const validity = new Date(today);
-
       validity.setDate(validity.getDate() + 15);
-
       setValue("quotationNumber", `QUO-${localISODate(today)}`);
       setValue("quotationDate", localISODate(today));
       setValue("validUntil", localISODate(validity));
       setValue("currency", "INR");
       setValue("gstTreatment", "intra");
       setValue("accentColor", "#ed3434");
-
       addItem();
-
       renderQuotation();
     }
-
     /* =====================================================
        PRINT / SAVE PDF
        ===================================================== */
-
     function printQuotation() {
       const form = $("quotationForm");
-
       if (!form.reportValidity()) {
         return;
       }
-
       const quotationNumber =
         getValue("quotationNumber") || "Quotation";
-
       const originalTitle = document.title;
-
       document.title = `Quotation-${quotationNumber.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
-
       const restoreTitle = () => {
         document.title = originalTitle;
         window.removeEventListener("afterprint", restoreTitle);
       };
-
       window.addEventListener("afterprint", restoreTitle);
-
       window.print();
-
       // Fallback for browsers that do not fire afterprint promptly.
       window.setTimeout(restoreTitle, 2000);
     }
-
     /* =====================================================
        EVENTS
        ===================================================== */
-
     $("addItemButton").addEventListener("click", () => {
       addItem();
     });
-
     $("loadSampleButton").addEventListener("click", loadSample);
-
     $("previewSampleButton").addEventListener("click", loadSample);
-
     $("resetButton").addEventListener("click", resetQuotation);
-
     $("printButton").addEventListener("click", printQuotation);
-
     $("previewPrintButton").addEventListener("click", printQuotation);
-
     $("quotationForm").addEventListener("input", (event) => {
       if (event.target.matches("input, textarea, select")) {
         renderQuotation();
       }
     });
-
     $("quotationForm").addEventListener("change", renderQuotation);
-
     /* =====================================================
        INITIALISE
        ===================================================== */
-
     function initialiseQuotationGenerator() {
       const today = new Date();
       const validity = new Date(today);
-
       validity.setDate(validity.getDate() + 15);
-
       setValue("quotationNumber", `QUO-${localISODate(today)}`);
       setValue("quotationDate", localISODate(today));
       setValue("validUntil", localISODate(validity));
-
       addItem();
-
       renderQuotation();
     }
-
     initialiseQuotationGenerator();
   </script>
-
 </body>
 </html>
