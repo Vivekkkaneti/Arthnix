@@ -199,7 +199,7 @@
       gap: 9px;
       color: var(--red);
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1.8px;
     }
@@ -216,7 +216,7 @@
       margin: 17px 0;
       font-family: "Manrope", sans-serif;
       font-size: clamp(36px, 5.4vw, 62px);
-      font-weight: 800;
+      font-weight: 600;
       line-height: 1.1;
       letter-spacing: -2.8px;
     }
@@ -302,7 +302,7 @@
       margin-bottom: 7px;
       color: #414141;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .field-hint {
@@ -400,7 +400,7 @@
       margin: 0 0 17px;
       font-family: "Manrope", sans-serif;
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .form-actions {
@@ -420,7 +420,7 @@
       border: 1px solid transparent;
       border-radius: 8px;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 600;
       transition: background .2s, transform .2s, border-color .2s;
     }
 
@@ -490,7 +490,7 @@
       background: #eaf7ef;
       border-radius: 100px;
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .live-badge::before {
@@ -518,7 +518,7 @@
       margin: 5px 0;
       font-family: "Manrope", sans-serif;
       font-size: clamp(31px, 4vw, 43px);
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.3;
       letter-spacing: -1.5px;
       overflow-wrap: anywhere;
@@ -679,7 +679,7 @@
       background: #fff0f0;
       border-radius: 11px;
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .feature-card h3 {
@@ -751,7 +751,7 @@
       cursor: pointer;
       list-style: none;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .faq-item summary::-webkit-details-marker {
@@ -1118,6 +1118,489 @@
         -webkit-print-color-adjust: exact;
       }
     }
+
+
+    /* Reference-page navbar styles */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: #090909;
+      border-bottom: 1px solid #292929;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+    .navbar {
+      position: relative;
+      width: min(1200px, calc(100% - 64px));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .brand-logo {
+      display: block;
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .brand-name {
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 27px;
+    }
+    .nav-links a {
+      display: inline-block;
+      color: #bcbcbc;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--red);
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--red);
+      border-radius: 7px;
+      background: var(--red);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
+    }
+    .nav-cta:hover {
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+    }
+    .menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border: 1px solid #353535;
+      border-radius: 7px;
+      background: #111111;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 5px auto;
+      border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+    }
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      .nav-links a {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+      .brand {
+        gap: 8px;
+      }
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+      }
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+      .menu-toggle {
+        display: inline-flex;
+      }
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+      }
+      .nav-links.is-open {
+        display: flex;
+      }
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--red);
+      }
+    }
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+      .brand-name {
+        font-size: 15px;
+      }
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    /* Reference-page footer styles */
+    .site-footer {
+      padding: 57px 0 25px;
+      background: var(--black);
+      color: var(--white);
+    }
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 45px;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .footer-powered {
+      margin: 7px 0 0;
+      color: #929292;
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
+    .footer-column h4 {
+      margin-bottom: 19px;
+      color: #f0f0f0;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-top: 13px;
+      color: #919191;
+      font-size: 11px;
+      transition: color 180ms ease;
+    }
+    .footer-column a:hover {
+      color: var(--white);
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 22px;
+      border-top: 1px solid #292929;
+    }
+    .copyright,
+    .powered-by {
+      color: #797979;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .powered-by strong {
+      color: #b8b8b8;
+      font-weight: 600;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Reference navbar/footer responsive refinements */
+    @media (min-width: 781px) and (max-width: 950px) {
+      .footer-main {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 25px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -.5px;
+      }
+
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 9px;
+        border: 1px solid #353535;
+        border-radius: 7px;
+        background: #111111;
+        color: #ffffff;
+      }
+
+      .menu-toggle span {
+        width: 18px;
+        height: 2px;
+        margin: 5px auto;
+        border-radius: 2px;
+        background: #ffffff;
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, .3);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--red);
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 38px 28px;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .navbar {
+        width: calc(100% - 36px);
+      }
+
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        font-size: 11px;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 18px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -1145,7 +1628,6 @@
         <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
         <span class="brand-name">ARTHNIX</span>
       </a>
-
       <div class="nav-links" id="navLinks">
         <a href="/tools.html">Free Tools</a>
         <a href="/platform.html">Platform</a>
@@ -1153,11 +1635,9 @@
         <a href="/pricing.html">Pricing</a>
         <a href="/contact.html">Contact</a>
       </div>
-
       <a class="nav-cta" href="/tools.html">
         Start Free <span aria-hidden="true">↗</span>
       </a>
-
       <button
         class="menu-toggle"
         id="menuToggle"
@@ -1166,7 +1646,8 @@
         aria-expanded="false"
         aria-controls="navLinks"
       >
-        <span></span><span></span>
+        <span></span>
+        <span></span>
       </button>
     </nav>
   </header>
@@ -1585,51 +2066,49 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" id="footer-contact">
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-            <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
-            <span class="brand-name">ARTHNIX</span>
+          <a class="footer-brand-link" href="/index.html" aria-label="ARTHNIX home">
+            <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
+            <span>ARTHNIX</span>
           </a>
-          <p>
-            Intelligence for Every Business. Practical tools and intelligent
-            systems designed to help businesses work smarter.
-          </p>
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <p class="footer-powered">Powered by Alphex AI</p>
         </div>
-
         <div class="footer-column">
           <h4>Explore</h4>
-          <a href="/index.html">Home</a>
           <a href="/platform.html">Platform</a>
+          <a href="/#how-it-works">How It Works</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="/contact.html">Contact</a>
+          <a href="/tools.html">Free Tools</a>
         </div>
-
         <div class="footer-column">
           <h4>Business Tools</h4>
-          <a href="/tools.html">All Free Tools</a>
-          <a href="/tools/profit-calculator.html">Profit Calculator</a>
+          <a href="/tools/gst-calculator.html">GST Calculator</a>
           <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/profit-calculator.html">Profit Calculator</a>
           <a href="/tools/quotation-generator.html">Quotation Generator</a>
-          <a href="/tools/invoice-number-generator.html">Invoice Number Generator</a>
-          <a href="/tools/income-tax-calculator.html">Income Tax Calculator</a>
-          <a href="/tools/salary-per-day-calculator.html">Salary Per Day Calculator</a>
         </div>
-
         <div class="footer-column">
           <h4>Information</h4>
-          <a href="/about.html">About</a>
+          <a href="/about.html">About ARTHNIX</a>
+          <a href="/help.html">Help Centre</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
           <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Service</a>
-          <a href="/contact.html">Get in Touch</a>
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/disclaimer.html">Disclaimer</a>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
-        <span>Powered by <a href="https://alphex.ai">Alphex AI</a>.</span>
+        <p class="copyright">
+          © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+        </p>
+        <p class="powered-by">
+          An independent product brand · <strong>Powered by Alphex AI</strong>
+        </p>
       </div>
     </div>
   </footer>
@@ -1836,32 +2315,40 @@
       });
 
       menuToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.toggle("open");
-
+        const isOpen = navLinks.classList.toggle("is-open");
         menuToggle.setAttribute("aria-expanded", String(isOpen));
         menuToggle.setAttribute(
           "aria-label",
           isOpen ? "Close navigation menu" : "Open navigation menu"
         );
+        const lines = menuToggle.querySelectorAll("span");
+        if (lines.length >= 2) {
+          lines[0].style.transform = isOpen ? "translateY(3.5px) rotate(45deg)" : "";
+          lines[1].style.transform = isOpen ? "translateY(-3.5px) rotate(-45deg)" : "";
+        }
       });
 
       navLinks.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => {
-          navLinks.classList.remove("open");
+          navLinks.classList.remove("is-open");
           menuToggle.setAttribute("aria-expanded", "false");
           menuToggle.setAttribute("aria-label", "Open navigation menu");
+          const lines = menuToggle.querySelectorAll("span");
+          lines.forEach((line) => { line.style.transform = ""; });
         });
       });
 
       document.addEventListener("click", (event) => {
         if (
-          navLinks.classList.contains("open") &&
+          navLinks.classList.contains("is-open") &&
           !navLinks.contains(event.target) &&
           !menuToggle.contains(event.target)
         ) {
-          navLinks.classList.remove("open");
+          navLinks.classList.remove("is-open");
           menuToggle.setAttribute("aria-expanded", "false");
           menuToggle.setAttribute("aria-label", "Open navigation menu");
+          const lines = menuToggle.querySelectorAll("span");
+          lines.forEach((line) => { line.style.transform = ""; });
         }
       });
 
