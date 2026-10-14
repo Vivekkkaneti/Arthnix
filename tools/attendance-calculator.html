@@ -4,11 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Attendance Calculator — Free Attendance Percentage Calculator | ARTHNIX</title>
-  <meta
-    name="description"
-    content="Calculate your attendance percentage, find how many classes you need to attend to reach your target, and track monthly attendance with the free ARTHNIX Attendance Calculator."
-  >
+  <title>Free Attendance Calculator for Students & Employees | ARTHNIX</title>
+  <meta name="description" content="Calculate student class attendance or employee working-day attendance for free. Track absences, leave, work from home, holidays, future attendance and export monthly attendance records with ARTHNIX.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#090909">
   <link rel="canonical" href="https://arthnix.com/tools/attendance-calculator.html">
@@ -16,20 +13,14 @@
   <link rel="apple-touch-icon" href="/logo.png">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Attendance Calculator — ARTHNIX">
-  <meta
-    property="og:description"
-    content="Calculate attendance percentage, check classes needed to reach your target, and track attendance for free."
-  >
+  <meta property="og:title" content="Attendance Calculator for Students & Employees | ARTHNIX">
+  <meta property="og:description" content="Calculate attendance, plan future classes or working days, track monthly records and export attendance reports for free.">
   <meta property="og:url" content="https://arthnix.com/tools/attendance-calculator.html">
   <meta property="og:site_name" content="ARTHNIX">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -37,8 +28,8 @@
     "@type": "WebApplication",
     "name": "ARTHNIX Attendance Calculator",
     "url": "https://arthnix.com/tools/attendance-calculator.html",
-    "description": "A free attendance calculator to calculate attendance percentage, determine how many classes are needed to reach a target, and track monthly attendance.",
-    "applicationCategory": "EducationalApplication",
+    "description": "Free attendance calculator for students and employees, with attendance percentage calculations, future projections and a monthly tracker.",
+    "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
     "offers": {
       "@type": "Offer",
@@ -58,31 +49,39 @@
         "name": "How is attendance percentage calculated?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Attendance percentage is calculated by dividing the number of classes attended by the total number of classes held and multiplying by 100."
+          "text": "For a simple attendance calculation, divide the number of attended classes or working days by the total number of classes or working days counted, then multiply by 100."
         }
       },
       {
         "@type": "Question",
-        "name": "How many classes do I need to attend to reach 75% attendance?",
+        "name": "Can employees use this attendance calculator?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The number depends on your classes attended and total classes held. Enter your current attendance and target percentage into the calculator to estimate how many consecutive classes you need to attend."
+          "text": "Yes. Select Employee Attendance to calculate attendance from working days, track paid leave, unpaid leave, work from home, holidays and weekly offs, and estimate future attendance."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I reach 100% attendance after missing classes?",
+        "name": "Does paid leave count as attendance?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "If you have already missed classes, attending future classes cannot bring your cumulative attendance back to exactly 100%. Your percentage can approach 100% as you attend more classes."
+          "text": "Paid leave policies vary between employers. This calculator keeps paid leave separate from days present so you can interpret the results according to your workplace policy."
         }
       },
       {
         "@type": "Question",
-        "name": "Is this attendance calculator free?",
+        "name": "Can I reach 100% attendance after missing classes or working days?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The ARTHNIX Attendance Calculator is free to use and does not require an account."
+          "text": "If you have already missed classes or working days that count in the denominator, attending future classes or working days cannot restore the cumulative percentage to exactly 100%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the monthly attendance tracker save records?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tracker saves records in your browser on the current device. You can export the selected month as a CSV file. Records are not automatically synced between devices."
         }
       }
     ]
@@ -102,8 +101,6 @@
       --red: #ed3434;
       --red-dark: #d92727;
       --green: #18864b;
-      --green-soft: #eaf7ef;
-      --red-soft: #fff0f0;
       --radius: 18px;
       --container: 1160px;
       --shadow: 0 12px 36px rgba(0, 0, 0, 0.045);
@@ -156,10 +153,6 @@
       outline-offset: 3px;
     }
 
-    img {
-      max-width: 100%;
-    }
-
     .container {
       width: min(var(--container), calc(100% - 48px));
       margin-inline: auto;
@@ -171,7 +164,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100%;
       background: var(--black);
       border-bottom: 1px solid #292929;
     }
@@ -223,7 +215,7 @@
     }
 
     .nav-links > a:not(.nav-cta):hover {
-      color: var(--white);
+      color: white;
     }
 
     .nav-cta {
@@ -234,7 +226,7 @@
       justify-content: center;
       gap: 8px;
       background: var(--red);
-      color: var(--white);
+      color: white;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 700;
@@ -253,7 +245,6 @@
       border: 1px solid #353535;
       border-radius: 9px;
       background: transparent;
-      color: white;
       cursor: pointer;
       align-items: center;
       justify-content: center;
@@ -262,7 +253,6 @@
     }
 
     .menu-toggle span {
-      display: block;
       width: 19px;
       height: 2px;
       background: white;
@@ -285,7 +275,7 @@
     /* HERO */
 
     .hero {
-      padding: 76px 0 45px;
+      padding: 70px 0 43px;
       text-align: center;
       background:
         radial-gradient(ellipse at 50% 0%, rgba(237, 52, 52, 0.065), transparent 56%),
@@ -303,7 +293,7 @@
       color: var(--red-dark);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
     }
 
@@ -315,7 +305,7 @@
     }
 
     .hero h1 {
-      max-width: 850px;
+      max-width: 900px;
       margin: 22px auto 17px;
       font-family: "Manrope", sans-serif;
       font-size: clamp(36px, 5.4vw, 63px);
@@ -329,7 +319,7 @@
     }
 
     .hero-description {
-      max-width: 670px;
+      max-width: 720px;
       margin: 0 auto;
       color: #686868;
       font-size: 16px;
@@ -359,10 +349,10 @@
       font-weight: 800;
     }
 
-    /* GENERAL SECTIONS */
+    /* SECTIONS */
 
     .section {
-      padding: 28px 0 72px;
+      padding: 28px 0 68px;
     }
 
     .section-heading {
@@ -379,10 +369,73 @@
     }
 
     .section-heading p {
-      max-width: 650px;
+      max-width: 700px;
       margin: 0;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    /* MODE SWITCHER */
+
+    .mode-switcher {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .mode-button {
+      padding: 19px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .mode-button:hover {
+      border-color: #d0d0cc;
+    }
+
+    .mode-button.active {
+      background: #fff8f8;
+      border-color: var(--red);
+      box-shadow: 0 0 0 2px rgba(237, 52, 52, 0.07);
+    }
+
+    .mode-icon {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--surface);
+      border-radius: 12px;
+      font-size: 23px;
+    }
+
+    .mode-button.active .mode-icon {
+      background: #ffe8e8;
+    }
+
+    .mode-button strong {
+      display: block;
+      margin-bottom: 3px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .mode-button small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
     }
 
     /* CALCULATOR */
@@ -396,7 +449,7 @@
 
     .card {
       min-width: 0;
-      background: var(--white);
+      background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -442,7 +495,7 @@
     }
 
     .form-group {
-      margin-bottom: 19px;
+      margin-bottom: 18px;
     }
 
     .form-group label {
@@ -453,16 +506,12 @@
       font-weight: 700;
     }
 
-    .input-wrap {
-      position: relative;
-    }
-
     .form-control {
       display: block;
       width: 100%;
       min-height: 49px;
       padding: 12px 14px;
-      background: #fff;
+      background: white;
       border: 1px solid #dededb;
       border-radius: 10px;
       color: var(--text);
@@ -484,6 +533,10 @@
       line-height: 1.6;
     }
 
+    .input-wrap {
+      position: relative;
+    }
+
     .input-suffix {
       position: absolute;
       top: 50%;
@@ -498,7 +551,8 @@
       padding-right: 42px;
     }
 
-    .button-row {
+    .button-row,
+    .tracker-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -506,8 +560,8 @@
     }
 
     .btn {
-      min-height: 47px;
-      padding: 12px 18px;
+      min-height: 45px;
+      padding: 11px 17px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -539,6 +593,37 @@
     .btn-secondary:hover {
       background: #f8f8f7;
       border-color: #bdbdb9;
+    }
+
+    .quick-examples {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .quick-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .quick-chip {
+      padding: 7px 11px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: #555;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .quick-chip:hover {
+      background: #fff0f0;
+      border-color: #ffc9c9;
+      color: var(--red-dark);
     }
 
     /* RESULTS */
@@ -666,9 +751,9 @@
 
     .result-stat-value {
       font-family: "Manrope", sans-serif;
-      font-size: 24px;
+      font-size: 23px;
       font-weight: 800;
-      line-height: 1.35;
+      line-height: 1.4;
       overflow-wrap: anywhere;
     }
 
@@ -701,45 +786,10 @@
       line-height: 1.7;
     }
 
-    /* QUICK EXAMPLES */
-
-    .quick-examples {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 9px;
-      margin-top: 18px;
-    }
-
-    .quick-label {
-      margin-right: 3px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .quick-chip {
-      padding: 7px 11px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      color: #555;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 700;
-      transition: all 0.2s ease;
-    }
-
-    .quick-chip:hover {
-      background: #fff0f0;
-      border-color: #ffc9c9;
-      color: var(--red-dark);
-    }
-
     /* TRACKER */
 
     .tracker-section {
-      padding: 0 0 76px;
+      padding: 0 0 72px;
     }
 
     .tracker-card {
@@ -762,19 +812,15 @@
     .month-controls {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
     }
 
     .month-controls .form-control {
       width: auto;
-      min-width: 145px;
+      min-width: 130px;
       min-height: 42px;
-      padding: 8px 11px;
+      padding: 8px 10px;
       font-size: 12px;
-    }
-
-    .month-controls select {
-      max-width: 170px;
     }
 
     .month-controls button {
@@ -848,22 +894,6 @@
       border-radius: 3px;
     }
 
-    .legend-present {
-      background: #1a9957;
-    }
-
-    .legend-absent {
-      background: #ed3434;
-    }
-
-    .legend-holiday {
-      background: #d5a12b;
-    }
-
-    .legend-unmarked {
-      background: #e6e6e3;
-    }
-
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -888,7 +918,7 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 7px;
-      background: #fff;
+      background: white;
       border: 1px solid var(--border);
       border-radius: 10px;
       color: var(--text);
@@ -898,7 +928,7 @@
     }
 
     .calendar-day:hover {
-      border-color: #bcbcb8;
+      border-color: #bcbdb8;
       transform: translateY(-1px);
     }
 
@@ -921,11 +951,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      max-width: 100%;
       padding: 3px 6px;
       border-radius: 5px;
       font-size: 9px;
       font-weight: 800;
       line-height: 1.4;
+      overflow-wrap: anywhere;
     }
 
     .calendar-day.present {
@@ -948,12 +980,36 @@
       color: #b82121;
     }
 
-    .calendar-day.holiday {
+    .calendar-day.paid-leave,
+    .calendar-day.wfh {
+      background: #f2f7ff;
+      border-color: #d4e3ff;
+    }
+
+    .calendar-day.paid-leave .day-status,
+    .calendar-day.wfh .day-status {
+      background: #e0ebff;
+      color: #2453a1;
+    }
+
+    .calendar-day.unpaid-leave {
+      background: #fff3ef;
+      border-color: #f4d5c7;
+    }
+
+    .calendar-day.unpaid-leave .day-status {
+      background: #ffe4d9;
+      color: #9c4224;
+    }
+
+    .calendar-day.holiday,
+    .calendar-day.weekly-off {
       background: #fffaf0;
       border-color: #f2e3b7;
     }
 
-    .calendar-day.holiday .day-status {
+    .calendar-day.holiday .day-status,
+    .calendar-day.weekly-off .day-status {
       background: #f9edc7;
       color: #8b6610;
     }
@@ -963,13 +1019,6 @@
       color: #777;
     }
 
-    .tracker-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
     .tracker-note {
       margin-top: 15px;
       color: #858585;
@@ -977,7 +1026,7 @@
       line-height: 1.7;
     }
 
-    /* EXPLANATION */
+    /* INFORMATION */
 
     .info-grid {
       display: grid;
@@ -1051,7 +1100,7 @@
     /* FAQ */
 
     .faq-section {
-      padding: 0 0 78px;
+      padding: 0 0 75px;
     }
 
     .faq-list {
@@ -1082,7 +1131,7 @@
       font-weight: 700;
     }
 
-    .faq-question span:last-child {
+    .faq-question .faq-plus {
       flex-shrink: 0;
       color: var(--red);
       font-size: 21px;
@@ -1090,7 +1139,7 @@
       transition: transform 0.2s ease;
     }
 
-    .faq-item.open .faq-question span:last-child {
+    .faq-item.open .faq-plus {
       transform: rotate(45deg);
     }
 
@@ -1165,7 +1214,7 @@
     .site-footer {
       padding: 57px 0 25px;
       background: var(--black);
-      color: var(--white);
+      color: white;
     }
 
     .footer-grid {
@@ -1254,6 +1303,7 @@
       .site-header,
       .site-footer,
       .hero,
+      .mode-switcher,
       .calculator-card,
       .quick-examples,
       .tracker-section,
@@ -1261,10 +1311,7 @@
       .faq-section,
       .related-section,
       .button-row,
-      .tracker-actions,
-      .month-controls,
-      .calendar-legend,
-      .tracker-note {
+      .tracker-actions {
         display: none !important;
       }
 
@@ -1306,15 +1353,7 @@
         color: black !important;
       }
 
-      .result-message strong {
-        color: black !important;
-      }
-
-      .result-status {
-        color: black !important;
-        border-color: #ddd !important;
-      }
-
+      .result-message strong,
       .percentage-value,
       .percentage-symbol,
       .result-stat-value {
@@ -1386,7 +1425,7 @@
       }
 
       .hero {
-        padding-top: 57px;
+        padding-top: 53px;
       }
 
       .hero h1 {
@@ -1395,10 +1434,6 @@
 
       .calculator-layout {
         grid-template-columns: 1fr;
-      }
-
-      .tracker-summary {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .info-grid {
@@ -1430,7 +1465,7 @@
       }
 
       .hero {
-        padding: 45px 0 35px;
+        padding: 43px 0 34px;
       }
 
       .hero h1 {
@@ -1448,7 +1483,32 @@
       }
 
       .section {
-        padding-bottom: 52px;
+        padding-bottom: 50px;
+      }
+
+      .mode-switcher {
+        gap: 8px;
+      }
+
+      .mode-button {
+        padding: 13px 11px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .mode-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 19px;
+      }
+
+      .mode-button strong {
+        font-size: 13px;
+      }
+
+      .mode-button small {
+        font-size: 10px;
       }
 
       .calculator-card,
@@ -1475,10 +1535,11 @@
       }
 
       .result-stat-value {
-        font-size: 21px;
+        font-size: 20px;
       }
 
-      .button-row .btn {
+      .button-row .btn,
+      .tracker-actions .btn {
         flex: 1 1 100%;
       }
 
@@ -1500,7 +1561,7 @@
       }
 
       .calendar-day {
-        min-height: 63px;
+        min-height: 61px;
         padding: 5px;
         gap: 5px;
         border-radius: 7px;
@@ -1515,14 +1576,16 @@
       }
 
       .day-status {
-        max-width: 100%;
         padding: 3px 4px;
         font-size: 8px;
-        overflow-wrap: anywhere;
       }
 
       .calendar-weekday {
         font-size: 9px;
+      }
+
+      .tracker-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .tracker-stat {
@@ -1531,10 +1594,6 @@
 
       .tracker-stat strong {
         font-size: 22px;
-      }
-
-      .tracker-actions .btn {
-        flex: 1 1 100%;
       }
 
       .related-grid {
@@ -1570,7 +1629,7 @@
       }
 
       .calendar-day {
-        min-height: 56px;
+        min-height: 54px;
         padding: 3px;
       }
 
@@ -1594,17 +1653,8 @@
         <span class="brand-name">ARTHNIX</span>
       </a>
 
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
       </button>
 
       <div class="nav-links" id="navLinks">
@@ -1624,35 +1674,51 @@
       <div class="container">
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-          Free Student Tool
+          Free Attendance Tool
         </div>
 
         <h1>Attendance <span>Calculator</span></h1>
 
         <p class="hero-description">
-          Check your current attendance percentage, find out how many classes
-          you need to attend to reach your target, and track your attendance
-          day by day — all in one simple tool.
+          Calculate your attendance percentage, track monthly attendance, and
+          plan ahead with a free attendance calculator for students and employees.
+          Estimate the classes or working days needed to reach your target and
+          export your attendance records.
         </p>
 
         <div class="hero-points">
-          <span>Instant calculation</span>
-          <span>Target attendance planning</span>
+          <span>Student and employee modes</span>
+          <span>Instant calculations</span>
           <span>Monthly attendance tracker</span>
           <span>Free to use</span>
         </div>
       </div>
     </section>
 
-    <!-- MAIN CALCULATOR -->
+    <!-- CALCULATOR -->
     <section class="section" aria-labelledby="calculatorTitle">
       <div class="container">
         <div class="section-heading">
           <h2 id="calculatorTitle">Calculate Your Attendance</h2>
-          <p>
-            Enter your class details to calculate your attendance and plan
-            how many future classes you need to attend.
-          </p>
+          <p>Select the type of attendance you want to calculate.</p>
+        </div>
+
+        <div class="mode-switcher" role="group" aria-label="Attendance type">
+          <button class="mode-button active" id="studentMode" type="button" aria-pressed="true">
+            <span class="mode-icon" aria-hidden="true">🎓</span>
+            <span>
+              <strong>Student Attendance</strong>
+              <small>Classes attended, classes missed and academic targets.</small>
+            </span>
+          </button>
+
+          <button class="mode-button" id="employeeMode" type="button" aria-pressed="false">
+            <span class="mode-icon" aria-hidden="true">💼</span>
+            <span>
+              <strong>Employee Attendance</strong>
+              <small>Working days, leave, work from home and monthly attendance.</small>
+            </span>
+          </button>
         </div>
 
         <div class="calculator-layout">
@@ -1660,101 +1726,85 @@
             <div class="card-heading">
               <div class="icon-box" aria-hidden="true">▦</div>
               <div>
-                <h2>Your Class Details</h2>
-                <p>Enter your current attendance information.</p>
+                <h2 id="formTitle">Your Class Details</h2>
+                <p id="formSubtitle">Enter your current class attendance.</p>
               </div>
             </div>
 
-            <form id="attendanceForm">
+            <form id="attendanceForm" novalidate>
               <div class="form-group">
-                <label for="classesHeld">Total classes held</label>
-                <input
-                  class="form-control"
-                  id="classesHeld"
-                  name="classesHeld"
-                  type="number"
-                  min="1"
-                  step="1"
-                  value="100"
-                  required
-                >
-                <span class="field-help">The total number of classes conducted so far.</span>
+                <label id="totalLabel" for="totalDays">Total classes held</label>
+                <input class="form-control" id="totalDays" type="number" min="1" step="1" value="100" required>
+                <span class="field-help" id="totalHelp">The total number of classes conducted so far.</span>
               </div>
 
               <div class="form-group">
-                <label for="classesAttended">Classes attended</label>
-                <input
-                  class="form-control"
-                  id="classesAttended"
-                  name="classesAttended"
-                  type="number"
-                  min="0"
-                  step="1"
-                  value="72"
-                  required
-                >
-                <span class="field-help">The number of classes you have actually attended.</span>
+                <label id="presentLabel" for="presentDays">Classes attended</label>
+                <input class="form-control" id="presentDays" type="number" min="0" step="1" value="72" required>
+                <span class="field-help" id="presentHelp">The number of classes you have actually attended.</span>
+              </div>
+
+              <div id="employeeFields" hidden>
+                <div class="form-group">
+                  <label for="paidLeave">Paid leave days</label>
+                  <input class="form-control" id="paidLeave" type="number" min="0" step="0.5" value="1">
+                  <span class="field-help">Recorded separately; not automatically counted as a day present.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="unpaidLeave">Unpaid leave / absent days</label>
+                  <input class="form-control" id="unpaidLeave" type="number" min="0" step="0.5" value="2">
+                  <span class="field-help">Informational leave count. Make sure your total working-day entries are consistent.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="wfhDays">Work-from-home days</label>
+                  <input class="form-control" id="wfhDays" type="number" min="0" step="0.5" value="0">
+                  <span class="field-help">Count these as attended working days if that matches your company's policy.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="offDays">Holidays and weekly offs (optional)</label>
+                  <input class="form-control" id="offDays" type="number" min="0" step="0.5" value="8">
+                  <span class="field-help">Informational only; exclude these from total working days.</span>
+                </div>
               </div>
 
               <div class="form-group">
                 <label for="targetAttendance">Target attendance percentage</label>
                 <div class="input-wrap">
-                  <input
-                    class="form-control target-input"
-                    id="targetAttendance"
-                    name="targetAttendance"
-                    type="number"
-                    min="1"
-                    max="100"
-                    step="0.1"
-                    value="75"
-                    required
-                  >
+                  <input class="form-control target-input" id="targetAttendance" type="number" min="1" max="100" step="0.1" value="75" required>
                   <span class="input-suffix">%</span>
                 </div>
-                <span class="field-help">For example, enter 75 if your college requires 75% attendance.</span>
+                <span class="field-help" id="targetHelp">For example, enter 75 if your college requires 75% attendance.</span>
               </div>
 
               <div class="form-group">
-                <label for="futureClasses">Expected future classes (optional)</label>
-                <input
-                  class="form-control"
-                  id="futureClasses"
-                  name="futureClasses"
-                  type="number"
-                  min="0"
-                  step="1"
-                  value="20"
-                >
-                <span class="field-help">Estimate your attendance percentage if you attend all these future classes.</span>
+                <label id="futureLabel" for="futureDays">Expected future classes</label>
+                <input class="form-control" id="futureDays" type="number" min="0" step="1" value="20" required>
+                <span class="field-help" id="futureHelp">Estimate your attendance if you attend all these future classes.</span>
               </div>
 
               <div class="button-row">
-                <button class="btn btn-primary" type="submit">
-                  Calculate Attendance <span aria-hidden="true">→</span>
-                </button>
-                <button class="btn btn-secondary" id="resetCalculator" type="button">
-                  Reset
-                </button>
-                <button class="btn btn-secondary" id="printReport" type="button">
-                  Print Report
-                </button>
+                <button class="btn btn-primary" type="submit">Calculate Attendance <span aria-hidden="true">→</span></button>
+                <button class="btn btn-secondary" id="resetCalculator" type="button">Reset</button>
+                <button class="btn btn-secondary" id="printReport" type="button">Print Report</button>
               </div>
             </form>
 
-            <div class="quick-examples" aria-label="Quick attendance examples">
+            <div class="quick-examples" id="quickExamples" aria-label="Quick attendance examples">
               <span class="quick-label">Try an example:</span>
-              <button class="quick-chip" type="button" data-held="100" data-attended="60">60%</button>
-              <button class="quick-chip" type="button" data-held="100" data-attended="72">72%</button>
-              <button class="quick-chip" type="button" data-held="100" data-attended="80">80%</button>
-              <button class="quick-chip" type="button" data-held="120" data-attended="105">87.5%</button>
+              <button class="quick-chip" type="button" data-total="100" data-present="60">60%</button>
+              <button class="quick-chip" type="button" data-total="100" data-present="72">72%</button>
+              <button class="quick-chip" type="button" data-total="100" data-present="80">80%</button>
+              <button class="quick-chip" type="button" data-total="120" data-present="105">87.5%</button>
             </div>
           </div>
 
           <!-- RESULTS -->
           <div class="card results-card" aria-live="polite" aria-atomic="true">
             <div class="results-inner">
-              <div class="results-label">Your Current Attendance</div>
+              <div class="results-label" id="resultsTitle">Your Current Attendance</div>
 
               <div class="percentage-row">
                 <span class="percentage-value" id="attendancePercentage">72.00</span>
@@ -1766,48 +1816,36 @@
                 <span id="statusText">Below your target</span>
               </div>
 
-              <div
-                class="progress-track"
-                role="progressbar"
-                id="attendanceProgress"
-                aria-label="Current attendance percentage"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-valuenow="72"
-              >
+              <div class="progress-track" id="attendanceProgress" role="progressbar" aria-label="Current attendance percentage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72">
                 <div class="progress-fill" id="progressFill" style="width:72%"></div>
               </div>
 
               <div class="result-stats">
                 <div class="result-stat">
-                  <div class="result-stat-label">Classes attended</div>
-                  <div class="result-stat-value" id="resultAttended">72 <small>classes</small></div>
+                  <div class="result-stat-label" id="statPresentLabel">Classes attended</div>
+                  <div class="result-stat-value" id="resultPresent">72 <small>classes</small></div>
                 </div>
 
                 <div class="result-stat">
-                  <div class="result-stat-label">Classes missed</div>
-                  <div class="result-stat-value" id="resultMissed">28 <small>classes</small></div>
+                  <div class="result-stat-label" id="statAbsentLabel">Classes missed</div>
+                  <div class="result-stat-value" id="resultAbsent">28 <small>classes</small></div>
                 </div>
 
                 <div class="result-stat">
-                  <div class="result-stat-label">Classes needed for target</div>
+                  <div class="result-stat-label" id="statNeededLabel">Classes needed for target</div>
                   <div class="result-stat-value" id="resultNeeded">12 <small>classes</small></div>
                 </div>
 
                 <div class="result-stat">
-                  <div class="result-stat-label">Projected attendance</div>
+                  <div class="result-stat-label" id="statProjectedLabel">Projected attendance</div>
                   <div class="result-stat-value" id="resultProjected">76.67<small>%</small></div>
                 </div>
               </div>
 
-              <div class="result-message" id="resultMessage">
-                <strong>You need to attend 12 consecutive classes</strong>
-                without missing any to reach 75% attendance.
-              </div>
+              <div class="result-message" id="resultMessage"></div>
 
-              <div class="formula-note">
-                Formula: Classes attended ÷ Total classes held × 100.
-                Future-class projections assume you attend every projected class.
+              <div class="formula-note" id="formulaNote">
+                Attendance percentage = classes attended ÷ total classes held × 100.
               </div>
             </div>
           </div>
@@ -1824,7 +1862,7 @@
               <div class="icon-box" aria-hidden="true">▦</div>
               <div>
                 <h2 id="trackerTitle">Monthly Attendance Tracker</h2>
-                <p>Click a date to cycle through attendance statuses.</p>
+                <p id="trackerSubtitle">Click a date to cycle through attendance statuses.</p>
               </div>
             </div>
 
@@ -1838,46 +1876,33 @@
 
           <div class="tracker-summary">
             <div class="tracker-stat">
-              <span>Present</span>
-              <strong id="presentCount">0</strong>
+              <span id="trackerPresentLabel">Present</span>
+              <strong id="trackerPresent">0</strong>
             </div>
             <div class="tracker-stat">
-              <span>Absent</span>
-              <strong id="absentCount">0</strong>
+              <span id="trackerAbsentLabel">Absent</span>
+              <strong id="trackerAbsent">0</strong>
             </div>
             <div class="tracker-stat">
-              <span>Holidays</span>
-              <strong id="holidayCount">0</strong>
+              <span id="trackerThirdLabel">Holidays</span>
+              <strong id="trackerThird">0</strong>
             </div>
             <div class="tracker-stat">
               <span>Attendance rate</span>
-              <strong id="trackerPercentage">—<small>%</small></strong>
+              <strong id="trackerRate">—<small>%</small></strong>
             </div>
           </div>
 
-          <div class="calendar-legend" aria-label="Attendance status legend">
-            <span class="legend-item"><span class="legend-dot legend-present"></span>Present</span>
-            <span class="legend-item"><span class="legend-dot legend-absent"></span>Absent</span>
-            <span class="legend-item"><span class="legend-dot legend-holiday"></span>Holiday</span>
-            <span class="legend-item"><span class="legend-dot legend-unmarked"></span>Unmarked</span>
-          </div>
-
+          <div class="calendar-legend" id="calendarLegend" aria-label="Attendance status legend"></div>
           <div class="calendar-grid" id="calendarGrid" aria-label="Monthly attendance calendar"></div>
 
           <div class="tracker-actions">
-            <button class="btn btn-primary" id="exportTracker" type="button">
-              Export Monthly CSV
-            </button>
-            <button class="btn btn-secondary" id="clearTracker" type="button">
-              Clear This Month
-            </button>
+            <button class="btn btn-primary" id="exportTracker" type="button">Export Monthly CSV</button>
+            <button class="btn btn-secondary" id="clearTracker" type="button">Clear This Month</button>
           </div>
 
-          <p class="tracker-note">
-            Tracker entries are saved in this browser on this device. Present days
-            count as attended, absent days count as missed, and holidays and
-            unmarked dates are excluded from the tracker attendance rate.
-            This tracker is separate from the calculator above.
+          <p class="tracker-note" id="trackerNote">
+            Entries are saved in this browser on this device. This tracker is separate from the calculator above.
           </p>
         </div>
       </div>
@@ -1888,47 +1913,37 @@
       <div class="container">
         <div class="section-heading">
           <h2 id="howTitle">How Is Attendance Calculated?</h2>
-          <p>
-            Understand your attendance percentage and make a plan to meet
-            your institution's attendance requirement.
-          </p>
+          <p>Understand your attendance percentage and plan to meet your academic or workplace target.</p>
         </div>
 
         <div class="info-grid">
           <article class="info-card">
             <div class="info-number">01</div>
-            <h3>Enter your class totals</h3>
-            <p>
-              Add the total number of classes conducted and the number of
-              classes you attended. Your missed classes are calculated automatically.
-            </p>
+            <h3 id="stepOneTitle">Enter your class totals</h3>
+            <p id="stepOneText">Enter the total classes held and the classes attended. Missed classes are calculated automatically.</p>
           </article>
 
           <article class="info-card">
             <div class="info-number">02</div>
-            <h3>Set your attendance target</h3>
-            <p>
-              Choose the required percentage, such as 75% or 80%. The calculator
-              estimates how many consecutive future classes you must attend to
-              reach that target.
-            </p>
+            <h3 id="stepTwoTitle">Set your attendance target</h3>
+            <p id="stepTwoText">Choose your required attendance percentage. The calculator estimates the number of consecutive classes you need to attend.</p>
           </article>
 
           <article class="info-card">
             <div class="info-number">03</div>
-            <h3>Plan your upcoming classes</h3>
-            <p>
-              Enter the number of future classes you expect. See your projected
-              attendance if you attend all of them, and use the monthly tracker
-              to record attendance.
-            </p>
+            <h3 id="stepThreeTitle">Plan upcoming classes</h3>
+            <p id="stepThreeText">Estimate your future attendance and record daily attendance using the monthly tracker.</p>
           </article>
         </div>
 
         <div class="formula-box">
           <span>Attendance Percentage Formula</span>
-          <strong>(Classes Attended ÷ Total Classes Held) × 100</strong>
+          <strong id="formulaDisplay">(Classes Attended ÷ Total Classes Held) × 100</strong>
         </div>
+
+        <p class="tracker-note" id="policyNote">
+          This is a planning calculator. Follow your institution's official attendance rules for eligibility and exemptions.
+        </p>
       </div>
     </section>
 
@@ -1937,81 +1952,90 @@
       <div class="container">
         <div class="section-heading">
           <h2 id="faqTitle">Frequently Asked Questions</h2>
-          <p>Quick answers to common attendance calculation questions.</p>
+          <p>Answers to common questions about student and employee attendance.</p>
         </div>
 
         <div class="faq-list">
           <article class="faq-item open">
             <button class="faq-question" type="button" aria-expanded="true">
               <span>How is attendance percentage calculated?</span>
-              <span aria-hidden="true">+</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              Divide the number of classes you attended by the total number of
-              classes held, then multiply by 100. For example, if you attended
-              72 out of 100 classes, your attendance is 72%.
+              Divide the number of classes or working days attended by the total
+              number of classes or working days counted, then multiply by 100.
+              For example, 18 attended days out of 22 working days is 81.82%.
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>How many classes do I need to attend to reach 75% attendance?</span>
-              <span aria-hidden="true">+</span>
+              <span>Can employees use this attendance calculator?</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              It depends on your current attendance. If you attended 72 out of
-              100 classes, you need to attend 12 consecutive additional classes
-              to reach exactly 75%: 84 attended out of 112 total classes.
-              Enter your own numbers in the calculator for a personalised estimate.
+              Yes. Select Employee Attendance to calculate attendance from
+              working days, record paid and unpaid leave separately, and estimate
+              attendance after future working days.
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can I get back to 100% attendance after missing a class?</span>
-              <span aria-hidden="true">+</span>
+              <span>Does paid leave count as attendance?</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              If you have already missed a class, attending future classes cannot
-              restore cumulative attendance to exactly 100%. You can increase
-              your percentage by attending more classes, but it will remain
-              below 100%.
+              Paid leave policies vary by employer. This calculator keeps paid
+              leave separate from days present. Your workplace may treat approved
+              leave differently for attendance, eligibility, or payroll purposes.
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>What happens if my current attendance is already above my target?</span>
-              <span aria-hidden="true">+</span>
+              <span>How many classes or working days do I need to reach my target?</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              The calculator will show that you have already reached your target.
-              You can use the projected attendance result to see how your
-              percentage may change as future classes take place.
+              The calculator estimates the minimum number of consecutive future
+              classes or working days you need to attend to reach your target,
+              assuming you do not miss any of those days.
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>Does the monthly tracker save my attendance?</span>
-              <span aria-hidden="true">+</span>
+              <span>Can I reach 100% attendance after missing days?</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              Yes. The tracker saves entries in your browser on the current
-              device using local browser storage. Entries are not automatically
-              synced to other devices, and clearing browser data may remove them.
+              If you have already missed days included in the attendance
+              denominator, future attendance cannot bring your cumulative
+              percentage back to exactly 100%.
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Does the monthly tracker save records?</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes. The tracker stores entries in your browser on the current
+              device. You can export a month as CSV. Records are not automatically
+              synced between devices, and clearing browser data may delete them.
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
               <span>Is the ARTHNIX Attendance Calculator free?</span>
-              <span aria-hidden="true">+</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              Yes. You can calculate attendance, estimate future attendance,
-              print a report, and use the monthly tracker for free without
-              creating an account.
+              Yes. Both student and employee modes, the attendance tracker,
+              CSV export and print report are free to use without creating an account.
             </div>
           </article>
         </div>
@@ -2064,12 +2088,8 @@
             <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo" width="38" height="38">
             <span class="brand-name">ARTHNIX</span>
           </a>
-
           <p>Intelligence for Every Business.</p>
-          <p>
-            Practical tools and intelligent solutions to simplify everyday
-            business operations.
-          </p>
+          <p>Practical tools and intelligent solutions to simplify everyday business operations.</p>
           <p class="footer-powered">Powered by Alphex AI</p>
         </div>
 
@@ -2118,7 +2138,7 @@
     (() => {
       "use strict";
 
-      /* MOBILE NAVIGATION */
+      /* NAVIGATION */
 
       const menuToggle = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
@@ -2132,31 +2152,26 @@
       }
 
       menuToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.toggle("open");
-        menuToggle.classList.toggle("active", isOpen);
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-        document.body.classList.toggle("menu-open", isOpen);
+        const open = navLinks.classList.toggle("open");
+        menuToggle.classList.toggle("active", open);
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+        document.body.classList.toggle("menu-open", open);
       });
 
-      navLinks.querySelectorAll("a").forEach((link) => {
+      navLinks.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", closeMenu);
       });
 
-      document.addEventListener("click", (event) => {
+      document.addEventListener("click", event => {
         if (
           navLinks.classList.contains("open") &&
           !navLinks.contains(event.target) &&
           !menuToggle.contains(event.target)
-        ) {
-          closeMenu();
-        }
+        ) closeMenu();
       });
 
-      document.addEventListener("keydown", (event) => {
+      document.addEventListener("keydown", event => {
         if (event.key === "Escape") closeMenu();
       });
 
@@ -2164,231 +2179,385 @@
         if (window.innerWidth > 780) closeMenu();
       });
 
-      document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-      /* ATTENDANCE CALCULATOR */
+      /* CALCULATOR MODE */
 
-      const form = document.getElementById("attendanceForm");
-      const heldInput = document.getElementById("classesHeld");
-      const attendedInput = document.getElementById("classesAttended");
+      const studentMode = document.getElementById("studentMode");
+      const employeeMode = document.getElementById("employeeMode");
+      const employeeFields = document.getElementById("employeeFields");
+
+      const totalInput = document.getElementById("totalDays");
+      const presentInput = document.getElementById("presentDays");
+      const paidLeaveInput = document.getElementById("paidLeave");
+      const unpaidLeaveInput = document.getElementById("unpaidLeave");
+      const wfhInput = document.getElementById("wfhDays");
+      const offDaysInput = document.getElementById("offDays");
       const targetInput = document.getElementById("targetAttendance");
-      const futureInput = document.getElementById("futureClasses");
+      const futureInput = document.getElementById("futureDays");
+      const form = document.getElementById("attendanceForm");
 
-      const percentageOutput = document.getElementById("attendancePercentage");
-      const resultAttended = document.getElementById("resultAttended");
-      const resultMissed = document.getElementById("resultMissed");
-      const resultNeeded = document.getElementById("resultNeeded");
-      const resultProjected = document.getElementById("resultProjected");
-      const statusBadge = document.getElementById("attendanceStatus");
-      const statusText = document.getElementById("statusText");
-      const progress = document.getElementById("attendanceProgress");
-      const progressFill = document.getElementById("progressFill");
-      const resultMessage = document.getElementById("resultMessage");
+      let mode = "student";
 
       const numberFormat = new Intl.NumberFormat("en-IN");
 
-      function formatNumber(value) {
+      function fmt(value) {
         return numberFormat.format(value);
       }
 
-      function formatPercentage(value) {
+      function pct(value) {
         return Number(value).toFixed(2);
       }
 
-      function validateCalculator(showBrowserMessage = true) {
-        const held = Number(heldInput.value);
-        const attended = Number(attendedInput.value);
-        const target = Number(targetInput.value);
-        const futureRaw = futureInput.value.trim();
-        const future = futureRaw === "" ? 0 : Number(futureRaw);
+      function setMode(nextMode) {
+        mode = nextMode;
+        const student = mode === "student";
 
-        let error = "";
+        studentMode.classList.toggle("active", student);
+        employeeMode.classList.toggle("active", !student);
+        studentMode.setAttribute("aria-pressed", String(student));
+        employeeMode.setAttribute("aria-pressed", String(!student));
+        employeeFields.hidden = student;
+
+        document.getElementById("formTitle").textContent =
+          student ? "Your Class Details" : "Your Working-Day Details";
+        document.getElementById("formSubtitle").textContent =
+          student
+            ? "Enter your current class attendance."
+            : "Enter your working days and attendance details.";
+
+        document.getElementById("totalLabel").textContent =
+          student ? "Total classes held" : "Total working days";
+        document.getElementById("totalHelp").textContent =
+          student
+            ? "The total number of classes conducted so far."
+            : "Working days counted in this attendance calculation. Exclude weekly offs and holidays.";
+
+        document.getElementById("presentLabel").textContent =
+          student ? "Classes attended" : "Days present at work";
+        document.getElementById("presentHelp").textContent =
+          student
+            ? "The number of classes you have actually attended."
+            : "Days physically present at work. Add approved work-from-home days here if your policy counts them as attended.";
+
+        document.getElementById("targetHelp").textContent =
+          student
+            ? "For example, enter 75 if your college requires 75% attendance."
+            : "Enter the attendance target you want to maintain.";
+
+        document.getElementById("futureLabel").textContent =
+          student ? "Expected future classes" : "Expected future working days";
+        document.getElementById("futureHelp").textContent =
+          student
+            ? "Estimate attendance if you attend all these future classes."
+            : "Estimate attendance if you attend all these future working days.";
+
+        document.getElementById("resultsTitle").textContent =
+          student ? "Your Current Attendance" : "Your Current Work Attendance";
+        document.getElementById("statPresentLabel").textContent =
+          student ? "Classes attended" : "Days present";
+        document.getElementById("statAbsentLabel").textContent =
+          student ? "Classes missed" : "Days absent";
+        document.getElementById("statNeededLabel").textContent =
+          student ? "Classes needed for target" : "Working days needed";
+        document.getElementById("statProjectedLabel").textContent =
+          student ? "Projected attendance" : "Projected attendance";
+
+        document.getElementById("trackerTitle").textContent =
+          student ? "Monthly Attendance Tracker" : "Employee Monthly Attendance Tracker";
+        document.getElementById("trackerSubtitle").textContent =
+          student
+            ? "Click a date to cycle through class attendance statuses."
+            : "Click a date to record employee attendance, leave or work status.";
+
+        document.getElementById("trackerPresentLabel").textContent =
+          student ? "Present" : "Present / WFH";
+        document.getElementById("trackerAbsentLabel").textContent = "Absent";
+        document.getElementById("trackerThirdLabel").textContent =
+          student ? "Holidays" : "Leave / Off";
+
+        document.getElementById("stepOneTitle").textContent =
+          student ? "Enter your class totals" : "Enter your working days";
+        document.getElementById("stepOneText").textContent =
+          student
+            ? "Enter the total classes held and the classes attended. Missed classes are calculated automatically."
+            : "Enter the total working days counted and the days you attended. Keep leave and weekly offs separate.";
+        document.getElementById("stepTwoTitle").textContent =
+          student ? "Set your attendance target" : "Set your workplace target";
+        document.getElementById("stepTwoText").textContent =
+          student
+            ? "Choose your required attendance percentage. The calculator estimates the number of consecutive classes you need to attend."
+            : "Set your desired attendance percentage and estimate how many consecutive working days you need to attend.";
+        document.getElementById("stepThreeTitle").textContent =
+          student ? "Plan upcoming classes" : "Plan upcoming workdays";
+        document.getElementById("stepThreeText").textContent =
+          student
+            ? "Estimate your future attendance and record daily attendance using the monthly tracker."
+            : "Estimate month-end attendance and use the tracker for presence, leave, work from home, holidays and weekly offs.";
+
+        document.getElementById("formulaDisplay").textContent =
+          student
+            ? "(Classes Attended ÷ Total Classes Held) × 100"
+            : "(Days Present ÷ Total Working Days) × 100";
+
+        document.getElementById("formulaNote").textContent =
+          student
+            ? "Formula: classes attended ÷ total classes held × 100. Projections assume you attend all future classes."
+            : "Formula: days present ÷ total working days × 100. Paid leave and unpaid leave are shown separately and are not automatically treated as days present.";
+
+        document.getElementById("policyNote").textContent =
+          student
+            ? "This is a planning calculator. Follow your institution's official attendance rules for eligibility and exemptions."
+            : "This is an attendance-planning tool, not a payroll calculator. Leave treatment, holidays, work-from-home eligibility and payroll deductions depend on your employer's policies.";
+
+        renderTracker();
+        calculate(false);
+      }
+
+      studentMode.addEventListener("click", () => setMode("student"));
+      employeeMode.addEventListener("click", () => setMode("employee"));
+
+      /* CALCULATION */
+
+      function readNonNegative(input, label, allowDecimal = false) {
+        const raw = input.value.trim();
+        const value = Number(raw);
 
         if (
-          heldInput.value.trim() === "" ||
-          !Number.isInteger(held) ||
-          held < 1
+          raw === "" ||
+          !Number.isFinite(value) ||
+          value < 0 ||
+          (!allowDecimal && !Number.isInteger(value))
         ) {
-          error = "Enter a total number of classes held of at least 1.";
-        } else if (
-          attendedInput.value.trim() === "" ||
-          !Number.isInteger(attended) ||
-          attended < 0 ||
-          attended > held
-        ) {
-          error = "Classes attended must be a whole number between 0 and total classes held.";
-        } else if (
+          throw new Error(`${label} must be a valid ${allowDecimal ? "non-negative number" : "non-negative whole number"}.`);
+        }
+
+        return value;
+      }
+
+      function readInputs() {
+        const total = readNonNegative(totalInput, mode === "student" ? "Total classes held" : "Total working days");
+        const present = readNonNegative(presentInput, mode === "student" ? "Classes attended" : "Days present");
+
+        if (total <= 0) {
+          throw new Error("Total classes or working days must be greater than zero.");
+        }
+
+        if (present > total) {
+          throw new Error("The attended count cannot exceed the total classes or working days.");
+        }
+
+        const target = Number(targetInput.value);
+        if (
           targetInput.value.trim() === "" ||
           !Number.isFinite(target) ||
           target <= 0 ||
           target > 100
         ) {
-          error = "Enter a target attendance percentage greater than 0 and at most 100.";
-        } else if (
-          futureRaw !== "" &&
-          (!Number.isInteger(future) || future < 0)
-        ) {
-          error = "Expected future classes must be a non-negative whole number.";
+          throw new Error("Target attendance must be greater than 0 and no more than 100%.");
         }
 
-        if (error) {
-          if (showBrowserMessage) {
-            alert(error);
+        const future = readNonNegative(
+          futureInput,
+          mode === "student" ? "Expected future classes" : "Expected future working days"
+        );
+
+        let paidLeave = 0;
+        let unpaidLeave = 0;
+        let wfh = 0;
+        let offDays = 0;
+
+        if (mode === "employee") {
+          paidLeave = readNonNegative(paidLeaveInput, "Paid leave days", true);
+          unpaidLeave = readNonNegative(unpaidLeaveInput, "Unpaid leave days", true);
+          wfh = readNonNegative(wfhInput, "Work-from-home days", true);
+          offDays = readNonNegative(offDaysInput, "Holidays and weekly offs", true);
+
+          if (paidLeave + unpaidLeave > total - present) {
+            throw new Error("Paid leave and unpaid leave together cannot exceed the days not marked present. Check your working-day totals and leave entries.");
           }
-          return null;
+
+          if (wfh > present) {
+            throw new Error("Work-from-home days cannot exceed the days counted as present.");
+          }
         }
 
-        return { held, attended, target, future };
+        return { total, present, target, future, paidLeave, unpaidLeave, wfh, offDays };
       }
 
-      function getClassesNeeded(held, attended, target) {
-        const currentPercentage = (attended / held) * 100;
+      function classesNeeded(total, present, target) {
+        const current = (present / total) * 100;
 
-        if (currentPercentage >= target) {
-          return 0;
-        }
+        if (current >= target) return 0;
+        if (target >= 100) return Infinity;
 
-        if (target >= 100) {
-          return attended === held ? 0 : Infinity;
-        }
-
-        /*
-         * Solve:
-         * (attended + x) / (held + x) >= target / 100
-         *
-         * x >= (target * held - 100 * attended) / (100 - target)
-         */
-        const numerator = target * held - 100 * attended;
-        const denominator = 100 - target;
-
-        return Math.max(0, Math.ceil(numerator / denominator - 1e-10));
+        const result = (target * total - 100 * present) / (100 - target);
+        return Math.max(0, Math.ceil(result - 1e-10));
       }
 
-      function calculateAndRender(showErrors = true) {
-        const data = validateCalculator(showErrors);
-        if (!data) return false;
+      function calculate(showErrors = true) {
+        let data;
 
-        const { held, attended, target, future } = data;
-        const missed = held - attended;
-        const currentPercentage = (attended / held) * 100;
-        const needed = getClassesNeeded(held, attended, target);
-        const projectedPercentage =
-          ((attended + future) / (held + future)) * 100;
+        try {
+          data = readInputs();
+        } catch (error) {
+          if (showErrors) alert(error.message);
+          return false;
+        }
 
-        percentageOutput.textContent = formatPercentage(currentPercentage);
-        resultAttended.innerHTML =
-          `${formatNumber(attended)} <small>classes</small>`;
-        resultMissed.innerHTML =
-          `${formatNumber(missed)} <small>classes</small>`;
+        const { total, present, target, future } = data;
+        const absent = total - present;
+        const current = (present / total) * 100;
+        const needed = classesNeeded(total, present, target);
+        const projected = ((present + future) / (total + future)) * 100;
+
+        document.getElementById("attendancePercentage").textContent = pct(current);
+        document.getElementById("resultPresent").innerHTML =
+          `${fmt(present)} <small>${mode === "student" ? "classes" : "days"}</small>`;
+        document.getElementById("resultAbsent").innerHTML =
+          `${fmt(absent)} <small>${mode === "student" ? "classes" : "days"}</small>`;
 
         if (needed === Infinity) {
-          resultNeeded.innerHTML = `Not possible <small>at 100%</small>`;
+          document.getElementById("resultNeeded").innerHTML = `Not possible <small>at 100%</small>`;
         } else {
-          resultNeeded.innerHTML =
-            `${formatNumber(needed)} <small>${needed === 1 ? "class" : "classes"}</small>`;
+          document.getElementById("resultNeeded").innerHTML =
+            `${fmt(needed)} <small>${mode === "student" ? (needed === 1 ? "class" : "classes") : (needed === 1 ? "day" : "days")}</small>`;
         }
 
-        resultProjected.innerHTML =
-          `${formatPercentage(projectedPercentage)}<small>%</small>`;
+        document.getElementById("resultProjected").innerHTML =
+          `${pct(projected)}<small>%</small>`;
 
-        const reached = currentPercentage >= target;
-        statusBadge.classList.toggle("good", reached);
-        statusBadge.classList.toggle("bad", !reached);
-        statusText.textContent = reached
-          ? "Target achieved"
-          : "Below your target";
+        const reached = current >= target;
+        const status = document.getElementById("attendanceStatus");
+        status.classList.toggle("good", reached);
+        status.classList.toggle("bad", !reached);
 
-        progress.setAttribute("aria-valuenow", String(currentPercentage));
-        progress.setAttribute(
+        document.getElementById("statusText").textContent =
+          reached ? "Target achieved" : "Below your target";
+
+        document.getElementById("attendanceProgress").setAttribute("aria-valuenow", String(current));
+        document.getElementById("attendanceProgress").setAttribute(
           "aria-label",
-          `Current attendance is ${formatPercentage(currentPercentage)} percent`
+          `Current attendance is ${pct(current)} percent`
         );
-        progressFill.style.width = `${Math.min(100, currentPercentage)}%`;
+        document.getElementById("progressFill").style.width = `${Math.min(100, current)}%`;
+
+        const unit = mode === "student" ? "classes" : "working days";
+        const singular = mode === "student" ? "class" : "working day";
+
+        let message;
 
         if (reached) {
-          resultMessage.innerHTML =
-            `<strong>You have reached your ${formatPercentage(target)}% target.</strong> ` +
-            `Keep attending classes to maintain your attendance.`;
+          message = `<strong>You have reached your ${pct(target)}% target.</strong> Keep attending ${unit} to maintain your attendance.`;
         } else if (needed === Infinity) {
-          resultMessage.innerHTML =
-            `<strong>A 100% target cannot be reached from your current attendance.</strong> ` +
-            `You have already missed classes. Attending every future class will increase your percentage, but it cannot restore it to exactly 100%.`;
+          message = `<strong>A 100% target cannot be reached from your current attendance.</strong> Attending all future ${unit} will improve your percentage, but it cannot restore it to exactly 100%.`;
         } else {
-          resultMessage.innerHTML =
-            `<strong>You need to attend ${formatNumber(needed)} consecutive ` +
-            `${needed === 1 ? "class" : "classes"}</strong> without missing any to reach ` +
-            `${formatPercentage(target)}% attendance.`;
+          message = `<strong>You need to attend ${fmt(needed)} consecutive ${needed === 1 ? singular : unit}</strong> without missing any to reach ${pct(target)}% attendance.`;
         }
+
+        if (mode === "employee") {
+          message += `<br><br><strong>Leave summary:</strong> ${fmt(data.paidLeave)} paid leave day(s), ${fmt(data.unpaidLeave)} unpaid leave day(s), ${fmt(data.wfh)} work-from-home day(s), and ${fmt(data.offDays)} holiday/weekly-off day(s). Leave and off-day entries are informational and do not automatically change the entered working-day totals.`;
+        }
+
+        document.getElementById("resultMessage").innerHTML = message;
 
         return true;
       }
 
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", event => {
         event.preventDefault();
-        calculateAndRender(true);
+        calculate(true);
       });
 
-      /*
-       * Validate and refresh results when inputs change, but do not display
-       * blocking alerts while the user is in the middle of typing.
-       */
-      [heldInput, attendedInput, targetInput, futureInput].forEach((input) => {
-        input.addEventListener("input", () => calculateAndRender(false));
-        input.addEventListener("change", () => calculateAndRender(false));
+      [
+        totalInput, presentInput, paidLeaveInput, unpaidLeaveInput,
+        wfhInput, offDaysInput, targetInput, futureInput
+      ].forEach(input => {
+        input.addEventListener("input", () => calculate(false));
+        input.addEventListener("change", () => calculate(false));
       });
 
-      document.querySelectorAll(".quick-chip").forEach((button) => {
+      document.querySelectorAll(".quick-chip").forEach(button => {
         button.addEventListener("click", () => {
-          heldInput.value = button.dataset.held;
-          attendedInput.value = button.dataset.attended;
-          calculateAndRender(false);
+          totalInput.value = button.dataset.total;
+          presentInput.value = button.dataset.present;
+          calculate(false);
         });
       });
 
       document.getElementById("resetCalculator").addEventListener("click", () => {
-        heldInput.value = "100";
-        attendedInput.value = "72";
-        targetInput.value = "75";
-        futureInput.value = "20";
-        calculateAndRender(false);
+        if (mode === "student") {
+          totalInput.value = "100";
+          presentInput.value = "72";
+          targetInput.value = "75";
+          futureInput.value = "20";
+        } else {
+          totalInput.value = "22";
+          presentInput.value = "18";
+          targetInput.value = "90";
+          futureInput.value = "3";
+          paidLeaveInput.value = "1";
+          unpaidLeaveInput.value = "2";
+          wfhInput.value = "0";
+          offDaysInput.value = "8";
+        }
+
+        calculate(false);
       });
 
       document.getElementById("printReport").addEventListener("click", () => {
-        if (calculateAndRender(true)) {
-          window.print();
-        }
+        if (calculate(true)) window.print();
       });
 
-      /* MONTHLY ATTENDANCE TRACKER */
+      /* MONTHLY TRACKER */
 
       const monthSelect = document.getElementById("trackerMonth");
       const yearSelect = document.getElementById("trackerYear");
       const calendarGrid = document.getElementById("calendarGrid");
+      const legend = document.getElementById("calendarLegend");
 
-      const presentCount = document.getElementById("presentCount");
-      const absentCount = document.getElementById("absentCount");
-      const holidayCount = document.getElementById("holidayCount");
-      const trackerPercentage = document.getElementById("trackerPercentage");
-
-      const STORAGE_KEY = "arthnix-attendance-tracker-v1";
-      const statusCycle = ["unmarked", "present", "absent", "holiday"];
-      const statusLabels = {
-        unmarked: "Unmarked",
-        present: "Present",
-        absent: "Absent",
-        holiday: "Holiday"
-      };
-
-      const today = new Date();
-      let selectedMonth = today.getMonth();
-      let selectedYear = today.getFullYear();
+      const now = new Date();
+      let selectedMonth = now.getMonth();
+      let selectedYear = now.getFullYear();
       let trackerData = {};
 
+      const STORAGE_KEY = "arthnix-attendance-tracker-v2";
+
+      const studentStatuses = [
+        "unmarked", "present", "absent", "holiday"
+      ];
+
+      const employeeStatuses = [
+        "unmarked", "present", "absent", "paid-leave",
+        "unpaid-leave", "wfh", "holiday", "weekly-off"
+      ];
+
+      const statusLabels = {
+        "unmarked": "Unmarked",
+        "present": "Present",
+        "absent": "Absent",
+        "paid-leave": "Paid Leave",
+        "unpaid-leave": "Unpaid Leave",
+        "wfh": "WFH",
+        "holiday": "Holiday",
+        "weekly-off": "Weekly Off"
+      };
+
+      const statusColors = {
+        "present": "#1a9957",
+        "absent": "#ed3434",
+        "paid-leave": "#426fc4",
+        "unpaid-leave": "#c45b36",
+        "wfh": "#426fc4",
+        "holiday": "#d5a12b",
+        "weekly-off": "#d5a12b",
+        "unmarked": "#e6e6e3"
+      };
+
       try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          const parsed = JSON.parse(saved);
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
           if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
             trackerData = parsed;
           }
@@ -2397,33 +2566,34 @@
         trackerData = {};
       }
 
-      function dateKey(year, month, day) {
+      function keyFor(year, month, day) {
         return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      }
+
+      function currentStatuses() {
+        return mode === "student" ? studentStatuses : employeeStatuses;
       }
 
       function saveTracker() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(trackerData));
         } catch (error) {
-          alert("Your browser could not save attendance data. Check your browser storage settings.");
+          alert("Your browser could not save attendance records. Check browser storage settings.");
         }
       }
 
-      function populateMonthSelectors() {
-        const monthNames = [
+      function populateSelectors() {
+        const months = [
           "January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"
         ];
 
-        monthSelect.innerHTML = monthNames
-          .map((month, index) => `<option value="${index}">${month}</option>`)
-          .join("");
-
-        const minYear = Math.min(today.getFullYear() - 5, selectedYear);
-        const maxYear = Math.max(today.getFullYear() + 5, selectedYear);
+        monthSelect.innerHTML = months.map((month, index) =>
+          `<option value="${index}">${month}</option>`
+        ).join("");
 
         yearSelect.innerHTML = "";
-        for (let year = minYear; year <= maxYear; year++) {
+        for (let year = now.getFullYear() - 5; year <= now.getFullYear() + 5; year++) {
           const option = document.createElement("option");
           option.value = String(year);
           option.textContent = String(year);
@@ -2434,99 +2604,145 @@
         yearSelect.value = String(selectedYear);
       }
 
+      function renderLegend() {
+        const statuses = currentStatuses();
+        legend.innerHTML = "";
+
+        statuses.forEach(status => {
+          const item = document.createElement("span");
+          item.className = "legend-item";
+
+          const dot = document.createElement("span");
+          dot.className = "legend-dot";
+          dot.style.background = statusColors[status];
+
+          const text = document.createElement("span");
+          text.textContent = statusLabels[status];
+
+          item.append(dot, text);
+          legend.appendChild(item);
+        });
+      }
+
       function renderTracker() {
         selectedMonth = Number(monthSelect.value);
         selectedYear = Number(yearSelect.value);
 
         const firstDay = new Date(selectedYear, selectedMonth, 1).getDay();
         const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+        const statuses = currentStatuses();
+        const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-        const weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         calendarGrid.innerHTML = "";
+        renderLegend();
 
-        weekdayNames.forEach((day) => {
-          const weekday = document.createElement("div");
-          weekday.className = "calendar-weekday";
-          weekday.textContent = day;
-          calendarGrid.appendChild(weekday);
+        weekdays.forEach(day => {
+          const cell = document.createElement("div");
+          cell.className = "calendar-weekday";
+          cell.textContent = day;
+          calendarGrid.appendChild(cell);
         });
 
         for (let blank = 0; blank < firstDay; blank++) {
-          const empty = document.createElement("div");
-          empty.className = "calendar-day empty";
-          empty.setAttribute("aria-hidden", "true");
-          calendarGrid.appendChild(empty);
+          const cell = document.createElement("div");
+          cell.className = "calendar-day empty";
+          cell.setAttribute("aria-hidden", "true");
+          calendarGrid.appendChild(cell);
         }
 
-        let present = 0;
-        let absent = 0;
-        let holidays = 0;
+        const counts = {};
+        statuses.forEach(status => counts[status] = 0);
 
         for (let day = 1; day <= daysInMonth; day++) {
-          const key = dateKey(selectedYear, selectedMonth, day);
-          const status = statusCycle.includes(trackerData[key])
-            ? trackerData[key]
-            : "unmarked";
+          const key = keyFor(selectedYear, selectedMonth, day);
+          const savedStatus = trackerData[key];
+          const status = statuses.includes(savedStatus) ? savedStatus : "unmarked";
 
-          if (status === "present") present++;
-          if (status === "absent") absent++;
-          if (status === "holiday") holidays++;
+          counts[status] = (counts[status] || 0) + 1;
 
-          const dateButton = document.createElement("button");
-          dateButton.type = "button";
-          dateButton.className = `calendar-day ${status}`;
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `calendar-day ${status}`;
 
           const isToday =
-            selectedYear === today.getFullYear() &&
-            selectedMonth === today.getMonth() &&
-            day === today.getDate();
+            selectedYear === now.getFullYear() &&
+            selectedMonth === now.getMonth() &&
+            day === now.getDate();
 
-          if (isToday) dateButton.classList.add("today");
+          if (isToday) button.classList.add("today");
 
-          dateButton.setAttribute(
+          const date = new Date(selectedYear, selectedMonth, day);
+          button.setAttribute(
             "aria-label",
-            `${day} ${new Date(selectedYear, selectedMonth, 1).toLocaleString("en", { month: "long" })} ${selectedYear}: ${statusLabels[status]}. Click to change status.`
+            `${date.toDateString()}: ${statusLabels[status]}. Click to change status.`
           );
-          dateButton.title = `${statusLabels[status]} — click to change`;
+          button.title = `${statusLabels[status]} — click to change`;
 
-          const dayNumber = document.createElement("span");
-          dayNumber.className = "day-number";
-          dayNumber.textContent = String(day);
+          const number = document.createElement("span");
+          number.className = "day-number";
+          number.textContent = String(day);
 
-          const dayStatus = document.createElement("span");
-          dayStatus.className = "day-status";
-          dayStatus.textContent = statusLabels[status];
+          const label = document.createElement("span");
+          label.className = "day-status";
+          label.textContent = statusLabels[status];
 
-          dateButton.append(dayNumber, dayStatus);
+          button.append(number, label);
 
-          dateButton.addEventListener("click", () => {
-            const current = statusCycle.indexOf(
-              trackerData[key] || "unmarked"
-            );
-            const next = statusCycle[(current + 1) % statusCycle.length];
+          button.addEventListener("click", () => {
+            const cycle = currentStatuses();
+            const oldStatus = cycle.includes(trackerData[key])
+              ? trackerData[key]
+              : "unmarked";
+            const oldIndex = cycle.indexOf(oldStatus);
+            const newStatus = cycle[(oldIndex + 1) % cycle.length];
 
-            if (next === "unmarked") {
+            if (newStatus === "unmarked") {
               delete trackerData[key];
             } else {
-              trackerData[key] = next;
+              trackerData[key] = newStatus;
             }
 
             saveTracker();
             renderTracker();
           });
 
-          calendarGrid.appendChild(dateButton);
+          calendarGrid.appendChild(button);
         }
 
-        const markedDays = present + absent;
-        const rate = markedDays > 0 ? (present / markedDays) * 100 : null;
+        const present = counts.present || 0;
+        const absent = counts.absent || 0;
+        const wfh = counts.wfh || 0;
+        const paidLeave = counts["paid-leave"] || 0;
+        const unpaidLeave = counts["unpaid-leave"] || 0;
+        const holidays = counts.holiday || 0;
+        const weeklyOffs = counts["weekly-off"] || 0;
 
-        presentCount.textContent = formatNumber(present);
-        absentCount.textContent = formatNumber(absent);
-        holidayCount.textContent = formatNumber(holidays);
-        trackerPercentage.innerHTML = rate === null
-          ? `—<small>%</small>`
-          : `${formatPercentage(rate)}<small>%</small>`;
+        document.getElementById("trackerPresent").textContent =
+          fmt(mode === "employee" ? present + wfh : present);
+
+        document.getElementById("trackerAbsent").textContent = fmt(absent);
+
+        document.getElementById("trackerThird").textContent =
+          fmt(mode === "student"
+            ? holidays
+            : paidLeave + unpaidLeave + holidays + weeklyOffs);
+
+        /*
+         * Student rate: present / (present + absent).
+         * Employee rate: (present + WFH) / (present + WFH + absent).
+         * Leave, holidays, weekly offs and unmarked days are excluded.
+         */
+        const countedPresent = mode === "employee" ? present + wfh : present;
+        const countedDays = countedPresent + absent;
+        const rate = countedDays > 0 ? (countedPresent / countedDays) * 100 : null;
+
+        document.getElementById("trackerRate").innerHTML =
+          rate === null ? "—<small>%</small>" : `${pct(rate)}<small>%</small>`;
+
+        document.getElementById("trackerNote").textContent =
+          mode === "student"
+            ? "Present and absent days count toward the tracker rate. Holidays and unmarked dates are excluded. Entries are saved in this browser and this tracker is separate from the calculator above."
+            : "Present, WFH and absent days count toward the tracker rate. Leave, holidays, weekly offs and unmarked dates are excluded. The tracker is separate from the calculator and does not determine payroll.";
       }
 
       monthSelect.addEventListener("change", renderTracker);
@@ -2537,17 +2753,12 @@
         selectedMonth = date.getMonth();
         selectedYear = date.getFullYear();
 
-        if (
-          selectedYear < Number(yearSelect.options[0].value) ||
-          selectedYear > Number(yearSelect.options[yearSelect.options.length - 1].value)
-        ) {
-          const oldMin = Number(yearSelect.options[0].value);
-          const oldMax = Number(yearSelect.options[yearSelect.options.length - 1].value);
-          const newMin = Math.min(oldMin, selectedYear - 2);
-          const newMax = Math.max(oldMax, selectedYear + 2);
+        const currentMin = Number(yearSelect.options[0].value);
+        const currentMax = Number(yearSelect.options[yearSelect.options.length - 1].value);
 
+        if (selectedYear < currentMin || selectedYear > currentMax) {
           yearSelect.innerHTML = "";
-          for (let year = newMin; year <= newMax; year++) {
+          for (let year = Math.min(currentMin, selectedYear - 2); year <= Math.max(currentMax, selectedYear + 2); year++) {
             const option = document.createElement("option");
             option.value = String(year);
             option.textContent = String(year);
@@ -2560,33 +2771,21 @@
         renderTracker();
       }
 
-      document.getElementById("previousMonth").addEventListener("click", () => {
-        shiftMonth(-1);
-      });
-
-      document.getElementById("nextMonth").addEventListener("click", () => {
-        shiftMonth(1);
-      });
+      document.getElementById("previousMonth").addEventListener("click", () => shiftMonth(-1));
+      document.getElementById("nextMonth").addEventListener("click", () => shiftMonth(1));
 
       document.getElementById("clearTracker").addEventListener("click", () => {
-        const monthName = new Date(
-          selectedYear,
-          selectedMonth,
-          1
-        ).toLocaleString("en", { month: "long" });
+        const monthName = new Date(selectedYear, selectedMonth, 1)
+          .toLocaleString("en", { month: "long" });
 
-        const confirmed = confirm(
-          `Clear all attendance entries for ${monthName} ${selectedYear}? This cannot be undone.`
-        );
-
-        if (!confirmed) return;
+        if (!confirm(`Clear all attendance entries for ${monthName} ${selectedYear}? This cannot be undone.`)) {
+          return;
+        }
 
         const prefix = `${selectedYear}-${String(selectedMonth + 1).padStart(2, "0")}-`;
 
-        Object.keys(trackerData).forEach((key) => {
-          if (key.startsWith(prefix)) {
-            delete trackerData[key];
-          }
+        Object.keys(trackerData).forEach(key => {
+          if (key.startsWith(prefix)) delete trackerData[key];
         });
 
         saveTracker();
@@ -2594,69 +2793,62 @@
       });
 
       document.getElementById("exportTracker").addEventListener("click", () => {
-        const monthName = new Date(
-          selectedYear,
-          selectedMonth,
-          1
-        ).toLocaleString("en", { month: "long" });
+        const monthName = new Date(selectedYear, selectedMonth, 1)
+          .toLocaleString("en", { month: "long" });
 
         const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
         const rows = [
-          ["Date", "Day", "Attendance Status"]
+          ["Date", "Day", "Attendance Type", "Status"]
         ];
 
         for (let day = 1; day <= daysInMonth; day++) {
           const date = new Date(selectedYear, selectedMonth, day);
-          const key = dateKey(selectedYear, selectedMonth, day);
-          const status = statusCycle.includes(trackerData[key])
-            ? trackerData[key]
-            : "unmarked";
+          const key = keyFor(selectedYear, selectedMonth, day);
+          const rawStatus = trackerData[key];
+          const status = currentStatuses().includes(rawStatus) ? rawStatus : "unmarked";
 
           rows.push([
             key,
             date.toLocaleString("en", { weekday: "long" }),
+            mode === "student" ? "Student" : "Employee",
             statusLabels[status]
           ]);
         }
 
-        const csv = rows.map((row) =>
-          row.map((value) => {
-            const text = String(value);
-            return `"${text.replace(/"/g, '""')}"`;
-          }).join(",")
+        const csv = rows.map(row =>
+          row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(",")
         ).join("\r\n");
 
-        const blob = new Blob(["\uFEFF", csv], {
-          type: "text/csv;charset=utf-8;"
-        });
-
+        const blob = new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
+
         link.href = url;
         link.download =
-          `arthnix-attendance-${selectedYear}-${String(selectedMonth + 1).padStart(2, "0")}.csv`;
+          `arthnix-${mode}-attendance-${selectedYear}-${String(selectedMonth + 1).padStart(2, "0")}.csv`;
 
         document.body.appendChild(link);
         link.click();
         link.remove();
-        URL.revokeObjectURL(url);
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
       });
 
       /* FAQ ACCORDION */
 
-      document.querySelectorAll(".faq-question").forEach((button) => {
+      document.querySelectorAll(".faq-question").forEach(button => {
         button.addEventListener("click", () => {
           const item = button.closest(".faq-item");
-          const isOpen = item.classList.toggle("open");
-          button.setAttribute("aria-expanded", String(isOpen));
+          const open = item.classList.toggle("open");
+          button.setAttribute("aria-expanded", String(open));
         });
       });
 
       /* INITIALIZE */
 
-      populateMonthSelectors();
+      populateSelectors();
       renderTracker();
-      calculateAndRender(false);
+      calculate(false);
     })();
   </script>
 </body>
