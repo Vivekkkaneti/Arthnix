@@ -2,23 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Free Invoice Number Generator | ARTHNIX</title>
-  <meta name="description" content="Generate professional invoice numbers instantly with custom prefixes, year formats, Indian financial-year support, sequential numbering, and CSV export. Free invoice numbering tool by ARTHNIX.">
-  <meta name="robots" content="index, follow">
+  <meta
+    name="description"
+    content="Generate professional invoice numbers for your business. Customize prefixes, dates, sequence numbers, separators, and number formatting with the free ARTHNIX invoice number generator."
+  >
   <meta name="theme-color" content="#090909">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://arthnix.com/tools/invoice-number-generator.html">
-  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="icon" href="/logo.png" type="image/png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Invoice Number Generator | ARTHNIX">
+  <meta
+    property="og:description"
+    content="Create consistent invoice numbers with a free, customizable invoice number generator."
+  >
+  <meta
+    property="og:url"
+    content="https://arthnix.com/tools/invoice-number-generator.html"
+  >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
-  <meta property="og:title" content="Free Invoice Number Generator | ARTHNIX">
-  <meta property="og:description" content="Create sequential invoice numbers with custom prefixes, financial-year formats, and downloadable CSV files.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://arthnix.com/tools/invoice-number-generator.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ARTHNIX Invoice Number Generator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "description": "A free tool for generating customizable invoice numbers with prefixes, dates, and sequence numbers.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://arthnix.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Free Tools",
+        "item": "https://arthnix.com/tools.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Invoice Number Generator",
+        "item": "https://arthnix.com/tools/invoice-number-generator.html"
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root {
@@ -32,15 +87,14 @@
       --border: #e9e9e7;
       --red: #ed3434;
       --red-dark: #d92727;
+      --radius: 12px;
       --container: 1160px;
-      --radius: 16px;
-      --shadow: 0 16px 50px rgba(0, 0, 0, 0.055);
     }
 
-    *,
-    *::before,
-    *::after {
+    * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -49,25 +103,14 @@
     }
 
     body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--text);
       font-family: "DM Sans", sans-serif;
-      font-size: 15px;
-      line-height: 1.65;
+      color: var(--text);
+      background: var(--paper);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
+    body,
     button,
     a {
       -webkit-tap-highlight-color: transparent;
@@ -78,43 +121,56 @@
       text-decoration: none;
     }
 
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      outline-offset: 4px;
+    }
+
     button {
       cursor: pointer;
     }
 
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible,
-    select:focus-visible {
-      outline: 3px solid rgba(237, 52, 52, 0.35);
-      outline-offset: 3px;
+    ::selection {
+      background: var(--red);
+      color: var(--white);
     }
 
     .container {
-      width: min(var(--container), calc(100% - 48px));
+      width: min(var(--container), calc(100% - 64px));
       margin-inline: auto;
     }
 
-    /* Navigation */
+    /* =====================================================
+       NAVIGATION — MATCHES THE ARTHNIX HOMEPAGE
+       ===================================================== */
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(250, 250, 249, 0.94);
-      border-bottom: 1px solid rgba(233, 233, 231, 0.9);
-      backdrop-filter: blur(16px);
+      width: 100%;
+      background: #090909;
+      border-bottom: 1px solid #292929;
       -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
     }
 
     .navbar {
-      min-height: 78px;
-      width: min(var(--container), calc(100% - 48px));
-      margin-inline: auto;
+      position: relative;
+      width: min(1200px, calc(100% - 64px));
+      min-height: 76px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 28px;
     }
 
     .brand {
@@ -122,39 +178,44 @@
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
+      text-decoration: none;
     }
 
     .brand-logo {
-      width: 36px;
-      height: 36px;
+      display: block;
+      width: 38px;
+      height: 38px;
       object-fit: contain;
+      flex-shrink: 0;
     }
 
     .brand-name {
+      color: #ffffff;
       font-family: "Manrope", sans-serif;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
-      letter-spacing: -1px;
-      color: var(--black);
+      letter-spacing: -0.8px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 30px;
-      margin-left: auto;
+      gap: 27px;
     }
 
     .nav-links a {
-      color: #555;
+      display: inline-block;
+      color: #bcbcbc;
       font-size: 13px;
       font-weight: 600;
-      transition: color 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
     }
 
     .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:focus-visible {
       color: var(--red);
     }
 
@@ -162,249 +223,346 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 11px 17px;
-      background: var(--black);
-      color: var(--white);
-      border: 1px solid var(--black);
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--red);
       border-radius: 7px;
-      font-size: 13px;
+      background: var(--red);
+      color: #ffffff;
+      font-size: 12px;
       font-weight: 700;
+      text-decoration: none;
       white-space: nowrap;
-      transition: background 0.2s ease, transform 0.2s ease;
+      flex-shrink: 0;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
     }
 
     .nav-cta:hover {
-      background: var(--red);
-      border-color: var(--red);
-      transform: translateY(-1px);
+      background: var(--red-dark);
+      border-color: var(--red-dark);
     }
 
     .menu-toggle {
       display: none;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border: 1px solid #353535;
+      border-radius: 7px;
+      background: #111111;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      gap: 6px;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 8px;
     }
 
     .menu-toggle span {
+      display: block;
       width: 18px;
       height: 2px;
-      background: var(--black);
-      transition: transform 0.2s ease;
+      margin: 5px auto;
+      border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
     }
 
-    .menu-toggle[aria-expanded="true"] span:first-child {
-      transform: translateY(4px) rotate(45deg);
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
     }
 
-    .menu-toggle[aria-expanded="true"] span:last-child {
-      transform: translateY(-4px) rotate(-45deg);
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--red);
+      }
     }
 
-    /* Breadcrumbs */
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
 
-    .breadcrumb-wrap {
-      padding-top: 22px;
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    /* =====================================================
+       PAGE INTRODUCTION
+       ===================================================== */
+
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 76px 0 58px;
+      background: #090909;
+      color: #ffffff;
+    }
+
+    .page-hero::before {
+      position: absolute;
+      content: "";
+      width: 480px;
+      height: 480px;
+      top: -210px;
+      right: -120px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(237, 52, 52, 0.15),
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #bcbcbc;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .page-hero h1 {
+      margin-top: 23px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(38px, 5.5vw, 64px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -2.8px;
+    }
+
+    .page-hero h1 span {
+      color: #888888;
+    }
+
+    .page-hero p {
+      max-width: 650px;
+      margin-top: 20px;
+      color: #a9a9a9;
+      font-size: 15px;
+      line-height: 1.9;
     }
 
     .breadcrumbs {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
       gap: 9px;
-      color: var(--muted);
-      font-size: 12px;
+      margin-top: 25px;
+      color: #8d8d8d;
+      font-size: 11px;
+    }
+
+    .breadcrumbs a {
+      color: #c5c5c5;
+      transition: color 180ms ease;
     }
 
     .breadcrumbs a:hover {
       color: var(--red);
     }
 
-    .breadcrumb-separator {
-      color: #b8b8b5;
+    .breadcrumbs span[aria-hidden="true"] {
+      color: #666666;
     }
 
-    /* Hero */
-
-    .hero {
-      padding: 54px 0 44px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 17px;
-      color: var(--red);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--red);
-    }
-
-    .hero h1 {
-      max-width: 780px;
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(36px, 5.2vw, 60px);
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -2.8px;
-    }
-
-    .hero h1 span {
-      color: var(--red);
-    }
-
-    .hero-description {
-      max-width: 670px;
-      margin: 20px 0 0;
-      color: #666;
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 11px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: #fff;
-      color: #555;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .meta-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #35a66b;
-    }
-
-    /* Main tool layout */
+    /* =====================================================
+       TOOL LAYOUT
+       ===================================================== */
 
     .tool-section {
-      padding: 0 0 84px;
+      padding: 58px 0 88px;
+      background: var(--paper);
     }
 
     .tool-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(330px, 0.78fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.85fr);
       align-items: start;
-      gap: 24px;
+      gap: 25px;
     }
 
-    .panel {
+    .tool-card,
+    .side-card {
       min-width: 0;
-      background: var(--white);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 8px 35px rgba(0, 0, 0, 0.025);
     }
 
-    .panel-header {
-      padding: 23px 25px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+    .tool-card {
+      padding: 30px;
     }
 
-    .panel-heading {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .panel-subheading {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .step-label {
-      flex-shrink: 0;
-      padding: 5px 9px;
-      background: #fff0f0;
-      color: var(--red);
-      border-radius: 5px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
-
-    .panel-body {
+    .side-card {
       padding: 25px;
     }
 
-    .form-section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 19px;
+    .card-heading {
+      padding-bottom: 21px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-heading h2 {
       font-family: "Manrope", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+    }
+
+    .card-heading p {
+      margin-top: 8px;
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 800;
+      line-height: 1.8;
     }
 
-    .section-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 25px;
-      height: 25px;
-      border-radius: 6px;
-      background: var(--black);
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
+    .form-section {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .form-section + .form-section {
-      padding-top: 25px;
-      margin-top: 25px;
-      border-top: 1px solid var(--border);
+    .form-section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .form-section h3 {
+      margin-bottom: 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: -0.2px;
     }
 
     .field-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px 15px;
-    }
-
-    .field-grid.single {
-      grid-template-columns: 1fr;
+      gap: 17px;
     }
 
     .field {
@@ -415,1060 +573,766 @@
       grid-column: 1 / -1;
     }
 
-    .field label,
-    .field-label {
+    .field label {
       display: block;
-      margin-bottom: 7px;
-      color: #333;
+      margin-bottom: 8px;
+      color: #383838;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 650;
     }
 
-    .field-hint {
-      display: block;
-      margin-top: 6px;
-      color: #898989;
-      font-size: 11px;
-      line-height: 1.55;
-    }
-
-    .input,
-    .select {
+    .field input,
+    .field select {
       display: block;
       width: 100%;
       min-height: 45px;
       padding: 10px 12px;
       border: 1px solid #dededb;
       border-radius: 7px;
-      background: #fff;
+      outline: none;
+      background: #ffffff;
       color: var(--text);
       font-size: 13px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
     }
 
-    .input:focus,
-    .select:focus {
+    .field input:focus,
+    .field select:focus {
       border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.08);
-      outline: none;
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
     }
 
-    .input::placeholder {
-      color: #aaa;
+    .field input[type="checkbox"] {
+      width: 16px;
+      min-height: 16px;
+      accent-color: var(--red);
     }
 
-    .input:disabled,
-    .select:disabled {
-      background: #f3f3f1;
-      color: #8c8c8c;
-      cursor: not-allowed;
-    }
-
-    .input-row {
-      display: flex;
-      align-items: stretch;
-      gap: 8px;
-    }
-
-    .input-row .input,
-    .input-row .select {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .prefix-preview {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      padding: 0 12px;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      background: var(--surface);
-      color: #555;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    /* Switches */
-
-    .toggle-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 13px 14px;
-      background: #fafaf9;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-    }
-
-    .toggle-copy {
-      min-width: 0;
-    }
-
-    .toggle-title {
+    .field .hint {
       display: block;
-      font-size: 12px;
-      font-weight: 700;
-      color: #252525;
-    }
-
-    .toggle-description {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.5;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-flex;
-      width: 40px;
-      height: 23px;
-      flex-shrink: 0;
-    }
-
-    .switch input {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-    }
-
-    .switch-track {
-      position: absolute;
-      inset: 0;
-      background: #d5d5d2;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .switch-track::before {
-      content: "";
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s ease;
-    }
-
-    .switch input:checked + .switch-track {
-      background: var(--red);
-    }
-
-    .switch input:checked + .switch-track::before {
-      transform: translateX(17px);
-    }
-
-    .switch input:focus-visible + .switch-track {
-      outline: 3px solid rgba(237, 52, 52, 0.35);
-      outline-offset: 3px;
-    }
-
-    /* Preview */
-
-    .preview-panel {
-      position: sticky;
-      top: 100px;
-    }
-
-    .preview-panel .panel-header {
-      background: var(--black);
-      color: white;
-      border-bottom: none;
-    }
-
-    .preview-panel .panel-subheading {
-      color: #b9b9b9;
-    }
-
-    .preview-panel .step-label {
-      background: rgba(237, 52, 52, 0.16);
-      color: #ff8c8c;
-    }
-
-    .preview-body {
-      padding: 25px;
-    }
-
-    .preview-label {
-      margin: 0 0 12px;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .number-preview {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      min-height: 100px;
-      padding: 20px;
-      border: 1px solid #f2caca;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #fff8f8, #fff 70%);
-    }
-
-    .number-preview::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 16px;
-      bottom: 16px;
-      width: 3px;
-      background: var(--red);
-      border-radius: 0 3px 3px 0;
-    }
-
-    .number-preview-value {
-      min-width: 0;
-      overflow-wrap: anywhere;
-      color: var(--black);
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(20px, 2.6vw, 30px);
-      font-weight: 800;
-      line-height: 1.3;
-      letter-spacing: -1px;
-    }
-
-    .icon-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 39px;
-      height: 39px;
-      flex-shrink: 0;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: white;
-      color: #444;
-      font-size: 16px;
-      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-    }
-
-    .icon-button:hover {
-      border-color: var(--red);
-      color: var(--red);
-    }
-
-    .format-caption {
-      margin: 12px 0 0;
-      color: #777;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    .format-caption code {
-      padding: 2px 5px;
-      border-radius: 4px;
-      background: #f2f2f0;
-      color: #333;
-      font-family: monospace;
-    }
-
-    .preview-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .stat-card {
-      padding: 14px;
-      background: #f8f8f6;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-    }
-
-    .stat-label {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-    }
-
-    .stat-value {
-      display: block;
-      margin-top: 4px;
-      overflow-wrap: anywhere;
-      color: var(--black);
-      font-family: "Manrope", sans-serif;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .action-stack {
-      display: grid;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 46px;
-      padding: 11px 16px;
-      border: 1px solid transparent;
-      border-radius: 7px;
-      font-size: 12px;
-      font-weight: 800;
-      text-align: center;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--red);
-      border-color: var(--red);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--red-dark);
-      border-color: var(--red-dark);
-    }
-
-    .btn-dark {
-      background: var(--black);
-      border-color: var(--black);
-      color: white;
-    }
-
-    .btn-dark:hover {
-      background: #292929;
-    }
-
-    .btn-outline {
-      background: white;
-      border-color: #dededb;
-      color: var(--text);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--red);
-      color: var(--red);
-    }
-
-    .btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .button-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .button-row .btn {
-      min-width: 0;
-    }
-
-    .privacy-note {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-top: 18px;
-      padding: 13px;
-      background: #f7f7f5;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      color: #666;
-      font-size: 11px;
-      line-height: 1.65;
-    }
-
-    .privacy-note strong {
-      color: #333;
-    }
-
-    .note-icon {
-      flex-shrink: 0;
-      font-size: 15px;
-    }
-
-    /* Generated results */
-
-    .results-section {
-      margin-top: 24px;
-    }
-
-    .results-section[hidden] {
-      display: none;
-    }
-
-    .results-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .results-header h3 {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-    }
-
-    .results-header p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .results-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .results-actions .btn {
-      min-height: 37px;
-      padding: 8px 12px;
-      font-size: 11px;
-    }
-
-    .table-wrap {
-      width: 100%;
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-    }
-
-    .results-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 12px;
-    }
-
-    .results-table th {
-      padding: 12px 14px;
-      background: #f6f6f4;
-      border-bottom: 1px solid var(--border);
-      color: #666;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .results-table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #efefed;
-      color: #333;
-      white-space: nowrap;
-    }
-
-    .results-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .results-table tbody tr:hover {
-      background: #fffafa;
-    }
-
-    .table-number {
-      color: var(--black);
-      font-family: "Manrope", sans-serif;
-      font-weight: 800;
-    }
-
-    .table-copy {
-      padding: 5px 9px;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      background: white;
-      color: #555;
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .table-copy:hover {
-      color: var(--red);
-      border-color: var(--red);
-    }
-
-    .empty-state {
-      padding: 30px 20px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 12px;
-    }
-
-    /* Information sections */
-
-    .info-section {
-      padding: 76px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-heading {
-      max-width: 700px;
-      margin-bottom: 35px;
-    }
-
-    .section-heading .eyebrow {
-      margin-bottom: 13px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(28px, 3.6vw, 40px);
-      line-height: 1.2;
-      letter-spacing: -1.6px;
-      font-weight: 800;
-    }
-
-    .section-heading p {
-      margin: 13px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .feature-card {
-      padding: 23px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-3px);
-      border-color: #e6b6b6;
-    }
-
-    .feature-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 43px;
-      height: 43px;
-      margin-bottom: 17px;
-      border-radius: 10px;
-      background: #fff0f0;
-      color: var(--red);
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .feature-card h3 {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .feature-card p {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 25px;
-      counter-reset: steps;
-    }
-
-    .step-card {
-      position: relative;
-      padding: 0 5px 0 0;
-      counter-increment: steps;
-    }
-
-    .step-card::before {
-      content: "0" counter(steps);
-      display: block;
-      margin-bottom: 16px;
-      color: var(--red);
-      font-family: "Manrope", sans-serif;
-      font-size: 29px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .step-card h3 {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .step-card p {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .example-box {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      padding: 26px;
-      background: var(--black);
-      border-radius: 14px;
-      color: white;
-    }
-
-    .example-column {
-      min-width: 0;
-    }
-
-    .example-column + .example-column {
-      padding-left: 22px;
-      border-left: 1px solid #303030;
-    }
-
-    .example-column h3 {
-      margin: 0 0 14px;
-      color: #b9b9b9;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .example-number {
-      display: block;
-      margin: 9px 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(17px, 2.2vw, 24px);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      overflow-wrap: anywhere;
-    }
-
-    .example-description {
-      color: #aaa;
+      margin-top: 7px;
+      color: #858585;
       font-size: 11px;
       line-height: 1.7;
     }
 
-    /* FAQ */
+    .inline-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-top: 15px;
+      color: #555555;
+      font-size: 12px;
+      line-height: 1.7;
+    }
 
-    .faq-list {
-      display: grid;
+    .inline-check input {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      max-width: 850px;
+      margin-top: 24px;
     }
 
-    .faq-item {
-      background: white;
-      border: 1px solid var(--border);
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      transition:
+        background 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--red);
+      color: #ffffff;
+    }
+
+    .button-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .button-secondary {
+      border-color: #dededb;
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      border-color: #bdbdb8;
+      background: #fafaf8;
+    }
+
+    .button-dark {
+      border-color: #303030;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .button-dark:hover {
+      background: #252525;
+    }
+
+    .button-danger {
+      border-color: #f1d4d4;
+      background: #fff8f8;
+      color: #b52626;
+    }
+
+    .button-danger:hover {
+      background: #ffeded;
+    }
+
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* =====================================================
+       LIVE PREVIEW
+       ===================================================== */
+
+    .preview-box {
+      padding: 23px;
+      border: 1px solid #eeeeeb;
       border-radius: 10px;
-      overflow: hidden;
+      background: #fafaf9;
     }
 
-    .faq-question {
+    .preview-label {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      width: 100%;
-      padding: 18px 20px;
-      border: none;
-      background: white;
+      gap: 12px;
+      color: #737373;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .preview-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #777777;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .preview-status::before {
+      width: 6px;
+      height: 6px;
+      content: "";
+      border-radius: 50%;
+      background: #66ad7a;
+    }
+
+    .preview-number {
+      overflow-wrap: anywhere;
+      margin-top: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -1.3px;
       color: var(--text);
+    }
+
+    .preview-description {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .preview-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .preview-detail {
+      padding: 13px;
+      border: 1px solid #e8e8e5;
+      border-radius: 7px;
+      background: #ffffff;
+    }
+
+    .preview-detail span {
+      display: block;
+      color: #858585;
+      font-size: 10px;
+    }
+
+    .preview-detail strong {
+      display: block;
+      overflow-wrap: anywhere;
+      margin-top: 6px;
+      color: #292929;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .preview-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .preview-actions .button {
+      width: 100%;
+    }
+
+    .status-message {
+      min-height: 18px;
+      margin-top: 12px;
+      color: #6b6b6b;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .status-message.success {
+      color: #287846;
+    }
+
+    .status-message.error {
+      color: #b52626;
+    }
+
+    /* =====================================================
+       GENERATED NUMBERS TABLE
+       ===================================================== */
+
+    .results-section {
+      margin-top: 28px;
+    }
+
+    .results-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .results-heading h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 750;
+      letter-spacing: -0.4px;
+    }
+
+    .result-count {
+      padding: 5px 9px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: #ffffff;
+      color: #666666;
+      font-size: 10px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #ffffff;
+    }
+
+    .numbers-table {
+      width: 100%;
+      border-collapse: collapse;
       text-align: left;
-      font-size: 13px;
+    }
+
+    .numbers-table th {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+      background: #f8f8f6;
+      color: #666666;
+      font-size: 10px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .numbers-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #eeeeeb;
+      color: #333333;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+
+    .numbers-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .numbers-table td:first-child {
+      overflow-wrap: anywhere;
+      font-weight: 700;
+    }
+
+    .row-copy {
+      padding: 6px 9px;
+      border: 1px solid #e1e1de;
+      border-radius: 5px;
+      background: #ffffff;
+      color: #333333;
+      font-size: 10px;
+      font-weight: 650;
+    }
+
+    .row-copy:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .empty-state {
+      padding: 22px 14px;
+      color: #858585;
+      font-size: 12px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    /* =====================================================
+       SIDEBAR CONTENT
+       ===================================================== */
+
+    .side-card + .side-card {
+      margin-top: 20px;
+    }
+
+    .side-card h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 750;
+      letter-spacing: -0.5px;
+    }
+
+    .side-card > p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .format-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 19px;
+    }
+
+    .format-item {
+      padding: 13px;
+      border: 1px solid #eeeeeb;
+      border-radius: 7px;
+      background: #fafaf9;
+    }
+
+    .format-item code {
+      display: block;
+      overflow-wrap: anywhere;
+      color: #bd2a2a;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .format-item p {
+      margin-top: 6px;
+      color: #777777;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .tip-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+      list-style: none;
+    }
+
+    .tip-list li {
+      position: relative;
+      padding-left: 22px;
+      color: #666666;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .tip-list li::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "✓";
+      color: var(--red);
       font-weight: 800;
     }
 
-    .faq-question span:last-child {
-      color: var(--red);
-      font-size: 19px;
-      transition: transform 0.2s ease;
+    .notice-box {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid #f0dede;
+      border-radius: 8px;
+      background: #fff9f9;
+      color: #765151;
+      font-size: 11px;
+      line-height: 1.8;
     }
 
-    .faq-question[aria-expanded="true"] span:last-child {
-      transform: rotate(45deg);
+    /* =====================================================
+       INFORMATION AND FAQ
+       ===================================================== */
+
+    .information-section {
+      padding: 78px 0;
+      border-top: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .section-heading {
+      max-width: 720px;
+    }
+
+    .section-heading .eyebrow {
+      color: #777777;
+    }
+
+    .section-heading h2 {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: 650;
+      line-height: 1.16;
+      letter-spacing: -1.8px;
+    }
+
+    .section-heading h2 span {
+      color: var(--red);
+    }
+
+    .section-heading > p {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 34px;
+    }
+
+    .info-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #ffffff;
+    }
+
+    .info-card h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 750;
+      letter-spacing: -0.3px;
+    }
+
+    .info-card p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .faq-section {
+      padding: 78px 0 90px;
+      background: var(--paper);
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      align-items: start;
+      gap: 60px;
+    }
+
+    .faq-list {
+      border-top: 1px solid #dededb;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #dededb;
+    }
+
+    .faq-item summary {
+      position: relative;
+      padding: 20px 35px 20px 0;
+      color: #222222;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.7;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      position: absolute;
+      top: 19px;
+      right: 3px;
+      content: "+";
+      color: var(--red);
+      font-size: 21px;
+      font-weight: 500;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
     }
 
     .faq-answer {
-      padding: 0 20px 19px;
-      color: var(--muted);
+      padding: 0 20px 20px 0;
+      color: #6d6d6d;
       font-size: 12px;
       line-height: 1.9;
     }
 
-    .faq-answer[hidden] {
-      display: none;
-    }
-
     .faq-answer a {
-      color: var(--red);
-      font-weight: 700;
+      color: #c62a2a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    /* Related tools */
-
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 15px;
-    }
-
-    .related-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 19px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .related-card:hover {
-      border-color: var(--red);
-      transform: translateY(-2px);
-    }
-
-    .related-card strong {
-      display: block;
-      font-family: "Manrope", sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .related-card small {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .related-arrow {
-      flex-shrink: 0;
-      color: var(--red);
-      font-size: 19px;
-    }
-
-    /* Footer */
+    /* =====================================================
+       FOOTER — MATCHES THE ARTHNIX HOMEPAGE
+       ===================================================== */
 
     .site-footer {
-      padding: 60px 0 0;
+      padding: 57px 0 25px;
       background: var(--black);
-      color: white;
+      color: var(--white);
     }
 
     .footer-main {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 38px;
+      gap: 50px;
       padding-bottom: 45px;
     }
 
-    .footer-brand .brand-name {
-      color: white;
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .footer-brand p {
-      max-width: 270px;
-      margin: 18px 0 0;
-      color: #999;
-      font-size: 12px;
-      line-height: 1.9;
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      text-decoration: none;
+    }
+
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-powered {
+      margin: 7px 0 0;
+      color: #929292;
+      font-size: 11px;
+      letter-spacing: 0.3px;
     }
 
     .footer-column h4 {
-      margin: 4px 0 17px;
-      color: white;
-      font-family: "Manrope", sans-serif;
-      font-size: 12px;
-      font-weight: 800;
+      margin-bottom: 19px;
+      color: #f0f0f0;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     .footer-column a {
       display: block;
       width: fit-content;
-      margin: 10px 0;
-      color: #999;
-      font-size: 12px;
-      transition: color 0.2s ease;
+      margin-top: 13px;
+      color: #919191;
+      font-size: 11px;
+      transition: color 180ms ease;
     }
 
     .footer-column a:hover {
-      color: white;
+      color: var(--white);
     }
 
     .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 20px 0;
+      gap: 20px;
+      padding-top: 22px;
       border-top: 1px solid #292929;
-      color: #888;
-      font-size: 11px;
     }
 
-    .footer-bottom a {
-      color: #ddd;
+    .copyright,
+    .powered-by {
+      color: #797979;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    .footer-bottom a:hover {
-      color: var(--red);
-    }
-
-    /* Notifications */
-
-    .toast {
-      position: fixed;
-      z-index: 2000;
-      right: 24px;
-      bottom: 24px;
-      max-width: min(360px, calc(100% - 32px));
-      padding: 13px 18px;
-      border: 1px solid #333;
-      border-radius: 9px;
-      background: var(--black);
-      color: white;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-      font-size: 12px;
+    .powered-by strong {
+      color: #b8b8b8;
       font-weight: 600;
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .toast.error {
-      border-color: var(--red);
-    }
-
-    .noscript-message {
-      margin: 20px auto;
-      padding: 15px;
-      border: 1px solid #f2b7b7;
-      border-radius: 8px;
-      background: #fff5f5;
-      color: #8d2020;
-      font-size: 13px;
-    }
-
-    /* Responsive */
+    /* =====================================================
+       RESPONSIVE LAYOUT
+       ===================================================== */
 
     @media (max-width: 1050px) {
-      .nav-links {
-        gap: 19px;
-      }
-
       .tool-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr);
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
         gap: 18px;
       }
 
-      .panel-header,
-      .panel-body,
-      .preview-body {
-        padding: 20px;
+      .tool-card {
+        padding: 24px;
+      }
+
+      .side-card {
+        padding: 21px;
       }
 
       .footer-main {
-        grid-template-columns: 1.4fr 1fr 1fr;
-      }
-
-      .footer-brand {
-        grid-column: 1 / -1;
+        gap: 25px;
       }
     }
 
     @media (max-width: 780px) {
-      .container,
-      .navbar {
-        width: min(100% - 32px, var(--container));
+      .container {
+        width: min(calc(100% - 40px), var(--container));
       }
 
-      .navbar {
-        min-height: 70px;
-        gap: 12px;
+      .page-hero {
+        padding: 60px 0 48px;
       }
 
-      .brand-logo {
-        width: 32px;
-        height: 32px;
+      .page-hero h1 {
+        letter-spacing: -1.8px;
       }
 
-      .brand-name {
-        font-size: 19px;
-      }
-
-      .nav-cta {
-        margin-left: auto;
-        padding: 10px 12px;
-        font-size: 12px;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        z-index: 1001;
-        display: none;
-        align-items: stretch;
-        flex-direction: column;
-        gap: 0;
-        padding: 10px 16px 18px;
-        background: var(--paper);
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.06);
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 14px 4px;
-        border-bottom: 1px solid var(--border);
-        font-size: 14px;
-      }
-
-      .nav-links a:last-child {
-        border-bottom: none;
-      }
-
-      .breadcrumb-wrap {
-        padding-top: 18px;
-      }
-
-      .hero {
-        padding: 40px 0 32px;
-      }
-
-      .hero h1 {
-        letter-spacing: -1.7px;
-      }
-
-      .hero-description {
-        font-size: 14px;
+      .tool-section {
+        padding: 35px 0 65px;
       }
 
       .tool-layout {
         grid-template-columns: 1fr;
       }
 
-      .preview-panel {
-        position: static;
-        grid-row: 1;
+      .tool-card {
+        padding: 25px;
       }
 
-      .editor-panel {
-        grid-row: 2;
-      }
-
-      .feature-grid,
-      .steps-grid,
-      .related-grid {
+      .sidebar {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+        gap: 16px;
       }
 
-      .feature-card:last-child {
-        grid-column: 1 / -1;
+      .side-card + .side-card {
+        margin-top: 0;
       }
 
-      .info-section {
-        padding: 58px 0;
+      .information-section,
+      .faq-section {
+        padding: 65px 0;
+      }
+
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .footer-main {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 28px;
-      }
-
-      .footer-brand {
-        grid-column: 1 / -1;
+        gap: 38px 28px;
       }
     }
 
-    @media (max-width: 480px) {
-      .container,
-      .navbar {
-        width: calc(100% - 28px);
+    @media (max-width: 520px) {
+      .container {
+        width: calc(100% - 36px);
       }
 
-      .nav-cta {
-        padding: 9px 10px;
+      .page-hero {
+        padding: 48px 0 40px;
       }
 
-      .hero {
-        padding-top: 32px;
-      }
-
-      .hero h1 {
-        font-size: 37px;
+      .page-hero h1 {
+        font-size: clamp(36px, 10vw, 48px);
         letter-spacing: -1.8px;
       }
 
-      .hero-meta {
-        gap: 7px;
+      .page-hero p {
+        font-size: 13px;
       }
 
-      .meta-pill {
-        padding: 6px 8px;
-        font-size: 10px;
-      }
-
-      .panel-header {
-        padding: 18px;
-      }
-
-      .panel-body,
-      .preview-body {
-        padding: 18px;
+      .tool-card {
+        padding: 20px;
       }
 
       .field-grid {
@@ -1480,189 +1344,74 @@
         grid-column: auto;
       }
 
-      .number-preview {
+      .button-row {
+        flex-direction: column;
+      }
+
+      .button-row .button {
+        width: 100%;
+      }
+
+      .preview-box {
         padding: 17px;
       }
 
-      .number-preview-value {
-        font-size: 22px;
+      .preview-number {
+        font-size: 27px;
       }
 
-      .preview-stats {
-        gap: 8px;
+      .preview-details {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .stat-card {
-        padding: 11px;
-      }
-
-      .stat-value {
-        font-size: 14px;
-      }
-
-      .button-row {
+      .preview-actions {
         grid-template-columns: 1fr;
       }
 
-      .feature-grid,
-      .steps-grid,
-      .related-grid {
+      .sidebar {
         grid-template-columns: 1fr;
       }
 
-      .feature-card:last-child {
-        grid-column: auto;
-      }
-
-      .example-box {
+      .info-grid {
         grid-template-columns: 1fr;
-        gap: 23px;
-        padding: 20px;
       }
 
-      .example-column + .example-column {
-        padding-top: 20px;
-        padding-left: 0;
-        border-top: 1px solid #303030;
-        border-left: none;
+      .section-heading h2 {
+        font-size: 34px;
+        letter-spacing: -1.3px;
       }
 
       .footer-main {
-        gap: 24px 15px;
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 18px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
       }
 
       .footer-bottom {
         align-items: flex-start;
         flex-direction: column;
-        gap: 8px;
-      }
-
-      .toast {
-        right: 16px;
-        bottom: 16px;
+        gap: 9px;
       }
     }
 
-    @media (max-width: 380px) {
-      .brand {
-        gap: 7px;
-      }
-
-      .brand-name {
-        font-size: 17px;
-      }
-
-      .brand-logo {
-        width: 29px;
-        height: 29px;
-      }
-
-      .nav-cta {
-        gap: 6px;
-        font-size: 11px;
-      }
-
-      .menu-toggle {
-        width: 37px;
-        height: 37px;
-      }
-
-      .hero h1 {
-        font-size: 33px;
-      }
-
-      .panel-heading {
-        font-size: 15px;
-      }
-    }
-
-    /* Print */
-
-    @media print {
-      .site-header,
-      .breadcrumb-wrap,
-      .hero,
-      .editor-panel,
-      .results-actions,
-      .info-section,
-      .site-footer,
-      .toast,
-      .action-stack,
-      .privacy-note {
-        display: none !important;
-      }
-
-      body {
-        background: white;
-      }
-
-      .container {
-        width: 100%;
-      }
-
-      .tool-section {
-        padding: 0;
-      }
-
-      .tool-layout {
-        display: block;
-      }
-
-      .preview-panel {
-        position: static;
-        border: none;
-        box-shadow: none;
-      }
-
-      .preview-panel .panel-header {
-        background: white;
-        color: black;
-        border-bottom: 1px solid #ddd;
-      }
-
-      .preview-panel .panel-subheading {
-        color: #555;
-      }
-
-      .number-preview {
-        background: white;
-      }
-
-      .results-section {
-        display: block !important;
-        margin-top: 25px;
-      }
-
-      .results-table th,
-      .results-table td {
-        padding: 8px;
-      }
-
-      .table-copy {
-        display: none;
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
       }
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "ARTHNIX Invoice Number Generator",
-    "url": "https://arthnix.com/tools/invoice-number-generator.html",
-    "description": "A free browser-based invoice number generator with custom prefixes, sequential numbering, financial-year formatting, and CSV export.",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
-    }
-  }
-  </script>
 </head>
 
 <body>
+  <!-- HEADER: MATCHES THE ARTHNIX HOMEPAGE -->
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
       <a class="brand" href="/index.html" aria-label="ARTHNIX home">
@@ -1673,7 +1422,7 @@
       <div class="nav-links" id="navLinks">
         <a href="/tools.html">Free Tools</a>
         <a href="/platform.html">Platform</a>
-        <a href="/#how-it-works">How It Works</a>
+        <a href="/index.html#how-it-works">How It Works</a>
         <a href="/pricing.html">Pricing</a>
         <a href="/contact.html">Contact</a>
       </div>
@@ -1682,1207 +1431,1263 @@
         Start Free <span aria-hidden="true">↗</span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" type="button"
-        aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
       </button>
     </nav>
   </header>
 
   <main>
-    <div class="container breadcrumb-wrap">
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <a href="/index.html">Home</a>
-        <span class="breadcrumb-separator">/</span>
-        <a href="/tools.html">Free Tools</a>
-        <span class="breadcrumb-separator">/</span>
-        <span aria-current="page">Invoice Number Generator</span>
-      </nav>
-    </div>
+    <!-- PAGE INTRODUCTION -->
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Free Business Tool
+        </div>
 
-    <section class="hero">
-      <div class="container">
-        <div class="eyebrow">Free business tool</div>
-        <h1>Invoice numbers,<br><span>made simple.</span></h1>
-        <p class="hero-description">
-          Create consistent invoice numbers in seconds. Customize your prefix,
-          year, financial year, separators, and sequence length, then generate
-          one number or an entire batch.
+        <h1>
+          Invoice Number<br>
+          <span>Generator.</span>
+        </h1>
+
+        <p>
+          Create consistent invoice numbers for your business in seconds.
+          Customize your prefix, date, sequence, and number format, then
+          copy individual numbers or export a batch for your records.
         </p>
 
-        <div class="hero-meta">
-          <span class="meta-pill"><span class="meta-dot"></span> Free to use</span>
-          <span class="meta-pill">No account required</span>
-          <span class="meta-pill">CSV export included</span>
-          <span class="meta-pill">Works in your browser</span>
-        </div>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tools.html">Free Tools</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Invoice Number Generator</span>
+        </nav>
       </div>
     </section>
 
-    <noscript>
-      <div class="container noscript-message">
-        JavaScript is required to generate invoice numbers. Please enable JavaScript
-        in your browser and reload this page.
-      </div>
-    </noscript>
-
+    <!-- INVOICE NUMBER GENERATOR -->
     <section class="tool-section">
-      <div class="container">
-        <div class="tool-layout">
-          <section class="panel editor-panel" aria-labelledby="settingsHeading">
-            <div class="panel-header">
-              <div>
-                <h2 class="panel-heading" id="settingsHeading">Numbering settings</h2>
-                <p class="panel-subheading">Build a format that fits your business.</p>
-              </div>
-              <span class="step-label">Customize</span>
-            </div>
+      <div class="container tool-layout">
 
-            <div class="panel-body">
-              <form id="numberForm">
-                <div class="form-section">
-                  <h3 class="form-section-title">
-                    <span class="section-number">01</span>
-                    Number format
-                  </h3>
+        <div class="tool-card">
+          <div class="card-heading">
+            <h2>Generate invoice numbers</h2>
+            <p>
+              Configure your preferred format. The preview updates as you
+              change the settings.
+            </p>
+          </div>
 
-                  <div class="field-grid">
-                    <div class="field">
-                      <label for="prefix">Invoice prefix</label>
-                      <input class="input" id="prefix" name="prefix"
-                        type="text" maxlength="20" value="INV"
-                        placeholder="e.g. INV" autocomplete="off">
-                      <span class="field-hint">Letters or numbers identifying your invoices.</span>
-                    </div>
+          <form id="generatorForm">
+            <section class="form-section">
+              <h3>01 · Number format</h3>
 
-                    <div class="field">
-                      <label for="separator">Separator</label>
-                      <select class="select" id="separator" name="separator">
-                        <option value="-">Hyphen (-)</option>
-                        <option value="/">Slash (/)</option>
-                        <option value="_">Underscore (_)</option>
-                        <option value="">No separator</option>
-                      </select>
-                      <span class="field-hint">Separates the parts of your number.</span>
-                    </div>
-
-                    <div class="field">
-                      <label for="yearFormat">Year format</label>
-                      <select class="select" id="yearFormat" name="yearFormat">
-                        <option value="none">No year</option>
-                        <option value="yyyy" selected>Full year (2026)</option>
-                        <option value="yy">Short year (26)</option>
-                        <option value="fy">Indian financial year (FY26-27)</option>
-                      </select>
-                    </div>
-
-                    <div class="field">
-                      <label for="yearPosition">Year position</label>
-                      <select class="select" id="yearPosition" name="yearPosition">
-                        <option value="after">After prefix</option>
-                        <option value="before">Before prefix</option>
-                      </select>
-                    </div>
-
-                    <div class="field">
-                      <label for="startNumber">Starting sequence number</label>
-                      <input class="input" id="startNumber" name="startNumber"
-                        type="number" min="0" max="999999999" value="1" step="1">
-                      <span class="field-hint">For example, start at 1 or continue from 125.</span>
-                    </div>
-
-                    <div class="field">
-                      <label for="padding">Number of digits</label>
-                      <select class="select" id="padding" name="padding">
-                        <option value="1">1 digit (1)</option>
-                        <option value="2">2 digits (01)</option>
-                        <option value="3">3 digits (001)</option>
-                        <option value="4" selected>4 digits (0001)</option>
-                        <option value="5">5 digits (00001)</option>
-                        <option value="6">6 digits (000001)</option>
-                        <option value="7">7 digits (0000001)</option>
-                        <option value="8">8 digits (00000001)</option>
-                        <option value="9">9 digits (000000001)</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-section">
-                  <h3 class="form-section-title">
-                    <span class="section-number">02</span>
-                    Optional date components
-                  </h3>
-
-                  <div class="toggle-list">
-                    <div class="toggle-row">
-                      <div class="toggle-copy">
-                        <span class="toggle-title">Include month</span>
-                        <span class="toggle-description">Adds the current month as two digits, such as 10.</span>
-                      </div>
-                      <label class="switch">
-                        <input id="includeMonth" type="checkbox" aria-label="Include month">
-                        <span class="switch-track"></span>
-                      </label>
-                    </div>
-
-                    <div class="toggle-row">
-                      <div class="toggle-copy">
-                        <span class="toggle-title">Include day</span>
-                        <span class="toggle-description">Adds today's day as two digits, such as 14.</span>
-                      </div>
-                      <label class="switch">
-                        <input id="includeDay" type="checkbox" aria-label="Include day">
-                        <span class="switch-track"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <span class="field-hint" style="margin-top: 12px;">
-                    The date components use your device's local date when you generate numbers.
+              <div class="field-grid">
+                <div class="field">
+                  <label for="prefix">Invoice prefix</label>
+                  <input
+                    id="prefix"
+                    name="prefix"
+                    type="text"
+                    maxlength="24"
+                    value="INV"
+                    autocomplete="off"
+                    placeholder="e.g. INV"
+                  >
+                  <span class="hint">
+                    A short identifier for your invoice numbers.
                   </span>
                 </div>
 
-                <div class="form-section">
-                  <h3 class="form-section-title">
-                    <span class="section-number">03</span>
-                    Generation options
-                  </h3>
-
-                  <div class="field-grid">
-                    <div class="field">
-                      <label for="count">How many numbers?</label>
-                      <input class="input" id="count" name="count" type="number"
-                        min="1" max="100" value="10" step="1">
-                      <span class="field-hint">Generate between 1 and 100 numbers at a time.</span>
-                    </div>
-
-                    <div class="field">
-                      <label for="dateMode">Date used in number</label>
-                      <select class="select" id="dateMode" name="dateMode">
-                        <option value="today">Today's date</option>
-                      </select>
-                      <span class="field-hint">Date components are fixed for each generation batch.</span>
-                    </div>
-
-                    <div class="field full">
-                      <div class="toggle-row">
-                        <div class="toggle-copy">
-                          <span class="toggle-title">Remember next number on this browser</span>
-                          <span class="toggle-description">
-                            Save your next sequence number locally so it can be reused on this browser.
-                          </span>
-                        </div>
-                        <label class="switch">
-                          <input id="rememberSequence" type="checkbox" aria-label="Remember next number on this browser">
-                          <span class="switch-track"></span>
-                        </label>
-                      </div>
-                      <span class="field-hint">
-                        This setting is browser-specific. It does not synchronize with other devices or users.
-                      </span>
-                    </div>
-                  </div>
+                <div class="field">
+                  <label for="separator">Separator</label>
+                  <select id="separator" name="separator">
+                    <option value="-">Hyphen ( - )</option>
+                    <option value="/">Slash ( / )</option>
+                    <option value="_">Underscore ( _ )</option>
+                    <option value="">No separator</option>
+                  </select>
                 </div>
-              </form>
+
+                <div class="field">
+                  <label for="dateFormat">Date component</label>
+                  <select id="dateFormat" name="dateFormat">
+                    <option value="none">No date</option>
+                    <option value="year">Year (YYYY)</option>
+                    <option value="yearmonth" selected>Year and month (YYYYMM)</option>
+                    <option value="yearmonthday">Full date (YYYYMMDD)</option>
+                    <option value="shortyearmonth">Short year and month (YYMM)</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="sequenceStart">Starting sequence</label>
+                  <input
+                    id="sequenceStart"
+                    name="sequenceStart"
+                    type="number"
+                    min="1"
+                    max="999999999"
+                    step="1"
+                    value="1"
+                    inputmode="numeric"
+                  >
+                </div>
+
+                <div class="field">
+                  <label for="padding">Sequence digit length</label>
+                  <select id="padding" name="padding">
+                    <option value="1">1 digit — 1, 2, 3</option>
+                    <option value="2">2 digits — 01, 02, 03</option>
+                    <option value="3" selected>3 digits — 001, 002, 003</option>
+                    <option value="4">4 digits — 0001, 0002</option>
+                    <option value="5">5 digits — 00001, 00002</option>
+                    <option value="6">6 digits — 000001, 000002</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="quantity">Numbers to generate</label>
+                  <input
+                    id="quantity"
+                    name="quantity"
+                    type="number"
+                    min="1"
+                    max="500"
+                    step="1"
+                    value="10"
+                    inputmode="numeric"
+                  >
+                  <span class="hint">Generate between 1 and 500 numbers per batch.</span>
+                </div>
+              </div>
+
+              <label class="inline-check" for="rememberSequence">
+                <input id="rememberSequence" type="checkbox" checked>
+                <span>
+                  Remember the last sequence number in this browser for
+                  this invoice prefix and date format.
+                </span>
+              </label>
+            </section>
+
+            <section class="form-section">
+              <h3>02 · Invoice date</h3>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label for="invoiceDate">Date used in invoice numbers</label>
+                  <input id="invoiceDate" name="invoiceDate" type="date">
+                  <span class="hint">
+                    Used only when a date component is selected.
+                  </span>
+                </div>
+
+                <div class="field">
+                  <label for="sequenceEnd">Ending sequence</label>
+                  <input id="sequenceEnd" type="text" value="010" readonly>
+                  <span class="hint">
+                    Calculated from the starting sequence and batch size.
+                  </span>
+                </div>
+              </div>
+            </section>
+
+            <div class="button-row">
+              <button class="button button-primary" type="submit">
+                Generate Numbers <span aria-hidden="true">↗</span>
+              </button>
+
+              <button class="button button-secondary" type="button" id="sampleButton">
+                Load Sample
+              </button>
+
+              <button class="button button-secondary" type="button" id="resetButton">
+                Reset
+              </button>
             </div>
-          </section>
+          </form>
 
-          <aside class="panel preview-panel" aria-labelledby="previewHeading">
-            <div class="panel-header">
-              <div>
-                <h2 class="panel-heading" id="previewHeading">Live preview</h2>
-                <p class="panel-subheading">See your invoice number format.</p>
-              </div>
-              <span class="step-label">Preview</span>
-            </div>
-
-            <div class="preview-body">
-              <p class="preview-label">Example invoice number</p>
-
-              <div class="number-preview">
-                <div class="number-preview-value" id="numberPreview" aria-live="polite">INV-2026-0001</div>
-                <button class="icon-button" id="copyPreview" type="button"
-                  aria-label="Copy preview invoice number" title="Copy preview">⧉</button>
-              </div>
-
-              <p class="format-caption">
-                Format: <code id="formatDescription">PREFIX-YEAR-SEQUENCE</code>
-              </p>
-
-              <div class="preview-stats">
-                <div class="stat-card">
-                  <span class="stat-label">Numbers to generate</span>
-                  <span class="stat-value" id="countStat">10</span>
-                </div>
-                <div class="stat-card">
-                  <span class="stat-label">Sequence range</span>
-                  <span class="stat-value" id="rangeStat">0001–0010</span>
-                </div>
-                <div class="stat-card">
-                  <span class="stat-label">First number</span>
-                  <span class="stat-value" id="firstStat">0001</span>
-                </div>
-                <div class="stat-card">
-                  <span class="stat-label">Last number</span>
-                  <span class="stat-value" id="lastStat">0010</span>
-                </div>
-              </div>
-
-              <div class="action-stack">
-                <button class="btn btn-primary" id="generateBtn" type="button">
-                  Generate invoice numbers <span aria-hidden="true">→</span>
-                </button>
-                <div class="button-row">
-                  <button class="btn btn-dark" id="copyAllBtn" type="button" disabled>
-                    Copy all numbers
-                  </button>
-                  <button class="btn btn-outline" id="downloadBtn" type="button" disabled>
-                    Download CSV ↓
-                  </button>
-                </div>
-                <div class="button-row">
-                  <button class="btn btn-outline" id="sampleBtn" type="button">
-                    Load sample
-                  </button>
-                  <button class="btn btn-outline" id="resetBtn" type="button">
-                    Reset settings
-                  </button>
-                </div>
-                <button class="btn btn-outline" id="clearMemoryBtn" type="button" hidden>
-                  Clear saved sequence
-                </button>
-              </div>
-
-              <div class="privacy-note">
-                <span class="note-icon" aria-hidden="true">ⓘ</span>
-                <div>
-                  <strong>Important:</strong> Numbers are generated in your browser.
-                  Saved sequences are stored only in this browser when you enable memory.
-                  This tool cannot guarantee global uniqueness or reserve numbers in your accounting system.
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-
-        <section class="panel results-section" id="resultsSection" hidden aria-labelledby="resultsHeading">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-heading" id="resultsHeading">Generated invoice numbers</h2>
-              <p class="panel-subheading" id="resultsSubtitle">Your generated sequence is ready.</p>
-            </div>
-            <span class="step-label" id="resultsBadge">0 numbers</span>
-          </div>
-
-          <div class="panel-body">
-            <div class="results-header">
-              <div>
-                <h3>Your sequence</h3>
-                <p>Copy individual numbers or export the complete list.</p>
-              </div>
-              <div class="results-actions">
-                <button class="btn btn-outline" id="copyTableBtn" type="button">Copy list</button>
-                <button class="btn btn-primary" id="downloadTableBtn" type="button">Export CSV ↓</button>
-              </div>
+          <section class="results-section" aria-labelledby="resultsTitle">
+            <div class="results-heading">
+              <h3 id="resultsTitle">Generated numbers</h3>
+              <span class="result-count" id="resultCount">0 numbers</span>
             </div>
 
             <div class="table-wrap">
-              <table class="results-table">
+              <table class="numbers-table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Invoice number</th>
                     <th scope="col">Sequence</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody id="resultsBody">
+                <tbody id="numbersTableBody">
                   <tr>
-                    <td colspan="4" class="empty-state">Generate numbers to see them here.</td>
+                    <td colspan="3">
+                      <div class="empty-state">
+                        Your generated invoice numbers will appear here.
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          </div>
-        </section>
+
+            <div class="button-row">
+              <button
+                class="button button-dark"
+                type="button"
+                id="copyAllButton"
+                disabled
+              >
+                Copy All
+              </button>
+
+              <button
+                class="button button-secondary"
+                type="button"
+                id="downloadCsvButton"
+                disabled
+              >
+                Download CSV
+              </button>
+            </div>
+
+            <p class="status-message" id="statusMessage" role="status" aria-live="polite"></p>
+          </section>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" aria-label="Invoice number guidance">
+          <section class="side-card">
+            <h2>Live preview</h2>
+            <p>
+              See how your invoice number format looks before generating a batch.
+            </p>
+
+            <div class="preview-box" style="margin-top:20px">
+              <div class="preview-label">
+                <span>Invoice number</span>
+                <span class="preview-status">Preview</span>
+              </div>
+
+              <div class="preview-number" id="previewNumber">INV-202610-001</div>
+
+              <p class="preview-description">
+                This preview uses your current formatting settings.
+              </p>
+
+              <div class="preview-details">
+                <div class="preview-detail">
+                  <span>First sequence</span>
+                  <strong id="previewStart">001</strong>
+                </div>
+                <div class="preview-detail">
+                  <span>Batch size</span>
+                  <strong id="previewQuantity">10 numbers</strong>
+                </div>
+                <div class="preview-detail">
+                  <span>Date format</span>
+                  <strong id="previewDateFormat">YYYYMM</strong>
+                </div>
+                <div class="preview-detail">
+                  <span>Last sequence</span>
+                  <strong id="previewEnd">010</strong>
+                </div>
+              </div>
+
+              <div class="preview-actions">
+                <button
+                  class="button button-primary"
+                  type="button"
+                  id="copyPreviewButton"
+                >
+                  Copy Preview
+                </button>
+                <button
+                  class="button button-secondary"
+                  type="button"
+                  id="generatePreviewButton"
+                >
+                  Generate Batch
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="side-card">
+            <h2>Common invoice formats</h2>
+            <p>
+              Choose a consistent pattern that suits the way your business
+              organizes invoices.
+            </p>
+
+            <div class="format-list">
+              <div class="format-item">
+                <code>INV-001</code>
+                <p>Prefix followed by a sequential number.</p>
+              </div>
+
+              <div class="format-item">
+                <code>INV-2026-001</code>
+                <p>Year-based numbering for easier annual organization.</p>
+              </div>
+
+              <div class="format-item">
+                <code>INV-202610-001</code>
+                <p>Year and month followed by a sequence.</p>
+              </div>
+
+              <div class="format-item">
+                <code>INV/20261014/001</code>
+                <p>Date-based numbering with a slash separator.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="side-card">
+            <h2>Useful numbering tips</h2>
+
+            <ul class="tip-list">
+              <li>Use a consistent invoice numbering format across your records.</li>
+              <li>Avoid reusing invoice numbers for separate invoices.</li>
+              <li>Choose a sequence length that allows your business to grow.</li>
+              <li>Keep an appropriate record of issued and cancelled invoices.</li>
+              <li>Review applicable invoicing and recordkeeping requirements.</li>
+            </ul>
+
+            <div class="notice-box">
+              <strong>Important:</strong> This tool generates numbering suggestions.
+              It does not issue invoices, validate legal compliance, or maintain
+              an official business invoice register.
+            </div>
+          </section>
+        </aside>
       </div>
     </section>
 
-    <section class="info-section">
+    <!-- INFORMATION -->
+    <section class="information-section">
       <div class="container">
         <div class="section-heading">
-          <div class="eyebrow">Built for everyday work</div>
-          <h2>More control over your invoice numbering.</h2>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Understand the Basics
+          </div>
+
+          <h2>
+            Simple numbering.<br>
+            <span>Clearer records.</span>
+          </h2>
+
           <p>
-            Use a consistent numbering pattern that is easy to identify, organize,
-            and reference. Customize the structure to suit your business workflow.
+            An invoice number helps identify an invoice and distinguish it
+            from other business documents. A consistent format can make
+            invoices easier to organize, retrieve, and reconcile.
           </p>
         </div>
 
-        <div class="feature-grid">
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">#</div>
-            <h3>Custom prefixes</h3>
-            <p>Use identifiers such as INV, TAX, SALES, or your own business prefix to distinguish invoice series.</p>
+        <div class="info-grid">
+          <article class="info-card">
+            <h3>What is an invoice number?</h3>
+            <p>
+              An invoice number is a unique identifier assigned to an invoice.
+              Businesses use it to reference transactions, track payments,
+              and maintain organized records.
+            </p>
           </article>
 
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">↗</div>
-            <h3>Sequential numbering</h3>
-            <p>Choose a starting sequence and digit length, then generate a single number or a batch of up to 100.</p>
+          <article class="info-card">
+            <h3>Why use a prefix?</h3>
+            <p>
+              A prefix such as INV can help distinguish invoices from other
+              documents. Businesses may choose prefixes based on their own
+              internal numbering practices.
+            </p>
           </article>
 
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">FY</div>
-            <h3>Financial-year format</h3>
-            <p>Use Indian financial-year labels such as FY26-27, with the year running from April through March.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">▤</div>
-            <h3>CSV export</h3>
-            <p>Download your generated sequence as a CSV file for use in spreadsheets or your own records.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">⧉</div>
-            <h3>Quick copying</h3>
-            <p>Copy a single invoice number or the complete generated list without manually selecting each value.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">⌂</div>
-            <h3>Browser-based</h3>
-            <p>Generate numbers without creating an account. Optional sequence memory stays in the current browser.</p>
+          <article class="info-card">
+            <h3>Why include a date?</h3>
+            <p>
+              A year or month component can make invoice numbers easier to
+              group by period. Choose a format that remains clear and
+              consistent across your records.
+            </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="info-section" style="background:#fff;">
-      <div class="container">
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container faq-layout">
         <div class="section-heading">
-          <div class="eyebrow">Three simple steps</div>
-          <h2>How to use the invoice number generator.</h2>
-          <p>Configure the format, generate your sequence, and copy or export the results.</p>
-        </div>
-
-        <div class="steps-grid">
-          <article class="step-card">
-            <h3>Customize the format</h3>
-            <p>Choose a prefix, separator, year format, optional date components, starting sequence, and digit length.</p>
-          </article>
-
-          <article class="step-card">
-            <h3>Generate your numbers</h3>
-            <p>Select how many invoice numbers you need and generate your sequence with one click.</p>
-          </article>
-
-          <article class="step-card">
-            <h3>Copy or download</h3>
-            <p>Copy an individual number, copy the complete list, or download your sequence as a CSV file.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="info-section">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Number format examples</div>
-          <h2>Choose a format that works for you.</h2>
-          <p>These examples illustrate common numbering patterns. Configure the generator to create a format that matches your own workflow.</p>
-        </div>
-
-        <div class="example-box">
-          <div class="example-column">
-            <h3>Calendar-year formats</h3>
-            <span class="example-number">INV-2026-0001</span>
-            <p class="example-description">Prefix, full calendar year, and a four-digit sequence.</p>
-            <span class="example-number">SALES/26/001</span>
-            <p class="example-description">A custom prefix with a short year and three-digit sequence.</p>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Frequently Asked Questions
           </div>
 
-          <div class="example-column">
-            <h3>Financial-year formats</h3>
-            <span class="example-number">INV-FY26-27-0001</span>
-            <p class="example-description">An Indian financial-year label with a sequential number.</p>
-            <span class="example-number">2026-INV-0001</span>
-            <p class="example-description">A year-first format for businesses that prefer grouping by year.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+          <h2>
+            Questions about<br>
+            <span>invoice numbers.</span>
+          </h2>
 
-    <section class="info-section" style="background:#fff;">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Questions answered</div>
-          <h2>Invoice numbering FAQs.</h2>
-          <p>Learn how sequential numbering and this browser-based tool work.</p>
+          <p>
+            Learn how invoice numbering works and how to use this free generator.
+          </p>
         </div>
 
         <div class="faq-list">
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>What is an invoice number?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              An invoice number is a unique reference used to identify and track an invoice.
-              Businesses use invoice numbers to organize records, find transactions, and
-              communicate about specific invoices. Your numbering system should fit your
-              accounting process and applicable requirements.
+          <details class="faq-item">
+            <summary>Is this invoice number generator free?</summary>
+            <div class="faq-answer">
+              Yes. You can generate invoice numbers, copy them, and export
+              generated batches as CSV without paying to use this tool.
             </div>
-          </article>
+          </details>
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can I use this tool for Indian financial-year numbering?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              Yes. Select <strong>Indian financial year</strong> in the year-format settings.
-              For example, dates from April 2026 through March 2027 use the label FY26-27.
-              Check the generated number before using it in your business records.
+          <details class="faq-item">
+            <summary>Can I customize the invoice number format?</summary>
+            <div class="faq-answer">
+              Yes. You can customize the prefix, separator, date component,
+              starting sequence, sequence digit length, and number of
+              invoice numbers to generate.
             </div>
-          </article>
+          </details>
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Will the tool remember my last invoice number?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              You can enable <strong>Remember next number on this browser</strong>.
-              When enabled, the tool saves the next sequence number in local browser storage
-              after generation. It does not synchronize across browsers, devices, or users.
-              Clearing browser data can remove the saved sequence.
+          <details class="faq-item">
+            <summary>Can I generate multiple invoice numbers at once?</summary>
+            <div class="faq-answer">
+              Yes. Set the number of entries you need and generate a batch.
+              The tool supports batches of up to 500 numbers at a time.
             </div>
-          </article>
+          </details>
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Does this tool guarantee unique invoice numbers?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              No. This is a browser-based generator, not a centralized accounting system.
-              Different users or devices can generate the same number. Before issuing an
-              invoice, verify that its number is unused in your official records. For
-              multi-user businesses, use a centralized accounting or invoicing system.
+          <details class="faq-item">
+            <summary>Does the tool remember my sequence?</summary>
+            <div class="faq-answer">
+              When the remember-sequence option is enabled, the tool stores
+              sequence information in your browser's local storage. This is
+              browser-specific and is not a shared or centrally managed
+              invoice register. Clearing browser data may remove it.
             </div>
-          </article>
+          </details>
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can I generate multiple invoice numbers at once?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              Yes. Choose a quantity from 1 to 100 and click Generate invoice numbers.
-              The resulting sequence appears in a table. You can copy individual entries,
-              copy the entire list, or download a CSV file.
+          <details class="faq-item">
+            <summary>Can I export the invoice numbers?</summary>
+            <div class="faq-answer">
+              Yes. Use the Download CSV button to export the generated batch.
+              You can open the resulting file in spreadsheet applications
+              that support CSV files.
             </div>
-          </article>
+          </details>
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is an invoice number format alone enough for tax compliance?</span>
-              <span aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              No. This tool only generates number strings. It does not determine whether
-              an invoice, numbering series, or tax document meets your legal or tax
-              obligations. Check the requirements applicable to your business and consult
-              a qualified professional when necessary.
+          <details class="faq-item">
+            <summary>Does generating a number create an invoice?</summary>
+            <div class="faq-answer">
+              No. This tool creates invoice-number suggestions only.
+              It does not create an invoice document, record a sale, collect
+              payment, or submit tax information.
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
+          </details>
 
-    <section class="info-section">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Explore more</div>
-          <h2>More free business tools.</h2>
-          <p>Continue building a practical toolkit for your business with ARTHNIX.</p>
-        </div>
+          <details class="faq-item">
+            <summary>Is a generated format automatically compliant with Indian requirements?</summary>
+            <div class="faq-answer">
+              No. The generator does not verify compliance with applicable
+              invoicing requirements. Check the rules relevant to your
+              business and transaction, and consult a qualified professional
+              when necessary.
+            </div>
+          </details>
 
-        <div class="related-grid">
-          <a class="related-card" href="/tools/invoice-generator.html">
-            <span>
-              <strong>Invoice Generator</strong>
-              <small>Create an invoice document.</small>
-            </span>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="related-card" href="/tools/quotation-generator.html">
-            <span>
-              <strong>Quotation Generator</strong>
-              <small>Prepare a customer quotation.</small>
-            </span>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="related-card" href="/tools/profit-calculator.html">
-            <span>
-              <strong>Profit Calculator</strong>
-              <small>Calculate profit and margins.</small>
-            </span>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
+          <details class="faq-item">
+            <summary>Where can I create a complete invoice?</summary>
+            <div class="faq-answer">
+              You can explore the
+              <a href="/tools/invoice-generator.html">ARTHNIX Invoice Generator</a>
+              to prepare an invoice with business details, customer details,
+              items, tax information, and other invoice fields.
+            </div>
+          </details>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <!-- FOOTER: MATCHES THE ARTHNIX HOMEPAGE -->
+  <footer class="site-footer" id="footer-contact">
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-            <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
-            <span class="brand-name">ARTHNIX</span>
+          <a class="footer-brand-link" href="/index.html" aria-label="ARTHNIX home">
+            <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
+            <span>ARTHNIX</span>
           </a>
-          <p>Intelligence for Every Business. Practical tools and intelligent systems designed to help businesses work smarter.</p>
+
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <p class="footer-powered">Powered by Alphex AI</p>
         </div>
 
         <div class="footer-column">
           <h4>Explore</h4>
-          <a href="/index.html">Home</a>
           <a href="/platform.html">Platform</a>
+          <a href="/index.html#how-it-works">How It Works</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="/contact.html">Contact</a>
+          <a href="/tools.html">Free Tools</a>
         </div>
 
         <div class="footer-column">
           <h4>Business Tools</h4>
-          <a href="/tools.html">All Free Tools</a>
-          <a href="/tools/profit-calculator.html">Profit Calculator</a>
+          <a href="/tools/gst-calculator.html">GST Calculator</a>
           <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/profit-calculator.html">Profit Calculator</a>
           <a href="/tools/quotation-generator.html">Quotation Generator</a>
-          <a href="/tools/invoice-number-generator.html">Invoice Number Generator</a>
         </div>
 
         <div class="footer-column">
           <h4>Information</h4>
-          <a href="/about.html">About</a>
+          <a href="/about.html">About ARTHNIX</a>
+          <a href="/help.html">Help Centre</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
           <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Service</a>
-          <a href="/contact.html">Get in Touch</a>
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/disclaimer.html">Disclaimer</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
-        <span>Powered by <a href="https://alphex.ai">Alphex AI</a>.</span>
+        <p class="copyright">
+          © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+        </p>
+
+        <p class="powered-by">
+          An independent product brand · <strong>Powered by Alphex AI</strong>
+        </p>
       </div>
     </div>
   </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
     (() => {
       "use strict";
 
-      const $ = (id) => document.getElementById(id);
+      /* =====================================================
+         HOMEPAGE NAVIGATION BEHAVIOR
+         ===================================================== */
 
-      const STORAGE_KEY = "arthnix_invoice_number_next_sequence_v1";
-      const MAX_COUNT = 100;
+      const menuButton = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const currentYear = document.getElementById("currentYear");
+
+      function setMenuState(isOpen) {
+        if (!menuButton || !navLinks) return;
+
+        navLinks.classList.toggle("is-open", isOpen);
+
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+        const lines = menuButton.querySelectorAll("span");
+
+        if (lines.length >= 2) {
+          lines[0].style.transform = isOpen
+            ? "translateY(3.5px) rotate(45deg)"
+            : "";
+
+          lines[1].style.transform = isOpen
+            ? "translateY(-3.5px) rotate(-45deg)"
+            : "";
+        }
+      }
+
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+
+          const isOpen =
+            menuButton.getAttribute("aria-expanded") === "true";
+
+          setMenuState(!isOpen);
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            setMenuState(false);
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("is-open") &&
+            !menuButton.contains(event.target) &&
+            !navLinks.contains(event.target)
+          ) {
+            setMenuState(false);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            navLinks.classList.contains("is-open")
+          ) {
+            setMenuState(false);
+            menuButton.focus();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 780) {
+            setMenuState(false);
+          }
+        });
+      }
+
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+
+      /* =====================================================
+         INVOICE NUMBER GENERATOR
+         ===================================================== */
+
+      const form = document.getElementById("generatorForm");
+
+      const prefixInput = document.getElementById("prefix");
+      const separatorInput = document.getElementById("separator");
+      const dateFormatInput = document.getElementById("dateFormat");
+      const sequenceStartInput = document.getElementById("sequenceStart");
+      const paddingInput = document.getElementById("padding");
+      const quantityInput = document.getElementById("quantity");
+      const invoiceDateInput = document.getElementById("invoiceDate");
+      const sequenceEndInput = document.getElementById("sequenceEnd");
+      const rememberSequenceInput = document.getElementById("rememberSequence");
+
+      const previewNumber = document.getElementById("previewNumber");
+      const previewStart = document.getElementById("previewStart");
+      const previewQuantity = document.getElementById("previewQuantity");
+      const previewDateFormat = document.getElementById("previewDateFormat");
+      const previewEnd = document.getElementById("previewEnd");
+
+      const numbersTableBody = document.getElementById("numbersTableBody");
+      const resultCount = document.getElementById("resultCount");
+      const statusMessage = document.getElementById("statusMessage");
+
+      const copyAllButton = document.getElementById("copyAllButton");
+      const downloadCsvButton = document.getElementById("downloadCsvButton");
+      const copyPreviewButton = document.getElementById("copyPreviewButton");
+      const generatePreviewButton = document.getElementById("generatePreviewButton");
+      const sampleButton = document.getElementById("sampleButton");
+      const resetButton = document.getElementById("resetButton");
+
+      const STORAGE_PREFIX = "arthnix_invoice_number_sequence_v1";
+      const MAX_BATCH_SIZE = 500;
       const MAX_SEQUENCE = 999999999;
 
-      const form = $("numberForm");
-      const prefixInput = $("prefix");
-      const separatorInput = $("separator");
-      const yearFormatInput = $("yearFormat");
-      const yearPositionInput = $("yearPosition");
-      const startNumberInput = $("startNumber");
-      const paddingInput = $("padding");
-      const includeMonthInput = $("includeMonth");
-      const includeDayInput = $("includeDay");
-      const countInput = $("count");
-      const rememberInput = $("rememberSequence");
-
-      const numberPreview = $("numberPreview");
-      const formatDescription = $("formatDescription");
-      const countStat = $("countStat");
-      const rangeStat = $("rangeStat");
-      const firstStat = $("firstStat");
-      const lastStat = $("lastStat");
-
-      const resultsSection = $("resultsSection");
-      const resultsBody = $("resultsBody");
-      const resultsSubtitle = $("resultsSubtitle");
-      const resultsBadge = $("resultsBadge");
-
-      const generateBtn = $("generateBtn");
-      const copyPreviewBtn = $("copyPreview");
-      const copyAllBtn = $("copyAllBtn");
-      const downloadBtn = $("downloadBtn");
-      const copyTableBtn = $("copyTableBtn");
-      const downloadTableBtn = $("downloadTableBtn");
-      const sampleBtn = $("sampleBtn");
-      const resetBtn = $("resetBtn");
-      const clearMemoryBtn = $("clearMemoryBtn");
-
       let generatedNumbers = [];
-      let toastTimer = null;
+      let lastGeneratedSettings = null;
 
-      function localDateParts(date = new Date()) {
+      function getLocalDateString(date = new Date()) {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, "0");
         const day = String(date.getDate()).padStart(2, "0");
 
-        const financialYearStart = date.getMonth() >= 3
-          ? year
-          : year - 1;
+        return `${year}-${month}-${day}`;
+      }
 
-        const financialYearEnd = financialYearStart + 1;
+      function initializeDate() {
+        if (!invoiceDateInput.value) {
+          invoiceDateInput.value = getLocalDateString();
+        }
+      }
 
-        return {
-          year,
-          shortYear: String(year).slice(-2),
-          month,
-          day,
-          financialYear: `FY${String(financialYearStart).slice(-2)}-${String(financialYearEnd).slice(-2)}`
-        };
+      function getSafeInteger(input, fallback, min, max) {
+        const value = Number(input.value);
+
+        if (!Number.isFinite(value) || !Number.isInteger(value)) {
+          return fallback;
+        }
+
+        return Math.min(max, Math.max(min, value));
       }
 
       function getSettings() {
-        const date = localDateParts();
-        const rawPrefix = prefixInput.value.trim();
+        const prefix = prefixInput.value.trim().replace(/\s+/g, "");
 
-        // Prefixes are limited to letters and numbers for predictable output.
-        const prefix = rawPrefix.replace(/[^a-zA-Z0-9]/g, "").slice(0, 20);
         const separator = separatorInput.value;
-        const yearFormat = yearFormatInput.value;
-        const yearPosition = yearPositionInput.value;
-        const start = Number(startNumberInput.value);
-        const count = Number(countInput.value);
-        const padding = Number(paddingInput.value);
+        const dateFormat = dateFormatInput.value;
+
+        const start = getSafeInteger(
+          sequenceStartInput,
+          1,
+          1,
+          MAX_SEQUENCE
+        );
+
+        const quantity = getSafeInteger(
+          quantityInput,
+          10,
+          1,
+          MAX_BATCH_SIZE
+        );
+
+        const padding = getSafeInteger(
+          paddingInput,
+          3,
+          1,
+          6
+        );
+
+        const date = invoiceDateInput.value || getLocalDateString();
 
         return {
           prefix,
           separator,
-          yearFormat,
-          yearPosition,
-          start: Number.isFinite(start) ? Math.trunc(start) : 1,
-          count: Number.isFinite(count) ? Math.trunc(count) : 1,
+          dateFormat,
+          start,
+          quantity,
           padding,
-          includeMonth: includeMonthInput.checked,
-          includeDay: includeDayInput.checked,
-          date
+          date,
+          remember: rememberSequenceInput.checked
         };
       }
 
-      function getYearPart(settings) {
-        switch (settings.yearFormat) {
-          case "yyyy":
-            return String(settings.date.year);
-          case "yy":
-            return settings.date.shortYear;
-          case "fy":
-            return settings.date.financialYear;
+      function formatDate(dateString, format) {
+        if (format === "none") {
+          return "";
+        }
+
+        const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString);
+
+        if (!match) {
+          return "";
+        }
+
+        const year = match[1];
+        const month = match[2];
+        const day = match[3];
+
+        switch (format) {
+          case "year":
+            return year;
+
+          case "yearmonth":
+            return `${year}${month}`;
+
+          case "yearmonthday":
+            return `${year}${month}${day}`;
+
+          case "shortyearmonth":
+            return `${year.slice(-2)}${month}`;
+
           default:
             return "";
         }
       }
 
-      function getParts(settings, sequence) {
+      function dateFormatLabel(format) {
+        const labels = {
+          none: "None",
+          year: "YYYY",
+          yearmonth: "YYYYMM",
+          yearmonthday: "YYYYMMDD",
+          shortyearmonth: "YYMM"
+        };
+
+        return labels[format] || "None";
+      }
+
+      function formatSequence(sequence, padding) {
+        return String(sequence).padStart(padding, "0");
+      }
+
+      function buildInvoiceNumber(settings, sequence) {
         const parts = [];
-        const year = getYearPart(settings);
 
-        if (settings.yearPosition === "before") {
-          if (year) parts.push(year);
-          if (settings.prefix) parts.push(settings.prefix);
-        } else {
-          if (settings.prefix) parts.push(settings.prefix);
-          if (year) parts.push(year);
+        if (settings.prefix) {
+          parts.push(settings.prefix);
         }
 
-        if (settings.includeMonth) parts.push(settings.date.month);
-        if (settings.includeDay) parts.push(settings.date.day);
+        const datePart = formatDate(settings.date, settings.dateFormat);
 
-        parts.push(String(sequence).padStart(settings.padding, "0"));
-
-        return parts;
-      }
-
-      function formatNumber(settings, sequence) {
-        return getParts(settings, sequence).join(settings.separator);
-      }
-
-      function formatPattern(settings) {
-        const parts = [];
-        const year = getYearPart(settings);
-
-        if (settings.yearPosition === "before") {
-          if (year) parts.push("YEAR");
-          if (settings.prefix) parts.push("PREFIX");
-        } else {
-          if (settings.prefix) parts.push("PREFIX");
-          if (year) parts.push("YEAR");
+        if (datePart) {
+          parts.push(datePart);
         }
 
-        if (settings.includeMonth) parts.push("MM");
-        if (settings.includeDay) parts.push("DD");
-        parts.push("SEQUENCE");
+        parts.push(formatSequence(sequence, settings.padding));
 
-        return parts.join(settings.separator || " + ");
+        return parts.join(settings.separator);
       }
 
-      function clampSettings(showErrors = false) {
-        let valid = true;
-
-        let start = Number(startNumberInput.value);
-        if (!Number.isFinite(start)) start = 1;
-        start = Math.trunc(start);
-
-        if (start < 0 || start > MAX_SEQUENCE) {
-          valid = false;
-          if (showErrors) {
-            showToast(`Starting number must be between 0 and ${MAX_SEQUENCE}.`, true);
-          }
-        }
-
-        let count = Number(countInput.value);
-        if (!Number.isFinite(count)) count = 1;
-        count = Math.trunc(count);
-
-        if (count < 1 || count > MAX_COUNT) {
-          valid = false;
-          if (showErrors) {
-            showToast(`Choose between 1 and ${MAX_COUNT} invoice numbers.`, true);
-          }
-        }
-
-        if (valid && start + count - 1 > MAX_SEQUENCE) {
-          valid = false;
-          if (showErrors) {
-            showToast("The requested sequence exceeds the maximum supported number.", true);
-          }
-        }
-
-        return valid;
+      function getStorageKey(settings) {
+        return [
+          STORAGE_PREFIX,
+          settings.prefix || "NO_PREFIX",
+          settings.dateFormat,
+          settings.date
+        ].join("::");
       }
 
-      function updatePreview() {
-        const settings = getSettings();
+      function readSavedSequence(settings) {
+        if (!settings.remember) return null;
 
-        numberPreview.textContent = formatNumber(settings, Math.max(0, settings.start));
-        formatDescription.textContent = formatPattern(settings);
-        countStat.textContent = String(Math.max(1, Math.min(MAX_COUNT, settings.count)));
-
-        const last = Math.max(0, settings.start) + Math.max(1, Math.min(MAX_COUNT, settings.count)) - 1;
-        rangeStat.textContent =
-          String(Math.max(0, settings.start)).padStart(settings.padding, "0") +
-          "–" +
-          String(last).padStart(settings.padding, "0");
-
-        firstStat.textContent = String(Math.max(0, settings.start)).padStart(settings.padding, "0");
-        lastStat.textContent = String(last).padStart(settings.padding, "0");
-
-        clearMemoryBtn.hidden = !rememberInput.checked;
-
-        const settingsValid =
-          Number.isFinite(settings.start) &&
-          Number.isFinite(settings.count) &&
-          settings.start >= 0 &&
-          settings.start <= MAX_SEQUENCE &&
-          settings.count >= 1 &&
-          settings.count <= MAX_COUNT &&
-          settings.start + settings.count - 1 <= MAX_SEQUENCE;
-
-        generateBtn.disabled = !settingsValid;
-      }
-
-      function showToast(message, isError = false) {
-        const toast = $("toast");
-        toast.textContent = message;
-        toast.classList.toggle("error", isError);
-        toast.classList.add("show");
-
-        if (toastTimer) clearTimeout(toastTimer);
-
-        toastTimer = setTimeout(() => {
-          toast.classList.remove("show");
-        }, 3000);
-      }
-
-      async function copyText(text, successMessage = "Copied to clipboard.") {
         try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(text);
-          } else {
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            textarea.setAttribute("readonly", "");
-            textarea.style.position = "fixed";
-            textarea.style.left = "-9999px";
-            textarea.style.top = "0";
-            document.body.appendChild(textarea);
-            textarea.select();
+          const saved = localStorage.getItem(getStorageKey(settings));
 
-            const successful = document.execCommand("copy");
-            textarea.remove();
+          if (saved === null) return null;
 
-            if (!successful) {
-              throw new Error("Clipboard copy failed");
-            }
-          }
-
-          showToast(successMessage);
-        } catch (error) {
-          showToast("Copy failed. Please select and copy the text manually.", true);
-        }
-      }
-
-      function safeReadStorage() {
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return null;
-
-          const parsed = JSON.parse(raw);
+          const value = Number(saved);
 
           if (
-            !parsed ||
-            typeof parsed !== "object" ||
-            !Number.isInteger(parsed.next) ||
-            parsed.next < 0 ||
-            parsed.next > MAX_SEQUENCE
+            !Number.isSafeInteger(value) ||
+            value < 1 ||
+            value > MAX_SEQUENCE
           ) {
             return null;
           }
 
-          return parsed;
-        } catch (error) {
+          return value;
+        } catch {
           return null;
         }
       }
 
-      function safeWriteStorage(next, settings) {
+      function saveNextSequence(settings, nextSequence) {
+        if (!settings.remember) return;
+
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({
-            next,
-            prefix: settings.prefix,
-            separator: settings.separator,
-            yearFormat: settings.yearFormat,
-            yearPosition: settings.yearPosition,
-            includeMonth: settings.includeMonth,
-            includeDay: settings.includeDay,
-            updatedAt: new Date().toISOString()
-          }));
-          return true;
-        } catch (error) {
-          showToast("Browser storage is unavailable. Numbers were generated without saving.", true);
-          return false;
+          localStorage.setItem(
+            getStorageKey(settings),
+            String(nextSequence)
+          );
+        } catch {
+          showStatus(
+            "Numbers were generated, but this browser could not save the sequence.",
+            "error"
+          );
         }
       }
 
-      function loadRememberedSequence() {
-        const saved = safeReadStorage();
+      function getEffectiveStart(settings) {
+        const saved = readSavedSequence(settings);
 
-        if (!saved) {
-          showToast("No saved sequence was found in this browser.", true);
+        if (saved === null) {
+          return settings.start;
+        }
+
+        return Math.max(settings.start, saved);
+      }
+
+      function showStatus(message, type = "") {
+        statusMessage.textContent = message;
+        statusMessage.className = "status-message";
+
+        if (type) {
+          statusMessage.classList.add(type);
+        }
+      }
+
+      function clearStatus() {
+        showStatus("");
+      }
+
+      function updatePreview() {
+        const settings = getSettings();
+        const effectiveStart = getEffectiveStart(settings);
+
+        const effectiveEnd = Math.min(
+          MAX_SEQUENCE,
+          effectiveStart + settings.quantity - 1
+        );
+
+        const previewSettings = {
+          ...settings,
+          start: effectiveStart
+        };
+
+        previewNumber.textContent = buildInvoiceNumber(
+          previewSettings,
+          effectiveStart
+        );
+
+        previewStart.textContent = formatSequence(
+          effectiveStart,
+          settings.padding
+        );
+
+        previewQuantity.textContent =
+          `${settings.quantity} ${settings.quantity === 1 ? "number" : "numbers"}`;
+
+        previewDateFormat.textContent = dateFormatLabel(settings.dateFormat);
+
+        previewEnd.textContent = formatSequence(
+          effectiveEnd,
+          settings.padding
+        );
+
+        sequenceEndInput.value = formatSequence(
+          effectiveEnd,
+          settings.padding
+        );
+
+        clearStatus();
+      }
+
+      function renderEmptyState(message = "Your generated invoice numbers will appear here.") {
+        numbersTableBody.replaceChildren();
+
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        cell.colSpan = 3;
+
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent = message;
+
+        cell.appendChild(empty);
+        row.appendChild(cell);
+        numbersTableBody.appendChild(row);
+
+        resultCount.textContent = "0 numbers";
+        copyAllButton.disabled = true;
+        downloadCsvButton.disabled = true;
+      }
+
+      function renderGeneratedNumbers() {
+        numbersTableBody.replaceChildren();
+
+        if (!generatedNumbers.length) {
+          renderEmptyState();
           return;
         }
-
-        startNumberInput.value = saved.next;
-        updatePreview();
-        showToast(`Next sequence number loaded: ${saved.next}`);
-      }
-
-      function renderResults(numbers, start) {
-        resultsBody.replaceChildren();
 
         const fragment = document.createDocumentFragment();
 
-        numbers.forEach((item, index) => {
+        generatedNumbers.forEach((item) => {
           const row = document.createElement("tr");
 
-          const indexCell = document.createElement("td");
-          indexCell.textContent = String(index + 1);
-
           const numberCell = document.createElement("td");
-          numberCell.className = "table-number";
-          numberCell.textContent = item;
+          numberCell.textContent = item.number;
 
           const sequenceCell = document.createElement("td");
-          sequenceCell.textContent = String(start + index);
+          sequenceCell.textContent = String(item.sequence);
 
           const actionCell = document.createElement("td");
           const copyButton = document.createElement("button");
+
           copyButton.type = "button";
-          copyButton.className = "table-copy";
+          copyButton.className = "row-copy";
           copyButton.textContent = "Copy";
-          copyButton.setAttribute("aria-label", `Copy invoice number ${item}`);
-          copyButton.addEventListener("click", () => copyText(item, "Invoice number copied."));
+          copyButton.setAttribute(
+            "aria-label",
+            `Copy invoice number ${item.number}`
+          );
+
+          copyButton.addEventListener("click", async () => {
+            const success = await copyText(item.number);
+
+            if (success) {
+              showStatus(`Copied ${item.number}.`, "success");
+            } else {
+              showStatus(
+                "Unable to copy automatically. Select the number and copy it manually.",
+                "error"
+              );
+            }
+          });
+
           actionCell.appendChild(copyButton);
 
-          row.append(indexCell, numberCell, sequenceCell, actionCell);
+          row.append(numberCell, sequenceCell, actionCell);
           fragment.appendChild(row);
         });
 
-        resultsBody.appendChild(fragment);
-        resultsSection.hidden = false;
-        resultsBadge.textContent = `${numbers.length} number${numbers.length === 1 ? "" : "s"}`;
-        resultsSubtitle.textContent =
-          `Generated ${numbers.length} invoice number${numbers.length === 1 ? "" : "s"} starting from ${start}.`;
+        numbersTableBody.appendChild(fragment);
 
-        copyAllBtn.disabled = numbers.length === 0;
-        downloadBtn.disabled = numbers.length === 0;
-        copyTableBtn.disabled = numbers.length === 0;
-        downloadTableBtn.disabled = numbers.length === 0;
+        resultCount.textContent =
+          `${generatedNumbers.length} ${generatedNumbers.length === 1 ? "number" : "numbers"}`;
+
+        copyAllButton.disabled = false;
+        downloadCsvButton.disabled = false;
       }
 
-      function generateNumbers() {
-        if (!clampSettings(true)) return;
+      function generateNumbers(event) {
+        if (event) {
+          event.preventDefault();
+        }
 
         const settings = getSettings();
-        const start = settings.start;
-        const count = settings.count;
 
-        const numbers = [];
-
-        for (let index = 0; index < count; index += 1) {
-          numbers.push(formatNumber(settings, start + index));
-        }
-
-        generatedNumbers = numbers;
-        renderResults(numbers, start);
-
-        if (rememberInput.checked) {
-          const next = start + count;
-
-          if (next <= MAX_SEQUENCE) {
-            safeWriteStorage(next, settings);
-          } else {
-            showToast("Numbers generated, but the next sequence exceeds the supported range.", true);
-          }
-        }
-
-        $("resultsSection").scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-
-      function escapeCSV(value) {
-        const text = String(value);
-        return `"${text.replace(/"/g, '""')}"`;
-      }
-
-      function downloadCSV() {
-        if (!generatedNumbers.length) {
-          showToast("Generate invoice numbers before exporting.", true);
+        if (!settings.prefix && settings.dateFormat === "none") {
+          showStatus(
+            "Choose a prefix or date component so your invoice numbers have a meaningful format.",
+            "error"
+          );
+          prefixInput.focus();
           return;
         }
 
-        const settings = getSettings();
-        const start = settings.start;
+        if (
+          settings.start + settings.quantity - 1 > MAX_SEQUENCE
+        ) {
+          showStatus(
+            "This batch exceeds the supported sequence range. Reduce the batch size or starting number.",
+            "error"
+          );
+          return;
+        }
+
+        const effectiveStart = getEffectiveStart(settings);
+
+        if (effectiveStart + settings.quantity - 1 > MAX_SEQUENCE) {
+          showStatus(
+            "The saved sequence would exceed the supported range. Change the starting number or date format.",
+            "error"
+          );
+          return;
+        }
+
+        const nextBatch = [];
+
+        for (let index = 0; index < settings.quantity; index += 1) {
+          const sequence = effectiveStart + index;
+
+          nextBatch.push({
+            number: buildInvoiceNumber(settings, sequence),
+            sequence
+          });
+        }
+
+        generatedNumbers = nextBatch;
+
+        lastGeneratedSettings = {
+          ...settings,
+          start: effectiveStart
+        };
+
+        saveNextSequence(
+          settings,
+          effectiveStart + settings.quantity
+        );
+
+        renderGeneratedNumbers();
+        updatePreview();
+
+        showStatus(
+          `Generated ${generatedNumbers.length} invoice ${generatedNumbers.length === 1 ? "number" : "numbers"}.`,
+          "success"
+        );
+      }
+
+      async function copyText(text) {
+        if (!text) return false;
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        } catch {
+          // Use the fallback below when clipboard permissions are unavailable.
+        }
+
+        const temporary = document.createElement("textarea");
+
+        temporary.value = text;
+        temporary.setAttribute("readonly", "");
+        temporary.style.position = "fixed";
+        temporary.style.left = "-9999px";
+        temporary.style.top = "0";
+
+        document.body.appendChild(temporary);
+
+        temporary.select();
+        temporary.setSelectionRange(0, temporary.value.length);
+
+        let success = false;
+
+        try {
+          success = document.execCommand("copy");
+        } catch {
+          success = false;
+        }
+
+        temporary.remove();
+
+        return success;
+      }
+
+      async function copyAllNumbers() {
+        if (!generatedNumbers.length) return;
+
+        const text = generatedNumbers
+          .map((item) => item.number)
+          .join("\n");
+
+        const success = await copyText(text);
+
+        if (success) {
+          showStatus(
+            `Copied ${generatedNumbers.length} invoice numbers.`,
+            "success"
+          );
+        } else {
+          showStatus(
+            "Unable to copy automatically. Try downloading the CSV instead.",
+            "error"
+          );
+        }
+      }
+
+      function csvEscape(value) {
+        const stringValue = String(value);
+
+        if (/[",\r\n]/.test(stringValue)) {
+          return `"${stringValue.replace(/"/g, '""')}"`;
+        }
+
+        return stringValue;
+      }
+
+      function downloadCsv() {
+        if (!generatedNumbers.length) return;
 
         const rows = [
-          ["Invoice Number", "Sequence Number", "Generated Date"],
-          ...generatedNumbers.map((number, index) => [
-            number,
-            start + index,
-            new Date().toLocaleDateString("en-CA")
+          ["Invoice Number", "Sequence"],
+          ...generatedNumbers.map((item) => [
+            item.number,
+            item.sequence
           ])
         ];
 
-        const csv = "\uFEFF" + rows
-          .map((row) => row.map(escapeCSV).join(","))
+        const csv = rows
+          .map((row) => row.map(csvEscape).join(","))
           .join("\r\n");
 
-        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const blob = new Blob(
+          ["\uFEFF" + csv],
+          { type: "text/csv;charset=utf-8;" }
+        );
+
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
 
+        const date = getLocalDateString();
+
         link.href = url;
-        link.download = `arthnix-invoice-numbers-${new Date().toISOString().slice(0, 10)}.csv`;
+        link.download = `arthnix-invoice-numbers-${date}.csv`;
+
         document.body.appendChild(link);
         link.click();
         link.remove();
 
         setTimeout(() => URL.revokeObjectURL(url), 1000);
-        showToast("CSV file downloaded.");
-      }
 
-      function resetSettings() {
-        form.reset();
-
-        prefixInput.value = "INV";
-        separatorInput.value = "-";
-        yearFormatInput.value = "yyyy";
-        yearPositionInput.value = "after";
-        startNumberInput.value = "1";
-        paddingInput.value = "4";
-        includeMonthInput.checked = false;
-        includeDayInput.checked = false;
-        countInput.value = "10";
-        rememberInput.checked = false;
-
-        generatedNumbers = [];
-        resultsSection.hidden = true;
-        copyAllBtn.disabled = true;
-        downloadBtn.disabled = true;
-        copyTableBtn.disabled = true;
-        downloadTableBtn.disabled = true;
-
-        updatePreview();
-        showToast("Settings reset.");
+        showStatus(
+          `Downloaded ${generatedNumbers.length} invoice numbers as CSV.`,
+          "success"
+        );
       }
 
       function loadSample() {
-        prefixInput.value = "ARTH";
-        separatorInput.value = "/";
-        yearFormatInput.value = "fy";
-        yearPositionInput.value = "after";
-        startNumberInput.value = "1";
-        paddingInput.value = "4";
-        includeMonthInput.checked = false;
-        includeDayInput.checked = false;
-        countInput.value = "5";
-        rememberInput.checked = false;
+        prefixInput.value = "INV";
+        separatorInput.value = "-";
+        dateFormatInput.value = "yearmonth";
+        sequenceStartInput.value = "1";
+        paddingInput.value = "3";
+        quantityInput.value = "10";
+        invoiceDateInput.value = getLocalDateString();
+        rememberSequenceInput.checked = false;
 
+        generatedNumbers = [];
+        lastGeneratedSettings = null;
+
+        renderEmptyState();
         updatePreview();
-        generateNumbers();
-        showToast("Sample sequence generated.");
+
+        showStatus("Sample settings loaded. Generate a batch to see the results.", "success");
       }
 
-      // Mobile navigation
-      const menuToggle = $("menuToggle");
-      const navLinks = $("navLinks");
+      function resetForm() {
+        prefixInput.value = "INV";
+        separatorInput.value = "-";
+        dateFormatInput.value = "yearmonth";
+        sequenceStartInput.value = "1";
+        paddingInput.value = "3";
+        quantityInput.value = "10";
+        invoiceDateInput.value = getLocalDateString();
+        rememberSequenceInput.checked = true;
 
-      menuToggle.addEventListener("click", () => {
-        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        generatedNumbers = [];
+        lastGeneratedSettings = null;
 
-        menuToggle.setAttribute("aria-expanded", String(!isOpen));
-        menuToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
-        navLinks.classList.toggle("open", !isOpen);
-        document.body.classList.toggle("menu-open", !isOpen);
-      });
+        renderEmptyState();
+        updatePreview();
 
-      navLinks.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open navigation menu");
-          document.body.classList.remove("menu-open");
-        });
-      });
+        showStatus("Settings reset. Your saved browser sequence has not been deleted.", "success");
+      }
 
-      // Live preview
-      form.querySelectorAll("input, select").forEach((input) => {
+      function generatePreviewBatch() {
+        generateNumbers();
+      }
+
+      form.addEventListener("submit", generateNumbers);
+
+      [
+        prefixInput,
+        separatorInput,
+        dateFormatInput,
+        sequenceStartInput,
+        paddingInput,
+        quantityInput,
+        invoiceDateInput,
+        rememberSequenceInput
+      ].forEach((input) => {
         input.addEventListener("input", updatePreview);
         input.addEventListener("change", updatePreview);
       });
 
-      // Prefix validation on blur.
-      prefixInput.addEventListener("blur", () => {
-        const sanitized = prefixInput.value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 20);
-        if (sanitized !== prefixInput.value) {
-          prefixInput.value = sanitized;
-          updatePreview();
-          showToast("Prefix adjusted to use letters and numbers only.");
-        }
-      });
+      copyAllButton.addEventListener("click", copyAllNumbers);
+      downloadCsvButton.addEventListener("click", downloadCsv);
 
-      startNumberInput.addEventListener("blur", () => {
-        if (startNumberInput.value !== "") {
-          const value = Number(startNumberInput.value);
-          if (Number.isFinite(value)) {
-            startNumberInput.value = String(Math.trunc(value));
-          }
-        }
-        updatePreview();
-      });
+      copyPreviewButton.addEventListener("click", async () => {
+        const success = await copyText(previewNumber.textContent);
 
-      countInput.addEventListener("blur", () => {
-        if (countInput.value !== "") {
-          const value = Number(countInput.value);
-          if (Number.isFinite(value)) {
-            countInput.value = String(Math.trunc(value));
-          }
-        }
-        updatePreview();
-      });
-
-      generateBtn.addEventListener("click", generateNumbers);
-
-      copyPreviewBtn.addEventListener("click", () => {
-        const settings = getSettings();
-        copyText(formatNumber(settings, Math.max(0, settings.start)), "Preview number copied.");
-      });
-
-      copyAllBtn.addEventListener("click", () => {
-        copyText(generatedNumbers.join("\n"), "All invoice numbers copied.");
-      });
-
-      copyTableBtn.addEventListener("click", () => {
-        copyText(generatedNumbers.join("\n"), "Invoice number list copied.");
-      });
-
-      downloadBtn.addEventListener("click", downloadCSV);
-      downloadTableBtn.addEventListener("click", downloadCSV);
-      sampleBtn.addEventListener("click", loadSample);
-      resetBtn.addEventListener("click", resetSettings);
-
-      rememberInput.addEventListener("change", () => {
-        clearMemoryBtn.hidden = !rememberInput.checked;
-
-        if (rememberInput.checked) {
-          const saved = safeReadStorage();
-
-          if (saved) {
-            const shouldLoad = window.confirm(
-              `A saved next sequence number (${saved.next}) exists in this browser. Load it into the starting number field?`
-            );
-
-            if (shouldLoad) {
-              startNumberInput.value = saved.next;
-            }
-          }
-
-          showToast("Browser sequence memory enabled.");
+        if (success) {
+          showStatus("Copied the preview invoice number.", "success");
         } else {
-          showToast("Browser sequence memory disabled. The saved value has not been deleted.");
+          showStatus(
+            "Unable to copy automatically. Select the preview number and copy it manually.",
+            "error"
+          );
         }
-
-        updatePreview();
       });
 
-      clearMemoryBtn.addEventListener("click", () => {
-        try {
-          localStorage.removeItem(STORAGE_KEY);
-          showToast("Saved sequence cleared from this browser.");
-        } catch (error) {
-          showToast("Unable to clear browser storage.", true);
-        }
+      generatePreviewButton.addEventListener("click", generatePreviewBatch);
+      sampleButton.addEventListener("click", loadSample);
+      resetButton.addEventListener("click", resetForm);
 
-        updatePreview();
-      });
-
-      // FAQ accordions
-      document.querySelectorAll(".faq-question").forEach((button) => {
-        button.addEventListener("click", () => {
-          const expanded = button.getAttribute("aria-expanded") === "true";
-          const answer = button.nextElementSibling;
-
-          button.setAttribute("aria-expanded", String(!expanded));
-          answer.hidden = expanded;
-        });
-      });
-
-      // Footer year
-      $("currentYear").textContent = String(new Date().getFullYear());
-
-      // Initial state
+      /* Initial state */
+      initializeDate();
+      renderEmptyState();
       updatePreview();
     })();
   </script>
