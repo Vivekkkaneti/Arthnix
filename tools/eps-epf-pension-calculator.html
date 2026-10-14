@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>EPF, EPS & Pension Calculator India — ARTHNIX</title>
+  <title>EPF & EPS Pension Calculator — ARTHNIX</title>
   <meta
     name="description"
-    content="Estimate your EPF retirement savings, EPS monthly pension, employee and employer contributions, and retirement benefits using this free Indian EPF and EPS pension calculator."
+    content="Use the free ARTHNIX EPF and EPS pension calculator to estimate your EPF balance, retirement corpus, and monthly EPS pension based on your salary, service years, and contributions."
   >
   <meta name="theme-color" content="#090909">
   <meta name="robots" content="index, follow">
@@ -32,36 +32,44 @@
       --border: #e9e9e7;
       --red: #ed3434;
       --red-dark: #d92727;
-      --green: #16834a;
       --radius: 18px;
       --container: 1160px;
-      --shadow: 0 18px 55px rgba(0, 0, 0, 0.07);
+      --green: #16834a;
+      --green-bg: #eef8f1;
+      --warning-bg: #fff8ed;
+      --warning-text: #86571b;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 90px;
     }
 
     body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--text);
       font-family: "DM Sans", sans-serif;
-      font-size: 15px;
-      line-height: 1.65;
+      color: var(--text);
+      background: var(--white);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     body,
+    button,
+    a,
     input,
-    select,
-    button {
-      font-family: "DM Sans", sans-serif;
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     button,
@@ -72,39 +80,146 @@
 
     button,
     a {
-      -webkit-tap-highlight-color: transparent;
+      outline-offset: 4px;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    img {
-      max-width: 100%;
+    ::selection {
+      background: #ed3434;
+      color: #ffffff;
     }
 
     .container {
-      width: min(var(--container), calc(100% - 48px));
+      width: min(var(--container), calc(100% - 64px));
       margin-inline: auto;
     }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .accent {
+      color: var(--red);
+    }
+
+    .section-heading {
+      max-width: 720px;
+    }
+
+    .section-heading h2 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(34px, 4.2vw, 53px);
+      line-height: 1.12;
+      letter-spacing: -2.4px;
+      font-weight: 600;
+    }
+
+    .section-heading p {
+      max-width: 650px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 650;
+      transition:
+        background 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .button-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .button-outline-dark {
+      border-color: #383838;
+      color: var(--white);
+      background: transparent;
+    }
+
+    .button-outline-dark:hover {
+      border-color: #777777;
+      background: #171717;
+    }
+
+    .button-outline-light {
+      border-color: #dededb;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .button-outline-light:hover {
+      border-color: #aaaaa5;
+      background: #fafaf8;
+    }
+
+    .arrow {
+      font-size: 17px;
+      line-height: 1;
+      transition: transform 180ms ease;
+    }
+
+    .button:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    /* =====================================================
+       NAVIGATION — MATCHES THE ARTHNIX REFERENCE
+       ===================================================== */
 
     .site-header {
       position: sticky;
-      z-index: 1000;
       top: 0;
-      background: var(--black);
+      z-index: 1000;
+      width: 100%;
+      background: #090909;
       border-bottom: 1px solid #292929;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
     }
 
     .navbar {
+      position: relative;
       width: min(1200px, calc(100% - 64px));
       min-height: 76px;
-      margin-inline: auto;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -114,352 +229,595 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
       flex-shrink: 0;
-      color: var(--white);
+      text-decoration: none;
     }
 
     .brand-logo {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
       display: block;
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
     .brand-name {
+      color: #ffffff;
       font-family: "Manrope", sans-serif;
+      font-size: 20px;
       font-weight: 800;
-      letter-spacing: -0.7px;
-      font-size: 21px;
+      letter-spacing: -0.8px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 29px;
+      justify-content: center;
+      gap: 27px;
     }
 
-    .nav-links > a:not(.nav-cta) {
-      color: #d0d0d0;
+    .nav-links a {
+      display: inline-block;
+      color: #bcbcbc;
       font-size: 13px;
-      font-weight: 500;
-      transition: color 0.2s ease;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
     }
 
-    .nav-links > a:not(.nav-cta):hover {
-      color: var(--white);
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--red);
     }
 
-    .nav-cta,
-    .button-primary {
+    .nav-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 44px;
-      padding: 0 19px;
-      background: var(--red);
+      min-height: 40px;
+      padding: 0 16px;
       border: 1px solid var(--red);
-      border-radius: 9px;
-      color: var(--white);
-      font-size: 13px;
+      border-radius: 7px;
+      background: var(--red);
+      color: #ffffff;
+      font-size: 12px;
       font-weight: 700;
-      transition: background 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
     }
 
-    .nav-cta:hover,
-    .button-primary:hover {
+    .nav-cta:hover {
       background: var(--red-dark);
-      transform: translateY(-1px);
+      border-color: var(--red-dark);
     }
 
     .menu-toggle {
       display: none;
-      width: 42px;
-      height: 42px;
-      padding: 10px;
-      background: transparent;
-      border: 1px solid #383838;
-      border-radius: 9px;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border: 1px solid #353535;
+      border-radius: 7px;
+      background: #111111;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
     }
 
     .menu-toggle span {
       display: block;
-      width: 19px;
+      width: 18px;
       height: 2px;
       margin: 5px auto;
-      background: var(--white);
-      transition: transform 0.2s ease;
+      border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
     }
+
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--red);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    /* =====================================================
+       CALCULATOR HERO
+       ===================================================== */
 
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 77px 0 73px;
+      padding: 94px 0 82px;
+      background: var(--black);
       color: var(--white);
-      background:
-        radial-gradient(ellipse at 85% 22%, rgba(237, 52, 52, 0.17), transparent 38%),
-        radial-gradient(ellipse at 5% 100%, rgba(237, 52, 52, 0.08), transparent 35%),
-        var(--black);
     }
 
     .hero::before {
       position: absolute;
-      inset: 0;
       content: "";
+      width: 650px;
+      height: 650px;
+      top: -190px;
+      right: -200px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(237, 52, 52, 0.12) 0%,
+        rgba(237, 52, 52, 0.035) 38%,
+        transparent 70%
+      );
       pointer-events: none;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.13) 0.7px, transparent 0.7px);
-      background-size: 23px 23px;
-      opacity: 0.3;
-      mask-image: linear-gradient(to right, transparent, black 45%, black);
     }
 
-    .hero-content {
+    .hero::after {
+      position: absolute;
+      content: "";
+      inset: 0;
+      opacity: 0.16;
+      background-image: radial-gradient(#6b6b6b 0.6px, transparent 0.6px);
+      background-size: 27px 27px;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 850px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+    }
+
+    .hero .eyebrow {
+      color: #bcbcbc;
     }
 
     .breadcrumb {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 23px;
-      color: #a5a5a5;
-      font-size: 12px;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 26px;
+      color: #858585;
+      font-size: 11px;
     }
 
     .breadcrumb a:hover {
-      color: var(--white);
+      color: #ffffff;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 16px;
-      color: #ff7777;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      width: 21px;
-      height: 2px;
-      background: var(--red);
-      content: "";
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: "Manrope", sans-serif;
-      letter-spacing: -0.7px;
+    .breadcrumb span:last-child {
+      color: #dedede;
     }
 
     .hero h1 {
-      max-width: 820px;
-      margin: 0;
-      font-size: clamp(36px, 5.4vw, 61px);
-      line-height: 1.12;
-      font-weight: 800;
-      letter-spacing: -2.4px;
+      margin-top: 25px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(43px, 5.3vw, 68px);
+      line-height: 1.06;
+      font-weight: 600;
+      letter-spacing: -3.8px;
     }
 
     .hero h1 span {
-      color: #ff6666;
+      display: block;
+      margin-top: 7px;
+      color: #888888;
+      font-weight: 500;
     }
 
     .hero-description {
-      max-width: 690px;
-      margin: 20px 0 27px;
-      color: #c4c4c4;
-      font-size: 16px;
-      line-height: 1.85;
+      max-width: 570px;
+      margin-top: 22px;
+      color: #a9a9a9;
+      font-size: 15px;
+      line-height: 1.9;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 13px;
-    }
-
-    .button-secondary {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 18px;
-      color: var(--white);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #484848;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: background 0.2s ease;
-    }
-
-    .button-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
+      gap: 12px;
+      margin-top: 29px;
     }
 
     .hero-note {
-      margin-top: 23px;
-      color: #a0a0a0;
-      font-size: 12px;
-    }
-
-    .trust-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      padding: 20px 0;
-    }
-
-    .trust-item {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 4px 23px;
-      border-right: 1px solid var(--border);
-    }
-
-    .trust-item:first-child {
-      padding-left: 0;
-    }
-
-    .trust-item:last-child {
-      border-right: 0;
-    }
-
-    .trust-icon {
-      display: grid;
-      width: 39px;
-      height: 39px;
-      flex-shrink: 0;
-      place-items: center;
-      background: #fff0f0;
-      border-radius: 11px;
-      color: var(--red);
-      font-size: 18px;
-    }
-
-    .trust-item strong {
-      display: block;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .trust-item span:last-child {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 24px;
+      color: #8d8d8d;
       font-size: 11px;
     }
 
-    .section {
-      padding: 76px 0;
+    .hero-note span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    .section-heading {
+    .hero-note span::before {
+      content: "✓";
+      color: #e5e5e5;
+      font-size: 13px;
+    }
+
+    .hero-preview {
+      position: relative;
+      padding: 23px;
+      border: 1px solid #343434;
+      border-radius: 12px;
+      background: rgba(17, 17, 17, 0.94);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 17px;
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    .preview-label {
+      color: #b7b7b7;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .preview-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #a0a0a0;
+      font-size: 10px;
+    }
+
+    .preview-status::before {
+      width: 6px;
+      height: 6px;
+      content: "";
+      border-radius: 50%;
+      background: #7fc99b;
+    }
+
+    .preview-title {
+      margin-top: 22px;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 650;
+      letter-spacing: -0.5px;
+    }
+
+    .preview-subtitle {
+      margin-top: 7px;
+      color: #8b8b8b;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .preview-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-top: 23px;
+    }
+
+    .preview-stat {
+      padding: 15px;
+      border: 1px solid #303030;
+      border-radius: 8px;
+      background: #171717;
+    }
+
+    .preview-stat span {
+      display: block;
+      color: #969696;
+      font-size: 10px;
+    }
+
+    .preview-stat strong {
+      display: block;
+      margin-top: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 22px;
+      font-weight: 650;
+      letter-spacing: -0.7px;
+    }
+
+    .preview-stat strong.red {
+      color: #ff7777;
+    }
+
+    .preview-footnote {
+      margin-top: 17px;
+      color: #737373;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    /* INTRO STRIP */
+
+    .trust-strip {
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .trust-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .trust-copy {
+      color: #737373;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .trust-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 11px;
+      border: 1px solid #eeeeec;
+      border-radius: 6px;
+      color: #4c4c4c;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .trust-item span {
+      color: var(--red);
+      font-size: 14px;
+    }
+
+    /* =====================================================
+       CALCULATOR LAYOUT
+       ===================================================== */
+
+    .calculator-section {
+      padding: 95px 0 105px;
+      background: var(--paper);
+    }
+
+    .calculator-heading {
       max-width: 750px;
-      margin: 0 auto 37px;
-      text-align: center;
+      margin-bottom: 38px;
     }
 
-    .section-heading .eyebrow {
-      justify-content: center;
+    .calculator-heading h2 {
+      margin-top: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(33px, 4vw, 47px);
+      font-weight: 600;
+      line-height: 1.14;
+      letter-spacing: -2px;
     }
 
-    .section-heading h2 {
-      margin: 0 0 13px;
-      font-size: clamp(27px, 3.6vw, 40px);
-      line-height: 1.22;
-      letter-spacing: -1.5px;
-    }
-
-    .section-heading p {
-      margin: 0;
+    .calculator-heading p {
+      max-width: 690px;
+      margin-top: 16px;
       color: var(--muted);
       font-size: 14px;
+      line-height: 1.9;
     }
 
     .calculator-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.85fr);
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
       align-items: start;
       gap: 24px;
     }
 
-    .panel {
+    .calculator-card,
+    .results-card {
       min-width: 0;
-      overflow: hidden;
-      background: var(--white);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.025);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: 0 8px 35px rgba(0, 0, 0, 0.025);
     }
 
-    .panel-header {
-      padding: 25px 27px 20px;
+    .card-heading {
+      padding: 25px 27px 22px;
       border-bottom: 1px solid var(--border);
     }
 
-    .panel-header h2,
-    .panel-header h3 {
-      margin: 0 0 6px;
-      font-size: 21px;
-      letter-spacing: -0.7px;
+    .card-heading h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
-    .panel-header p {
-      margin: 0;
+    .card-heading p {
+      margin-top: 7px;
       color: var(--muted);
       font-size: 12px;
+      line-height: 1.8;
     }
 
-    .form-body {
-      padding: 25px 27px 28px;
+    .form-content {
+      padding: 26px 27px 29px;
     }
 
     .form-section-title {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
       margin: 4px 0 18px;
       font-family: "Manrope", sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: -0.2px;
     }
 
-    .step-number {
-      display: grid;
+    .form-section-title:not(:first-child) {
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid #eeeeec;
+    }
+
+    .form-section-number {
       width: 27px;
       height: 27px;
-      flex-shrink: 0;
+      display: grid;
       place-items: center;
+      border-radius: 7px;
       background: #fff0f0;
-      border-radius: 8px;
       color: var(--red);
-      font-size: 12px;
+      font-size: 10px;
+      font-weight: 800;
     }
 
-    .form-grid {
+    .field-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px 15px;
-      margin-bottom: 27px;
     }
 
     .field {
@@ -472,30 +830,30 @@
 
     .field label {
       display: block;
-      margin-bottom: 7px;
-      color: #353535;
+      margin-bottom: 8px;
+      color: #373737;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 650;
     }
 
-    .optional {
+    .field label .optional {
       color: #929292;
       font-size: 10px;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     .field input,
     .field select {
       width: 100%;
-      min-height: 45px;
-      padding: 10px 12px;
-      outline: none;
-      background: #fff;
+      min-height: 46px;
+      padding: 11px 12px;
       border: 1px solid #dededb;
-      border-radius: 9px;
+      border-radius: 7px;
+      outline: none;
+      background: #ffffff;
       color: var(--text);
       font-size: 13px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
     }
 
     .field input:focus,
@@ -505,31 +863,44 @@
     }
 
     .field input::placeholder {
-      color: #aaa;
+      color: #aaaaaa;
     }
 
     .field-help {
       display: block;
-      margin-top: 6px;
-      color: #888;
+      margin-top: 7px;
+      color: #858585;
       font-size: 10px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    .info-box {
-      display: flex;
-      gap: 10px;
+    .input-prefix {
+      position: relative;
+    }
+
+    .input-prefix > span {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: #777777;
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    .input-prefix input {
+      padding-left: 29px;
+    }
+
+    .form-note {
+      margin-top: 24px;
       padding: 13px 14px;
-      background: #f8f8f6;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: #686868;
+      border: 1px solid #f0e6d5;
+      border-radius: 7px;
+      background: var(--warning-bg);
+      color: var(--warning-text);
       font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .info-box strong {
-      color: #333;
+      line-height: 1.8;
     }
 
     .form-actions {
@@ -539,312 +910,302 @@
       margin-top: 24px;
     }
 
-    .button-outline,
-    .button-dark {
-      display: inline-flex;
-      min-height: 43px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 0 17px;
-      border-radius: 9px;
-      font-size: 12px;
-      font-weight: 700;
-      transition: all 0.2s ease;
+    .form-actions .button {
+      min-height: 45px;
     }
 
-    .button-outline {
-      color: var(--text);
-      background: var(--white);
-      border: 1px solid #dcdcd9;
-    }
+    /* RESULTS */
 
-    .button-outline:hover {
-      background: var(--surface);
-    }
-
-    .button-dark {
-      color: var(--white);
-      background: var(--black);
-      border: 1px solid var(--black);
-    }
-
-    .button-dark:hover {
-      background: #303030;
-    }
-
-    .results-panel {
+    .results-card {
       position: sticky;
-      top: 96px;
+      top: 100px;
+      overflow: hidden;
     }
 
     .results-top {
-      padding: 25px 25px 23px;
-      background:
-        radial-gradient(ellipse at 100% 0%, rgba(237, 52, 52, 0.14), transparent 50%),
-        var(--black);
-      color: var(--white);
+      padding: 26px 25px 24px;
+      background: #101010;
+      color: #ffffff;
     }
 
-    .results-top .result-eyebrow {
-      color: #ff8b8b;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
+    .results-top .eyebrow {
+      color: #bcbcbc;
+      font-size: 9px;
+      letter-spacing: 1.6px;
     }
 
     .results-top h3 {
-      margin: 8px 0 4px;
-      font-size: 22px;
+      margin-top: 15px;
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      font-weight: 650;
       letter-spacing: -0.8px;
     }
 
     .results-top p {
-      margin: 0;
-      color: #aaa;
+      margin-top: 8px;
+      color: #a2a2a2;
       font-size: 11px;
-    }
-
-    .results-body {
-      padding: 23px 25px 25px;
-    }
-
-    .result-primary {
-      padding: 19px;
-      margin-bottom: 18px;
-      background: #fff4f4;
-      border: 1px solid #ffe0e0;
-      border-radius: 13px;
-    }
-
-    .result-primary .result-label {
-      color: #7d5252;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .result-primary .result-value {
-      display: block;
-      margin-top: 4px;
-      color: var(--red-dark);
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(25px, 3vw, 32px);
-      font-weight: 800;
-      line-height: 1.3;
-      letter-spacing: -1.1px;
-      overflow-wrap: anywhere;
-    }
-
-    .result-primary small {
-      display: block;
-      margin-top: 6px;
-      color: #8e7474;
-      font-size: 10px;
+      line-height: 1.8;
     }
 
     .result-list {
-      display: grid;
-      gap: 0;
+      padding: 8px 25px 20px;
     }
 
-    .result-row {
+    .result-item {
       display: flex;
-      justify-content: space-between;
       align-items: flex-start;
-      gap: 14px;
-      padding: 13px 0;
-      border-bottom: 1px solid #eeeeeb;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 17px 0;
+      border-bottom: 1px solid #eeeeec;
     }
 
-    .result-row:last-child {
+    .result-item:last-child {
       border-bottom: 0;
     }
 
-    .result-row span {
+    .result-label {
       color: #707070;
-      font-size: 12px;
+      font-size: 11px;
+      line-height: 1.65;
     }
 
-    .result-row strong {
-      color: #202020;
-      font-size: 13px;
-      font-weight: 700;
+    .result-detail {
+      display: block;
+      margin-top: 4px;
+      color: #a0a0a0;
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .result-value {
+      flex-shrink: 0;
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 750;
+      letter-spacing: -0.5px;
       text-align: right;
       overflow-wrap: anywhere;
     }
 
-    .result-row strong.negative {
+    .result-value.highlight {
+      color: var(--red);
+      font-size: 21px;
+    }
+
+    .result-value.green {
+      color: var(--green);
+    }
+
+    .pension-highlight {
+      margin: 0 25px 23px;
+      padding: 18px;
+      border: 1px solid #f3d9d9;
+      border-radius: 9px;
+      background: #fff7f7;
+    }
+
+    .pension-highlight .result-label {
+      color: #8d5454;
+    }
+
+    .pension-highlight .result-value {
+      margin-top: 8px;
       color: var(--red-dark);
+      font-size: 28px;
     }
 
-    .result-divider {
-      margin: 18px 0;
-      border: 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .result-note {
-      margin: 15px 0 0;
-      color: #888;
+    .pension-highlight p {
+      margin-top: 7px;
+      color: #906d6d;
       font-size: 10px;
-      line-height: 1.75;
-    }
-
-    .result-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 9px;
-      margin-top: 18px;
-    }
-
-    .result-actions button {
-      width: 100%;
-    }
-
-    .notice {
-      padding: 14px 15px;
-      margin-top: 16px;
-      border: 1px solid #f0d7a2;
-      border-radius: 10px;
-      background: #fff9e9;
-      color: #745a21;
-      font-size: 11px;
       line-height: 1.7;
     }
 
-    .notice strong {
-      display: block;
-      margin-bottom: 3px;
+    .results-warning {
+      margin: 0 25px 23px;
+      padding: 12px 13px;
+      border-radius: 7px;
+      background: var(--warning-bg);
+      color: var(--warning-text);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .results-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      padding: 0 25px 25px;
+    }
+
+    .results-actions .button {
+      min-width: 0;
+      min-height: 43px;
+      padding-inline: 10px;
+      font-size: 11px;
     }
 
     .privacy-note {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      padding: 13px 15px;
-      margin-top: 16px;
-      background: #f0f8f2;
-      border: 1px solid #d9ecde;
-      border-radius: 10px;
-      color: #356546;
+      margin-top: 18px;
+      padding: 15px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+      color: #737373;
       font-size: 11px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    .content-section {
-      padding: 77px 0;
-      background: var(--white);
-      border-top: 1px solid var(--border);
+    .privacy-note strong {
+      color: #363636;
     }
 
-    .content-grid {
+    /* INFORMATION SECTIONS */
+
+    .info-section {
+      padding: 100px 0;
+      background: #ffffff;
+    }
+
+    .info-section.alt {
+      background: var(--paper);
+    }
+
+    .info-heading {
+      max-width: 720px;
+    }
+
+    .info-heading h2 {
+      margin-top: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(33px, 4vw, 48px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -2px;
+    }
+
+    .info-heading p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .info-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 17px;
+      margin-top: 43px;
     }
 
-    .content-card {
-      padding: 25px;
-      background: var(--paper);
+    .info-card {
+      padding: 24px;
       border: 1px solid var(--border);
-      border-radius: 15px;
+      border-radius: 10px;
+      background: #ffffff;
     }
 
-    .content-card .card-icon {
-      display: grid;
-      width: 42px;
-      height: 42px;
-      margin-bottom: 17px;
-      place-items: center;
+    .info-card-number {
       color: var(--red);
-      background: #fff0f0;
-      border-radius: 11px;
-      font-size: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    .content-card h3 {
-      margin: 0 0 9px;
+    .info-card h3 {
+      margin-top: 17px;
+      font-family: "Manrope", sans-serif;
       font-size: 17px;
-      letter-spacing: -0.5px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
     }
 
-    .content-card p {
-      margin: 0;
+    .info-card p {
+      margin-top: 11px;
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.85;
-    }
-
-    .formula-box {
-      padding: 23px 25px;
-      margin-top: 25px;
-      background: #111;
-      border-radius: 14px;
-      color: white;
-    }
-
-    .formula-box h3 {
-      margin: 0 0 14px;
-      font-size: 18px;
-    }
-
-    .formula-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 13px 22px;
-    }
-
-    .formula-item {
-      padding: 12px 0;
-      border-bottom: 1px solid #333;
-    }
-
-    .formula-item strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #ff7777;
-      font-size: 12px;
-    }
-
-    .formula-item span {
-      color: #d0d0d0;
-      font-size: 12px;
-    }
-
-    .disclaimer-card {
-      padding: 21px 23px;
-      margin-top: 23px;
-      background: #fff8e9;
-      border: 1px solid #f0e2c5;
-      border-radius: 13px;
-      color: #6f5a32;
       font-size: 12px;
       line-height: 1.9;
     }
 
-    .disclaimer-card strong {
-      color: #4d3b1c;
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 35px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #ffffff;
+    }
+
+    .reference-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .reference-table th,
+    .reference-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid #eeeeec;
+      font-size: 12px;
+      line-height: 1.7;
+      vertical-align: top;
+    }
+
+    .reference-table th {
+      background: #f5f5f3;
+      color: #3b3b3b;
+      font-weight: 700;
+    }
+
+    .reference-table td {
+      color: #686868;
+    }
+
+    .reference-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .reference-table td:first-child {
+      color: #222222;
+      font-weight: 650;
+    }
+
+    .disclaimer-box {
+      margin-top: 30px;
+      padding: 19px 21px;
+      border-left: 3px solid var(--red);
+      border-radius: 0 8px 8px 0;
+      background: #fff5f5;
+      color: #6d4b4b;
+      font-size: 12px;
+      line-height: 1.9;
     }
 
     .faq-list {
-      max-width: 850px;
-      margin: 0 auto;
-      border-top: 1px solid var(--border);
+      margin-top: 39px;
+      border-top: 1px solid #e4e4e0;
     }
 
     .faq-item {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #e4e4e0;
     }
 
     .faq-item summary {
       position: relative;
-      padding: 20px 35px 20px 0;
+      padding: 22px 40px 22px 0;
       cursor: pointer;
       list-style: none;
       font-family: "Manrope", sans-serif;
       font-size: 14px;
       font-weight: 700;
+      line-height: 1.6;
     }
 
     .faq-item summary::-webkit-details-marker {
@@ -853,11 +1214,12 @@
 
     .faq-item summary::after {
       position: absolute;
-      top: 19px;
-      right: 4px;
-      color: var(--red);
-      font-size: 20px;
+      top: 21px;
+      right: 5px;
       content: "+";
+      color: var(--red);
+      font-size: 21px;
+      font-weight: 400;
     }
 
     .faq-item[open] summary::after {
@@ -865,67 +1227,140 @@
     }
 
     .faq-item p {
-      margin: 0;
-      padding: 0 20px 20px 0;
+      max-width: 850px;
+      padding: 0 25px 22px 0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.9;
     }
 
-    .related-section {
-      padding: 65px 0;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
+    /* RELATED TOOLS */
+
+    .tools-section {
+      padding: 100px 0;
+      background: #ffffff;
     }
 
-    .related-heading {
-      margin: 0 0 23px;
-      font-size: 24px;
-      letter-spacing: -0.8px;
+    .tools-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
     }
 
-    .related-grid {
+    .tools-top .section-heading {
+      max-width: 680px;
+    }
+
+    .tools-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 13px;
+      gap: 14px;
+      margin-top: 43px;
     }
 
-    .related-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 17px;
-      background: var(--white);
+    .tool-card {
+      min-height: 190px;
+      padding: 22px 20px;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      transition: border-color 0.2s, transform 0.2s;
+      border-radius: 10px;
+      background: #ffffff;
+      transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
     }
 
-    .related-card:hover {
-      transform: translateY(-2px);
-      border-color: #e5a1a1;
+    .tool-card:hover {
+      transform: translateY(-4px);
+      border-color: #d7d7d3;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.045);
     }
 
-    .related-card strong {
-      display: block;
-      font-size: 12px;
-    }
-
-    .related-card span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .related-arrow {
+    .tool-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #eeeeeb;
+      border-radius: 9px;
       color: var(--red);
-      font-size: 18px;
+      background: #fffafa;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
     }
+
+    .tool-card h3 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .tool-card p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 17px;
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 650;
+    }
+
+    .text-link span {
+      color: var(--red);
+      font-size: 15px;
+    }
+
+    /* FINAL CTA */
+
+    .final-cta {
+      padding: 90px 0;
+      background: var(--paper);
+      text-align: center;
+    }
+
+    .final-cta .eyebrow {
+      justify-content: center;
+    }
+
+    .final-cta h2 {
+      max-width: 750px;
+      margin: 23px auto 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(37px, 5vw, 59px);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -2.8px;
+    }
+
+    .final-cta p {
+      max-width: 560px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .final-cta .button {
+      margin-top: 27px;
+    }
+
+    /* =====================================================
+       FOOTER — MATCHES THE ARTHNIX REFERENCE
+       ===================================================== */
 
     .site-footer {
-      padding: 56px 0 0;
+      padding: 57px 0 25px;
       background: var(--black);
       color: var(--white);
     }
@@ -933,43 +1368,64 @@
     .footer-main {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 42px;
-      padding-bottom: 42px;
+      gap: 50px;
+      padding-bottom: 45px;
     }
 
-    .footer-brand .brand {
-      margin-bottom: 16px;
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .footer-brand p {
-      max-width: 260px;
-      margin: 0 0 9px;
-      color: #aaa;
-      font-size: 12px;
-      line-height: 1.8;
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      text-decoration: none;
+    }
+
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
+      font-size: 13px;
+      line-height: 1.7;
     }
 
     .footer-powered {
-      color: #737373 !important;
-      font-size: 11px !important;
+      margin: 7px 0 0;
+      color: #929292;
+      font-size: 11px;
+      letter-spacing: 0.3px;
     }
 
-    .footer-column h3 {
-      margin: 5px 0 17px;
-      color: #fff;
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
+    .footer-column h4 {
+      margin-bottom: 19px;
+      color: #f0f0f0;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0;
     }
 
     .footer-column a {
       display: block;
       width: fit-content;
-      margin-bottom: 11px;
-      color: #aaa;
-      font-size: 12px;
-      transition: color 0.2s ease;
+      margin-top: 13px;
+      color: #919191;
+      font-size: 11px;
+      transition: color 180ms ease;
     }
 
     .footer-column a:hover {
@@ -981,162 +1437,274 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 20px 0;
+      padding-top: 22px;
       border-top: 1px solid #292929;
-      color: #858585;
-      font-size: 11px;
     }
 
-    .footer-bottom p {
-      margin: 0;
+    .copyright,
+    .powered-by {
+      color: #797979;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    .footer-bottom a {
-      color: #c2c2c2;
+    .powered-by strong {
+      color: #b8b8b8;
+      font-weight: 600;
     }
 
-    .footer-bottom a:hover {
-      color: white;
-    }
+    /* RESPONSIVE */
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    @media (max-width: 980px) {
-      .navbar {
-        width: calc(100% - 40px);
-      }
-
-      .nav-links {
-        gap: 18px;
-      }
-
-      .calculator-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(285px, 0.85fr);
-        gap: 16px;
-      }
-
-      .panel-header,
-      .form-body {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .results-top,
-      .results-body {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .footer-main {
-        grid-template-columns: 1.3fr 1fr 1fr;
-      }
-
-      .footer-brand {
-        grid-column: 1 / -1;
-      }
-
-      .related-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 760px) {
-      .navbar {
-        min-height: 68px;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: calc(100% + 1px);
-        right: 0;
-        left: 0;
-        display: none;
-        align-items: stretch;
-        flex-direction: column;
-        gap: 0;
-        padding: 12px 22px 22px;
-        background: var(--black);
-        border-bottom: 1px solid #292929;
-      }
-
-      .nav-links.is-open {
-        display: flex;
-      }
-
-      .nav-links > a:not(.nav-cta) {
-        padding: 13px 0;
-        border-bottom: 1px solid #292929;
-      }
-
-      .nav-cta {
-        margin-top: 14px;
-      }
-
-      .hero {
-        padding: 56px 0 52px;
+    @media (max-width: 1050px) {
+      .hero-inner {
+        grid-template-columns: 1fr 0.85fr;
+        gap: 30px;
       }
 
       .hero h1 {
-        letter-spacing: -1.6px;
+        font-size: clamp(42px, 5.5vw, 60px);
+        letter-spacing: -3px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(290px, 0.78fr);
+        gap: 17px;
+      }
+
+      .form-content {
+        padding: 23px 21px 25px;
+      }
+
+      .card-heading {
+        padding-inline: 21px;
+      }
+
+      .results-top {
+        padding-inline: 21px;
+      }
+
+      .result-list {
+        padding-inline: 21px;
+      }
+
+      .pension-highlight,
+      .results-warning {
+        margin-inline: 21px;
+      }
+
+      .results-actions {
+        padding-inline: 21px;
+      }
+
+      .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-main {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        width: min(calc(100% - 40px), var(--container));
+      }
+
+      .hero {
+        padding: 76px 0 65px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero-copy {
+        max-width: 650px;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 9vw, 62px);
+      }
+
+      .hero-preview {
+        max-width: 580px;
+      }
+
+      .trust-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 22px 0;
+        gap: 15px;
+      }
+
+      .trust-items {
+        justify-content: flex-start;
+      }
+
+      .calculator-section,
+      .info-section,
+      .tools-section {
+        padding: 75px 0;
+      }
+
+      .calculator-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .results-card {
+        position: static;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .tools-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 38px 28px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: calc(100% - 36px);
+      }
+
+      .hero {
+        padding-top: 61px;
+      }
+
+      .hero h1 {
+        font-size: clamp(39px, 11vw, 53px);
+        letter-spacing: -2.7px;
       }
 
       .hero-description {
         font-size: 14px;
       }
 
-      .trust-grid {
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-note {
+        gap: 11px;
+      }
+
+      .hero-preview {
+        padding: 17px;
+      }
+
+      .preview-stat {
+        padding: 12px;
+      }
+
+      .preview-stat strong {
+        font-size: 19px;
+      }
+
+      .section-heading h2,
+      .calculator-heading h2,
+      .info-heading h2 {
+        font-size: 35px;
+        letter-spacing: -1.6px;
+      }
+
+      .field-grid {
         grid-template-columns: 1fr;
-        padding: 10px 0;
+        gap: 16px;
       }
 
-      .trust-item,
-      .trust-item:first-child {
-        padding: 12px 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
+      .field.full {
+        grid-column: auto;
       }
 
-      .trust-item:last-child {
-        border-bottom: 0;
+      .form-content {
+        padding: 21px 18px 23px;
       }
 
-      .section,
-      .content-section {
-        padding: 54px 0;
+      .card-heading {
+        padding: 22px 18px 19px;
       }
 
-      .calculator-layout {
+      .result-list {
+        padding-inline: 18px;
+      }
+
+      .results-top {
+        padding: 23px 18px;
+      }
+
+      .pension-highlight,
+      .results-warning {
+        margin-inline: 18px;
+      }
+
+      .results-actions {
+        padding-inline: 18px;
+      }
+
+      .result-value {
+        font-size: 15px;
+      }
+
+      .result-value.highlight {
+        font-size: 18px;
+      }
+
+      .pension-highlight .result-value {
+        font-size: 25px;
+      }
+
+      .info-grid {
         grid-template-columns: 1fr;
       }
 
-      .results-panel {
-        position: static;
-      }
-
-      .content-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .content-card {
+      .info-card {
         padding: 21px;
       }
 
+      .reference-table th,
+      .reference-table td {
+        padding: 13px;
+        font-size: 11px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .tool-card {
+        min-height: 0;
+        padding: 21px;
+      }
+
+      .final-cta {
+        padding: 73px 0;
+      }
+
+      .final-cta h2 {
+        font-size: 39px;
+        letter-spacing: -1.8px;
+      }
+
       .footer-main {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 30px 22px;
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 18px;
       }
 
       .footer-brand {
@@ -1146,105 +1714,51 @@
       .footer-bottom {
         align-items: flex-start;
         flex-direction: column;
+        gap: 9px;
       }
     }
 
-    @media (max-width: 480px) {
-      .container {
-        width: calc(100% - 32px);
-      }
-
-      .navbar {
-        width: calc(100% - 32px);
-      }
-
-      .brand-name {
-        font-size: 19px;
-      }
-
-      .hero h1 {
-        font-size: 36px;
-      }
-
-      .hero-actions {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .hero-actions a {
-        width: fit-content;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .panel-header,
-      .form-body {
-        padding-left: 17px;
-        padding-right: 17px;
-      }
-
-      .results-top,
-      .results-body {
-        padding-left: 17px;
-        padding-right: 17px;
-      }
-
-      .formula-list {
-        grid-template-columns: 1fr;
-      }
-
-      .related-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-main {
-        grid-template-columns: 1fr 1fr;
-        gap: 28px 16px;
-      }
-
-      .footer-column a {
-        font-size: 11px;
-      }
-
-      .result-actions {
-        grid-template-columns: 1fr;
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
       }
     }
+
+    /* PRINT REPORT */
 
     @media print {
       @page {
         size: A4;
-        margin: 14mm;
+        margin: 15mm;
       }
 
       body {
-        background: #fff;
-        color: #111;
-        font-size: 11px;
+        color: #111111;
+        background: #ffffff;
       }
 
       .site-header,
       .hero,
       .trust-strip,
-      #calculator-form,
-      .content-section,
-      .related-section,
+      .calculator-heading,
+      .calculator-card,
+      .info-section,
+      .tools-section,
+      .final-cta,
       .site-footer,
-      .section-heading,
-      .no-print,
-      .privacy-note {
+      .privacy-note,
+      .no-print {
         display: none !important;
       }
 
-      .section {
+      .calculator-section {
         padding: 0;
+        background: #ffffff;
       }
 
       .container {
@@ -1256,60 +1770,65 @@
         display: block;
       }
 
-      .results-panel {
+      .results-card {
         position: static;
-        border: 1px solid #ddd;
+        border: 1px solid #dddddd;
         box-shadow: none;
       }
 
       .results-top {
-        padding: 18px;
-        background: #111 !important;
+        background: #111111 !important;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
       }
 
-      .results-body {
-        padding: 18px;
+      .result-item {
+        break-inside: avoid;
       }
 
-      .result-primary {
-        background: #fff4f4 !important;
+      .pension-highlight {
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
       }
 
-      .result-primary .result-value {
-        color: #d92727 !important;
+      .results-actions {
+        display: none !important;
       }
 
       .print-heading {
         display: block !important;
-        margin: 0 0 18px;
+        margin-bottom: 20px;
       }
 
       .print-heading h1 {
-        margin: 0 0 5px;
-        font-size: 23px;
+        font-family: "Manrope", sans-serif;
+        font-size: 25px;
       }
 
       .print-heading p {
-        margin: 0;
-        color: #555;
+        margin-top: 6px;
+        color: #555555;
+        font-size: 11px;
       }
 
-      .result-note {
-        color: #555;
+      .print-disclaimer {
+        display: block !important;
+        margin-top: 18px;
+        color: #555555;
+        font-size: 10px;
+        line-height: 1.7;
       }
     }
 
-    .print-heading {
+    .print-heading,
+    .print-disclaimer {
       display: none;
     }
   </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
       <a class="brand" href="/index.html" aria-label="ARTHNIX home">
@@ -1318,13 +1837,16 @@
       </a>
 
       <div class="nav-links" id="navLinks">
-        <a href="/tools.html">Tools</a>
+        <a href="/tools.html">Free Tools</a>
         <a href="/platform.html">Platform</a>
         <a href="#how-it-works">How It Works</a>
         <a href="/pricing.html">Pricing</a>
         <a href="/contact.html">Contact</a>
-        <a class="nav-cta" href="/tools.html">Explore Tools ↗</a>
       </div>
+
+      <a class="nav-cta" href="/tools.html">
+        Start Free <span aria-hidden="true">↗</span>
+      </a>
 
       <button
         class="menu-toggle"
@@ -1341,73 +1863,122 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
-      <div class="container hero-content">
-        <div class="breadcrumb">
-          <a href="/index.html">Home</a>
-          <span aria-hidden="true">/</span>
-          <a href="/tools.html">Business Tools</a>
-          <span aria-hidden="true">/</span>
-          <span>EPF &amp; EPS Pension Calculator</span>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="/tools.html">Free Tools</a>
+            <span aria-hidden="true">/</span>
+            <span>EPF &amp; EPS Pension Calculator</span>
+          </div>
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Free Retirement Planning Tool
+          </div>
+
+          <h1>
+            Plan your retirement.
+            <span>Understand your pension.</span>
+          </h1>
+
+          <p class="hero-description">
+            Estimate your Employees' Provident Fund (EPF) balance and
+            Employees' Pension Scheme (EPS) monthly pension using your
+            salary, service period, and contribution details. Explore
+            your retirement figures with a simple calculator.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#calculator" class="button button-primary">
+              Calculate My Pension <span class="arrow">↗</span>
+            </a>
+            <a href="#how-it-works" class="button button-outline-dark">
+              Understand EPF &amp; EPS <span class="arrow">→</span>
+            </a>
+          </div>
+
+          <div class="hero-note">
+            <span>Free to use</span>
+            <span>No sign-up required</span>
+            <span>Calculations stay in your browser</span>
+          </div>
         </div>
 
-        <div class="eyebrow">Free Retirement Planning Tool</div>
+        <div class="hero-preview" aria-label="Illustrative pension calculation preview">
+          <div class="preview-top">
+            <div class="preview-label">Retirement overview</div>
+            <div class="preview-status">Estimate only</div>
+          </div>
 
-        <h1>EPF, EPS &amp; <span>Pension Calculator</span></h1>
+          <h2 class="preview-title">Know what you're planning for.</h2>
+          <p class="preview-subtitle">
+            Explore the two key parts of your EPF-related retirement benefits.
+          </p>
 
-        <p class="hero-description">
-          Estimate your provident fund savings, employee and employer
-          contributions, and potential monthly pension under India's EPF
-          and EPS framework. Understand your retirement benefits with a
-          simple, transparent calculator.
-        </p>
+          <div class="preview-stats">
+            <div class="preview-stat">
+              <span>EPF savings</span>
+              <strong>₹ —</strong>
+            </div>
+            <div class="preview-stat">
+              <span>Monthly EPS pension</span>
+              <strong class="red">₹ —</strong>
+            </div>
+            <div class="preview-stat">
+              <span>Eligible service</span>
+              <strong>Years</strong>
+            </div>
+            <div class="preview-stat">
+              <span>Retirement age</span>
+              <strong>58</strong>
+            </div>
+          </div>
 
-        <div class="hero-actions">
-          <a class="button-primary" href="#calculator">Calculate My Benefits ↗</a>
-          <a class="button-secondary" href="#how-it-works">Understand EPF &amp; EPS</a>
+          <p class="preview-footnote">
+            Estimates depend on your inputs, applicable EPFO rules, eligible
+            service, pensionable salary, and actual contribution history.
+          </p>
         </div>
-
-        <p class="hero-note">
-          Estimates only. Actual benefits depend on EPFO records, eligible
-          wages, service history, applicable rules and scheme provisions.
-        </p>
       </div>
     </section>
 
-    <section class="trust-strip" aria-label="Calculator features">
-      <div class="container trust-grid">
-        <div class="trust-item">
-          <span class="trust-icon" aria-hidden="true">₹</span>
-          <div>
-            <strong>EPF Balance Estimate</strong>
-            <span>Employee and employer EPF contributions</span>
-          </div>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon" aria-hidden="true">↗</span>
-          <div>
-            <strong>EPS Pension Estimate</strong>
-            <span>Service years and pensionable salary</span>
-          </div>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon" aria-hidden="true">✓</span>
-          <div>
-            <strong>Private Calculation</strong>
-            <span>Your entries stay in this browser page</span>
-          </div>
+    <!-- BENEFIT STRIP -->
+    <section class="trust-strip">
+      <div class="container trust-inner">
+        <p class="trust-copy">
+          Make retirement planning easier to understand.<br>
+          Review estimates before making financial decisions.
+        </p>
+
+        <div class="trust-items">
+          <div class="trust-item"><span>₹</span> EPF balance</div>
+          <div class="trust-item"><span>↗</span> Pension estimate</div>
+          <div class="trust-item"><span>⌁</span> Service years</div>
+          <div class="trust-item"><span>✓</span> Instant calculation</div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="calculator">
+    <!-- CALCULATOR -->
+    <section class="calculator-section" id="calculator">
       <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Retirement Estimator</div>
-          <h2>Calculate your EPF savings and EPS pension</h2>
+        <div class="calculator-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            EPF &amp; EPS Calculator
+          </div>
+          <h2>
+            Your retirement numbers,<br>
+            <span class="accent">made easier to understand.</span>
+          </h2>
           <p>
-            Enter your salary, contribution details and service history.
-            The estimates update automatically as you change the inputs.
+            Enter the details you know to estimate your EPF accumulation and
+            potential monthly EPS pension. The results are illustrative and
+            may not match the final figures calculated by EPFO.
           </p>
         </div>
 
@@ -1417,454 +1988,744 @@
         </div>
 
         <div class="calculator-layout">
-          <section class="panel" id="calculator-form" aria-labelledby="input-heading">
-            <div class="panel-header">
-              <h2 id="input-heading">Your details</h2>
-              <p>Use your payslip and EPFO passbook where possible.</p>
+          <!-- INPUT FORM -->
+          <section class="calculator-card" aria-labelledby="formTitle">
+            <div class="card-heading">
+              <h3 id="formTitle">Enter your details</h3>
+              <p>
+                Use your EPF passbook, salary records, and service history
+                where available.
+              </p>
             </div>
 
-            <form class="form-body" id="epfForm">
-              <div class="form-section-title">
-                <span class="step-number">1</span>
-                Personal and service details
-              </div>
+            <form class="form-content" id="pensionForm">
+              <h4 class="form-section-title">
+                <span class="form-section-number">01</span>
+                Employment &amp; service
+              </h4>
 
-              <div class="form-grid">
-                <div class="field">
-                  <label for="employeeName">Name <span class="optional">(optional)</span></label>
-                  <input id="employeeName" type="text" maxlength="100" placeholder="Enter your name" autocomplete="name">
+              <div class="field-grid">
+                <div class="field full">
+                  <label for="employeeName">
+                    Name <span class="optional">(optional)</span>
+                  </label>
+                  <input
+                    id="employeeName"
+                    type="text"
+                    maxlength="100"
+                    placeholder="Enter your name"
+                    autocomplete="name"
+                  >
                 </div>
 
                 <div class="field">
                   <label for="currentAge">Current age (years)</label>
-                  <input id="currentAge" type="number" min="18" max="100" step="1" value="30" required>
-                  <span class="field-help">Used to estimate years until age 58.</span>
+                  <input
+                    id="currentAge"
+                    type="number"
+                    min="18"
+                    max="100"
+                    step="1"
+                    value="35"
+                    required
+                  >
+                  <small class="field-help">Use your age in completed years.</small>
                 </div>
 
                 <div class="field">
-                  <label for="retirementAge">Pension age (years)</label>
-                  <input id="retirementAge" type="number" min="50" max="100" step="1" value="58" required>
-                  <span class="field-help">EPS pension is generally available from age 58, subject to eligibility.</span>
+                  <label for="retirementAge">Retirement age (years)</label>
+                  <input
+                    id="retirementAge"
+                    type="number"
+                    min="40"
+                    max="100"
+                    step="1"
+                    value="58"
+                    required
+                  >
+                  <small class="field-help">
+                    The standard EPS pension age is generally 58, subject to eligibility.
+                  </small>
                 </div>
 
                 <div class="field">
-                  <label for="serviceYears">Eligible EPS service (years)</label>
-                  <input id="serviceYears" type="number" min="0" max="50" step="0.5" value="10" required>
-                  <span class="field-help">Enter eligible pensionable service, not just total employment.</span>
+                  <label for="serviceYears">Completed service (years)</label>
+                  <input
+                    id="serviceYears"
+                    type="number"
+                    min="0"
+                    max="50"
+                    step="1"
+                    value="10"
+                    required
+                  >
+                  <small class="field-help">
+                    Enter total eligible past service years.
+                  </small>
+                </div>
+
+                <div class="field">
+                  <label for="serviceMonths">Additional service (months)</label>
+                  <input
+                    id="serviceMonths"
+                    type="number"
+                    min="0"
+                    max="11"
+                    step="1"
+                    value="0"
+                    required
+                  >
+                  <small class="field-help">Enter any additional months from 0 to 11.</small>
                 </div>
               </div>
 
-              <div class="form-section-title">
-                <span class="step-number">2</span>
-                Salary and contributions
-              </div>
+              <h4 class="form-section-title">
+                <span class="form-section-number">02</span>
+                Salary &amp; contributions
+              </h4>
 
-              <div class="form-grid">
+              <div class="field-grid">
                 <div class="field">
                   <label for="basicSalary">Monthly basic salary + DA (₹)</label>
-                  <input id="basicSalary" type="number" min="0" max="100000000" step="100" value="15000" required>
-                  <span class="field-help">Enter the relevant monthly salary for PF purposes.</span>
+                  <div class="input-prefix">
+                    <span>₹</span>
+                    <input
+                      id="basicSalary"
+                      type="number"
+                      min="0"
+                      max="100000000"
+                      step="100"
+                      value="15000"
+                      required
+                    >
+                  </div>
+                  <small class="field-help">
+                    For EPS, the applicable pensionable salary rules and wage ceiling matter.
+                  </small>
+                </div>
+
+                <div class="field">
+                  <label for="pensionSalary">Monthly pensionable salary (₹)</label>
+                  <div class="input-prefix">
+                    <span>₹</span>
+                    <input
+                      id="pensionSalary"
+                      type="number"
+                      min="0"
+                      max="100000000"
+                      step="100"
+                      value="15000"
+                      required
+                    >
+                  </div>
+                  <small class="field-help">
+                    Enter the salary figure used for EPS pension calculation.
+                  </small>
+                </div>
+
+                <div class="field">
+                  <label for="currentEpfBalance">Current EPF balance (₹)</label>
+                  <div class="input-prefix">
+                    <span>₹</span>
+                    <input
+                      id="currentEpfBalance"
+                      type="number"
+                      min="0"
+                      max="100000000000"
+                      step="100"
+                      value="300000"
+                      required
+                    >
+                  </div>
+                  <small class="field-help">
+                    Use your latest employee + employer EPF balance, excluding EPS.
+                  </small>
                 </div>
 
                 <div class="field">
                   <label for="employeeRate">Employee EPF contribution (%)</label>
-                  <input id="employeeRate" type="number" min="0" max="100" step="0.1" value="12" required>
-                  <span class="field-help">Commonly 12%, but applicable rates can differ.</span>
+                  <input
+                    id="employeeRate"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    value="12"
+                    required
+                  >
+                  <small class="field-help">
+                    Typical employee contribution is 12%, subject to applicable rules.
+                  </small>
                 </div>
 
                 <div class="field">
-                  <label for="employerRate">Employer contribution to PF (%)</label>
-                  <input id="employerRate" type="number" min="0" max="100" step="0.1" value="12" required>
-                  <span class="field-help">This is the employer's total PF contribution rate before allocation.</span>
+                  <label for="employerRate">Employer EPF contribution (%)</label>
+                  <input
+                    id="employerRate"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    value="3.67"
+                    required
+                  >
+                  <small class="field-help">
+                    Illustrative EPF share after the employer's EPS allocation.
+                  </small>
                 </div>
 
                 <div class="field">
-                  <label for="epsWage">Monthly pensionable salary (₹)</label>
-                  <input id="epsWage" type="number" min="0" max="100000000" step="100" value="15000" required>
-                  <span class="field-help">EPS pensionable wages are subject to scheme rules and applicable limits.</span>
-                </div>
-
-                <div class="field">
-                  <label for="epsRate">Employer EPS allocation (%)</label>
-                  <input id="epsRate" type="number" min="0" max="100" step="0.1" value="8.33" required>
-                  <span class="field-help">8.33% is a commonly used EPS allocation rate.</span>
-                </div>
-
-                <div class="field">
-                  <label for="existingEpf">Current EPF balance (₹) <span class="optional">(optional)</span></label>
-                  <input id="existingEpf" type="number" min="0" max="100000000000" step="100" value="0">
-                  <span class="field-help">Enter your current EPF balance if available from your passbook.</span>
-                </div>
-
-                <div class="field">
-                  <label for="annualInterest">Assumed annual EPF interest (%)</label>
-                  <input id="annualInterest" type="number" min="0" max="30" step="0.01" value="8.25" required>
-                  <span class="field-help">Illustrative assumption; actual declared rates may change.</span>
-                </div>
-
-                <div class="field">
-                  <label for="salaryGrowth">Annual salary growth (%)</label>
-                  <input id="salaryGrowth" type="number" min="0" max="100" step="0.5" value="0" required>
-                  <span class="field-help">Set to 0% for a constant-salary estimate.</span>
+                  <label for="annualRate">Assumed annual EPF interest (%)</label>
+                  <input
+                    id="annualRate"
+                    type="number"
+                    min="0"
+                    max="20"
+                    step="0.01"
+                    value="8.25"
+                    required
+                  >
+                  <small class="field-help">
+                    An assumption for projection, not a guaranteed future rate.
+                  </small>
                 </div>
               </div>
 
-              <div class="form-section-title">
-                <span class="step-number">3</span>
-                Additional assumptions
+              <h4 class="form-section-title">
+                <span class="form-section-number">03</span>
+                Pension assumptions
+              </h4>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label for="epsWageCeiling">EPS wage ceiling (₹/month)</label>
+                  <select id="epsWageCeiling">
+                    <option value="15000" selected>₹15,000</option>
+                    <option value="6500">₹6,500 (historical ceiling)</option>
+                    <option value="custom">Enter another value</option>
+                  </select>
+                  <small class="field-help">
+                    Applicable salary ceiling depends on membership history and rules.
+                  </small>
+                </div>
+
+                <div class="field" id="customCeilingField" hidden>
+                  <label for="customCeiling">Custom EPS ceiling (₹/month)</label>
+                  <div class="input-prefix">
+                    <span>₹</span>
+                    <input
+                      id="customCeiling"
+                      type="number"
+                      min="0"
+                      max="100000000"
+                      step="100"
+                      value="15000"
+                    >
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="monthlyPensionInput">Monthly pension salary used (₹)</label>
+                  <select id="pensionSalaryMode">
+                    <option value="actual" selected>Use pensionable salary above</option>
+                    <option value="capped">Cap at selected EPS ceiling</option>
+                  </select>
+                  <small class="field-help">
+                    This selection affects the simplified pension estimate.
+                  </small>
+                </div>
+
+                <div class="field">
+                  <label for="futureContribution">Future EPF contributions</label>
+                  <select id="futureContribution">
+                    <option value="yes" selected>Continue until retirement</option>
+                    <option value="no">Do not add future contributions</option>
+                  </select>
+                  <small class="field-help">
+                    The projection assumes the entered monthly contributions continue unchanged.
+                  </small>
+                </div>
               </div>
 
-              <div class="form-grid">
-                <div class="field">
-                  <label for="yearsRemaining">Years to retirement</label>
-                  <input id="yearsRemaining" type="number" min="0" max="60" step="1" value="28" required>
-                  <span class="field-help">Set manually if your expected retirement date differs from the age-based estimate.</span>
-                </div>
-
-                <div class="field">
-                  <label for="voluntaryRate">Additional monthly contribution (₹) <span class="optional">(optional)</span></label>
-                  <input id="voluntaryRate" type="number" min="0" max="100000000" step="100" value="0">
-                  <span class="field-help">Optional extra contribution assumed to increase your EPF balance.</span>
-                </div>
-              </div>
-
-              <div class="info-box">
-                <span aria-hidden="true">ⓘ</span>
-                <div>
-                  <strong>Important:</strong> This is a simplified planning model.
-                  It estimates monthly contributions and compounding, but does
-                  not reproduce your official EPFO ledger, every contribution
-                  allocation rule, past interest credit, withdrawal or transfer.
-                </div>
+              <div class="form-note">
+                <strong>Important:</strong> EPS pension is not a personal savings
+                balance. The pension formula, eligible service, pensionable salary,
+                membership history, and EPFO rules determine actual benefits.
+                The results below are planning estimates only.
               </div>
 
               <div class="form-actions no-print">
-                <button class="button-primary" type="submit">Update Estimate ↗</button>
-                <button class="button-outline" id="resetButton" type="button">Reset Values</button>
+                <button class="button button-primary" type="submit">
+                  Calculate Pension <span class="arrow">↗</span>
+                </button>
+                <button class="button button-outline-light" id="resetButton" type="button">
+                  Reset Values
+                </button>
               </div>
             </form>
           </section>
 
-          <aside class="panel results-panel" aria-labelledby="results-heading">
+          <!-- RESULTS -->
+          <section class="results-card" aria-labelledby="resultsTitle" aria-live="polite">
             <div class="results-top">
-              <div class="result-eyebrow">Your estimated benefits</div>
-              <h3 id="results-heading">Retirement snapshot</h3>
-              <p id="resultSubtitle" aria-live="polite">Based on the details you entered</p>
-            </div>
-
-            <div class="results-body" id="results" aria-live="polite" aria-atomic="true">
-              <div class="result-primary">
-                <span class="result-label">Estimated EPF balance at retirement</span>
-                <strong class="result-value" id="futureEpf">₹0</strong>
-                <small>Illustrative value, including assumed interest and contributions</small>
+              <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Your Estimate
               </div>
-
-              <div class="result-list">
-                <div class="result-row">
-                  <span>Estimated monthly EPS pension</span>
-                  <strong id="monthlyPension">₹0</strong>
-                </div>
-                <div class="result-row">
-                  <span>Estimated annual EPS pension</span>
-                  <strong id="annualPension">₹0</strong>
-                </div>
-                <div class="result-row">
-                  <span>Monthly employee EPF contribution</span>
-                  <strong id="employeeContribution">₹0</strong>
-                </div>
-                <div class="result-row">
-                  <span>Monthly employer EPF contribution</span>
-                  <strong id="employerContribution">₹0</strong>
-                </div>
-                <div class="result-row">
-                  <span>Monthly employer EPS allocation</span>
-                  <strong id="epsContribution">₹0</strong>
-                </div>
-                <div class="result-row">
-                  <span>Monthly employer EPF remainder</span>
-                  <strong id="employerEpfRemainder">₹0</strong>
-                </div>
-                <div class="result-row">
-                  <span>Estimated total monthly EPF additions</span>
-                  <strong id="monthlyEpfAddition">₹0</strong>
-                </div>
-                <div class="result-row">
-                  <span>Estimated years until retirement</span>
-                  <strong id="retirementYears">28 years</strong>
-                </div>
-              </div>
-
-              <div class="notice" id="eligibilityNotice">
-                <strong>EPS eligibility reminder</strong>
-                EPS pension depends on eligible service and applicable scheme rules.
-              </div>
-
-              <div class="result-actions no-print">
-                <button class="button-dark" type="button" id="printButton">Print / Save PDF</button>
-                <button class="button-outline" type="button" id="downloadButton">Download CSV</button>
-              </div>
-
-              <p class="result-note">
-                These results are estimates, not guaranteed benefits. The
-                official EPFO records and applicable EPF/EPS rules determine
-                actual contributions, pension eligibility and payout.
+              <h3 id="resultsTitle">Retirement summary</h3>
+              <p id="resultIntro">
+                Update the inputs to calculate your estimated EPF balance
+                and potential monthly EPS pension.
               </p>
             </div>
-          </aside>
-        </div>
-      </div>
-    </section>
 
-    <section class="content-section" id="how-it-works">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Know Your Benefits</div>
-          <h2>Understanding EPF and EPS</h2>
+            <div class="result-list">
+              <div class="result-item">
+                <div>
+                  <div class="result-label">Current EPF balance</div>
+                  <span class="result-detail">Balance entered by you</span>
+                </div>
+                <div class="result-value" id="currentBalanceResult">₹3,00,000</div>
+              </div>
+
+              <div class="result-item">
+                <div>
+                  <div class="result-label">Estimated future EPF contributions</div>
+                  <span class="result-detail">Employee + employer EPF share</span>
+                </div>
+                <div class="result-value" id="futureContributionsResult">₹—</div>
+              </div>
+
+              <div class="result-item">
+                <div>
+                  <div class="result-label">Estimated future interest</div>
+                  <span class="result-detail">Based on your assumed annual rate</span>
+                </div>
+                <div class="result-value" id="futureInterestResult">₹—</div>
+              </div>
+
+              <div class="result-item">
+                <div>
+                  <div class="result-label">Additional service until retirement</div>
+                  <span class="result-detail">Based on current age and retirement age</span>
+                </div>
+                <div class="result-value" id="futureServiceResult">23 years</div>
+              </div>
+
+              <div class="result-item">
+                <div>
+                  <div class="result-label">Estimated total eligible service</div>
+                  <span class="result-detail">Past service + future service</span>
+                </div>
+                <div class="result-value" id="totalServiceResult">33 years</div>
+              </div>
+
+              <div class="result-item">
+                <div>
+                  <div class="result-label">Pensionable salary used</div>
+                  <span class="result-detail">Monthly salary assumption for EPS</span>
+                </div>
+                <div class="result-value" id="pensionableSalaryResult">₹15,000</div>
+              </div>
+            </div>
+
+            <div class="pension-highlight">
+              <div class="result-label">Estimated monthly EPS pension</div>
+              <div class="result-value" id="monthlyPensionResult">₹—</div>
+              <p id="pensionMethodNote">
+                Simplified formula estimate. Eligibility and official pension calculations may differ.
+              </p>
+            </div>
+
+            <div class="result-item" style="margin: 0 25px; padding: 0 0 19px;">
+              <div>
+                <div class="result-label">Estimated EPF corpus at retirement</div>
+                <span class="result-detail">Projected balance, not a guaranteed amount</span>
+              </div>
+              <div class="result-value highlight" id="projectedBalanceResult">₹—</div>
+            </div>
+
+            <div class="results-warning" id="resultsWarning" role="status">
+              These figures are estimates. Confirm eligibility, pensionable salary,
+              and contributions with EPFO before relying on them.
+            </div>
+
+            <div class="results-actions no-print">
+              <button class="button button-primary" id="printButton" type="button">
+                Print / Save PDF
+              </button>
+              <button class="button button-outline-light" id="copyButton" type="button">
+                Copy Summary
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <div class="privacy-note">
+          <span aria-hidden="true">🔒</span>
           <p>
-            EPF and EPS are related employee social-security schemes, but they
-            serve different purposes.
+            <strong>Your details stay on this page.</strong>
+            This calculator processes your entries in your browser. It does
+            not submit your salary, age, or service details to ARTHNIX.
           </p>
         </div>
 
-        <div class="content-grid">
-          <article class="content-card">
-            <div class="card-icon" aria-hidden="true">₹</div>
-            <h3>Employee Provident Fund (EPF)</h3>
-            <p>
-              EPF is a retirement savings arrangement. Contributions and
-              applicable interest accumulate in the provident fund account.
-              The actual balance depends on contributions, interest credits,
-              transfers and withdrawals.
-            </p>
-          </article>
+        <p class="print-disclaimer">
+          Disclaimer: This report is an educational estimate, not an official
+          EPFO statement, financial advice, or a guarantee of pension eligibility
+          or payout. Verify your records and applicable rules with EPFO.
+        </p>
+      </div>
+    </section>
 
-          <article class="content-card">
-            <div class="card-icon" aria-hidden="true">↗</div>
-            <h3>Employees' Pension Scheme (EPS)</h3>
-            <p>
-              EPS provides pension benefits to eligible members. The standard
-              pension formula commonly uses pensionable salary multiplied by
-              eligible pensionable service and divided by 70, subject to the
-              applicable scheme provisions and adjustments.
-            </p>
-          </article>
-
-          <article class="content-card">
-            <div class="card-icon" aria-hidden="true">✓</div>
-            <h3>Employer contributions</h3>
-            <p>
-              The employer's PF contribution is allocated between EPF and EPS
-              where applicable. The allocation is governed by scheme rules,
-              wage limits, membership conditions and any applicable
-              higher-wage arrangements.
-            </p>
-          </article>
-        </div>
-
-        <div class="formula-box">
-          <h3>Calculation methods used in this estimate</h3>
-
-          <div class="formula-list">
-            <div class="formula-item">
-              <strong>Employee EPF contribution</strong>
-              <span>Monthly PF salary × employee contribution rate</span>
-            </div>
-            <div class="formula-item">
-              <strong>Employer EPS allocation</strong>
-              <span>Estimated pensionable salary × EPS allocation rate</span>
-            </div>
-            <div class="formula-item">
-              <strong>Employer EPF remainder</strong>
-              <span>Employer PF contribution − estimated EPS allocation</span>
-            </div>
-            <div class="formula-item">
-              <strong>Illustrative EPS monthly pension</strong>
-              <span>Pensionable salary × eligible service ÷ 70</span>
-            </div>
+    <!-- HOW IT WORKS -->
+    <section class="info-section" id="how-it-works">
+      <div class="container">
+        <div class="info-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Understand Your Benefits
           </div>
+          <h2>
+            EPF and EPS are related,<br>
+            <span class="accent">but they work differently.</span>
+          </h2>
+          <p>
+            EPF is a retirement savings account funded by employee and employer
+            contributions and credited interest. EPS is a pension scheme funded
+            through the employer's contribution allocation under applicable rules.
+            Your EPF balance and EPS pension therefore need separate estimates.
+          </p>
         </div>
 
-        <div class="disclaimer-card">
-          <strong>Important pension and contribution caveat:</strong>
-          The calculator uses the salary and rates you enter. It does not
-          independently determine whether you qualify for EPS, whether a
-          particular pensionable wage ceiling applies, whether higher-pension
-          provisions apply, or whether your service is eligible in full.
-          Actual pension and EPF balances can differ from these estimates.
-          Check the current EPFO guidance and your official passbook before
-          making retirement or withdrawal decisions.
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-card-number">01 / EPF</div>
+            <h3>Employees' Provident Fund</h3>
+            <p>
+              EPF accumulates eligible contributions and interest in your provident
+              fund account. Your actual balance depends on contributions, withdrawals,
+              transfers, interest credits, and account history.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card-number">02 / EPS</div>
+            <h3>Employees' Pension Scheme</h3>
+            <p>
+              EPS provides pension benefits for eligible members. A commonly used
+              simplified formula uses pensionable salary multiplied by eligible
+              pensionable service and divided by 70. Official calculations can
+              involve additional rules and conditions.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card-number">03 / RETIREMENT</div>
+            <h3>Plan with realistic assumptions</h3>
+            <p>
+              Your final EPF amount and EPS pension may depend on historical wages,
+              membership dates, eligible service, withdrawals, contribution records,
+              and the rules applicable to your membership.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="faqs">
+    <!-- CALCULATION METHOD -->
+    <section class="info-section alt" id="calculation-method">
       <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Frequently Asked Questions</div>
-          <h2>EPF and EPS pension questions</h2>
-          <p>General information to help you interpret your estimates.</p>
+        <div class="info-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Calculation Guide
+          </div>
+          <h2>
+            How the estimates<br>
+            <span class="accent">are calculated.</span>
+          </h2>
+          <p>
+            The calculator uses simplified assumptions to make the numbers easier
+            to explore. These calculations are not a substitute for your official
+            EPF passbook or an EPFO pension determination.
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="reference-table">
+            <thead>
+              <tr>
+                <th>Estimate</th>
+                <th>Method used</th>
+                <th>Important limitation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Future service</td>
+                <td>Retirement age minus current age, converted to months for projection.</td>
+                <td>Assumes you continue eligible service without a break until the selected retirement age.</td>
+              </tr>
+              <tr>
+                <td>Monthly EPF contributions</td>
+                <td>Monthly salary multiplied by the employee EPF rate plus the entered employer EPF rate.</td>
+                <td>Actual contributions can vary because of wage ceilings, allowances, membership conditions, and employer payroll practices.</td>
+              </tr>
+              <tr>
+                <td>Future EPF corpus</td>
+                <td>Current balance grows using the assumed annual interest rate, with estimated monthly EPF contributions when enabled.</td>
+                <td>Actual interest is declared and credited under applicable EPF rules. The projection does not reproduce every account-level crediting detail.</td>
+              </tr>
+              <tr>
+                <td>Monthly EPS pension</td>
+                <td>Illustrative pensionable salary × eligible service ÷ 70.</td>
+                <td>Actual pension may depend on pensionable salary averaging rules, eligible service, rounding, wage ceilings, higher-pension provisions, and other EPFO rules.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="disclaimer-box">
+          <strong>Please note:</strong> This calculator is not affiliated with EPFO
+          and does not access your UAN or official records. It does not determine
+          pension eligibility, withdrawal entitlement, tax treatment, or the amount
+          payable by EPFO. Check current official rules before making decisions.
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="info-section" id="faq">
+      <div class="container">
+        <div class="info-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Frequently Asked Questions
+          </div>
+          <h2>
+            Common questions about<br>
+            <span class="accent">EPF and EPS.</span>
+          </h2>
+          <p>
+            Learn what the calculator estimates and what you should verify
+            before making retirement or pension decisions.
+          </p>
         </div>
 
         <div class="faq-list">
           <details class="faq-item">
             <summary>What is the difference between EPF and EPS?</summary>
             <p>
-              EPF is a provident fund savings scheme in which contributions
-              accumulate with applicable interest. EPS is a pension scheme
-              that can provide a monthly pension to eligible members under its
-              rules. The two benefits are calculated differently.
+              EPF is a provident fund that builds a balance through eligible
+              contributions and interest. EPS is a pension scheme that may provide
+              a recurring pension to eligible members under its rules. The EPF
+              balance is not the same as the EPS pension entitlement.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>How is the EPS monthly pension commonly estimated?</summary>
+            <summary>How is the monthly EPS pension estimated?</summary>
             <p>
-              A commonly used formula is pensionable salary multiplied by
-              pensionable service, divided by 70. The result depends on the
-              applicable scheme provisions, pensionable salary rules, service
-              records and eligibility. This calculator is only an estimate.
+              A commonly referenced simplified formula is pensionable salary
+              multiplied by pensionable service and divided by 70. This page uses
+              that formula for an illustrative estimate. Your official pension can
+              differ due to the applicable salary calculation, eligible service,
+              membership history, and current EPFO provisions.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Is EPS pension available after 10 years of service?</summary>
+            <summary>Does the calculator guarantee my retirement EPF balance?</summary>
             <p>
-              Ten years of eligible pensionable service is generally an
-              important threshold for eligibility for a regular EPS pension.
-              Special circumstances, age, service records and applicable rules
-              can affect the benefit. Confirm your position with EPFO before
-              relying on an estimate.
+              No. It projects a possible balance based on the current balance,
+              assumed interest rate, monthly salary, contribution rates, and
+              remaining service. Actual contributions, interest credits, withdrawals,
+              transfers, salary changes, and account-specific details may change
+              the result.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>At what age can I generally receive EPS pension?</summary>
+            <summary>Why does pensionable salary matter?</summary>
             <p>
-              The standard age for a monthly EPS pension is generally 58.
-              Reduced pension may be available in qualifying circumstances
-              from an earlier age, subject to applicable scheme provisions.
-              The calculator does not model every early-pension adjustment.
+              EPS pension calculations use pensionable salary under the applicable
+              scheme rules, which may not be identical to your full monthly salary.
+              Historical membership, applicable wage ceilings, and higher-pension
+              arrangements can affect the salary figure used.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Does this calculator use the official EPFO balance?</summary>
+            <summary>Can I use this calculator if I have less than 10 years of service?</summary>
             <p>
-              No. It uses the values you enter to produce a simplified
-              estimate. It does not access your EPFO account, passbook,
-              employer payroll records or UAN information.
+              You can use the calculator to explore an illustrative formula result,
+              but a numerical estimate does not establish eligibility for a monthly
+              pension. Pension eligibility and any other benefit depend on applicable
+              EPS rules and your service record. Confirm your position with EPFO.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Why might my actual EPF balance be different?</summary>
+            <summary>Does this calculator connect to my UAN or EPF account?</summary>
             <p>
-              Your official balance can differ because of actual monthly
-              contributions, contribution wage limits, interest-credit timing,
-              salary changes, transfers, withdrawals, missing deposits and
-              other account-specific adjustments. The calculator assumes a
-              simplified contribution and compounding schedule.
+              No. Do not enter your UAN, password, OTP, or other account credentials
+              here. You must enter the figures yourself. The calculation is performed
+              in your browser and is not submitted to ARTHNIX.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Does this calculator store my salary or personal details?</summary>
+            <summary>Where can I verify my official EPF and pension details?</summary>
             <p>
-              The calculator runs in your browser and does not send your
-              entries to ARTHNIX through this page. Avoid sharing or exporting
-              your report on a device or account that other people can access.
+              Check your official EPF passbook, member portal, employer records,
+              and EPFO guidance. Use official sources for eligibility, pension
+              claims, withdrawals, transfers, and any higher-pension application
+              or calculation.
             </p>
           </details>
         </div>
       </div>
     </section>
 
-    <section class="related-section" id="tools">
+    <!-- RELATED TOOLS -->
+    <section class="tools-section" id="tools">
       <div class="container">
-        <h2 class="related-heading">Explore more free business tools</h2>
-
-        <div class="related-grid">
-          <a class="related-card" href="/tools/gst-calculator.html">
-            <div>
-              <strong>GST Calculator</strong>
-              <span>Calculate GST and tax-inclusive prices</span>
+        <div class="tools-top">
+          <div class="section-heading">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              More Free Tools
             </div>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
+            <h2>
+              Practical tools for<br>
+              <span class="accent">everyday finances.</span>
+            </h2>
+            <p>
+              Explore other ARTHNIX calculators and business tools for common
+              financial calculations and document workflows.
+            </p>
+          </div>
 
-          <a class="related-card" href="/tools/profit-calculator.html">
-            <div>
-              <strong>Profit Calculator</strong>
-              <span>Estimate margins and profit</span>
-            </div>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="related-card" href="/tools/invoice-generator.html">
-            <div>
-              <strong>Invoice Generator</strong>
-              <span>Create professional invoices</span>
-            </div>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="related-card" href="/tools/quotation-generator.html">
-            <div>
-              <strong>Quotation Generator</strong>
-              <span>Prepare business quotations</span>
-            </div>
-            <span class="related-arrow" aria-hidden="true">↗</span>
+          <a href="/tools.html" class="button button-outline-light">
+            View All Tools <span class="arrow">↗</span>
           </a>
         </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">₹</div>
+            <h3>Income Tax Calculator</h3>
+            <p>Estimate income tax using the available Indian tax-regime inputs.</p>
+            <a href="/tools/income-tax-calculator.html" class="text-link">
+              Open calculator <span>↗</span>
+            </a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">%</div>
+            <h3>Salary Calculator</h3>
+            <p>Explore salary-related figures and estimated take-home amounts.</p>
+            <a href="/tools/salary-per-day-calculator.html" class="text-link">
+              Open calculator <span>↗</span>
+            </a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">↗</div>
+            <h3>Profit Calculator</h3>
+            <p>Work out profit, margin, markup, and selling price.</p>
+            <a href="/tools/profit-calculator.html" class="text-link">
+              Calculate profit <span>↗</span>
+            </a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">₹</div>
+            <h3>GST Calculator</h3>
+            <p>Calculate GST amounts, inclusive prices, and pre-tax totals.</p>
+            <a href="/tools/gst-calculator.html" class="text-link">
+              Open calculator <span>↗</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Make Informed Estimates
+        </div>
+
+        <h2>
+          Understand your benefits.<br>
+          <span class="accent">Plan with clarity.</span>
+        </h2>
+
+        <p>
+          Use the calculator as a starting point, then confirm your actual EPF
+          balance, service record, pension eligibility, and benefits with EPFO.
+        </p>
+
+        <a href="#calculator" class="button button-primary">
+          Calculate Again <span class="arrow">↗</span>
+        </a>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer" id="footer-contact">
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
-            <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
-            <span class="brand-name">ARTHNIX</span>
+          <a class="footer-brand-link" href="/index.html" aria-label="ARTHNIX home">
+            <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
+            <span>ARTHNIX</span>
           </a>
-          <p>Intelligence for Every Business.</p>
+          <p class="footer-tagline">Intelligence for Every Business.</p>
           <p class="footer-powered">Powered by Alphex AI</p>
         </div>
 
         <div class="footer-column">
-          <h3>Explore</h3>
+          <h4>Explore</h4>
           <a href="/platform.html">Platform</a>
           <a href="#how-it-works">How It Works</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="/tools.html">Business Tools</a>
+          <a href="/tools.html">Free Tools</a>
         </div>
 
         <div class="footer-column">
-          <h3>Business Tools</h3>
+          <h4>Business Tools</h4>
           <a href="/tools/gst-calculator.html">GST Calculator</a>
           <a href="/tools/invoice-generator.html">Invoice Generator</a>
           <a href="/tools/profit-calculator.html">Profit Calculator</a>
           <a href="/tools/quotation-generator.html">Quotation Generator</a>
-          <a href="/tools/incentive-calculator.html">Incentive Calculator</a>
-          <a href="/tools/eps-epf-pension-calculator.html">EPF &amp; EPS Pension Calculator</a>
+          <a href="/tools/eps-epf-pension-calculator.html">EPF &amp; EPS Pension</a>
         </div>
 
         <div class="footer-column">
-          <h3>Information</h3>
-          <a href="/about.html">About</a>
-          <a href="/help.html">Help Center</a>
+          <h4>Information</h4>
+          <a href="/about.html">About ARTHNIX</a>
+          <a href="/help.html">Help Centre</a>
           <a href="/blog.html">Blog</a>
           <a href="/contact.html">Contact</a>
           <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Service</a>
+          <a href="/terms.html">Terms of Use</a>
           <a href="/disclaimer.html">Disclaimer</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="currentYear">2026</span> ARTHNIX. All rights reserved.</p>
-        <p>An independent product brand · Powered by <a href="/index.html">Alphex AI</a></p>
+        <p class="copyright">
+          © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+        </p>
+        <p class="powered-by">
+          An independent product brand · <strong>Powered by Alphex AI</strong>
+        </p>
       </div>
     </div>
   </footer>
@@ -1873,369 +2734,463 @@
     (() => {
       "use strict";
 
-      const $ = (id) => document.getElementById(id);
-      const form = $("epfForm");
+      const menuButton = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const currentYear = document.getElementById("currentYear");
 
-      const initialValues = {
-        employeeName: "",
-        currentAge: 30,
-        retirementAge: 58,
-        serviceYears: 10,
-        basicSalary: 15000,
-        employeeRate: 12,
-        employerRate: 12,
-        epsWage: 15000,
-        epsRate: 8.33,
-        existingEpf: 0,
-        annualInterest: 8.25,
-        salaryGrowth: 0,
-        yearsRemaining: 28,
-        voluntaryRate: 0
-      };
+      function setMenuState(isOpen) {
+        if (!menuButton || !navLinks) return;
 
-      const moneyFormatter = new Intl.NumberFormat("en-IN", {
+        navLinks.classList.toggle("is-open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+        const lines = menuButton.querySelectorAll("span");
+
+        if (lines.length >= 2) {
+          lines[0].style.transform = isOpen
+            ? "translateY(3.5px) rotate(45deg)"
+            : "";
+          lines[1].style.transform = isOpen
+            ? "translateY(-3.5px) rotate(-45deg)"
+            : "";
+        }
+      }
+
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+
+          const isOpen =
+            menuButton.getAttribute("aria-expanded") === "true";
+
+          setMenuState(!isOpen);
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => setMenuState(false));
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("is-open") &&
+            !menuButton.contains(event.target) &&
+            !navLinks.contains(event.target)
+          ) {
+            setMenuState(false);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            navLinks.classList.contains("is-open")
+          ) {
+            setMenuState(false);
+            menuButton.focus();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 780) setMenuState(false);
+        });
+      }
+
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+
+      /* =================================================
+         EPF & EPS CALCULATOR
+         All calculations are performed locally in browser.
+         ================================================= */
+
+      const form = document.getElementById("pensionForm");
+      const resetButton = document.getElementById("resetButton");
+      const printButton = document.getElementById("printButton");
+      const copyButton = document.getElementById("copyButton");
+      const epsWageCeiling = document.getElementById("epsWageCeiling");
+      const customCeilingField = document.getElementById("customCeilingField");
+      const customCeiling = document.getElementById("customCeiling");
+      const pensionSalaryMode = document.getElementById("pensionSalaryMode");
+      const futureContribution = document.getElementById("futureContribution");
+
+      const currency = new Intl.NumberFormat("en-IN", {
         style: "currency",
         currency: "INR",
         maximumFractionDigits: 0
       });
 
-      const decimalMoneyFormatter = new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "INR",
-        minimumFractionDigits: 0,
+      const numberFormat = new Intl.NumberFormat("en-IN", {
         maximumFractionDigits: 2
       });
 
-      const numberFormatter = new Intl.NumberFormat("en-IN", {
-        maximumFractionDigits: 2
-      });
+      const initialValues = {
+        employeeName: "",
+        currentAge: "35",
+        retirementAge: "58",
+        serviceYears: "10",
+        serviceMonths: "0",
+        basicSalary: "15000",
+        pensionSalary: "15000",
+        currentEpfBalance: "300000",
+        employeeRate: "12",
+        employerRate: "3.67",
+        annualRate: "8.25",
+        epsWageCeiling: "15000",
+        customCeiling: "15000",
+        pensionSalaryMode: "actual",
+        futureContribution: "yes"
+      };
 
-      const percentFormatter = new Intl.NumberFormat("en-IN", {
-        maximumFractionDigits: 2
-      });
+      function valueOf(id) {
+        const element = document.getElementById(id);
+        if (!element) return 0;
 
-      function numberValue(id) {
-        const element = $(id);
         const value = Number(element.value);
-        return Number.isFinite(value) ? Math.max(0, value) : 0;
+        return Number.isFinite(value) ? value : 0;
       }
 
-      function formatMoney(value, decimals = false) {
-        const safeValue = Number.isFinite(value) ? value : 0;
-        return (decimals ? decimalMoneyFormatter : moneyFormatter).format(safeValue);
-      }
-
-      function formatNumber(value) {
-        return numberFormatter.format(Number.isFinite(value) ? value : 0);
-      }
-
-      function formatPercent(value) {
-        return percentFormatter.format(Number.isFinite(value) ? value : 0) + "%";
+      function textOf(id) {
+        const element = document.getElementById(id);
+        return element ? element.value.trim() : "";
       }
 
       function setText(id, value) {
-        $(id).textContent = value;
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
       }
 
-      function calculateFutureEpf() {
-        const basicSalary = numberValue("basicSalary");
-        const employeeRate = numberValue("employeeRate") / 100;
-        const employerRate = numberValue("employerRate") / 100;
-        const epsWage = numberValue("epsWage");
-        const epsRate = numberValue("epsRate") / 100;
-        const existingBalance = numberValue("existingEpf");
-        const annualInterest = numberValue("annualInterest") / 100;
-        const salaryGrowth = numberValue("salaryGrowth") / 100;
-        const years = Math.floor(numberValue("yearsRemaining"));
-        const extraMonthly = numberValue("voluntaryRate");
+      function formatMoney(value) {
+        if (!Number.isFinite(value)) return "—";
+        return currency.format(Math.round(value));
+      }
 
-        const employeeMonthly = basicSalary * employeeRate;
-        const employerTotal = basicSalary * employerRate;
-        const epsMonthly = epsWage * epsRate;
+      function formatNumber(value) {
+        if (!Number.isFinite(value)) return "—";
+        return numberFormat.format(value);
+      }
 
-        // Simplified estimate: EPS allocation is capped at the total
-        // employer PF contribution for the purpose of this model.
-        const allocatedEps = Math.min(epsMonthly, employerTotal);
-        const employerEpf = Math.max(0, employerTotal - allocatedEps);
-        const monthlyEpfAddition = employeeMonthly + employerEpf + extraMonthly;
-
-        let balance = existingBalance;
-        let totalEmployeeContributions = 0;
-        let totalEmployerContributions = 0;
-        let totalExtraContributions = 0;
-
-        const monthlyInterest = Math.pow(1 + annualInterest, 1 / 12) - 1;
-        let salary = basicSalary;
-
-        // Contributions are assumed to be deposited monthly, with interest
-        // compounded monthly. Actual EPFO interest crediting may differ.
-        for (let month = 0; month < years * 12; month++) {
-          const yearIndex = Math.floor(month / 12);
-          salary = basicSalary * Math.pow(1 + salaryGrowth, yearIndex);
-
-          const employeeContribution = salary * employeeRate;
-          const employerContribution = salary * employerRate;
-          const estimatedEps = Math.min(epsWage * epsRate, employerContribution);
-          const employerEpfContribution = Math.max(0, employerContribution - estimatedEps);
-
-          const extraContribution = extraMonthly;
-          const addition = employeeContribution + employerEpfContribution + extraContribution;
-
-          balance = (balance + addition) * (1 + monthlyInterest);
-          totalEmployeeContributions += employeeContribution;
-          totalEmployerContributions += employerEpfContribution;
-          totalExtraContributions += extraContribution;
+      function selectedCeiling() {
+        if (epsWageCeiling.value === "custom") {
+          return Math.max(0, valueOf("customCeiling"));
         }
 
-        const currentAge = numberValue("currentAge");
-        const pensionAge = numberValue("retirementAge");
-        const service = numberValue("serviceYears");
-        const pensionableSalary = numberValue("epsWage");
+        return Math.max(0, Number(epsWageCeiling.value) || 0);
+      }
 
-        // Common simplified EPS formula. Actual pensionable salary,
-        // eligible service, wage ceiling and other scheme rules can change
-        // the official calculation.
-        const pensionEligible = service >= 10 && currentAge >= 18;
-        const monthlyPension = pensionEligible
-          ? (pensionableSalary * service) / 70
-          : 0;
+      function setWarning(message) {
+        setText("resultsWarning", message);
+      }
 
+      function getInputData() {
         return {
-          basicSalary,
-          employeeMonthly,
-          employerTotal,
-          epsMonthly: allocatedEps,
-          employerEpf,
-          monthlyEpfAddition,
-          years,
-          balance,
-          monthlyPension,
-          annualPension: monthlyPension * 12,
-          service,
-          pensionEligible,
-          pensionableSalary,
-          currentAge,
-          pensionAge,
-          annualInterest: annualInterest * 100,
-          salaryGrowth: salaryGrowth * 100,
-          totalEmployeeContributions,
-          totalEmployerContributions,
-          totalExtraContributions,
-          totalContributions: totalEmployeeContributions +
-            totalEmployerContributions + totalExtraContributions
+          name: textOf("employeeName"),
+          currentAge: valueOf("currentAge"),
+          retirementAge: valueOf("retirementAge"),
+          serviceYears: valueOf("serviceYears"),
+          serviceMonths: valueOf("serviceMonths"),
+          basicSalary: valueOf("basicSalary"),
+          pensionSalary: valueOf("pensionSalary"),
+          currentBalance: valueOf("currentEpfBalance"),
+          employeeRate: valueOf("employeeRate"),
+          employerRate: valueOf("employerRate"),
+          annualRate: valueOf("annualRate"),
+          ceiling: selectedCeiling(),
+          salaryMode: pensionSalaryMode.value,
+          futureContribution: futureContribution.value
         };
       }
 
-      function updateEstimate() {
-        const result = calculateFutureEpf();
+      function validateData(data) {
+        const numericFields = [
+          ["Current age", data.currentAge],
+          ["Retirement age", data.retirementAge],
+          ["Completed service", data.serviceYears],
+          ["Additional service months", data.serviceMonths],
+          ["Basic salary", data.basicSalary],
+          ["Pensionable salary", data.pensionSalary],
+          ["Current EPF balance", data.currentBalance],
+          ["Employee contribution rate", data.employeeRate],
+          ["Employer contribution rate", data.employerRate],
+          ["Annual EPF interest rate", data.annualRate],
+          ["EPS wage ceiling", data.ceiling]
+        ];
 
-        setText("futureEpf", formatMoney(result.balance));
-        setText("monthlyPension", formatMoney(result.monthlyPension));
-        setText("annualPension", formatMoney(result.annualPension));
-        setText("employeeContribution", formatMoney(result.employeeMonthly));
-        setText("employerContribution", formatMoney(result.employerTotal));
-        setText("epsContribution", formatMoney(result.epsMonthly));
-        setText("employerEpfRemainder", formatMoney(result.employerEpf));
-        setText("monthlyEpfAddition", formatMoney(result.monthlyEpfAddition));
-        setText("retirementYears", result.years + (result.years === 1 ? " year" : " years"));
+        for (const [label, value] of numericFields) {
+          if (!Number.isFinite(value) || value < 0) {
+            return `${label} must be a valid non-negative number.`;
+          }
+        }
 
-        const name = $("employeeName").value.trim();
+        if (data.currentAge < 18 || data.currentAge > 100) {
+          return "Enter a current age between 18 and 100.";
+        }
+
+        if (data.retirementAge < 40 || data.retirementAge > 100) {
+          return "Enter a retirement age between 40 and 100.";
+        }
+
+        if (data.retirementAge < data.currentAge) {
+          return "Retirement age must be greater than or equal to current age.";
+        }
+
+        if (data.serviceYears > 50) {
+          return "Completed service cannot exceed 50 years in this calculator.";
+        }
+
+        if (data.serviceMonths > 11) {
+          return "Additional service months must be between 0 and 11.";
+        }
+
+        if (data.employeeRate > 100 || data.employerRate > 100) {
+          return "Contribution rates must not exceed 100%.";
+        }
+
+        if (data.annualRate > 20) {
+          return "Enter an annual EPF interest assumption between 0% and 20%.";
+        }
+
+        if (
+          epsWageCeiling.value === "custom" &&
+          (!Number.isFinite(data.ceiling) || data.ceiling <= 0)
+        ) {
+          return "Enter a custom EPS wage ceiling greater than ₹0.";
+        }
+
+        return "";
+      }
+
+      /*
+       * Projection method:
+       * - Current balance compounds monthly at the assumed annual rate.
+       * - Contributions are estimated at the end of each month.
+       * - Monthly contributions are salary multiplied by the entered
+       *   employee + employer EPF rates.
+       *
+       * This is an approximation and does not reproduce official EPF
+       * account-level interest crediting, wage-ceiling, or payroll rules.
+       */
+      function projectEpfBalance(data, monthsRemaining) {
+        let balance = data.currentBalance;
+        let contributions = 0;
+        const monthlyRate = Math.pow(1 + data.annualRate / 100, 1 / 12) - 1;
+
+        const monthlyContribution =
+          data.basicSalary *
+          ((data.employeeRate + data.employerRate) / 100);
+
+        for (let month = 0; month < monthsRemaining; month += 1) {
+          balance *= 1 + monthlyRate;
+
+          if (data.futureContribution === "yes") {
+            balance += monthlyContribution;
+            contributions += monthlyContribution;
+          }
+        }
+
+        const estimatedInterest =
+          balance - data.currentBalance - contributions;
+
+        return {
+          projectedBalance: Math.max(0, balance),
+          contributions,
+          interest: Math.max(0, estimatedInterest),
+          monthlyContribution:
+            data.futureContribution === "yes" ? monthlyContribution : 0
+        };
+      }
+
+      function calculate() {
+        const data = getInputData();
+        const error = validateData(data);
+
+        if (error) {
+          setWarning(error);
+          return;
+        }
+
+        const futureYears = data.retirementAge - data.currentAge;
+        const futureMonths = Math.max(0, Math.round(futureYears * 12));
+
+        const pastService =
+          data.serviceYears + data.serviceMonths / 12;
+
+        const totalService = pastService + futureYears;
+
+        /*
+         * Simplified pensionable salary selection.
+         * "Use pensionable salary above" uses the salary entered by the user.
+         * "Cap at selected EPS ceiling" applies the selected ceiling.
+         */
+        const pensionableSalary =
+          data.salaryMode === "capped"
+            ? Math.min(data.pensionSalary, data.ceiling)
+            : data.pensionSalary;
+
+        /*
+         * Illustrative EPS pension formula:
+         * pensionable salary × pensionable service ÷ 70.
+         * Eligibility and official service rounding are not determined here.
+         */
+        const monthlyPension =
+          (pensionableSalary * totalService) / 70;
+
+        const epfProjection = projectEpfBalance(data, futureMonths);
+
+        setText("resultIntro", data.name
+          ? `Estimate prepared for ${data.name}. Figures are based on your entered assumptions.`
+          : "Figures are based on your entered assumptions. Adjust any field to update the estimate."
+        );
+
+        setText("currentBalanceResult", formatMoney(data.currentBalance));
+        setText("futureContributionsResult", formatMoney(epfProjection.contributions));
+        setText("futureInterestResult", formatMoney(epfProjection.interest));
         setText(
-          "resultSubtitle",
-          name ? "Estimate for " + name : "Based on the details you entered"
+          "futureServiceResult",
+          `${formatNumber(futureYears)} ${futureYears === 1 ? "year" : "years"}`
+        );
+        setText("totalServiceResult", `${formatNumber(totalService)} years`);
+        setText("pensionableSalaryResult", `${formatMoney(pensionableSalary)} / month`);
+        setText("monthlyPensionResult", `${formatMoney(monthlyPension)} / month`);
+        setText("projectedBalanceResult", formatMoney(epfProjection.projectedBalance));
+
+        setText(
+          "pensionMethodNote",
+          `Illustrative formula: ${formatMoney(pensionableSalary)} × ${formatNumber(totalService)} service years ÷ 70. Actual EPFO calculations may differ.`
         );
 
         const warnings = [];
 
-        if (result.service < 10) {
+        if (totalService < 10) {
           warnings.push(
-            "Your entered service is below the commonly applicable 10-year threshold for a regular monthly EPS pension. The displayed pension estimate is therefore ₹0."
-          );
-        } else {
-          warnings.push(
-            "Your entered service is at least 10 years. Actual eligibility and pension amount must be confirmed against your EPFO records and applicable rules."
+            "Your entered total service is below 10 years. This calculator does not determine pension eligibility or withdrawal entitlement."
           );
         }
 
-        if (result.currentAge >= result.pensionAge) {
+        if (data.currentAge >= data.retirementAge) {
           warnings.push(
-            "Your current age is at or above the pension age entered. Confirm your pension commencement eligibility and service details with EPFO."
+            "No future service is projected because your current age is at or above the selected retirement age."
           );
         }
 
-        if (result.pensionableSalary > 15000) {
+        if (data.salaryMode === "actual" && data.pensionSalary > data.ceiling) {
           warnings.push(
-            "Your pensionable salary is above ₹15,000. Actual EPS pensionable wages may be subject to scheme limits or specific applicable provisions."
+            "Your pensionable salary exceeds the selected wage ceiling. You chose to use the entered salary without capping it; confirm the applicable rules for your membership."
           );
         }
 
-        if (numberValue("epsRate") > numberValue("employerRate")) {
-          warnings.push(
-            "The entered EPS allocation rate exceeds the employer PF contribution rate. Check these assumptions; the estimate caps the EPS allocation at the employer contribution."
-          );
+        warnings.push(
+          "This is an illustrative estimate only. Verify your actual service record, wage history, contributions, and applicable EPFO rules."
+        );
+
+        setWarning(warnings.join(" "));
+
+        const printDate = document.getElementById("printDate");
+        if (printDate) {
+          printDate.textContent =
+            `Prepared on ${new Date().toLocaleDateString("en-IN")} · ` +
+            (data.name ? `Name: ${data.name}` : "Name not provided");
         }
+      }
 
-        if (result.years === 0) {
-          warnings.push(
-            "The future EPF balance is based on your current balance because the remaining years to retirement are set to zero."
-          );
-        }
-
-        const notice = $("eligibilityNotice");
-        notice.replaceChildren();
-
-        const title = document.createElement("strong");
-        title.textContent = "Eligibility and estimate notes";
-        notice.appendChild(title);
-
-        const list = document.createElement("ul");
-        list.style.margin = "5px 0 0";
-        list.style.paddingLeft = "17px";
-
-        warnings.forEach((message) => {
-          const item = document.createElement("li");
-          item.style.marginTop = "5px";
-          item.textContent = message;
-          list.appendChild(item);
-        });
-
-        notice.appendChild(list);
-
-        $("printDate").textContent =
-          "Generated on " + new Date().toLocaleDateString("en-IN", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric"
-          });
-
-        return result;
+      function toggleCustomCeiling() {
+        const isCustom = epsWageCeiling.value === "custom";
+        customCeilingField.hidden = !isCustom;
+        customCeiling.required = isCustom;
+        calculate();
       }
 
       function resetForm() {
         Object.entries(initialValues).forEach(([id, value]) => {
-          $(id).value = value;
+          const element = document.getElementById(id);
+          if (element) element.value = value;
         });
 
-        updateEstimate();
-      }
+        epsWageCeiling.value = initialValues.epsWageCeiling;
+        customCeilingField.hidden = true;
+        customCeiling.required = false;
 
-      function downloadCsv() {
-        const result = updateEstimate();
-
-        const rows = [
-          ["ARTHNIX EPF & EPS Pension Estimate", ""],
-          ["Generated on", new Date().toLocaleString("en-IN")],
-          ["Employee name", $("employeeName").value.trim()],
-          ["Current age", numberValue("currentAge")],
-          ["Pension age entered", numberValue("retirementAge")],
-          ["Eligible EPS service entered (years)", result.service],
-          ["Monthly basic salary + DA", result.basicSalary],
-          ["Employee contribution rate (%)", numberValue("employeeRate")],
-          ["Employer contribution rate (%)", numberValue("employerRate")],
-          ["Monthly pensionable salary entered", result.pensionableSalary],
-          ["EPS allocation rate (%)", numberValue("epsRate")],
-          ["Current EPF balance entered", numberValue("existingEpf")],
-          ["Assumed annual interest (%)", result.annualInterest],
-          ["Assumed annual salary growth (%)", result.salaryGrowth],
-          ["Years to retirement", result.years],
-          ["Additional monthly contribution", numberValue("voluntaryRate")],
-          ["Monthly employee EPF contribution estimate", result.employeeMonthly],
-          ["Monthly employer PF contribution estimate", result.employerTotal],
-          ["Monthly employer EPS allocation estimate", result.epsMonthly],
-          ["Monthly employer EPF remainder estimate", result.employerEpf],
-          ["Estimated monthly EPF additions", result.monthlyEpfAddition],
-          ["Estimated EPF balance at retirement", result.balance],
-          ["Estimated monthly EPS pension", result.monthlyPension],
-          ["Estimated annual EPS pension", result.annualPension],
-          ["Assumptions and disclaimer", "Illustrative estimates only; verify actual benefits with EPFO."]
-        ];
-
-        const csv = rows.map((row) =>
-          row.map((cell) => {
-            const text = String(cell ?? "");
-            return '"' + text.replace(/"/g, '""') + '"';
-          }).join(",")
-        ).join("\r\n");
-
-        const blob = new Blob(["\uFEFF" + csv], {
-          type: "text/csv;charset=utf-8;"
-        });
-
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "arthnix-epf-eps-pension-estimate.csv";
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        URL.revokeObjectURL(url);
+        calculate();
       }
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        if (!form.reportValidity()) {
-          return;
-        }
-
-        updateEstimate();
+        if (!form.reportValidity()) return;
+        calculate();
       });
 
-      form.addEventListener("input", updateEstimate);
-      form.addEventListener("change", updateEstimate);
+      form.querySelectorAll("input, select").forEach((element) => {
+        element.addEventListener("input", calculate);
+        element.addEventListener("change", calculate);
+      });
 
-      $("resetButton").addEventListener("click", resetForm);
+      epsWageCeiling.addEventListener("change", toggleCustomCeiling);
 
-      $("printButton").addEventListener("click", () => {
-        updateEstimate();
+      resetButton.addEventListener("click", resetForm);
+
+      printButton.addEventListener("click", () => {
+        calculate();
         window.print();
       });
 
-      $("downloadButton").addEventListener("click", downloadCsv);
+      copyButton.addEventListener("click", async () => {
+        calculate();
 
-      // Shared mobile navigation behavior.
-      const menuToggle = $("menuToggle");
-      const navLinks = $("navLinks");
+        const summary = [
+          "ARTHNIX — EPF & EPS Pension Estimate",
+          textOf("employeeName") ? `Name: ${textOf("employeeName")}` : "",
+          `Current EPF balance: ${document.getElementById("currentBalanceResult").textContent}`,
+          `Estimated future EPF contributions: ${document.getElementById("futureContributionsResult").textContent}`,
+          `Estimated future interest: ${document.getElementById("futureInterestResult").textContent}`,
+          `Additional service until retirement: ${document.getElementById("futureServiceResult").textContent}`,
+          `Estimated total service: ${document.getElementById("totalServiceResult").textContent}`,
+          `Pensionable salary used: ${document.getElementById("pensionableSalaryResult").textContent}`,
+          `Estimated monthly EPS pension: ${document.getElementById("monthlyPensionResult").textContent}`,
+          `Estimated EPF corpus at retirement: ${document.getElementById("projectedBalanceResult").textContent}`,
+          "",
+          `Note: ${document.getElementById("resultsWarning").textContent}`,
+          "This is an illustrative estimate, not an official EPFO calculation."
+        ].filter(Boolean).join("\n");
 
-      function setMenuState(isOpen) {
-        navLinks.classList.toggle("is-open", isOpen);
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-      }
+        try {
+          await navigator.clipboard.writeText(summary);
+          copyButton.textContent = "Copied!";
+          window.setTimeout(() => {
+            copyButton.textContent = "Copy Summary";
+          }, 1600);
+        } catch (error) {
+          const textArea = document.createElement("textarea");
+          textArea.value = summary;
+          textArea.setAttribute("readonly", "");
+          textArea.style.position = "fixed";
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.select();
 
-      menuToggle.addEventListener("click", () => {
-        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-        setMenuState(!isOpen);
-      });
+          let copied = false;
 
-      navLinks.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => setMenuState(false));
-      });
+          try {
+            copied = document.execCommand("copy");
+          } catch (copyError) {
+            copied = false;
+          }
 
-      document.addEventListener("click", (event) => {
-        if (!event.target.closest(".navbar")) {
-          setMenuState(false);
+          textArea.remove();
+          copyButton.textContent = copied ? "Copied!" : "Copy unavailable";
+
+          window.setTimeout(() => {
+            copyButton.textContent = "Copy Summary";
+          }, 1800);
         }
       });
 
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          setMenuState(false);
-        }
-      });
-
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 760) {
-          setMenuState(false);
-        }
-      });
-
-      $("currentYear").textContent = new Date().getFullYear();
-
-      updateEstimate();
+      toggleCustomCeiling();
+      calculate();
     })();
   </script>
 </body>
