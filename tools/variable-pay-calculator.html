@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Variable Pay Calculator — ARTHNIX</title>
+  <meta name="description" content="Calculate variable pay, performance bonuses, sales commissions, incentive earnings, target achievement, and total compensation with the free ARTHNIX Variable Pay Calculator.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://arthnix.com/tools/variable-pay-calculator.html">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:title" content="Variable Pay Calculator — ARTHNIX">
+  <meta property="og:description" content="Estimate performance bonuses, commissions, incentives, and total compensation with the ARTHNIX Variable Pay Calculator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arthnix.com/tools/variable-pay-calculator.html">
+
+  <link rel="icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-soft: #f7f7f7;
+      --surface-hover: #f0f0f0;
+      --text: #151515;
+      --muted: #6c6c6c;
+      --border: #e6e6e6;
+      --accent: #e1262f;
+      --accent-hover: #c91d26;
+      --accent-soft: #fff0f0;
+      --success: #16804a;
+      --success-soft: #eaf8ef;
+      --warning: #956300;
+      --warning-soft: #fff7df;
+      --shadow: 0 12px 40px rgba(0, 0, 0, .055);
+      --radius: 18px;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: #4e4e4e;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      padding: 10px 17px;
+      border-radius: 9px;
+      background: var(--text);
+      color: #fff !important;
+      transition: background .2s, transform .2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      font-size: 21px;
+    }
+
+    .hero {
+      padding: 76px 0 49px;
+      background:
+        radial-gradient(ellipse at 88% 8%, rgba(225, 38, 47, .075), transparent 32%),
+        linear-gradient(180deg, #fff 0%, #fbfbfb 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: block;
+      width: 23px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: "Manrope", sans-serif;
+      line-height: 1.2;
+    }
+
+    .hero h1 {
+      max-width: 790px;
+      margin: 19px 0 18px;
+      font-size: clamp(36px, 5.5vw, 59px);
+      font-weight: 800;
+      letter-spacing: -2.7px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: #fff;
+      color: #505050;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    main {
+      padding: 42px 0 85px;
+    }
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(340px, .88fr);
+      align-items: start;
+      gap: 25px;
+    }
+
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      padding: 23px 25px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #fff, #fafafa);
+    }
+
+    .panel-header h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      letter-spacing: -.55px;
+    }
+
+    .panel-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .panel-body {
+      padding: 25px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    .form-section + .form-section {
+      margin-top: 30px;
+      padding-top: 27px;
+      border-top: 1px solid var(--border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #3d3d3d;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .optional {
+      color: #888;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-prefix,
+    .input-suffix {
+      position: absolute;
+      top: 50%;
+      z-index: 1;
+      color: #888;
+      font-size: 13px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .input-prefix {
+      left: 12px;
+    }
+
+    .input-suffix {
+      right: 12px;
+    }
+
+    input,
+    select,
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 45px;
+      padding: 11px 12px;
+      border: 1px solid #dedede;
+      border-radius: 9px;
+      outline: none;
+      background: #fff;
+      color: var(--text);
+      font-size: 13px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input.with-prefix {
+      padding-left: 31px;
+    }
+
+    input.with-suffix {
+      padding-right: 38px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(225, 38, 47, .09);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #aaa;
+    }
+
+    input[type="number"] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .field-help {
+      margin: 6px 0 0;
+      color: #888;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .info-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 12px 13px;
+      border: 1px solid #f2d7a3;
+      border-radius: 10px;
+      background: #fffaf0;
+      color: #76531a;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .info-box strong {
+      color: #5b3d0d;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 29px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 45px;
+      padding: 11px 17px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 800;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-soft);
+      border-color: #ccc;
+    }
+
+    .results-panel {
+      position: sticky;
+      top: 100px;
+    }
+
+    .results-hero {
+      padding: 26px;
+      background: #171717;
+      color: #fff;
+    }
+
+    .results-overline {
+      color: #bdbdbd;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .net-label {
+      margin-top: 24px;
+      color: #d0d0d0;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .net-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-top: 4px;
+      overflow-wrap: anywhere;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(33px, 4vw, 45px);
+      font-weight: 800;
+      letter-spacing: -1.8px;
+      line-height: 1.25;
+    }
+
+    .net-amount .currency {
+      color: #ff7b81;
+      font-size: 23px;
+      letter-spacing: 0;
+    }
+
+    .net-caption {
+      margin-top: 8px;
+      color: #bdbdbd;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .results-body {
+      padding: 24px;
+    }
+
+    .result-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid #ededed;
+    }
+
+    .result-row:last-child {
+      border-bottom: 0;
+    }
+
+    .result-label {
+      color: #666;
+      font-size: 12px;
+    }
+
+    .result-value {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .result-value.positive {
+      color: var(--success);
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+    }
+
+    .result-divider {
+      height: 1px;
+      margin: 8px 0;
+      background: var(--border);
+    }
+
+    .result-total {
+      margin-top: 12px;
+      padding: 17px;
+      border: 1px solid #f1cccc;
+      border-radius: 12px;
+      background: var(--accent-soft);
+    }
+
+    .result-total .result-row {
+      padding: 5px 0;
+      border: 0;
+    }
+
+    .result-total .result-label {
+      color: #6d3335;
+      font-weight: 700;
+    }
+
+    .result-total .result-value {
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .achievement-card {
+      margin-top: 21px;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .achievement-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .achievement-title {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .achievement-percent {
+      color: var(--accent);
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .progress-track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 100px;
+      background: #e8e8e8;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width .35s ease;
+    }
+
+    .progress-caption {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .breakdown-title {
+      margin: 24px 0 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .breakdown-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .breakdown-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .breakdown-name {
+      color: #666;
+      font-size: 11px;
+    }
+
+    .breakdown-amount {
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .breakdown-track {
+      grid-column: 1 / -1;
+      height: 5px;
+      overflow: hidden;
+      margin-top: -6px;
+      border-radius: 50px;
+      background: #ededed;
+    }
+
+    .breakdown-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width .3s ease;
+    }
+
+    .results-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .results-actions .btn {
+      width: 100%;
+      padding-inline: 10px;
+    }
+
+    .disclaimer {
+      margin-top: 17px;
+      color: #888;
+      font-size: 10px;
+      line-height: 1.75;
+    }
+
+    .content-section {
+      margin-top: 65px;
+    }
+
+    .section-intro {
+      max-width: 710px;
+      margin-bottom: 27px;
+    }
+
+    .section-intro h2 {
+      margin: 12px 0;
+      font-size: clamp(25px, 3.2vw, 35px);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+    }
+
+    .section-intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .info-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #fff;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .info-card:hover {
+      border-color: #efb9bc;
+      transform: translateY(-3px);
+    }
+
+    .info-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 17px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .info-card h3 {
+      margin: 0 0 9px;
+      font-size: 16px;
+      letter-spacing: -.4px;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .example-box {
+      margin-top: 25px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .example-box-header {
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    .example-box-header h3 {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .example-table-wrap {
+      overflow-x: auto;
+    }
+
+    .example-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    .example-table th,
+    .example-table td {
+      padding: 14px 19px;
+      border-bottom: 1px solid #eee;
+      white-space: nowrap;
+    }
+
+    .example-table th {
+      background: #fcfcfc;
+      color: #777;
+      font-size: 10px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .example-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .example-table td:last-child,
+    .example-table th:last-child {
+      text-align: right;
+    }
+
+    .example-table .total-row td {
+      background: #fff5f5;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .faq-item summary {
+      position: relative;
+      padding: 18px 48px 18px 19px;
+      cursor: pointer;
+      list-style: none;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 19px;
+      color: var(--accent);
+      font-size: 22px;
+      font-weight: 500;
+      transform: translateY(-50%);
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-answer {
+      padding: 0 19px 19px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .faq-answer p {
+      margin: 0;
+    }
+
+    .cta-band {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 65px;
+      padding: 32px;
+      border-radius: 18px;
+      background: #171717;
+      color: #fff;
+    }
+
+    .cta-band h2 {
+      margin: 0 0 8px;
+      font-size: 23px;
+      letter-spacing: -.7px;
+    }
+
+    .cta-band p {
+      max-width: 620px;
+      margin: 0;
+      color: #c4c4c4;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .cta-band .btn {
+      flex-shrink: 0;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: #fafafa;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap: 45px;
+      padding: 48px 0 38px;
+    }
+
+    .footer-brand-copy {
+      max-width: 350px;
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .footer-heading {
+      margin: 0 0 15px;
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      width: fit-content;
+      color: var(--muted);
+      font-size: 12px;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+      color: #858585;
+      font-size: 10px;
+    }
+
+    .footer-bottom strong {
+      color: var(--text);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 16px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .results-panel {
+        position: static;
+      }
+
+      .results-hero {
+        padding: 24px;
+      }
+
+      .net-amount {
+        font-size: 42px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 28px, var(--max-width));
+      }
+
+      .navbar {
+        min-height: 67px;
+      }
+
+      .brand img {
+        width: 33px;
+        height: 33px;
+      }
+
+      .brand-name {
+        font-size: 19px;
+      }
+
+      .mobile-menu-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 18px;
+        border-bottom: 1px solid var(--border);
+        background: #fff;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .06);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links a {
+        padding: 12px 4px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .nav-links .nav-cta {
+        margin-top: 10px;
+        padding: 11px 14px;
+        text-align: center;
+      }
+
+      .hero {
+        padding: 52px 0 36px;
+      }
+
+      .hero h1 {
+        font-size: clamp(35px, 9vw, 46px);
+        letter-spacing: -1.8px;
+      }
+
+      .hero-copy {
+        font-size: 14px;
+      }
+
+      main {
+        padding-top: 26px;
+      }
+
+      .panel-header {
+        padding: 20px;
+      }
+
+      .panel-body,
+      .results-body {
+        padding: 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .actions .btn {
+        width: 100%;
+      }
+
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .content-section {
+        margin-top: 48px;
+      }
+
+      .cta-band {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 24px;
+      }
+
+      .cta-band .btn {
+        width: 100%;
+      }
+
+      .footer-main {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding: 36px 0;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
+      body {
+        background: #fff !important;
+        color: #111 !important;
+        font-size: 11px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .site-header,
+      .hero,
+      .calculator-panel,
+      .content-section,
+      .cta-band,
+      .site-footer,
+      .results-actions,
+      .disclaimer,
+      .no-print {
+        display: none !important;
+      }
+
+      main {
+        padding: 0 !important;
+      }
+
+      .container {
+        width: 100% !important;
+        max-width: none !important;
+      }
+
+      .calculator-layout {
+        display: block !important;
+      }
+
+      .results-panel {
+        position: static !important;
+        display: block !important;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+      }
+
+      .results-panel .panel-header {
+        padding: 16px 18px !important;
+      }
+
+      .results-panel .panel-body {
+        padding: 18px !important;
+      }
+
+      .results-hero {
+        padding: 22px !important;
+        background: #171717 !important;
+        color: #fff !important;
+      }
+
+      .net-amount {
+        font-size: 35px !important;
+      }
+
+      .achievement-card,
+      .result-total {
+        break-inside: avoid;
+      }
+
+      .print-only {
+        display: block !important;
+      }
+
+      .print-header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 14px;
+        border-bottom: 2px solid #e1262f;
+      }
+
+      .print-header h1 {
+        margin: 0 0 5px;
+        font-size: 23px;
+      }
+
+      .print-header p {
+        margin: 0;
+        color: #666;
+        font-size: 10px;
+      }
+
+      .print-date {
+        text-align: right;
+        color: #555;
+        font-size: 10px;
+      }
+    }
+
+    .print-only {
+      display: none;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ARTHNIX Variable Pay Calculator",
+    "url": "https://arthnix.com/tools/variable-pay-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "A free calculator for estimating variable compensation, performance bonuses, incentives, commissions, and total compensation.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="ARTHNIX home">
+          <img src="/logo.png" alt="ARTHNIX logo" onerror="this.style.display='none'">
+          <span class="brand-name">ARTH<span>NIX</span></span>
+        </a>
+
+        <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="/">Home</a>
+          <a href="/platform.html">Platform</a>
+          <a href="/tools.html" class="active">Tools</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/contact.html" class="nav-cta">Contact Us ↗</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Free Compensation Tool</span>
+      <h1>Calculate your <span>variable pay.</span></h1>
+      <p class="hero-copy">
+        Estimate your performance bonus, sales commission, incentives, and total compensation.
+        Enter your target, achievement, and payout rules to understand how your variable pay adds up.
+      </p>
+
+      <div class="hero-badges">
+        <span class="badge"><span class="badge-dot"></span> Free to use</span>
+        <span class="badge">₹ Indian currency</span>
+        <span class="badge">Instant calculation</span>
+        <span class="badge">Print or save as PDF</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="calculator-layout">
+
+        <!-- Input panel -->
+        <section class="panel calculator-panel" aria-labelledby="inputHeading">
+          <div class="panel-header">
+            <h2 id="inputHeading">Variable pay details</h2>
+            <p>Enter your compensation details to calculate your estimated payout.</p>
+          </div>
+
+          <div class="panel-body">
+            <form id="variablePayForm">
+              <div class="form-section">
+                <h3 class="section-heading">
+                  <span class="section-number">01</span>
+                  Fixed compensation
+                </h3>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="currency">Currency</label>
+                    <select id="currency" name="currency">
+                      <option value="INR" selected>INR — Indian Rupee (₹)</option>
+                      <option value="USD">USD — US Dollar ($)</option>
+                      <option value="GBP">GBP — British Pound (£)</option>
+                      <option value="EUR">EUR — Euro (€)</option>
+                      <option value="AED">AED — UAE Dirham</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="payPeriod">Compensation period</label>
+                    <select id="payPeriod" name="payPeriod">
+                      <option value="annual" selected>Annual</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="quarterly">Quarterly</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="fixedPay">Fixed pay for selected period</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="fixedPay" min="0" step="any" value="600000" required>
+                    </div>
+                    <p class="field-help">Your fixed salary for the selected period.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="targetVariable">Target variable pay</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="targetVariable" min="0" step="any" value="120000" required>
+                    </div>
+                    <p class="field-help">Your full target bonus or incentive for this period.</p>
+                  </div>
+
+                  <div class="field full">
+                    <label for="targetVariablePercent">Target variable pay as a percentage of fixed pay</label>
+                    <div class="input-wrap">
+                      <input class="with-suffix" type="number" id="targetVariablePercent" min="0" max="10000" step="any" value="20">
+                      <span class="input-suffix">%</span>
+                    </div>
+                    <p class="field-help">Changing this percentage automatically updates target variable pay using your fixed pay.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3 class="section-heading">
+                  <span class="section-number">02</span>
+                  Performance and achievement
+                </h3>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="targetValue">Performance target</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="targetValue" min="0" step="any" value="1000000" required>
+                    </div>
+                    <p class="field-help">Your assigned sales, revenue, or performance target.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="achievedValue">Actual achievement</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="achievedValue" min="0" step="any" value="1100000" required>
+                    </div>
+                    <p class="field-help">Your actual result for the period.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="payoutMethod">Payout method</label>
+                    <select id="payoutMethod">
+                      <option value="linear" selected>Linear — proportional payout</option>
+                      <option value="threshold">Threshold — minimum achievement required</option>
+                      <option value="tiered">Tiered — performance multiplier</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="threshold">Minimum achievement for payout</label>
+                    <div class="input-wrap">
+                      <input class="with-suffix" type="number" id="threshold" min="0" max="1000" step="any" value="80">
+                      <span class="input-suffix">%</span>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="payoutCap">Maximum payout cap</label>
+                    <div class="input-wrap">
+                      <input class="with-suffix" type="number" id="payoutCap" min="0" max="10000" step="any" value="200">
+                      <span class="input-suffix">%</span>
+                    </div>
+                    <p class="field-help">Maximum payout as a percentage of target variable pay. Set to 100 for a 100% cap.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="performanceMultiplier">Tiered payout multiplier</label>
+                    <div class="input-wrap">
+                      <input class="with-suffix" type="number" id="performanceMultiplier" min="0" max="100" step="any" value="1.2">
+                      <span class="input-suffix">×</span>
+                    </div>
+                    <p class="field-help">Used only with the tiered payout method.</p>
+                  </div>
+                </div>
+
+                <div class="info-box">
+                  <span aria-hidden="true">ⓘ</span>
+                  <div>
+                    <strong>Choose the method that matches your incentive plan.</strong>
+                    Linear payout is proportional to achievement. Threshold payout starts only after the minimum threshold. Tiered payout applies your chosen multiplier once the threshold is reached. Actual company plans may use more complex rules.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3 class="section-heading">
+                  <span class="section-number">03</span>
+                  Additional earnings and adjustments
+                </h3>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="commission">Additional commission</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="commission" min="0" step="any" value="15000">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="otherIncentives">Other incentives</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="otherIncentives" min="0" step="any" value="5000">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="adjustments">Bonus adjustments</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="adjustments" step="any" value="0">
+                    </div>
+                    <p class="field-help">Enter a positive amount for an addition or a negative amount for a reduction.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="deductions">Estimated deductions</label>
+                    <div class="input-wrap">
+                      <span class="input-prefix currency-symbol">₹</span>
+                      <input class="with-prefix money-input" type="number" id="deductions" min="0" step="any" value="0">
+                    </div>
+                    <p class="field-help">Optional estimated tax or other deductions from the variable payout.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="btn btn-primary" type="submit">Calculate variable pay ↗</button>
+                <button class="btn btn-secondary" type="button" id="resetButton">Reset calculator</button>
+              </div>
+              <p class="sr-only" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </section>
+
+        <!-- Results panel -->
+        <aside class="panel results-panel" id="resultsPanel" aria-labelledby="resultsHeading">
+          <div class="results-hero">
+            <div class="results-overline" id="resultsHeading">Your estimated compensation</div>
+            <div class="net-label">Total estimated pay after entered deductions</div>
+            <div class="net-amount">
+              <span class="currency currency-symbol">₹</span>
+              <span id="netPay">1,46,000</span>
+            </div>
+            <div class="net-caption" id="netCaption">Fixed pay + variable earnings − estimated deductions</div>
+          </div>
+
+          <div class="results-body">
+            <div class="result-row">
+              <span class="result-label">Fixed pay</span>
+              <span class="result-value" id="fixedPayResult">₹6,00,000</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Target variable pay</span>
+              <span class="result-value" id="targetVariableResult">₹1,20,000</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Target achievement</span>
+              <span class="result-value" id="achievementResult">110%</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Calculated performance payout</span>
+              <span class="result-value positive" id="performancePayoutResult">₹1,32,000</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Additional commission</span>
+              <span class="result-value" id="commissionResult">₹15,000</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Other incentives</span>
+              <span class="result-value" id="otherIncentivesResult">₹5,000</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Bonus adjustments</span>
+              <span class="result-value" id="adjustmentsResult">₹0</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Estimated deductions</span>
+              <span class="result-value highlight" id="deductionsResult">−₹0</span>
+            </div>
+
+            <div class="result-total">
+              <div class="result-row">
+                <span class="result-label">Total variable earnings</span>
+                <span class="result-value" id="totalVariableResult">₹1,52,000</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Total compensation</span>
+                <span class="result-value" id="totalCompensationResult">₹7,52,000</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Effective variable pay %</span>
+                <span class="result-value" id="effectiveVariableResult">25.3%</span>
+              </div>
+            </div>
+
+            <div class="achievement-card">
+              <div class="achievement-top">
+                <span class="achievement-title">Target achievement</span>
+                <span class="achievement-percent" id="achievementPercent">110%</span>
+              </div>
+              <div class="progress-track" id="achievementTrack" role="progressbar" aria-label="Target achievement" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                <div class="progress-bar" id="achievementBar"></div>
+              </div>
+              <p class="progress-caption" id="achievementCaption">You achieved 110% of your performance target.</p>
+            </div>
+
+            <h3 class="breakdown-title">Variable earnings breakdown</h3>
+            <div class="breakdown-list">
+              <div class="breakdown-item">
+                <span class="breakdown-name">Performance payout</span>
+                <span class="breakdown-amount" id="breakdownPerformanceAmount">₹1,32,000</span>
+                <div class="breakdown-track"><div class="breakdown-fill" id="breakdownPerformanceBar"></div></div>
+              </div>
+
+              <div class="breakdown-item">
+                <span class="breakdown-name">Additional commission</span>
+                <span class="breakdown-amount" id="breakdownCommissionAmount">₹15,000</span>
+                <div class="breakdown-track"><div class="breakdown-fill" id="breakdownCommissionBar"></div></div>
+              </div>
+
+              <div class="breakdown-item">
+                <span class="breakdown-name">Other incentives</span>
+                <span class="breakdown-amount" id="breakdownIncentivesAmount">₹5,000</span>
+                <div class="breakdown-track"><div class="breakdown-fill" id="breakdownIncentivesBar"></div></div>
+              </div>
+            </div>
+
+            <div class="results-actions">
+              <button class="btn btn-primary" type="button" id="printButton">Print / PDF ↓</button>
+              <button class="btn btn-secondary" type="button" id="downloadButton">Download CSV ↓</button>
+            </div>
+
+            <p class="disclaimer">
+              Estimates only. Actual variable pay depends on your employer's compensation policy, performance rules, eligibility, payroll treatment, and applicable taxes. This calculator does not provide tax or legal advice.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Educational content -->
+      <section class="content-section" aria-labelledby="understandHeading">
+        <div class="section-intro">
+          <span class="eyebrow">Understand Your Pay</span>
+          <h2 id="understandHeading">What makes up variable compensation?</h2>
+          <p>
+            Variable pay is compensation linked to performance, results, sales, or specific business outcomes.
+            It is usually paid in addition to fixed salary and can vary by employer and incentive plan.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-icon">01</div>
+            <h3>Performance bonus</h3>
+            <p>A bonus linked to individual, team, or company performance. The amount may depend on ratings, target achievement, and payout rules.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">02</div>
+            <h3>Sales commission</h3>
+            <p>Additional earnings linked to sales, revenue, collections, or closed deals. Some plans use a fixed percentage while others use tiers.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">03</div>
+            <h3>Target variable pay</h3>
+            <p>The amount you may receive at 100% target achievement, subject to eligibility and the conditions in your employer's plan.</p>
+          </article>
+        </div>
+
+        <div class="example-box">
+          <div class="example-box-header">
+            <h3>Example: How variable pay is calculated</h3>
+          </div>
+
+          <div class="example-table-wrap">
+            <table class="example-table">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Example amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Annual fixed pay</td>
+                  <td>₹6,00,000</td>
+                </tr>
+                <tr>
+                  <td>Target variable pay</td>
+                  <td>₹1,20,000</td>
+                </tr>
+                <tr>
+                  <td>Target achievement</td>
+                  <td>110%</td>
+                </tr>
+                <tr>
+                  <td>Performance payout at 1.1×, before cap</td>
+                  <td>₹1,32,000</td>
+                </tr>
+                <tr>
+                  <td>Additional commission and incentives</td>
+                  <td>₹20,000</td>
+                </tr>
+                <tr class="total-row">
+                  <td>Total annual compensation before deductions</td>
+                  <td>₹7,52,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faqHeading">
+        <div class="section-intro">
+          <span class="eyebrow">Common Questions</span>
+          <h2 id="faqHeading">Variable pay calculator FAQs</h2>
+          <p>Learn how to interpret the results and use them for compensation planning.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is variable pay?</summary>
+            <div class="faq-answer">
+              <p>Variable pay is compensation that depends on performance, targets, sales, business results, or other conditions. Common examples include annual performance bonuses, sales commissions, incentives, and target-linked payouts. Unlike fixed pay, the amount may change between periods.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do I calculate variable pay from target achievement?</summary>
+            <div class="faq-answer">
+              <p>Under a simple linear plan, divide actual achievement by the target and multiply the result by target variable pay. For example, if target variable pay is ₹1,00,000 and achievement is 110%, the uncapped payout is ₹1,10,000. Thresholds, multipliers, and caps may change the final amount.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is the difference between fixed pay and variable pay?</summary>
+            <div class="faq-answer">
+              <p>Fixed pay is the salary component generally paid according to your employment terms. Variable pay depends on the conditions of an incentive or bonus plan. Your offer letter may define these components differently, so review the employer's compensation structure before comparing offers.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is variable pay guaranteed?</summary>
+            <div class="faq-answer">
+              <p>Not necessarily. Some plans require a minimum performance level, active employment on a specified date, manager approval, or company-level results. Eligibility and payout conditions vary by employer. Check your offer letter and incentive policy to understand what is guaranteed and what is conditional.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does this calculator calculate income tax automatically?</summary>
+            <div class="faq-answer">
+              <p>No. You can enter an estimated deduction manually, but the calculator does not determine your tax liability. Actual tax treatment depends on your income, tax regime, applicable law, payroll details, and other circumstances.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I use this calculator for monthly or quarterly incentives?</summary>
+            <div class="faq-answer">
+              <p>Yes. Choose the relevant compensation period and enter fixed pay and target variable pay for that same period. Ensure that your performance target, actual achievement, commissions, incentives, and deductions are also entered for a consistent period.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is my compensation data uploaded anywhere?</summary>
+            <div class="faq-answer">
+              <p>The calculations on this page run in your browser. This page's calculator code does not submit your compensation inputs to a backend. Standard website hosting or analytics services, if configured elsewhere on the website, may have their own data practices.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div>
+          <h2>Make better compensation decisions.</h2>
+          <p>Use ARTHNIX tools to simplify everyday business calculations and make financial planning more understandable.</p>
+        </div>
+        <a class="btn" href="/tools.html">Explore All Tools ↗</a>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div>
+          <a class="brand" href="/" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="ARTHNIX logo" onerror="this.style.display='none'">
+            <span class="brand-name">ARTH<span>NIX</span></span>
+          </a>
+          <p class="footer-brand-copy">
+            ARTHNIX — Intelligence for Every Business. Practical digital tools and intelligent solutions designed to make work simpler.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Explore</h3>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/platform.html">Platform</a>
+            <a href="/tools.html">All Tools</a>
+            <a href="/pricing.html">Pricing</a>
+            <a href="/about.html">About ARTHNIX</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Information</h3>
+          <div class="footer-links">
+            <a href="/contact.html">Contact</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> <strong>ARTHNIX</strong>. All rights reserved.</span>
+        <span>Powered by <strong>Alphex AI</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = (id) => document.getElementById(id);
+
+      const form = $("variablePayForm");
+      const currencySelect = $("currency");
+      const periodSelect = $("payPeriod");
+      const fixedPayInput = $("fixedPay");
+      const targetVariableInput = $("targetVariable");
+      const targetPercentInput = $("targetVariablePercent");
+
+      const currencyConfig = {
+        INR: { locale: "en-IN", symbol: "₹", name: "Indian Rupee" },
+        USD: { locale: "en-US", symbol: "$", name: "US Dollar" },
+        GBP: { locale: "en-GB", symbol: "£", name: "British Pound" },
+        EUR: { locale: "de-DE", symbol: "€", name: "Euro" },
+        AED: { locale: "en-AE", symbol: "AED", name: "UAE Dirham" }
+      };
+
+      const numberValue = (id) => {
+        const value = Number($(id).value);
+        return Number.isFinite(value) ? value : 0;
+      };
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      const formatMoney = (value, includeSymbol = true) => {
+        const currency = currencySelect.value;
+        const config = currencyConfig[currency] || currencyConfig.INR;
+
+        const formatted = new Intl.NumberFormat(config.locale, {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2
+        }).format(Number.isFinite(value) ? value : 0);
+
+        return includeSymbol ? `${config.symbol}${formatted}` : formatted;
+      };
+
+      const formatPercent = (value) => {
+        return `${new Intl.NumberFormat("en-IN", {
+          maximumFractionDigits: 2
+        }).format(Number.isFinite(value) ? value : 0)}%`;
+      };
+
+      const signedMoney = (value) => {
+        if (value < 0) return `−${formatMoney(Math.abs(value))}`;
+        return formatMoney(value);
+      };
+
+      function calculate() {
+        const fixedPay = Math.max(0, numberValue("fixedPay"));
+        const targetVariable = Math.max(0, numberValue("targetVariable"));
+        const target = Math.max(0, numberValue("targetValue"));
+        const achieved = Math.max(0, numberValue("achievedValue"));
+        const threshold = clamp(numberValue("threshold"), 0, 1000);
+        const payoutCap = clamp(numberValue("payoutCap"), 0, 10000);
+        const multiplier = clamp(numberValue("performanceMultiplier"), 0, 100);
+        const commission = Math.max(0, numberValue("commission"));
+        const incentives = Math.max(0, numberValue("otherIncentives"));
+        const adjustments = numberValue("adjustments");
+        const deductions = Math.max(0, numberValue("deductions"));
+
+        const achievement = target > 0 ? (achieved / target) * 100 : 0;
+        const method = $("payoutMethod").value;
+        const eligible = achievement >= threshold;
+
+        let uncappedPayout = 0;
+
+        if (eligible) {
+          if (method === "linear") {
+            uncappedPayout = targetVariable * achievement / 100;
+          } else if (method === "threshold") {
+            uncappedPayout = targetVariable;
+          } else if (method === "tiered") {
+            uncappedPayout = targetVariable * multiplier;
+          }
+        }
+
+        const cappedPayout = Math.min(
+          uncappedPayout,
+          targetVariable * payoutCap / 100
+        );
+
+        const totalVariable = Math.max(
+          0,
+          cappedPayout + commission + incentives + adjustments
+        );
+
+        const totalBeforeDeductions = fixedPay + totalVariable;
+        const totalAfterDeductions = Math.max(
+          0,
+          totalBeforeDeductions - deductions
+        );
+
+        const effectiveVariablePercent = fixedPay > 0
+          ? (totalVariable / fixedPay) * 100
+          : 0;
+
+        const capped = uncappedPayout > cappedPayout;
+        const period = periodSelect.value;
+
+        $("netPay").textContent = formatMoney(totalAfterDeductions, false);
+        $("netCaption").textContent =
+          `${period.charAt(0).toUpperCase() + period.slice(1)} total after entered deductions`;
+
+        $("fixedPayResult").textContent = formatMoney(fixedPay);
+        $("targetVariableResult").textContent = formatMoney(targetVariable);
+        $("achievementResult").textContent = formatPercent(achievement);
+        $("performancePayoutResult").textContent = formatMoney(cappedPayout);
+        $("commissionResult").textContent = formatMoney(commission);
+        $("otherIncentivesResult").textContent = formatMoney(incentives);
+        $("adjustmentsResult").textContent = signedMoney(adjustments);
+        $("deductionsResult").textContent = `−${formatMoney(deductions)}`;
+        $("totalVariableResult").textContent = formatMoney(totalVariable);
+        $("totalCompensationResult").textContent = formatMoney(totalBeforeDeductions);
+        $("effectiveVariableResult").textContent = formatPercent(effectiveVariablePercent);
+
+        $("achievementPercent").textContent = formatPercent(achievement);
+        $("achievementCaption").textContent = target > 0
+          ? `You achieved ${formatPercent(achievement)} of your performance target.`
+          : "Enter a target greater than zero to calculate achievement.";
+
+        const progress = clamp(achievement, 0, 100);
+        $("achievementBar").style.width = `${progress}%`;
+        $("achievementTrack").setAttribute("aria-valuenow", String(Math.round(progress)));
+
+        $("breakdownPerformanceAmount").textContent = formatMoney(cappedPayout);
+        $("breakdownCommissionAmount").textContent = formatMoney(commission);
+        $("breakdownIncentivesAmount").textContent = formatMoney(incentives);
+
+        const breakdownTotal = cappedPayout + commission + incentives;
+        const share = (amount) => breakdownTotal > 0
+          ? clamp((amount / breakdownTotal) * 100, 0, 100)
+          : 0;
+
+        $("breakdownPerformanceBar").style.width = `${share(cappedPayout)}%`;
+        $("breakdownCommissionBar").style.width = `${share(commission)}%`;
+        $("breakdownIncentivesBar").style.width = `${share(incentives)}%`;
+
+        const statusParts = [];
+
+        if (target === 0) {
+          statusParts.push("Your performance target is zero, so achievement is shown as zero.");
+        }
+
+        if (!eligible) {
+          statusParts.push("Your achievement is below the minimum payout threshold. The performance payout is zero.");
+        }
+
+        if (capped) {
+          statusParts.push("Your performance payout has reached the maximum payout cap.");
+        }
+
+        if (totalBeforeDeductions < deductions) {
+          statusParts.push("Entered deductions exceed compensation before deductions. The displayed after-deduction total is limited to zero.");
+        }
+
+        $("formStatus").textContent = statusParts.join(" ") || "Variable pay calculated successfully.";
+
+        return {
+          currency: currencySelect.value,
+          period,
+          fixedPay,
+          targetVariable,
+          target,
+          achieved,
+          achievement,
+          method,
+          threshold,
+          payoutCap,
+          multiplier,
+          eligible,
+          uncappedPayout,
+          cappedPayout,
+          capped,
+          commission,
+          incentives,
+          adjustments,
+          deductions,
+          totalVariable,
+          totalBeforeDeductions,
+          totalAfterDeductions,
+          effectiveVariablePercent
+        };
+      }
+
+      function updateCurrencySymbols() {
+        const config = currencyConfig[currencySelect.value] || currencyConfig.INR;
+
+        document.querySelectorAll(".currency-symbol").forEach((element) => {
+          element.textContent = config.symbol;
+        });
+
+        document.querySelectorAll(".money-input").forEach((input) => {
+          input.setAttribute("aria-label", `${input.id} amount in ${config.name}`);
+        });
+      }
+
+      function updateTargetFromPercent() {
+        const fixed = Math.max(0, numberValue("fixedPay"));
+        const percent = Math.max(0, numberValue("targetVariablePercent"));
+        targetVariableInput.value = String(Math.round(fixed * percent / 100 * 100) / 100);
+        calculate();
+      }
+
+      function updatePercentFromTarget() {
+        const fixed = Math.max(0, numberValue("fixedPay"));
+        const targetVariable = Math.max(0, numberValue("targetVariable"));
+
+        targetPercentInput.value = fixed > 0
+          ? String(Math.round(targetVariable / fixed * 100 * 100) / 100)
+          : "0";
+
+        calculate();
+      }
+
+      function downloadCSV() {
+        const data = calculate();
+        const config = currencyConfig[data.currency];
+
+        const rows = [
+          ["ARTHNIX Variable Pay Calculator"],
+          ["Generated on", new Date().toLocaleDateString()],
+          ["Currency", `${data.currency} — ${config.name}`],
+          ["Compensation period", data.period],
+          [],
+          ["Component", "Amount"],
+          ["Fixed pay", data.fixedPay],
+          ["Target variable pay", data.targetVariable],
+          ["Performance target", data.target],
+          ["Actual achievement", data.achieved],
+          ["Target achievement (%)", data.achievement.toFixed(2)],
+          ["Payout method", data.method],
+          ["Minimum payout threshold (%)", data.threshold],
+          ["Maximum payout cap (%)", data.payoutCap],
+          ["Tiered payout multiplier", data.multiplier],
+          ["Threshold met", data.eligible ? "Yes" : "No"],
+          ["Uncapped performance payout", data.uncappedPayout],
+          ["Performance payout after cap", data.cappedPayout],
+          ["Additional commission", data.commission],
+          ["Other incentives", data.incentives],
+          ["Bonus adjustments", data.adjustments],
+          ["Total variable earnings", data.totalVariable],
+          ["Total compensation before deductions", data.totalBeforeDeductions],
+          ["Entered estimated deductions", data.deductions],
+          ["Estimated total after deductions", data.totalAfterDeductions],
+          ["Effective variable pay (% of fixed)", data.effectiveVariablePercent.toFixed(2)],
+          [],
+          ["Disclaimer", "Estimates only. Actual compensation depends on the employer's plan and applicable payroll rules."]
+        ];
+
+        const escapeCSV = (value) => {
+          const string = String(value ?? "");
+          return `"${string.replace(/"/g, '""')}"`;
+        };
+
+        const csv = "\uFEFF" + rows.map(row =>
+          row.map(escapeCSV).join(",")
+        ).join("\r\n");
+
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = `arthnix-variable-pay-${new Date().toISOString().slice(0, 10)}.csv`;
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function resetCalculator() {
+        const confirmed = window.confirm("Reset all variable pay fields to their example values?");
+        if (!confirmed) return;
+
+        form.reset();
+        updateCurrencySymbols();
+        calculate();
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        calculate();
+      });
+
+      form.addEventListener("input", (event) => {
+        const id = event.target.id;
+
+        if (id === "fixedPay") {
+          updatePercentFromTarget();
+          return;
+        }
+
+        if (id === "targetVariable") {
+          updatePercentFromTarget();
+          return;
+        }
+
+        if (id === "targetVariablePercent") {
+          updateTargetFromPercent();
+          return;
+        }
+
+        calculate();
+      });
+
+      form.addEventListener("change", (event) => {
+        if (event.target.id === "currency") {
+          updateCurrencySymbols();
+        }
+
+        calculate();
+      });
+
+      $("resetButton").addEventListener("click", resetCalculator);
+
+      $("printButton").addEventListener("click", () => {
+        calculate();
+        window.print();
+      });
+
+      $("downloadButton").addEventListener("click", downloadCSV);
+
+      $("mobileMenuButton").addEventListener("click", () => {
+        const menu = $("navLinks");
+        const isOpen = menu.classList.toggle("open");
+
+        $("mobileMenuButton").setAttribute("aria-expanded", String(isOpen));
+        $("mobileMenuButton").setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        $("mobileMenuButton").textContent = isOpen ? "×" : "☰";
+      });
+
+      $("currentYear").textContent = new Date().getFullYear();
+
+      updateCurrencySymbols();
+      calculate();
+    })();
+  </script>
+</body>
+</html>
