@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Free Incentive Calculator — ARTHNIX</title>
   <meta
     name="description"
-    content="Calculate employee incentives, sales commissions, performance bonuses, target achievement, and total earnings with the free ARTHNIX Incentive Calculator."
+    content="Calculate employee incentives, sales commissions, target achievement, and performance bonuses with the free ARTHNIX Incentive Calculator."
   >
   <meta name="theme-color" content="#090909">
-  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://arthnix.com/tools/incentive-calculator.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,42 +33,32 @@
       --red-dark: #d92727;
       --radius: 18px;
       --container: 1160px;
-      --green: #16834a;
-      --green-soft: #eaf7ef;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 90px;
     }
 
     body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--text);
       font-family: "DM Sans", sans-serif;
-      font-size: 15px;
-      line-height: 1.65;
+      color: var(--text);
+      background: var(--white);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    body.menu-open {
-      overflow: hidden;
-    }
-
+    body,
     button,
+    a,
     input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button,
-    a {
+    select {
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -78,54 +67,146 @@
       text-decoration: none;
     }
 
-    button {
-      cursor: pointer;
+    button,
+    input,
+    select {
+      font: inherit;
     }
 
-    img {
-      max-width: 100%;
+    button,
+    a {
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      background: #ed3434;
+      color: #ffffff;
     }
 
     .container {
-      width: min(var(--container), calc(100% - 48px));
+      width: min(var(--container), calc(100% - 64px));
       margin-inline: auto;
     }
 
-    /* HEADER */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .accent {
+      color: var(--red);
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 650;
+      transition:
+        background 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .button-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .button-outline-light {
+      border-color: #dededb;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .button-outline-light:hover {
+      border-color: #aaaaa5;
+      background: #fafaf8;
+    }
+
+    .arrow {
+      font-size: 17px;
+      line-height: 1;
+      transition: transform 180ms ease;
+    }
+
+    .button:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    /* =====================================================
+       NAVIGATION — MATCHES THE ARTHNIX REFERENCE
+       ===================================================== */
 
     .site-header {
       position: sticky;
-      z-index: 1000;
       top: 0;
-      background: var(--black);
+      z-index: 1000;
+      width: 100%;
+      background: #090909;
       border-bottom: 1px solid #292929;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
     }
 
     .navbar {
+      position: relative;
       width: min(1200px, calc(100% - 64px));
       min-height: 76px;
-      margin-inline: auto;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 28px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--white);
       flex-shrink: 0;
+      text-decoration: none;
     }
 
     .brand-logo {
-      width: 34px;
-      height: 34px;
+      display: block;
+      width: 38px;
+      height: 38px;
       object-fit: contain;
+      flex-shrink: 0;
     }
 
     .brand-name {
+      color: #ffffff;
       font-family: "Manrope", sans-serif;
       font-size: 20px;
       font-weight: 800;
@@ -135,19 +216,23 @@
     .nav-links {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 30px;
+      justify-content: center;
+      gap: 27px;
     }
 
-    .nav-links > a:not(.nav-cta) {
-      color: #c4c4c4;
+    .nav-links a {
+      display: inline-block;
+      color: #bcbcbc;
       font-size: 13px;
-      font-weight: 500;
-      transition: color 0.2s ease;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
     }
 
-    .nav-links > a:not(.nav-cta):hover {
-      color: var(--white);
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--red);
     }
 
     .nav-cta {
@@ -155,282 +240,386 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 42px;
-      padding: 0 18px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--red);
       border-radius: 7px;
       background: var(--red);
-      color: var(--white);
-      font-size: 13px;
+      color: #ffffff;
+      font-size: 12px;
       font-weight: 700;
-      transition: background 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
     }
 
     .nav-cta:hover {
       background: var(--red-dark);
-      transform: translateY(-1px);
+      border-color: var(--red-dark);
     }
 
     .menu-toggle {
       display: none;
-      width: 42px;
-      height: 42px;
-      padding: 10px;
-      border: 1px solid #333;
-      border-radius: 8px;
-      background: transparent;
-      color: white;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border: 1px solid #353535;
+      border-radius: 7px;
+      background: #111111;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
     }
 
     .menu-toggle span {
       display: block;
-      width: 19px;
+      width: 18px;
       height: 2px;
       margin: 5px auto;
-      background: white;
-      transition: transform 0.2s ease;
+      border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
     }
 
-    .menu-toggle[aria-expanded="true"] span:first-child {
-      transform: translateY(3.5px) rotate(45deg);
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
     }
 
-    .menu-toggle[aria-expanded="true"] span:last-child {
-      transform: translateY(-3.5px) rotate(-45deg);
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--red);
+      }
     }
 
-    /* PAGE INTRO */
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    /* PAGE HERO */
 
     .page-hero {
       position: relative;
       overflow: hidden;
-      padding: 68px 0 62px;
+      padding: 82px 0 76px;
       background: var(--black);
-      color: white;
+      color: var(--white);
     }
 
     .page-hero::before {
       position: absolute;
-      top: -180px;
-      right: -100px;
-      width: 460px;
-      height: 460px;
-      border: 1px solid rgba(237, 52, 52, 0.18);
-      border-radius: 50%;
       content: "";
+      width: 540px;
+      height: 540px;
+      top: -260px;
+      right: -100px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(237, 52, 52, 0.17) 0%,
+        rgba(237, 52, 52, 0.04) 42%,
+        transparent 70%
+      );
       pointer-events: none;
     }
 
     .page-hero::after {
       position: absolute;
-      top: -100px;
-      right: -20px;
-      width: 300px;
-      height: 300px;
-      border: 1px solid rgba(237, 52, 52, 0.12);
-      border-radius: 50%;
       content: "";
+      inset: 0;
+      opacity: 0.15;
+      background-image: radial-gradient(#6b6b6b 0.6px, transparent 0.6px);
+      background-size: 27px 27px;
+      mask-image: linear-gradient(to bottom, black, transparent 95%);
       pointer-events: none;
     }
 
-    .breadcrumb {
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 850px;
+    }
+
+    .page-hero .eyebrow {
+      color: #bcbcbc;
+    }
+
+    .breadcrumbs {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 9px;
-      margin-bottom: 24px;
-      color: #a0a0a0;
+      margin-bottom: 25px;
+      color: #999999;
       font-size: 12px;
     }
 
-    .breadcrumb a:hover {
-      color: white;
+    .breadcrumbs a:hover {
+      color: #ffffff;
     }
 
-    .breadcrumb .separator {
-      color: #555;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: #ff7777;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.7px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      width: 20px;
-      height: 2px;
-      background: var(--red);
-      content: "";
+    .breadcrumbs span {
+      color: var(--red);
     }
 
     .page-hero h1 {
       max-width: 800px;
-      margin: 16px 0 17px;
+      margin-top: 23px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(36px, 5.3vw, 60px);
-      font-weight: 800;
-      letter-spacing: -2.7px;
-      line-height: 1.1;
+      font-size: clamp(43px, 6.2vw, 72px);
+      line-height: 1.07;
+      font-weight: 600;
+      letter-spacing: -3.8px;
     }
 
     .page-hero h1 span {
-      color: var(--red);
+      color: #888888;
     }
 
-    .hero-description {
-      max-width: 670px;
-      margin: 0;
-      color: #b9b9b9;
-      font-size: 16px;
-      line-height: 1.8;
+    .page-hero-description {
+      max-width: 650px;
+      margin-top: 22px;
+      color: #aaaaaa;
+      font-size: 15px;
+      line-height: 1.9;
     }
 
-    .hero-pills {
+    .hero-points {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 20px;
       margin-top: 27px;
+      color: #b5b5b5;
+      font-size: 11px;
     }
 
-    .hero-pill {
+    .hero-points span {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 7px 12px;
-      border: 1px solid #343434;
-      border-radius: 999px;
-      color: #d2d2d2;
-      font-size: 12px;
     }
 
-    .hero-pill span {
-      color: #ff7373;
+    .hero-points span::before {
+      content: "✓";
+      color: #ffffff;
+      font-size: 13px;
     }
 
-    /* MAIN LAYOUT */
+    /* TOOL INTRO */
 
     .tool-section {
-      padding: 58px 0 78px;
+      padding: 75px 0 95px;
+      background: var(--paper);
     }
 
     .tool-intro {
-      margin-bottom: 30px;
+      max-width: 760px;
+      margin-bottom: 34px;
     }
 
-    .section-label {
-      color: var(--red-dark);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .section-heading {
-      margin: 7px 0 10px;
+    .tool-intro h2 {
+      margin-top: 15px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(25px, 3.3vw, 36px);
-      font-weight: 800;
-      letter-spacing: -1.2px;
-      line-height: 1.25;
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: 650;
+      line-height: 1.2;
+      letter-spacing: -1.7px;
     }
 
-    .section-description {
-      max-width: 720px;
-      margin: 0;
+    .tool-intro p {
+      max-width: 680px;
+      margin-top: 14px;
       color: var(--muted);
       font-size: 14px;
+      line-height: 1.9;
     }
+
+    /* CALCULATOR LAYOUT */
 
     .calculator-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.92fr);
       align-items: start;
-      gap: 24px;
+      gap: 22px;
     }
 
-    .panel {
+    .calculator-card,
+    .result-card {
       min-width: 0;
-      overflow: hidden;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      background: white;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.025);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.025);
     }
 
-    .panel-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 21px 23px;
+    .card-heading {
+      padding: 24px 25px 21px;
       border-bottom: 1px solid var(--border);
     }
 
-    .panel-heading h2 {
-      margin: 0;
+    .card-heading h3 {
       font-family: "Manrope", sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
     }
 
-    .panel-heading p {
-      margin: 4px 0 0;
+    .card-heading p {
+      margin-top: 7px;
       color: var(--muted);
       font-size: 12px;
+      line-height: 1.7;
     }
 
-    .panel-step {
-      display: inline-flex;
-      width: 34px;
-      height: 34px;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 9px;
-      background: #fff0f0;
-      color: var(--red-dark);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .form-body {
-      padding: 22px 23px 24px;
+    .form-content {
+      padding: 24px 25px 26px;
     }
 
     .form-section + .form-section {
-      margin-top: 27px;
-      padding-top: 24px;
+      margin-top: 28px;
+      padding-top: 25px;
       border-top: 1px solid var(--border);
     }
 
     .form-section-title {
       display: flex;
       align-items: center;
-      gap: 9px;
-      margin: 0 0 17px;
+      gap: 10px;
+      margin-bottom: 18px;
       font-family: "Manrope", sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 800;
     }
 
-    .form-section-title::before {
-      width: 4px;
-      height: 17px;
-      border-radius: 3px;
-      background: var(--red);
-      content: "";
+    .form-section-title span {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #f1dada;
+      border-radius: 7px;
+      background: #fff8f8;
+      color: var(--red);
+      font-size: 11px;
     }
 
-    .form-grid {
+    .field-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      gap: 17px 14px;
     }
 
     .field {
@@ -443,514 +632,506 @@
 
     .field label {
       display: block;
-      margin-bottom: 6px;
-      color: #333;
+      margin-bottom: 8px;
+      color: #393939;
       font-size: 12px;
-      font-weight: 700;
-    }
-
-    .field .optional {
-      color: #999;
-      font-weight: 400;
+      font-weight: 650;
     }
 
     .field input,
-    .field select,
-    .field textarea {
+    .field select {
       width: 100%;
-      min-height: 44px;
-      padding: 10px 12px;
+      min-height: 45px;
+      padding: 11px 12px;
       border: 1px solid #dededb;
       border-radius: 7px;
       outline: none;
-      background: white;
+      background: #ffffff;
       color: var(--text);
       font-size: 13px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .field textarea {
-      min-height: 74px;
-      resize: vertical;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
     }
 
     .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
+    .field select:focus {
       border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.08);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
     }
 
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: #aaa;
+    .field input::placeholder {
+      color: #a1a1a1;
     }
 
-    .field-hint {
+    .field-help {
       display: block;
-      margin-top: 5px;
-      color: #888;
-      font-size: 11px;
-      line-height: 1.5;
+      margin-top: 6px;
+      color: #888888;
+      font-size: 10px;
+      line-height: 1.6;
     }
 
     .field input[type="number"] {
       font-variant-numeric: tabular-nums;
     }
 
-    .form-note {
-      margin-top: 20px;
-      padding: 13px 14px;
-      border: 1px solid #f0e2c6;
-      border-radius: 8px;
-      background: #fffaf0;
-      color: #725624;
-      font-size: 12px;
-      line-height: 1.65;
-    }
-
-    /* RESULTS */
-
-    .results-panel {
-      position: sticky;
-      top: 98px;
-    }
-
-    .results-panel .panel-heading {
-      background: #fcfcfb;
-    }
-
-    .results-content {
-      padding: 22px;
-    }
-
-    .result-hero {
-      padding: 22px;
-      border-radius: 11px;
-      background: var(--black);
-      color: white;
-    }
-
-    .result-hero-label {
-      color: #bdbdbd;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .result-hero-amount {
-      display: block;
-      overflow-wrap: anywhere;
-      margin-top: 6px;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(28px, 3vw, 39px);
-      font-weight: 800;
-      letter-spacing: -1.4px;
-      line-height: 1.25;
-    }
-
-    .result-hero-sub {
-      margin-top: 8px;
-      color: #bdbdbd;
-      font-size: 12px;
-    }
-
-    .result-hero-sub strong {
-      color: #ff7777;
-    }
-
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .result-card {
-      padding: 15px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: white;
-    }
-
-    .result-card-label {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .result-card-value {
-      display: block;
-      overflow-wrap: anywhere;
-      margin-top: 5px;
-      font-family: "Manrope", sans-serif;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .result-card-value.red {
-      color: var(--red-dark);
-    }
-
-    .result-card-value.green {
-      color: var(--green);
-    }
-
-    .result-divider {
-      height: 1px;
-      margin: 23px 0;
-      background: var(--border);
-    }
-
-    .breakdown-title {
-      margin: 0 0 13px;
-      font-family: "Manrope", sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .breakdown-row {
+    .form-actions {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 9px 0;
-      border-bottom: 1px solid #f0f0ee;
-      font-size: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
     }
 
-    .breakdown-row:last-child {
-      border-bottom: 0;
+    .form-actions .button {
+      flex: 1;
     }
 
-    .breakdown-row span:first-child {
-      color: #686868;
+    .form-actions .button-outline-light {
+      flex: 0 0 auto;
     }
 
-    .breakdown-row strong {
-      text-align: right;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .breakdown-row.total {
-      margin-top: 4px;
-      padding-top: 13px;
-      border-top: 1px solid #dcdcd9;
-      border-bottom: 0;
-      font-size: 13px;
-    }
-
-    .breakdown-row.total span:first-child {
-      color: var(--text);
-      font-weight: 800;
-    }
-
-    .commission-explanation {
-      margin-top: 19px;
-      padding: 15px;
-      border: 1px solid #f0dada;
-      border-radius: 9px;
-      background: #fff7f7;
-    }
-
-    .commission-explanation h3 {
-      margin: 0 0 5px;
-      font-family: "Manrope", sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .commission-explanation p {
-      margin: 0;
-      color: #6e5555;
+    .form-error {
+      display: none;
+      margin-top: 15px;
+      padding: 12px 14px;
+      border: 1px solid #f2c8c8;
+      border-radius: 7px;
+      background: #fff5f5;
+      color: #a92222;
       font-size: 12px;
       line-height: 1.7;
     }
 
-    .result-warning {
-      display: none;
-      margin-top: 14px;
-      padding: 12px 13px;
-      border: 1px solid #f2c5c5;
-      border-radius: 8px;
-      background: #fff1f1;
-      color: #a72222;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .result-warning.visible {
+    .form-error.is-visible {
       display: block;
     }
 
-    .action-buttons {
+    /* RESULTS */
+
+    .result-card {
+      position: sticky;
+      top: 98px;
+      overflow: hidden;
+    }
+
+    .result-top {
+      padding: 26px;
+      background: #101010;
+      color: #ffffff;
+    }
+
+    .result-label {
+      color: #b8b8b8;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .result-total {
+      margin-top: 13px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(34px, 4vw, 46px);
+      font-weight: 700;
+      letter-spacing: -1.8px;
+      overflow-wrap: anywhere;
+    }
+
+    .result-description {
+      margin-top: 9px;
+      color: #a4a4a4;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .achievement-wrap {
+      margin-top: 24px;
+      padding-top: 19px;
+      border-top: 1px solid #303030;
+    }
+
+    .achievement-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #cccccc;
+      font-size: 11px;
+    }
+
+    .achievement-head strong {
+      color: #ffffff;
+    }
+
+    .progress-track {
+      height: 7px;
+      margin-top: 11px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #333333;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--red);
+      transition: width 250ms ease;
+    }
+
+    .progress-caption {
+      margin-top: 8px;
+      color: #888888;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .result-body {
+      padding: 22px 25px 25px;
+    }
+
+    .result-body h4 {
+      margin-bottom: 15px;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px 0;
+      border-bottom: 1px solid #efefed;
+      font-size: 12px;
+    }
+
+    .result-row span:first-child {
+      color: var(--muted);
+    }
+
+    .result-row strong {
+      text-align: right;
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .result-row:last-of-type {
+      border-bottom: 0;
+    }
+
+    .result-note {
+      margin-top: 17px;
+      padding: 13px;
+      border: 1px solid #eeeeeb;
+      border-radius: 7px;
+      background: #fafaf8;
+      color: #777777;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .result-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 21px;
+      margin-top: 19px;
     }
 
-    .btn {
-      display: inline-flex;
-      min-height: 45px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 15px;
-      border: 1px solid transparent;
-      border-radius: 7px;
-      font-size: 12px;
-      font-weight: 700;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--red);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--red-dark);
-    }
-
-    .btn-secondary {
-      border-color: #dededb;
-      background: white;
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      border-color: #bcbcb8;
-      background: #fafaf9;
-    }
-
-    .btn-reset {
+    .result-actions .button {
       width: 100%;
-      margin-top: 10px;
-      border-color: #e7e7e4;
-      background: #fafaf9;
-      color: #5b5b5b;
-    }
-
-    .privacy-note {
-      margin-top: 15px;
-      color: #858585;
+      min-height: 43px;
+      padding: 0 10px;
       font-size: 11px;
-      text-align: center;
     }
 
-    /* INFORMATION SECTIONS */
+    /* SUMMARY FOR PRINT */
+
+    .print-summary {
+      display: none;
+    }
+
+    /* EXPLANATION SECTIONS */
 
     .info-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--border);
-      background: white;
+      padding: 92px 0;
+      background: var(--white);
     }
 
-    .info-header {
-      max-width: 700px;
-      margin-bottom: 32px;
+    .section-heading {
+      max-width: 720px;
     }
 
-    .info-header h2 {
-      margin: 8px 0 12px;
+    .section-heading h2 {
+      margin-top: 20px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(26px, 3.5vw, 38px);
-      font-weight: 800;
-      letter-spacing: -1.2px;
-      line-height: 1.25;
+      font-size: clamp(34px, 4.2vw, 53px);
+      line-height: 1.12;
+      letter-spacing: -2.4px;
+      font-weight: 600;
     }
 
-    .info-header p {
-      margin: 0;
+    .section-heading p {
+      max-width: 600px;
+      margin-top: 18px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
+      line-height: 1.85;
     }
 
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 28px;
+      margin-top: 48px;
     }
 
     .step-card {
-      padding: 24px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--paper);
+      padding-top: 23px;
+      border-top: 1px solid #dededb;
     }
 
     .step-number {
-      display: inline-flex;
-      width: 38px;
-      height: 38px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 9px;
-      background: #fff0f0;
-      color: var(--red-dark);
+      color: var(--red);
       font-family: "Manrope", sans-serif;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 800;
+      letter-spacing: 1px;
     }
 
     .step-card h3 {
-      margin: 16px 0 8px;
+      margin-top: 17px;
       font-family: "Manrope", sans-serif;
-      font-size: 16px;
-      font-weight: 800;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
     .step-card p {
-      margin: 0;
+      margin-top: 10px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
-    .faq-section {
-      padding: 70px 0;
+    .details-section {
+      padding: 85px 0;
       background: var(--paper);
     }
 
-    .faq-list {
-      max-width: 850px;
+    .details-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: start;
+      gap: 70px;
     }
 
-    .faq-item {
-      padding: 19px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .faq-item:first-child {
-      border-top: 1px solid var(--border);
-    }
-
-    .faq-item h3 {
-      margin: 0 0 7px;
+    .details-copy h2 {
+      margin-top: 18px;
       font-family: "Manrope", sans-serif;
-      font-size: 15px;
-      font-weight: 800;
+      font-size: clamp(32px, 4vw, 45px);
+      line-height: 1.15;
+      letter-spacing: -1.8px;
+      font-weight: 650;
     }
 
-    .faq-item p {
-      margin: 0;
+    .details-copy p {
+      margin-top: 15px;
       color: var(--muted);
       font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .details-list {
+      border-top: 1px solid #e2e2de;
+    }
+
+    .details-item {
+      padding: 21px 0;
+      border-bottom: 1px solid #e2e2de;
+    }
+
+    .details-item h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .details-item p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
       line-height: 1.8;
     }
 
+    .disclaimer {
+      margin-top: 30px;
+      padding: 18px 20px;
+      border: 1px solid #f0d5d5;
+      border-radius: 8px;
+      background: #fff9f9;
+      color: #6e4c4c;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .disclaimer strong {
+      color: #352222;
+    }
+
+    /* RELATED TOOLS */
+
     .related-section {
-      padding: 60px 0;
-      border-top: 1px solid var(--border);
-      background: white;
+      padding: 90px 0;
+      background: var(--white);
+    }
+
+    .related-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .related-heading h2 {
+      margin-top: 15px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(31px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -1.8px;
+      font-weight: 650;
     }
 
     .related-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 25px;
+      margin-top: 35px;
     }
 
     .related-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 18px;
+      padding: 23px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: white;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      border-radius: 9px;
+      transition: transform 180ms ease, border-color 180ms ease;
     }
 
     .related-card:hover {
-      transform: translateY(-2px);
-      border-color: #efaaaa;
+      transform: translateY(-3px);
+      border-color: #d0d0cb;
     }
 
-    .related-card strong {
-      display: block;
-      font-family: "Manrope", sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .related-card span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .related-arrow {
+    .related-card .tool-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #eeeeeb;
+      border-radius: 9px;
+      background: #fffafa;
       color: var(--red);
-      font-size: 20px;
+      font-size: 15px;
+      font-weight: 700;
     }
 
-    /* FOOTER */
+    .related-card h3 {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    .related-card p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .related-card .text-link {
+      display: inline-flex;
+      gap: 7px;
+      margin-top: 15px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .related-card .text-link span {
+      color: var(--red);
+    }
+
+    /* FOOTER — MATCHES THE ARTHNIX REFERENCE */
 
     .site-footer {
-      padding: 58px 0 0;
+      padding: 57px 0 25px;
       background: var(--black);
-      color: white;
+      color: var(--white);
     }
 
     .footer-main {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 42px;
-      padding-bottom: 44px;
+      gap: 50px;
+      padding-bottom: 45px;
     }
 
-    .footer-brand .brand {
-      margin-bottom: 15px;
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .footer-brand p {
-      max-width: 280px;
-      margin: 0;
-      color: #a6a6a6;
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      text-decoration: none;
+    }
+
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.7;
     }
 
     .footer-powered {
-      display: inline-block;
-      margin-top: 16px;
-      color: #ff7777;
+      margin: 7px 0 0;
+      color: #929292;
       font-size: 11px;
-      font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
-    .footer-column h3 {
-      margin: 3px 0 17px;
-      color: white;
-      font-family: "Manrope", sans-serif;
-      font-size: 12px;
-      font-weight: 800;
+    .footer-column h4 {
+      margin-bottom: 19px;
+      color: #f0f0f0;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     .footer-column a {
       display: block;
       width: fit-content;
-      margin: 10px 0;
-      color: #a6a6a6;
-      font-size: 12px;
-      transition: color 0.2s ease;
+      margin-top: 13px;
+      color: #919191;
+      font-size: 11px;
+      transition: color 180ms ease;
     }
 
     .footer-column a:hover {
-      color: white;
+      color: var(--white);
     }
 
     .footer-bottom {
@@ -958,253 +1139,240 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 20px 0;
+      padding-top: 22px;
       border-top: 1px solid #292929;
-      color: #858585;
-      font-size: 11px;
     }
 
-    .footer-bottom p {
-      margin: 0;
+    .copyright,
+    .powered-by {
+      color: #797979;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    /* ACCESSIBILITY */
-
-    :focus-visible {
-      outline: 3px solid rgba(237, 52, 52, 0.55);
-      outline-offset: 3px;
+    .powered-by strong {
+      color: #b8b8b8;
+      font-weight: 600;
     }
 
     /* RESPONSIVE */
 
-    @media (max-width: 960px) {
-      .navbar {
-        width: min(100% - 40px, 1200px);
-      }
-
-      .nav-links {
-        gap: 18px;
-      }
-
+    @media (max-width: 1050px) {
       .calculator-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
-        gap: 16px;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
       }
 
-      .panel-heading,
-      .form-body {
-        padding-right: 17px;
-        padding-left: 17px;
+      .footer-main {
+        gap: 30px;
       }
 
-      .results-content {
-        padding: 17px;
+      .details-grid {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .calculator-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .result-card {
+        position: static;
+      }
+
+      .result-top {
+        padding: 25px;
+      }
+
+      .result-total {
+        font-size: 43px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        width: min(calc(100% - 40px), var(--container));
+      }
+
+      .page-hero {
+        padding: 68px 0 62px;
+      }
+
+      .page-hero h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .tool-section,
+      .info-section,
+      .details-section,
+      .related-section {
+        padding: 70px 0;
+      }
+
+      .steps-grid {
+        gap: 20px;
+      }
+
+      .related-heading {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .footer-main {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 32px;
+        gap: 38px 28px;
       }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 600px) {
       .container {
-        width: min(var(--container), calc(100% - 36px));
-      }
-
-      .navbar {
-        min-height: 68px;
         width: calc(100% - 36px);
       }
 
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 68px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        align-items: stretch;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 0;
-        padding: 18px 22px 32px;
-        overflow-y: auto;
-        background: var(--black);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-8px);
-        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-      }
-
-      .nav-links.is-open {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .nav-links > a:not(.nav-cta) {
-        width: 100%;
-        padding: 16px 2px;
-        border-bottom: 1px solid #292929;
-        font-size: 14px;
-      }
-
-      .nav-links .nav-cta {
-        margin-top: 20px;
-      }
-
       .page-hero {
-        padding: 46px 0 45px;
+        padding-top: 58px;
       }
 
       .page-hero h1 {
-        letter-spacing: -1.7px;
+        font-size: clamp(40px, 11vw, 57px);
+        letter-spacing: -2.5px;
       }
 
-      .hero-description {
+      .page-hero-description {
         font-size: 14px;
       }
 
-      .tool-section {
-        padding: 42px 0 55px;
+      .hero-points {
+        gap: 12px;
       }
 
-      .calculator-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .results-panel {
-        position: static;
-      }
-
-      .results-panel {
-        grid-row: 1;
-      }
-
-      .form-panel {
-        grid-row: 2;
-      }
-
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .step-card {
-        padding: 20px;
-      }
-
+      .tool-section,
       .info-section,
-      .faq-section {
-        padding: 52px 0;
+      .details-section,
+      .related-section {
+        padding: 58px 0;
       }
 
-      .related-grid {
+      .tool-intro h2,
+      .section-heading h2 {
+        letter-spacing: -1.5px;
+      }
+
+      .card-heading,
+      .form-content {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .field-grid {
         grid-template-columns: 1fr;
-      }
-
-      .footer-main {
-        gap: 28px 20px;
-      }
-
-      .footer-bottom {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .container {
-        width: calc(100% - 28px);
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
+        gap: 15px;
       }
 
       .field.full {
         grid-column: auto;
       }
 
-      .panel-heading {
-        padding: 17px 14px;
+      .form-actions {
+        flex-direction: column;
       }
 
-      .form-body,
-      .results-content {
-        padding: 15px;
+      .form-actions .button,
+      .form-actions .button-outline-light {
+        width: 100%;
       }
 
-      .result-hero {
-        padding: 18px;
+      .result-top {
+        padding: 22px 19px;
       }
 
-      .result-grid {
-        gap: 9px;
+      .result-body {
+        padding: 20px 19px 22px;
       }
 
-      .result-card {
-        padding: 12px;
+      .result-total {
+        font-size: 38px;
       }
 
-      .result-card-value {
-        font-size: 17px;
-      }
-
-      .action-buttons {
+      .steps-grid,
+      .related-grid {
         grid-template-columns: 1fr;
+        gap: 27px;
+      }
+
+      .step-card {
+        padding-top: 20px;
+      }
+
+      .related-card {
+        padding: 21px;
       }
 
       .footer-main {
         grid-template-columns: 1fr 1fr;
+        gap: 35px 18px;
       }
 
       .footer-brand {
         grid-column: 1 / -1;
       }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+      }
     }
 
-    /* PRINT */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    /* PRINT / SAVE AS PDF */
 
     @page {
       size: A4;
-      margin: 12mm;
+      margin: 14mm;
     }
 
     @media print {
       html,
       body {
         width: 100%;
-        margin: 0;
-        background: white !important;
-        color: #111 !important;
+        min-width: 0;
+        background: #ffffff !important;
+        color: #111111 !important;
         font-size: 10pt;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
       }
 
       .site-header,
       .page-hero,
       .tool-intro,
-      .form-panel,
+      .calculator-card,
       .info-section,
-      .faq-section,
+      .details-section,
       .related-section,
       .site-footer,
-      .results-panel > .panel-heading,
-      .action-buttons,
-      .privacy-note,
-      .result-warning,
-      .commission-explanation {
+      .screen-only {
         display: none !important;
       }
 
       .tool-section {
+        display: block !important;
         padding: 0 !important;
+        background: #ffffff !important;
       }
 
       .container {
@@ -1217,211 +1385,150 @@
         display: block !important;
       }
 
-      .results-panel {
-        position: static !important;
-        display: block !important;
-        overflow: visible !important;
-        border: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-      }
-
-      .results-content {
-        padding: 0 !important;
-      }
-
-      .result-hero {
-        border-radius: 0 !important;
-        background: white !important;
-        color: #111 !important;
-        padding: 0 0 14px !important;
-        border-bottom: 2px solid #111;
-      }
-
-      .result-hero-label,
-      .result-hero-sub {
-        color: #444 !important;
-      }
-
-      .result-hero-amount {
-        color: #111 !important;
-        font-size: 26pt !important;
-      }
-
-      .result-hero-sub strong {
-        color: #111 !important;
-      }
-
-      .result-grid {
-        margin-top: 14px !important;
-      }
-
       .result-card {
-        border: 1px solid #ccc !important;
-        break-inside: avoid;
-      }
-
-      .result-card-value,
-      .result-card-value.red,
-      .result-card-value.green {
-        color: #111 !important;
-      }
-
-      .result-divider {
-        margin: 15px 0 !important;
-      }
-
-      .breakdown-title {
-        margin-bottom: 8px !important;
-        font-size: 12pt !important;
-      }
-
-      .breakdown-row {
-        padding: 7px 0 !important;
-        border-color: #ddd !important;
-        font-size: 10pt !important;
-      }
-
-      .breakdown-row.total {
-        border-top: 1px solid #555 !important;
-      }
-
-      .panel {
-        border: 0 !important;
-        box-shadow: none !important;
-      }
-
-      .panel-heading {
         display: none !important;
       }
 
-      #printCompanyDetails {
+      .print-summary {
         display: block !important;
+        width: 100%;
+        color: #111111;
+        font-family: Arial, sans-serif;
       }
 
-      .print-header {
-        display: block !important;
-        margin-bottom: 18px;
+      .print-summary h1 {
+        margin-bottom: 5px;
+        font-size: 21pt;
+        text-align: center;
       }
 
-      .print-company-name {
-        margin: 0;
-        font-family: "Manrope", sans-serif;
-        font-size: 20pt;
-        font-weight: 800;
-      }
-
-      .print-company-info {
-        margin: 3px 0;
-        color: #444;
-        font-size: 9pt;
-      }
-
-      .print-document-title {
-        margin: 17px 0 4px;
+      .print-summary .print-company {
+        margin-bottom: 4px;
         font-size: 15pt;
-        font-weight: 800;
-        letter-spacing: 1px;
+        font-weight: 700;
+        text-align: center;
       }
 
-      .print-period {
-        margin: 0;
-        color: #444;
-        font-size: 10pt;
-      }
-
-      .print-employee-grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr;
-        gap: 7px 20px;
-        margin: 17px 0;
-        padding: 13px;
-        border: 1px solid #ccc;
-      }
-
-      .print-employee-item {
+      .print-summary .print-contact {
+        margin-bottom: 18px;
         font-size: 9pt;
+        text-align: center;
+      }
+
+      .print-summary .print-title {
+        margin: 13px 0;
+        padding: 9px;
+        border: 1px solid #cccccc;
+        font-size: 11pt;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .print-summary .print-period {
+        margin-bottom: 14px;
+        font-size: 10pt;
+        text-align: center;
+      }
+
+      .print-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px 20px;
+        margin-bottom: 16px;
+        font-size: 9pt;
+      }
+
+      .print-details-grid p {
+        padding: 5px 0;
+        border-bottom: 1px solid #eeeeee;
         overflow-wrap: anywhere;
       }
 
-      .print-employee-item strong {
-        display: block;
-        margin-bottom: 2px;
-        color: #555;
-        font-size: 8pt;
+      .print-summary table {
+        width: 100%;
+        margin: 12px 0;
+        border-collapse: collapse;
+        font-size: 9pt;
       }
 
-      .print-net-pay {
-        display: block !important;
-        margin-top: 18px;
-        padding: 15px;
-        border: 2px solid #111;
+      .print-summary th,
+      .print-summary td {
+        padding: 8px;
+        border: 1px solid #cccccc;
+        text-align: left;
       }
 
-      .print-net-pay strong {
+      .print-summary th:last-child,
+      .print-summary td:last-child {
+        text-align: right;
+      }
+
+      .print-summary th {
+        background: #f2f2f2 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .print-summary .print-total {
+        margin-top: 13px;
+        padding: 12px;
+        border: 2px solid #222222;
+        text-align: center;
+      }
+
+      .print-summary .print-total span {
         display: block;
+        margin-bottom: 5px;
         font-size: 10pt;
       }
 
-      .print-net-pay span {
-        display: block;
-        margin-top: 5px;
-        font-size: 20pt;
-        font-weight: 800;
+      .print-summary .print-total strong {
+        font-size: 19pt;
       }
 
-      .print-footer {
-        display: block !important;
-        margin-top: 26px;
-        padding-top: 10px;
-        border-top: 1px solid #aaa;
-        color: #555;
+      .print-summary .print-footnote {
+        margin-top: 24px;
+        color: #555555;
         font-size: 8pt;
         line-height: 1.6;
       }
 
-      .print-footer p {
-        margin: 4px 0;
-      }
-
       .print-signatures {
-        display: grid !important;
+        display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 50px;
-        margin-top: 42px;
+        margin-top: 55px;
       }
 
-      .print-signature {
-        padding-top: 7px;
-        border-top: 1px solid #555;
+      .print-signatures div {
+        padding-top: 8px;
+        border-top: 1px solid #555555;
         font-size: 9pt;
+        text-align: center;
       }
-
-      .result-hero,
-      .result-grid,
-      .breakdown-row,
-      .print-employee-grid,
-      .print-net-pay {
-        break-inside: avoid;
-      }
-    }
-
-    .print-header,
-    .print-employee-grid,
-    .print-net-pay,
-    .print-footer,
-    .print-signatures {
-      display: none;
     }
   </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
-      <a class="brand" href="/index.html" aria-label="ARTHNIX homepage">
+      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
         <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
         <span class="brand-name">ARTHNIX</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="/tools.html">Free Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+
+      <a class="nav-cta" href="/tools.html">
+        Start Free <span aria-hidden="true">↗</span>
       </a>
 
       <button
@@ -1435,523 +1542,618 @@
         <span></span>
         <span></span>
       </button>
-
-      <div class="nav-links" id="navLinks">
-        <a href="/tools.html">Tools</a>
-        <a href="/platform.html">Platform</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/contact.html">Contact</a>
-        <a class="nav-cta" href="/tools.html">Start Free <span aria-hidden="true">↗</span></a>
-      </div>
     </nav>
   </header>
 
   <main>
+    <!-- PAGE HERO -->
     <section class="page-hero">
-      <div class="container">
-        <div class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container page-hero-inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
           <a href="/index.html">Home</a>
-          <span class="separator">/</span>
-          <a href="/tools.html">Business Tools</a>
-          <span class="separator">/</span>
+          <span aria-hidden="true">/</span>
+          <a href="/tools.html">Free Tools</a>
+          <span aria-hidden="true">/</span>
           <span aria-current="page">Incentive Calculator</span>
+        </nav>
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Free Business Tool
         </div>
 
-        <span class="eyebrow">Free Business Tool</span>
+        <h1>
+          Incentive Calculator.
+          <span>Reward performance clearly.</span>
+        </h1>
 
-        <h1>Incentive <span>Calculator</span></h1>
-
-        <p class="hero-description">
-          Calculate sales commissions, performance incentives, target achievement,
-          and total earnings in seconds. Enter your target, actual performance,
-          and incentive rules to get a clear breakdown.
+        <p class="page-hero-description">
+          Estimate employee incentives, sales commissions, target achievement,
+          and performance bonuses using a straightforward calculator designed
+          for everyday business needs.
         </p>
 
-        <div class="hero-pills">
-          <span class="hero-pill"><span>✓</span> Instant calculation</span>
-          <span class="hero-pill"><span>✓</span> Indian rupee format</span>
-          <span class="hero-pill"><span>✓</span> Print or save as PDF</span>
+        <div class="hero-points">
+          <span>Commission and target-based calculations</span>
+          <span>Indian rupee formatting</span>
+          <span>Print or save as PDF</span>
         </div>
       </div>
     </section>
 
-    <section class="tool-section" id="platform">
+    <!-- CALCULATOR -->
+    <section class="tool-section" id="tools">
       <div class="container">
-        <div class="tool-intro">
-          <span class="section-label">Calculate your earnings</span>
-          <h2 class="section-heading">Your incentive, clearly calculated.</h2>
-          <p class="section-description">
-            Choose how your incentive is calculated, enter your performance
-            details, and view your estimated incentive and total earnings.
+        <div class="tool-intro screen-only">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Calculate Incentives
+          </div>
+          <h2>
+            Understand the numbers.<br>
+            <span class="accent">Plan rewards with clarity.</span>
+          </h2>
+          <p>
+            Enter your sales target, actual performance, incentive rate, and
+            any additional bonus. The calculator updates the estimated payout
+            as you change the figures.
           </p>
         </div>
 
         <div class="calculator-layout">
-          <section class="panel form-panel" aria-labelledby="formHeading">
-            <div class="panel-heading">
-              <div>
-                <h2 id="formHeading">Incentive details</h2>
-                <p>Enter your target, achievement, and pay details.</p>
-              </div>
-              <span class="panel-step" aria-hidden="true">01</span>
+          <section class="calculator-card screen-only" aria-labelledby="formTitle">
+            <div class="card-heading">
+              <h3 id="formTitle">Incentive details</h3>
+              <p>Enter your performance and incentive plan information below.</p>
             </div>
 
-            <form id="incentiveForm" class="form-body">
+            <form id="incentiveForm" class="form-content">
               <div class="form-section">
-                <h3 class="form-section-title">Employee details</h3>
+                <h4 class="form-section-title">
+                  <span>01</span>
+                  Employee and period
+                </h4>
 
-                <div class="form-grid">
+                <div class="field-grid">
                   <div class="field">
-                    <label for="employeeName">Employee name <span class="optional">(optional)</span></label>
-                    <input id="employeeName" name="employeeName" type="text" placeholder="e.g. Rahul Sharma" autocomplete="name">
+                    <label for="employeeName">Employee name</label>
+                    <input
+                      id="employeeName"
+                      name="employeeName"
+                      type="text"
+                      placeholder="e.g. Rahul Sharma"
+                    >
                   </div>
 
                   <div class="field">
-                    <label for="employeeId">Employee ID <span class="optional">(optional)</span></label>
-                    <input id="employeeId" name="employeeId" type="text" placeholder="e.g. EMP-1024">
+                    <label for="employeeId">Employee ID (optional)</label>
+                    <input
+                      id="employeeId"
+                      name="employeeId"
+                      type="text"
+                      placeholder="e.g. EMP-102"
+                    >
                   </div>
 
                   <div class="field">
-                    <label for="companyName">Company name <span class="optional">(optional)</span></label>
-                    <input id="companyName" name="companyName" type="text" placeholder="e.g. ABC Technologies">
+                    <label for="companyName">Company name (optional)</label>
+                    <input
+                      id="companyName"
+                      name="companyName"
+                      type="text"
+                      placeholder="e.g. ABC Enterprises"
+                    >
                   </div>
 
                   <div class="field">
-                    <label for="period">Calculation period</label>
-                    <select id="period" name="period">
-                      <option value="Monthly">Monthly</option>
-                      <option value="Quarterly">Quarterly</option>
-                      <option value="Half-yearly">Half-yearly</option>
-                      <option value="Yearly">Yearly</option>
-                      <option value="Custom period">Custom period</option>
-                    </select>
+                    <label for="period">Incentive period</label>
+                    <input
+                      id="period"
+                      name="period"
+                      type="month"
+                    >
                   </div>
                 </div>
               </div>
 
               <div class="form-section">
-                <h3 class="form-section-title">Incentive method</h3>
+                <h4 class="form-section-title">
+                  <span>02</span>
+                  Sales performance
+                </h4>
 
-                <div class="form-grid">
-                  <div class="field full">
-                    <label for="incentiveType">Choose calculation method</label>
-                    <select id="incentiveType" name="incentiveType">
-                      <option value="commission">Commission on actual sales</option>
-                      <option value="target">Fixed incentive based on target achievement</option>
-                      <option value="flat">Flat incentive amount</option>
-                      <option value="profit">Commission on profit</option>
-                    </select>
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="target">Sales target (₹)</label>
+                    <input
+                      id="target"
+                      name="target"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="500000"
+                      required
+                    >
                   </div>
 
-                  <div class="field" id="targetField">
-                    <label for="targetAmount">Sales target (₹)</label>
-                    <input id="targetAmount" name="targetAmount" type="number" min="0" step="0.01" value="500000" inputmode="decimal">
+                  <div class="field">
+                    <label for="actualSales">Actual sales (₹)</label>
+                    <input
+                      id="actualSales"
+                      name="actualSales"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="600000"
+                      required
+                    >
                   </div>
 
-                  <div class="field" id="actualField">
-                    <label for="actualAmount">Actual sales achieved (₹)</label>
-                    <input id="actualAmount" name="actualAmount" type="number" min="0" step="0.01" value="600000" inputmode="decimal">
+                  <div class="field">
+                    <label for="targetRate">Target achievement rate (%)</label>
+                    <input
+                      id="targetRate"
+                      name="targetRate"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="100"
+                      required
+                    >
+                    <small class="field-help">
+                      Minimum achievement required before incentives apply.
+                    </small>
                   </div>
 
-                  <div class="field" id="profitField" hidden>
-                    <label for="profitAmount">Actual profit (₹)</label>
-                    <input id="profitAmount" name="profitAmount" type="number" min="0" step="0.01" value="100000" inputmode="decimal">
-                  </div>
-
-                  <div class="field" id="rateField">
+                  <div class="field">
                     <label for="commissionRate">Commission rate (%)</label>
-                    <input id="commissionRate" name="commissionRate" type="number" min="0" max="100" step="0.01" value="5" inputmode="decimal">
-                    <span class="field-hint">For commission methods, applied to sales or profit.</span>
+                    <input
+                      id="commissionRate"
+                      name="commissionRate"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="2"
+                      required
+                    >
+                    <small class="field-help">
+                      Applied to eligible actual sales once the target threshold is met.
+                    </small>
                   </div>
-
-                  <div class="field" id="fixedIncentiveField" hidden>
-                    <label for="fixedIncentive">Fixed incentive (₹)</label>
-                    <input id="fixedIncentive" name="fixedIncentive" type="number" min="0" step="0.01" value="10000" inputmode="decimal">
-                  </div>
-
-                  <div class="field" id="achievementThresholdField">
-                    <label for="minimumAchievement">Minimum achievement (%)</label>
-                    <input id="minimumAchievement" name="minimumAchievement" type="number" min="0" max="100" step="0.01" value="80" inputmode="decimal">
-                    <span class="field-hint">Used for fixed target-based incentives.</span>
-                  </div>
-
-                  <div class="field" id="targetBonusField">
-                    <label for="targetBonus">Target incentive (₹)</label>
-                    <input id="targetBonus" name="targetBonus" type="number" min="0" step="0.01" value="15000" inputmode="decimal">
-                    <span class="field-hint">Awarded when the minimum achievement is met.</span>
-                  </div>
-                </div>
-
-                <div class="form-note">
-                  <strong>Important:</strong> This calculator uses the incentive rules
-                  you enter. Actual company policies may include slabs, caps, returns,
-                  eligibility conditions, or approval requirements that are not
-                  automatically applied here.
                 </div>
               </div>
 
               <div class="form-section">
-                <h3 class="form-section-title">Salary and additional earnings</h3>
+                <h4 class="form-section-title">
+                  <span>03</span>
+                  Additional rewards
+                </h4>
 
-                <div class="form-grid">
+                <div class="field-grid">
                   <div class="field">
-                    <label for="baseSalary">Base salary for period (₹)</label>
-                    <input id="baseSalary" name="baseSalary" type="number" min="0" step="0.01" value="30000" inputmode="decimal">
+                    <label for="fixedBonus">Fixed performance bonus (₹)</label>
+                    <input
+                      id="fixedBonus"
+                      name="fixedBonus"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="0"
+                    >
                   </div>
 
                   <div class="field">
-                    <label for="otherBonus">Other bonus (₹)</label>
-                    <input id="otherBonus" name="otherBonus" type="number" min="0" step="0.01" value="0" inputmode="decimal">
+                    <label for="extraBonus">Additional bonus (₹)</label>
+                    <input
+                      id="extraBonus"
+                      name="extraBonus"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="0"
+                    >
                   </div>
 
                   <div class="field">
-                    <label for="otherDeductions">Other deductions (₹)</label>
-                    <input id="otherDeductions" name="otherDeductions" type="number" min="0" step="0.01" value="0" inputmode="decimal">
-                    <span class="field-hint">Optional deductions you want to account for.</span>
+                    <label for="deductions">Adjustments or deductions (₹)</label>
+                    <input
+                      id="deductions"
+                      name="deductions"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="0"
+                    >
+                    <small class="field-help">
+                      Optional amount subtracted from the calculated incentive.
+                    </small>
                   </div>
 
                   <div class="field">
-                    <label for="taxRate">Estimated deduction rate (%)</label>
-                    <input id="taxRate" name="taxRate" type="number" min="0" max="100" step="0.01" value="0" inputmode="decimal">
-                    <span class="field-hint">Optional estimate applied to incentive only.</span>
+                    <label for="commissionBasis">Commission basis</label>
+                    <select id="commissionBasis" name="commissionBasis">
+                      <option value="actual">Actual sales</option>
+                      <option value="excess">Sales above target only</option>
+                    </select>
+                    <small class="field-help">
+                      Select how your company's plan defines commissionable sales.
+                    </small>
                   </div>
                 </div>
               </div>
+
+              <div class="form-actions">
+                <button class="button button-primary" type="submit">
+                  Calculate Incentive <span class="arrow">↗</span>
+                </button>
+                <button class="button button-outline-light" type="reset">
+                  Reset
+                </button>
+              </div>
+
+              <div
+                class="form-error"
+                id="formError"
+                role="alert"
+                aria-live="polite"
+              ></div>
             </form>
           </section>
 
-          <section class="panel results-panel" aria-labelledby="resultsHeading">
-            <div class="panel-heading">
-              <div>
-                <h2 id="resultsHeading">Your calculation</h2>
-                <p>Updates automatically as you change the inputs.</p>
-              </div>
-              <span class="panel-step" aria-hidden="true">02</span>
-            </div>
-
-            <div class="results-content" aria-live="polite">
-              <div class="print-header">
-                <h1 class="print-company-name" id="printCompanyName">Incentive Statement</h1>
-                <p class="print-company-info" id="printCompanyInfo"></p>
-                <h2 class="print-document-title">INCENTIVE CALCULATION STATEMENT</h2>
-                <p class="print-period" id="printPeriod"></p>
-              </div>
-
-              <div class="print-employee-grid" id="printEmployeeGrid">
-                <div class="print-employee-item">
-                  <strong>Employee name</strong>
-                  <span id="printEmployeeName">Not provided</span>
-                </div>
-                <div class="print-employee-item">
-                  <strong>Employee ID</strong>
-                  <span id="printEmployeeId">Not provided</span>
-                </div>
-                <div class="print-employee-item">
-                  <strong>Calculation method</strong>
-                  <span id="printMethod">Commission on actual sales</span>
-                </div>
-                <div class="print-employee-item">
-                  <strong>Target achievement</strong>
-                  <span id="printAchievement">120%</span>
-                </div>
-              </div>
-
-              <div class="result-hero">
-                <span class="result-hero-label">Estimated incentive</span>
-                <strong class="result-hero-amount" id="incentiveResult">₹30,000.00</strong>
-                <div class="result-hero-sub">
-                  Target achievement: <strong id="achievementResult">120%</strong>
-                </div>
-              </div>
-
-              <div class="result-grid">
-                <div class="result-card">
-                  <span class="result-card-label">Base salary</span>
-                  <strong class="result-card-value" id="baseSalaryResult">₹30,000.00</strong>
-                </div>
-
-                <div class="result-card">
-                  <span class="result-card-label">Other bonus</span>
-                  <strong class="result-card-value" id="otherBonusResult">₹0.00</strong>
-                </div>
-
-                <div class="result-card">
-                  <span class="result-card-label">Estimated deductions</span>
-                  <strong class="result-card-value red" id="deductionsResult">₹0.00</strong>
-                </div>
-
-                <div class="result-card">
-                  <span class="result-card-label">Estimated total earnings</span>
-                  <strong class="result-card-value green" id="totalEarningsResult">₹60,000.00</strong>
-                </div>
-              </div>
-
-              <div class="result-divider"></div>
-
-              <h3 class="breakdown-title">Calculation breakdown</h3>
-
-              <div class="breakdown-row">
-                <span>Sales target</span>
-                <strong id="targetResult">₹5,00,000.00</strong>
-              </div>
-
-              <div class="breakdown-row">
-                <span>Actual sales / profit</span>
-                <strong id="actualResult">₹6,00,000.00</strong>
-              </div>
-
-              <div class="breakdown-row">
-                <span>Incentive method</span>
-                <strong id="methodResult">Sales commission</strong>
-              </div>
-
-              <div class="breakdown-row">
-                <span>Commission rate</span>
-                <strong id="rateResult">5%</strong>
-              </div>
-
-              <div class="breakdown-row">
-                <span>Gross incentive + bonus</span>
-                <strong id="grossIncentiveResult">₹30,000.00</strong>
-              </div>
-
-              <div class="breakdown-row">
-                <span>Estimated deduction on incentive</span>
-                <strong id="taxResult">₹0.00</strong>
-              </div>
-
-              <div class="breakdown-row">
-                <span>Other deductions</span>
-                <strong id="otherDeductionsResult">₹0.00</strong>
-              </div>
-
-              <div class="breakdown-row total">
-                <span>Estimated take-home earnings</span>
-                <strong id="netEarningsResult">₹60,000.00</strong>
-              </div>
-
-              <div class="commission-explanation">
-                <h3>How your incentive is calculated</h3>
-                <p id="calculationExplanation">
-                  Incentive = actual sales × commission rate.
-                </p>
-              </div>
-
-              <div class="result-warning" id="resultWarning" role="status"></div>
-
-              <div class="print-net-pay">
-                <strong>ESTIMATED TOTAL TAKE-HOME EARNINGS</strong>
-                <span id="printNetEarnings">₹60,000.00</span>
-              </div>
-
-              <div class="print-signatures">
-                <div class="print-signature">Employee acknowledgement</div>
-                <div class="print-signature">Authorized signatory</div>
-              </div>
-
-              <div class="print-footer">
-                <p>
-                  This statement is generated from user-entered figures for estimation
-                  purposes. It is not a verified payroll document.
-                </p>
-                <p>Generated using ARTHNIX Incentive Calculator.</p>
-              </div>
-
-              <div class="action-buttons">
-                <button class="btn btn-primary" id="printButton" type="button">
-                  Print / Save PDF ↗
-                </button>
-                <button class="btn btn-secondary" id="resetButton" type="button">
-                  Reset calculator
-                </button>
-              </div>
-
-              <p class="privacy-note">
-                Your entries are calculated in this page and are not sent to ARTHNIX by this tool.
+          <!-- RESULTS -->
+          <aside class="result-card" aria-labelledby="resultHeading" aria-live="polite">
+            <div class="result-top">
+              <div class="result-label" id="resultHeading">Estimated net incentive</div>
+              <div class="result-total" id="netIncentive">₹12,000.00</div>
+              <p class="result-description" id="resultDescription">
+                Based on the values entered in this calculator.
               </p>
+
+              <div class="achievement-wrap">
+                <div class="achievement-head">
+                  <span>Target achievement</span>
+                  <strong id="achievementPercent">120.00%</strong>
+                </div>
+                <div
+                  class="progress-track"
+                  role="progressbar"
+                  aria-label="Target achievement"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="100"
+                  id="achievementProgress"
+                >
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-caption" id="achievementCaption">
+                  Target achieved.
+                </p>
+              </div>
             </div>
-          </section>
+
+            <div class="result-body">
+              <h4>Incentive breakdown</h4>
+
+              <div class="result-row">
+                <span>Sales target</span>
+                <strong id="resultTarget">₹5,00,000.00</strong>
+              </div>
+
+              <div class="result-row">
+                <span>Actual sales</span>
+                <strong id="resultSales">₹6,00,000.00</strong>
+              </div>
+
+              <div class="result-row">
+                <span>Commissionable sales</span>
+                <strong id="resultCommissionable">₹6,00,000.00</strong>
+              </div>
+
+              <div class="result-row">
+                <span>Sales commission</span>
+                <strong id="resultCommission">₹12,000.00</strong>
+              </div>
+
+              <div class="result-row">
+                <span>Fixed performance bonus</span>
+                <strong id="resultFixedBonus">₹0.00</strong>
+              </div>
+
+              <div class="result-row">
+                <span>Additional bonus</span>
+                <strong id="resultExtraBonus">₹0.00</strong>
+              </div>
+
+              <div class="result-row">
+                <span>Adjustments / deductions</span>
+                <strong id="resultDeductions">−₹0.00</strong>
+              </div>
+
+              <div class="result-row">
+                <span><strong>Gross incentive</strong></span>
+                <strong id="resultGross">₹12,000.00</strong>
+              </div>
+
+              <div class="result-note" id="resultNote">
+                This is an estimate based on the incentive rules selected here.
+                Actual company policy may use different thresholds, eligible sales,
+                exclusions, or payout conditions.
+              </div>
+
+              <div class="result-actions screen-only">
+                <button class="button button-primary" type="button" id="printButton">
+                  Print / Save PDF
+                </button>
+                <button class="button button-outline-light" type="button" id="copyButton">
+                  Copy Summary
+                </button>
+              </div>
+            </div>
+          </aside>
         </div>
+
+        <!-- PRINTABLE SUMMARY -->
+        <section class="print-summary" id="printSummary" aria-label="Printable incentive summary">
+          <div class="print-company" id="printCompany"></div>
+          <div class="print-contact">Employee Incentive Statement</div>
+          <h1>INCENTIVE SUMMARY</h1>
+          <div class="print-period" id="printPeriod"></div>
+
+          <div class="print-details-grid">
+            <p><strong>Employee:</strong> <span id="printEmployee"></span></p>
+            <p><strong>Employee ID:</strong> <span id="printEmployeeId"></span></p>
+            <p><strong>Sales target:</strong> <span id="printTarget"></span></p>
+            <p><strong>Actual sales:</strong> <span id="printSales"></span></p>
+            <p><strong>Target achievement:</strong> <span id="printAchievement"></span></p>
+            <p><strong>Commission basis:</strong> <span id="printBasis"></span></p>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sales commission</td>
+                <td id="printCommission"></td>
+              </tr>
+              <tr>
+                <td>Fixed performance bonus</td>
+                <td id="printFixedBonus"></td>
+              </tr>
+              <tr>
+                <td>Additional bonus</td>
+                <td id="printExtraBonus"></td>
+              </tr>
+              <tr>
+                <td>Gross incentive</td>
+                <td id="printGross"></td>
+              </tr>
+              <tr>
+                <td>Adjustments / deductions</td>
+                <td id="printDeductions"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="print-total">
+            <span>Estimated net incentive</span>
+            <strong id="printNet"></strong>
+          </div>
+
+          <div class="print-signatures">
+            <div>Employee acknowledgement</div>
+            <div>Authorized signatory</div>
+          </div>
+
+          <p class="print-footnote">
+            This document is generated from user-entered information for estimation
+            purposes. It is not a payroll approval or proof of payment. Verify the
+            figures and applicable company incentive policy before issuing or relying
+            on this statement.
+          </p>
+        </section>
       </div>
     </section>
 
+    <!-- HOW IT WORKS -->
     <section class="info-section" id="how-it-works">
       <div class="container">
-        <div class="info-header">
-          <span class="section-label">How it works</span>
-          <h2>Calculate your incentive in three steps.</h2>
+        <div class="section-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            How It Works
+          </div>
+          <h2>
+            Calculate in three <span class="accent">simple steps.</span>
+          </h2>
           <p>
-            Use your actual company incentive policy to enter the correct
-            figures and understand how performance affects your earnings.
+            Use your organization's incentive policy and enter the relevant
+            performance figures to estimate a payout.
           </p>
         </div>
 
         <div class="steps-grid">
           <article class="step-card">
-            <span class="step-number">01</span>
-            <h3>Enter your performance</h3>
+            <div class="step-number">STEP 01</div>
+            <h3>Enter your target</h3>
             <p>
-              Add your sales target, actual sales or profit, and the
-              commission rate or target-based incentive rules that apply to you.
+              Add the sales target and actual sales achieved for the relevant
+              incentive period.
             </p>
           </article>
 
           <article class="step-card">
-            <span class="step-number">02</span>
-            <h3>Review the breakdown</h3>
+            <div class="step-number">STEP 02</div>
+            <h3>Set your incentive rules</h3>
             <p>
-              See your estimated incentive, target achievement percentage,
-              bonus, optional deductions, and estimated take-home earnings.
+              Enter the required achievement threshold, commission rate,
+              bonuses, and any adjustments from your company's plan.
             </p>
           </article>
 
           <article class="step-card">
-            <span class="step-number">03</span>
-            <h3>Print or save your result</h3>
+            <div class="step-number">STEP 03</div>
+            <h3>Review and export</h3>
             <p>
-              Print your calculation or choose Save as PDF in your browser's
-              print dialog to keep a copy for your records.
+              Review the breakdown and print the summary or save it as a PDF
+              using your browser's print dialog.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="faq-section" id="pricing">
-      <div class="container">
-        <div class="info-header">
-          <span class="section-label">Frequently asked questions</span>
-          <h2>Incentive calculator FAQs.</h2>
-          <p>Understand the methods used by this calculator before relying on the estimate.</p>
+    <!-- CALCULATION DETAILS -->
+    <section class="details-section">
+      <div class="container details-grid">
+        <div class="details-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Calculation Method
+          </div>
+          <h2>
+            Clear inputs.<br>
+            <span class="accent">Transparent estimates.</span>
+          </h2>
+          <p>
+            The calculator uses the rates and rules you provide. It does not
+            assume that every organization calculates incentives in the same way.
+          </p>
+
+          <div class="disclaimer">
+            <strong>Important:</strong> This calculator provides an estimate only.
+            Check your employment agreement, company incentive policy, eligible
+            revenue rules, refund adjustments, and approval requirements before
+            finalizing a payout. Tax treatment may vary depending on your
+            circumstances.
+          </div>
         </div>
 
-        <div class="faq-list">
-          <article class="faq-item">
-            <h3>What is an employee incentive?</h3>
+        <div class="details-list">
+          <article class="details-item">
+            <h3>Target achievement</h3>
             <p>
-              An employee incentive is additional compensation linked to a
-              performance goal, sales target, productivity measure, or other
-              criteria established by an employer. It may be paid in addition
-              to fixed salary, subject to company policy.
+              Calculated as actual sales divided by the sales target, multiplied
+              by 100. If the target is zero, the calculator displays achievement
+              as not applicable.
             </p>
           </article>
 
-          <article class="faq-item">
-            <h3>How is a sales commission calculated?</h3>
+          <article class="details-item">
+            <h3>Sales commission</h3>
             <p>
-              For the commission method in this tool, the estimate is actual
-              sales multiplied by the commission rate. For example, ₹2,00,000
-              in eligible sales at 5% produces a ₹10,000 estimated commission.
-              Your employer may use eligible sales, collected revenue, slabs,
-              caps, or other rules instead.
+              The commission rate is applied either to all actual sales or only
+              to sales above the target, depending on the selected commission basis.
+              Commission is applied only when the achievement threshold is met.
             </p>
           </article>
 
-          <article class="faq-item">
-            <h3>How does target achievement work?</h3>
+          <article class="details-item">
+            <h3>Gross and net incentive</h3>
             <p>
-              Target achievement is calculated as actual sales divided by the
-              sales target, multiplied by 100. A zero target is treated as
-              zero achievement. In the fixed target-based method, the target
-              incentive is awarded only when your achievement meets the
-              minimum percentage you entered.
+              Gross incentive is the sales commission plus the fixed and additional
+              bonuses. The estimated net incentive is the gross incentive minus
+              entered adjustments or deductions, with a minimum displayed payout of
+              zero.
             </p>
           </article>
 
-          <article class="faq-item">
-            <h3>Can I calculate an incentive based on profit?</h3>
+          <article class="details-item">
+            <h3>Company-specific incentive policies</h3>
             <p>
-              Yes. Select the profit commission method, enter actual profit,
-              and provide the applicable commission rate. This tool does not
-              verify which costs or adjustments your company includes when
-              calculating eligible profit.
+              Some plans use tiered rates, product-specific commissions, collection
+              targets, caps, returns, or manager approvals. Enter figures according
+              to your plan; this tool does not automatically determine those rules.
             </p>
           </article>
 
-          <article class="faq-item">
-            <h3>Does the calculator determine tax or statutory deductions?</h3>
+          <article class="details-item">
+            <h3>Your data and privacy</h3>
             <p>
-              No. You can enter an optional estimated deduction percentage
-              applied to the incentive and any other deductions you want to
-              account for. This is not a tax calculator and does not determine
-              your actual income tax, TDS, PF, ESI, or other statutory liability.
-            </p>
-          </article>
-
-          <article class="faq-item">
-            <h3>Can I save the result as a PDF?</h3>
-            <p>
-              Yes. Select “Print / Save PDF” and choose “Save as PDF” in your
-              browser's print dialog. The printed statement is an estimate
-              based on the information entered, not an employer-verified
-              compensation statement.
+              Calculations are performed in your browser. This page does not send
+              the details you enter to ARTHNIX through the calculator.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="related-section" id="tools">
+    <!-- RELATED TOOLS -->
+    <section class="related-section">
       <div class="container">
-        <div class="info-header">
-          <span class="section-label">Explore more tools</span>
-          <h2>More tools for your business.</h2>
-          <p>Explore additional ARTHNIX tools for everyday business calculations and documents.</p>
+        <div class="related-heading">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Explore More
+            </div>
+            <h2>More useful business tools.</h2>
+          </div>
+
+          <a href="/tools.html" class="button button-outline-light">
+            View All Tools <span class="arrow">↗</span>
+          </a>
         </div>
 
         <div class="related-grid">
-          <a class="related-card" href="/tools/profit-calculator.html">
-            <div>
-              <strong>Profit Calculator</strong>
-              <span>Estimate profit and margins.</span>
-            </div>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
+          <article class="related-card">
+            <div class="tool-icon">%</div>
+            <h3>Profit Calculator</h3>
+            <p>Calculate selling price, profit amount, margin, and markup.</p>
+            <a href="/tools/profit-calculator.html" class="text-link">
+              Calculate profit <span>↗</span>
+            </a>
+          </article>
 
-          <a class="related-card" href="/tools/invoice-generator.html">
-            <div>
-              <strong>Invoice Generator</strong>
-              <span>Create professional invoices.</span>
-            </div>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
+          <article class="related-card">
+            <div class="tool-icon">₹</div>
+            <h3>GST Calculator</h3>
+            <p>Calculate GST, tax-inclusive totals, and pre-tax amounts.</p>
+            <a href="/tools/gst-calculator.html" class="text-link">
+              Calculate GST <span>↗</span>
+            </a>
+          </article>
 
-          <a class="related-card" href="/tools/gst-calculator.html">
-            <div>
-              <strong>GST Calculator</strong>
-              <span>Calculate GST-inclusive and exclusive prices.</span>
-            </div>
-            <span class="related-arrow" aria-hidden="true">↗</span>
-          </a>
+          <article class="related-card">
+            <div class="tool-icon">▤</div>
+            <h3>Invoice Generator</h3>
+            <p>Create a professional invoice for your customers and services.</p>
+            <a href="/tools/invoice-generator.html" class="text-link">
+              Create invoice <span>↗</span>
+            </a>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer" id="footer-contact">
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <a class="brand" href="/index.html" aria-label="ARTHNIX homepage">
-            <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
-            <span class="brand-name">ARTHNIX</span>
+          <a class="footer-brand-link" href="/index.html" aria-label="ARTHNIX home">
+            <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
+            <span>ARTHNIX</span>
           </a>
-
-          <p>Intelligence for Every Business.</p>
-          <span class="footer-powered">Powered by Alphex AI</span>
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <p class="footer-powered">Powered by Alphex AI</p>
         </div>
 
         <div class="footer-column">
-          <h3>Explore</h3>
+          <h4>Explore</h4>
           <a href="/platform.html">Platform</a>
           <a href="#how-it-works">How It Works</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="/tools.html">All Tools</a>
+          <a href="/tools.html">Free Tools</a>
         </div>
 
         <div class="footer-column">
-          <h3>Business Tools</h3>
+          <h4>Business Tools</h4>
           <a href="/tools/gst-calculator.html">GST Calculator</a>
           <a href="/tools/invoice-generator.html">Invoice Generator</a>
           <a href="/tools/profit-calculator.html">Profit Calculator</a>
@@ -1961,20 +2163,24 @@
         </div>
 
         <div class="footer-column">
-          <h3>Information</h3>
-          <a href="/about.html">About</a>
+          <h4>Information</h4>
+          <a href="/about.html">About ARTHNIX</a>
           <a href="/help.html">Help Centre</a>
           <a href="/blog.html">Blog</a>
           <a href="/contact.html">Contact</a>
           <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Service</a>
+          <a href="/terms.html">Terms of Use</a>
           <a href="/disclaimer.html">Disclaimer</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="currentYear">2026</span> ARTHNIX. All rights reserved.</p>
-        <p>An independent product brand · Powered by Alphex AI</p>
+        <p class="copyright">
+          © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+        </p>
+        <p class="powered-by">
+          An independent product brand · <strong>Powered by Alphex AI</strong>
+        </p>
       </div>
     </div>
   </footer>
@@ -1983,13 +2189,80 @@
     (() => {
       "use strict";
 
-      const form = document.getElementById("incentiveForm");
-      const menuToggle = document.getElementById("menuToggle");
+      const menuButton = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
-      const printButton = document.getElementById("printButton");
-      const resetButton = document.getElementById("resetButton");
-      const warning = document.getElementById("resultWarning");
+      const currentYear = document.getElementById("currentYear");
 
+      function setMenuState(isOpen) {
+        if (!menuButton || !navLinks) return;
+
+        navLinks.classList.toggle("is-open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+        const lines = menuButton.querySelectorAll("span");
+
+        if (lines.length >= 2) {
+          lines[0].style.transform = isOpen
+            ? "translateY(3.5px) rotate(45deg)"
+            : "";
+
+          lines[1].style.transform = isOpen
+            ? "translateY(-3.5px) rotate(-45deg)"
+            : "";
+        }
+      }
+
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+
+          const isOpen =
+            menuButton.getAttribute("aria-expanded") === "true";
+
+          setMenuState(!isOpen);
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => setMenuState(false));
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("is-open") &&
+            !menuButton.contains(event.target) &&
+            !navLinks.contains(event.target)
+          ) {
+            setMenuState(false);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            navLinks.classList.contains("is-open")
+          ) {
+            setMenuState(false);
+            menuButton.focus();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 780) {
+            setMenuState(false);
+          }
+        });
+      }
+
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+
+      const form = document.getElementById("incentiveForm");
+      const formError = document.getElementById("formError");
       const moneyFormatter = new Intl.NumberFormat("en-IN", {
         style: "currency",
         currency: "INR",
@@ -1998,250 +2271,330 @@
       });
 
       const numberFormatter = new Intl.NumberFormat("en-IN", {
+        minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
 
-      const field = (id) => document.getElementById(id);
+      const fields = [
+        "employeeName",
+        "employeeId",
+        "companyName",
+        "period",
+        "target",
+        "actualSales",
+        "targetRate",
+        "commissionRate",
+        "fixedBonus",
+        "extraBonus",
+        "deductions",
+        "commissionBasis"
+      ];
 
-      const getNumber = (id) => {
-        const input = field(id);
-        const value = Number(input.value);
-        return Number.isFinite(value) ? Math.max(0, value) : 0;
-      };
+      function getValue(id) {
+        const element = document.getElementById(id);
 
-      const getText = (id, fallback = "") => {
-        const value = field(id).value.trim();
-        return value || fallback;
-      };
+        if (!element) return "";
 
-      const money = (value) => moneyFormatter.format(
-        Number.isFinite(value) ? value : 0
-      );
+        if (element.type === "number") {
+          const value = Number(element.value);
+          return Number.isFinite(value) ? value : 0;
+        }
 
-      const percent = (value) => `${numberFormatter.format(
-        Number.isFinite(value) ? value : 0
-      )}%`;
-
-      const setText = (id, value) => {
-        field(id).textContent = value;
-      };
-
-      function setMenuState(isOpen) {
-        navLinks.classList.toggle("is-open", isOpen);
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-        document.body.classList.toggle("menu-open", isOpen);
+        return element.value.trim();
       }
 
-      menuToggle.addEventListener("click", () => {
-        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-        setMenuState(!isOpen);
-      });
-
-      navLinks.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => setMenuState(false));
-      });
-
-      document.addEventListener("click", (event) => {
-        if (
-          navLinks.classList.contains("is-open") &&
-          !navLinks.contains(event.target) &&
-          !menuToggle.contains(event.target)
-        ) {
-          setMenuState(false);
-        }
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          setMenuState(false);
-        }
-      });
-
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 760) {
-          setMenuState(false);
-        }
-      });
-
-      field("currentYear")?.remove();
-      setText("currentYear", String(new Date().getFullYear()));
-
-      function updateVisibleFields() {
-        const type = field("incentiveType").value;
-
-        const isCommission = type === "commission";
-        const isTarget = type === "target";
-        const isFlat = type === "flat";
-        const isProfit = type === "profit";
-
-        field("targetField").hidden = isFlat;
-        field("actualField").hidden = isFlat || isProfit;
-        field("profitField").hidden = !isProfit;
-
-        field("rateField").hidden = !(isCommission || isProfit);
-        field("fixedIncentiveField").hidden = !isFlat;
-
-        field("achievementThresholdField").hidden = !isTarget;
-        field("targetBonusField").hidden = !isTarget;
-
-        updateCalculator();
+      function money(value) {
+        return moneyFormatter.format(Number.isFinite(value) ? value : 0);
       }
 
-      function updateCalculator() {
-        const type = field("incentiveType").value;
+      function percentage(value) {
+        return `${numberFormatter.format(value)}%`;
+      }
 
-        const target = getNumber("targetAmount");
-        const actualSales = getNumber("actualAmount");
-        const profit = getNumber("profitAmount");
-        const commissionRate = getNumber("commissionRate");
-        const fixedIncentive = getNumber("fixedIncentive");
-        const minimumAchievement = Math.min(
-          100,
-          getNumber("minimumAchievement")
-        );
-        const targetBonus = getNumber("targetBonus");
-        const baseSalary = getNumber("baseSalary");
-        const otherBonus = getNumber("otherBonus");
-        const otherDeductions = getNumber("otherDeductions");
-        const taxRate = Math.min(100, getNumber("taxRate"));
+      function setText(id, value) {
+        const element = document.getElementById(id);
+
+        if (element) {
+          element.textContent = value;
+        }
+      }
+
+      function showError(message) {
+        formError.textContent = message;
+        formError.classList.add("is-visible");
+      }
+
+      function clearError() {
+        formError.textContent = "";
+        formError.classList.remove("is-visible");
+      }
+
+      function formatPeriod(value) {
+        if (!value) return "Not specified";
+
+        const parts = value.split("-");
+
+        if (parts.length !== 2) return value;
+
+        const date = new Date(Number(parts[0]), Number(parts[1]) - 1, 1);
+
+        return date.toLocaleDateString("en-IN", {
+          month: "long",
+          year: "numeric"
+        });
+      }
+
+      function calculate() {
+        clearError();
+
+        const target = getValue("target");
+        const actualSales = getValue("actualSales");
+        const targetRate = getValue("targetRate");
+        const commissionRate = getValue("commissionRate");
+        const fixedBonus = getValue("fixedBonus");
+        const extraBonus = getValue("extraBonus");
+        const deductions = getValue("deductions");
+        const commissionBasis = getValue("commissionBasis");
+
+        const numericFields = [
+          ["Sales target", target],
+          ["Actual sales", actualSales],
+          ["Target achievement rate", targetRate],
+          ["Commission rate", commissionRate],
+          ["Fixed performance bonus", fixedBonus],
+          ["Additional bonus", extraBonus],
+          ["Adjustments or deductions", deductions]
+        ];
+
+        for (const [label, value] of numericFields) {
+          if (!Number.isFinite(value) || value < 0) {
+            showError(`${label} must be a valid non-negative number.`);
+            return null;
+          }
+        }
+
+        const employeeName = getValue("employeeName");
+        const employeeId = getValue("employeeId");
+        const companyName = getValue("companyName");
+        const period = getValue("period");
 
         const achievement = target > 0
           ? (actualSales / target) * 100
-          : 0;
+          : null;
 
-        let incentive = 0;
-        let methodLabel = "";
-        let explanation = "";
-        let commissionBase = 0;
+        const eligible = achievement !== null && achievement >= targetRate;
 
-        if (type === "commission") {
-          commissionBase = actualSales;
-          incentive = commissionBase * commissionRate / 100;
-          methodLabel = "Sales commission";
-          explanation =
-            `${money(actualSales)} actual sales × ${percent(commissionRate)} commission rate = ${money(incentive)} estimated commission.`;
-        } else if (type === "target") {
-          const achievedThreshold = achievement >= minimumAchievement;
-          incentive = achievedThreshold ? targetBonus : 0;
-          methodLabel = "Target-based incentive";
-          explanation = achievedThreshold
-            ? `Achievement is ${percent(achievement)}, meeting the ${percent(minimumAchievement)} minimum. The entered target incentive of ${money(targetBonus)} is included.`
-            : `Achievement is ${percent(achievement)}, below the ${percent(minimumAchievement)} minimum. No target incentive is included.`;
-        } else if (type === "flat") {
-          incentive = fixedIncentive;
-          methodLabel = "Flat incentive";
-          explanation =
-            `The flat incentive entered is ${money(fixedIncentive)}. This method does not depend on target achievement.`;
-        } else if (type === "profit") {
-          commissionBase = profit;
-          incentive = commissionBase * commissionRate / 100;
-          methodLabel = "Profit commission";
-          explanation =
-            `${money(profit)} actual profit × ${percent(commissionRate)} commission rate = ${money(incentive)} estimated commission.`;
+        let commissionableSales = 0;
+
+        if (eligible) {
+          commissionableSales = commissionBasis === "excess"
+            ? Math.max(0, actualSales - target)
+            : actualSales;
         }
 
-        const estimatedTax = incentive * taxRate / 100;
-        const totalDeductions = estimatedTax + otherDeductions;
-        const totalEarnings = baseSalary + incentive + otherBonus;
-        const takeHome = totalEarnings - totalDeductions;
+        const commission = commissionableSales * (commissionRate / 100);
+        const gross = commission + fixedBonus + extraBonus;
+        const net = Math.max(0, gross - deductions);
+        const actualNetAfterDeductions = gross - deductions;
 
-        setText("incentiveResult", money(incentive));
-        setText("achievementResult", percent(achievement));
-        setText("baseSalaryResult", money(baseSalary));
-        setText("otherBonusResult", money(otherBonus));
-        setText("deductionsResult", money(totalDeductions));
-        setText("totalEarningsResult", money(totalEarnings));
-
-        setText("targetResult", money(target));
+        setText("netIncentive", money(net));
         setText(
-          "actualResult",
-          type === "profit" ? money(profit) : money(actualSales)
+          "resultDescription",
+          eligible
+            ? "Estimated payout based on your entered incentive rules."
+            : "The achievement threshold has not been met, so commission is not applied."
         );
-        setText("methodResult", methodLabel);
+
+        setText("achievementPercent", achievement === null
+          ? "N/A"
+          : percentage(achievement));
+
+        const progress = achievement === null
+          ? 0
+          : Math.min(100, Math.max(0, achievement));
+
+        const progressFill = document.getElementById("progressFill");
+        const progressBar = document.getElementById("achievementProgress");
+
+        progressFill.style.width = `${progress}%`;
+        progressBar.setAttribute("aria-valuenow", String(progress));
+
+        let achievementCaption = "Target achievement cannot be calculated when the target is zero.";
+
+        if (achievement !== null) {
+          if (eligible) {
+            achievementCaption = `Required threshold of ${percentage(targetRate)} met.`;
+          } else {
+            achievementCaption = `Below the required threshold of ${percentage(targetRate)}.`;
+          }
+        }
+
+        setText("achievementCaption", achievementCaption);
+
+        setText("resultTarget", money(target));
+        setText("resultSales", money(actualSales));
+        setText("resultCommissionable", money(commissionableSales));
+        setText("resultCommission", money(commission));
+        setText("resultFixedBonus", money(fixedBonus));
+        setText("resultExtraBonus", money(extraBonus));
+        setText("resultDeductions", `−${money(deductions)}`);
+        setText("resultGross", money(gross));
+
+        let note = eligible
+          ? "Commission is calculated using the selected commission basis and rate."
+          : "The required target achievement threshold was not met. Sales commission is set to zero; entered bonuses remain included.";
+
+        if (actualNetAfterDeductions < 0) {
+          note += " Entered adjustments exceed the gross incentive. The displayed net incentive is limited to ₹0.00.";
+        }
+
+        note += " Verify these figures against your company's actual incentive policy.";
+
+        setText("resultNote", note);
+
+        /* Printable summary */
+        setText("printCompany", companyName || "Company Name Not Provided");
+        setText("printPeriod", `Incentive period: ${formatPeriod(period)}`);
+        setText("printEmployee", employeeName || "Not provided");
+        setText("printEmployeeId", employeeId || "Not provided");
+        setText("printTarget", money(target));
+        setText("printSales", money(actualSales));
+        setText("printAchievement", achievement === null ? "N/A" : percentage(achievement));
         setText(
-          "rateResult",
-          type === "target" || type === "flat" ? "Not applicable" : percent(commissionRate)
+          "printBasis",
+          commissionBasis === "excess"
+            ? "Sales above target only"
+            : "Actual sales"
         );
-        setText("grossIncentiveResult", money(incentive));
-        setText("taxResult", money(estimatedTax));
-        setText("otherDeductionsResult", money(otherDeductions));
-        setText("netEarningsResult", money(takeHome));
-        setText("calculationExplanation", explanation);
+        setText("printCommission", money(commission));
+        setText("printFixedBonus", money(fixedBonus));
+        setText("printExtraBonus", money(extraBonus));
+        setText("printGross", money(gross));
+        setText("printDeductions", money(deductions));
+        setText("printNet", money(net));
 
-        setText("printCompanyName", getText("companyName", "Incentive Statement"));
-        setText("printCompanyInfo", "");
-        setText("printPeriod", `Calculation period: ${getText("period", "Monthly")}`);
-        setText("printEmployeeName", getText("employeeName", "Not provided"));
-        setText("printEmployeeId", getText("employeeId", "Not provided"));
-        setText("printMethod", methodLabel);
-        setText("printAchievement", percent(achievement));
-        setText("printNetEarnings", money(takeHome));
-
-        warning.classList.remove("visible");
-        warning.textContent = "";
-
-        const issues = [];
-
-        if (target === 0 && type !== "flat") {
-          issues.push("The sales target is zero, so target achievement is shown as 0%. Enter a target to calculate achievement.");
-        }
-
-        if (takeHome < 0) {
-          issues.push("Your entered deductions exceed total earnings. Review the figures; estimated take-home earnings are negative.");
-        }
-
-        if (commissionRate > 100) {
-          issues.push("The commission rate cannot exceed 100%.");
-        }
-
-        if (taxRate > 100) {
-          issues.push("The estimated deduction rate cannot exceed 100%.");
-        }
-
-        if (issues.length) {
-          warning.textContent = issues.join(" ");
-          warning.classList.add("visible");
-        }
-
-        field("printMethod").textContent = methodLabel;
+        return {
+          employeeName: employeeName || "Not provided",
+          employeeId: employeeId || "Not provided",
+          companyName: companyName || "Not provided",
+          period: formatPeriod(period),
+          target,
+          actualSales,
+          achievement,
+          commissionableSales,
+          commissionRate,
+          commission,
+          fixedBonus,
+          extraBonus,
+          deductions,
+          gross,
+          net,
+          eligible,
+          commissionBasis
+        };
       }
 
-      form.addEventListener("input", updateCalculator);
-      form.addEventListener("change", (event) => {
-        if (event.target.id === "incentiveType") {
-          updateVisibleFields();
+      function copySummary() {
+        const result = calculate();
+
+        if (!result) return;
+
+        const summary = [
+          "ARTHNIX — Incentive Summary",
+          `Company: ${result.companyName}`,
+          `Employee: ${result.employeeName}`,
+          `Employee ID: ${result.employeeId}`,
+          `Period: ${result.period}`,
+          `Sales target: ${money(result.target)}`,
+          `Actual sales: ${money(result.actualSales)}`,
+          `Target achievement: ${result.achievement === null ? "N/A" : percentage(result.achievement)}`,
+          `Commissionable sales: ${money(result.commissionableSales)}`,
+          `Sales commission: ${money(result.commission)}`,
+          `Fixed performance bonus: ${money(result.fixedBonus)}`,
+          `Additional bonus: ${money(result.extraBonus)}`,
+          `Gross incentive: ${money(result.gross)}`,
+          `Adjustments / deductions: ${money(result.deductions)}`,
+          `Estimated net incentive: ${money(result.net)}`,
+          "",
+          "Estimate only. Verify all amounts against the applicable company incentive policy."
+        ].join("\n");
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(summary)
+            .then(() => {
+              const button = document.getElementById("copyButton");
+              const original = button.textContent;
+              button.textContent = "Copied!";
+              window.setTimeout(() => {
+                button.textContent = original;
+              }, 1600);
+            })
+            .catch(() => fallbackCopy(summary));
         } else {
-          updateCalculator();
+          fallbackCopy(summary);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const temporary = document.createElement("textarea");
+        temporary.value = text;
+        temporary.setAttribute("readonly", "");
+        temporary.style.position = "fixed";
+        temporary.style.opacity = "0";
+        document.body.appendChild(temporary);
+        temporary.select();
+
+        try {
+          document.execCommand("copy");
+          const button = document.getElementById("copyButton");
+          const original = button.textContent;
+          button.textContent = "Copied!";
+          window.setTimeout(() => {
+            button.textContent = original;
+          }, 1600);
+        } catch (error) {
+          showError("Unable to copy automatically. Please select and copy the summary manually.");
+        }
+
+        temporary.remove();
+      }
+
+      /* Default period to the current month. */
+      const periodField = document.getElementById("period");
+      const now = new Date();
+
+      periodField.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        calculate();
+      });
+
+      fields.forEach((id) => {
+        const element = document.getElementById(id);
+
+        if (!element) return;
+
+        element.addEventListener("input", calculate);
+        element.addEventListener("change", calculate);
+      });
+
+      form.addEventListener("reset", () => {
+        window.setTimeout(() => {
+          clearError();
+          calculate();
+        }, 0);
+      });
+
+      document.getElementById("printButton").addEventListener("click", () => {
+        if (calculate()) {
+          window.print();
         }
       });
 
-      printButton.addEventListener("click", () => {
-        updateCalculator();
-        window.print();
-      });
+      document.getElementById("copyButton").addEventListener("click", copySummary);
 
-      resetButton.addEventListener("click", () => {
-        const shouldReset = window.confirm(
-          "Reset all incentive calculator fields to their default values?"
-        );
-
-        if (!shouldReset) return;
-
-        form.reset();
-        updateVisibleFields();
-        field("employeeName").value = "";
-        field("employeeId").value = "";
-        field("companyName").value = "";
-        updateCalculator();
-      });
-
-      // Hide browser number spinners only where desired through native browser styling;
-      // calculations remain local and update automatically.
-      updateVisibleFields();
+      calculate();
     })();
   </script>
 </body>
