@@ -1,0 +1,2349 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PF Interest Calculator India — Calculate EPF Interest & Balance | ARTHNIX</title>
+  <meta
+    name="description"
+    content="Calculate your EPF interest, annual PF contributions, estimated interest earned, and projected provident fund balance with this free PF Interest Calculator for India."
+  >
+  <meta
+    name="keywords"
+    content="PF interest calculator, EPF calculator India, provident fund interest calculator, EPF interest calculation, PF balance calculator, employee provident fund calculator"
+  >
+  <meta name="author" content="ARTHNIX">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#090909">
+
+  <link rel="canonical" href="https://arthnix.com/tools/pf-interest-calculator.html">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PF Interest Calculator India — ARTHNIX">
+  <meta
+    property="og:description"
+    content="Estimate your EPF interest and projected provident fund balance using this free online PF calculator."
+  >
+  <meta property="og:url" content="https://arthnix.com/tools/pf-interest-calculator.html">
+  <meta property="og:site_name" content="ARTHNIX">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PF Interest Calculator",
+    "url": "https://arthnix.com/tools/pf-interest-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "A free online calculator to estimate EPF contributions, interest and projected provident fund balance in India.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is EPF interest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EPF interest is the interest credited to eligible balances in an employee's provident fund account at the rate declared for the relevant financial year. The applicable rate can change from year to year."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is EPF interest calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EPF interest is calculated according to the applicable EPFO rules, including monthly balances and the declared annual interest rate. This calculator provides an estimate using an annual-rate projection and does not reproduce the official EPFO monthly calculation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the PF interest rate fixed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The EPF interest rate is declared for the relevant financial year and may change. Check official EPFO announcements for the applicable rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the employer's full PF contribution go into EPF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not necessarily. A portion of the employer's contribution may be allocated to the Employees' Pension Scheme, subject to applicable rules. Use the actual EPF contribution shown in your payslip or passbook for a more accurate estimate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will this calculator show my exact PF passbook balance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The result is an estimate based on the inputs you provide. Actual EPF balances can differ because of contribution dates, monthly interest calculations, withdrawals, transfers, rounding and official account adjustments."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --black: #090909;
+      --black-soft: #111111;
+      --white: #ffffff;
+      --paper: #fafaf9;
+      --surface: #f4f4f2;
+      --text: #151515;
+      --muted: #737373;
+      --border: #e9e9e7;
+      --red: #ed3434;
+      --red-dark: #d92727;
+      --green: #168653;
+      --container: 1160px;
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 100;
+      top: 0;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(233, 233, 231, 0.9);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: #484848;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--red);
+    }
+
+    .nav-cta,
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 43px;
+      padding: 0 19px;
+      color: var(--white);
+      background: var(--red);
+      border: 1px solid var(--red);
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-cta:hover,
+    .button-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 21px;
+    }
+
+    .hero {
+      padding: 67px 0 54px;
+      background:
+        radial-gradient(ellipse at 85% 10%, rgba(237, 52, 52, 0.07), transparent 36%),
+        linear-gradient(180deg, #fafaf9 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 23px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--red);
+    }
+
+    .breadcrumb-separator {
+      color: #b0b0b0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 17px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 22px;
+      height: 2px;
+      content: "";
+      background: var(--red);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Manrope", sans-serif;
+      letter-spacing: -1.1px;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 19px;
+      font-size: clamp(35px, 5vw, 57px);
+      line-height: 1.12;
+      font-weight: 800;
+    }
+
+    h1 .accent {
+      color: var(--red);
+    }
+
+    .hero-description {
+      max-width: 720px;
+      margin-bottom: 25px;
+      color: #666;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.8);
+      color: #4d4d4d;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .main-section {
+      padding: 55px 0 75px;
+    }
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+      align-items: start;
+      gap: 25px;
+    }
+
+    .card {
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 25px 27px 21px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-header h2 {
+      margin-bottom: 7px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: -0.7px;
+    }
+
+    .card-header p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card-body {
+      padding: 26px 27px 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px 17px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field-hint {
+      color: #929292;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      min-height: 49px;
+      border: 1px solid #dededb;
+      border-radius: 9px;
+      background: var(--white);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+    }
+
+    .input-wrap:focus-within {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
+    }
+
+    .input-prefix,
+    .input-suffix {
+      padding: 0 12px;
+      color: #737373;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .input-wrap input,
+    .input-wrap select {
+      width: 100%;
+      min-width: 0;
+      height: 47px;
+      padding: 0 12px;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .input-wrap .input-prefix + input {
+      padding-left: 0;
+    }
+
+    .input-wrap input:focus,
+    .input-wrap select:focus {
+      outline: none;
+    }
+
+    .field-note {
+      margin: 7px 0 0;
+      color: #898989;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .section-divider {
+      grid-column: 1 / -1;
+      padding-top: 4px;
+      margin-top: 1px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-divider h3 {
+      margin: 15px 0 0;
+      font-size: 14px;
+      letter-spacing: -0.2px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 23px;
+      padding: 14px;
+      background: #fafaf9;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .toggle-row input {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      accent-color: var(--red);
+      flex-shrink: 0;
+    }
+
+    .toggle-copy strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .toggle-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+      padding: 0 17px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: #353535;
+      background: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button-secondary:hover {
+      background: var(--surface);
+      border-color: #d3d3d0;
+    }
+
+    .result-card {
+      position: sticky;
+      top: 98px;
+    }
+
+    .result-top {
+      padding: 27px;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.12), transparent 36%),
+        var(--black);
+    }
+
+    .result-top .result-label {
+      margin-bottom: 9px;
+      color: #c2c2c2;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .result-total {
+      margin-bottom: 7px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: 800;
+      letter-spacing: -1.8px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .result-caption {
+      margin-bottom: 23px;
+      color: #b6b6b6;
+      font-size: 12px;
+    }
+
+    .result-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+
+    .summary-item {
+      padding: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .summary-item span {
+      display: block;
+      margin-bottom: 5px;
+      color: #b9b9b9;
+      font-size: 10px;
+    }
+
+    .summary-item strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      overflow-wrap: anywhere;
+    }
+
+    .result-content {
+      padding: 24px 27px 27px;
+    }
+
+    .result-content h3 {
+      margin-bottom: 17px;
+      font-size: 16px;
+      letter-spacing: -0.4px;
+    }
+
+    .breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      font-size: 12px;
+    }
+
+    .breakdown-row span {
+      color: #6e6e6e;
+    }
+
+    .breakdown-row strong {
+      text-align: right;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .breakdown-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .breakdown-row.total span,
+    .breakdown-row.total strong {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .result-disclaimer {
+      margin-top: 20px;
+      padding: 12px;
+      color: #686868;
+      background: #fafaf9;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .result-disclaimer strong {
+      color: #353535;
+    }
+
+    .chart-card {
+      margin-top: 20px;
+      padding: 22px 25px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+    }
+
+    .chart-card h3 {
+      margin-bottom: 5px;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+    }
+
+    .chart-card > p {
+      margin-bottom: 19px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 17px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #666;
+      font-size: 10px;
+    }
+
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+    }
+
+    .legend-contributions {
+      background: #222;
+    }
+
+    .legend-interest {
+      background: var(--red);
+    }
+
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-year {
+      color: #6c6c6c;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .bar-track {
+      display: flex;
+      height: 20px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 5px;
+      background: #f0f0ee;
+    }
+
+    .bar-contributions {
+      height: 100%;
+      background: #222;
+      transition: width 0.35s ease;
+    }
+
+    .bar-interest {
+      height: 100%;
+      background: var(--red);
+      transition: width 0.35s ease;
+    }
+
+    .chart-empty {
+      padding: 20px;
+      color: var(--muted);
+      background: #fafaf9;
+      border-radius: 9px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .section {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 13px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(27px, 4vw, 38px);
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .section-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .info-card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+    }
+
+    .info-number {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--red);
+      background: #fff0f0;
+      border-radius: 10px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .info-card h3 {
+      margin-bottom: 9px;
+      font-size: 17px;
+      letter-spacing: -0.5px;
+    }
+
+    .info-card p {
+      margin-bottom: 0;
+      color: #727272;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .formula-box {
+      margin-top: 23px;
+      padding: 23px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 13px;
+    }
+
+    .formula-box h3 {
+      margin-bottom: 9px;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    .formula-box p {
+      margin-bottom: 0;
+      color: #d2d2d2;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .formula-box code {
+      display: inline-block;
+      margin: 8px 0;
+      padding: 8px 11px;
+      border: 1px solid #3a3a3a;
+      border-radius: 7px;
+      color: #fff;
+      background: #1b1b1b;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      white-space: normal;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .year-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .year-table th,
+    .year-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .year-table th {
+      color: #5f5f5f;
+      background: #fafaf9;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .year-table td {
+      color: #414141;
+    }
+
+    .year-table td:last-child,
+    .year-table th:last-child {
+      text-align: right;
+    }
+
+    .year-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .table-empty {
+      padding: 20px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .faq-list {
+      max-width: 850px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      position: relative;
+      padding: 18px 48px 18px 20px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      content: "+";
+      color: var(--red);
+      font-size: 21px;
+      font-weight: 500;
+      transform: translateY(-50%);
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: #6c6c6c;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .faq-answer p {
+      margin-bottom: 0;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .related-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 83px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .related-card:hover {
+      border-color: #f0aaaa;
+      transform: translateY(-2px);
+    }
+
+    .related-card strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .related-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .related-arrow {
+      color: var(--red);
+      font-size: 19px;
+      flex-shrink: 0;
+    }
+
+    .disclaimer-box {
+      margin-top: 27px;
+      padding: 19px 21px;
+      border-left: 3px solid var(--red);
+      background: #fafaf9;
+      color: #686868;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .disclaimer-box strong {
+      color: #272727;
+    }
+
+    .site-footer {
+      padding: 56px 0 22px;
+      color: #c5c5c5;
+      background: var(--black);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand .brand-name {
+      color: var(--white);
+    }
+
+    .footer-brand p {
+      max-width: 300px;
+      margin: 16px 0 0;
+      color: #929292;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 16px;
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin: 10px 0;
+      color: #9d9d9d;
+      font-size: 11px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid #292929;
+      color: #858585;
+      font-size: 10px;
+    }
+
+    .footer-bottom a {
+      color: #b8b8b8;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        gap: 17px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+        gap: 17px;
+      }
+
+      .card-header,
+      .card-body,
+      .result-top,
+      .result-content {
+        padding-left: 21px;
+        padding-right: 21px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 30px, var(--container));
+      }
+
+      .nav-inner {
+        min-height: 67px;
+      }
+
+      .mobile-menu-button {
+        display: inline-flex;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 9px 20px 17px;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0ee;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .hero {
+        padding: 42px 0 38px;
+      }
+
+      h1 {
+        font-size: clamp(34px, 9vw, 47px);
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .main-section {
+        padding: 34px 0 50px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .result-card {
+        position: static;
+      }
+
+      .card-header,
+      .card-body,
+      .result-top,
+      .result-content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-name {
+        font-size: 21px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .field.full,
+      .section-divider {
+        grid-column: auto;
+      }
+
+      .result-total {
+        font-size: 34px;
+      }
+
+      .result-summary {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .summary-item strong {
+        font-size: 15px;
+      }
+
+      .info-grid,
+      .related-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-card {
+        padding: 21px;
+      }
+
+      .form-actions > button {
+        flex: 1;
+      }
+
+      .chart-card {
+        padding: 18px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .hero,
+      .form-actions,
+      .section:not(.print-section),
+      .site-footer,
+      .toggle-row {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .main-section {
+        padding: 0;
+      }
+
+      .calculator-layout {
+        display: block;
+      }
+
+      .card {
+        box-shadow: none;
+        margin-bottom: 20px;
+        break-inside: avoid;
+      }
+
+      .result-card {
+        position: static;
+      }
+
+      .card-body {
+        display: none;
+      }
+
+      .chart-card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+        <img src="/logo.png" alt="ARTHNIX logo" onerror="this.style.display='none'">
+        <span class="brand-name">ARTH<span>NIX</span></span>
+      </a>
+
+      <nav class="nav-links" id="primaryNav" aria-label="Main navigation">
+        <a href="/index.html">Home</a>
+        <a href="/tools.html" class="active">Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/index.html#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+
+      <a class="nav-cta" href="/tools.html">Explore Tools <span aria-hidden="true">↗</span></a>
+
+      <button
+        class="mobile-menu-button"
+        id="mobileMenuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="primaryNav"
+      >☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="/tools.html">Tools</a>
+          <span class="breadcrumb-separator">/</span>
+          <span aria-current="page">PF Interest Calculator</span>
+        </nav>
+
+        <div class="eyebrow">Personal Finance Calculator</div>
+
+        <h1>PF Interest <span class="accent">Calculator</span></h1>
+
+        <p class="hero-description">
+          Estimate your Employee Provident Fund balance, annual contributions,
+          interest earned, and potential retirement savings. Adjust your PF
+          contributions and interest rate to explore different scenarios.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge"><span class="badge-dot"></span> Free to use</span>
+          <span class="badge">EPF estimates for India</span>
+          <span class="badge">Instant calculations</span>
+          <span class="badge">No sign-up required</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <div class="container">
+        <div class="calculator-layout">
+          <section class="card" aria-labelledby="calculatorHeading">
+            <div class="card-header">
+              <h2 id="calculatorHeading">Enter your PF details</h2>
+              <p>Use your actual EPF contribution figures where available.</p>
+            </div>
+
+            <div class="card-body">
+              <form id="pfForm">
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="currentBalance">
+                      Current EPF balance
+                      <span class="field-hint">Opening balance</span>
+                    </label>
+                    <div class="input-wrap">
+                      <span class="input-prefix">₹</span>
+                      <input
+                        id="currentBalance"
+                        name="currentBalance"
+                        type="number"
+                        min="0"
+                        max="100000000000"
+                        step="100"
+                        value="250000"
+                        inputmode="decimal"
+                        required
+                      >
+                    </div>
+                    <p class="field-note">
+                      Enter your current EPF balance from your passbook. Exclude
+                      pension amounts unless you specifically want to include them.
+                    </p>
+                  </div>
+
+                  <div class="field">
+                    <label for="employeeContribution">
+                      Employee contribution
+                    </label>
+                    <div class="input-wrap">
+                      <span class="input-prefix">₹</span>
+                      <input
+                        id="employeeContribution"
+                        name="employeeContribution"
+                        type="number"
+                        min="0"
+                        max="100000000"
+                        step="100"
+                        value="1800"
+                        inputmode="decimal"
+                        required
+                      >
+                    </div>
+                    <p class="field-note">Monthly EPF contribution.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="employerContribution">
+                      Employer EPF contribution
+                    </label>
+                    <div class="input-wrap">
+                      <span class="input-prefix">₹</span>
+                      <input
+                        id="employerContribution"
+                        name="employerContribution"
+                        type="number"
+                        min="0"
+                        max="100000000"
+                        step="100"
+                        value="550"
+                        inputmode="decimal"
+                        required
+                      >
+                    </div>
+                    <p class="field-note">
+                      Enter the EPF portion only, not the EPS pension portion.
+                    </p>
+                  </div>
+
+                  <div class="field">
+                    <label for="interestRate">
+                      Annual interest rate
+                    </label>
+                    <div class="input-wrap">
+                      <input
+                        id="interestRate"
+                        name="interestRate"
+                        type="number"
+                        min="0"
+                        max="30"
+                        step="0.01"
+                        value="8.25"
+                        inputmode="decimal"
+                        required
+                      >
+                      <span class="input-suffix">%</span>
+                    </div>
+                    <p class="field-note">
+                      Illustrative default. Confirm the rate for your financial year.
+                    </p>
+                  </div>
+
+                  <div class="field">
+                    <label for="years">
+                      Projection period
+                    </label>
+                    <div class="input-wrap">
+                      <input
+                        id="years"
+                        name="years"
+                        type="number"
+                        min="1"
+                        max="50"
+                        step="1"
+                        value="10"
+                        inputmode="numeric"
+                        required
+                      >
+                      <span class="input-suffix">Years</span>
+                    </div>
+                    <p class="field-note">How long you want to project savings.</p>
+                  </div>
+
+                  <div class="section-divider">
+                    <h3>Optional annual adjustments</h3>
+                  </div>
+
+                  <div class="field">
+                    <label for="salaryGrowth">
+                      Contribution growth
+                    </label>
+                    <div class="input-wrap">
+                      <input
+                        id="salaryGrowth"
+                        name="salaryGrowth"
+                        type="number"
+                        min="0"
+                        max="50"
+                        step="0.5"
+                        value="5"
+                        inputmode="decimal"
+                      >
+                      <span class="input-suffix">% / year</span>
+                    </div>
+                    <p class="field-note">
+                      Assumed yearly increase in combined monthly contributions.
+                    </p>
+                  </div>
+
+                  <div class="field">
+                    <label for="annualWithdrawal">
+                      Annual withdrawal
+                    </label>
+                    <div class="input-wrap">
+                      <span class="input-prefix">₹</span>
+                      <input
+                        id="annualWithdrawal"
+                        name="annualWithdrawal"
+                        type="number"
+                        min="0"
+                        max="100000000000"
+                        step="100"
+                        value="0"
+                        inputmode="decimal"
+                      >
+                    </div>
+                    <p class="field-note">
+                      Optional withdrawal at the end of each projected year.
+                    </p>
+                  </div>
+                </div>
+
+                <label class="toggle-row" for="includeGrowth">
+                  <input id="includeGrowth" name="includeGrowth" type="checkbox" checked>
+                  <span class="toggle-copy">
+                    <strong>Include contribution growth</strong>
+                    <span>
+                      Increase the monthly employee and employer EPF contributions
+                      by the selected growth rate each year.
+                    </span>
+                  </span>
+                </label>
+
+                <div class="form-actions">
+                  <button class="button-primary" type="submit">Calculate PF interest ↗</button>
+                  <button class="button-secondary" type="reset" id="resetButton">Reset</button>
+                  <button class="button-secondary" type="button" id="printButton">Print results</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <div>
+            <section class="card result-card" aria-labelledby="resultHeading" aria-live="polite">
+              <div class="result-top">
+                <div class="result-label" id="resultHeading">Estimated future PF balance</div>
+                <div class="result-total" id="futureBalance">₹8,50,000</div>
+                <p class="result-caption" id="resultCaption">
+                  Projected balance after 10 years
+                </p>
+
+                <div class="result-summary">
+                  <div class="summary-item">
+                    <span>Total projected contributions</span>
+                    <strong id="totalContributions">₹0</strong>
+                  </div>
+                  <div class="summary-item">
+                    <span>Total estimated interest</span>
+                    <strong id="totalInterest">₹0</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="result-content">
+                <h3>Balance breakdown</h3>
+
+                <div class="breakdown">
+                  <div class="breakdown-row">
+                    <span>Current EPF balance</span>
+                    <strong id="displayCurrentBalance">₹0</strong>
+                  </div>
+
+                  <div class="breakdown-row">
+                    <span>Future contributions</span>
+                    <strong id="displayContributions">₹0</strong>
+                  </div>
+
+                  <div class="breakdown-row">
+                    <span>Estimated interest earned</span>
+                    <strong id="displayInterest">₹0</strong>
+                  </div>
+
+                  <div class="breakdown-row">
+                    <span>Projected withdrawals</span>
+                    <strong id="displayWithdrawals">₹0</strong>
+                  </div>
+
+                  <div class="breakdown-divider"></div>
+
+                  <div class="breakdown-row total">
+                    <span>Projected closing balance</span>
+                    <strong id="displayFinalBalance">₹0</strong>
+                  </div>
+                </div>
+
+                <div class="result-disclaimer">
+                  <strong>Important:</strong> This is an illustrative projection,
+                  not an official EPFO calculation. Actual interest and balances
+                  depend on monthly contributions, dates, withdrawals, applicable
+                  rules, and the rate declared for each financial year.
+                </div>
+              </div>
+            </section>
+
+            <section class="chart-card" aria-labelledby="chartHeading">
+              <h3 id="chartHeading">Your PF growth projection</h3>
+              <p>See how projected contributions and interest build over time.</p>
+
+              <div class="chart-legend">
+                <span class="legend-item">
+                  <span class="legend-dot legend-contributions"></span>
+                  Balance and contributions
+                </span>
+                <span class="legend-item">
+                  <span class="legend-dot legend-interest"></span>
+                  Net estimated interest
+                </span>
+              </div>
+
+              <div class="bar-chart" id="barChart">
+                <div class="chart-empty">Your projection will appear here.</div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">How It Works</div>
+          <h2>Understand your PF interest calculation</h2>
+          <p>
+            Your provident fund balance can grow through regular contributions
+            and interest. The calculator estimates both using the values you enter.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-number">01</div>
+            <h3>Enter your current balance</h3>
+            <p>
+              Start with your current EPF balance. Your EPFO passbook is the
+              best place to check the employee and employer EPF amounts.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-number">02</div>
+            <h3>Add monthly contributions</h3>
+            <p>
+              Enter the employee contribution and the employer contribution
+              credited to EPF. The employer's EPS allocation is generally separate.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-number">03</div>
+            <h3>Choose your projection</h3>
+            <p>
+              Set the annual interest assumption and number of years. You can
+              also model contribution increases and annual withdrawals.
+            </p>
+          </article>
+        </div>
+
+        <div class="formula-box">
+          <h3>How this estimate is calculated</h3>
+          <p>
+            This calculator uses a simplified annual projection. It estimates
+            the opening balance's interest and the interest earned on contributions
+            added throughout each year.
+          </p>
+          <code>
+            Estimated interest = Opening balance × annual rate + contribution interest estimate
+          </code>
+          <p>
+            Monthly contributions are approximated as being spread across the year.
+            The calculator is designed for planning and comparison; it does not
+            replicate EPFO's official monthly interest-crediting method.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="yearly-breakdown">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Year-by-Year View</div>
+          <h2>Your projected PF balance over time</h2>
+          <p>
+            Review the estimated closing balance, contributions, and interest
+            for each year of your selected projection period.
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="year-table">
+            <thead>
+              <tr>
+                <th scope="col">Year</th>
+                <th scope="col">Opening balance</th>
+                <th scope="col">Contributions</th>
+                <th scope="col">Estimated interest</th>
+                <th scope="col">Withdrawal</th>
+                <th scope="col">Closing balance</th>
+              </tr>
+            </thead>
+            <tbody id="yearTableBody">
+              <tr>
+                <td colspan="6" class="table-empty">
+                  Enter your details to generate the year-by-year projection.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="disclaimer-box">
+          <strong>Projection note:</strong> The yearly figures are estimates
+          based on a constant annual interest assumption and your selected
+          contribution-growth settings. They are not official account statements
+          or a guarantee of future returns.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faqs">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Frequently Asked Questions</div>
+          <h2>PF interest calculator FAQs</h2>
+          <p>
+            Learn how EPF interest works and what to keep in mind when estimating
+            your provident fund balance.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is EPF interest?</summary>
+            <div class="faq-answer">
+              <p>
+                EPF interest is the interest credited to eligible balances in an
+                employee's provident fund account at the rate declared for the
+                relevant financial year. The rate may change from year to year.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How is PF interest calculated in India?</summary>
+            <div class="faq-answer">
+              <p>
+                EPFO applies its prescribed method using eligible monthly balances
+                and the applicable annual interest rate. This tool uses a simplified
+                projection to help with planning and does not reproduce the official
+                monthly interest calculation.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is the EPF interest rate fixed?</summary>
+            <div class="faq-answer">
+              <p>
+                No. The rate is declared for the relevant financial year and can
+                change. Verify the applicable rate using official EPFO announcements
+                before relying on a calculation.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does the employer's full PF contribution earn EPF interest?</summary>
+            <div class="faq-answer">
+              <p>
+                The employer's contribution may be divided between EPF and the
+                Employees' Pension Scheme (EPS), subject to applicable rules.
+                For a more accurate estimate, use the actual EPF portion shown in
+                your salary slip or EPFO passbook rather than the full employer
+                contribution if part is allocated to EPS.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I calculate my PF balance after 20 or 30 years?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. You can select a projection period of up to 50 years. Longer
+                projections are hypothetical because future interest rates,
+                contributions, employment, and withdrawals may change.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Will the result match my EPFO passbook exactly?</summary>
+            <div class="faq-answer">
+              <p>
+                No. The calculator provides an estimate. Actual balances may differ
+                due to contribution dates, monthly interest calculations, rate changes,
+                withdrawals, transfers, rounding, and account adjustments.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this PF Interest Calculator free?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. You can use this calculator in your browser without creating
+                an account. Your calculations are performed locally in the page.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Explore More</div>
+          <h2>Related financial calculators</h2>
+          <p>
+            Explore other ARTHNIX tools to help with salary planning and everyday
+            business calculations.
+          </p>
+        </div>
+
+        <div class="related-grid">
+          <a class="related-card" href="/tools/income-tax-calculator.html">
+            <div>
+              <strong>Income Tax Calculator</strong>
+              <span>Estimate income tax in India</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/salary-per-day-calculator.html">
+            <div>
+              <strong>Salary Per Day Calculator</strong>
+              <span>Calculate daily and hourly salary</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/profit-calculator.html">
+            <div>
+              <strong>Profit Calculator</strong>
+              <span>Calculate profit and margins</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/invoice-generator.html">
+            <div>
+              <strong>Invoice Generator</strong>
+              <span>Create business invoices</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/quotation-generator.html">
+            <div>
+              <strong>Quotation Generator</strong>
+              <span>Create professional quotations</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/invoice-number-generator.html">
+            <div>
+              <strong>Invoice Number Generator</strong>
+              <span>Generate invoice references</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="disclaimer-box">
+          <strong>Disclaimer:</strong> ARTHNIX provides this calculator for
+          general informational and financial-planning purposes. Results are
+          estimates and should not be treated as official EPFO figures, investment
+          advice, tax advice, or a guarantee of future returns. Confirm your
+          balance and applicable rules using official EPFO records.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="" onerror="this.style.display='none'">
+            <span class="brand-name">ARTH<span>NIX</span></span>
+          </a>
+          <p>
+            Intelligence for Every Business. Practical digital tools to simplify
+            everyday calculations, documents, and business operations.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Platform</h3>
+          <a href="/index.html">Home</a>
+          <a href="/tools.html">All Tools</a>
+          <a href="/platform.html">Platform</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Popular Tools</h3>
+          <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/quotation-generator.html">Quotation Generator</a>
+          <a href="/tools/invoice-number-generator.html">Invoice Number Generator</a>
+          <a href="/tools/income-tax-calculator.html">Income Tax Calculator</a>
+          <a href="/tools/salary-per-day-calculator.html">Salary Per Day Calculator</a>
+          <a href="/tools/pf-interest-calculator.html">PF Interest Calculator</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Information</h3>
+          <a href="/about.html">About Us</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+          <span>Built by <a href="https://alphex.ai" target="_blank" rel="noopener noreferrer">Alphex AI</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const form = document.getElementById("pfForm");
+      const numberFormatter = new Intl.NumberFormat("en-IN", {
+        maximumFractionDigits: 0
+      });
+
+      const money = (value) => {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return "₹" + numberFormatter.format(Math.round(safeValue));
+      };
+
+      const getNumber = (id) => {
+        const element = document.getElementById(id);
+        const value = Number(element.value);
+        return Number.isFinite(value) ? value : 0;
+      };
+
+      const setText = (id, value) => {
+        document.getElementById(id).textContent = value;
+      };
+
+      function getInputs() {
+        return {
+          currentBalance: getNumber("currentBalance"),
+          employeeContribution: getNumber("employeeContribution"),
+          employerContribution: getNumber("employerContribution"),
+          interestRate: getNumber("interestRate"),
+          years: Math.floor(getNumber("years")),
+          salaryGrowth: getNumber("salaryGrowth"),
+          annualWithdrawal: getNumber("annualWithdrawal"),
+          includeGrowth: document.getElementById("includeGrowth").checked
+        };
+      }
+
+      function validateInputs(data) {
+        const errors = [];
+
+        if (data.currentBalance < 0 || data.currentBalance > 100000000000) {
+          errors.push("Enter a valid current EPF balance.");
+        }
+
+        if (
+          data.employeeContribution < 0 ||
+          data.employeeContribution > 100000000
+        ) {
+          errors.push("Enter a valid monthly employee contribution.");
+        }
+
+        if (
+          data.employerContribution < 0 ||
+          data.employerContribution > 100000000
+        ) {
+          errors.push("Enter a valid monthly employer EPF contribution.");
+        }
+
+        if (data.interestRate < 0 || data.interestRate > 30) {
+          errors.push("Enter an annual interest rate between 0% and 30%.");
+        }
+
+        if (data.years < 1 || data.years > 50) {
+          errors.push("Choose a projection period between 1 and 50 years.");
+        }
+
+        if (data.salaryGrowth < 0 || data.salaryGrowth > 50) {
+          errors.push("Enter contribution growth between 0% and 50%.");
+        }
+
+        if (
+          data.annualWithdrawal < 0 ||
+          data.annualWithdrawal > 100000000000
+        ) {
+          errors.push("Enter a valid annual withdrawal amount.");
+        }
+
+        return errors;
+      }
+
+      /*
+       * Simplified planning model:
+       * - Assumes one constant annual interest rate throughout the projection.
+       * - Assumes contributions are made regularly through the year.
+       * - Approximates interest on new contributions using half-year timing.
+       * - Applies any optional withdrawal at year-end.
+       * - Does not reproduce the official EPFO monthly interest calculation.
+       */
+      function calculateProjection(data) {
+        let balance = data.currentBalance;
+        let monthlyEmployee = data.employeeContribution;
+        let monthlyEmployer = data.employerContribution;
+
+        let cumulativeContributions = 0;
+        let cumulativeInterest = 0;
+        let cumulativeWithdrawals = 0;
+
+        const annualRate = data.interestRate / 100;
+        const rows = [];
+
+        for (let year = 1; year <= data.years; year++) {
+          const openingBalance = balance;
+
+          const annualContribution =
+            (monthlyEmployee + monthlyEmployer) * 12;
+
+          const openingBalanceInterest = openingBalance * annualRate;
+
+          /*
+           * Half-year approximation: regular contributions are assumed to
+           * be made throughout the year, on average earning half a year's interest.
+           */
+          const contributionInterest =
+            annualContribution * annualRate * 0.5;
+
+          const estimatedInterest =
+            openingBalanceInterest + contributionInterest;
+
+          const withdrawal = Math.min(
+            data.annualWithdrawal,
+            Math.max(0, openingBalance + annualContribution + estimatedInterest)
+          );
+
+          const closingBalance = Math.max(
+            0,
+            openingBalance +
+              annualContribution +
+              estimatedInterest -
+              withdrawal
+          );
+
+          cumulativeContributions += annualContribution;
+          cumulativeInterest += estimatedInterest;
+          cumulativeWithdrawals += withdrawal;
+
+          rows.push({
+            year,
+            openingBalance,
+            annualContribution,
+            estimatedInterest,
+            withdrawal,
+            closingBalance
+          });
+
+          balance = closingBalance;
+
+          if (data.includeGrowth) {
+            const growthMultiplier = 1 + data.salaryGrowth / 100;
+            monthlyEmployee *= growthMultiplier;
+            monthlyEmployer *= growthMultiplier;
+          }
+        }
+
+        return {
+          rows,
+          currentBalance: data.currentBalance,
+          totalContributions: cumulativeContributions,
+          totalInterest: cumulativeInterest,
+          totalWithdrawals: cumulativeWithdrawals,
+          finalBalance: balance
+        };
+      }
+
+      function renderChart(projection) {
+        const chart = document.getElementById("barChart");
+        chart.replaceChildren();
+
+        const allValues = projection.rows.map((row) => ({
+          year: row.year,
+          contributionsAndBalance:
+            row.openingBalance + row.annualContribution,
+          interest: row.estimatedInterest
+        }));
+
+        const maxTotal = Math.max(
+          1,
+          ...allValues.map((row) => row.contributionsAndBalance + row.interest)
+        );
+
+        const step = Math.max(1, Math.ceil(allValues.length / 8));
+        const selectedRows = allValues.filter((row, index) => {
+          return index % step === 0 || index === allValues.length - 1;
+        });
+
+        selectedRows.forEach((row) => {
+          const rowElement = document.createElement("div");
+          rowElement.className = "bar-row";
+
+          const yearLabel = document.createElement("span");
+          yearLabel.className = "bar-year";
+          yearLabel.textContent = "Y" + row.year;
+
+          const track = document.createElement("div");
+          track.className = "bar-track";
+          track.setAttribute(
+            "aria-label",
+            "Year " + row.year + " projected balance and interest"
+          );
+
+          const contributionBar = document.createElement("div");
+          contributionBar.className = "bar-contributions";
+          contributionBar.style.width =
+            (row.contributionsAndBalance / maxTotal) * 100 + "%";
+
+          const interestBar = document.createElement("div");
+          interestBar.className = "bar-interest";
+          interestBar.style.width = (row.interest / maxTotal) * 100 + "%";
+
+          track.append(contributionBar, interestBar);
+          rowElement.append(yearLabel, track);
+          chart.append(rowElement);
+        });
+      }
+
+      function renderTable(rows) {
+        const tbody = document.getElementById("yearTableBody");
+        tbody.replaceChildren();
+
+        rows.forEach((row) => {
+          const tr = document.createElement("tr");
+
+          const values = [
+            "Year " + row.year,
+            money(row.openingBalance),
+            money(row.annualContribution),
+            money(row.estimatedInterest),
+            money(row.withdrawal),
+            money(row.closingBalance)
+          ];
+
+          values.forEach((value) => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            tr.append(td);
+          });
+
+          tbody.append(tr);
+        });
+      }
+
+      function renderResults(projection, data) {
+        setText("futureBalance", money(projection.finalBalance));
+        setText(
+          "resultCaption",
+          "Projected balance after " +
+            data.years +
+            (data.years === 1 ? " year" : " years")
+        );
+
+        setText(
+          "totalContributions",
+          money(projection.totalContributions)
+        );
+        setText("totalInterest", money(projection.totalInterest));
+
+        setText("displayCurrentBalance", money(projection.currentBalance));
+        setText("displayContributions", money(projection.totalContributions));
+        setText("displayInterest", money(projection.totalInterest));
+        setText("displayWithdrawals", money(projection.totalWithdrawals));
+        setText("displayFinalBalance", money(projection.finalBalance));
+
+        renderChart(projection);
+        renderTable(projection.rows);
+      }
+
+      function calculateAndRender() {
+        if (!form.reportValidity()) {
+          return;
+        }
+
+        const data = getInputs();
+        const errors = validateInputs(data);
+
+        if (errors.length) {
+          window.alert(errors.join("\n"));
+          return;
+        }
+
+        const projection = calculateProjection(data);
+        renderResults(projection, data);
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        calculateAndRender();
+      });
+
+      form.addEventListener("input", (event) => {
+        if (
+          event.target.matches("input[type='number']") ||
+          event.target.matches("input[type='checkbox']")
+        ) {
+          calculateAndRender();
+        }
+      });
+
+      form.addEventListener("reset", () => {
+        window.setTimeout(() => {
+          calculateAndRender();
+        }, 0);
+      });
+
+      document.getElementById("resetButton").addEventListener("click", () => {
+        // The form's native reset event restores the initial values.
+      });
+
+      document.getElementById("printButton").addEventListener("click", () => {
+        calculateAndRender();
+        window.print();
+      });
+
+      const menuButton = document.getElementById("mobileMenuButton");
+      const nav = document.getElementById("primaryNav");
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        menuButton.textContent = isOpen ? "×" : "☰";
+      });
+
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation menu");
+          menuButton.textContent = "☰";
+        });
+      });
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      calculateAndRender();
+    })();
+  </script>
+</body>
+</html>
