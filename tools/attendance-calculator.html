@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Attendance Calculator — Calculate Attendance Percentage | ARTHNIX</title>
+  <meta
+    name="description"
+    content="Calculate your attendance percentage, present and absent days, required classes to reach your target, and safe bunk allowance with the free ARTHNIX Attendance Calculator."
+  >
+  <meta
+    name="keywords"
+    content="attendance calculator, attendance percentage calculator, student attendance calculator, 75 percent attendance calculator, class attendance calculator, attendance tracker"
+  >
+  <meta name="author" content="ARTHNIX">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#090909">
+  <link rel="canonical" href="https://arthnix.com/tools/attendance-calculator.html">
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Attendance Calculator | ARTHNIX">
+  <meta
+    property="og:description"
+    content="Calculate attendance percentage, track attendance, and find how many more classes you need to attend."
+  >
+  <meta property="og:url" content="https://arthnix.com/tools/attendance-calculator.html">
+  <meta property="og:site_name" content="ARTHNIX">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Attendance Calculator",
+    "url": "https://arthnix.com/tools/attendance-calculator.html",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "description": "A free attendance calculator to calculate attendance percentage, required classes, absences and attendance targets.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ARTHNIX",
+      "url": "https://arthnix.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate my attendance percentage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the number of classes attended by the total number of classes held and multiply by 100. For example, attending 45 out of 60 classes gives 75% attendance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many classes must I attend to reach 75% attendance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The required number depends on your current attended classes and total classes held. This calculator estimates how many consecutive classes you must attend to reach your selected target."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many classes can I miss and still maintain my target attendance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The number depends on your current attendance, the target percentage, and future classes. Use the bunk planner in this calculator to estimate the maximum additional classes you can miss while remaining at or above your target."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this attendance calculator for school or college?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It can be used for school, college, university, coaching classes, training sessions, or other situations where attendance is measured by sessions attended divided by sessions held."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator save my attendance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This calculator processes your attendance in your browser. The monthly tracker can be used to record daily status during your current session, but the entries are not automatically saved to an account or cloud database."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --black: #090909;
+      --black-soft: #111111;
+      --white: #ffffff;
+      --paper: #fafaf9;
+      --surface: #f4f4f2;
+      --text: #151515;
+      --muted: #737373;
+      --border: #e9e9e7;
+      --red: #ed3434;
+      --red-dark: #d92727;
+      --green: #168653;
+      --amber: #b7791f;
+      --container: 1160px;
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 100;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(233, 233, 231, 0.9);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: #484848;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--red);
+    }
+
+    .nav-cta,
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 43px;
+      padding: 0 19px;
+      color: var(--white);
+      background: var(--red);
+      border: 1px solid var(--red);
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-cta:hover,
+    .button-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 21px;
+    }
+
+    .hero {
+      padding: 67px 0 54px;
+      background:
+        radial-gradient(ellipse at 85% 10%, rgba(237, 52, 52, 0.07), transparent 36%),
+        linear-gradient(180deg, #fafaf9 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 23px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--red);
+    }
+
+    .breadcrumb-separator {
+      color: #b0b0b0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 17px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 22px;
+      height: 2px;
+      content: "";
+      background: var(--red);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Manrope", sans-serif;
+      letter-spacing: -1.1px;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 19px;
+      font-size: clamp(35px, 5vw, 57px);
+      line-height: 1.12;
+      font-weight: 800;
+    }
+
+    h1 .accent {
+      color: var(--red);
+    }
+
+    .hero-description {
+      max-width: 720px;
+      margin-bottom: 25px;
+      color: #666;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.8);
+      color: #4d4d4d;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .main-section {
+      padding: 55px 0 75px;
+    }
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(330px, 0.92fr);
+      align-items: start;
+      gap: 25px;
+    }
+
+    .card {
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 25px 27px 21px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-header h2 {
+      margin-bottom: 7px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: -0.7px;
+    }
+
+    .card-header p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card-body {
+      padding: 26px 27px 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px 17px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field-hint {
+      color: #929292;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      min-height: 49px;
+      border: 1px solid #dededb;
+      border-radius: 9px;
+      background: var(--white);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+    }
+
+    .input-wrap:focus-within {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
+    }
+
+    .input-wrap input,
+    .input-wrap select {
+      width: 100%;
+      min-width: 0;
+      height: 47px;
+      padding: 0 12px;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .field-note {
+      margin: 7px 0 0;
+      color: #898989;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+      padding: 0 17px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: #353535;
+      background: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button-secondary:hover {
+      background: var(--surface);
+      border-color: #d3d3d0;
+    }
+
+    .result-card {
+      position: sticky;
+      top: 98px;
+    }
+
+    .result-top {
+      padding: 27px;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.12), transparent 36%),
+        var(--black);
+    }
+
+    .result-label {
+      margin-bottom: 9px;
+      color: #c2c2c2;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .result-total {
+      margin-bottom: 7px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1.8px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .result-caption {
+      margin-bottom: 23px;
+      color: #b6b6b6;
+      font-size: 12px;
+    }
+
+    .result-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+
+    .summary-item {
+      padding: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .summary-item span {
+      display: block;
+      margin-bottom: 5px;
+      color: #b9b9b9;
+      font-size: 10px;
+    }
+
+    .summary-item strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+
+    .result-content {
+      padding: 24px 27px 27px;
+    }
+
+    .result-content h3 {
+      margin-bottom: 17px;
+      font-size: 16px;
+      letter-spacing: -0.4px;
+    }
+
+    .breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      font-size: 12px;
+    }
+
+    .breakdown-row span {
+      color: #6e6e6e;
+    }
+
+    .breakdown-row strong {
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .breakdown-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .breakdown-row.total span,
+    .breakdown-row.total strong {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .status-box {
+      margin-top: 20px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fafaf9;
+    }
+
+    .status-box strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .status-box p {
+      margin-bottom: 0;
+      color: #666;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .status-box.success {
+      background: #f0fbf5;
+      border-color: #c7ebd7;
+    }
+
+    .status-box.success strong {
+      color: #147344;
+    }
+
+    .status-box.warning {
+      background: #fff8eb;
+      border-color: #f2dfb8;
+    }
+
+    .status-box.warning strong {
+      color: #8b5a0a;
+    }
+
+    .status-box.danger {
+      background: #fff2f2;
+      border-color: #f4cccc;
+    }
+
+    .status-box.danger strong {
+      color: #bd2525;
+    }
+
+    .tracker-card {
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .tracker-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tracker-toolbar h3 {
+      margin-bottom: 4px;
+      font-size: 17px;
+      letter-spacing: -0.5px;
+    }
+
+    .tracker-toolbar p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .tracker-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tracker-controls input,
+    .tracker-controls select {
+      min-height: 39px;
+      padding: 0 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .tracker-body {
+      padding: 22px 24px 25px;
+    }
+
+    .tracker-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 17px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #666;
+      font-size: 10px;
+    }
+
+    .legend-swatch {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+    }
+
+    .swatch-present {
+      background: var(--green);
+    }
+
+    .swatch-absent {
+      background: var(--red);
+    }
+
+    .swatch-holiday {
+      background: #b8b8b8;
+    }
+
+    .swatch-unmarked {
+      background: #ececea;
+      border: 1px solid #d8d8d5;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .calendar-weekday {
+      padding: 6px 0;
+      color: #888;
+      font-size: 10px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .calendar-day {
+      display: flex;
+      min-height: 63px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: #3c3c3c;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    button.calendar-day:hover {
+      border-color: #bcbcb8;
+      transform: translateY(-1px);
+    }
+
+    .calendar-day small {
+      color: #777;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .calendar-day.empty {
+      min-height: 63px;
+      border-color: transparent;
+      background: transparent;
+    }
+
+    .calendar-day.present {
+      color: #126c40;
+      background: #edfaf2;
+      border-color: #c6ead4;
+    }
+
+    .calendar-day.absent {
+      color: #b91f1f;
+      background: #fff0f0;
+      border-color: #f0c8c8;
+    }
+
+    .calendar-day.holiday {
+      color: #555;
+      background: #f1f1ef;
+      border-color: #e1e1de;
+    }
+
+    .calendar-day.present small {
+      color: #168653;
+    }
+
+    .calendar-day.absent small {
+      color: #c92a2a;
+    }
+
+    .tracker-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .tracker-stat {
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #fafaf9;
+    }
+
+    .tracker-stat span {
+      display: block;
+      margin-bottom: 4px;
+      color: #777;
+      font-size: 10px;
+    }
+
+    .tracker-stat strong {
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      letter-spacing: -0.5px;
+    }
+
+    .tracker-note {
+      margin: 16px 0 0;
+      color: #777;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .section {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 13px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(27px, 4vw, 38px);
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .section-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .info-card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+    }
+
+    .info-number {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--red);
+      background: #fff0f0;
+      border-radius: 10px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .info-card h3 {
+      margin-bottom: 9px;
+      font-size: 17px;
+      letter-spacing: -0.5px;
+    }
+
+    .info-card p {
+      margin-bottom: 0;
+      color: #727272;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .formula-box {
+      margin-top: 23px;
+      padding: 23px;
+      color: var(--white);
+      background: var(--black);
+      border-radius: 13px;
+    }
+
+    .formula-box h3 {
+      margin-bottom: 9px;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    .formula-box p {
+      margin-bottom: 0;
+      color: #d2d2d2;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .formula-box code {
+      display: inline-block;
+      margin: 8px 0;
+      padding: 8px 11px;
+      border: 1px solid #3a3a3a;
+      border-radius: 7px;
+      color: #fff;
+      background: #1b1b1b;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      white-space: normal;
+    }
+
+    .faq-list {
+      max-width: 850px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      position: relative;
+      padding: 18px 48px 18px 20px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      content: "+";
+      color: var(--red);
+      font-size: 21px;
+      font-weight: 500;
+      transform: translateY(-50%);
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: #6c6c6c;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .faq-answer p {
+      margin-bottom: 0;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .related-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 83px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .related-card:hover {
+      border-color: #f0aaaa;
+      transform: translateY(-2px);
+    }
+
+    .related-card strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .related-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .related-arrow {
+      color: var(--red) !important;
+      font-size: 19px !important;
+      flex-shrink: 0;
+    }
+
+    .disclaimer-box {
+      margin-top: 27px;
+      padding: 19px 21px;
+      border-left: 3px solid var(--red);
+      background: #fafaf9;
+      color: #686868;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .disclaimer-box strong {
+      color: #272727;
+    }
+
+    .site-footer {
+      padding: 56px 0 22px;
+      color: #c5c5c5;
+      background: var(--black);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand .brand-name {
+      color: var(--white);
+    }
+
+    .footer-brand p {
+      max-width: 300px;
+      margin: 16px 0 0;
+      color: #929292;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 16px;
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin: 10px 0;
+      color: #9d9d9d;
+      font-size: 11px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid #292929;
+      color: #858585;
+      font-size: 10px;
+    }
+
+    .footer-bottom a {
+      color: #b8b8b8;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        gap: 17px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+        gap: 17px;
+      }
+
+      .card-header,
+      .card-body,
+      .result-top,
+      .result-content {
+        padding-left: 21px;
+        padding-right: 21px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 30px, var(--container));
+      }
+
+      .nav-inner {
+        min-height: 67px;
+      }
+
+      .mobile-menu-button {
+        display: inline-flex;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 9px 20px 17px;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0ee;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .hero {
+        padding: 42px 0 38px;
+      }
+
+      h1 {
+        font-size: clamp(34px, 9vw, 47px);
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .main-section {
+        padding: 34px 0 50px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .result-card {
+        position: static;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .info-grid,
+      .related-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tracker-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .calendar-grid {
+        gap: 4px;
+      }
+
+      .calendar-day {
+        min-height: 48px;
+        padding: 3px;
+        font-size: 11px;
+      }
+
+      .calendar-day.empty {
+        min-height: 48px;
+      }
+
+      .calendar-day small {
+        font-size: 8px;
+      }
+
+      .tracker-body {
+        padding: 16px 12px 20px;
+      }
+
+      .tracker-toolbar {
+        padding: 18px;
+      }
+
+      .tracker-controls {
+        width: 100%;
+      }
+
+      .tracker-controls input,
+      .tracker-controls select {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .result-total {
+        font-size: 34px;
+      }
+
+      .form-actions > button {
+        flex: 1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .hero,
+      .form-actions,
+      .section,
+      .site-footer,
+      .tracker-controls,
+      .tracker-note {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .main-section {
+        padding: 0;
+      }
+
+      .calculator-layout {
+        display: block;
+      }
+
+      .card,
+      .tracker-card {
+        margin-bottom: 18px;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .result-card {
+        position: static;
+      }
+
+      .card-body {
+        display: none;
+      }
+
+      .tracker-card {
+        display: block;
+      }
+
+      .calendar-day {
+        min-height: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+        <img src="/logo.png" alt="ARTHNIX logo" onerror="this.style.display='none'">
+        <span class="brand-name">ARTH<span>NIX</span></span>
+      </a>
+
+      <nav class="nav-links" id="primaryNav" aria-label="Main navigation">
+        <a href="/index.html">Home</a>
+        <a href="/tools.html" class="active">Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/index.html#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+
+      <a class="nav-cta" href="/tools.html">Explore Tools <span aria-hidden="true">↗</span></a>
+
+      <button
+        class="mobile-menu-button"
+        id="mobileMenuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="primaryNav"
+      >☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="/tools.html">Tools</a>
+          <span class="breadcrumb-separator">/</span>
+          <span aria-current="page">Attendance Calculator</span>
+        </nav>
+
+        <div class="eyebrow">Student & Class Planner</div>
+
+        <h1>Attendance <span class="accent">Calculator</span></h1>
+
+        <p class="hero-description">
+          Calculate your attendance percentage, find out how many more classes
+          you need to attend to reach your target, and estimate how many future
+          classes you can miss without falling below your required percentage.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge"><span class="badge-dot"></span> Free to use</span>
+          <span class="badge">Instant results</span>
+          <span class="badge">75% target planner</span>
+          <span class="badge">Monthly tracker</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <div class="container">
+        <div class="calculator-layout">
+          <section class="card" aria-labelledby="calculatorHeading">
+            <div class="card-header">
+              <h2 id="calculatorHeading">Calculate your attendance</h2>
+              <p>Enter the total classes held and the classes you attended.</p>
+            </div>
+
+            <div class="card-body">
+              <form id="attendanceForm">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="totalClasses">Total classes held</label>
+                    <div class="input-wrap">
+                      <input
+                        id="totalClasses"
+                        name="totalClasses"
+                        type="number"
+                        min="0"
+                        max="1000000"
+                        step="1"
+                        value="100"
+                        inputmode="numeric"
+                        required
+                      >
+                    </div>
+                    <p class="field-note">All classes or sessions conducted so far.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="attendedClasses">Classes attended</label>
+                    <div class="input-wrap">
+                      <input
+                        id="attendedClasses"
+                        name="attendedClasses"
+                        type="number"
+                        min="0"
+                        max="1000000"
+                        step="1"
+                        value="75"
+                        inputmode="numeric"
+                        required
+                      >
+                    </div>
+                    <p class="field-note">Classes or sessions you were present for.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="targetAttendance">Target attendance</label>
+                    <div class="input-wrap">
+                      <input
+                        id="targetAttendance"
+                        name="targetAttendance"
+                        type="number"
+                        min="1"
+                        max="100"
+                        step="0.1"
+                        value="75"
+                        inputmode="decimal"
+                        required
+                      >
+                    </div>
+                    <p class="field-note">For example, 75% or 80%.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="futureClasses">Expected future classes</label>
+                    <div class="input-wrap">
+                      <input
+                        id="futureClasses"
+                        name="futureClasses"
+                        type="number"
+                        min="0"
+                        max="1000000"
+                        step="1"
+                        value="20"
+                        inputmode="numeric"
+                        required
+                      >
+                    </div>
+                    <p class="field-note">Optional estimate of remaining classes.</p>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button class="button-primary" type="submit">Calculate attendance ↗</button>
+                  <button class="button-secondary" type="reset">Reset</button>
+                  <button class="button-secondary" id="printButton" type="button">Print report</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="card result-card" aria-labelledby="resultHeading" aria-live="polite">
+            <div class="result-top">
+              <div class="result-label" id="resultHeading">Your attendance percentage</div>
+              <div class="result-total" id="attendancePercentage">75.00%</div>
+              <p class="result-caption" id="attendanceCaption">You are at your selected target.</p>
+
+              <div class="result-summary">
+                <div class="summary-item">
+                  <span>Classes attended</span>
+                  <strong id="resultAttended">75</strong>
+                </div>
+                <div class="summary-item">
+                  <span>Classes missed</span>
+                  <strong id="resultMissed">25</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-content">
+              <h3>Attendance breakdown</h3>
+
+              <div class="breakdown">
+                <div class="breakdown-row">
+                  <span>Total classes held</span>
+                  <strong id="displayTotal">100</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Current attendance</span>
+                  <strong id="displayPercentage">75.00%</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Selected target</span>
+                  <strong id="displayTarget">75%</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Additional classes needed to reach target</span>
+                  <strong id="classesNeeded">0</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Maximum future classes you can miss</span>
+                  <strong id="bunkAllowance">0</strong>
+                </div>
+
+                <div class="breakdown-divider"></div>
+
+                <div class="breakdown-row total">
+                  <span>Attendance after future classes</span>
+                  <strong id="futurePercentage">75.00%</strong>
+                </div>
+              </div>
+
+              <div class="status-box success" id="attendanceStatus" role="status">
+                <strong>Target achieved</strong>
+                <p>Your current attendance meets the selected target.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="tracker-card" aria-labelledby="trackerHeading">
+          <div class="tracker-toolbar">
+            <div>
+              <h3 id="trackerHeading">Monthly attendance tracker</h3>
+              <p>Click a date to cycle through Present, Absent, Holiday and Unmarked.</p>
+            </div>
+
+            <div class="tracker-controls">
+              <label class="sr-only" for="trackerMonth">Month</label>
+              <select id="trackerMonth" aria-label="Select month"></select>
+
+              <label class="sr-only" for="trackerYear">Year</label>
+              <input id="trackerYear" type="number" min="2000" max="2100" value="2026" aria-label="Select year">
+
+              <button class="button-secondary" type="button" id="clearTracker">Clear month</button>
+            </div>
+          </div>
+
+          <div class="tracker-body">
+            <div class="tracker-legend">
+              <span class="legend-item"><span class="legend-swatch swatch-present"></span> Present</span>
+              <span class="legend-item"><span class="legend-swatch swatch-absent"></span> Absent</span>
+              <span class="legend-item"><span class="legend-swatch swatch-holiday"></span> Holiday</span>
+              <span class="legend-item"><span class="legend-swatch swatch-unmarked"></span> Unmarked</span>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid" aria-label="Monthly attendance calendar"></div>
+
+            <div class="tracker-stats">
+              <div class="tracker-stat">
+                <span>Present</span>
+                <strong id="trackerPresent">0</strong>
+              </div>
+              <div class="tracker-stat">
+                <span>Absent</span>
+                <strong id="trackerAbsent">0</strong>
+              </div>
+              <div class="tracker-stat">
+                <span>Marked working days</span>
+                <strong id="trackerMarked">0</strong>
+              </div>
+              <div class="tracker-stat">
+                <span>Tracker attendance</span>
+                <strong id="trackerPercentage">—</strong>
+              </div>
+            </div>
+
+            <p class="tracker-note">
+              The monthly tracker is separate from the main calculator. It counts
+              only dates marked Present or Absent; Holidays and Unmarked dates
+              are excluded. Entries remain in this page session and are not
+              synced to an account or cloud database.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">How It Works</div>
+          <h2>Calculate attendance in three steps</h2>
+          <p>
+            Use your attendance records to understand your current percentage
+            and plan for the remaining classes in your term.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-number">01</div>
+            <h3>Enter your class count</h3>
+            <p>
+              Enter the number of classes held so far and the number you attended.
+              Make sure attended classes do not exceed total classes held.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-number">02</div>
+            <h3>Choose your target</h3>
+            <p>
+              Set your required attendance percentage, such as 75%, 80%, or
+              another target specified by your institution.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-number">03</div>
+            <h3>Plan future classes</h3>
+            <p>
+              See how many consecutive classes you need to attend to reach your
+              target and how many future classes you can miss while maintaining it.
+            </p>
+          </article>
+        </div>
+
+        <div class="formula-box">
+          <h3>Attendance percentage formula</h3>
+          <p>The basic formula is:</p>
+          <code>Attendance % = (Classes Attended ÷ Total Classes Held) × 100</code>
+          <p>
+            For example, if you attend 72 out of 90 classes, your attendance is
+            80%. Institutions may apply their own rules for medical leave,
+            practicals, labs, condonation, or minimum attendance requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faqs">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Frequently Asked Questions</div>
+          <h2>Attendance calculator FAQs</h2>
+          <p>Understand the calculations and use the results to plan your attendance.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I calculate my attendance percentage?</summary>
+            <div class="faq-answer">
+              <p>
+                Divide the number of classes attended by the total number of
+                classes held, then multiply by 100. For example, 45 attended
+                classes out of 60 gives 75% attendance.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How many classes must I attend to reach 75%?</summary>
+            <div class="faq-answer">
+              <p>
+                The answer depends on your current attended classes and total
+                classes held. This calculator estimates how many consecutive
+                classes you must attend to reach your selected target without
+                missing any in between.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How many classes can I miss and still maintain 75% attendance?</summary>
+            <div class="faq-answer">
+              <p>
+                It depends on your current attendance and the number of future
+                classes. The calculator estimates the maximum future absences
+                you can have while remaining at or above your target, assuming
+                the future class count you enter is accurate.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I use this for school, college, or coaching classes?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. You can use the calculator for school, college, university,
+                coaching classes, training sessions, or other programs where
+                attendance is measured as sessions attended divided by sessions held.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does the monthly tracker update the main calculator?</summary>
+            <div class="faq-answer">
+              <p>
+                No. The monthly tracker is separate from the main calculator.
+                It summarizes dates you mark as Present or Absent for the
+                selected month. The main calculator uses the numbers entered
+                in its own fields.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does this tool save my attendance records?</summary>
+            <div class="faq-answer">
+              <p>
+                The tool runs in your browser and does not require an account.
+                Tracker entries are not uploaded to a cloud account and are not
+                guaranteed to persist if you reload or close the page.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is 75% attendance compulsory everywhere?</summary>
+            <div class="faq-answer">
+              <p>
+                No universal rule applies to every institution and course.
+                Requirements can vary by institution, university, program, and
+                applicable regulations. Confirm the required percentage with
+                your institution.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Explore More</div>
+          <h2>Related ARTHNIX tools</h2>
+          <p>Discover more tools for calculations, work planning, and everyday tasks.</p>
+        </div>
+
+        <div class="related-grid">
+          <a class="related-card" href="/tools/salary-per-day-calculator.html">
+            <div>
+              <strong>Salary Per Day Calculator</strong>
+              <span>Calculate daily and hourly salary</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/income-tax-calculator.html">
+            <div>
+              <strong>Income Tax Calculator</strong>
+              <span>Estimate income tax in India</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/pf-interest-calculator.html">
+            <div>
+              <strong>PF Interest Calculator</strong>
+              <span>Estimate your provident fund balance</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/profit-calculator.html">
+            <div>
+              <strong>Profit Calculator</strong>
+              <span>Calculate profit and margins</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/invoice-generator.html">
+            <div>
+              <strong>Invoice Generator</strong>
+              <span>Create professional invoices</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="related-card" href="/tools/quotation-generator.html">
+            <div>
+              <strong>Quotation Generator</strong>
+              <span>Create business quotations</span>
+            </div>
+            <span class="related-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="disclaimer-box">
+          <strong>Disclaimer:</strong> ARTHNIX provides this tool for general
+          informational purposes. Results are estimates and do not replace your
+          institution's official attendance records or policies. Always confirm
+          your attendance and minimum attendance requirements with your institution.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="" onerror="this.style.display='none'">
+            <span class="brand-name">ARTH<span>NIX</span></span>
+          </a>
+          <p>
+            Intelligence for Every Business. Practical digital tools to simplify
+            everyday calculations, documents, and business operations.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Platform</h3>
+          <a href="/index.html">Home</a>
+          <a href="/tools.html">All Tools</a>
+          <a href="/platform.html">Platform</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Popular Tools</h3>
+          <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/quotation-generator.html">Quotation Generator</a>
+          <a href="/tools/income-tax-calculator.html">Income Tax Calculator</a>
+          <a href="/tools/pf-interest-calculator.html">PF Interest Calculator</a>
+          <a href="/tools/salary-per-day-calculator.html">Salary Per Day Calculator</a>
+          <a href="/tools/attendance-calculator.html">Attendance Calculator</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Information</h3>
+          <a href="/about.html">About Us</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Use</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+          <span>Built by <a href="https://alphex.ai" target="_blank" rel="noopener noreferrer">Alphex AI</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const form = document.getElementById("attendanceForm");
+
+      const getNumber = (id) => {
+        const value = Number(document.getElementById(id).value);
+        return Number.isFinite(value) ? value : 0;
+      };
+
+      const setText = (id, value) => {
+        document.getElementById(id).textContent = value;
+      };
+
+      const percentage = (attended, total) => {
+        if (total === 0) return null;
+        return (attended / total) * 100;
+      };
+
+      const formatPercent = (value) => {
+        if (value === null || !Number.isFinite(value)) return "—";
+        return value.toFixed(2) + "%";
+      };
+
+      function validateData(data) {
+        if (
+          !Number.isInteger(data.total) ||
+          !Number.isInteger(data.attended) ||
+          !Number.isInteger(data.future)
+        ) {
+          return "Enter whole numbers for classes held, classes attended, and future classes.";
+        }
+
+        if (data.total < 0 || data.attended < 0 || data.future < 0) {
+          return "Class counts cannot be negative.";
+        }
+
+        if (
+          data.total > 1000000 ||
+          data.attended > 1000000 ||
+          data.future > 1000000
+        ) {
+          return "Please enter class counts of 1,000,000 or less.";
+        }
+
+        if (data.attended > data.total) {
+          return "Classes attended cannot exceed total classes held.";
+        }
+
+        if (
+          !Number.isFinite(data.target) ||
+          data.target <= 0 ||
+          data.target > 100
+        ) {
+          return "Enter a target attendance greater than 0% and no more than 100%.";
+        }
+
+        return "";
+      }
+
+      function calculate(data) {
+        const missed = data.total - data.attended;
+        const currentPercentage = percentage(data.attended, data.total);
+
+        /*
+         * Minimum consecutive classes needed to reach the target.
+         * Solve (attended + x) / (total + x) >= target / 100.
+         */
+        let needed = 0;
+
+        if (currentPercentage === null || currentPercentage < data.target) {
+          if (data.target >= 100) {
+            needed = data.total - data.attended;
+          } else {
+            needed = Math.max(
+              0,
+              Math.ceil(
+                (data.target * data.total - 100 * data.attended) /
+                (100 - data.target)
+              )
+            );
+          }
+        }
+
+        const futureAttended = data.attended + data.future;
+        const futureTotal = data.total + data.future;
+        const futurePercentage = percentage(futureAttended, futureTotal);
+
+        /*
+         * Maximum absences allowed among the specified future classes
+         * while maintaining the target. All other future classes are assumed
+         * to be attended.
+         */
+        let bunkAllowance = 0;
+
+        for (let absences = data.future; absences >= 0; absences--) {
+          const futurePresent = data.future - absences;
+          const totalAfterFuture = data.total + data.future;
+          const attendedAfterFuture = data.attended + futurePresent;
+          const finalPct = percentage(attendedAfterFuture, totalAfterFuture);
+
+          if (finalPct !== null && finalPct + 1e-10 >= data.target) {
+            bunkAllowance = absences;
+            break;
+          }
+        }
+
+        /*
+         * If there are zero classes held, the percentage is undefined.
+         * The calculator does not label zero classes as 0% attendance.
+         */
+        return {
+          total: data.total,
+          attended: data.attended,
+          missed,
+          target: data.target,
+          future: data.future,
+          currentPercentage,
+          needed,
+          futurePercentage,
+          bunkAllowance
+        };
+      }
+
+      function renderStatus(result) {
+        const box = document.getElementById("attendanceStatus");
+        box.className = "status-box";
+
+        const title = box.querySelector("strong");
+        const paragraph = box.querySelector("p");
+
+        if (result.total === 0) {
+          box.classList.add("warning");
+          title.textContent = "No classes recorded yet";
+          paragraph.textContent =
+            "Enter at least one class held to calculate a current attendance percentage.";
+          return;
+        }
+
+        if (result.currentPercentage + 1e-10 >= result.target) {
+          box.classList.add("success");
+          title.textContent = "Target achieved";
+          paragraph.textContent =
+            "Your current attendance meets or exceeds your selected target.";
+        } else {
+          box.classList.add("danger");
+          title.textContent = "Below your target";
+          paragraph.textContent =
+            "Attend the next " + result.needed +
+            (result.needed === 1 ? " class" : " classes") +
+            " consecutively to reach your target, assuming no further absences.";
+        }
+      }
+
+      function renderResults(result) {
+        setText(
+          "attendancePercentage",
+          result.currentPercentage === null
+            ? "—"
+            : formatPercent(result.currentPercentage)
+        );
+
+        setText(
+          "attendanceCaption",
+          result.currentPercentage === null
+            ? "Add class records to calculate attendance."
+            : result.currentPercentage + 1e-10 >= result.target
+              ? "You meet your selected target."
+              : "Your attendance is below your selected target."
+        );
+
+        setText("resultAttended", result.attended.toLocaleString("en-IN"));
+        setText("resultMissed", result.missed.toLocaleString("en-IN"));
+        setText("displayTotal", result.total.toLocaleString("en-IN"));
+
+        setText(
+          "displayPercentage",
+          formatPercent(result.currentPercentage)
+        );
+
+        setText("displayTarget", result.target + "%");
+        setText("classesNeeded", result.needed.toLocaleString("en-IN"));
+        setText(
+          "bunkAllowance",
+          result.bunkAllowance.toLocaleString("en-IN")
+        );
+
+        setText(
+          "futurePercentage",
+          result.futurePercentage === null
+            ? "—"
+            : formatPercent(result.futurePercentage)
+        );
+
+        renderStatus(result);
+      }
+
+      function calculateAndRender() {
+        if (!form.reportValidity()) return;
+
+        const data = {
+          total: getNumber("totalClasses"),
+          attended: getNumber("attendedClasses"),
+          target: getNumber("targetAttendance"),
+          future: getNumber("futureClasses")
+        };
+
+        const error = validateData(data);
+
+        if (error) {
+          window.alert(error);
+          return;
+        }
+
+        renderResults(calculate(data));
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        calculateAndRender();
+      });
+
+      form.addEventListener("input", (event) => {
+        if (event.target.matches("input")) {
+          calculateAndRender();
+        }
+      });
+
+      form.addEventListener("reset", () => {
+        window.setTimeout(calculateAndRender, 0);
+      });
+
+      document.getElementById("printButton").addEventListener("click", () => {
+        calculateAndRender();
+        window.print();
+      });
+
+      // Monthly attendance tracker
+      const monthSelect = document.getElementById("trackerMonth");
+      const yearInput = document.getElementById("trackerYear");
+      const calendarGrid = document.getElementById("calendarGrid");
+
+      const monthNames = [
+        "January", "February", "March", "April",
+        "May", "June", "July", "August",
+        "September", "October", "November", "December"
+      ];
+
+      const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const attendanceStatus = [null, "present", "absent", "holiday"];
+
+      const monthRecords = Object.create(null);
+      const statusLabels = {
+        present: "Present",
+        absent: "Absent",
+        holiday: "Holiday"
+      };
+
+      const now = new Date();
+      monthSelect.innerHTML = monthNames.map((month, index) => {
+        return '<option value="' + index + '">' + month + "</option>";
+      }).join("");
+
+      monthSelect.value = String(now.getMonth());
+      yearInput.value = String(now.getFullYear());
+
+      function getSelectedMonth() {
+        const month = Number(monthSelect.value);
+        const year = Number(yearInput.value);
+
+        if (
+          !Number.isInteger(month) ||
+          month < 0 ||
+          month > 11 ||
+          !Number.isInteger(year) ||
+          year < 2000 ||
+          year > 2100
+        ) {
+          return null;
+        }
+
+        return { month, year };
+      }
+
+      function getMonthKey(month, year) {
+        return year + "-" + String(month + 1).padStart(2, "0");
+      }
+
+      function getMonthRecord(month, year) {
+        const key = getMonthKey(month, year);
+
+        if (!monthRecords[key]) {
+          monthRecords[key] = Object.create(null);
+        }
+
+        return monthRecords[key];
+      }
+
+      function updateTrackerStats(record, daysInMonth) {
+        let present = 0;
+        let absent = 0;
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          if (record[day] === "present") present++;
+          if (record[day] === "absent") absent++;
+        }
+
+        const marked = present + absent;
+        const pct = marked > 0 ? (present / marked) * 100 : null;
+
+        setText("trackerPresent", String(present));
+        setText("trackerAbsent", String(absent));
+        setText("trackerMarked", String(marked));
+        setText("trackerPercentage", pct === null ? "—" : pct.toFixed(1) + "%");
+      }
+
+      function renderCalendar() {
+        const selected = getSelectedMonth();
+
+        if (!selected) {
+          calendarGrid.replaceChildren();
+          const message = document.createElement("p");
+          message.className = "tracker-note";
+          message.textContent = "Choose a valid month and year.";
+          calendarGrid.append(message);
+          return;
+        }
+
+        const { month, year } = selected;
+        const record = getMonthRecord(month, year);
+        const firstWeekday = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        calendarGrid.replaceChildren();
+
+        weekdays.forEach((weekday) => {
+          const heading = document.createElement("div");
+          heading.className = "calendar-weekday";
+          heading.textContent = weekday;
+          calendarGrid.append(heading);
+        });
+
+        for (let i = 0; i < firstWeekday; i++) {
+          const blank = document.createElement("div");
+          blank.className = "calendar-day empty";
+          blank.setAttribute("aria-hidden", "true");
+          calendarGrid.append(blank);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const status = record[day] || null;
+          const button = document.createElement("button");
+
+          button.type = "button";
+          button.className = "calendar-day" + (status ? " " + status : "");
+          button.setAttribute(
+            "aria-label",
+            monthNames[month] + " " + day + ", " +
+              (status ? statusLabels[status] : "Unmarked") +
+              ". Click to change status."
+          );
+
+          const dayNumber = document.createElement("span");
+          dayNumber.textContent = String(day);
+          button.append(dayNumber);
+
+          const small = document.createElement("small");
+          small.textContent = status ? statusLabels[status] : "—";
+          button.append(small);
+
+          button.addEventListener("click", () => {
+            const currentIndex = attendanceStatus.indexOf(record[day] || null);
+            const nextIndex = (currentIndex + 1) % attendanceStatus.length;
+            const nextStatus = attendanceStatus[nextIndex];
+
+            if (nextStatus === null) {
+              delete record[day];
+            } else {
+              record[day] = nextStatus;
+            }
+
+            renderCalendar();
+          });
+
+          calendarGrid.append(button);
+        }
+
+        updateTrackerStats(record, daysInMonth);
+      }
+
+      monthSelect.addEventListener("change", renderCalendar);
+      yearInput.addEventListener("change", renderCalendar);
+
+      document.getElementById("clearTracker").addEventListener("click", () => {
+        const selected = getSelectedMonth();
+
+        if (!selected) {
+          window.alert("Choose a valid month and year first.");
+          return;
+        }
+
+        const key = getMonthKey(selected.month, selected.year);
+        delete monthRecords[key];
+        renderCalendar();
+      });
+
+      // Mobile navigation
+      const menuButton = document.getElementById("mobileMenuButton");
+      const nav = document.getElementById("primaryNav");
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        menuButton.textContent = isOpen ? "×" : "☰";
+      });
+
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation menu");
+          menuButton.textContent = "☰";
+        });
+      });
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      calculateAndRender();
+      renderCalendar();
+    })();
+  </script>
+</body>
+</html>
