@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Working Days Calculator — ARTHNIX</title>
+  <meta
+    name="description"
+    content="Calculate working days between two dates. Exclude weekends, add holidays, and find total calendar days, working days, and weekend days with the free ARTHNIX Working Days Calculator."
+  >
+  <meta name="theme-color" content="#090909">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://arthnix.com/working-days-calculator.html">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --black: #090909;
+      --black-soft: #111111;
+      --white: #ffffff;
+      --paper: #fafaf9;
+      --surface: #f4f4f2;
+      --text: #151515;
+      --muted: #737373;
+      --border: #e9e9e7;
+      --red: #ed3434;
+      --red-dark: #d92727;
+      --green: #16834a;
+      --radius: 18px;
+      --container: 1160px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body,
+    input,
+    select,
+    button,
+    textarea {
+      font-family: "DM Sans", sans-serif;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-size: 15px;
+    }
+
+    button,
+    a,
+    input,
+    select,
+    textarea {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(237, 52, 52, 0.35);
+      outline-offset: 3px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--black);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      border-radius: 9px;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.9px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 31px;
+    }
+
+    .nav-links > a:not(.nav-cta) {
+      color: #c4c4c4;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links > a:not(.nav-cta):hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 18px;
+      border-radius: 9px;
+      background: var(--red);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #353535;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--white);
+      font-size: 23px;
+    }
+
+    .page-hero {
+      padding: 76px 0 44px;
+      background:
+        radial-gradient(ellipse at 80% 5%, rgba(237, 52, 52, 0.055), transparent 34%),
+        var(--paper);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      color: var(--red-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 21px;
+      height: 2px;
+      background: var(--red);
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Manrope", sans-serif;
+    }
+
+    .page-hero h1 {
+      max-width: 800px;
+      margin-bottom: 18px;
+      font-size: clamp(36px, 5.2vw, 61px);
+      font-weight: 800;
+      letter-spacing: -2.8px;
+      line-height: 1.12;
+    }
+
+    .accent {
+      color: var(--red);
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: #626262;
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border: 1px solid #e5e3e1;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.8);
+      color: #525252;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .tool-section {
+      padding: 54px 0 78px;
+    }
+
+    .tool-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(330px, 0.94fr);
+      align-items: start;
+      gap: 25px;
+    }
+
+    .panel {
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 24px 27px 21px;
+      border-bottom: 1px solid var(--border);
+      background: #fdfdfc;
+    }
+
+    .panel-header h2 {
+      margin-bottom: 5px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.65px;
+    }
+
+    .panel-header p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .panel-body {
+      padding: 26px 27px 28px;
+    }
+
+    .field {
+      min-width: 0;
+      margin-bottom: 21px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field label,
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #292929;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .field-hint {
+      margin: -2px 0 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-width: 0;
+      min-height: 49px;
+      padding: 12px 14px;
+      border: 1px solid #dededb;
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    .field input:hover,
+    .field select:hover,
+    .field textarea:hover {
+      border-color: #bcbcb8;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.08);
+      outline: none;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .weekday-title {
+      margin: 0 0 10px;
+      color: #292929;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .weekday-options {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .weekday-option {
+      position: relative;
+      min-width: 0;
+    }
+
+    .weekday-option input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .weekday-option label {
+      display: flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      border: 1px solid #e0e0dd;
+      border-radius: 9px;
+      background: #fff;
+      color: #575757;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .weekday-option input:checked + label {
+      border-color: var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .weekday-option input:focus-visible + label {
+      outline: 3px solid rgba(237, 52, 52, 0.35);
+      outline-offset: 3px;
+    }
+
+    .holiday-field {
+      margin-top: 22px;
+    }
+
+    .holiday-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .text-button {
+      padding: 5px 0;
+      border: 0;
+      background: transparent;
+      color: var(--red-dark);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .text-button:hover {
+      text-decoration: underline;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 27px;
+    }
+
+    .btn {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: #292929;
+    }
+
+    .btn-outline {
+      border-color: #dededb;
+      background: var(--white);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: #999;
+      background: #fafafa;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 14px;
+      border: 1px solid #f1b8b8;
+      border-radius: 10px;
+      background: #fff4f4;
+      color: #a51f1f;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .message.visible {
+      display: block;
+    }
+
+    .results-panel {
+      position: sticky;
+      top: 100px;
+    }
+
+    .results-panel .panel-header {
+      background: var(--black);
+      color: var(--white);
+      border-bottom: 0;
+    }
+
+    .results-panel .panel-header p {
+      color: #b8b8b8;
+    }
+
+    .results-panel .panel-body {
+      padding: 26px;
+    }
+
+    .result-label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .primary-result {
+      padding: 23px;
+      border: 1px solid #f0d5d5;
+      border-radius: 15px;
+      background: #fff8f8;
+    }
+
+    .primary-result .result-number {
+      display: block;
+      color: var(--red-dark);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(37px, 4vw, 53px);
+      font-weight: 800;
+      letter-spacing: -2.1px;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    .result-subtitle {
+      margin-top: 10px;
+      color: #6b6262;
+      font-size: 12px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .result-card {
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+    }
+
+    .result-card .result-label {
+      min-height: 36px;
+      margin-bottom: 7px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .result-card strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .result-card small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .result-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .result-card.wide .result-label {
+      min-height: auto;
+    }
+
+    .comparison-box {
+      margin-top: 18px;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .comparison-heading {
+      margin-bottom: 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .comparison-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .comparison-row span {
+      color: var(--muted);
+    }
+
+    .comparison-row strong {
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .change-positive {
+      color: var(--green);
+    }
+
+    .change-negative {
+      color: var(--red-dark);
+    }
+
+    .change-neutral {
+      color: var(--text);
+    }
+
+    .result-note {
+      margin: 17px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .results-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .results-actions .btn {
+      width: 100%;
+      padding-inline: 9px;
+      font-size: 12px;
+    }
+
+    .results-actions .btn:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .copy-status {
+      min-height: 20px;
+      margin: 10px 0 0;
+      color: var(--green);
+      font-size: 12px;
+    }
+
+    .content-section {
+      padding: 0 0 78px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .content-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+
+    .content-card h2 {
+      margin-bottom: 13px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.35;
+    }
+
+    .content-card p {
+      margin-bottom: 13px;
+      color: #626262;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .content-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .formula-box {
+      margin: 17px 0;
+      padding: 19px;
+      border: 1px solid #f0d5d5;
+      border-radius: 12px;
+      background: #fff8f8;
+      text-align: center;
+    }
+
+    .formula-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--red-dark);
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+    }
+
+    .formula-box span {
+      color: #6b6262;
+      font-size: 12px;
+    }
+
+    .example-list {
+      margin: 16px 0 0;
+      padding-left: 20px;
+      color: #626262;
+      font-size: 13px;
+    }
+
+    .example-list li {
+      margin-bottom: 9px;
+      padding-left: 3px;
+    }
+
+    .faq-section {
+      padding: 0 0 80px;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 10px;
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.2;
+    }
+
+    .section-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .faq-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .faq-item {
+      padding: 21px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--white);
+    }
+
+    .faq-item h3 {
+      margin-bottom: 9px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .faq-item p {
+      margin-bottom: 0;
+      color: #686868;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .related-section {
+      padding: 0 0 82px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .related-card {
+      display: flex;
+      min-height: 125px;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-2px);
+      border-color: #d3a0a0;
+    }
+
+    .related-card strong {
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .related-card span {
+      color: var(--red-dark);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .site-footer {
+      padding: 56px 0 0;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 42px;
+      padding-bottom: 45px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .footer-brand strong {
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .footer-tagline {
+      max-width: 240px;
+      margin-bottom: 12px;
+      color: #c5c5c5;
+      font-size: 14px;
+    }
+
+    .footer-powered {
+      color: #8d8d8d;
+      font-size: 12px;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 16px;
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-bottom: 11px;
+      color: #aaa;
+      font-size: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 19px 0 22px;
+      border-top: 1px solid #292929;
+      color: #929292;
+      font-size: 11px;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+    }
+
+    .footer-bottom a {
+      color: #c5c5c5;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--white);
+    }
+
+    .print-only {
+      display: none;
+    }
+
+    @media (max-width: 1050px) {
+      .nav-links {
+        gap: 19px;
+      }
+
+      .tool-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+        gap: 18px;
+      }
+
+      .panel-header,
+      .panel-body {
+        padding-left: 21px;
+        padding-right: 21px;
+      }
+
+      .results-panel .panel-body {
+        padding: 21px;
+      }
+
+      .footer-top {
+        gap: 25px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        width: min(100% - 34px, var(--container));
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 20px;
+        border-bottom: 1px solid #303030;
+        background: var(--black);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links > a:not(.nav-cta) {
+        padding: 13px 3px;
+        border-bottom: 1px solid #242424;
+      }
+
+      .nav-cta {
+        margin-top: 14px;
+      }
+
+      .page-hero {
+        padding: 57px 0 37px;
+      }
+
+      .page-hero h1 {
+        letter-spacing: -1.9px;
+      }
+
+      .tool-section {
+        padding: 34px 0 58px;
+      }
+
+      .tool-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .results-panel {
+        position: static;
+      }
+
+      .primary-result .result-number {
+        font-size: 48px;
+      }
+
+      .content-grid,
+      .faq-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .content-section,
+      .faq-section {
+        padding-bottom: 58px;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .brand-name {
+        font-size: 18px;
+      }
+
+      .page-hero {
+        padding-top: 45px;
+      }
+
+      .page-hero h1 {
+        font-size: 37px;
+        letter-spacing: -1.6px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .panel-header {
+        padding: 20px 18px 17px;
+      }
+
+      .panel-body,
+      .results-panel .panel-body {
+        padding: 20px 17px;
+      }
+
+      .date-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+      }
+
+      .weekday-options {
+        gap: 5px;
+      }
+
+      .weekday-option label {
+        min-height: 39px;
+        border-radius: 7px;
+        font-size: 10px;
+      }
+
+      .primary-result {
+        padding: 19px;
+      }
+
+      .primary-result .result-number {
+        font-size: 41px;
+      }
+
+      .result-grid {
+        gap: 9px;
+      }
+
+      .result-card {
+        padding: 14px;
+      }
+
+      .result-card strong {
+        font-size: 23px;
+      }
+
+      .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .button-row .btn-primary {
+        grid-column: 1 / -1;
+      }
+
+      .content-card {
+        padding: 22px 19px;
+      }
+
+      .related-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .related-card {
+        min-height: 105px;
+      }
+
+      .footer-top {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .page-hero h1 {
+        font-size: 33px;
+      }
+
+      .weekday-options {
+        gap: 3px;
+      }
+
+      .weekday-option label {
+        font-size: 9px;
+      }
+
+      .result-card strong {
+        font-size: 21px;
+      }
+
+      .results-actions {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .results-actions .btn:first-child {
+        grid-column: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media print {
+      @page {
+        margin: 15mm;
+      }
+
+      body {
+        background: #fff;
+        color: #000;
+        font-size: 12px;
+      }
+
+      .site-header,
+      .site-footer,
+      .button-row,
+      .results-actions,
+      .copy-status,
+      .holiday-actions,
+      .related-section,
+      .faq-section,
+      .content-section,
+      .hero-meta {
+        display: none !important;
+      }
+
+      .container {
+        width: 100%;
+        max-width: none;
+      }
+
+      .page-hero {
+        padding: 0 0 20px;
+        border-bottom: 1px solid #ccc;
+        background: #fff;
+      }
+
+      .page-hero h1 {
+        font-size: 30px;
+      }
+
+      .tool-section {
+        padding: 20px 0;
+      }
+
+      .tool-layout {
+        display: block;
+      }
+
+      .panel {
+        margin-bottom: 16px;
+        border-color: #ccc;
+        break-inside: avoid;
+      }
+
+      .panel-header,
+      .results-panel .panel-header {
+        padding: 15px;
+        background: #fff;
+        color: #000;
+      }
+
+      .panel-header p,
+      .results-panel .panel-header p {
+        color: #444;
+      }
+
+      .panel-body,
+      .results-panel .panel-body {
+        padding: 15px;
+      }
+
+      .results-panel {
+        position: static;
+      }
+
+      .primary-result,
+      .result-card,
+      .comparison-box {
+        border-color: #ccc;
+        background: #fff;
+      }
+
+      .primary-result .result-number {
+        color: #000;
+      }
+
+      .print-only {
+        display: block;
+      }
+
+      input,
+      select,
+      textarea {
+        border-color: #ccc !important;
+        background: #fff !important;
+        color: #000 !important;
+      }
+
+      .message {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="/" aria-label="ARTHNIX home">
+        <img src="/logo.png" alt="ARTHNIX logo" width="36" height="36">
+        <span class="brand-name">ARTHNIX</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >☰</button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="/tools.html">Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+        <a class="nav-cta" href="/tools.html">Start Free <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">Free Business Tool</div>
+
+        <h1>
+          Working Days <span class="accent">Calculator</span>
+        </h1>
+
+        <p class="hero-description">
+          Calculate the number of working days between two dates. Exclude
+          weekends, add public holidays or company holidays, and instantly
+          see your working days, non-working days, and total calendar days.
+        </p>
+
+        <div class="hero-meta">
+          <span class="meta-pill"><span class="meta-dot"></span> Free to use</span>
+          <span class="meta-pill"><span class="meta-dot"></span> Custom weekend settings</span>
+          <span class="meta-pill"><span class="meta-dot"></span> No sign-up required</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-layout">
+          <section class="panel" aria-labelledby="calculatorHeading">
+            <div class="panel-header">
+              <h2 id="calculatorHeading">Calculate Working Days</h2>
+              <p>Select a date range and customize your non-working days.</p>
+            </div>
+
+            <div class="panel-body">
+              <form id="workingDaysForm" novalidate>
+                <div class="date-grid">
+                  <div class="field">
+                    <label for="startDate">Start date</label>
+                    <input id="startDate" name="startDate" type="date" required>
+                  </div>
+
+                  <div class="field">
+                    <label for="endDate">End date</label>
+                    <input id="endDate" name="endDate" type="date" required>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="dateMode">Date range calculation</label>
+                  <select id="dateMode" name="dateMode">
+                    <option value="inclusive">Include both start and end dates</option>
+                    <option value="exclusive-start">Exclude the start date</option>
+                    <option value="exclusive-end">Exclude the end date</option>
+                    <option value="exclusive-both">Exclude both dates</option>
+                  </select>
+                  <p class="field-hint">
+                    Choose whether the first and last dates should count toward the total.
+                  </p>
+                </div>
+
+                <div class="field">
+                  <p class="weekday-title">Weekend days</p>
+                  <p class="field-hint">
+                    Selected days will be excluded from working days.
+                  </p>
+
+                  <div class="weekday-options" role="group" aria-label="Select weekend days">
+                    <div class="weekday-option">
+                      <input id="weekend0" type="checkbox" value="0" checked>
+                      <label for="weekend0" title="Sunday">Sun</label>
+                    </div>
+                    <div class="weekday-option">
+                      <input id="weekend1" type="checkbox" value="1">
+                      <label for="weekend1" title="Monday">Mon</label>
+                    </div>
+                    <div class="weekday-option">
+                      <input id="weekend2" type="checkbox" value="2">
+                      <label for="weekend2" title="Tuesday">Tue</label>
+                    </div>
+                    <div class="weekday-option">
+                      <input id="weekend3" type="checkbox" value="3">
+                      <label for="weekend3" title="Wednesday">Wed</label>
+                    </div>
+                    <div class="weekday-option">
+                      <input id="weekend4" type="checkbox" value="4">
+                      <label for="weekend4" title="Thursday">Thu</label>
+                    </div>
+                    <div class="weekday-option">
+                      <input id="weekend5" type="checkbox" value="5">
+                      <label for="weekend5" title="Friday">Fri</label>
+                    </div>
+                    <div class="weekday-option">
+                      <input id="weekend6" type="checkbox" value="6" checked>
+                      <label for="weekend6" title="Saturday">Sat</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field holiday-field">
+                  <label for="holidays">Holidays to exclude (optional)</label>
+                  <p class="field-hint">
+                    Enter one holiday date per line using YYYY-MM-DD. Holidays that fall
+                    on selected weekends are not double-counted.
+                  </p>
+                  <textarea
+                    id="holidays"
+                    name="holidays"
+                    placeholder="2026-01-26&#10;2026-08-15&#10;2026-10-02"
+                    spellcheck="false"
+                    aria-describedby="holidayHint"
+                  ></textarea>
+                  <p class="field-hint" id="holidayHint">
+                    Add the public holidays or company holidays applicable to your location.
+                    Holidays are not loaded automatically.
+                  </p>
+                  <div class="holiday-actions">
+                    <button class="text-button" id="clearHolidays" type="button">Clear holidays</button>
+                    <button class="text-button" id="exampleHolidays" type="button">Load example dates</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="periodLabel">Period label (optional)</label>
+                  <input
+                    id="periodLabel"
+                    name="periodLabel"
+                    type="text"
+                    maxlength="80"
+                    placeholder="e.g. Project timeline or notice period"
+                  >
+                </div>
+
+                <div class="button-row">
+                  <button class="btn btn-primary" type="submit">Calculate Working Days <span aria-hidden="true">→</span></button>
+                  <button class="btn btn-outline" id="resetButton" type="button">Reset</button>
+                </div>
+
+                <div class="message" id="errorMessage" role="alert" aria-live="assertive"></div>
+              </form>
+            </div>
+          </section>
+
+          <section class="panel results-panel" id="resultsPanel" aria-labelledby="resultsHeading">
+            <div class="panel-header">
+              <h2 id="resultsHeading">Your Results</h2>
+              <p id="resultPeriod">Your date range summary appears here.</p>
+            </div>
+
+            <div class="panel-body">
+              <div class="primary-result">
+                <div class="result-label">Total Working Days</div>
+                <strong class="result-number" id="workingDaysResult" aria-live="polite">—</strong>
+                <div class="result-subtitle" id="workingDaysSubtitle">Choose your dates to calculate.</div>
+              </div>
+
+              <div class="result-grid">
+                <div class="result-card">
+                  <div class="result-label">Calendar Days</div>
+                  <strong id="calendarDaysResult">—</strong>
+                  <small>Days counted in the selected range</small>
+                </div>
+
+                <div class="result-card">
+                  <div class="result-label">Weekend Days</div>
+                  <strong id="weekendDaysResult">—</strong>
+                  <small>Selected weekend days in range</small>
+                </div>
+
+                <div class="result-card">
+                  <div class="result-label">Holidays Excluded</div>
+                  <strong id="holidaysResult">—</strong>
+                  <small>Holidays falling on otherwise working days</small>
+                </div>
+
+                <div class="result-card">
+                  <div class="result-label">Non-working Days</div>
+                  <strong id="nonWorkingResult">—</strong>
+                  <small>Weekend days plus applicable holidays</small>
+                </div>
+
+                <div class="result-card wide">
+                  <div class="result-label">Start and End Dates</div>
+                  <strong id="dateRangeResult" style="font-size:16px;letter-spacing:-0.3px;">—</strong>
+                  <small id="dateModeResult">The selected date-counting rule will be shown here.</small>
+                </div>
+              </div>
+
+              <p class="result-note">
+                Results depend on your selected weekends, date inclusion rule, and holiday list.
+                Confirm local public holidays and company policies before using this result for
+                payroll, leave, contracts, or official deadlines.
+              </p>
+
+              <div class="results-actions">
+                <button class="btn btn-dark" id="copyButton" type="button">Copy Results</button>
+                <button class="btn btn-outline" id="printButton" type="button">Print / Save PDF</button>
+              </div>
+
+              <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+              <p class="print-only" id="printDate"></p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="content-grid">
+          <article class="content-card">
+            <h2>How Are Working Days Calculated?</h2>
+            <p>
+              Working days are the days in a selected date range that remain after excluding
+              the weekend days and applicable holidays you specify. This calculator supports
+              different weekend schedules and date-inclusion rules.
+            </p>
+
+            <div class="formula-box">
+              <strong>Working Days = Calendar Days − Non-working Days</strong>
+              <span>Non-working days include selected weekends and holidays that fall on otherwise working days.</span>
+            </div>
+
+            <p>
+              For example, when Saturday and Sunday are weekends, a Monday-to-Friday range
+              usually contains five working days, provided none of those dates is excluded
+              as a holiday.
+            </p>
+          </article>
+
+          <article class="content-card">
+            <h2>Example Calculation</h2>
+            <p>
+              Suppose you select Monday, 5 October 2026 through Friday, 9 October 2026,
+              inclusive, with Saturday and Sunday set as weekends.
+            </p>
+
+            <ul class="example-list">
+              <li><strong>Calendar days:</strong> 5</li>
+              <li><strong>Weekend days:</strong> 0</li>
+              <li><strong>Applicable holidays:</strong> 0</li>
+              <li><strong>Working days:</strong> 5</li>
+            </ul>
+
+            <p style="margin-top:16px;">
+              If you add a holiday on Wednesday, 7 October, the result becomes four working
+              days. The calculator uses the dates you enter and does not assume a particular
+              country's official holiday calendar.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Frequently Asked Questions</div>
+          <h2>Working Days Calculator FAQs</h2>
+          <p>Understand how date ranges, weekends, and holidays affect your result.</p>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>What is a working day?</h3>
+            <p>
+              A working day is a day treated as a regular working day under your selected
+              schedule. This calculator defines working days as dates that are not excluded
+              by your selected weekend settings or holiday list.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Are public holidays automatically excluded?</h3>
+            <p>
+              No. Public holidays vary by country, state, region, and employer. Enter the
+              applicable dates in the holiday field to exclude them from the calculation.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can I calculate working days for a notice period?</h3>
+            <p>
+              Yes. Enter the start and end dates and choose the date-inclusion rule that
+              matches your intended calculation. Employment contracts and local rules may
+              define notice periods differently, so verify the applicable terms.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Does the calculator count the start and end dates?</h3>
+            <p>
+              By default, both dates are included. You can choose to exclude the start date,
+              the end date, or both dates using the date-range calculation selector.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can I change the weekend days?</h3>
+            <p>
+              Yes. Select any combination of weekdays as non-working days. If your schedule
+              has no weekend days, uncheck all seven options. The calculator will then
+              count all non-holiday dates as working days.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can I save the result?</h3>
+            <p>
+              Use Copy Results to copy a text summary, or select Print / Save PDF to print
+              the calculation or save it as a PDF through your browser's print dialog.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Explore More</div>
+          <h2>More Free Business Tools</h2>
+          <p>Explore other ARTHNIX tools for everyday business calculations and planning.</p>
+        </div>
+
+        <div class="related-grid">
+          <a class="related-card" href="/salary-per-day-calculator.html">
+            <strong>Salary Per Day Calculator</strong>
+            <span>Calculate daily salary ↗</span>
+          </a>
+
+          <a class="related-card" href="/time-card-calculator.html">
+            <strong>Time Card Calculator</strong>
+            <span>Calculate working hours ↗</span>
+          </a>
+
+          <a class="related-card" href="/tools.html">
+            <strong>All Business Tools</strong>
+            <span>Explore all tools ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-column">
+          <a class="footer-brand" href="/" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="ARTHNIX logo" width="34" height="34">
+            <strong>ARTHNIX</strong>
+          </a>
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <p class="footer-powered">Powered by Alphex AI</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="/platform.html">Platform</a>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/tools.html">All Tools</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Business Tools</h3>
+          <a href="/tools/gst-calculator.html">GST Calculator</a>
+          <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/profit-calculator.html">Profit Calculator</a>
+          <a href="/tools/quotation-generator.html">Quotation Generator</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Information</h3>
+          <a href="/about.html">About</a>
+          <a href="/help.html">Help Center</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</p>
+        <p>An independent product brand · Powered by <a href="/">Alphex AI</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const form = document.getElementById("workingDaysForm");
+      const startInput = document.getElementById("startDate");
+      const endInput = document.getElementById("endDate");
+      const dateModeInput = document.getElementById("dateMode");
+      const holidaysInput = document.getElementById("holidays");
+      const periodLabelInput = document.getElementById("periodLabel");
+      const errorMessage = document.getElementById("errorMessage");
+
+      const output = {
+        working: document.getElementById("workingDaysResult"),
+        workingSubtitle: document.getElementById("workingDaysSubtitle"),
+        calendar: document.getElementById("calendarDaysResult"),
+        weekends: document.getElementById("weekendDaysResult"),
+        holidays: document.getElementById("holidaysResult"),
+        nonWorking: document.getElementById("nonWorkingResult"),
+        dateRange: document.getElementById("dateRangeResult"),
+        dateMode: document.getElementById("dateModeResult"),
+        period: document.getElementById("resultPeriod"),
+        copyStatus: document.getElementById("copyStatus"),
+        printDate: document.getElementById("printDate")
+      };
+
+      const DAY_MS = 86400000;
+      const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const DATE_FORMATTER = new Intl.DateTimeFormat("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC"
+      });
+
+      let lastSummary = "";
+
+      function parseDate(value) {
+        if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+          return null;
+        }
+
+        const parts = value.split("-").map(Number);
+        const date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+
+        if (
+          date.getUTCFullYear() !== parts[0] ||
+          date.getUTCMonth() !== parts[1] - 1 ||
+          date.getUTCDate() !== parts[2]
+        ) {
+          return null;
+        }
+
+        return date;
+      }
+
+      function toISODate(date) {
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      }
+
+      function formatDate(date) {
+        return DATE_FORMATTER.format(date);
+      }
+
+      function formatLongDate(date) {
+        return `${WEEKDAYS[date.getUTCDay()]}, ${formatDate(date)}`;
+      }
+
+      function selectedWeekendDays() {
+        return new Set(
+          Array.from(document.querySelectorAll(".weekday-option input:checked"))
+            .map(input => Number(input.value))
+        );
+      }
+
+      function getDateRange(start, end, mode) {
+        let first = new Date(start.getTime());
+        let last = new Date(end.getTime());
+
+        if (mode === "exclusive-start" || mode === "exclusive-both") {
+          first = new Date(first.getTime() + DAY_MS);
+        }
+
+        if (mode === "exclusive-end" || mode === "exclusive-both") {
+          last = new Date(last.getTime() - DAY_MS);
+        }
+
+        return { first, last };
+      }
+
+      function parseHolidays(text) {
+        const lines = text.split(/\r?\n/);
+        const holidays = new Set();
+        const invalid = [];
+
+        lines.forEach((rawLine, index) => {
+          const value = rawLine.trim();
+
+          if (!value) {
+            return;
+          }
+
+          const date = parseDate(value);
+
+          if (!date) {
+            invalid.push({
+              line: index + 1,
+              value
+            });
+            return;
+          }
+
+          holidays.add(value);
+        });
+
+        return { holidays, invalid };
+      }
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add("visible");
+      }
+
+      function clearError() {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("visible");
+      }
+
+      function getDateModeDescription(mode) {
+        const descriptions = {
+          inclusive: "Both the start date and end date are included.",
+          "exclusive-start": "The start date is excluded; the end date is included.",
+          "exclusive-end": "The start date is included; the end date is excluded.",
+          "exclusive-both": "Both the start date and end date are excluded."
+        };
+
+        return descriptions[mode] || descriptions.inclusive;
+      }
+
+      function getSelectedWeekendNames(weekends) {
+        if (weekends.size === 0) {
+          return "No weekend days excluded";
+        }
+
+        return Array.from(weekends)
+          .sort((a, b) => a - b)
+          .map(day => WEEKDAYS[day])
+          .join(", ");
+      }
+
+      function clearResults() {
+        output.working.textContent = "—";
+        output.workingSubtitle.textContent = "Choose your dates to calculate.";
+        output.calendar.textContent = "—";
+        output.weekends.textContent = "—";
+        output.holidays.textContent = "—";
+        output.nonWorking.textContent = "—";
+        output.dateRange.textContent = "—";
+        output.dateMode.textContent = "The selected date-counting rule will be shown here.";
+        output.period.textContent = "Your date range summary appears here.";
+        output.copyStatus.textContent = "";
+        output.printDate.textContent = "";
+        lastSummary = "";
+      }
+
+      function calculateWorkingDays(event) {
+        if (event) {
+          event.preventDefault();
+        }
+
+        clearError();
+        output.copyStatus.textContent = "";
+
+        const start = parseDate(startInput.value);
+        const end = parseDate(endInput.value);
+
+        if (!start || !end) {
+          showError("Please enter a valid start date and end date.");
+          return false;
+        }
+
+        if (end.getTime() < start.getTime()) {
+          showError("The end date must be on or after the start date.");
+          return false;
+        }
+
+        const { holidays, invalid } = parseHolidays(holidaysInput.value);
+
+        if (invalid.length > 0) {
+          const details = invalid
+            .slice(0, 3)
+            .map(item => `Line ${item.line}: "${item.value}"`)
+            .join("; ");
+
+          showError(
+            `Please correct the holiday dates. Use YYYY-MM-DD format. ${details}` +
+            (invalid.length > 3 ? `; and ${invalid.length - 3} more invalid date(s).` : "")
+          );
+          return false;
+        }
+
+        const mode = dateModeInput.value;
+        const { first, last } = getDateRange(start, end, mode);
+
+        const weekends = selectedWeekendDays();
+        let calendarDays = 0;
+        let weekendDays = 0;
+        let holidaysExcluded = 0;
+        let workingDays = 0;
+
+        if (first.getTime() <= last.getTime()) {
+          const span = Math.floor((last.getTime() - first.getTime()) / DAY_MS) + 1;
+
+          // Guard against unreasonable date ranges and accidental browser lockups.
+          if (span > 1000000) {
+            showError("The selected date range is too large. Please choose a shorter range.");
+            return false;
+          }
+
+          for (let offset = 0; offset < span; offset++) {
+            const current = new Date(first.getTime() + offset * DAY_MS);
+            const iso = toISODate(current);
+            const isWeekend = weekends.has(current.getUTCDay());
+            const isHoliday = holidays.has(iso);
+
+            calendarDays++;
+
+            if (isWeekend) {
+              weekendDays++;
+            } else if (isHoliday) {
+              holidaysExcluded++;
+            } else {
+              workingDays++;
+            }
+          }
+        }
+
+        const nonWorkingDays = calendarDays - workingDays;
+        const label = periodLabelInput.value.trim();
+
+        output.working.textContent = workingDays.toLocaleString("en-IN");
+        output.workingSubtitle.textContent =
+          workingDays === 1
+            ? "1 working day in the selected range."
+            : `${workingDays.toLocaleString("en-IN")} working days in the selected range.`;
+
+        output.calendar.textContent = calendarDays.toLocaleString("en-IN");
+        output.weekends.textContent = weekendDays.toLocaleString("en-IN");
+        output.holidays.textContent = holidaysExcluded.toLocaleString("en-IN");
+        output.nonWorking.textContent = nonWorkingDays.toLocaleString("en-IN");
+
+        output.dateRange.textContent =
+          `${formatDate(start)} – ${formatDate(end)}`;
+
+        output.dateMode.textContent = getDateModeDescription(mode);
+
+        output.period.textContent = label
+          ? `${label} · ${formatDate(start)} – ${formatDate(end)}`
+          : `${formatDate(start)} – ${formatDate(end)}`;
+
+        const effectiveWeekendDays = weekendDays;
+        const effectiveHolidays = holidaysExcluded;
+
+        lastSummary = [
+          "ARTHNIX — Working Days Calculator",
+          label ? `Period: ${label}` : "",
+          `Start date: ${toISODate(start)} (${formatLongDate(start)})`,
+          `End date: ${toISODate(end)} (${formatLongDate(end)})`,
+          `Date range rule: ${getDateModeDescription(mode)}`,
+          `Calendar days counted: ${calendarDays}`,
+          `Weekend days excluded: ${effectiveWeekendDays}`,
+          `Holidays excluded on otherwise working days: ${effectiveHolidays}`,
+          `Total non-working days: ${nonWorkingDays}`,
+          `Total working days: ${workingDays}`,
+          `Weekend schedule: ${getSelectedWeekendNames(weekends)}`,
+          "Note: Holiday dates are user-supplied; official holiday calendars are not loaded automatically."
+        ].filter(Boolean).join("\n");
+
+        output.printDate.textContent =
+          `Generated on ${new Date().toLocaleDateString("en-IN")}. ${lastSummary}`;
+
+        return true;
+      }
+
+      async function copyResults() {
+        if (!lastSummary) {
+          calculateWorkingDays();
+        }
+
+        if (!lastSummary) {
+          return;
+        }
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(lastSummary);
+          } else {
+            const temporary = document.createElement("textarea");
+            temporary.value = lastSummary;
+            temporary.setAttribute("readonly", "");
+            temporary.style.position = "absolute";
+            temporary.style.left = "-9999px";
+            document.body.appendChild(temporary);
+            temporary.select();
+
+            const successful = document.execCommand("copy");
+            temporary.remove();
+
+            if (!successful) {
+              throw new Error("Copy command was not successful.");
+            }
+          }
+
+          output.copyStatus.textContent = "Results copied successfully.";
+        } catch (error) {
+          output.copyStatus.textContent =
+            "Copy was unavailable in this browser. Please select and copy the results manually.";
+        }
+      }
+
+      function resetForm() {
+        form.reset();
+
+        document.querySelectorAll(".weekday-option input").forEach(input => {
+          input.checked = input.value === "0" || input.value === "6";
+        });
+
+        holidaysInput.value = "";
+        periodLabelInput.value = "";
+        clearError();
+        clearResults();
+
+        const today = new Date();
+        const start = new Date(Date.UTC(
+          today.getFullYear(),
+          today.getMonth(),
+          today.getDate()
+        ));
+        const end = new Date(start.getTime() + 13 * DAY_MS);
+
+        startInput.value = toISODate(start);
+        endInput.value = toISODate(end);
+
+        calculateWorkingDays();
+      }
+
+      function loadExampleHolidays() {
+        holidaysInput.value = [
+          "2026-01-26",
+          "2026-08-15",
+          "2026-10-02"
+        ].join("\n");
+
+        calculateWorkingDays();
+      }
+
+      document.getElementById("menuToggle").addEventListener("click", () => {
+        const toggle = document.getElementById("menuToggle");
+        const nav = document.getElementById("navLinks");
+        const isOpen = nav.classList.toggle("open");
+
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+        toggle.textContent = isOpen ? "×" : "☰";
+      });
+
+      document.querySelectorAll("#navLinks a").forEach(link => {
+        link.addEventListener("click", () => {
+          const nav = document.getElementById("navLinks");
+          const toggle = document.getElementById("menuToggle");
+
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Open navigation menu");
+          toggle.textContent = "☰";
+        });
+      });
+
+      form.addEventListener("submit", calculateWorkingDays);
+
+      document.getElementById("resetButton").addEventListener("click", resetForm);
+      document.getElementById("copyButton").addEventListener("click", copyResults);
+
+      document.getElementById("printButton").addEventListener("click", () => {
+        if (calculateWorkingDays()) {
+          window.print();
+        }
+      });
+
+      document.getElementById("clearHolidays").addEventListener("click", () => {
+        holidaysInput.value = "";
+        calculateWorkingDays();
+      });
+
+      document.getElementById("exampleHolidays").addEventListener("click", loadExampleHolidays);
+
+      [
+        startInput,
+        endInput,
+        dateModeInput,
+        holidaysInput,
+        periodLabelInput
+      ].forEach(element => {
+        element.addEventListener("change", () => {
+          if (startInput.value && endInput.value) {
+            calculateWorkingDays();
+          }
+        });
+      });
+
+      document.querySelectorAll(".weekday-option input").forEach(input => {
+        input.addEventListener("change", () => {
+          if (startInput.value && endInput.value) {
+            calculateWorkingDays();
+          }
+        });
+      });
+
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+      // Initialize with today's date through the next 13 calendar days.
+      const today = new Date();
+      const defaultStart = new Date(Date.UTC(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      ));
+      const defaultEnd = new Date(defaultStart.getTime() + 13 * DAY_MS);
+
+      startInput.value = toISODate(defaultStart);
+      endInput.value = toISODate(defaultEnd);
+
+      calculateWorkingDays();
+    })();
+  </script>
+</body>
+</html>
