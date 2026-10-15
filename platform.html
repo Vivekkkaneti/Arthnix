@@ -1,3482 +1,2851 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Platform — ARTHNIX | Intelligence for Every Business</title>
-
-  <meta
-    name="description"
-    content="Explore the ARTHNIX business management platform, bringing HRMS, payroll, ERP, productivity, and AI-powered capabilities together in one connected workspace."
-  >
-
-  <meta name="theme-color" content="#090909">
-
-  <link rel="canonical" href="https://arthnix.com/platform.html">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    :root {
-      --black: #090909;
-      --black-soft: #111111;
-      --black-card: #151515;
-      --white: #ffffff;
-      --paper: #faf9f7;
-      --surface: #f3f2ef;
-      --surface-dark: #eae8e3;
-      --text: #171717;
-      --text-secondary: #626262;
-      --text-muted: #898989;
-      --line: #e7e5e0;
-      --line-dark: #292929;
-      --red: #e43b35;
-      --red-dark: #c92e29;
-      --red-soft: #fff0ee;
-      --green: #267a50;
-      --green-soft: #eaf6ee;
-
-      --font-body: "DM Sans", sans-serif;
-      --font-heading: "Manrope", sans-serif;
-
-      --container: 1160px;
-      --header-height: 76px;
-
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 22px;
-      --radius-xl: 30px;
-
-      --shadow-card: 0 18px 50px rgba(0, 0, 0, 0.045);
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-    }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button:focus-visible,
-    a:focus-visible {
-      outline: 2px solid var(--red);
-      outline-offset: 4px;
-    }
-
-    img,
-    svg {
-      display: block;
-      max-width: 100%;
-    }
-
-    ::selection {
-      background: #f7c7c3;
-      color: var(--black);
-    }
-
-    .container {
-      width: min(var(--container), calc(100% - 64px));
-      margin-inline: auto;
-    }
-
-    .section {
-      padding: 108px 0;
-    }
-
-    .section-heading {
-      max-width: 720px;
-      margin-bottom: 48px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 20px;
-      color: var(--red);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      line-height: 1.4;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      width: 20px;
-      height: 1px;
-      background: currentColor;
-      content: "";
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    p {
-      margin-top: 0;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: var(--font-heading);
-      letter-spacing: -0.055em;
-    }
-
-    h1 {
-      margin-bottom: 25px;
-      font-size: clamp(43px, 6.2vw, 76px);
-      font-weight: 750;
-      line-height: 1.08;
-    }
-
-    h2 {
-      margin-bottom: 19px;
-      font-size: clamp(32px, 4.2vw, 49px);
-      font-weight: 750;
-      line-height: 1.16;
-    }
-
-    h3 {
-      margin-bottom: 12px;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    h4 {
-      margin-bottom: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .lead {
-      max-width: 660px;
-      color: var(--text-secondary);
-      font-size: 17px;
-      line-height: 1.85;
-    }
-
-    .muted {
-      color: var(--text-secondary);
-    }
-
-    .accent {
-      color: var(--red);
-    }
-
-    .section-description {
-      max-width: 610px;
-      margin-bottom: 0;
-      color: var(--text-secondary);
-      font-size: 15px;
-      line-height: 1.9;
-    }
-
-    .button {
-      min-height: 47px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 11px;
-      padding: 12px 21px;
-      border: 1px solid transparent;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 650;
-      line-height: 1.3;
-      transition:
-        background 180ms ease,
-        border-color 180ms ease,
-        color 180ms ease,
-        transform 180ms ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button-primary {
-      background: var(--red);
-      color: var(--white);
-    }
-
-    .button-primary:hover {
-      background: var(--red-dark);
-    }
-
-    .button-dark {
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .button-dark:hover {
-      background: #262626;
-    }
-
-    .button-light {
-      border-color: #dcdad5;
-      background: transparent;
-      color: var(--text);
-    }
-
-    .button-light:hover {
-      border-color: var(--black);
-      background: var(--white);
-    }
-
-    .button-outline-white {
-      border-color: #414141;
-      background: transparent;
-      color: var(--white);
-    }
-
-    .button-outline-white:hover {
-      border-color: #777;
-      background: #171717;
-    }
-
-    .button-arrow {
-      font-size: 16px;
-      transition: transform 180ms ease;
-    }
-
-    .button:hover .button-arrow {
-      transform: translateX(3px);
-    }
-
-    /* NAVBAR */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      width: 100%;
-      background: #090909;
-      border-bottom: 1px solid #090909;
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-
-    .nav-inner {
-      min-height: var(--header-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      flex-shrink: 0;
-      color: var(--white);
-      font-family: var(--font-heading);
-      font-size: 23px;
-      font-weight: 800;
-      letter-spacing: -0.075em;
-    }
-
-    .brand-mark {
-      color: var(--red);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 29px;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding: 8px 0;
-      color: #b5b5b5;
-      font-size: 12px;
-      font-weight: 550;
-      transition: color 180ms ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--white);
-    }
-
-    .nav-links a.active::after {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      background: var(--red);
-      content: "";
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 17px;
-      flex-shrink: 0;
-    }
-
-    .nav-signin {
-      color: #c9c9c9;
-      font-size: 12px;
-      font-weight: 550;
-    }
-
-    .nav-signin:hover {
-      color: var(--white);
-    }
-
-    .nav-cta {
-      min-height: 40px;
-      padding: 10px 15px;
-      font-size: 12px;
-    }
-
-    .menu-toggle {
-      width: 43px;
-      height: 43px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-      border: 1px solid #353535;
-      border-radius: 8px;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      width: 17px;
-      height: 1.5px;
-      background: var(--white);
-      transition: transform 180ms ease;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:first-child {
-      transform: translateY(3.25px) rotate(45deg);
-    }
-
-    .menu-toggle[aria-expanded="true"] span:last-child {
-      transform: translateY(-3.25px) rotate(-45deg);
-    }
-
-    /* HERO */
-
-    .platform-hero {
-      position: relative;
-      overflow: hidden;
-      padding: 104px 0 88px;
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .platform-hero::before {
-      position: absolute;
-      top: -270px;
-      right: -150px;
-      width: 720px;
-      height: 720px;
-      border: 1px solid rgba(255, 255, 255, 0.055);
-      border-radius: 50%;
-      content: "";
-      pointer-events: none;
-    }
-
-    .platform-hero::after {
-      position: absolute;
-      top: -185px;
-      right: -65px;
-      width: 550px;
-      height: 550px;
-      border: 1px solid rgba(255, 255, 255, 0.045);
-      border-radius: 50%;
-      content: "";
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.85fr);
-      align-items: center;
-      gap: 70px;
-    }
-
-    .hero-copy {
-      max-width: 690px;
-    }
-
-    .hero-eyebrow {
-      color: #ff7771;
-    }
-
-    .hero-copy h1 {
-      max-width: 700px;
-    }
-
-    .hero-copy h1 span {
-      color: #ff7771;
-    }
-
-    .hero-copy .lead {
-      max-width: 600px;
-      margin-bottom: 31px;
-      color: #b5b5b5;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .hero-caption {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #999;
-      font-size: 11px;
-    }
-
-    .hero-caption-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #63ba84;
-      flex-shrink: 0;
-    }
-
-    /* HERO PLATFORM PREVIEW */
-
-    .platform-preview {
-      position: relative;
-      padding: 20px;
-      border: 1px solid #2c2c2c;
-      border-radius: 18px;
-      background: #111111;
-      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.35);
-    }
-
-    .preview-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid #2b2b2b;
-    }
-
-    .preview-brand {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: #f4f4f4;
-      font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 750;
-      letter-spacing: -0.04em;
-    }
-
-    .preview-logo {
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      background: var(--red);
-      color: white;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .preview-status {
-      padding: 5px 8px;
-      border: 1px solid #28563b;
-      border-radius: 5px;
-      background: #14281b;
-      color: #8bd2a4;
-      font-size: 9px;
-      font-weight: 600;
-    }
-
-    .preview-greeting {
-      padding: 22px 0 17px;
-    }
-
-    .preview-greeting small {
-      color: #888;
-      font-size: 10px;
-    }
-
-    .preview-greeting h3 {
-      margin: 6px 0 0;
-      color: #f5f5f5;
-      font-size: 19px;
-    }
-
-    .preview-greeting p {
-      margin: 5px 0 0;
-      color: #999;
-      font-size: 10px;
-    }
-
-    .preview-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .preview-stat {
-      min-width: 0;
-      padding: 13px 11px;
-      border: 1px solid #2c2c2c;
-      border-radius: 9px;
-      background: #171717;
-    }
-
-    .preview-stat span {
-      display: block;
-      margin-bottom: 7px;
-      color: #9b9b9b;
-      font-size: 9px;
-    }
-
-    .preview-stat strong {
-      display: block;
-      color: #f6f6f6;
-      font-family: var(--font-heading);
-      font-size: 23px;
-      font-weight: 750;
-      letter-spacing: -0.06em;
-      line-height: 1.2;
-    }
-
-    .preview-stat small {
-      display: block;
-      margin-top: 5px;
-      color: #888;
-      font-size: 8px;
-    }
-
-    .preview-module-title {
-      margin: 22px 0 11px;
-      color: #eee;
-      font-size: 11px;
-      font-weight: 650;
-    }
-
-    .preview-module-list {
-      display: grid;
-      gap: 8px;
-    }
-
-    .preview-module {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 11px;
-      border: 1px solid #292929;
-      border-radius: 8px;
-      background: #151515;
-    }
-
-    .preview-module-icon {
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 8px;
-      background: #262020;
-      color: #ff8b84;
-      font-size: 15px;
-      font-weight: 650;
-    }
-
-    .preview-module:nth-child(2) .preview-module-icon {
-      background: #202626;
-      color: #8dc7bd;
-    }
-
-    .preview-module:nth-child(3) .preview-module-icon {
-      background: #252226;
-      color: #c2a3df;
-    }
-
-    .preview-module-copy {
-      min-width: 0;
-      flex: 1;
-    }
-
-    .preview-module-copy strong {
-      display: block;
-      overflow-wrap: anywhere;
-      color: #efefef;
-      font-size: 10px;
-      font-weight: 650;
-    }
-
-    .preview-module-copy span {
-      display: block;
-      color: #888;
-      font-size: 9px;
-    }
-
-    .preview-module-status {
-      flex-shrink: 0;
-      color: #a3a3a3;
-      font-size: 8px;
-    }
-
-    .preview-bottom {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 15px;
-      padding: 12px;
-      border: 1px dashed #3b3b3b;
-      border-radius: 8px;
-      color: #aaa;
-      font-size: 9px;
-    }
-
-    .preview-bottom strong {
-      color: #eee;
-      font-weight: 600;
-    }
-
-    /* TRUST STRIP */
-
-    .platform-strip {
-      border-bottom: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .strip-inner {
-      min-height: 92px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .strip-label {
-      max-width: 200px;
-      color: var(--text-secondary);
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .strip-items {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-
-    .strip-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 7px;
-      background: #fff;
-      color: #424242;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .strip-item span {
-      color: var(--red);
-      font-size: 13px;
-    }
-
-    /* PLATFORM OVERVIEW */
-
-    .overview-section {
-      background: var(--paper);
-    }
-
-    .overview-layout {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      align-items: start;
-      gap: 90px;
-    }
-
-    .overview-intro {
-      position: sticky;
-      top: 115px;
-    }
-
-    .overview-intro .section-description {
-      margin-bottom: 25px;
-    }
-
-    .overview-note {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #fff;
-    }
-
-    .overview-note-mark {
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 7px;
-      background: var(--red-soft);
-      color: var(--red);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .overview-note p {
-      margin: 0;
-      color: var(--text-secondary);
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    .overview-note strong {
-      color: var(--text);
-    }
-
-    .capability-list {
-      border-top: 1px solid var(--line);
-    }
-
-    .capability-row {
-      display: grid;
-      grid-template-columns: 54px 1fr;
-      gap: 19px;
-      padding: 25px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .capability-number {
-      padding-top: 3px;
-      color: #a1a1a1;
-      font-family: var(--font-heading);
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .capability-row h3 {
-      margin-bottom: 7px;
-      font-size: 20px;
-    }
-
-    .capability-row p {
-      max-width: 500px;
-      margin-bottom: 0;
-      color: var(--text-secondary);
-      font-size: 13px;
-      line-height: 1.85;
-    }
-
-    /* CAPABILITIES */
-
-    .capabilities-section {
-      background: #f1f0ed;
-    }
-
-    .capabilities-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 35px;
-      margin-bottom: 45px;
-    }
-
-    .capabilities-header .section-heading {
-      margin-bottom: 0;
-    }
-
-    .capabilities-header .section-description {
-      max-width: 360px;
-    }
-
-    .capabilities-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 17px;
-    }
-
-    .capability-card {
-      position: relative;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 26px;
-      border: 1px solid #e4e2dc;
-      border-radius: var(--radius-md);
-      background: #fff;
-      transition:
-        transform 200ms ease,
-        border-color 200ms ease,
-        box-shadow 200ms ease;
-    }
-
-    .capability-card:hover {
-      transform: translateY(-4px);
-      border-color: #d6d2cb;
-      box-shadow: var(--shadow-card);
-    }
-
-    .capability-card-top {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 25px;
-    }
-
-    .capability-icon {
-      width: 46px;
-      height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #f0d8d5;
-      border-radius: 12px;
-      background: var(--red-soft);
-      color: var(--red);
-      font-size: 20px;
-    }
-
-    .capability-icon svg {
-      width: 21px;
-      height: 21px;
-      stroke: currentColor;
-      stroke-width: 1.6;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 8px;
-      border: 1px solid #e7e5e0;
-      border-radius: 5px;
-      background: #f8f7f5;
-      color: #777;
-      font-size: 9px;
-      font-weight: 650;
-      line-height: 1.4;
-    }
-
-    .status::before {
-      width: 5px;
-      height: 5px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: #999;
-      content: "";
-    }
-
-    .status-available {
-      border-color: #d5e8d9;
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    .status-available::before {
-      background: #31945d;
-    }
-
-    .status-development {
-      border-color: #f0dfc0;
-      background: #fff7e8;
-      color: #966321;
-    }
-
-    .status-development::before {
-      background: #c88a2e;
-    }
-
-    .status-planned {
-      border-color: #e3dcf4;
-      background: #f5f1fc;
-      color: #7956a8;
-    }
-
-    .status-planned::before {
-      background: #9775c5;
-    }
-
-    .capability-card h3 {
-      margin-bottom: 10px;
-      font-size: 21px;
-    }
-
-    .capability-card > p {
-      margin-bottom: 20px;
-      color: var(--text-secondary);
-      font-size: 12px;
-      line-height: 1.9;
-    }
-
-    .feature-list {
-      width: 100%;
-      display: grid;
-      gap: 10px;
-      margin: 0 0 24px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .feature-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      color: #4f4f4f;
-      font-size: 11px;
-      line-height: 1.65;
-    }
-
-    .feature-list li::before {
-      flex-shrink: 0;
-      margin-top: 1px;
-      color: var(--red);
-      font-size: 12px;
-      font-weight: 700;
-      content: "✓";
-    }
-
-    .capability-card-foot {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: auto;
-      padding-top: 17px;
-      border-top: 1px solid var(--line);
-    }
-
-    .capability-card-foot span {
-      color: var(--text-muted);
-      font-size: 10px;
-    }
-
-    .text-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--text);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .text-link:hover {
-      color: var(--red);
-    }
-
-    /* HOW IT FITS TOGETHER */
-
-    .connected-section {
-      background: #fff;
-    }
-
-    .connected-heading {
-      max-width: 700px;
-      margin-bottom: 48px;
-    }
-
-    .connected-heading h2 {
-      max-width: 620px;
-    }
-
-    .connected-heading .section-description {
-      max-width: 560px;
-    }
-
-    .connected-visual {
-      overflow: hidden;
-      padding: 36px;
-      border: 1px solid #2c2c2c;
-      border-radius: var(--radius-lg);
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .connected-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .connected-top strong {
-      font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 750;
-      letter-spacing: -0.04em;
-    }
-
-    .connected-top span {
-      color: #8d8d8d;
-      font-size: 10px;
-    }
-
-    .connected-core {
-      max-width: 380px;
-      margin: 0 auto;
-      padding: 24px;
-      border: 1px solid #393939;
-      border-radius: 14px;
-      background: #141414;
-      text-align: center;
-    }
-
-    .connected-core-mark {
-      width: 43px;
-      height: 43px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px;
-      border-radius: 12px;
-      background: var(--red);
-      color: #fff;
-      font-family: var(--font-heading);
-      font-size: 19px;
-      font-weight: 800;
-    }
-
-    .connected-core h3 {
-      margin-bottom: 5px;
-      font-size: 20px;
-    }
-
-    .connected-core p {
-      margin: 0;
-      color: #a5a5a5;
-      font-size: 11px;
-    }
-
-    .connection-stem {
-      width: 1px;
-      height: 33px;
-      margin: 0 auto;
-      background: #4a4a4a;
-    }
-
-    .connection-branch {
-      position: relative;
-      height: 1px;
-      margin: 0 10%;
-      background: #4a4a4a;
-    }
-
-    .connected-modules {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      padding-top: 0;
-    }
-
-    .connected-module {
-      position: relative;
-      padding: 20px 13px;
-      border: 1px solid #303030;
-      border-radius: 10px;
-      background: #131313;
-      text-align: center;
-    }
-
-    .connected-module::before {
-      position: absolute;
-      top: -33px;
-      left: 50%;
-      width: 1px;
-      height: 32px;
-      background: #4a4a4a;
-      content: "";
-    }
-
-    .connected-module-icon {
-      width: 37px;
-      height: 37px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px;
-      border: 1px solid #393939;
-      border-radius: 10px;
-      background: #222;
-      color: #ff8b84;
-      font-size: 16px;
-    }
-
-    .connected-module h4 {
-      margin-bottom: 6px;
-      font-size: 12px;
-      letter-spacing: -0.02em;
-    }
-
-    .connected-module p {
-      margin-bottom: 0;
-      color: #8d8d8d;
-      font-size: 9px;
-      line-height: 1.7;
-    }
-
-    .connected-note {
-      margin: 24px 0 0;
-      color: #888;
-      font-size: 10px;
-      text-align: center;
-    }
-
-    /* FOR BUSINESSES */
-
-    .business-section {
-      background: var(--paper);
-    }
-
-    .business-layout {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      align-items: center;
-      gap: 80px;
-    }
-
-    .business-copy h2 {
-      max-width: 510px;
-    }
-
-    .business-copy .section-description {
-      margin-bottom: 27px;
-    }
-
-    .business-points {
-      display: grid;
-      gap: 16px;
-      margin: 0 0 30px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .business-points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      color: #464646;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .business-points li::before {
-      width: 21px;
-      height: 21px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-      border-radius: 50%;
-      background: var(--red-soft);
-      color: var(--red);
-      font-size: 11px;
-      font-weight: 700;
-      content: "✓";
-    }
-
-    .business-panel {
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: #fff;
-      box-shadow: var(--shadow-card);
-    }
-
-    .business-panel-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 22px;
-    }
-
-    .business-panel-head h3 {
-      margin-bottom: 4px;
-      font-size: 18px;
-    }
-
-    .business-panel-head p {
-      margin-bottom: 0;
-      color: var(--text-secondary);
-      font-size: 10px;
-    }
-
-    .business-panel-icon {
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 10px;
-      background: var(--red-soft);
-      color: var(--red);
-      font-size: 18px;
-    }
-
-    .business-feature-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 13px;
-      padding: 17px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .business-feature-symbol {
-      width: 33px;
-      height: 33px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 8px;
-      background: #f4f3f0;
-      color: #444;
-      font-size: 14px;
-    }
-
-    .business-feature-row h4 {
-      margin-bottom: 4px;
-      font-size: 13px;
-    }
-
-    .business-feature-row p {
-      margin-bottom: 0;
-      color: var(--text-secondary);
-      font-size: 11px;
-      line-height: 1.75;
-    }
-
-    /* AI */
-
-    .ai-section {
-      padding: 100px 0;
-      background: #eae8e3;
-    }
-
-    .ai-layout {
-      display: grid;
-      grid-template-columns: 1fr 0.8fr;
-      align-items: center;
-      gap: 85px;
-    }
-
-    .ai-copy h2 {
-      max-width: 600px;
-    }
-
-    .ai-copy .section-description {
-      margin-bottom: 24px;
-    }
-
-    .ai-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-bottom: 28px;
-    }
-
-    .ai-tag {
-      padding: 7px 11px;
-      border: 1px solid #d8d5ce;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.45);
-      color: #4b4b4b;
-      font-size: 10px;
-      font-weight: 550;
-    }
-
-    .ai-panel {
-      padding: 25px;
-      border: 1px solid #dedbd4;
-      border-radius: var(--radius-lg);
-      background: #fff;
-    }
-
-    .ai-panel-label {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 22px;
-      color: #777;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .ai-panel-label span {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--red);
-    }
-
-    .ai-principle {
-      padding: 18px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .ai-principle:first-of-type {
-      border-top: 0;
-    }
-
-    .ai-principle h4 {
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-
-    .ai-principle p {
-      margin-bottom: 0;
-      color: var(--text-secondary);
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    /* PRICING */
-
-    .pricing-section {
-      background: #fff;
-    }
-
-    .pricing-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 35px;
-      margin-bottom: 44px;
-    }
-
-    .pricing-header .section-heading {
-      margin-bottom: 0;
-    }
-
-    .pricing-header .section-description {
-      max-width: 380px;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: stretch;
-      gap: 17px;
-    }
-
-    .pricing-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 27px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      background: #fff;
-    }
-
-    .pricing-card.featured {
-      border-color: var(--black);
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .pricing-badge {
-      position: absolute;
-      top: 17px;
-      right: 17px;
-      padding: 5px 8px;
-      border-radius: 5px;
-      background: var(--red);
-      color: white;
-      font-size: 9px;
-      font-weight: 700;
-    }
-
-    .pricing-name {
-      margin-bottom: 7px;
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 750;
-      letter-spacing: -0.04em;
-    }
-
-    .pricing-subtitle {
-      min-height: 42px;
-      margin-bottom: 24px;
-      color: var(--text-secondary);
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    .pricing-card.featured .pricing-subtitle {
-      color: #aaa;
-    }
-
-    .pricing-price {
-      display: flex;
-      align-items: baseline;
-      gap: 5px;
-      margin-bottom: 6px;
-    }
-
-    .pricing-price strong {
-      font-family: var(--font-heading);
-      font-size: 40px;
-      font-weight: 800;
-      letter-spacing: -0.075em;
-      line-height: 1.1;
-    }
-
-    .pricing-price span {
-      color: var(--text-secondary);
-      font-size: 11px;
-    }
-
-    .pricing-card.featured .pricing-price span {
-      color: #aaa;
-    }
-
-    .pricing-billing-note {
-      min-height: 28px;
-      margin-bottom: 20px;
-      color: var(--text-muted);
-      font-size: 10px;
-    }
-
-    .pricing-card.featured .pricing-billing-note {
-      color: #999;
-    }
-
-    .pricing-divider {
-      height: 1px;
-      margin-bottom: 20px;
-      background: var(--line);
-    }
-
-    .pricing-card.featured .pricing-divider {
-      background: #333;
-    }
-
-    .pricing-features-title {
-      margin-bottom: 13px;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .pricing-features {
-      display: grid;
-      gap: 12px;
-      margin: 0 0 25px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      color: #4e4e4e;
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .pricing-card.featured .pricing-features li {
-      color: #c5c5c5;
-    }
-
-    .pricing-features li::before {
-      flex-shrink: 0;
-      color: var(--red);
-      font-weight: 800;
-      content: "✓";
-    }
-
-    .pricing-card .button {
-      width: 100%;
-      margin-top: auto;
-    }
-
-    .pricing-footnote {
-      margin: 25px 0 0;
-      color: var(--text-muted);
-      font-size: 10px;
-      line-height: 1.8;
-      text-align: center;
-    }
-
-    /* FAQ */
-
-    .faq-section {
-      background: var(--paper);
-    }
-
-    .faq-layout {
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      align-items: start;
-      gap: 90px;
-    }
-
-    .faq-intro {
-      position: sticky;
-      top: 115px;
-    }
-
-    .faq-intro .section-description {
-      margin-bottom: 24px;
-    }
-
-    .faq-list {
-      border-top: 1px solid var(--line);
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .faq-question {
-      width: 100%;
-      min-height: 75px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 18px 0;
-      border: 0;
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      text-align: left;
-    }
-
-    .faq-question span:first-child {
-      font-family: var(--font-heading);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      line-height: 1.6;
-    }
-
-    .faq-plus {
-      width: 27px;
-      height: 27px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      color: var(--red);
-      font-size: 17px;
-      transition:
-        transform 180ms ease,
-        background 180ms ease;
-    }
-
-    .faq-question[aria-expanded="true"] .faq-plus {
-      transform: rotate(45deg);
-      background: var(--red-soft);
-    }
-
-    .faq-answer {
-      padding: 0 38px 22px 0;
-    }
-
-    .faq-answer p {
-      margin: 0;
-      color: var(--text-secondary);
-      font-size: 12px;
-      line-height: 1.95;
-    }
-
-    /* FINAL CTA */
-
-    .final-cta {
-      padding: 95px 0;
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .final-cta-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 45px;
-    }
-
-    .final-cta-copy {
-      max-width: 680px;
-    }
-
-    .final-cta-copy .eyebrow {
-      color: #ff7771;
-    }
-
-    .final-cta h2 {
-      margin-bottom: 15px;
-      font-size: clamp(34px, 4.5vw, 53px);
-    }
-
-    .final-cta p {
-      max-width: 550px;
-      margin-bottom: 0;
-      color: #aaa;
-      font-size: 13px;
-      line-height: 1.9;
-    }
-
-    .final-cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    /* FOOTER */
-
-    .site-footer {
-      padding: 62px 0 25px;
-      border-top: 1px solid #252525;
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .footer-main {
-      display: grid;
-      grid-template-columns: 1.5fr repeat(3, 1fr);
-      gap: 55px;
-      padding-bottom: 45px;
-    }
-
-    .footer-brand-column {
-      max-width: 300px;
-    }
-
-    .footer-brand {
-      margin-bottom: 16px;
-      font-size: 25px;
-    }
-
-    .footer-description {
-      margin-bottom: 22px;
-      color: #999;
-      font-size: 12px;
-      line-height: 1.9;
-    }
-
-    .footer-powered {
-      color: #777;
-      font-size: 10px;
-    }
-
-    .footer-powered span {
-      color: #bbb;
-    }
-
-    .footer-column h4 {
-      margin-bottom: 19px;
-      color: #f1f1f1;
-      font-size: 12px;
-      letter-spacing: 0;
-    }
-
-    .footer-links {
-      display: grid;
-      gap: 11px;
-    }
-
-    .footer-links a {
-      width: fit-content;
-      color: #929292;
-      font-size: 11px;
-      transition: color 180ms ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--white);
-    }
-
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding-top: 22px;
-      border-top: 1px solid #292929;
-    }
-
-    .footer-bottom p {
-      margin: 0;
-      color: #777;
-      font-size: 10px;
-    }
-
-    .footer-bottom-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 19px;
-    }
-
-    .footer-bottom-links a {
-      color: #888;
-      font-size: 10px;
-    }
-
-    .footer-bottom-links a:hover {
-      color: #fff;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 1050px) {
-      .nav-links {
-        gap: 19px;
-      }
-
-      .hero-grid {
-        gap: 40px;
-      }
-
-      .overview-layout,
-      .faq-layout {
-        gap: 55px;
-      }
-
-      .business-layout,
-      .ai-layout {
-        gap: 50px;
-      }
-
-      .footer-main {
-        gap: 35px;
-      }
-    }
-
-    @media (max-width: 850px) {
-      :root {
-        --header-height: 70px;
-      }
-
-      .container {
-        width: min(100% - 44px, var(--container));
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: var(--header-height);
-        right: 0;
-        left: 0;
-        display: none;
-        align-items: stretch;
-        flex-direction: column;
-        gap: 0;
-        padding: 15px 22px 22px;
-        border-bottom: 1px solid #292929;
-        background: #090909;
-      }
-
-      .nav-links.is-open {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 14px 0;
-        border-bottom: 1px solid #222;
-        font-size: 13px;
-      }
-
-      .nav-links a.active::after {
-        display: none;
-      }
-
-      .nav-links a.active {
-        color: #ff7771;
-      }
-
-      .nav-actions {
-        margin-left: auto;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .hero-copy {
-        max-width: 700px;
-      }
-
-      .platform-preview {
-        width: min(100%, 520px);
-        margin-inline: auto;
-      }
-
-      .overview-layout,
-      .business-layout,
-      .ai-layout,
-      .faq-layout {
-        grid-template-columns: 1fr;
-        gap: 45px;
-      }
-
-      .overview-intro,
-      .faq-intro {
-        position: static;
-      }
-
-      .capabilities-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .capabilities-header,
-      .pricing-header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .capabilities-header .section-description,
-      .pricing-header .section-description {
-        max-width: 600px;
-      }
-
-      .business-panel {
-        width: min(100%, 600px);
-      }
-
-      .ai-panel {
-        width: min(100%, 600px);
-      }
-
-      .pricing-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .pricing-card:last-child {
-        grid-column: 1 / -1;
-      }
-
-      .footer-main {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .footer-brand-column {
-        max-width: 400px;
-      }
-
-      .final-cta-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 28px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .container {
-        width: calc(100% - 36px);
-      }
-
-      .section {
-        padding: 75px 0;
-      }
-
-      .brand {
-        font-size: 21px;
-      }
-
-      .nav-inner {
-        gap: 12px;
-      }
-
-      .nav-actions {
-        gap: 11px;
-      }
-
-      .nav-signin {
-        display: none;
-      }
-
-      .nav-cta {
-        min-height: 38px;
-        padding: 9px 12px;
-        font-size: 11px;
-      }
-
-      .platform-hero {
-        padding: 75px 0 64px;
-      }
-
-      h1 {
-        font-size: clamp(41px, 12vw, 58px);
-      }
-
-      h2 {
-        font-size: clamp(31px, 8.5vw, 40px);
-      }
-
-      .hero-copy .lead,
-      .lead {
-        font-size: 14px;
-        line-height: 1.9;
-      }
-
-      .hero-actions {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .hero-actions .button {
-        width: 100%;
-      }
-
-      .platform-preview {
-        padding: 13px;
-        border-radius: 13px;
-      }
-
-      .preview-stat {
-        padding: 11px 8px;
-      }
-
-      .preview-stat strong {
-        font-size: 20px;
-      }
-
-      .preview-module {
-        gap: 8px;
-        padding: 9px;
-      }
-
-      .preview-module-status {
-        font-size: 7px;
-      }
-
-      .strip-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: center;
-        gap: 15px;
-        padding: 22px 0;
-      }
-
-      .strip-label {
-        max-width: none;
-      }
-
-      .strip-items {
-        justify-content: flex-start;
-        gap: 8px;
-      }
-
-      .strip-item {
-        padding: 7px 9px;
-        font-size: 10px;
-      }
-
-      .overview-layout,
-      .faq-layout {
-        gap: 32px;
-      }
-
-      .capability-row {
-        grid-template-columns: 36px 1fr;
-        gap: 13px;
-      }
-
-      .capabilities-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .capability-card {
-        padding: 23px;
-      }
-
-      .connected-visual {
-        padding: 21px 14px;
-        border-radius: 15px;
-      }
-
-      .connected-top {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .connected-core {
-        padding: 19px 12px;
-      }
-
-      .connected-modules {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 11px;
-        padding-top: 0;
-      }
-
-      .connection-branch,
-      .connected-module::before {
-        display: none;
-      }
-
-      .connected-module {
-        padding: 16px 9px;
-      }
-
-      .connected-module h4 {
-        font-size: 11px;
-      }
-
-      .connected-module p {
-        font-size: 9px;
-      }
-
-      .business-panel,
-      .ai-panel {
-        padding: 20px;
-      }
-
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pricing-card:last-child {
-        grid-column: auto;
-      }
-
-      .pricing-card {
-        padding: 24px;
-      }
-
-      .pricing-subtitle {
-        min-height: auto;
-      }
-
-      .pricing-billing-note {
-        min-height: auto;
-      }
-
-      .ai-section {
-        padding: 75px 0;
-      }
-
-      .final-cta {
-        padding: 75px 0;
-      }
-
-      .final-cta-actions {
-        width: 100%;
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .final-cta-actions .button {
-        width: 100%;
-      }
-
-      .footer-main {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px 22px;
-      }
-
-      .footer-brand-column {
-        grid-column: 1 / -1;
-      }
-
-      .footer-bottom {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-bottom-links {
-        gap: 13px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARTHNIX — Business Workspace</title>
+<meta name="description" content="A practical business workspace for HRMS, attendance, payroll, inventory, sales, expenses, invoices and operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink:#111;
+  --muted:#777;
+  --line:#e9e9e7;
+  --paper:#f7f7f5;
+  --white:#fff;
+  --red:#c83c35;
+  --green:#18794e;
+  --amber:#96620b;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  font-size:14px;
+}
+
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible {
+  outline:2px solid var(--red);
+  outline-offset:2px;
+}
+
+.topbar {
+  height:66px;
+  background:#090909;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font:800 18px Manrope,sans-serif;
+  letter-spacing:.09em;
+}
+
+.brand-mark {
+  width:29px;
+  height:29px;
+  border:1px solid #666;
+  display:grid;
+  place-items:center;
+}
+
+.brand small {
+  display:block;
+  font:500 9px "DM Sans";
+  letter-spacing:.18em;
+  color:#999;
+  margin-top:2px;
+}
+
+.top-right {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.workspace-chip {
+  border:1px solid #3a3a3a;
+  border-radius:99px;
+  padding:8px 12px;
+  color:#ddd;
+  font-size:12px;
+}
+
+.avatar {
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  background:#e8e8e6;
+  color:#111;
+  display:grid;
+  place-items:center;
+  font-weight:700;
+}
+
+.layout {
+  display:grid;
+  grid-template-columns:238px minmax(0,1fr);
+  max-width:1600px;
+  margin:auto;
+  min-height:calc(100vh - 66px);
+}
+
+.sidebar {
+  background:#fff;
+  border-right:1px solid var(--line);
+  padding:24px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.side-label {
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#999;
+  font-weight:700;
+  padding:0 12px 7px;
+}
+
+.nav-group { display:grid; gap:3px; }
+
+.nav-item {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 12px;
+  border:0;
+  background:transparent;
+  border-radius:7px;
+  text-align:left;
+  color:#555;
+  font-weight:500;
+  width:100%;
+}
+
+.nav-item:hover { background:#f5f5f3; color:#111; }
+.nav-item.active { background:#111; color:#fff; }
+.nav-icon { width:18px; text-align:center; font-size:15px; }
+
+.side-bottom {
+  margin-top:auto;
+  border-top:1px solid var(--line);
+  padding:18px 10px 0;
+}
+
+.side-bottom strong { font:700 12px Manrope; }
+.side-bottom p { font-size:11px; color:#888; line-height:1.55; }
+
+.main {
+  padding:32px clamp(18px,3vw,42px) 48px;
+  min-width:0;
+}
+
+.page-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:27px;
+}
+
+.eyebrow {
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:9px;
+}
+
+.page-head h1 {
+  font:800 clamp(25px,3vw,34px) Manrope,sans-serif;
+  letter-spacing:-.045em;
+  margin:0;
+}
+
+.page-head p {
+  color:var(--muted);
+  margin:9px 0 0;
+  max-width:680px;
+  line-height:1.6;
+}
+
+.actions { display:flex; gap:8px; flex-wrap:wrap; }
+
+.btn {
+  border:1px solid #dededb;
+  background:#fff;
+  color:#222;
+  border-radius:6px;
+  padding:10px 13px;
+  font-weight:600;
+  font-size:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+}
+
+.btn:hover { background:#f6f6f4; }
+.btn.primary { background:#111; border-color:#111; color:#fff; }
+.btn.primary:hover { background:#333; }
+.btn.danger { color:var(--red); border-color:#f0c9c5; }
+
+.notice {
+  padding:12px 14px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-left:3px solid var(--red);
+  color:#656565;
+  font-size:12px;
+  line-height:1.55;
+  border-radius:4px;
+  margin-bottom:20px;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:13px;
+  margin-bottom:22px;
+}
+
+.stat {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:17px 18px;
+  min-width:0;
+}
+
+.stat-top {
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  color:#777;
+  font-size:11px;
+}
+
+.stat-value {
+  font:800 27px Manrope,sans-serif;
+  letter-spacing:-.04em;
+  margin:12px 0 5px;
+  overflow-wrap:anywhere;
+}
+
+.stat-foot { font-size:11px; color:#888; }
+
+.grid-two {
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:16px;
+}
+
+.panel {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:9px;
+  min-width:0;
+  overflow:hidden;
+}
+
+.panel-head {
+  padding:17px 19px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.panel-head h2 { font:700 14px Manrope; margin:0; }
+.panel-head p { font-size:11px; color:#888; margin:5px 0 0; }
+.panel-body { padding:18px 19px; }
+
+.quick-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+}
+
+.quick {
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:14px 12px;
+  background:#fff;
+  text-align:left;
+  min-height:94px;
+}
+
+.quick:hover { border-color:#bbb; background:#fcfcfb; }
+.quick span { display:block; font-size:18px; margin-bottom:11px; }
+.quick strong { font:700 12px Manrope; display:block; }
+.quick small { display:block; color:#888; font-size:10px; margin-top:5px; }
+
+.list { display:grid; }
+
+.list-row {
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid #f0f0ee;
+}
+
+.list-row:last-child { border-bottom:0; }
+.list-main { min-width:0; }
+.list-main strong { font-size:12px; display:block; overflow-wrap:anywhere; }
+.list-main small { font-size:11px; color:#888; display:block; margin-top:4px; }
+.list-amount { font-weight:700; font-size:12px; white-space:nowrap; }
+
+.muted { color:var(--muted); }
+
+.empty {
+  padding:26px 10px;
+  text-align:center;
+  color:#888;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.empty strong { display:block; color:#444; margin-bottom:5px; }
+
+.toolbar {
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.search { flex:1; min-width:180px; }
+
+.search input {
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #dededb;
+  border-radius:6px;
+  background:#fff;
+}
+
+.toolbar select {
+  border:1px solid #dededb;
+  border-radius:6px;
+  background:#fff;
+  padding:10px 11px;
+}
+
+.table-wrap {
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#fff;
+}
+
+table {
+  border-collapse:collapse;
+  width:100%;
+  min-width:720px;
+  text-align:left;
+}
+
+th {
+  background:#fafaf9;
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#888;
+  font-weight:700;
+}
+
+th,td {
+  padding:13px 15px;
+  border-bottom:1px solid #efefed;
+  vertical-align:middle;
+}
+
+td { font-size:12px; }
+tbody tr:last-child td { border-bottom:0; }
+tbody tr:hover { background:#fdfdfc; }
+
+.person {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:180px;
+}
+
+.person-avatar {
+  width:31px;
+  height:31px;
+  border-radius:7px;
+  background:#f0f0ee;
+  display:grid;
+  place-items:center;
+  font-weight:700;
+  font-size:11px;
+  flex-shrink:0;
+}
+
+.person strong { display:block; font-size:12px; }
+.person small { display:block; color:#888; margin-top:3px; font-size:10px; }
+
+.badge {
+  display:inline-flex;
+  align-items:center;
+  border-radius:99px;
+  padding:5px 8px;
+  font-size:10px;
+  font-weight:700;
+  background:#f1f1ef;
+  color:#666;
+  white-space:nowrap;
+}
+
+.badge.green { background:#eaf7ef; color:#18794e; }
+.badge.red { background:#fff1ef; color:#c83c35; }
+.badge.amber { background:#fff6df; color:#96620b; }
+
+.row-actions { display:flex; gap:5px; }
+
+.link-btn {
+  border:0;
+  background:transparent;
+  color:#666;
+  padding:5px;
+  font-size:11px;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+
+.link-btn:hover { color:var(--red); }
+
+.form-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+}
+
+.field { display:flex; flex-direction:column; gap:6px; min-width:0; }
+.field.full { grid-column:1/-1; }
+.field label { font-size:11px; font-weight:700; color:#555; }
+
+.field input,.field select,.field textarea {
+  width:100%;
+  border:1px solid #dededb;
+  border-radius:6px;
+  background:#fff;
+  padding:10px 11px;
+  min-width:0;
+  color:#222;
+}
+
+.field textarea { min-height:80px; resize:vertical; }
+.field small { color:#999; font-size:10px; }
+
+.form-actions {
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:18px;
+}
+
+.modal-backdrop {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.modal-backdrop.open { display:flex; }
+
+.modal {
+  background:#fff;
+  border-radius:10px;
+  width:min(620px,100%);
+  max-height:90vh;
+  overflow:auto;
+  box-shadow:0 20px 80px rgba(0,0,0,.2);
+}
+
+.modal-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:19px 22px;
+  border-bottom:1px solid var(--line);
+}
+
+.modal-head h2 { font:800 17px Manrope; margin:0; }
+
+.icon-button {
+  border:0;
+  background:#f4f4f2;
+  width:30px;
+  height:30px;
+  border-radius:6px;
+  font-size:18px;
+}
+
+.modal-content { padding:21px 22px; }
+
+.toast {
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#111;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:7px;
+  font-size:12px;
+  z-index:80;
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+  transition:.2s;
+}
+
+.toast.show { opacity:1; transform:translateY(0); }
+
+.tools-grid,.settings-layout {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+}
+
+.tool-card {
+  border:1px solid var(--line);
+  padding:17px;
+  border-radius:8px;
+  background:#fff;
+}
+
+.tool-card h3 { font:700 13px Manrope; margin:0 0 7px; }
+.tool-card p { color:#888; font-size:11px; line-height:1.6; margin:0 0 13px; }
+
+.calc-result {
+  background:#f7f7f5;
+  border-radius:7px;
+  padding:14px;
+  margin-top:14px;
+}
+
+.calc-result strong { font:800 25px Manrope; display:block; }
+.calc-result small { color:#888; font-size:11px; }
+
+.status-line {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+  font-size:12px;
+}
+
+.status-line:last-child { border-bottom:0; }
+.footer-note { color:#999; font-size:10px; line-height:1.6; margin-top:25px; }
+.mobile-menu { display:none; }
+
+.invoice-paper {
+  border:1px solid #ddd;
+  background:#fff;
+  padding:26px;
+  max-width:700px;
+  margin:auto;
+}
+
+.invoice-paper h2 { font:800 22px Manrope; margin:0; }
+.invoice-paper table { min-width:0; }
+.invoice-paper td,.invoice-paper th { padding:10px; }
+.invoice-paper .inv-total { text-align:right; font:800 20px Manrope; padding-top:18px; }
+
+@media(max-width:1050px) {
+  .layout { grid-template-columns:205px minmax(0,1fr); }
+  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .grid-two { grid-template-columns:1fr; }
+}
+
+@media(max-width:720px) {
+  .topbar { height:60px; padding:0 15px; }
+  .workspace-chip { display:none; }
+  .layout { display:block; }
+  .sidebar {
+    display:none;
+    position:fixed;
+    top:60px;
+    bottom:0;
+    left:0;
+    width:260px;
+    z-index:30;
+    box-shadow:12px 0 30px #0001;
+    overflow:auto;
+  }
+  .sidebar.open { display:flex; }
+  .mobile-menu {
+    display:inline-flex;
+    background:transparent;
+    border:1px solid #3a3a3a;
+    color:#fff;
+    border-radius:5px;
+    padding:7px 9px;
+  }
+  .main { padding:24px 15px 36px; }
+  .page-head { flex-direction:column; }
+  .page-head .actions { width:100%; }
+  .stats { gap:9px; }
+  .stat { padding:14px; }
+  .stat-value { font-size:24px; }
+  .quick-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .tools-grid,.settings-layout,.form-grid { grid-template-columns:1fr; }
+  .field.full { grid-column:auto; }
+  .panel-head,.panel-body { padding-left:14px; padding-right:14px; }
+  .top-right { gap:8px; }
+  .brand { font-size:16px; }
+}
+
+@media print {
+  body { background:#fff; }
+  .topbar,.sidebar,.page-head .actions,.toolbar,.row-actions,.btn,.notice,.footer-note {
+    display:none!important;
+  }
+  .layout { display:block; }
+  .main { padding:0; }
+  .invoice-paper { border:0; padding:0; }
+  .page-head { margin-bottom:12px; }
+}
+</style>
 </head>
 
 <body>
+<div class="shell">
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:13px">
+    <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
+    <a class="brand" href="#" aria-label="ARTHNIX workspace">
+      <span class="brand-mark">A</span>
+      <span>ARTHNIX<small>BUSINESS WORKSPACE</small></span>
+    </a>
+  </div>
+  <div class="top-right">
+    <span class="workspace-chip" id="topBusinessName">My Business · Local workspace</span>
+    <div class="avatar" id="topAvatar">A</div>
+  </div>
+</header>
 
-  <!-- NAVBAR -->
-  <header class="site-header">
-    <div class="container nav-inner">
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div>
+    <div class="side-label">Workspace</div>
+    <nav class="nav-group" aria-label="Workspace navigation">
+      <button class="nav-item active" data-page="overview"><span class="nav-icon">◫</span>Overview</button>
+      <button class="nav-item" data-page="people"><span class="nav-icon">♙</span>People & HRMS</button>
+      <button class="nav-item" data-page="attendance"><span class="nav-icon">◷</span>Attendance</button>
+      <button class="nav-item" data-page="payroll"><span class="nav-icon">₹</span>Payroll</button>
+    </nav>
+  </div>
 
-      <a class="brand" href="index.html" aria-label="ARTHNIX home">
-        ARTHNIX<span class="brand-mark">.</span>
-      </a>
+  <div>
+    <div class="side-label">Business</div>
+    <nav class="nav-group" aria-label="Business navigation">
+      <button class="nav-item" data-page="inventory"><span class="nav-icon">▦</span>Inventory</button>
+      <button class="nav-item" data-page="sales"><span class="nav-icon">↗</span>Sales</button>
+      <button class="nav-item" data-page="expenses"><span class="nav-icon">↘</span>Expenses</button>
+      <button class="nav-item" data-page="invoices"><span class="nav-icon">▤</span>Invoices</button>
+      <button class="nav-item" data-page="tasks"><span class="nav-icon">☷</span>Tasks & Operations</button>
+    </nav>
+  </div>
 
-      <nav class="nav-links" id="primary-navigation" aria-label="Main navigation">
-        <a href="index.html#tools">Free Tools</a>
-        <a href="platform.html" class="active" aria-current="page">Platform</a>
-        <a href="index.html#how-it-works">How It Works</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
+  <div>
+    <div class="side-label">Manage</div>
+    <nav class="nav-group" aria-label="Manage navigation">
+      <button class="nav-item" data-page="tools"><span class="nav-icon">✳</span>Business tools</button>
+      <button class="nav-item" data-page="settings"><span class="nav-icon">⚙</span>Settings & data</button>
+    </nav>
+  </div>
 
-      <div class="nav-actions">
-        <a class="nav-signin" href="login.html">Sign in</a>
-        <a class="button button-primary nav-cta" href="signup.html">
-          Start Free <span class="button-arrow">↗</span>
-        </a>
+  <div class="side-bottom">
+    <strong>Intelligence for Every Business.</strong>
+    <p>One workspace for everyday business operations.<br>Powered by Alphex AI.</p>
+  </div>
+</aside>
 
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-controls="primary-navigation"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
+<main class="main" id="mainContent"></main>
+</div>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">Add record</h2>
+      <button class="icon-button" id="modalClose" aria-label="Close dialog">×</button>
+    </div>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function () {
+"use strict";
+
+const STORAGE_KEY = "arthnix_platform_v1";
+
+const today = () => new Date().toISOString().slice(0, 10);
+const currentMonth = () => today().slice(0, 7);
+const uid = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-4);
+
+const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+})[char]);
+
+const money = value => new Intl.NumberFormat("en-IN", {
+  style: "currency",
+  currency: "INR",
+  maximumFractionDigits: 2
+}).format(Number(value) || 0);
+
+const initials = name => String(name || "?")
+  .trim()
+  .split(/\s+/)
+  .slice(0, 2)
+  .map(part => part[0] || "")
+  .join("")
+  .toUpperCase();
+
+function emptyDatabase() {
+  return {
+    business: {
+      name: "My Business",
+      owner: "Workspace Owner",
+      type: "General business",
+      email: ""
+    },
+    employees: [],
+    attendance: [],
+    payroll: [],
+    products: [],
+    sales: [],
+    expenses: [],
+    invoices: [],
+    tasks: [],
+    activity: []
+  };
+}
+
+function loadDatabase() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+    if (saved && typeof saved === "object") {
+      return {
+        ...emptyDatabase(),
+        ...saved,
+        business: {
+          ...emptyDatabase().business,
+          ...(saved.business || {})
+        }
+      };
+    }
+  } catch (error) {
+    console.warn("Could not load saved workspace.", error);
+  }
+
+  return emptyDatabase();
+}
+
+let db = loadDatabase();
+let currentPage = "overview";
+let searchQuery = "";
+let currentFilter = "all";
+let editingId = null;
+let modalKind = null;
+
+const main = document.getElementById("mainContent");
+const backdrop = document.getElementById("modalBackdrop");
+const modalTitle = document.getElementById("modalTitle");
+const modalContent = document.getElementById("modalContent");
+
+function saveDatabase() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+    return true;
+  } catch (error) {
+    notify("Unable to save. Browser storage may be full.");
+    return false;
+  }
+}
+
+function addActivity(message) {
+  db.activity.unshift({
+    id: uid(),
+    message,
+    date: new Date().toISOString()
+  });
+
+  db.activity = db.activity.slice(0, 30);
+}
+
+function notify(message) {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(notify.timer);
+
+  notify.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+function navigate(page) {
+  currentPage = page;
+  searchQuery = "";
+  currentFilter = "all";
+
+  document.querySelectorAll(".nav-item").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === page);
+  });
+
+  document.getElementById("sidebar").classList.remove("open");
+
+  render();
+}
+
+function pageHeader(section, title, description, buttons = "") {
+  return `
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">${section}</div>
+        <h1>${title}</h1>
+        <p>${description}</p>
+      </div>
+      <div class="actions">${buttons}</div>
+    </div>
+  `;
+}
+
+function button(label, action, primary = false, extra = "") {
+  return `
+    <button
+      type="button"
+      class="btn ${primary ? "primary" : ""} ${extra}"
+      data-action="${action}">
+      ${label}
+    </button>
+  `;
+}
+
+function stat(label, value, foot, icon = "◦") {
+  return `
+    <div class="stat">
+      <div class="stat-top">
+        <span>${label}</span>
+        <span>${icon}</span>
+      </div>
+      <div class="stat-value">${value}</div>
+      <div class="stat-foot">${foot || ""}</div>
+    </div>
+  `;
+}
+
+function emptyState(title, description = "") {
+  return `
+    <div class="empty">
+      <strong>${title}</strong>
+      ${description}
+    </div>
+  `;
+}
+
+function statusBadge(value) {
+  let style = "";
+
+  if (["Active", "Present", "Paid", "Done"].includes(value)) {
+    style = "green";
+  } else if (["Absent", "Overdue", "High"].includes(value)) {
+    style = "red";
+  } else if (["Pending", "Draft", "Unpaid", "Leave", "Medium", "In progress"].includes(value)) {
+    style = "amber";
+  }
+
+  return `<span class="badge ${style}">${esc(value)}</span>`;
+}
+
+function searchToolbar(placeholder, filters = "") {
+  return `
+    <div class="toolbar">
+      <div class="search">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="${placeholder}"
+          value="${esc(searchQuery)}"
+          aria-label="${placeholder}">
+      </div>
+      ${filters}
+    </div>
+  `;
+}
+
+function renderTable(headers, rows) {
+  if (!rows) {
+    return `
+      <div class="table-wrap">
+        ${emptyState("No records yet", "Add your first record to get started.")}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>${headers.map(header => `<th>${header}</th>`).join("")}</tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function activityPanel() {
+  const rows = db.activity.slice(0, 6).map(item => `
+    <div class="list-row">
+      <div class="list-main">
+        <strong>${esc(item.message)}</strong>
+        <small>${new Date(item.date).toLocaleString()}</small>
+      </div>
+    </div>
+  `).join("");
+
+  return `
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Recent activity</h2>
+          <p>Changes in this workspace</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        ${rows ? `<div class="list">${rows}</div>` :
+          emptyState("No activity yet", "Your changes will appear here.")}
+      </div>
+    </section>
+  `;
+}
+
+/* --------------------------------------------------
+   OVERVIEW
+-------------------------------------------------- */
+
+function overviewPage() {
+  const activeEmployees = db.employees.filter(e => e.status === "Active").length;
+
+  const monthlySales = db.sales
+    .filter(item => item.date?.startsWith(currentMonth()))
+    .reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+  const monthlyExpenses = db.expenses
+    .filter(item => item.date?.startsWith(currentMonth()))
+    .reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+  const outstandingInvoices = db.invoices
+    .filter(item => item.status !== "Paid")
+    .reduce((sum, item) => sum + Number(item.total || 0), 0);
+
+  const recentRecords = [
+    ...db.sales.map(item => ({
+      title: item.title,
+      detail: `Sale · ${item.date}`,
+      amount: money(item.amount)
+    })),
+    ...db.expenses.map(item => ({
+      title: item.title,
+      detail: `Expense · ${item.date}`,
+      amount: "−" + money(item.amount)
+    }))
+  ].slice(0, 5);
+
+  return pageHeader(
+    "Workspace / Overview",
+    "Your business, at a glance.",
+    "Manage your team, finances, inventory and everyday operations.",
+    button("+ Add record", "open-quick", true)
+  ) + `
+    <div class="notice">
+      <strong>Local workspace:</strong>
+      Your records are stored in this browser on this device.
+      Cloud sync, secure sign-in and multi-user access are not connected.
+      Avoid entering sensitive personal or financial information.
+    </div>
+
+    <div class="stats">
+      ${stat("Active employees", activeEmployees,
+        `${db.employees.length} employee record(s)`, "♙")}
+      ${stat("Sales this month", money(monthlySales),
+        "Recorded sales only", "↗")}
+      ${stat("Expenses this month", money(monthlyExpenses),
+        "Recorded expenses only", "↘")}
+      ${stat("Outstanding invoices", money(outstandingInvoices),
+        `${db.invoices.filter(x => x.status !== "Paid").length} unpaid invoice(s)`, "▤")}
+    </div>
+
+    <div class="grid-two">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Quick actions</h2>
+            <p>Jump straight into a task</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="quick-grid">
+            <button class="quick" data-action="add-employee">
+              <span>♙</span><strong>Add employee</strong>
+              <small>People & HRMS</small>
+            </button>
+
+            <button class="quick" data-action="add-attendance">
+              <span>◷</span><strong>Record attendance</strong>
+              <small>Daily attendance</small>
+            </button>
+
+            <button class="quick" data-action="add-sale">
+              <span>↗</span><strong>Record sale</strong>
+              <small>Track revenue</small>
+            </button>
+
+            <button class="quick" data-action="add-expense">
+              <span>↘</span><strong>Add expense</strong>
+              <small>Track spending</small>
+            </button>
+
+            <button class="quick" data-action="add-product">
+              <span>▦</span><strong>Add product</strong>
+              <small>Manage stock</small>
+            </button>
+
+            <button class="quick" data-action="add-task">
+              <span>☷</span><strong>Create task</strong>
+              <small>Operations</small>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Business snapshot</h2>
+            <p>Current workspace records</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="list">
+            ${[
+              ["Employees", db.employees.length],
+              ["Attendance entries", db.attendance.length],
+              ["Products", db.products.length],
+              ["Sales records", db.sales.length],
+              ["Expense records", db.expenses.length],
+              ["Invoices", db.invoices.length],
+              ["Open tasks", db.tasks.filter(t => t.status !== "Done").length]
+            ].map(([label, count]) => `
+              <div class="list-row">
+                <div class="list-main"><strong>${label}</strong></div>
+                <span class="list-amount">${count}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div style="margin-top:16px" class="grid-two">
+      ${activityPanel()}
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Recent financial records</h2>
+            <p>Latest sales and expenses</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          ${recentRecords.length ? `
+            <div class="list">
+              ${recentRecords.map(record => `
+                <div class="list-row">
+                  <div class="list-main">
+                    <strong>${esc(record.title)}</strong>
+                    <small>${esc(record.detail)}</small>
+                  </div>
+                  <span class="list-amount">${record.amount}</span>
+                </div>
+              `).join("")}
+            </div>
+          ` : emptyState("No financial records yet", "Record a sale or expense to see it here.")}
+        </div>
+      </section>
+    </div>
+
+    <p class="footer-note">
+      Figures reflect only the records entered in this workspace.
+      They are not audited accounts or statutory calculations.
+    </p>
+  `;
+}
+
+/* --------------------------------------------------
+   PEOPLE & HRMS
+-------------------------------------------------- */
+
+function peoplePage() {
+  const employees = db.employees.filter(employee => {
+    const matchesSearch =
+      `${employee.name} ${employee.role} ${employee.department} ${employee.email}`
+        .toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesFilter =
+      currentFilter === "all" || employee.status === currentFilter;
+
+    return matchesSearch && matchesFilter;
+  });
+
+  const rows = employees.map(employee => `
+    <tr>
+      <td>
+        <div class="person">
+          <span class="person-avatar">${esc(initials(employee.name))}</span>
+          <span>
+            <strong>${esc(employee.name)}</strong>
+            <small>${esc(employee.email || "No email added")}</small>
+          </span>
+        </div>
+      </td>
+      <td>${esc(employee.role || "—")}</td>
+      <td>${esc(employee.department || "—")}</td>
+      <td>${esc(employee.startDate || "—")}</td>
+      <td>${statusBadge(employee.status)}</td>
+      <td>
+        <div class="row-actions">
+          <button class="link-btn" data-action="edit-employee" data-id="${employee.id}">Edit</button>
+          <button class="link-btn" data-action="delete-employee" data-id="${employee.id}">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join("");
+
+  return pageHeader(
+    "People / HRMS",
+    "People & HRMS",
+    "Keep a searchable record of your team.",
+    button("+ Add employee", "add-employee", true)
+  ) +
+  searchToolbar(
+    "Search by name, role or department…",
+    `<select id="filterSelect">
+      <option value="all">All statuses</option>
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+    </select>`
+  ) +
+  renderTable(
+    ["Employee", "Role", "Department", "Start date", "Status", "Actions"],
+    rows
+  ) +
+  `<p class="footer-note">
+    This is a basic local employee register, not a secure HR database.
+  </p>`;
+}
+
+/* --------------------------------------------------
+   ATTENDANCE
+-------------------------------------------------- */
+
+function attendancePage() {
+  const monthEntries = db.attendance.filter(
+    item => item.date?.startsWith(currentMonth())
+  );
+
+  const entries = db.attendance
+    .filter(item =>
+      `${item.employeeName} ${item.date} ${item.status}`
+        .toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  const rows = entries.map(item => `
+    <tr>
+      <td>${esc(item.date)}</td>
+      <td>${esc(item.employeeName)}</td>
+      <td>${statusBadge(item.status)}</td>
+      <td>${esc(item.note || "—")}</td>
+      <td>
+        <button class="link-btn" data-action="delete-attendance" data-id="${item.id}">
+          Delete
         </button>
-      </div>
+      </td>
+    </tr>
+  `).join("");
 
+  return pageHeader(
+    "People / Attendance",
+    "Attendance",
+    "Record one daily attendance status for each employee.",
+    button("+ Record attendance", "add-attendance", true)
+  ) + `
+    <div class="stats">
+      ${stat("Present", monthEntries.filter(x => x.status === "Present").length,
+        "This month", "✓")}
+      ${stat("Absent", monthEntries.filter(x => x.status === "Absent").length,
+        "This month", "×")}
+      ${stat("Leave", monthEntries.filter(x => x.status === "Leave").length,
+        "This month", "◷")}
+      ${stat("Total entries", monthEntries.length, "This month", "▤")}
     </div>
-  </header>
-
-
-  <main>
-
-    <!-- HERO -->
-    <section class="platform-hero">
-      <div class="container hero-grid">
-
-        <div class="hero-copy">
-          <div class="eyebrow hero-eyebrow">THE ARTHNIX PLATFORM</div>
-
-          <h1>
-            One platform.<br>
-            A more connected<br>
-            <span>business.</span>
-          </h1>
-
-          <p class="lead">
-            Bring the essential parts of your business into one connected
-            experience. ARTHNIX is designed to help businesses manage people,
-            operations, and everyday work with greater clarity.
-          </p>
-
-          <div class="hero-actions">
-            <a href="signup.html" class="button button-primary">
-              Get Started <span class="button-arrow">↗</span>
-            </a>
-
-            <a href="#capabilities" class="button button-outline-white">
-              Explore Capabilities <span class="button-arrow">↓</span>
-            </a>
-          </div>
-
-          <div class="hero-caption">
-            <span class="hero-caption-dot"></span>
-            One platform with capabilities designed to work together.
-          </div>
-        </div>
-
-
-        <!-- Illustrative product preview -->
-        <div class="platform-preview" aria-label="Illustrative ARTHNIX workspace preview">
-
-          <div class="preview-topbar">
-            <div class="preview-brand">
-              <span class="preview-logo">A</span>
-              ARTHNIX WORKSPACE
-            </div>
-
-            <span class="preview-status">Platform overview</span>
-          </div>
-
-          <div class="preview-greeting">
-            <small>YOUR BUSINESS, CONNECTED</small>
-            <h3>Everything in one place.</h3>
-            <p>A unified view of your business operations.</p>
-          </div>
-
-          <div class="preview-stats">
-            <div class="preview-stat">
-              <span>People</span>
-              <strong>HR</strong>
-              <small>Workforce</small>
-            </div>
-
-            <div class="preview-stat">
-              <span>Finance</span>
-              <strong>₹</strong>
-              <small>Payroll</small>
-            </div>
-
-            <div class="preview-stat">
-              <span>Operations</span>
-              <strong>01</strong>
-              <small>Workflows</small>
-            </div>
-          </div>
-
-          <div class="preview-module-title">Business capabilities</div>
-
-          <div class="preview-module-list">
-
-            <div class="preview-module">
-              <div class="preview-module-icon">↗</div>
-
-              <div class="preview-module-copy">
-                <strong>People & HRMS</strong>
-                <span>Workforce management</span>
-              </div>
-
-              <span class="preview-module-status">Capability</span>
-            </div>
-
-            <div class="preview-module">
-              <div class="preview-module-icon">₹</div>
-
-              <div class="preview-module-copy">
-                <strong>Payroll & Finance</strong>
-                <span>Compensation workflows</span>
-              </div>
-
-              <span class="preview-module-status">Capability</span>
-            </div>
-
-            <div class="preview-module">
-              <div class="preview-module-icon">⌘</div>
-
-              <div class="preview-module-copy">
-                <strong>Operations & AI</strong>
-                <span>Workflows and intelligence</span>
-              </div>
-
-              <span class="preview-module-status">Capability</span>
-            </div>
-
-          </div>
-
-          <div class="preview-bottom">
-            <span>✳</span>
-            <span><strong>One platform</strong> — multiple business capabilities.</span>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- CAPABILITY STRIP -->
-    <section class="platform-strip" aria-label="Platform capability categories">
-      <div class="container strip-inner">
-
-        <div class="strip-label">
-          Built around the essential needs of a growing business.
-        </div>
-
-        <div class="strip-items">
-          <div class="strip-item"><span>↗</span> People</div>
-          <div class="strip-item"><span>₹</span> Payroll</div>
-          <div class="strip-item"><span>▦</span> Operations</div>
-          <div class="strip-item"><span>✳</span> AI</div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- PLATFORM OVERVIEW -->
-    <section class="section overview-section">
-      <div class="container overview-layout">
-
-        <div class="overview-intro">
-          <div class="eyebrow">THE BIGGER PICTURE</div>
-
-          <h2>
-            Business management shouldn't feel
-            <span class="accent">fragmented.</span>
-          </h2>
-
-          <p class="section-description">
-            Businesses often rely on disconnected tools for employees,
-            finances, workflows, and information. ARTHNIX is being designed
-            around a simpler approach: one platform, with connected
-            capabilities for the work that matters.
-          </p>
-
-          <div class="overview-note">
-            <div class="overview-note-mark">i</div>
-
-            <p>
-              <strong>One platform, one pricing structure.</strong><br>
-              HRMS, Payroll, and ERP are platform capabilities, not separate
-              subscriptions with independent pricing.
-            </p>
-          </div>
-        </div>
-
-
-        <div class="capability-list">
-
-          <article class="capability-row">
-            <div class="capability-number">01</div>
-
-            <div>
-              <h3>Bring essential work together</h3>
-              <p>
-                Create a clearer way to approach employee administration,
-                business operations, records, and everyday tasks without
-                treating each function as an entirely separate product.
-              </p>
-            </div>
-          </article>
-
-          <article class="capability-row">
-            <div class="capability-number">02</div>
-
-            <div>
-              <h3>Build around your business</h3>
-              <p>
-                Organize your workspace around the capabilities and workflows
-                your business needs, with a platform designed to support
-                different stages of growth.
-              </p>
-            </div>
-          </article>
-
-          <article class="capability-row">
-            <div class="capability-number">03</div>
-
-            <div>
-              <h3>Make room for intelligent work</h3>
-              <p>
-                Explore how AI and automation can reduce repetitive work,
-                improve access to information, and support more consistent
-                business processes as these capabilities become available.
-              </p>
-            </div>
-          </article>
-
-          <article class="capability-row">
-            <div class="capability-number">04</div>
-
-            <div>
-              <h3>Grow without unnecessary complexity</h3>
-              <p>
-                Start with the plan that fits your needs and explore the
-                platform's broader capabilities as your business evolves.
-              </p>
-            </div>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- BUSINESS CAPABILITIES -->
-    <section class="section capabilities-section" id="capabilities">
-      <div class="container">
-
-        <div class="capabilities-header">
-          <div class="section-heading">
-            <div class="eyebrow">BUSINESS CAPABILITIES</div>
-
-            <h2>
-              Everything your business needs to
-              <span class="accent">move forward.</span>
-            </h2>
-          </div>
-
-          <p class="section-description">
-            Explore the areas ARTHNIX is designed to bring together.
-            Availability varies by capability, and planned features will be
-            introduced as the platform develops.
-          </p>
-        </div>
-
-
-        <div class="capabilities-grid">
-
-          <!-- HRMS -->
-          <article class="capability-card">
-            <div class="capability-card-top">
-              <div class="capability-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="9" cy="8" r="3.2"></circle>
-                  <path d="M3.5 19v-1.5a5.5 5.5 0 0 1 11 0V19"></path>
-                  <path d="M16 5.5a3.2 3.2 0 0 1 0 6.2"></path>
-                  <path d="M18 14a4.5 4.5 0 0 1 2.5 4.1V19"></path>
-                </svg>
-              </div>
-
-              <span class="status status-planned">Planned</span>
-            </div>
-
-            <h3>HRMS & People</h3>
-
-            <p>
-              A people-management capability designed to help businesses
-              organize employee information and essential workforce processes.
-            </p>
-
-            <ul class="feature-list">
-              <li>Employee information management</li>
-              <li>Attendance and leave workflows</li>
-              <li>Employee lifecycle administration</li>
-              <li>People operations visibility</li>
-            </ul>
-
-            <div class="capability-card-foot">
-              <span>People operations</span>
-              <span class="text-link">Explore ↗</span>
-            </div>
-          </article>
-
-
-          <!-- PAYROLL -->
-          <article class="capability-card">
-            <div class="capability-card-top">
-              <div class="capability-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                  <path d="M3 10h18"></path>
-                  <path d="M7 15h4"></path>
-                  <path d="M16 14v2"></path>
-                </svg>
-              </div>
-
-              <span class="status status-planned">Planned</span>
-            </div>
-
-            <h3>Payroll & Compensation</h3>
-
-            <p>
-              A payroll capability designed to support structured salary
-              workflows and give businesses a clearer view of compensation.
-            </p>
-
-            <ul class="feature-list">
-              <li>Salary structure management</li>
-              <li>Payable-day and attendance inputs</li>
-              <li>Payroll records and summaries</li>
-              <li>Compensation workflow organization</li>
-            </ul>
-
-            <div class="capability-card-foot">
-              <span>Payroll operations</span>
-              <span class="text-link">Explore ↗</span>
-            </div>
-          </article>
-
-
-          <!-- ERP -->
-          <article class="capability-card">
-            <div class="capability-card-top">
-              <div class="capability-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
-                  <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
-                  <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
-                  <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
-                </svg>
-              </div>
-
-              <span class="status status-planned">Planned</span>
-            </div>
-
-            <h3>ERP & Operations</h3>
-
-            <p>
-              A broader operational capability intended to connect business
-              processes, internal records, and day-to-day coordination.
-            </p>
-
-            <ul class="feature-list">
-              <li>Business process organization</li>
-              <li>Operational records and workflows</li>
-              <li>Centralized business information</li>
-              <li>Support for growing operations</li>
-            </ul>
-
-            <div class="capability-card-foot">
-              <span>Business operations</span>
-              <span class="text-link">Explore ↗</span>
-            </div>
-          </article>
-
-
-          <!-- PRODUCTIVITY -->
-          <article class="capability-card">
-            <div class="capability-card-top">
-              <div class="capability-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M4 19V5"></path>
-                  <path d="M4 19h17"></path>
-                  <rect x="7" y="12" width="3" height="4" rx="0.5"></rect>
-                  <rect x="12" y="8" width="3" height="8" rx="0.5"></rect>
-                  <rect x="17" y="4" width="3" height="12" rx="0.5"></rect>
-                </svg>
-              </div>
-
-              <span class="status status-planned">Planned</span>
-            </div>
-
-            <h3>Productivity & Insights</h3>
-
-            <p>
-              Tools intended to help businesses understand their operations
-              and organize important information in a more useful way.
-            </p>
-
-            <ul class="feature-list">
-              <li>Business summaries and reporting</li>
-              <li>Operational visibility</li>
-              <li>Structured information access</li>
-              <li>Decision-support workflows</li>
-            </ul>
-
-            <div class="capability-card-foot">
-              <span>Business insights</span>
-              <span class="text-link">Explore ↗</span>
-            </div>
-          </article>
-
-
-          <!-- AI -->
-          <article class="capability-card">
-            <div class="capability-card-top">
-              <div class="capability-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 3v3"></path>
-                  <path d="M12 18v3"></path>
-                  <path d="M3 12h3"></path>
-                  <path d="M18 12h3"></path>
-                  <path d="m5.6 5.6 2.1 2.1"></path>
-                  <path d="m16.3 16.3 2.1 2.1"></path>
-                  <path d="m18.4 5.6-2.1 2.1"></path>
-                  <path d="m7.7 16.3-2.1 2.1"></path>
-                  <circle cx="12" cy="12" r="4"></circle>
-                </svg>
-              </div>
-
-              <span class="status status-planned">Planned</span>
-            </div>
-
-            <h3>AI & Automation</h3>
-
-            <p>
-              An intelligent-work layer intended to support repetitive
-              workflows, business information access, and task assistance.
-            </p>
-
-            <ul class="feature-list">
-              <li>AI-assisted business workflows</li>
-              <li>Information retrieval and assistance</li>
-              <li>Repetitive-task automation</li>
-              <li>Future intelligent integrations</li>
-            </ul>
-
-            <div class="capability-card-foot">
-              <span>Intelligent work</span>
-              <span class="text-link">Explore ↗</span>
-            </div>
-          </article>
-
-
-          <!-- FREE TOOLS -->
-          <article class="capability-card">
-            <div class="capability-card-top">
-              <div class="capability-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <rect x="4" y="3" width="16" height="18" rx="2"></rect>
-                  <path d="M8 7h8"></path>
-                  <path d="M8 11h2"></path>
-                  <path d="M14 11h2"></path>
-                  <path d="M8 15h2"></path>
-                  <path d="M14 15h2"></path>
-                  <path d="M8 18h8"></path>
-                </svg>
-              </div>
-
-              <span class="status status-available">Available</span>
-            </div>
-
-            <h3>Free Business Tools</h3>
-
-            <p>
-              Practical browser-based tools designed to help with everyday
-              calculations and common business tasks.
-            </p>
-
-            <ul class="feature-list">
-              <li>Useful workplace calculators</li>
-              <li>Attendance and salary calculations</li>
-              <li>Accessible browser-based utilities</li>
-              <li>Tools available without a paid plan</li>
-            </ul>
-
-            <div class="capability-card-foot">
-              <span>Everyday productivity</span>
-              <a class="text-link" href="index.html#tools">
-                View tools <span>↗</span>
-              </a>
-            </div>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- CONNECTED PLATFORM -->
-    <section class="section connected-section">
-      <div class="container">
-
-        <div class="connected-heading">
-          <div class="eyebrow">ONE CONNECTED PLATFORM</div>
-
-          <h2>
-            Different capabilities.<br>
-            <span class="accent">One business ecosystem.</span>
-          </h2>
-
-          <p class="section-description">
-            ARTHNIX is being designed around a unified platform rather than
-            a collection of unrelated subscriptions. Its capabilities are
-            intended to support different parts of the same business.
-          </p>
-        </div>
-
-
-        <div class="connected-visual">
-
-          <div class="connected-top">
-            <strong>ARTHNIX — Platform Architecture</strong>
-            <span>Illustrative capability map</span>
-          </div>
-
-          <div class="connected-core">
-            <div class="connected-core-mark">A</div>
-            <h3>ARTHNIX</h3>
-            <p>Intelligence for Every Business</p>
-          </div>
-
-          <div class="connection-stem"></div>
-          <div class="connection-branch"></div>
-
-          <div class="connected-modules">
-
-            <div class="connected-module">
-              <div class="connected-module-icon">↗</div>
-              <h4>People & HRMS</h4>
-              <p>Employee and workforce processes</p>
-            </div>
-
-            <div class="connected-module">
-              <div class="connected-module-icon">₹</div>
-              <h4>Payroll</h4>
-              <p>Compensation and salary workflows</p>
-            </div>
-
-            <div class="connected-module">
-              <div class="connected-module-icon">▦</div>
-              <h4>ERP & Operations</h4>
-              <p>Business processes and records</p>
-            </div>
-
-            <div class="connected-module">
-              <div class="connected-module-icon">✳</div>
-              <h4>AI & Automation</h4>
-              <p>Intelligent workflows and assistance</p>
-            </div>
-
-          </div>
-
-          <p class="connected-note">
-            Conceptual illustration of the intended platform structure;
-            it does not imply that every capability is currently available.
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- BUSINESS VALUE -->
-    <section class="section business-section">
-      <div class="container business-layout">
-
-        <div class="business-copy">
-          <div class="eyebrow">DESIGNED FOR GROWTH</div>
-
-          <h2>
-            Less fragmentation.<br>
-            More room to
-            <span class="accent">focus.</span>
-          </h2>
-
-          <p class="section-description">
-            The goal is straightforward: make everyday business work easier
-            to organize, understand, and manage as your company grows.
-          </p>
-
-          <ul class="business-points">
-            <li>
-              <span>
-                <strong>One platform identity.</strong>
-                A consistent experience across business capabilities.
-              </span>
-            </li>
-
-            <li>
-              <span>
-                <strong>A simpler starting point.</strong>
-                Choose a plan based on your current needs.
-              </span>
-            </li>
-
-            <li>
-              <span>
-                <strong>Room to evolve.</strong>
-                Explore additional capabilities as they become available.
-              </span>
-            </li>
-
-            <li>
-              <span>
-                <strong>Practical tools from the beginning.</strong>
-                Access free business utilities for everyday tasks.
-              </span>
-            </li>
-          </ul>
-
-          <a href="index.html#pricing" class="button button-dark">
-            Explore Pricing <span class="button-arrow">↗</span>
-          </a>
-        </div>
-
-
-        <div class="business-panel">
-
-          <div class="business-panel-head">
-            <div>
-              <h3>A clearer way to work</h3>
-              <p>The principles behind the ARTHNIX platform.</p>
-            </div>
-
-            <div class="business-panel-icon">✳</div>
-          </div>
-
-          <div class="business-feature-row">
-            <div class="business-feature-symbol">01</div>
-
-            <div>
-              <h4>Unified by design</h4>
-              <p>
-                A shared platform approach for people, operations, and
-                business productivity.
-              </p>
-            </div>
-          </div>
-
-          <div class="business-feature-row">
-            <div class="business-feature-symbol">02</div>
-
-            <div>
-              <h4>Transparent pricing</h4>
-              <p>
-                One Free, Pro, and Business pricing structure instead of
-                separate module subscriptions.
-              </p>
-            </div>
-          </div>
-
-          <div class="business-feature-row">
-            <div class="business-feature-symbol">03</div>
-
-            <div>
-              <h4>Honest availability</h4>
-              <p>
-                Clear distinctions between available tools, capabilities
-                in development, and planned features.
-              </p>
-            </div>
-          </div>
-
-          <div class="business-feature-row">
-            <div class="business-feature-symbol">04</div>
-
-            <div>
-              <h4>Built with purpose</h4>
-              <p>
-                Focus on useful business workflows rather than complexity
-                for its own sake.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- AI SECTION -->
-    <section class="ai-section">
-      <div class="container ai-layout">
-
-        <div class="ai-copy">
-          <div class="eyebrow">THE INTELLIGENCE LAYER</div>
-
-          <h2>
-            Business software,
-            <span class="accent">with AI in mind.</span>
-          </h2>
-
-          <p class="section-description">
-            AI can do more than answer questions. It can help people find
-            information, work through repetitive tasks, and interact with
-            business systems more naturally. ARTHNIX aims to explore these
-            possibilities as its platform evolves.
-          </p>
-
-          <div class="ai-tags">
-            <span class="ai-tag">AI assistance</span>
-            <span class="ai-tag">Workflow automation</span>
-            <span class="ai-tag">Knowledge access</span>
-            <span class="ai-tag">Business integrations</span>
-          </div>
-
-          <a href="index.html#contact" class="button button-dark">
-            Talk to Us <span class="button-arrow">↗</span>
-          </a>
-        </div>
-
-
-        <div class="ai-panel">
-
-          <div class="ai-panel-label">
-            <span></span>
-            Our direction
-          </div>
-
-          <div class="ai-principle">
-            <h4>Useful intelligence</h4>
-            <p>
-              Focus AI capabilities on meaningful business tasks and
-              practical user needs.
-            </p>
-          </div>
-
-          <div class="ai-principle">
-            <h4>Connected workflows</h4>
-            <p>
-              Explore ways for intelligent assistance to fit naturally
-              into the work people already do.
-            </p>
-          </div>
-
-          <div class="ai-principle">
-            <h4>Human-directed outcomes</h4>
-            <p>
-              Keep people involved in decisions that require review,
-              judgment, or approval.
-            </p>
-          </div>
-
-          <div class="ai-principle">
-            <h4>Responsible development</h4>
-            <p>
-              Introduce capabilities deliberately, with clear expectations
-              about what is and is not available.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- PRICING -->
-    <section class="section pricing-section" id="pricing">
-      <div class="container">
-
-        <div class="pricing-header">
-          <div class="section-heading">
-            <div class="eyebrow">SIMPLE PLATFORM PRICING</div>
-
-            <h2>
-              Start where you are.<br>
-              <span class="accent">Grow from there.</span>
-            </h2>
-          </div>
-
-          <p class="section-description">
-            One pricing structure for the ARTHNIX platform. HRMS, Payroll,
-            and ERP are capabilities within the platform, not separately
-            priced products.
-          </p>
-        </div>
-
-
-        <div class="pricing-grid">
-
-          <!-- FREE -->
-          <article class="pricing-card">
-            <div class="pricing-name">Free</div>
-
-            <p class="pricing-subtitle">
-              For individuals and small teams exploring practical business
-              tools.
-            </p>
-
-            <div class="pricing-price">
-              <strong>₹0</strong>
-              <span>/ forever</span>
-            </div>
-
-            <div class="pricing-billing-note">
-              No subscription payment.
-            </div>
-
-            <div class="pricing-divider"></div>
-
-            <div class="pricing-features-title">Plan overview</div>
-
-            <ul class="pricing-features">
-              <li>Access to available free tools</li>
-              <li>Everyday business calculations</li>
-              <li>Explore the ARTHNIX platform</li>
-              <li>No paid subscription required</li>
-            </ul>
-
-            <a href="signup.html" class="button button-light">
-              Get Started Free <span class="button-arrow">↗</span>
-            </a>
-          </article>
-
-
-          <!-- PRO -->
-          <article class="pricing-card featured">
-            <span class="pricing-badge">PRO</span>
-
-            <div class="pricing-name">Pro</div>
-
-            <p class="pricing-subtitle">
-              For professionals and growing businesses that need more
-              from their workspace.
-            </p>
-
-            <div class="pricing-price">
-              <strong>₹299</strong>
-              <span>/ month</span>
-            </div>
-
-            <div class="pricing-billing-note">
-              Intended monthly plan price.
-            </div>
-
-            <div class="pricing-divider"></div>
-
-            <div class="pricing-features-title">Plan overview</div>
-
-            <ul class="pricing-features">
-              <li>Free-plan benefits</li>
-              <li>Expanded platform capabilities as released</li>
-              <li>Productivity-focused business workflows</li>
-              <li>Access based on published plan entitlements</li>
-            </ul>
-
-            <a href="signup.html" class="button button-primary">
-              Explore Pro <span class="button-arrow">↗</span>
-            </a>
-          </article>
-
-
-          <!-- BUSINESS -->
-          <article class="pricing-card">
-            <div class="pricing-name">Business</div>
-
-            <p class="pricing-subtitle">
-              For businesses looking for a broader set of management
-              capabilities as the platform grows.
-            </p>
-
-            <div class="pricing-price">
-              <strong>₹799</strong>
-              <span>/ month</span>
-            </div>
-
-            <div class="pricing-billing-note">
-              Intended monthly plan price.
-            </div>
-
-            <div class="pricing-divider"></div>
-
-            <div class="pricing-features-title">Plan overview</div>
-
-            <ul class="pricing-features">
-              <li>Free-plan benefits</li>
-              <li>Broader platform access as released</li>
-              <li>Business-oriented workflow capabilities</li>
-              <li>Access based on published plan entitlements</li>
-            </ul>
-
-            <a href="index.html#contact" class="button button-light">
-              Contact Us <span class="button-arrow">↗</span>
-            </a>
-          </article>
-
-        </div>
-
-        <p class="pricing-footnote">
-          Prices shown reflect the intended ARTHNIX pricing structure.
-          Confirm subscription billing, feature entitlements, and availability
-          before enabling paid-plan purchases.
-        </p>
-
-      </div>
-    </section>
-
-
-    <!-- FAQ -->
-    <section class="section faq-section" id="faq">
-      <div class="container faq-layout">
-
-        <div class="faq-intro">
-          <div class="eyebrow">COMMON QUESTIONS</div>
-
-          <h2>
-            Understand the
-            <span class="accent">platform.</span>
-          </h2>
-
-          <p class="section-description">
-            A few things to know about the ARTHNIX platform, its capabilities,
-            and how the pricing structure is organized.
-          </p>
-
-          <a href="index.html#contact" class="text-link">
-            Have another question? Contact us <span>↗</span>
-          </a>
-        </div>
-
-
-        <div class="faq-list">
-
-          <div class="faq-item">
-            <button
-              class="faq-question"
-              type="button"
-              aria-expanded="true"
-              aria-controls="faq-answer-1"
-            >
-              <span>What is ARTHNIX?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer" id="faq-answer-1">
-              <p>
-                ARTHNIX is a business-management platform concept designed
-                to bring business tools and capabilities into one connected
-                experience. Its broader direction includes people management,
-                payroll, operations, productivity, and AI-assisted workflows.
-              </p>
-            </div>
-          </div>
-
-
-          <div class="faq-item">
-            <button
-              class="faq-question"
-              type="button"
-              aria-expanded="false"
-              aria-controls="faq-answer-2"
-            >
-              <span>Are HRMS, Payroll, and ERP separate subscriptions?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer" id="faq-answer-2" hidden>
-              <p>
-                No. The intended model is one ARTHNIX platform with Free,
-                Pro, and Business plans. HRMS, Payroll, and ERP are
-                capabilities within the platform, not separate subscriptions.
-                Their availability will depend on what has actually been
-                released and the applicable plan entitlements.
-              </p>
-            </div>
-          </div>
-
-
-          <div class="faq-item">
-            <button
-              class="faq-question"
-              type="button"
-              aria-expanded="false"
-              aria-controls="faq-answer-3"
-            >
-              <span>Are all platform capabilities available today?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer" id="faq-answer-3" hidden>
-              <p>
-                No. The page distinguishes available free tools from
-                planned platform capabilities. HRMS, Payroll, ERP, and
-                advanced AI functionality should not be considered available
-                until those features have been implemented and officially
-                released.
-              </p>
-            </div>
-          </div>
-
-
-          <div class="faq-item">
-            <button
-              class="faq-question"
-              type="button"
-              aria-expanded="false"
-              aria-controls="faq-answer-4"
-            >
-              <span>Can I use ARTHNIX without paying?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer" id="faq-answer-4" hidden>
-              <p>
-                The Free plan is intended to provide access to available
-                free tools without a paid subscription. Access to other
-                platform capabilities will depend on their release status
-                and the final published plan details.
-              </p>
-            </div>
-          </div>
-
-
-          <div class="faq-item">
-            <button
-              class="faq-question"
-              type="button"
-              aria-expanded="false"
-              aria-controls="faq-answer-5"
-            >
-              <span>Will ARTHNIX include AI-powered features?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer" id="faq-answer-5" hidden>
-              <p>
-                AI and automation are part of the platform's direction.
-                Potential applications include business assistance,
-                information retrieval, and workflow support. Specific
-                capabilities will be announced as they are developed
-                and made available.
-              </p>
-            </div>
-          </div>
-
-
-          <div class="faq-item">
-            <button
-              class="faq-question"
-              type="button"
-              aria-expanded="false"
-              aria-controls="faq-answer-6"
-            >
-              <span>How do I get started?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-
-            <div class="faq-answer" id="faq-answer-6" hidden>
-              <p>
-                You can explore the free tools on the ARTHNIX website and
-                review the platform's pricing structure. Account creation
-                and paid-plan activation should be used only when the
-                corresponding flows have been implemented and tested.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- FINAL CTA -->
-    <section class="final-cta">
-      <div class="container final-cta-inner">
-
-        <div class="final-cta-copy">
-          <div class="eyebrow">YOUR BUSINESS, YOUR NEXT STEP</div>
-
-          <h2>
-            A better way to think about
-            <span class="accent">business software.</span>
-          </h2>
-
-          <p>
-            Explore the ARTHNIX platform, discover practical free tools,
-            and follow the development of a more connected business
-            experience.
-          </p>
-        </div>
-
-        <div class="final-cta-actions">
-          <a href="index.html#tools" class="button button-primary">
-            Explore Free Tools <span class="button-arrow">↗</span>
-          </a>
-
-          <a href="index.html#contact" class="button button-outline-white">
-            Get in Touch
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-
-      <div class="footer-main">
-
-        <div class="footer-brand-column">
-          <a class="brand footer-brand" href="index.html">
-            ARTHNIX<span class="brand-mark">.</span>
-          </a>
-
-          <p class="footer-description">
-            Intelligence for Every Business. Building a more connected
-            business experience through practical tools, thoughtful
-            software, and AI-driven possibilities.
-          </p>
-
-          <div class="footer-powered">
-            Powered by <span>Alphex AI</span>
-          </div>
-        </div>
-
-
-        <div class="footer-column">
-          <h4>Platform</h4>
-
-          <div class="footer-links">
-            <a href="platform.html">Overview</a>
-            <a href="platform.html#capabilities">Capabilities</a>
-            <a href="platform.html#pricing">Pricing</a>
-            <a href="index.html#how-it-works">How It Works</a>
-          </div>
-        </div>
-
-
-        <div class="footer-column">
-          <h4>Explore</h4>
-
-          <div class="footer-links">
-            <a href="index.html#tools">Free Tools</a>
-            <a href="index.html#features">Features</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="index.html">Home</a>
-          </div>
-        </div>
-
-
-        <div class="footer-column">
-          <h4>Account</h4>
-
-          <div class="footer-links">
-            <a href="login.html">Sign In</a>
-            <a href="signup.html">Create Account</a>
-            <a href="index.html#pricing">Plans</a>
-            <a href="index.html#contact">Support</a>
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="footer-bottom">
-        <p>
-          © <span id="current-year"></span> ARTHNIX. All rights reserved.
-        </p>
-
-        <div class="footer-bottom-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="index.html#contact">Contact</a>
-        </div>
-      </div>
-
+  ` +
+  searchToolbar("Search employee or date…") +
+  renderTable(["Date", "Employee", "Status", "Note", "Actions"], rows) +
+  `<p class="footer-note">
+    Each row represents one attendance entry. This is not an automated
+    attendance system or a payroll-ready leave-management system.
+  </p>`;
+}
+
+/* --------------------------------------------------
+   PAYROLL
+-------------------------------------------------- */
+
+function payrollPage() {
+  const records = db.payroll
+    .filter(item =>
+      `${item.label} ${item.month} ${item.note || ""}`
+        .toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => b.month.localeCompare(a.month));
+
+  const rows = records.map(item => `
+    <tr>
+      <td>
+        <strong>${esc(item.label)}</strong>
+        <small style="display:block;color:#999;margin-top:4px">
+          ${esc(item.note || "Gross estimate")}
+        </small>
+      </td>
+      <td>${esc(item.month)}</td>
+      <td>${money(item.gross)}</td>
+      <td>${statusBadge(item.status)}</td>
+      <td>
+        <button class="link-btn" data-action="edit-payroll" data-id="${item.id}">Edit</button>
+        <button class="link-btn" data-action="delete-payroll" data-id="${item.id}">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+
+  const currentTotal = db.payroll
+    .filter(item => item.month === currentMonth())
+    .reduce((sum, item) => sum + Number(item.gross || 0), 0);
+
+  return pageHeader(
+    "People / Payroll",
+    "Payroll records",
+    "Create and track simple monthly gross-payroll estimates.",
+    button("+ Add payroll record", "add-payroll", true)
+  ) + `
+    <div class="stats">
+      ${stat("Current month", money(currentTotal), "Gross estimates", "₹")}
+      ${stat("Payroll records", db.payroll.length, "All saved months", "▤")}
+      ${stat("Marked paid", db.payroll.filter(x => x.status === "Paid").length,
+        "Records marked paid", "✓")}
+      ${stat("Not marked paid", db.payroll.filter(x => x.status !== "Paid").length,
+        "Draft or pending", "◷")}
     </div>
-  </footer>
+  ` +
+  searchToolbar("Search payroll records…") +
+  renderTable(["Record", "Month", "Gross amount", "Status", "Actions"], rows) +
+  `<p class="footer-note">
+    This module does not calculate income tax, PF, ESI, statutory deductions,
+    payslips or legal payroll compliance. Confirm payroll with a qualified professional.
+  </p>`;
+}
 
+/* --------------------------------------------------
+   INVENTORY
+-------------------------------------------------- */
 
-  <script>
-    /* Mobile navigation */
-    (() => {
-      const toggle = document.getElementById("menu-toggle");
-      const navigation = document.getElementById("primary-navigation");
+function inventoryPage() {
+  const products = db.products.filter(product =>
+    `${product.name} ${product.sku || ""} ${product.category || ""}`
+      .toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-      if (!toggle || !navigation) return;
+  const stockUnits = db.products.reduce(
+    (sum, product) => sum + Number(product.quantity || 0), 0
+  );
 
-      function closeMenu() {
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Open navigation menu");
-        navigation.classList.remove("is-open");
-        document.body.classList.remove("menu-open");
+  const stockValue = db.products.reduce(
+    (sum, product) =>
+      sum + Number(product.quantity || 0) * Number(product.price || 0), 0
+  );
+
+  const rows = products.map(product => `
+    <tr>
+      <td>
+        <strong>${esc(product.name)}</strong>
+        <small style="display:block;color:#999;margin-top:4px">
+          ${esc(product.sku || "No SKU")}
+        </small>
+      </td>
+      <td>${esc(product.category || "—")}</td>
+      <td>${product.quantity}</td>
+      <td>${money(product.price)}</td>
+      <td>${money(Number(product.quantity) * Number(product.price))}</td>
+      <td>
+        <button class="link-btn" data-action="edit-product" data-id="${product.id}">Edit</button>
+        <button class="link-btn" data-action="delete-product" data-id="${product.id}">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+
+  return pageHeader(
+    "Business / Inventory",
+    "Inventory",
+    "Track products, quantities and indicative stock value.",
+    button("+ Add product", "add-product", true)
+  ) + `
+    <div class="stats">
+      ${stat("Products", db.products.length, "Catalogue records", "▦")}
+      ${stat("Units in stock", stockUnits, "Sum of quantities", "≡")}
+      ${stat("Stock value", money(stockValue), "Quantity × unit price", "₹")}
+      ${stat("Low stock", db.products.filter(x => Number(x.quantity) <= 5).length,
+        "Five units or fewer", "!")}
+    </div>
+  ` +
+  searchToolbar("Search product, SKU or category…") +
+  renderTable(
+    ["Product", "Category", "Quantity", "Unit price", "Indicative value", "Actions"],
+    rows
+  ) +
+  `<p class="footer-note">
+    Stock value is an estimate. Purchase orders, stock movements and accounting
+    integrations are not included.
+  </p>`;
+}
+
+/* --------------------------------------------------
+   SALES
+-------------------------------------------------- */
+
+function salesPage() {
+  const records = db.sales.filter(item =>
+    `${item.title} ${item.customer || ""} ${item.date}`
+      .toLowerCase().includes(searchQuery.toLowerCase())
+  ).sort((a, b) => b.date.localeCompare(a.date));
+
+  const totalSales = db.sales.reduce(
+    (sum, item) => sum + Number(item.amount || 0), 0
+  );
+
+  const monthSales = db.sales.filter(
+    item => item.date?.startsWith(currentMonth())
+  ).reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+  const rows = records.map(item => `
+    <tr>
+      <td>
+        <strong>${esc(item.title)}</strong>
+        <small style="display:block;color:#999;margin-top:4px">
+          ${esc(item.customer || "No customer")}
+        </small>
+      </td>
+      <td>${esc(item.date)}</td>
+      <td>${esc(item.method || "—")}</td>
+      <td>${money(item.amount)}</td>
+      <td>
+        <button class="link-btn" data-action="edit-sale" data-id="${item.id}">Edit</button>
+        <button class="link-btn" data-action="delete-sale" data-id="${item.id}">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+
+  return pageHeader(
+    "Business / Sales",
+    "Sales",
+    "Log sales and maintain a simple revenue record.",
+    button("+ Record sale", "add-sale", true)
+  ) + `
+    <div class="stats">
+      ${stat("Total sales", money(totalSales), "All records", "↗")}
+      ${stat("This month", money(monthSales), "Month-to-date", "₹")}
+      ${stat("Sales records", db.sales.length, "All records", "▤")}
+      ${stat("Average sale", money(db.sales.length ? totalSales / db.sales.length : 0),
+        "Across saved records", "∅")}
+    </div>
+  ` +
+  searchToolbar("Search sale, customer or date…") +
+  renderTable(["Sale / customer", "Date", "Payment method", "Amount", "Actions"], rows) +
+  `<p class="footer-note">
+    Sales are internal records. No payment gateway is connected and payments
+    are not independently verified.
+  </p>`;
+}
+
+/* --------------------------------------------------
+   EXPENSES
+-------------------------------------------------- */
+
+function expensesPage() {
+  const records = db.expenses.filter(item =>
+    `${item.title} ${item.category} ${item.date} ${item.note || ""}`
+      .toLowerCase().includes(searchQuery.toLowerCase())
+  ).sort((a, b) => b.date.localeCompare(a.date));
+
+  const total = db.expenses.reduce(
+    (sum, item) => sum + Number(item.amount || 0), 0
+  );
+
+  const monthly = db.expenses.filter(
+    item => item.date?.startsWith(currentMonth())
+  ).reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+  const rows = records.map(item => `
+    <tr>
+      <td>
+        <strong>${esc(item.title)}</strong>
+        <small style="display:block;color:#999;margin-top:4px">
+          ${esc(item.note || "")}
+        </small>
+      </td>
+      <td>${esc(item.category)}</td>
+      <td>${esc(item.date)}</td>
+      <td>${money(item.amount)}</td>
+      <td>
+        <button class="link-btn" data-action="edit-expense" data-id="${item.id}">Edit</button>
+        <button class="link-btn" data-action="delete-expense" data-id="${item.id}">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+
+  return pageHeader(
+    "Business / Expenses",
+    "Expenses",
+    "Record business spending by category and date.",
+    button("+ Add expense", "add-expense", true)
+  ) + `
+    <div class="stats">
+      ${stat("Total expenses", money(total), "All records", "↘")}
+      ${stat("This month", money(monthly), "Month-to-date", "₹")}
+      ${stat("Expense records", db.expenses.length, "All records", "▤")}
+      ${stat("Categories", new Set(db.expenses.map(x => x.category)).size,
+        "Used categories", "≡")}
+    </div>
+  ` +
+  searchToolbar("Search expense, category or date…") +
+  renderTable(["Expense", "Category", "Date", "Amount", "Actions"], rows) +
+  `<p class="footer-note">
+    This is a basic expense log, not a tax-ready accounting ledger.
+  </p>`;
+}
+
+/* --------------------------------------------------
+   INVOICES
+-------------------------------------------------- */
+
+function invoicesPage() {
+  const records = db.invoices.filter(item =>
+    `${item.number} ${item.customer} ${item.date} ${item.status}`
+      .toLowerCase().includes(searchQuery.toLowerCase())
+  ).sort((a, b) => b.date.localeCompare(a.date));
+
+  const outstanding = db.invoices
+    .filter(item => item.status !== "Paid")
+    .reduce((sum, item) => sum + Number(item.total || 0), 0);
+
+  const paid = db.invoices
+    .filter(item => item.status === "Paid")
+    .reduce((sum, item) => sum + Number(item.total || 0), 0);
+
+  const rows = records.map(item => `
+    <tr>
+      <td><strong>${esc(item.number)}</strong></td>
+      <td>${esc(item.customer)}</td>
+      <td>${esc(item.date)}</td>
+      <td>${esc(item.dueDate || "—")}</td>
+      <td>${money(item.total)}</td>
+      <td>${statusBadge(item.status)}</td>
+      <td>
+        <button class="link-btn" data-action="view-invoice" data-id="${item.id}">View / print</button>
+        <button class="link-btn" data-action="edit-invoice" data-id="${item.id}">Edit</button>
+        <button class="link-btn" data-action="delete-invoice" data-id="${item.id}">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+
+  return pageHeader(
+    "Business / Invoices",
+    "Invoices",
+    "Create invoice records and track their payment status.",
+    button("+ Create invoice", "add-invoice", true)
+  ) + `
+    <div class="stats">
+      ${stat("Invoices", db.invoices.length, "All records", "▤")}
+      ${stat("Paid total", money(paid), "Marked paid", "✓")}
+      ${stat("Outstanding", money(outstanding), "Not marked paid", "₹")}
+      ${stat("Overdue", db.invoices.filter(x => x.status === "Overdue").length,
+        "Marked overdue", "!")}
+    </div>
+  ` +
+  searchToolbar("Search invoice, customer or status…") +
+  renderTable(
+    ["Invoice", "Customer", "Issue date", "Due date", "Total", "Status", "Actions"],
+    rows
+  ) +
+  `<p class="footer-note">
+    Printable invoice records are provided as a convenience. This is not a
+    GST-compliant tax invoice generator.
+  </p>`;
+}
+
+/* --------------------------------------------------
+   TASKS & OPERATIONS
+-------------------------------------------------- */
+
+function tasksPage() {
+  const records = db.tasks.filter(item => {
+    const matchesSearch =
+      `${item.title} ${item.owner || ""} ${item.priority} ${item.status}`
+        .toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesFilter =
+      currentFilter === "all" || item.status === currentFilter;
+
+    return matchesSearch && matchesFilter;
+  });
+
+  const rows = records.map(item => `
+    <tr>
+      <td>
+        <strong>${esc(item.title)}</strong>
+        <small style="display:block;color:#999;margin-top:4px">
+          ${esc(item.description || "")}
+        </small>
+      </td>
+      <td>${esc(item.owner || "—")}</td>
+      <td>${esc(item.dueDate || "—")}</td>
+      <td>${statusBadge(item.priority)}</td>
+      <td>${statusBadge(item.status)}</td>
+      <td>
+        <div class="row-actions">
+          <button class="link-btn" data-action="toggle-task" data-id="${item.id}">
+            ${item.status === "Done" ? "Reopen" : "Complete"}
+          </button>
+          <button class="link-btn" data-action="edit-task" data-id="${item.id}">Edit</button>
+          <button class="link-btn" data-action="delete-task" data-id="${item.id}">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join("");
+
+  return pageHeader(
+    "Business / Operations",
+    "Tasks & operations",
+    "Create tasks, set priorities and track progress.",
+    button("+ Create task", "add-task", true)
+  ) + `
+    <div class="stats">
+      ${stat("All tasks", db.tasks.length, "Saved tasks", "☷")}
+      ${stat("To do", db.tasks.filter(x => x.status === "To do").length,
+        "Not started", "◷")}
+      ${stat("In progress", db.tasks.filter(x => x.status === "In progress").length,
+        "Being worked on", "↗")}
+      ${stat("Completed", db.tasks.filter(x => x.status === "Done").length,
+        "Marked done", "✓")}
+    </div>
+  ` +
+  searchToolbar(
+    "Search task or owner…",
+    `<select id="filterSelect">
+      <option value="all">All statuses</option>
+      <option value="To do">To do</option>
+      <option value="In progress">In progress</option>
+      <option value="Done">Done</option>
+    </select>`
+  ) +
+  renderTable(
+    ["Task", "Owner", "Due date", "Priority", "Status", "Actions"],
+    rows
+  );
+}
+
+/* The remaining modules, forms, save/edit/delete handlers,
+   settings, calculators and final closing tags go in Part 3. */
+
+</script>
+<script>
+/* This script continues the ARTHNIX workspace code from Part 2.
+   Remove Part 2's closing </script> before appending this part,
+   so both JavaScript sections are inside one script element. */
+
+function settingsPage() {
+  const b = db.business;
+
+  return pageHeader(
+    "Workspace / Settings",
+    "Business settings",
+    "Manage your workspace details and local data.",
+    button("Export JSON", "export-data", true)
+  ) + `
+    <div class="grid-two">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Business profile</h2>
+            <p>These details are saved in this browser.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form id="businessForm" class="form-grid">
+            <label class="field full">
+              <span>Business name</span>
+              <input name="name" required maxlength="100"
+                value="${esc(b.name)}">
+            </label>
+
+            <label class="field">
+              <span>Owner / administrator</span>
+              <input name="owner" maxlength="100"
+                value="${esc(b.owner)}">
+            </label>
+
+            <label class="field">
+              <span>Business type</span>
+              <input name="type" maxlength="100"
+                value="${esc(b.type)}">
+            </label>
+
+            <label class="field full">
+              <span>Contact email</span>
+              <input name="email" type="email" maxlength="160"
+                value="${esc(b.email)}">
+            </label>
+
+            <div class="field full">
+              <button class="btn primary" type="submit">Save profile</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Data & privacy</h2>
+            <p>Understand where your records are stored.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="list">
+            <div class="list-row">
+              <div class="list-main">
+                <strong>Storage</strong>
+                <small>Browser localStorage on this device</small>
+              </div>
+            </div>
+
+            <div class="list-row">
+              <div class="list-main">
+                <strong>Cloud backup</strong>
+                <small>Not connected</small>
+              </div>
+            </div>
+
+            <div class="list-row">
+              <div class="list-main">
+                <strong>Authentication</strong>
+                <small>Not connected</small>
+              </div>
+            </div>
+
+            <div class="list-row">
+              <div class="list-main">
+                <strong>Export your data</strong>
+                <small>Download a JSON backup of workspace records.</small>
+              </div>
+              ${button("Export", "export-data")}
+            </div>
+
+            <div class="list-row">
+              <div class="list-main">
+                <strong>Import a backup</strong>
+                <small>Restore a JSON backup exported from this workspace.</small>
+              </div>
+              ${button("Import", "import-data")}
+            </div>
+
+            <div class="list-row">
+              <div class="list-main">
+                <strong>Clear workspace</strong>
+                <small>Delete all locally stored business records.</small>
+              </div>
+              ${button("Clear data", "clear-data", false, "danger")}
+            </div>
+          </div>
+
+          <input type="file" id="importFile" accept=".json,application/json"
+            style="display:none">
+        </div>
+      </section>
+    </div>
+
+    <p class="footer-note">
+      Anyone with access to this browser profile may be able to access locally
+      stored records. Do not use this prototype for confidential employee data
+      or sensitive financial information.
+    </p>
+  `;
+}
+
+function toolsPage() {
+  return pageHeader(
+    "Business / Tools",
+    "Business tools",
+    "Simple calculators for everyday planning."
+  ) + `
+    <div class="grid-two">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Attendance calculator</h2>
+            <p>Estimate attendance percentage from days entered.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form id="attendanceCalcForm" class="form-grid">
+            <label class="field">
+              <span>Working days</span>
+              <input name="working" type="number" min="1" step="1"
+                value="22" required>
+            </label>
+
+            <label class="field">
+              <span>Days present</span>
+              <input name="present" type="number" min="0" step="0.5"
+                value="20" required>
+            </label>
+
+            <label class="field full">
+              <span>Days on approved leave (optional)</span>
+              <input name="leave" type="number" min="0" step="0.5"
+                value="0">
+            </label>
+
+            <div class="field full">
+              <button class="btn primary" type="submit">Calculate</button>
+            </div>
+          </form>
+
+          <div id="attendanceCalcResult" class="result-box" aria-live="polite">
+            Enter your figures and calculate the estimate.
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Profit estimate</h2>
+            <p>Compare the revenue and costs you enter.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form id="profitCalcForm" class="form-grid">
+            <label class="field full">
+              <span>Revenue (₹)</span>
+              <input name="revenue" type="number" min="0" step="0.01"
+                value="100000" required>
+            </label>
+
+            <label class="field full">
+              <span>Total costs (₹)</span>
+              <input name="costs" type="number" min="0" step="0.01"
+                value="65000" required>
+            </label>
+
+            <div class="field full">
+              <button class="btn primary" type="submit">Calculate</button>
+            </div>
+          </form>
+
+          <div id="profitCalcResult" class="result-box" aria-live="polite">
+            Enter your figures and calculate the estimate.
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Monthly payroll estimate</h2>
+            <p>Calculate gross pay for a full or partial month.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form id="payCalcForm" class="form-grid">
+            <label class="field">
+              <span>Monthly gross pay (₹)</span>
+              <input name="salary" type="number" min="0" step="0.01"
+                value="30000" required>
+            </label>
+
+            <label class="field">
+              <span>Payable days</span>
+              <input name="payable" type="number" min="0" step="0.5"
+                value="26" required>
+            </label>
+
+            <label class="field full">
+              <span>Days in payroll divisor</span>
+              <input name="divisor" type="number" min="1" step="0.5"
+                value="26" required>
+            </label>
+
+            <div class="field full">
+              <button class="btn primary" type="submit">Calculate</button>
+            </div>
+          </form>
+
+          <div id="payCalcResult" class="result-box" aria-live="polite">
+            This is a simple gross-pay estimate, not a statutory payroll calculation.
+          </div>
+        </div>
+      </section>
+    </div>
+  `;
+}
+
+/* --------------------------------------------------
+   FORMS
+-------------------------------------------------- */
+
+const schemas = {
+  employee: {
+    title: "Employee",
+    collection: "employees",
+    fields: [
+      ["name", "Full name", "text", true],
+      ["email", "Email", "email", false],
+      ["phone", "Phone", "tel", false],
+      ["role", "Job title", "text", false],
+      ["department", "Department", "text", false],
+      ["startDate", "Start date", "date", false],
+      ["status", "Status", "select", true, ["Active", "Inactive"]]
+    ],
+    defaults: { status: "Active", startDate: today() }
+  },
+
+  attendance: {
+    title: "Attendance entry",
+    collection: "attendance",
+    fields: [
+      ["employeeId", "Employee", "employee", true],
+      ["date", "Date", "date", true],
+      ["status", "Attendance status", "select", true,
+        ["Present", "Absent", "Leave"]],
+      ["note", "Note", "text", false]
+    ],
+    defaults: { date: today(), status: "Present" }
+  },
+
+  payroll: {
+    title: "Payroll record",
+    collection: "payroll",
+    fields: [
+      ["label", "Employee / payroll label", "text", true],
+      ["month", "Payroll month", "month", true],
+      ["gross", "Gross amount (₹)", "number", true],
+      ["status", "Status", "select", true, ["Pending", "Paid"]],
+      ["note", "Notes", "text", false]
+    ],
+    defaults: { month: currentMonth(), gross: 0, status: "Pending" }
+  },
+
+  product: {
+    title: "Product",
+    collection: "products",
+    fields: [
+      ["name", "Product name", "text", true],
+      ["sku", "SKU / item code", "text", false],
+      ["category", "Category", "text", false],
+      ["quantity", "Quantity in stock", "number", true],
+      ["price", "Unit price (₹)", "number", true]
+    ],
+    defaults: { quantity: 0, price: 0 }
+  },
+
+  sale: {
+    title: "Sale record",
+    collection: "sales",
+    fields: [
+      ["title", "Sale / item description", "text", true],
+      ["customer", "Customer", "text", false],
+      ["date", "Sale date", "date", true],
+      ["amount", "Amount (₹)", "number", true],
+      ["method", "Payment method", "select", false,
+        ["Cash", "Bank transfer", "UPI", "Card", "Other"]]
+    ],
+    defaults: { date: today(), amount: 0, method: "UPI" }
+  },
+
+  expense: {
+    title: "Expense",
+    collection: "expenses",
+    fields: [
+      ["title", "Expense description", "text", true],
+      ["category", "Category", "select", true,
+        ["Rent", "Salary", "Software", "Travel", "Supplies", "Utilities", "Marketing", "Other"]],
+      ["date", "Date", "date", true],
+      ["amount", "Amount (₹)", "number", true],
+      ["note", "Notes", "text", false]
+    ],
+    defaults: { date: today(), amount: 0, category: "Other" }
+  },
+
+  invoice: {
+    title: "Invoice",
+    collection: "invoices",
+    fields: [
+      ["number", "Invoice number", "text", true],
+      ["customer", "Customer name", "text", true],
+      ["email", "Customer email", "email", false],
+      ["date", "Issue date", "date", true],
+      ["dueDate", "Due date", "date", false],
+      ["description", "Description", "text", true],
+      ["quantity", "Quantity", "number", true],
+      ["unitPrice", "Unit price (₹)", "number", true],
+      ["status", "Payment status", "select", true,
+        ["Draft", "Pending", "Paid", "Overdue"]]
+    ],
+    defaults: {
+      number: "",
+      date: today(),
+      dueDate: "",
+      quantity: 1,
+      unitPrice: 0,
+      status: "Draft"
+    }
+  },
+
+  task: {
+    title: "Task",
+    collection: "tasks",
+    fields: [
+      ["title", "Task title", "text", true],
+      ["description", "Description", "text", false],
+      ["owner", "Owner", "text", false],
+      ["dueDate", "Due date", "date", false],
+      ["priority", "Priority", "select", true,
+        ["Low", "Medium", "High"]],
+      ["status", "Status", "select", true,
+        ["To do", "In progress", "Done"]]
+    ],
+    defaults: { priority: "Medium", status: "To do" }
+  }
+};
+
+function getRecord(collection, id) {
+  return db[collection]?.find(record => record.id === id);
+}
+
+function formField(field, value) {
+  const [name, label, type, required, options] = field;
+  const safeValue = value ?? "";
+
+  if (type === "select") {
+    return `
+      <label class="field">
+        <span>${esc(label)}</span>
+        <select name="${esc(name)}" ${required ? "required" : ""}>
+          ${(options || []).map(option => `
+            <option value="${esc(option)}"
+              ${String(safeValue) === option ? "selected" : ""}>
+              ${esc(option)}
+            </option>
+          `).join("")}
+        </select>
+      </label>
+    `;
+  }
+
+  if (type === "employee") {
+    const selected = String(safeValue || "");
+    const options = db.employees.map(employee => `
+      <option value="${employee.id}"
+        ${selected === employee.id ? "selected" : ""}>
+        ${esc(employee.name)}
+      </option>
+    `).join("");
+
+    return `
+      <label class="field full">
+        <span>${esc(label)}</span>
+        <select name="${esc(name)}" required>
+          <option value="">Choose employee</option>
+          ${options}
+        </select>
+        ${db.employees.length ? "" :
+          `<small>Add an employee in People & HRMS first.</small>`}
+      </label>
+    `;
+  }
+
+  const min = type === "number" ? 'min="0" step="0.01"' : "";
+  const maxLength = ["text", "email", "tel"].includes(type) ? 'maxlength="160"' : "";
+
+  return `
+    <label class="field ${["description", "note"].includes(name) ? "full" : ""}">
+      <span>${esc(label)}</span>
+      <input
+        name="${esc(name)}"
+        type="${esc(type)}"
+        ${required ? "required" : ""}
+        ${min}
+        ${maxLength}
+        value="${esc(safeValue)}">
+    </label>
+  `;
+}
+
+function openForm(kind, id = null) {
+  const schema = schemas[kind];
+
+  if (!schema) return;
+
+  if (kind === "attendance" && db.employees.length === 0) {
+    notify("Add an employee before recording attendance.");
+    return;
+  }
+
+  editingId = id;
+  modalKind = kind;
+
+  const existing = id ? getRecord(schema.collection, id) : null;
+  const record = { ...schema.defaults, ...(existing || {}) };
+
+  if (kind === "invoice" && !id) {
+    record.number = "INV-" + String(Date.now()).slice(-6);
+  }
+
+  if (kind === "attendance" && existing) {
+    record.employeeId = existing.employeeId || "";
+  }
+
+  modalTitle.textContent = `${id ? "Edit" : "Add"} ${schema.title.toLowerCase()}`;
+
+  modalContent.innerHTML = `
+    <form id="recordForm" class="form-grid">
+      ${schema.fields.map(field => formField(field, record[field[0]])).join("")}
+
+      <div class="field full form-actions">
+        <button type="button" class="btn" data-action="close-modal">Cancel</button>
+        <button type="submit" class="btn primary">Save record</button>
+      </div>
+    </form>
+  `;
+
+  backdrop.classList.add("open");
+  document.body.classList.add("modal-open");
+
+  const firstInput = modalContent.querySelector("input, select");
+  if (firstInput) firstInput.focus();
+}
+
+function closeModal() {
+  backdrop.classList.remove("open");
+  document.body.classList.remove("modal-open");
+  modalContent.innerHTML = "";
+  editingId = null;
+  modalKind = null;
+}
+
+function saveRecord(form) {
+  if (!modalKind || !schemas[modalKind]) return;
+
+  const schema = schemas[modalKind];
+  const formData = new FormData(form);
+  const record = {};
+
+  schema.fields.forEach(field => {
+    const key = field[0];
+    const type = field[2];
+    const value = formData.get(key);
+
+    record[key] = type === "number"
+      ? Number(value || 0)
+      : String(value ?? "").trim();
+  });
+
+  if (schema.fields.some(field => field[3] && !String(record[field[0]] ?? "").trim())) {
+    notify("Please complete all required fields.");
+    return;
+  }
+
+  if (schema.fields.some(field =>
+    field[2] === "number" && record[field[0]] < 0
+  )) {
+    notify("Numbers cannot be negative.");
+    return;
+  }
+
+  if (modalKind === "attendance") {
+    const employee = db.employees.find(item => item.id === record.employeeId);
+
+    if (!employee) {
+      notify("Please select a valid employee.");
+      return;
+    }
+
+    const duplicate = db.attendance.find(item =>
+      item.employeeId === employee.id &&
+      item.date === record.date &&
+      item.id !== editingId
+    );
+
+    if (duplicate) {
+      notify("Attendance has already been recorded for this employee and date.");
+      return;
+    }
+
+    record.employeeName = employee.name;
+  }
+
+  if (modalKind === "invoice") {
+    record.total = Number(record.quantity) * Number(record.unitPrice);
+  }
+
+  const collection = db[schema.collection];
+
+  if (!Array.isArray(collection)) {
+    notify("Unable to save this record.");
+    return;
+  }
+
+  if (editingId) {
+    const index = collection.findIndex(item => item.id === editingId);
+
+    if (index < 0) {
+      notify("Record not found.");
+      return;
+    }
+
+    collection[index] = {
+      ...collection[index],
+      ...record
+    };
+
+    addActivity(`Updated ${schema.title.toLowerCase()}`);
+  } else {
+    collection.unshift({
+      id: uid(),
+      ...record,
+      createdAt: new Date().toISOString()
+    });
+
+    addActivity(`Added ${schema.title.toLowerCase()}`);
+  }
+
+  if (!saveDatabase()) return;
+
+  closeModal();
+  render();
+  notify("Record saved.");
+}
+
+/* --------------------------------------------------
+   DELETE / TOGGLE
+-------------------------------------------------- */
+
+function removeRecord(collectionName, id, label) {
+  const collection = db[collectionName];
+
+  if (!Array.isArray(collection)) return;
+
+  const record = collection.find(item => item.id === id);
+  if (!record) return;
+
+  const confirmed = confirm(
+    `Delete this ${label.toLowerCase()} record? This cannot be undone unless you have a backup.`
+  );
+
+  if (!confirmed) return;
+
+  db[collectionName] = collection.filter(item => item.id !== id);
+
+  if (collectionName === "employees") {
+    db.attendance = db.attendance.filter(item => item.employeeId !== id);
+  }
+
+  addActivity(`Deleted ${label.toLowerCase()}`);
+  saveDatabase();
+  render();
+  notify("Record deleted.");
+}
+
+function toggleTask(id) {
+  const task = getRecord("tasks", id);
+  if (!task) return;
+
+  task.status = task.status === "Done" ? "To do" : "Done";
+
+  addActivity(
+    task.status === "Done" ? "Completed a task" : "Reopened a task"
+  );
+
+  saveDatabase();
+  render();
+  notify("Task updated.");
+}
+
+/* --------------------------------------------------
+   INVOICE VIEW / PRINT
+-------------------------------------------------- */
+
+function viewInvoice(id) {
+  const invoice = getRecord("invoices", id);
+  if (!invoice) return;
+
+  const business = db.business;
+
+  modalKind = "invoice-preview";
+  editingId = id;
+
+  modalTitle.textContent = "Invoice preview";
+
+  modalContent.innerHTML = `
+    <div id="printInvoice" class="invoice-preview">
+      <div class="invoice-top">
+        <div>
+          <div class="eyebrow">INVOICE</div>
+          <h2>${esc(business.name)}</h2>
+          <p>${esc(business.email || "")}</p>
+        </div>
+        <div style="text-align:right">
+          <strong>${esc(invoice.number)}</strong>
+          <p>Issued: ${esc(invoice.date)}</p>
+          <p>Due: ${esc(invoice.dueDate || "—")}</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <p><strong>Bill to</strong></p>
+      <h3>${esc(invoice.customer)}</h3>
+      <p>${esc(invoice.email || "")}</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Unit price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${esc(invoice.description)}</td>
+            <td>${Number(invoice.quantity)}</td>
+            <td>${money(invoice.unitPrice)}</td>
+            <td>${money(invoice.total)}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="invoice-total">
+        <span>Total</span>
+        <strong>${money(invoice.total)}</strong>
+      </div>
+
+      <p>Status: ${esc(invoice.status)}</p>
+
+      <p class="footer-note">
+        Informational invoice layout. Tax details, GST registration,
+        statutory invoice fields and payment verification are not included.
+      </p>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn" data-action="close-modal">Close</button>
+      <button class="btn primary" data-action="print-invoice">Print invoice</button>
+    </div>
+  `;
+
+  backdrop.classList.add("open");
+  document.body.classList.add("modal-open");
+}
+
+function printInvoice() {
+  const invoiceElement = document.getElementById("printInvoice");
+
+  if (!invoiceElement) {
+    notify("Invoice preview is unavailable.");
+    return;
+  }
+
+  const printWindow = window.open("", "_blank", "width=850,height=700");
+
+  if (!printWindow) {
+    notify("Allow pop-ups to print the invoice.");
+    return;
+  }
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>ARTHNIX Invoice</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          color: #171717;
+          padding: 35px;
+          max-width: 850px;
+          margin: auto;
+        }
+        .invoice-top {
+          display: flex;
+          justify-content: space-between;
+          gap: 24px;
+        }
+        .invoice-top h2 { margin-bottom: 4px; }
+        .invoice-top p { color: #666; }
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd; }
+        th { background: #f5f5f5; }
+        .invoice-total {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 22px;
+          font-size: 20px;
+        }
+        .footer-note { color: #666; font-size: 12px; margin-top: 35px; }
+        hr { border: 0; border-top: 1px solid #ddd; margin: 24px 0; }
+        @media print { body { padding: 0; } }
+      </style>
+    </head>
+    <body>
+      ${invoiceElement.innerHTML}
+      <script>
+        window.onload = function () {
+          window.print();
+        };
+      <\/script>
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+}
+
+/* --------------------------------------------------
+   EXPORT / IMPORT
+-------------------------------------------------- */
+
+function exportData() {
+  const data = JSON.stringify(db, null, 2);
+  const blob = new Blob([data], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = `arthnix-backup-${today()}.json`;
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+  notify("Backup exported.");
+}
+
+function importData(file) {
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    try {
+      const imported = JSON.parse(reader.result);
+
+      const expectedCollections = [
+        "employees",
+        "attendance",
+        "payroll",
+        "products",
+        "sales",
+        "expenses",
+        "invoices",
+        "tasks",
+        "activity"
+      ];
+
+      if (!imported || typeof imported !== "object" || Array.isArray(imported)) {
+        throw new Error("Invalid backup format.");
       }
 
-      toggle.addEventListener("click", () => {
-        const isExpanded =
-          toggle.getAttribute("aria-expanded") === "true";
-
-        toggle.setAttribute("aria-expanded", String(!isExpanded));
-        toggle.setAttribute(
-          "aria-label",
-          isExpanded ? "Open navigation menu" : "Close navigation menu"
-        );
-
-        navigation.classList.toggle("is-open", !isExpanded);
-        document.body.classList.toggle("menu-open", !isExpanded);
-      });
-
-      navigation.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", closeMenu);
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeMenu();
-      });
-
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 850) closeMenu();
-      });
-    })();
-
-
-    /* Accessible FAQ accordion */
-    (() => {
-      const questions = document.querySelectorAll(".faq-question");
-
-      questions.forEach((question) => {
-        question.addEventListener("click", () => {
-          const isExpanded =
-            question.getAttribute("aria-expanded") === "true";
-
-          const answerId = question.getAttribute("aria-controls");
-          const answer = document.getElementById(answerId);
-
-          question.setAttribute("aria-expanded", String(!isExpanded));
-
-          if (answer) {
-            answer.hidden = isExpanded;
-          }
-        });
-      });
-    })();
-
-
-    /* Footer year */
-    (() => {
-      const year = document.getElementById("current-year");
-
-      if (year) {
-        year.textContent = new Date().getFullYear();
+      for (const key of expectedCollections) {
+        if (!Array.isArray(imported[key])) {
+          throw new Error(`Missing or invalid ${key} collection.`);
+        }
       }
-    })();
-  </script>
 
+      if (!imported.business || typeof imported.business !== "object") {
+        throw new Error("Business profile is missing.");
+      }
+
+      const confirmed = confirm(
+        "Import this backup? It will replace all current workspace records."
+      );
+
+      if (!confirmed) return;
+
+      db = {
+        ...emptyDatabase(),
+        ...imported,
+        business: {
+          ...emptyDatabase().business,
+          ...imported.business
+        }
+      };
+
+      addActivity("Imported workspace backup");
+
+      if (!saveDatabase()) return;
+
+      navigate("overview");
+      notify("Backup imported.");
+    } catch (error) {
+      notify(error.message || "Could not import this backup.");
+    }
+  };
+
+  reader.onerror = () => notify("Could not read the selected file.");
+  reader.readAsText(file);
+}
+
+function clearWorkspace() {
+  const confirmed = confirm(
+    "This will permanently delete all ARTHNIX workspace records stored in this browser. Export a backup first if needed. Continue?"
+  );
+
+  if (!confirmed) return;
+
+  db = emptyDatabase();
+  saveDatabase();
+  navigate("overview");
+  notify("Workspace data cleared.");
+}
+
+/* --------------------------------------------------
+   RENDER ROUTER
+-------------------------------------------------- */
+
+function render() {
+  const pages = {
+    overview: overviewPage,
+    people: peoplePage,
+    attendance: attendancePage,
+    payroll: payrollPage,
+    inventory: inventoryPage,
+    sales: salesPage,
+    expenses: expensesPage,
+    invoices: invoicesPage,
+    tasks: tasksPage,
+    tools: toolsPage,
+    settings: settingsPage
+  };
+
+  const renderPage = pages[currentPage] || overviewPage;
+  main.innerHTML = renderPage();
+
+  const businessName = document.getElementById("businessName");
+  if (businessName) {
+    businessName.textContent = db.business.name || "My Business";
+  }
+
+  const currentUser = document.getElementById("currentUser");
+  if (currentUser) {
+    currentUser.textContent = db.business.owner || "Workspace Owner";
+  }
+
+  const dateLabel = document.getElementById("currentDate");
+  if (dateLabel) {
+    dateLabel.textContent = new Date().toLocaleDateString("en-IN", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    });
+  }
+
+  const filter = document.getElementById("filterSelect");
+  if (filter) filter.value = currentFilter;
+}
+
+/* --------------------------------------------------
+   QUICK ACTIONS
+-------------------------------------------------- */
+
+function handleAction(action, id) {
+  const addActions = {
+    "add-employee": "employee",
+    "add-attendance": "attendance",
+    "add-payroll": "payroll",
+    "add-product": "product",
+    "add-sale": "sale",
+    "add-expense": "expense",
+    "add-invoice": "invoice",
+    "add-task": "task"
+  };
+
+  const editActions = {
+    "edit-employee": "employee",
+    "edit-payroll": "payroll",
+    "edit-product": "product",
+    "edit-sale": "sale",
+    "edit-expense": "expense",
+    "edit-invoice": "invoice",
+    "edit-task": "task",
+    "edit-attendance": "attendance"
+  };
+
+  if (addActions[action]) {
+    openForm(addActions[action]);
+    return;
+  }
+
+  if (editActions[action]) {
+    openForm(editActions[action], id);
+    return;
+  }
+
+  const deletes = {
+    "delete-employee": ["employees", "employee"],
+    "delete-attendance": ["attendance", "attendance"],
+    "delete-payroll": ["payroll", "payroll"],
+    "delete-product": ["products", "product"],
+    "delete-sale": ["sales", "sale"],
+    "delete-expense": ["expenses", "expense"],
+    "delete-invoice": ["invoices", "invoice"],
+    "delete-task": ["tasks", "task"]
+  };
+
+  if (deletes[action]) {
+    removeRecord(deletes[action][0], id, deletes[action][1]);
+    return;
+  }
+
+  switch (action) {
+    case "close-modal":
+      closeModal();
+      break;
+
+    case "toggle-task":
+      toggleTask(id);
+      break;
+
+    case "view-invoice":
+      viewInvoice(id);
+      break;
+
+    case "print-invoice":
+      printInvoice();
+      break;
+
+    case "export-data":
+      exportData();
+      break;
+
+    case "import-data":
+      document.getElementById("importFile")?.click();
+      break;
+
+    case "clear-data":
+      clearWorkspace();
+      break;
+
+    case "open-quick":
+      openQuickMenu();
+      break;
+  }
+}
+
+function openQuickMenu() {
+  modalTitle.textContent = "Create a record";
+
+  const actions = [
+    ["Employee", "add-employee"],
+    ["Attendance", "add-attendance"],
+    ["Payroll", "add-payroll"],
+    ["Product", "add-product"],
+    ["Sale", "add-sale"],
+    ["Expense", "add-expense"],
+    ["Invoice", "add-invoice"],
+    ["Task", "add-task"]
+  ];
+
+  modalKind = "quick-menu";
+  editingId = null;
+
+  modalContent.innerHTML = `
+    <div class="quick-grid">
+      ${actions.map(([label, action]) => `
+        <button class="quick" data-action="${action}">
+          <strong>${label}</strong>
+          <small>Create a new ${label.toLowerCase()} record</small>
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  backdrop.classList.add("open");
+  document.body.classList.add("modal-open");
+}
+
+/* --------------------------------------------------
+   EVENT LISTENERS
+-------------------------------------------------- */
+
+document.addEventListener("click", event => {
+  const nav = event.target.closest("[data-page]");
+
+  if (nav) {
+    event.preventDefault();
+    navigate(nav.dataset.page);
+    return;
+  }
+
+  const actionButton = event.target.closest("[data-action]");
+
+  if (!actionButton) {
+    if (event.target === backdrop) closeModal();
+    return;
+  }
+
+  const action = actionButton.dataset.action;
+  const id = actionButton.dataset.id;
+
+  if (action.startsWith("add-") || action.startsWith("edit-") ||
+      action.startsWith("delete-") ||
+      [
+        "close-modal",
+        "toggle-task",
+        "view-invoice",
+        "print-invoice",
+        "export-data",
+        "import-data",
+        "clear-data",
+        "open-quick"
+      ].includes(action)) {
+    handleAction(action, id);
+  }
+});
+
+document.addEventListener("submit", event => {
+  const form = event.target;
+
+  if (form.id === "recordForm") {
+    event.preventDefault();
+    saveRecord(form);
+    return;
+  }
+
+  if (form.id === "businessForm") {
+    event.preventDefault();
+
+    const data = new FormData(form);
+
+    db.business = {
+      name: String(data.get("name") || "").trim(),
+      owner: String(data.get("owner") || "").trim(),
+      type: String(data.get("type") || "").trim(),
+      email: String(data.get("email") || "").trim()
+    };
+
+    addActivity("Updated business profile");
+    saveDatabase();
+    render();
+    notify("Business profile saved.");
+    return;
+  }
+
+  if (form.id === "attendanceCalcForm") {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const working = Number(data.get("working"));
+    const present = Number(data.get("present"));
+    const leave = Number(data.get("leave") || 0);
+    const result = document.getElementById("attendanceCalcResult");
+
+    if (
+      working <= 0 ||
+      present < 0 ||
+      leave < 0 ||
+      present > working ||
+      leave > working
+    ) {
+      result.textContent = "Check your inputs. Working days must be positive and present/leave days cannot exceed working days.";
+      return;
+    }
+
+    const percentage = (present / working) * 100;
+    const remaining = Math.max(0, working - present - leave);
+
+    result.innerHTML = `
+      <strong>Attendance: ${percentage.toFixed(2)}%</strong>
+      <p>Present: ${present} days</p>
+      <p>Approved leave entered: ${leave} days</p>
+      <p>Remaining days not marked present or leave: ${remaining}</p>
+    `;
+    return;
+  }
+
+  if (form.id === "profitCalcForm") {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const revenue = Number(data.get("revenue"));
+    const costs = Number(data.get("costs"));
+    const result = document.getElementById("profitCalcResult");
+
+    if (revenue < 0 || costs < 0) {
+      result.textContent = "Revenue and costs must not be negative.";
+      return;
+    }
+
+    const profit = revenue - costs;
+    const margin = revenue > 0 ? profit / revenue * 100 : null;
+
+    result.innerHTML = `
+      <strong>${profit >= 0 ? "Estimated surplus" : "Estimated loss"}: ${money(profit)}</strong>
+      <p>${margin === null ? "Margin unavailable when revenue is zero." :
+        `Margin: ${margin.toFixed(2)}%`}</p>
+    `;
+    return;
+  }
+
+  if (form.id === "payCalcForm") {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const salary = Number(data.get("salary"));
+    const payable = Number(data.get("payable"));
+    const divisor = Number(data.get("divisor"));
+    const result = document.getElementById("payCalcResult");
+
+    if (salary < 0 || payable < 0 || divisor <= 0 || payable > divisor) {
+      result.textContent = "Enter valid non-negative amounts and payable days no greater than the divisor.";
+      return;
+    }
+
+    result.innerHTML = `
+      <strong>Estimated gross pay: ${money(salary * payable / divisor)}</strong>
+      <p>Based on ${payable} payable days out of a ${divisor}-day divisor.</p>
+      <p>This does not include statutory deductions or adjustments.</p>
+    `;
+  }
+});
+
+document.addEventListener("input", event => {
+  if (event.target.id === "searchInput") {
+    const input = event.target;
+    const cursor = input.selectionStart;
+
+    searchQuery = input.value;
+    render();
+
+    const nextInput = document.getElementById("searchInput");
+    if (nextInput) {
+      nextInput.focus();
+      nextInput.setSelectionRange(cursor, cursor);
+    }
+  }
+});
+
+document.addEventListener("change", event => {
+  if (event.target.id === "filterSelect") {
+    currentFilter = event.target.value;
+    render();
+  }
+
+  if (event.target.id === "importFile") {
+    const file = event.target.files?.[0];
+    if (file) importData(file);
+    event.target.value = "";
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeModal();
+});
+
+const menuToggle = document.getElementById("menuToggle");
+
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    document.getElementById("sidebar")?.classList.toggle("open");
+  });
+}
+
+/* --------------------------------------------------
+   INITIALIZE
+-------------------------------------------------- */
+
+render();
+
+})();
+</script>
 </body>
 </html>
