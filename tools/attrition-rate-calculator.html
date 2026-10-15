@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Employee Attrition Rate Calculator — ARTHNIX</title>
+  <meta
+    name="description"
+    content="Calculate employee attrition rate using workforce and employee exit data. Estimate monthly or annual attrition, compare workforce changes, and print your results for free with ARTHNIX."
+  >
+  <meta name="theme-color" content="#090909">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://arthnix.com/attrition-rate-calculator.html">
+  <link rel="icon" href="/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --black: #090909;
+      --black-soft: #111111;
+      --white: #ffffff;
+      --paper: #fafaf9;
+      --surface: #f4f4f2;
+      --text: #151515;
+      --muted: #737373;
+      --border: #e9e9e7;
+      --red: #ed3434;
+      --red-dark: #d92727;
+      --radius: 18px;
+      --container: 1160px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 84px 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .section-label::before {
+      width: 20px;
+      height: 2px;
+      background: var(--red);
+      content: "";
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 800;
+      letter-spacing: -1.8px;
+      line-height: 1.15;
+    }
+
+    .section-description {
+      max-width: 690px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .text-red {
+      color: var(--red);
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: #292929;
+    }
+
+    .btn-outline {
+      border-color: #d8d8d5;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .btn-light {
+      border-color: #414141;
+      background: transparent;
+      color: var(--white);
+    }
+
+    .btn-light:hover {
+      border-color: var(--white);
+      background: #1b1b1b;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      z-index: 1000;
+      top: 0;
+      border-bottom: 1px solid #292929;
+      background: var(--black);
+    }
+
+    .navbar {
+      display: flex;
+      width: min(1200px, calc(100% - 64px));
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      margin-inline: auto;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 11px;
+      color: var(--white);
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links > a:not(.btn) {
+      color: #c8c8c8;
+      font-size: 12px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links > a:not(.btn):hover,
+    .nav-links > a.active {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      min-height: 41px;
+      padding-inline: 17px;
+      font-size: 12px;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      border: 1px solid #363636;
+      border-radius: 8px;
+      background: transparent;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--white);
+      transition: transform 0.2s ease;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:first-child {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span:last-child {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 82px 0 76px;
+      background:
+        radial-gradient(
+          ellipse at 83% 15%,
+          rgba(237, 52, 52, 0.15),
+          transparent 34%
+        ),
+        radial-gradient(
+          ellipse at 5% 100%,
+          rgba(237, 52, 52, 0.07),
+          transparent 36%
+        ),
+        var(--black);
+      color: var(--white);
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#ffffff 0.7px, transparent 0.7px);
+      background-size: 26px 26px;
+      content: "";
+      opacity: 0.075;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: #c9c9c9;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 14px rgba(237, 52, 52, 0.6);
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(40px, 6.4vw, 70px);
+      font-weight: 800;
+      letter-spacing: -3.8px;
+      line-height: 1.06;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero-description {
+      max-width: 690px;
+      margin: 22px 0 0;
+      color: #b5b5b5;
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 24px;
+      color: #a8a8a8;
+      font-size: 12px;
+    }
+
+    .hero-note strong {
+      color: #ededed;
+    }
+
+    /* Calculator section */
+
+    .calculator-section {
+      padding: 70px 0 86px;
+    }
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      align-items: start;
+      gap: 26px;
+      margin-top: 32px;
+    }
+
+    .panel {
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 8px 34px rgba(0, 0, 0, 0.025);
+    }
+
+    .panel-header {
+      padding: 24px 25px 19px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-header h2 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.65px;
+      line-height: 1.35;
+    }
+
+    .panel-header p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .panel-body {
+      padding: 25px;
+    }
+
+    .form-section + .form-section {
+      margin-top: 29px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .form-section-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .section-number {
+      display: inline-flex;
+      width: 25px;
+      height: 25px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      background: #fff0f0;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px 14px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #373737;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-prefix,
+    .input-suffix {
+      position: absolute;
+      top: 50%;
+      color: #777;
+      font-size: 12px;
+      font-weight: 600;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .input-prefix {
+      left: 12px;
+    }
+
+    .input-suffix {
+      right: 12px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 12px;
+      border: 1px solid #dededb;
+      border-radius: 8px;
+      outline: none;
+      background: #fff;
+      color: var(--text);
+      font-size: 13px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input.has-prefix {
+      padding-left: 30px;
+    }
+
+    .field input.has-suffix {
+      padding-right: 35px;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
+    }
+
+    .field input[aria-invalid="true"] {
+      border-color: var(--red);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .form-actions .btn {
+      flex: 1;
+    }
+
+    /* Results */
+
+    .results-panel {
+      overflow: hidden;
+      border: 1px solid #252525;
+      border-radius: var(--radius);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .results-header {
+      padding: 25px 25px 22px;
+      border-bottom: 1px solid #292929;
+      background:
+        radial-gradient(
+          ellipse at 95% 0%,
+          rgba(237, 52, 52, 0.15),
+          transparent 45%
+        ),
+        #101010;
+    }
+
+    .results-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: #bdbdbd;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .results-eyebrow span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #42c985;
+    }
+
+    .results-header h2 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .results-header p {
+      margin: 7px 0 0;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .primary-result {
+      padding: 26px 25px 24px;
+      border-bottom: 1px solid #292929;
+    }
+
+    .result-label {
+      color: #b7b7b7;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .result-number {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 5px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(42px, 5vw, 60px);
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 1.15;
+    }
+
+    .result-number span {
+      color: var(--red);
+    }
+
+    .result-caption {
+      margin-top: 9px;
+      color: #aaa;
+      font-size: 11px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: #292929;
+      border-bottom: 1px solid #292929;
+    }
+
+    .result-stat {
+      min-width: 0;
+      padding: 19px 20px;
+      background: #111;
+    }
+
+    .result-stat-label {
+      color: #aaa;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .result-stat-value {
+      overflow-wrap: anywhere;
+      margin-top: 6px;
+      color: var(--white);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(20px, 2.3vw, 27px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.3;
+    }
+
+    .result-stat-value.red {
+      color: #ff7777;
+    }
+
+    .results-body {
+      padding: 24px 25px 26px;
+    }
+
+    .results-body h3 {
+      margin: 0 0 15px;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .breakdown-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      color: #c9c9c9;
+      font-size: 12px;
+    }
+
+    .breakdown-row span:first-child {
+      max-width: 68%;
+    }
+
+    .breakdown-row strong {
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .breakdown-row.total {
+      margin-top: 3px;
+      padding-top: 14px;
+      border-top: 1px solid #333;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .breakdown-row.total strong {
+      color: #ff7777;
+    }
+
+    .results-footer {
+      padding: 17px 25px;
+      border-top: 1px solid #292929;
+      background: #0d0d0d;
+      color: #a3a3a3;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .results-footer strong {
+      color: #e5e5e5;
+    }
+
+    .alert-box {
+      display: none;
+      margin-top: 19px;
+      padding: 14px 15px;
+      border: 1px solid rgba(237, 52, 52, 0.4);
+      border-radius: 9px;
+      background: rgba(237, 52, 52, 0.08);
+      color: #ffd2d2;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .alert-box.visible {
+      display: block;
+    }
+
+    .results-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .results-actions .btn {
+      flex: 1;
+      min-height: 43px;
+      font-size: 11px;
+    }
+
+    /* Formula and explainer */
+
+    .formula-section {
+      padding: 78px 0;
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 33px;
+    }
+
+    .formula-card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--paper);
+    }
+
+    .formula-icon {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      border-radius: 10px;
+      background: #fff0f0;
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .formula-card h3 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+
+    .formula-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .formula-example {
+      display: block;
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: #333;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    /* Tips */
+
+    .tips-section {
+      padding: 78px 0;
+      background: var(--surface);
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 32px;
+    }
+
+    .tip-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 23px;
+      border: 1px solid #e5e5e2;
+      border-radius: 13px;
+      background: #fff;
+    }
+
+    .tip-check {
+      display: inline-flex;
+      width: 29px;
+      height: 29px;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #fff0f0;
+      color: var(--red);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .tip-card h3 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .tip-card p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* Related tools */
+
+    .related-section {
+      padding: 82px 0;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+      margin-top: 30px;
+    }
+
+    .related-card {
+      display: flex;
+      min-height: 175px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #fff;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-3px);
+      border-color: #f0b4b4;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    }
+
+    .related-card .related-tag {
+      margin-bottom: 13px;
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .related-card h3 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+
+    .related-card p {
+      margin: 8px 0 15px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .related-card .related-link {
+      margin-top: auto;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .related-card:hover .related-link {
+      color: var(--red);
+    }
+
+    /* Disclaimer */
+
+    .disclaimer-section {
+      padding: 0 0 76px;
+    }
+
+    .disclaimer-box {
+      padding: 22px 24px;
+      border: 1px solid #e7dada;
+      border-radius: 12px;
+      background: #fffafa;
+    }
+
+    .disclaimer-box h2 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .disclaimer-box p {
+      margin: 8px 0 0;
+      color: #686060;
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    /* Footer */
+
+    .site-footer {
+      padding: 64px 0 0;
+      border-top: 1px solid #292929;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 48px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .footer-brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .footer-brand-name span {
+      color: var(--red);
+    }
+
+    .footer-tagline {
+      margin: 14px 0 0;
+      color: #c1c1c1;
+      font-size: 13px;
+    }
+
+    .footer-powered {
+      margin-top: 8px;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .footer-column h3 {
+      margin: 4px 0 18px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 11px;
+    }
+
+    .footer-links a {
+      width: fit-content;
+      color: #a7a7a7;
+      font-size: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      min-height: 66px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid #292929;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .footer-bottom strong {
+      color: #b5b5b5;
+      font-weight: 600;
+    }
+
+    /* Accessibility and utility */
+
+    .privacy-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .privacy-note span {
+      color: #34835d;
+      font-size: 14px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(237, 52, 52, 0.6);
+      outline-offset: 3px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        gap: 18px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+      }
+
+      .footer-main {
+        grid-template-columns: 1.3fr 1fr 1fr;
+        gap: 32px;
+      }
+
+      .footer-brand-column {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        width: min(100% - 40px, var(--container));
+      }
+
+      .navbar {
+        width: calc(100% - 40px);
+        min-height: 70px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        z-index: 999;
+        top: 70px;
+        right: 0;
+        left: 0;
+        display: none;
+        max-height: calc(100dvh - 70px);
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+        padding: 14px 20px 25px;
+        border-bottom: 1px solid #292929;
+        background: var(--black);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links > a:not(.btn) {
+        padding: 14px 3px;
+        border-bottom: 1px solid #242424;
+        font-size: 14px;
+      }
+
+      .nav-links .nav-cta {
+        margin-top: 16px;
+      }
+
+      .hero {
+        padding: 65px 0 60px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .calculator-section,
+      .formula-section,
+      .tips-section,
+      .related-section {
+        padding: 62px 0;
+      }
+
+      .calculator-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .formula-card {
+        padding: 22px;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 24px;
+      }
+
+      .footer-brand-column {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0;
+        gap: 5px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: calc(100% - 32px);
+      }
+
+      .navbar {
+        width: calc(100% - 32px);
+      }
+
+      .brand-name {
+        font-size: 18px;
+      }
+
+      .hero {
+        padding: 55px 0 48px;
+      }
+
+      .hero h1 {
+        font-size: clamp(37px, 11vw, 50px);
+        letter-spacing: -2.3px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .section-title {
+        font-size: 31px;
+        letter-spacing: -1.2px;
+      }
+
+      .panel-header,
+      .panel-body,
+      .results-header,
+      .primary-result,
+      .results-body {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .result-stat {
+        padding: 16px 13px;
+      }
+
+      .result-stat-value {
+        font-size: 21px;
+      }
+
+      .result-number {
+        font-size: 46px;
+      }
+
+      .results-footer {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+
+      .form-actions,
+      .results-actions {
+        flex-direction: column;
+      }
+
+      .form-actions .btn,
+      .results-actions .btn {
+        width: 100%;
+      }
+
+      .tips-grid,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 16px;
+      }
+
+      .footer-brand-column {
+        grid-column: 1 / -1;
+      }
+
+      .disclaimer-section {
+        padding-bottom: 55px;
+      }
+
+      .disclaimer-box {
+        padding: 19px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Print */
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+
+      body {
+        background: #fff;
+        color: #111;
+        font-size: 11px;
+      }
+
+      .site-header,
+      .hero-actions,
+      .form-actions,
+      .results-actions,
+      .formula-section,
+      .tips-section,
+      .related-section,
+      .site-footer,
+      .privacy-note,
+      .no-print {
+        display: none !important;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .hero {
+        padding: 0 0 18px;
+        background: #fff !important;
+        color: #111;
+      }
+
+      .hero::before {
+        display: none;
+      }
+
+      .eyebrow,
+      .hero-description {
+        color: #444;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+        letter-spacing: -1px;
+        color: #111;
+      }
+
+      .hero h1 span {
+        color: #d92727;
+      }
+
+      .hero-description {
+        margin-top: 8px;
+        font-size: 11px;
+      }
+
+      .calculator-section {
+        padding: 0;
+      }
+
+      .calculator-section > .container > .section-label,
+      .calculator-section > .container > .section-title,
+      .calculator-section > .container > .section-description {
+        display: none;
+      }
+
+      .calculator-layout {
+        display: block;
+        margin-top: 12px;
+      }
+
+      .input-panel {
+        display: none;
+      }
+
+      .results-panel {
+        border: 1px solid #ccc;
+        background: #fff;
+        color: #111;
+        break-inside: avoid;
+      }
+
+      .results-header,
+      .primary-result,
+      .result-stat,
+      .results-footer {
+        background: #fff !important;
+        color: #111 !important;
+        border-color: #ddd;
+      }
+
+      .results-header h2,
+      .results-body h3,
+      .result-stat-value,
+      .breakdown-row strong,
+      .results-footer strong {
+        color: #111 !important;
+      }
+
+      .results-header p,
+      .results-eyebrow,
+      .result-label,
+      .result-caption,
+      .result-stat-label,
+      .breakdown-row,
+      .results-footer {
+        color: #444 !important;
+      }
+
+      .result-grid {
+        background: #ddd;
+      }
+
+      .result-number {
+        font-size: 36px;
+        color: #111;
+      }
+
+      .result-number span,
+      .result-stat-value.red,
+      .breakdown-row.total strong {
+        color: #d92727 !important;
+      }
+
+      .results-body {
+        padding: 18px 20px;
+      }
+
+      .alert-box.visible {
+        background: #fff;
+        color: #333;
+        border-color: #ccc;
+      }
+
+      .disclaimer-section {
+        padding: 18px 0 0;
+      }
+
+      .disclaimer-box {
+        padding: 14px;
+        border-color: #ccc;
+        background: #fff;
+      }
+
+      .disclaimer-box p {
+        color: #444;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="sr-only" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="ARTHNIX home">
+        <img src="/logo.png" alt="" width="34" height="34">
+        <span class="brand-name">ARTH<span>NIX</span></span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="/tools.html">Free Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+        <a class="btn btn-primary nav-cta" href="/tools.html">Start Free ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Free HR & Business Calculator
+        </div>
+
+        <h1>
+          Employee Attrition<br>
+          Rate <span>Calculator.</span>
+        </h1>
+
+        <p class="hero-description">
+          Calculate employee attrition using your workforce size and the number
+          of employees who left during a period. Understand workforce turnover
+          with a clear, instant percentage estimate.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#calculator">Calculate Attrition ↗</a>
+          <a class="btn btn-light" href="#how-it-works">Understand the Formula</a>
+        </div>
+
+        <div class="hero-note">
+          <span aria-hidden="true">✦</span>
+          <span><strong>Free to use.</strong> No signup required. Your figures stay in your browser.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-section" id="calculator">
+      <div class="container">
+        <div class="section-label">Workforce Analytics</div>
+        <h2 class="section-title">Calculate your <span class="text-red">attrition rate.</span></h2>
+        <p class="section-description">
+          Enter the workforce figures for your selected period. For a standard
+          attrition estimate, use the average of the opening and closing
+          headcount as the denominator.
+        </p>
+
+        <div class="calculator-layout">
+          <section class="panel input-panel" aria-labelledby="inputs-title">
+            <div class="panel-header">
+              <h2 id="inputs-title">Enter workforce details</h2>
+              <p>Use figures for the same reporting period.</p>
+            </div>
+
+            <div class="panel-body">
+              <form id="attritionForm" novalidate>
+                <div class="form-section">
+                  <h3 class="form-section-title">
+                    <span class="section-number">01</span>
+                    Reporting period
+                  </h3>
+
+                  <div class="field-grid">
+                    <div class="field full">
+                      <label for="period">Calculation period</label>
+                      <select id="period" name="period">
+                        <option value="Monthly">Monthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Half-yearly">Half-yearly</option>
+                        <option value="Annual" selected>Annual</option>
+                        <option value="Custom">Custom reporting period</option>
+                      </select>
+                      <small>
+                        This label describes your reporting period; it does not
+                        annualize the rate automatically.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <h3 class="form-section-title">
+                    <span class="section-number">02</span>
+                    Workforce figures
+                  </h3>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label for="openingEmployees">Opening headcount</label>
+                      <div class="input-wrap">
+                        <input
+                          id="openingEmployees"
+                          name="openingEmployees"
+                          type="number"
+                          min="0"
+                          max="100000000"
+                          step="1"
+                          value="100"
+                          required
+                          inputmode="numeric"
+                        >
+                      </div>
+                      <small>Employees at the beginning of the period.</small>
+                    </div>
+
+                    <div class="field">
+                      <label for="closingEmployees">Closing headcount</label>
+                      <div class="input-wrap">
+                        <input
+                          id="closingEmployees"
+                          name="closingEmployees"
+                          type="number"
+                          min="0"
+                          max="100000000"
+                          step="1"
+                          value="90"
+                          required
+                          inputmode="numeric"
+                        >
+                      </div>
+                      <small>Employees at the end of the period.</small>
+                    </div>
+
+                    <div class="field full">
+                      <label for="employeesLeft">Employees who left</label>
+                      <div class="input-wrap">
+                        <input
+                          id="employeesLeft"
+                          name="employeesLeft"
+                          type="number"
+                          min="0"
+                          max="100000000"
+                          step="1"
+                          value="15"
+                          required
+                          inputmode="numeric"
+                        >
+                      </div>
+                      <small>
+                        Enter total employee exits during the period, according
+                        to your organization's reporting definition.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <h3 class="form-section-title">
+                    <span class="section-number">03</span>
+                    Calculation method
+                  </h3>
+
+                  <div class="field-grid">
+                    <div class="field full">
+                      <label for="method">Headcount denominator</label>
+                      <select id="method" name="method">
+                        <option value="average" selected>Average headcount (recommended)</option>
+                        <option value="opening">Opening headcount</option>
+                        <option value="closing">Closing headcount</option>
+                      </select>
+                      <small id="methodHelp">
+                        Average headcount = (opening headcount + closing headcount) ÷ 2.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button class="btn btn-primary" type="submit">
+                    Calculate Rate ↗
+                  </button>
+                  <button class="btn btn-outline" id="resetBtn" type="button">
+                    Reset Values
+                  </button>
+                </div>
+              </form>
+
+              <div class="privacy-note">
+                <span aria-hidden="true">✓</span>
+                <div>
+                  <strong>Your data stays private.</strong>
+                  Calculations run locally in your browser. Workforce figures
+                  are not sent to ARTHNIX.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="results-panel" aria-labelledby="results-title" aria-live="polite">
+            <div class="results-header">
+              <div class="results-eyebrow">
+                <span></span>
+                Calculation Results
+              </div>
+              <h2 id="results-title">Your attrition snapshot</h2>
+              <p id="periodSummary">Annual reporting period · Average headcount method</p>
+            </div>
+
+            <div class="primary-result">
+              <div class="result-label">Employee attrition rate</div>
+              <div class="result-number" id="attritionRate">15.79<span>%</span></div>
+              <div class="result-caption" id="attritionCaption">
+                15 exits compared with an average workforce of 95 employees.
+              </div>
+            </div>
+
+            <div class="result-grid">
+              <div class="result-stat">
+                <div class="result-stat-label">Employees who left</div>
+                <div class="result-stat-value red" id="resultExits">15</div>
+              </div>
+
+              <div class="result-stat">
+                <div class="result-stat-label">Calculation headcount</div>
+                <div class="result-stat-value" id="resultDenominator">95</div>
+              </div>
+
+              <div class="result-stat">
+                <div class="result-stat-label">Opening workforce</div>
+                <div class="result-stat-value" id="resultOpening">100</div>
+              </div>
+
+              <div class="result-stat">
+                <div class="result-stat-label">Closing workforce</div>
+                <div class="result-stat-value" id="resultClosing">90</div>
+              </div>
+            </div>
+
+            <div class="results-body">
+              <h3>Calculation breakdown</h3>
+
+              <div class="breakdown-list">
+                <div class="breakdown-row">
+                  <span>Opening headcount</span>
+                  <strong id="breakdownOpening">100</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Closing headcount</span>
+                  <strong id="breakdownClosing">90</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Average headcount</span>
+                  <strong id="breakdownAverage">95</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Selected denominator</span>
+                  <strong id="breakdownDenominator">95</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Exits ÷ denominator × 100</span>
+                  <strong id="breakdownEquation">15 ÷ 95 × 100</strong>
+                </div>
+
+                <div class="breakdown-row total">
+                  <span>Calculated attrition rate</span>
+                  <strong id="breakdownRate">15.79%</strong>
+                </div>
+              </div>
+
+              <div class="alert-box" id="resultAlert" role="status"></div>
+
+              <div class="results-actions">
+                <button class="btn btn-primary" id="printBtn" type="button">
+                  Print / Save PDF ↗
+                </button>
+                <button class="btn btn-light" id="copyBtn" type="button">
+                  Copy Results
+                </button>
+              </div>
+              <p class="sr-only" id="copyStatus" role="status"></p>
+            </div>
+
+            <div class="results-footer">
+              <strong>Interpretation note:</strong>
+              Attrition rates are most meaningful when compared across consistent
+              periods, workforce definitions, and calculation methods. There is
+              no single universal rate that defines a healthy workforce.
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="formula-section" id="how-it-works">
+      <div class="container">
+        <div class="section-label">The Method</div>
+        <h2 class="section-title">How the <span class="text-red">calculation works.</span></h2>
+        <p class="section-description">
+          Attrition rate measures employee exits relative to a defined
+          workforce size during a specified period. The denominator you choose
+          can affect the resulting percentage.
+        </p>
+
+        <div class="formula-grid">
+          <article class="formula-card">
+            <div class="formula-icon">01</div>
+            <h3>Find average headcount</h3>
+            <p>
+              The standard method in this calculator averages the number of
+              employees at the beginning and end of the reporting period.
+            </p>
+            <span class="formula-example">
+              (Opening headcount + Closing headcount) ÷ 2
+            </span>
+          </article>
+
+          <article class="formula-card">
+            <div class="formula-icon">02</div>
+            <h3>Count employee exits</h3>
+            <p>
+              Count employees who left during the selected period. Apply the
+              same definition of an exit throughout the report.
+            </p>
+            <span class="formula-example">
+              Total exits during the reporting period
+            </span>
+          </article>
+
+          <article class="formula-card">
+            <div class="formula-icon">03</div>
+            <h3>Calculate the percentage</h3>
+            <p>
+              Divide the exits by the selected headcount denominator and
+              multiply the result by 100 to obtain the attrition percentage.
+            </p>
+            <span class="formula-example">
+              (Employee exits ÷ Selected headcount) × 100
+            </span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-section" id="platform">
+      <div class="container">
+        <div class="section-label">Practical Guidance</div>
+        <h2 class="section-title">Use attrition data <span class="text-red">with context.</span></h2>
+        <p class="section-description">
+          A percentage is a useful starting point, but it does not explain why
+          employees leave or whether the exits are expected.
+        </p>
+
+        <div class="tips-grid">
+          <article class="tip-card">
+            <div class="tip-check" aria-hidden="true">✓</div>
+            <div>
+              <h3>Keep reporting periods consistent</h3>
+              <p>
+                Compare like-for-like monthly, quarterly, or annual periods.
+                Clearly label the reporting period and calculation method.
+              </p>
+            </div>
+          </article>
+
+          <article class="tip-card">
+            <div class="tip-check" aria-hidden="true">✓</div>
+            <div>
+              <h3>Separate voluntary and involuntary exits</h3>
+              <p>
+                Where possible, review resignations separately from dismissals,
+                retirements, redundancies, and other departures.
+              </p>
+            </div>
+          </article>
+
+          <article class="tip-card">
+            <div class="tip-check" aria-hidden="true">✓</div>
+            <div>
+              <h3>Review teams and roles separately</h3>
+              <p>
+                Organization-wide figures can hide different patterns across
+                teams, locations, job families, and tenure groups.
+              </p>
+            </div>
+          </article>
+
+          <article class="tip-card">
+            <div class="tip-check" aria-hidden="true">✓</div>
+            <div>
+              <h3>Investigate causes before drawing conclusions</h3>
+              <p>
+                Combine attrition data with exit interviews, employee feedback,
+                hiring patterns, and operational context.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-section" id="tools">
+      <div class="container">
+        <div class="section-label">Explore More</div>
+        <h2 class="section-title">More tools for <span class="text-red">your business.</span></h2>
+        <p class="section-description">
+          Explore other practical calculators and utilities from ARTHNIX.
+        </p>
+
+        <div class="related-grid">
+          <a class="related-card" href="salary-per-day-calculator.html">
+            <span class="related-tag">Salary & HR</span>
+            <h3>Salary Per Day Calculator</h3>
+            <p>Estimate daily salary from monthly or annual pay.</p>
+            <span class="related-link">Explore calculator ↗</span>
+          </a>
+
+          <a class="related-card" href="tools/gst-calculator.html">
+            <span class="related-tag">Tax & Finance</span>
+            <h3>GST Calculator</h3>
+            <p>Calculate GST amounts and inclusive or exclusive prices.</p>
+            <span class="related-link">Explore calculator ↗</span>
+          </a>
+
+          <a class="related-card" href="tools/profit-calculator.html">
+            <span class="related-tag">Business Finance</span>
+            <h3>Profit Calculator</h3>
+            <p>Work out profit, cost, selling price, and margins.</p>
+            <span class="related-link">Explore calculator ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="disclaimer-section" id="pricing">
+      <div class="container">
+        <div class="disclaimer-box">
+          <h2>Calculation assumptions & disclaimer</h2>
+          <p>
+            This calculator provides a general workforce attrition estimate
+            based on the figures and denominator method you select. Organizations
+            may define attrition, employee exits, and headcount differently.
+            For example, some reports exclude internal transfers, contractors,
+            or certain categories of separation. This tool does not determine
+            the reasons for employee departures, predict future turnover, or
+            establish whether a rate is good or bad. Confirm your organization's
+            HR reporting definitions before using results for business decisions.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="footer-contact">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand-column">
+          <a class="footer-brand" href="index.html" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="" width="34" height="34">
+            <span class="footer-brand-name">ARTH<span>NIX</span></span>
+          </a>
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <p class="footer-powered">Powered by Alphex AI</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <div class="footer-links">
+            <a href="/platform.html">Platform</a>
+            <a href="/#how-it-works">How It Works</a>
+            <a href="/pricing.html">Pricing</a>
+            <a href="/tools.html">All Free Tools</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Business Tools</h3>
+          <div class="footer-links">
+            <a href="tools/gst-calculator.html">GST Calculator</a>
+            <a href="tools/profit-calculator.html">Profit Calculator</a>
+            <a href="salary-per-day-calculator.html">Salary Per Day</a>
+            <a href="attrition-rate-calculator.html">Attrition Rate</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Information</h3>
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="help.html">Help Center</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="disclaimer.html">Disclaimer</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> <strong>ARTHNIX</strong>. All rights reserved.</span>
+        <span>An independent product brand · Powered by Alphex AI</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = (id) => document.getElementById(id);
+
+      const form = $("attritionForm");
+      const menuToggle = $("menuToggle");
+      const navLinks = $("navLinks");
+
+      const fields = {
+        period: $("period"),
+        opening: $("openingEmployees"),
+        closing: $("closingEmployees"),
+        exits: $("employeesLeft"),
+        method: $("method")
+      };
+
+      const defaults = {
+        period: "Annual",
+        opening: "100",
+        closing: "90",
+        exits: "15",
+        method: "average"
+      };
+
+      const integerFormatter = new Intl.NumberFormat("en-IN", {
+        maximumFractionDigits: 0
+      });
+
+      const decimalFormatter = new Intl.NumberFormat("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      let lastCalculation = null;
+
+      function setMenuState(open) {
+        navLinks.classList.toggle("open", open);
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute(
+          "aria-label",
+          open ? "Close navigation menu" : "Open navigation menu"
+        );
+        document.body.classList.toggle("menu-open", open);
+      }
+
+      menuToggle.addEventListener("click", () => {
+        const open = menuToggle.getAttribute("aria-expanded") !== "true";
+        setMenuState(open);
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenuState(false));
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          navLinks.classList.contains("open") &&
+          !navLinks.contains(event.target) &&
+          !menuToggle.contains(event.target)
+        ) {
+          setMenuState(false);
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          setMenuState(false);
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 780) {
+          setMenuState(false);
+        }
+      });
+
+      $("currentYear").textContent = new Date().getFullYear();
+
+      function readNumber(input) {
+        const raw = input.value.trim();
+
+        if (raw === "") {
+          return NaN;
+        }
+
+        const value = Number(raw);
+
+        if (!Number.isFinite(value) || value < 0 || value > 100000000) {
+          return NaN;
+        }
+
+        return value;
+      }
+
+      function formatInteger(value) {
+        return integerFormatter.format(value);
+      }
+
+      function formatRate(value) {
+        return decimalFormatter.format(value) + "%";
+      }
+
+      function setAlert(message) {
+        const alert = $("resultAlert");
+        alert.textContent = message || "";
+        alert.classList.toggle("visible", Boolean(message));
+      }
+
+      function updateMethodHelp() {
+        const method = fields.method.value;
+        const help = $("methodHelp");
+
+        if (method === "average") {
+          help.textContent =
+            "Average headcount = (opening headcount + closing headcount) ÷ 2.";
+        } else if (method === "opening") {
+          help.textContent =
+            "Uses the number of employees at the beginning of the period.";
+        } else {
+          help.textContent =
+            "Uses the number of employees at the end of the period.";
+        }
+      }
+
+      function validateInputs() {
+        const inputs = [fields.opening, fields.closing, fields.exits];
+        let valid = true;
+
+        inputs.forEach((input) => {
+          const value = readNumber(input);
+          const isValid = Number.isFinite(value) && Number.isInteger(value);
+
+          input.setAttribute("aria-invalid", String(!isValid));
+
+          if (!isValid) {
+            valid = false;
+          }
+        });
+
+        if (!valid) {
+          setAlert(
+            "Enter valid, non-negative whole numbers for opening headcount, closing headcount, and employee exits."
+          );
+          return null;
+        }
+
+        const opening = readNumber(fields.opening);
+        const closing = readNumber(fields.closing);
+        const exits = readNumber(fields.exits);
+        const method = fields.method.value;
+
+        if (opening + closing === 0 && method === "average") {
+          setAlert(
+            "Opening and closing headcount cannot both be zero when using the average-headcount method."
+          );
+          return null;
+        }
+
+        let denominator;
+
+        if (method === "average") {
+          denominator = (opening + closing) / 2;
+        } else if (method === "opening") {
+          denominator = opening;
+        } else {
+          denominator = closing;
+        }
+
+        if (denominator <= 0) {
+          setAlert(
+            "The selected headcount denominator is zero. Choose a method with a positive headcount."
+          );
+          return null;
+        }
+
+        if (exits > 0 && opening === 0 && closing === 0) {
+          setAlert(
+            "A positive number of exits cannot be calculated against a zero workforce."
+          );
+          return null;
+        }
+
+        return {
+          opening,
+          closing,
+          exits,
+          denominator,
+          average: (opening + closing) / 2,
+          method,
+          period: fields.period.value,
+          rate: (exits / denominator) * 100
+        };
+      }
+
+      function renderResults(data) {
+        $("periodSummary").textContent =
+          data.period + " reporting period · " +
+          (
+            data.method === "average"
+              ? "Average headcount method"
+              : data.method === "opening"
+                ? "Opening headcount method"
+                : "Closing headcount method"
+          );
+
+        $("attritionRate").innerHTML =
+          decimalFormatter.format(data.rate) + "<span>%</span>";
+
+        $("attritionCaption").textContent =
+          formatInteger(data.exits) +
+          (data.exits === 1 ? " exit" : " exits") +
+          " compared with " +
+          "a " +
+          (
+            data.method === "average"
+              ? "average workforce"
+              : data.method === "opening"
+                ? "opening workforce"
+                : "closing workforce"
+          ) +
+          " of " +
+          formatInteger(data.denominator) +
+          " employees.";
+
+        $("resultExits").textContent = formatInteger(data.exits);
+        $("resultDenominator").textContent = formatInteger(data.denominator);
+        $("resultOpening").textContent = formatInteger(data.opening);
+        $("resultClosing").textContent = formatInteger(data.closing);
+
+        $("breakdownOpening").textContent = formatInteger(data.opening);
+        $("breakdownClosing").textContent = formatInteger(data.closing);
+        $("breakdownAverage").textContent = formatInteger(data.average);
+        $("breakdownDenominator").textContent = formatInteger(data.denominator);
+
+        $("breakdownEquation").textContent =
+          formatInteger(data.exits) +
+          " ÷ " +
+          formatInteger(data.denominator) +
+          " × 100";
+
+        $("breakdownRate").textContent = formatRate(data.rate);
+
+        let message = "";
+
+        if (data.exits > data.opening + data.closing) {
+          message =
+            "Your exit count is higher than the combined opening and closing headcounts. Confirm that all figures use the same reporting period and workforce definition.";
+        } else if (data.exits > data.opening && data.method === "opening") {
+          message =
+            "The number of exits exceeds the opening headcount. Check whether your reporting period, rehires, and employee definitions are consistent.";
+        } else if (data.rate > 100) {
+          message =
+            "The calculated rate exceeds 100%. This can occur when exits exceed the selected denominator, but it may also indicate that the figures or reporting definitions need review.";
+        } else if (data.rate === 0) {
+          message =
+            "No exits were entered for this period. Verify that the exit count is complete before interpreting the result.";
+        }
+
+        setAlert(message);
+        lastCalculation = data;
+      }
+
+      function calculate() {
+        updateMethodHelp();
+
+        const data = validateInputs();
+
+        if (!data) {
+          lastCalculation = null;
+          return false;
+        }
+
+        renderResults(data);
+        return true;
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        calculate();
+      });
+
+      form.addEventListener("input", (event) => {
+        if (event.target.matches("input")) {
+          event.target.removeAttribute("aria-invalid");
+        }
+        calculate();
+      });
+
+      form.addEventListener("change", calculate);
+
+      $("resetBtn").addEventListener("click", () => {
+        fields.period.value = defaults.period;
+        fields.opening.value = defaults.opening;
+        fields.closing.value = defaults.closing;
+        fields.exits.value = defaults.exits;
+        fields.method.value = defaults.method;
+
+        [fields.opening, fields.closing, fields.exits].forEach((input) => {
+          input.removeAttribute("aria-invalid");
+        });
+
+        calculate();
+      });
+
+      $("printBtn").addEventListener("click", () => {
+        if (calculate()) {
+          window.print();
+        }
+      });
+
+      $("copyBtn").addEventListener("click", async () => {
+        const status = $("copyStatus");
+
+        if (!calculate() || !lastCalculation) {
+          status.textContent = "Please correct the input values before copying.";
+          return;
+        }
+
+        const data = lastCalculation;
+
+        const text = [
+          "ARTHNIX — Employee Attrition Rate Calculator",
+          "Reporting period: " + data.period,
+          "Calculation method: " +
+            (
+              data.method === "average"
+                ? "Average headcount"
+                : data.method === "opening"
+                  ? "Opening headcount"
+                  : "Closing headcount"
+            ),
+          "Opening headcount: " + formatInteger(data.opening),
+          "Closing headcount: " + formatInteger(data.closing),
+          "Average headcount: " + formatInteger(data.average),
+          "Employees who left: " + formatInteger(data.exits),
+          "Selected denominator: " + formatInteger(data.denominator),
+          "Employee attrition rate: " + formatRate(data.rate),
+          "",
+          "Formula: (Employee exits ÷ selected headcount) × 100",
+          "Estimate generated by ARTHNIX."
+        ].join("\n");
+
+        try {
+          await navigator.clipboard.writeText(text);
+          status.textContent = "Results copied to clipboard.";
+          $("copyBtn").textContent = "Copied ✓";
+
+          window.setTimeout(() => {
+            $("copyBtn").textContent = "Copy Results";
+          }, 1800);
+        } catch (error) {
+          const temporary = document.createElement("textarea");
+          temporary.value = text;
+          temporary.setAttribute("readonly", "");
+          temporary.style.position = "fixed";
+          temporary.style.opacity = "0";
+          document.body.appendChild(temporary);
+          temporary.select();
+
+          let copied = false;
+
+          try {
+            copied = document.execCommand("copy");
+          } catch (copyError) {
+            copied = false;
+          }
+
+          temporary.remove();
+
+          status.textContent = copied
+            ? "Results copied to clipboard."
+            : "Clipboard access is unavailable. Please copy the results manually.";
+
+          if (copied) {
+            $("copyBtn").textContent = "Copied ✓";
+            window.setTimeout(() => {
+              $("copyBtn").textContent = "Copy Results";
+            }, 1800);
+          }
+        }
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>
