@@ -4,20 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Revenue Per Employee Calculator — ARTHNIX</title>
+  <title>Revenue per Employee Calculator — ARTHNIX</title>
   <meta
     name="description"
-    content="Calculate revenue per employee using your company's total revenue and employee count. Explore annual, monthly, and quarterly productivity metrics with this free ARTHNIX business calculator."
+    content="Calculate revenue per employee using your company's total revenue and employee count. Estimate workforce productivity with this free ARTHNIX business calculator."
   >
   <meta name="theme-color" content="#090909">
-  <meta
-    name="robots"
-    content="index, follow"
-  >
-  <link
-    rel="canonical"
-    href="https://arthnix.com/revenue-per-employee-calculator.html"
-  >
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://arthnix.com/revenue-per-employee-calculator.html">
   <link rel="icon" href="/logo.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +45,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 90px;
     }
 
     body {
@@ -84,10 +78,6 @@
     button,
     a {
       outline-offset: 4px;
-    }
-
-    button {
-      cursor: pointer;
     }
 
     ::selection {
@@ -154,6 +144,26 @@
       background: var(--red-dark);
     }
 
+    .button-light {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .button-light:hover {
+      background: #eeeeec;
+    }
+
+    .button-outline-dark {
+      border-color: #383838;
+      color: var(--white);
+      background: transparent;
+    }
+
+    .button-outline-dark:hover {
+      border-color: #777777;
+      background: #171717;
+    }
+
     .button-outline-light {
       border-color: #dededb;
       color: var(--text);
@@ -163,15 +173,6 @@
     .button-outline-light:hover {
       border-color: #aaaaa5;
       background: #fafaf8;
-    }
-
-    .button-dark {
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .button-dark:hover {
-      background: #292929;
     }
 
     .arrow {
@@ -184,9 +185,28 @@
       transform: translateX(3px);
     }
 
-    /* =====================================================
-       NAVIGATION
-       ===================================================== */
+    .section-heading {
+      max-width: 720px;
+    }
+
+    .section-heading h2 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(34px, 4.2vw, 53px);
+      line-height: 1.12;
+      letter-spacing: -2.4px;
+      font-weight: 600;
+    }
+
+    .section-heading p {
+      max-width: 620px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    /* NAVIGATION */
 
     .site-header {
       position: sticky;
@@ -425,14 +445,12 @@
       }
     }
 
-    /* =====================================================
-       PAGE HERO
-       ===================================================== */
+    /* PAGE HERO */
 
     .page-hero {
       position: relative;
       overflow: hidden;
-      padding: 91px 0 73px;
+      padding: 88px 0 76px;
       background: var(--black);
       color: var(--white);
     }
@@ -440,10 +458,10 @@
     .page-hero::before {
       position: absolute;
       content: "";
-      width: 590px;
-      height: 590px;
-      top: -220px;
-      right: -130px;
+      width: 620px;
+      height: 620px;
+      top: -250px;
+      right: -150px;
       border-radius: 50%;
       background: radial-gradient(
         circle,
@@ -458,10 +476,10 @@
       position: absolute;
       content: "";
       inset: 0;
-      opacity: 0.13;
-      background-image: radial-gradient(#777777 0.6px, transparent 0.6px);
+      opacity: 0.12;
+      background-image: radial-gradient(#6b6b6b 0.6px, transparent 0.6px);
       background-size: 27px 27px;
-      mask-image: linear-gradient(to bottom, black, transparent 92%);
+      mask-image: linear-gradient(to bottom, black, transparent 95%);
       pointer-events: none;
     }
 
@@ -469,7 +487,7 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
       gap: 55px;
     }
@@ -479,13 +497,13 @@
     }
 
     .page-hero h1 {
-      max-width: 700px;
-      margin-top: 27px;
+      max-width: 730px;
+      margin-top: 25px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(43px, 5.4vw, 68px);
-      line-height: 1.08;
+      font-size: clamp(43px, 5.5vw, 68px);
       font-weight: 600;
-      letter-spacing: -3.5px;
+      line-height: 1.08;
+      letter-spacing: -3.8px;
     }
 
     .page-hero h1 span {
@@ -495,9 +513,9 @@
     }
 
     .page-hero-description {
-      max-width: 560px;
+      max-width: 590px;
       margin-top: 22px;
-      color: #a9a9a9;
+      color: #aaaaaa;
       font-size: 15px;
       line-height: 1.9;
     }
@@ -505,9 +523,9 @@
     .hero-points {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px 19px;
-      margin-top: 27px;
-      color: #b0b0b0;
+      gap: 17px;
+      margin-top: 25px;
+      color: #a4a4a4;
       font-size: 11px;
     }
 
@@ -519,107 +537,116 @@
 
     .hero-points span::before {
       content: "✓";
-      color: #eeeeee;
+      color: #e4e4e4;
       font-size: 13px;
     }
 
-    .hero-metric {
-      padding: 29px;
-      border: 1px solid #303030;
+    .hero-summary {
+      padding: 25px;
+      border: 1px solid #343434;
       border-radius: 12px;
-      background: rgba(20, 20, 20, 0.88);
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.24);
+      background: #111111;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
     }
 
-    .hero-metric-label {
-      color: #a1a1a1;
+    .hero-summary-label {
+      color: #a0a0a0;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
-    .hero-metric-value {
-      margin-top: 19px;
+    .hero-summary h2 {
+      margin-top: 18px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(37px, 4vw, 54px);
-      line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: -2px;
-      overflow-wrap: anywhere;
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: -0.8px;
     }
 
-    .hero-metric-value span {
-      color: var(--red);
-    }
-
-    .hero-metric-description {
-      margin-top: 13px;
-      color: #999999;
+    .hero-summary > p {
+      margin-top: 10px;
+      color: #9c9c9c;
       font-size: 12px;
       line-height: 1.8;
     }
 
-    .hero-equation {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+    .hero-formula {
+      display: flex;
       align-items: center;
       gap: 12px;
-      margin-top: 27px;
-      padding-top: 21px;
-      border-top: 1px solid #303030;
+      margin-top: 22px;
+      padding: 17px;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      background: #171717;
     }
 
-    .equation-part {
+    .formula-symbol {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1px solid #49302f;
+      border-radius: 8px;
+      background: #241817;
+      color: var(--red);
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .formula-copy {
       min-width: 0;
     }
 
-    .equation-part small {
+    .formula-copy strong {
       display: block;
-      color: #888888;
-      font-size: 10px;
-    }
-
-    .equation-part strong {
-      display: block;
-      margin-top: 6px;
       color: #eeeeee;
       font-size: 12px;
       font-weight: 600;
     }
 
-    .equation-symbol {
-      color: var(--red);
-      font-family: "Manrope", sans-serif;
-      font-size: 21px;
-      font-weight: 800;
+    .formula-copy span {
+      display: block;
+      margin-top: 5px;
+      color: #969696;
+      font-size: 11px;
+      line-height: 1.6;
     }
 
-    /* =====================================================
-       CALCULATOR
-       ===================================================== */
+    .hero-summary-note {
+      margin-top: 15px;
+      color: #777777;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    /* CALCULATOR SECTION */
 
     .calculator-section {
-      padding: 88px 0 100px;
+      padding: 86px 0 100px;
       background: var(--white);
     }
 
-    .section-heading {
-      max-width: 740px;
+    .calculator-intro {
+      max-width: 760px;
+      margin-bottom: 35px;
     }
 
-    .section-heading h2 {
-      margin-top: 19px;
+    .calculator-intro h2 {
+      margin-top: 17px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(32px, 4vw, 47px);
-      line-height: 1.15;
-      letter-spacing: -2px;
+      font-size: clamp(31px, 4vw, 44px);
       font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -1.8px;
     }
 
-    .section-heading p {
-      max-width: 620px;
-      margin-top: 16px;
+    .calculator-intro p {
+      max-width: 650px;
+      margin-top: 15px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.9;
@@ -627,15 +654,14 @@
 
     .calculator-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
       align-items: start;
-      gap: 23px;
-      margin-top: 39px;
+      gap: 22px;
     }
 
     .calculator-card {
       min-width: 0;
-      padding: 29px;
+      padding: 30px;
       border: 1px solid var(--border);
       border-radius: 12px;
       background: var(--white);
@@ -646,321 +672,295 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 15px;
-      padding-bottom: 22px;
+      padding-bottom: 23px;
       border-bottom: 1px solid var(--border);
     }
 
     .card-heading h3 {
       font-family: "Manrope", sans-serif;
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.6px;
     }
 
     .card-heading p {
       margin-top: 7px;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    .card-index {
-      display: grid;
-      place-items: center;
-      width: 37px;
-      height: 37px;
-      flex-shrink: 0;
-      border: 1px solid #f2dada;
-      border-radius: 8px;
-      background: #fff8f8;
-      color: var(--red);
-      font-family: "Manrope", sans-serif;
-      font-size: 12px;
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border: 1px solid #f0dada;
+      border-radius: 6px;
+      background: #fffafa;
+      color: #b52828;
+      font-size: 9px;
       font-weight: 800;
+      letter-spacing: 0.7px;
+      white-space: nowrap;
+    }
+
+    .card-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 19px 16px;
+      gap: 19px;
       margin-top: 25px;
     }
 
-    .form-group {
+    .field {
       min-width: 0;
     }
 
-    .form-group.full-width {
+    .field-full {
       grid-column: 1 / -1;
     }
 
-    .form-group label {
+    .field label {
       display: block;
-      margin-bottom: 8px;
-      color: #393939;
+      margin-bottom: 9px;
+      color: #343434;
       font-size: 12px;
       font-weight: 700;
     }
 
-    .form-group input,
-    .form-group select {
+    .field input,
+    .field select {
       width: 100%;
+      min-width: 0;
       min-height: 47px;
       padding: 0 13px;
       border: 1px solid #dededb;
       border-radius: 7px;
-      outline: none;
       background: #ffffff;
       color: var(--text);
       font-size: 14px;
+      outline: none;
       transition:
-        border-color 160ms ease,
-        box-shadow 160ms ease;
+        border-color 180ms ease,
+        box-shadow 180ms ease;
     }
 
-    .form-group input:focus,
-    .form-group select:focus {
+    .field input:focus,
+    .field select:focus {
       border-color: var(--red);
       box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
     }
 
-    .form-group input::placeholder {
-      color: #a0a0a0;
+    .field input::placeholder {
+      color: #a5a5a5;
     }
 
     .field-help {
       display: block;
       margin-top: 7px;
-      color: #898989;
+      color: #858585;
       font-size: 10px;
       line-height: 1.7;
     }
 
-    .input-with-prefix {
+    .currency-input-wrap {
       position: relative;
     }
 
-    .input-prefix {
+    .currency-symbol {
       position: absolute;
       top: 50%;
       left: 13px;
-      color: #666666;
-      font-size: 13px;
       transform: translateY(-50%);
+      color: #6c6c6c;
+      font-size: 13px;
       pointer-events: none;
     }
 
-    .input-with-prefix input {
+    .currency-input-wrap input {
       padding-left: 31px;
     }
 
-    .input-with-suffix {
-      position: relative;
+    .field-divider {
+      grid-column: 1 / -1;
+      padding-top: 21px;
+      border-top: 1px solid var(--border);
     }
 
-    .input-suffix {
-      position: absolute;
-      top: 50%;
-      right: 13px;
-      color: #777777;
+    .field-divider h4 {
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .field-divider p {
+      margin-top: 6px;
+      color: var(--muted);
       font-size: 11px;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    .input-with-suffix input {
-      padding-right: 43px;
-    }
-
-    .period-note {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-top: 24px;
-      padding: 13px 14px;
-      border: 1px solid #eeeeeb;
-      border-radius: 7px;
-      background: var(--paper);
-      color: #666666;
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    .period-note strong {
-      color: var(--text);
-    }
-
-    .note-icon {
-      color: var(--red);
-      font-size: 15px;
-      font-weight: 800;
-      flex-shrink: 0;
+      line-height: 1.7;
     }
 
     .form-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     .form-actions .button {
-      flex: 1 1 130px;
+      min-height: 45px;
+      padding-inline: 16px;
+      font-size: 12px;
     }
 
-    .validation-message {
+    .form-error {
       display: none;
-      margin-top: 17px;
-      padding: 12px 14px;
-      border: 1px solid #f0cccc;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border: 1px solid #f1caca;
       border-radius: 7px;
       background: #fff7f7;
-      color: #a82121;
+      color: #a52626;
       font-size: 12px;
       line-height: 1.7;
     }
 
-    .validation-message.is-visible {
+    .form-error.is-visible {
       display: block;
     }
 
     /* RESULTS */
 
     .results-card {
+      position: sticky;
+      top: 100px;
       min-width: 0;
-      overflow: hidden;
-      border: 1px solid #252525;
+      padding: 27px;
+      border: 1px solid #292929;
       border-radius: 12px;
       background: #101010;
       color: var(--white);
     }
 
-    .results-header {
-      padding: 25px 25px 22px;
-      border-bottom: 1px solid #2b2b2b;
-    }
-
-    .results-eyebrow {
+    .results-top {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #a4a4a4;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      padding-bottom: 21px;
+      border-bottom: 1px solid #303030;
     }
 
-    .results-eyebrow span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #83c99a;
-    }
-
-    .results-header h3 {
-      margin-top: 16px;
+    .results-top h3 {
       font-family: "Manrope", sans-serif;
-      font-size: 22px;
+      font-size: 19px;
       font-weight: 650;
-      letter-spacing: -0.7px;
+      letter-spacing: -0.5px;
     }
 
-    .results-header p {
-      margin-top: 8px;
-      color: #969696;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .main-result {
-      padding: 25px;
-      border-bottom: 1px solid #2b2b2b;
-      background:
-        radial-gradient(
-          circle at 100% 0%,
-          rgba(237, 52, 52, 0.11),
-          transparent 58%
-        ),
-        #141414;
-    }
-
-    .result-label {
-      color: #aaaaaa;
-      font-size: 11px;
-      font-weight: 500;
-    }
-
-    .result-value {
-      margin-top: 11px;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(31px, 3vw, 42px);
-      line-height: 1.18;
-      font-weight: 750;
-      letter-spacing: -1.8px;
-      overflow-wrap: anywhere;
-    }
-
-    .result-value .currency {
-      color: var(--red);
-    }
-
-    .result-caption {
-      margin-top: 10px;
-      color: #929292;
+    .results-top p {
+      margin-top: 7px;
+      color: #9b9b9b;
       font-size: 11px;
       line-height: 1.7;
     }
 
-    .results-grid {
+    .results-indicator {
+      padding: 7px 9px;
+      border: 1px solid #353535;
+      border-radius: 5px;
+      color: #c2c2c2;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    .result-primary {
+      margin-top: 23px;
+      padding: 22px;
+      border: 1px solid #3c302f;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #211716, #171313);
+    }
+
+    .result-label {
+      color: #b5a6a5;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .result-value {
+      margin-top: 12px;
+      overflow-wrap: anywhere;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1.8px;
+    }
+
+    .result-description {
+      margin-top: 10px;
+      color: #aaa0a0;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .result-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      padding: 17px;
+      margin-top: 13px;
     }
 
-    .result-mini {
+    .result-stat {
       min-width: 0;
-      padding: 15px 13px;
+      padding: 15px;
       border: 1px solid #303030;
       border-radius: 8px;
       background: #171717;
     }
 
-    .result-mini-label {
-      color: #9b9b9b;
+    .result-stat-label {
+      color: #a1a1a1;
       font-size: 10px;
       line-height: 1.6;
     }
 
-    .result-mini-value {
+    .result-stat-value {
       margin-top: 9px;
-      color: #f4f4f4;
+      overflow-wrap: anywhere;
       font-family: "Manrope", sans-serif;
       font-size: clamp(17px, 2vw, 23px);
-      font-weight: 700;
-      letter-spacing: -0.7px;
-      overflow-wrap: anywhere;
+      font-weight: 650;
+      letter-spacing: -0.6px;
     }
 
-    .result-mini-note {
+    .result-stat-note {
       margin-top: 6px;
-      color: #777777;
+      color: #858585;
       font-size: 9px;
       line-height: 1.6;
     }
 
-    .result-breakdown {
-      margin: 0 17px;
-      padding: 19px 0;
-      border-top: 1px solid #303030;
+    .results-breakdown {
+      margin-top: 22px;
     }
 
-    .result-breakdown h4 {
-      margin-bottom: 14px;
-      color: #eeeeee;
+    .results-breakdown h4 {
+      margin-bottom: 9px;
+      color: #f0f0f0;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 650;
     }
 
     .breakdown-row {
@@ -968,9 +968,8 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 15px;
-      padding: 10px 0;
-      border-bottom: 1px solid #272727;
-      color: #a4a4a4;
+      padding: 12px 0;
+      border-bottom: 1px solid #2b2b2b;
       font-size: 11px;
     }
 
@@ -978,289 +977,216 @@
       border-bottom: 0;
     }
 
-    .breakdown-row strong {
-      color: #eeeeee;
-      font-size: 11px;
-      font-weight: 650;
+    .breakdown-row span:first-child {
+      color: #a1a1a1;
+    }
+
+    .breakdown-row span:last-child {
+      color: #ededed;
+      font-weight: 600;
       text-align: right;
       overflow-wrap: anywhere;
     }
 
-    .breakdown-row.total {
-      margin-top: 4px;
-      padding-top: 14px;
-      border-top: 1px solid #393939;
-      border-bottom: 0;
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .breakdown-row.total strong {
-      color: #ffffff;
-      font-size: 13px;
-    }
-
-    .result-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 9px;
-      padding: 0 17px 19px;
-    }
-
-    .result-actions .button {
-      min-width: 0;
-      min-height: 43px;
-      padding: 0 10px;
-      font-size: 11px;
-    }
-
-    .result-actions .button-outline-dark {
-      border-color: #444444;
-      color: #eeeeee;
-      background: transparent;
-    }
-
-    .result-actions .button-outline-dark:hover {
-      background: #222222;
-    }
-
-    .result-disclaimer {
-      padding: 14px 19px;
-      border-top: 1px solid #2b2b2b;
-      background: #0c0c0c;
-      color: #818181;
+    .results-note {
+      margin-top: 19px;
+      padding-top: 16px;
+      border-top: 1px solid #303030;
+      color: #858585;
       font-size: 10px;
       line-height: 1.8;
     }
 
-    .result-disclaimer strong {
-      color: #bdbdbd;
+    .results-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 20px;
     }
 
-    /* =====================================================
-       METRIC EXPLANATION
-       ===================================================== */
+    .results-actions .button {
+      width: 100%;
+      min-width: 0;
+      min-height: 43px;
+      padding-inline: 9px;
+      font-size: 11px;
+    }
 
-    .metric-section {
-      padding: 92px 0;
+    .copy-status {
+      min-height: 17px;
+      margin-top: 9px;
+      color: #b8d9bf;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    /* CALCULATION EXPLANATION */
+
+    .explanation-section {
+      padding: 94px 0;
       background: var(--paper);
     }
 
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 15px;
-      margin-top: 43px;
-    }
-
-    .metric-card {
-      min-width: 0;
-      padding: 25px 23px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--white);
-    }
-
-    .metric-icon {
-      width: 39px;
-      height: 39px;
-      display: grid;
-      place-items: center;
-      border: 1px solid #f0dddd;
-      border-radius: 8px;
-      background: #fff8f8;
-      color: var(--red);
-      font-family: "Manrope", sans-serif;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .metric-card h3 {
-      margin-top: 21px;
-      font-family: "Manrope", sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .metric-card p {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.9;
-    }
-
-    .metric-formula {
-      margin-top: 17px;
-      padding: 12px;
-      border: 1px solid #eeeeeb;
-      border-radius: 6px;
-      background: #fafaf8;
-      color: #444444;
-      font-size: 11px;
-      font-weight: 650;
-      line-height: 1.8;
-      overflow-wrap: anywhere;
-    }
-
-    /* =====================================================
-       HOW TO USE
-       ===================================================== */
-
-    .how-section {
-      padding: 92px 0;
-      background: var(--white);
-    }
-
-    .how-layout {
+    .explanation-grid {
       display: grid;
       grid-template-columns: 0.85fr 1.15fr;
       align-items: start;
-      gap: 80px;
+      gap: 75px;
     }
 
-    .how-intro {
+    .explanation-copy {
       position: sticky;
-      top: 110px;
+      top: 105px;
     }
 
-    .how-list {
-      border-top: 1px solid var(--border);
+    .explanation-copy h2 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(32px, 4vw, 46px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -1.9px;
     }
 
-    .how-item {
+    .explanation-copy p {
+      margin-top: 17px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .explanation-list {
+      border-top: 1px solid #e2e2de;
+    }
+
+    .explanation-item {
       display: grid;
       grid-template-columns: 42px minmax(0, 1fr);
       gap: 17px;
       padding: 25px 0;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #e2e2de;
     }
 
-    .how-number {
-      color: var(--red);
+    .explanation-number {
+      padding-top: 3px;
+      color: #b7b7b1;
       font-family: "Manrope", sans-serif;
       font-size: 12px;
       font-weight: 800;
     }
 
-    .how-item h3 {
+    .explanation-item h3 {
       font-family: "Manrope", sans-serif;
       font-size: 17px;
       font-weight: 700;
       letter-spacing: -0.4px;
     }
 
-    .how-item p {
+    .explanation-item p {
       margin-top: 9px;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.9;
     }
 
-    /* =====================================================
-       EXAMPLE
-       ===================================================== */
+    .formula-box {
+      margin-top: 15px;
+      padding: 16px;
+      border: 1px solid #e5e5e1;
+      border-radius: 7px;
+      background: #ffffff;
+      color: #3e3e3e;
+      font-size: 12px;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .formula-box strong {
+      color: var(--red);
+    }
+
+    /* EXAMPLE */
 
     .example-section {
-      padding: 0 0 92px;
+      padding: 95px 0;
       background: var(--white);
     }
 
-    .example-panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 45px;
-      padding: 42px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--paper);
+    .example-header {
+      max-width: 700px;
     }
 
-    .example-copy h2 {
-      margin-top: 18px;
+    .example-header h2 {
+      margin-top: 19px;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(29px, 3.5vw, 39px);
-      line-height: 1.2;
-      font-weight: 650;
-      letter-spacing: -1.5px;
+      font-size: clamp(32px, 4vw, 45px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -1.8px;
     }
 
-    .example-copy p {
-      margin-top: 14px;
+    .example-header p {
+      margin-top: 15px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.9;
     }
 
     .example-table-wrap {
-      min-width: 0;
+      margin-top: 33px;
       overflow-x: auto;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--white);
+      border-radius: 10px;
     }
 
     .example-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 11px;
+      font-size: 12px;
     }
 
     .example-table th,
     .example-table td {
-      padding: 13px 14px;
+      padding: 17px 19px;
       border-bottom: 1px solid var(--border);
       white-space: nowrap;
     }
 
     .example-table th {
-      background: #f6f6f4;
-      color: #666666;
+      background: #f8f8f6;
+      color: #555555;
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
     }
 
     .example-table td {
-      color: #444444;
+      color: #505050;
     }
 
     .example-table tbody tr:last-child td {
       border-bottom: 0;
     }
 
-    .example-table td:last-child {
+    .example-table .total-row td {
+      background: #fffafa;
+      color: #222222;
       font-weight: 700;
-      text-align: right;
     }
 
-    .example-total {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-top: 12px;
-      padding: 16px;
-      border-radius: 7px;
-      background: var(--black);
-      color: var(--white);
-      font-size: 11px;
+    .example-note {
+      margin-top: 13px;
+      color: #858585;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    .example-total strong {
-      color: #ffffff;
-      font-family: "Manrope", sans-serif;
-      font-size: 17px;
-      font-weight: 750;
-    }
-
-    /* =====================================================
-       FAQ
-       ===================================================== */
+    /* FAQ */
 
     .faq-section {
-      padding: 92px 0;
+      padding: 95px 0;
       background: var(--paper);
     }
 
@@ -1268,26 +1194,42 @@
       display: grid;
       grid-template-columns: 0.75fr 1.25fr;
       align-items: start;
-      gap: 75px;
+      gap: 70px;
+    }
+
+    .faq-heading h2 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(32px, 4vw, 45px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -1.8px;
+    }
+
+    .faq-heading p {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
     }
 
     .faq-list {
-      border-top: 1px solid #dededb;
+      border-top: 1px solid #deded9;
     }
 
     .faq-item {
-      border-bottom: 1px solid #dededb;
+      border-bottom: 1px solid #deded9;
     }
 
     .faq-item summary {
       position: relative;
-      padding: 21px 36px 21px 0;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.7;
+      padding: 21px 35px 21px 0;
       list-style: none;
       cursor: pointer;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.7;
     }
 
     .faq-item summary::-webkit-details-marker {
@@ -1296,10 +1238,11 @@
 
     .faq-item summary::after {
       position: absolute;
-      top: 19px;
+      top: 20px;
       right: 2px;
       content: "+";
       color: var(--red);
+      font-family: "DM Sans", sans-serif;
       font-size: 22px;
       font-weight: 400;
     }
@@ -1309,21 +1252,118 @@
     }
 
     .faq-answer {
-      max-width: 660px;
+      max-width: 650px;
       padding: 0 25px 21px 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.9;
     }
 
-    /* =====================================================
-       FINAL CTA
-       ===================================================== */
+    /* RELATED TOOLS */
+
+    .related-section {
+      padding: 85px 0;
+      background: var(--white);
+    }
+
+    .related-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .related-header h2 {
+      margin-top: 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 600;
+      letter-spacing: -1.7px;
+      line-height: 1.2;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .related-card {
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-3px);
+      border-color: #d4d4d0;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .related-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #eeeeeb;
+      border-radius: 8px;
+      background: #fffafa;
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .related-card h3 {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .related-card p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 17px;
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .text-link span {
+      color: var(--red);
+      font-size: 15px;
+    }
+
+    /* FINAL CTA */
 
     .final-cta {
-      padding: 94px 0;
+      padding: 82px 0;
       background: var(--white);
       text-align: center;
+    }
+
+    .final-cta .container {
+      padding: 55px 30px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--paper);
     }
 
     .final-cta .eyebrow {
@@ -1331,30 +1371,28 @@
     }
 
     .final-cta h2 {
-      max-width: 760px;
+      max-width: 750px;
       margin: 23px auto 0;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(37px, 5vw, 59px);
+      font-size: clamp(36px, 5vw, 57px);
       font-weight: 600;
-      line-height: 1.13;
-      letter-spacing: -2.8px;
+      line-height: 1.12;
+      letter-spacing: -2.6px;
     }
 
     .final-cta p {
       max-width: 540px;
-      margin: 17px auto 0;
+      margin: 18px auto 0;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.9;
     }
 
     .final-cta .button {
-      margin-top: 27px;
+      margin-top: 26px;
     }
 
-    /* =====================================================
-       FOOTER
-       ===================================================== */
+    /* FOOTER */
 
     .site-footer {
       padding: 57px 0 25px;
@@ -1450,37 +1488,42 @@
       font-weight: 600;
     }
 
-    /* =====================================================
-       RESPONSIVE LAYOUT
-       ===================================================== */
+    /* RESPONSIVE */
 
     @media (max-width: 1050px) {
       .page-hero-inner {
-        gap: 32px;
+        grid-template-columns: 1fr 0.8fr;
+        gap: 30px;
       }
 
       .page-hero h1 {
-        font-size: clamp(43px, 5.5vw, 59px);
-        letter-spacing: -2.8px;
+        font-size: clamp(43px, 5.7vw, 60px);
+        letter-spacing: -3px;
       }
 
       .calculator-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(270px, 0.85fr);
-        gap: 15px;
+        grid-template-columns: minmax(0, 1fr) minmax(285px, 0.85fr);
+        gap: 16px;
       }
 
       .calculator-card {
-        padding: 23px;
+        padding: 24px;
       }
 
-      .how-layout,
+      .results-card {
+        padding: 22px;
+      }
+
+      .explanation-grid {
+        gap: 45px;
+      }
+
       .faq-layout {
         gap: 45px;
       }
 
-      .example-panel {
-        gap: 27px;
-        padding: 30px;
+      .footer-main {
+        gap: 30px;
       }
     }
 
@@ -1490,7 +1533,7 @@
       }
 
       .page-hero {
-        padding: 75px 0 62px;
+        padding: 70px 0 60px;
       }
 
       .page-hero-inner {
@@ -1499,56 +1542,58 @@
       }
 
       .page-hero h1 {
-        max-width: 650px;
-        font-size: clamp(45px, 9vw, 65px);
+        max-width: 640px;
+        font-size: clamp(43px, 8vw, 62px);
       }
 
-      .hero-metric {
-        max-width: 560px;
+      .hero-summary {
+        max-width: 600px;
       }
 
-      .calculator-section,
-      .metric-section,
-      .how-section,
-      .faq-section {
-        padding: 73px 0;
+      .calculator-section {
+        padding: 70px 0 80px;
       }
 
       .calculator-layout {
         grid-template-columns: 1fr;
-        gap: 20px;
+      }
+
+      .calculator-card {
+        padding: 26px;
       }
 
       .results-card {
-        width: 100%;
+        position: static;
+        padding: 26px;
       }
 
-      .metric-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+      .result-value {
+        font-size: 39px;
       }
 
-      .how-layout,
+      .result-stat-value {
+        font-size: 22px;
+      }
+
+      .explanation-section,
+      .example-section,
+      .faq-section,
+      .related-section {
+        padding: 75px 0;
+      }
+
+      .explanation-grid,
       .faq-layout {
         grid-template-columns: 1fr;
         gap: 35px;
       }
 
-      .how-intro {
+      .explanation-copy {
         position: static;
       }
 
-      .example-section {
-        padding-bottom: 73px;
-      }
-
-      .example-panel {
-        grid-template-columns: 1fr;
-        gap: 26px;
-      }
-
-      .final-cta {
-        padding: 76px 0;
+      .related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .footer-main {
@@ -1563,11 +1608,11 @@
       }
 
       .page-hero {
-        padding: 64px 0 48px;
+        padding: 60px 0 48px;
       }
 
       .page-hero h1 {
-        font-size: clamp(40px, 11vw, 53px);
+        font-size: clamp(39px, 11vw, 53px);
         letter-spacing: -2.7px;
       }
 
@@ -1576,83 +1621,39 @@
       }
 
       .hero-points {
-        gap: 11px 14px;
+        gap: 12px;
       }
 
-      .hero-metric {
-        padding: 22px;
+      .hero-summary {
+        padding: 19px;
       }
 
-      .hero-metric-value {
-        font-size: 38px;
+      .calculator-section {
+        padding: 60px 0 70px;
       }
 
-      .hero-equation {
-        gap: 8px;
-      }
-
-      .equation-part small {
-        font-size: 9px;
-      }
-
-      .equation-part strong {
-        font-size: 10px;
-      }
-
-      .section-heading h2 {
-        font-size: 35px;
+      .calculator-intro h2 {
+        font-size: 34px;
         letter-spacing: -1.5px;
       }
 
-      .section-heading p {
-        font-size: 13px;
-      }
-
-      .calculator-section,
-      .metric-section,
-      .how-section,
-      .faq-section {
-        padding: 62px 0;
-      }
-
       .calculator-card {
-        padding: 20px 16px;
+        padding: 19px;
       }
 
-      .card-heading h3 {
-        font-size: 17px;
+      .card-heading {
+        flex-direction: column;
+        gap: 12px;
       }
 
       .form-grid {
-        gap: 17px 11px;
+        grid-template-columns: 1fr;
+        gap: 17px;
       }
 
-      .form-group label {
-        font-size: 11px;
-      }
-
-      .form-group input,
-      .form-group select {
-        min-height: 45px;
-        padding-inline: 10px;
-        font-size: 13px;
-      }
-
-      .input-with-prefix input {
-        padding-left: 27px;
-      }
-
-      .input-prefix {
-        left: 10px;
-      }
-
-      .input-suffix {
-        right: 9px;
-        font-size: 10px;
-      }
-
-      .input-with-suffix input {
-        padding-right: 37px;
+      .field-full,
+      .field-divider {
+        grid-column: auto;
       }
 
       .form-actions {
@@ -1661,62 +1662,73 @@
 
       .form-actions .button {
         width: 100%;
-        flex: auto;
       }
 
-      .results-header,
-      .main-result {
-        padding: 22px;
+      .results-card {
+        padding: 19px;
       }
 
-      .results-grid {
-        padding: 13px;
-        gap: 8px;
-      }
-
-      .result-mini {
-        padding: 13px 10px;
+      .result-primary {
+        padding: 19px;
       }
 
       .result-value {
-        font-size: 35px;
+        font-size: 34px;
       }
 
-      .metric-grid {
+      .result-grid {
+        gap: 8px;
+      }
+
+      .result-stat {
+        padding: 12px;
+      }
+
+      .result-stat-value {
+        font-size: 18px;
+      }
+
+      .results-actions {
         grid-template-columns: 1fr;
-        gap: 10px;
       }
 
-      .metric-card {
-        padding: 22px;
+      .explanation-copy h2,
+      .example-header h2,
+      .faq-heading h2 {
+        font-size: 35px;
+        letter-spacing: -1.5px;
       }
 
-      .how-item {
+      .explanation-item {
         grid-template-columns: 30px minmax(0, 1fr);
         gap: 13px;
       }
 
-      .example-panel {
-        padding: 23px 17px;
-      }
-
-      .example-copy h2 {
-        font-size: 31px;
-        letter-spacing: -1.2px;
-      }
-
       .example-table th,
       .example-table td {
-        padding: 12px 10px;
+        padding: 14px;
+      }
+
+      .related-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .final-cta {
+        padding: 55px 0;
+      }
+
+      .final-cta .container {
+        padding: 40px 20px;
       }
 
       .final-cta h2 {
-        font-size: 40px;
-        letter-spacing: -2px;
-      }
-
-      .final-cta p {
-        font-size: 13px;
+        font-size: 39px;
+        letter-spacing: -1.8px;
       }
 
       .footer-main {
@@ -1736,133 +1748,100 @@
     }
 
     @media (max-width: 380px) {
-      .container {
-        width: calc(100% - 28px);
-      }
-
-      .form-grid {
+      .result-grid {
         grid-template-columns: 1fr;
       }
 
-      .form-group.full-width {
-        grid-column: auto;
+      .card-heading h3 {
+        font-size: 18px;
       }
 
-      .result-actions {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-equation {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .equation-symbol {
-        display: none;
-      }
-
-      .footer-main {
-        gap: 30px 13px;
+      .page-hero h1 {
+        font-size: 39px;
       }
     }
 
     @media print {
       @page {
         size: auto;
-        margin: 14mm;
+        margin: 15mm;
       }
 
       body {
-        background: #ffffff !important;
-        color: #111111 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        color: #111111;
+        background: #ffffff;
       }
 
       .site-header,
       .site-footer,
       .page-hero,
-      .metric-section,
-      .how-section,
+      .calculator-intro,
+      .form-actions,
+      .results-actions,
+      .copy-status,
+      .explanation-section,
       .example-section,
       .faq-section,
-      .final-cta,
-      .form-actions,
-      .result-actions,
-      .calculator-intro,
-      .period-note,
-      .validation-message {
+      .related-section,
+      .final-cta {
         display: none !important;
       }
 
       .calculator-section {
-        padding: 0 !important;
-      }
-
-      .container {
-        width: 100% !important;
-        max-width: none !important;
+        padding: 0;
       }
 
       .calculator-layout {
-        display: block !important;
-        margin-top: 0 !important;
+        display: block;
       }
 
       .calculator-card {
-        display: none !important;
+        display: none;
       }
 
       .results-card {
-        overflow: visible !important;
-        width: 100% !important;
-        border: 1px solid #cccccc !important;
-        background: #ffffff !important;
-        color: #111111 !important;
-        break-inside: avoid;
+        position: static;
+        padding: 0;
+        border: 1px solid #dddddd;
+        background: #ffffff;
+        color: #111111;
       }
 
-      .results-header,
-      .main-result,
-      .results-grid,
-      .result-breakdown,
-      .result-disclaimer {
-        background: #ffffff !important;
-        color: #111111 !important;
-        border-color: #dddddd !important;
+      .results-top,
+      .results-breakdown,
+      .results-note {
+        border-color: #dddddd;
       }
 
-      .results-header h3,
+      .results-top h3,
+      .results-breakdown h4,
+      .breakdown-row span:last-child {
+        color: #111111;
+      }
+
+      .results-top p,
+      .breakdown-row span:first-child,
+      .results-note,
+      .result-description,
+      .result-label {
+        color: #555555;
+      }
+
+      .result-primary,
+      .result-stat {
+        border-color: #dddddd;
+        background: #f7f7f7;
+        color: #111111;
+      }
+
       .result-value,
-      .result-mini-value,
-      .breakdown-row,
-      .breakdown-row strong,
-      .result-breakdown h4,
-      .result-disclaimer,
-      .result-disclaimer strong {
-        color: #111111 !important;
+      .result-stat-value {
+        color: #111111;
       }
 
-      .results-eyebrow,
-      .results-header p,
-      .result-label,
-      .result-caption,
-      .result-mini-label,
-      .result-mini-note {
-        color: #555555 !important;
-      }
-
-      .result-mini {
-        border-color: #dddddd !important;
-        background: #ffffff !important;
-      }
-
-      .breakdown-row {
-        border-color: #eeeeee !important;
-      }
-
-      .result-value {
-        font-size: 35px !important;
+      .result-stat-label,
+      .result-stat-note {
+        color: #555555;
       }
     }
 
@@ -1915,7 +1894,7 @@
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- PAGE HERO -->
     <section class="page-hero">
       <div class="container page-hero-inner">
         <div>
@@ -1930,66 +1909,59 @@
           </h1>
 
           <p class="page-hero-description">
-            Understand how much revenue your business generates per employee.
-            Enter your total revenue and employee count to calculate this
-            productivity metric for a selected reporting period.
+            Calculate how much revenue your business generates per employee.
+            Use this simple business metric to review workforce productivity,
+            compare reporting periods, and understand changes as your company grows.
           </p>
 
           <div class="hero-points">
             <span>Free to use</span>
-            <span>Instant calculation</span>
-            <span>Annual or custom period</span>
+            <span>Instant calculations</span>
+            <span>No sign-up required</span>
           </div>
         </div>
 
-        <div class="hero-metric">
-          <div class="hero-metric-label">The key formula</div>
-
-          <div class="hero-metric-value">
-            Revenue <span>÷</span> People
-          </div>
-
-          <p class="hero-metric-description">
-            Revenue per employee helps you compare revenue generation with
-            workforce size. It is a business indicator, not a direct measure
-            of individual employee performance.
+        <aside class="hero-summary" aria-label="Revenue per employee formula">
+          <div class="hero-summary-label">The key business metric</div>
+          <h2>Understand revenue output.</h2>
+          <p>
+            Divide the revenue generated during a period by the average number
+            of employees during that same period.
           </p>
 
-          <div class="hero-equation">
-            <div class="equation-part">
-              <small>Numerator</small>
-              <strong>Total revenue</strong>
-            </div>
-
-            <div class="equation-symbol" aria-hidden="true">÷</div>
-
-            <div class="equation-part">
-              <small>Denominator</small>
-              <strong>Employee count</strong>
+          <div class="hero-formula">
+            <div class="formula-symbol" aria-hidden="true">₹</div>
+            <div class="formula-copy">
+              <strong>Revenue per employee</strong>
+              <span>Total revenue ÷ average employee count</span>
             </div>
           </div>
-        </div>
+
+          <p class="hero-summary-note">
+            This metric is a useful indicator, not a complete measure of
+            individual employee performance or business efficiency.
+          </p>
+        </aside>
       </div>
     </section>
 
     <!-- CALCULATOR -->
     <section class="calculator-section" id="calculator">
       <div class="container">
-        <div class="section-heading calculator-intro">
+        <div class="calculator-intro">
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
-            Calculate Your Metric
+            Revenue Analysis
           </div>
 
           <h2>
-            Your numbers.<br>
-            <span class="accent">A clearer picture.</span>
+            Calculate your <span class="accent">revenue per employee.</span>
           </h2>
 
           <p>
-            Enter your company's revenue and average employee count for the
-            same period. Choose a currency and reporting period to calculate
-            revenue per employee.
+            Enter your total revenue, select the reporting period, and provide
+            your average employee count. The calculator will estimate revenue
+            per employee and show additional metrics to help you interpret the result.
           </p>
         </div>
 
@@ -1998,16 +1970,15 @@
           <section class="calculator-card" aria-labelledby="inputHeading">
             <div class="card-heading">
               <div>
-                <h3 id="inputHeading">Business information</h3>
-                <p>Enter the figures you want to evaluate.</p>
+                <h3 id="inputHeading">Business details</h3>
+                <p>Enter figures for the same reporting period.</p>
               </div>
-
-              <div class="card-index" aria-hidden="true">01</div>
+              <span class="card-badge">FREE CALCULATOR</span>
             </div>
 
             <form id="revenueForm" novalidate>
               <div class="form-grid">
-                <div class="form-group full-width">
+                <div class="field field-full">
                   <label for="businessName">Business name (optional)</label>
                   <input
                     type="text"
@@ -2017,124 +1988,162 @@
                     maxlength="100"
                     autocomplete="organization"
                   >
+                  <span class="field-help">
+                    Used only to label your on-screen summary.
+                  </span>
                 </div>
 
-                <div class="form-group">
-                  <label for="totalRevenue">Total revenue</label>
-                  <div class="input-with-prefix">
-                    <span class="input-prefix" id="currencyPrefix">₹</span>
-                    <input
-                      type="number"
-                      id="totalRevenue"
-                      name="totalRevenue"
-                      min="0"
-                      step="any"
-                      inputmode="decimal"
-                      placeholder="e.g. 5000000"
-                      value="5000000"
-                      required
-                      aria-describedby="revenueHelp"
-                    >
-                  </div>
-                  <small class="field-help" id="revenueHelp">
-                    Enter revenue for the selected period.
-                  </small>
-                </div>
-
-                <div class="form-group">
-                  <label for="employeeCount">Number of employees</label>
-                  <div class="input-with-suffix">
-                    <input
-                      type="number"
-                      id="employeeCount"
-                      name="employeeCount"
-                      min="1"
-                      step="any"
-                      inputmode="decimal"
-                      placeholder="e.g. 25"
-                      value="25"
-                      required
-                      aria-describedby="employeeHelp"
-                    >
-                    <span class="input-suffix">people</span>
-                  </div>
-                  <small class="field-help" id="employeeHelp">
-                    Prefer average headcount for the period.
-                  </small>
-                </div>
-
-                <div class="form-group">
+                <div class="field">
                   <label for="currency">Currency</label>
                   <select id="currency" name="currency">
                     <option value="INR" selected>INR — Indian Rupee (₹)</option>
                     <option value="USD">USD — US Dollar ($)</option>
-                    <option value="EUR">EUR — Euro (€)</option>
                     <option value="GBP">GBP — British Pound (£)</option>
+                    <option value="EUR">EUR — Euro (€)</option>
                     <option value="AED">AED — UAE Dirham</option>
                     <option value="CAD">CAD — Canadian Dollar</option>
                     <option value="AUD">AUD — Australian Dollar</option>
                     <option value="SGD">SGD — Singapore Dollar</option>
                   </select>
-                  <small class="field-help">
-                    Used to display your revenue figures.
-                  </small>
                 </div>
 
-                <div class="form-group">
-                  <label for="reportingPeriod">Reporting period</label>
-                  <select id="reportingPeriod" name="reportingPeriod">
-                    <option value="annual" selected>Annual</option>
-                    <option value="quarterly">Quarterly</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="custom">Custom period</option>
+                <div class="field">
+                  <label for="period">Reporting period</label>
+                  <select id="period" name="period">
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Half-yearly">Half-yearly</option>
+                    <option value="Annual" selected>Annual</option>
+                    <option value="Custom">Custom period</option>
                   </select>
-                  <small class="field-help">
-                    Select the period covered by the revenue.
-                  </small>
                 </div>
 
-                <div class="form-group full-width" id="customPeriodGroup" hidden>
-                  <label for="customPeriod">Custom period description</label>
+                <div class="field field-full">
+                  <label for="revenue">Total revenue for the period</label>
+                  <div class="currency-input-wrap">
+                    <span class="currency-symbol" id="currencySymbol" aria-hidden="true">₹</span>
+                    <input
+                      type="number"
+                      id="revenue"
+                      name="revenue"
+                      min="0"
+                      max="1000000000000000"
+                      step="any"
+                      value="12000000"
+                      placeholder="Enter total revenue"
+                      inputmode="decimal"
+                      required
+                    >
+                  </div>
+                  <span class="field-help">
+                    Enter revenue for the selected period using your chosen currency.
+                    Use the same revenue definition when comparing periods.
+                  </span>
+                </div>
+
+                <div class="field">
+                  <label for="employeeCount">Average number of employees</label>
                   <input
-                    type="text"
-                    id="customPeriod"
-                    name="customPeriod"
-                    placeholder="e.g. 1 January – 30 September 2026"
-                    maxlength="100"
+                    type="number"
+                    id="employeeCount"
+                    name="employeeCount"
+                    min="0.01"
+                    max="1000000000"
+                    step="any"
+                    value="40"
+                    placeholder="e.g. 40"
+                    inputmode="decimal"
+                    required
                   >
-                  <small class="field-help">
-                    Optional label for your own reporting period.
-                  </small>
+                  <span class="field-help">
+                    Include an average for the period if headcount changed over time.
+                  </span>
+                </div>
+
+                <div class="field">
+                  <label for="previousRevenue">Previous-period revenue (optional)</label>
+                  <div class="currency-input-wrap">
+                    <span class="currency-symbol" id="previousCurrencySymbol" aria-hidden="true">₹</span>
+                    <input
+                      type="number"
+                      id="previousRevenue"
+                      name="previousRevenue"
+                      min="0"
+                      max="1000000000000000"
+                      step="any"
+                      placeholder="Enter previous revenue"
+                      inputmode="decimal"
+                    >
+                  </div>
+                  <span class="field-help">
+                    Used to calculate the revenue change between periods.
+                  </span>
+                </div>
+
+                <div class="field field-full">
+                  <label for="previousEmployees">Previous-period average employee count (optional)</label>
+                  <input
+                    type="number"
+                    id="previousEmployees"
+                    name="previousEmployees"
+                    min="0.01"
+                    max="1000000000"
+                    step="any"
+                    placeholder="Enter previous average headcount"
+                    inputmode="decimal"
+                  >
+                  <span class="field-help">
+                    Enter this alongside previous-period revenue to compare
+                    revenue per employee between periods.
+                  </span>
+                </div>
+
+                <div class="field-divider">
+                  <h4>Additional context</h4>
+                  <p>
+                    Keep reporting periods and accounting definitions consistent
+                    when comparing results.
+                  </p>
+                </div>
+
+                <div class="field">
+                  <label for="industry">Industry (optional)</label>
+                  <select id="industry" name="industry">
+                    <option value="">Select an industry</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Professional services">Professional services</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Financial services">Financial services</option>
+                    <option value="Hospitality">Hospitality</option>
+                    <option value="Education">Education</option>
+                    <option value="Construction">Construction</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="revenueBasis">Revenue basis</label>
+                  <select id="revenueBasis" name="revenueBasis">
+                    <option value="Reported revenue" selected>Reported revenue</option>
+                    <option value="Net revenue">Net revenue</option>
+                    <option value="Gross revenue">Gross revenue</option>
+                  </select>
+                  <span class="field-help">
+                    Select the basis used in your financial reporting.
+                  </span>
                 </div>
               </div>
 
-              <div class="period-note">
-                <span class="note-icon" aria-hidden="true">i</span>
-                <p>
-                  <strong>Keep the period consistent.</strong>
-                  Revenue and employee count should refer to the same period.
-                  Using average headcount can make the metric more
-                  representative when staffing changes during the year.
-                </p>
-              </div>
-
-              <div
-                class="validation-message"
-                id="validationMessage"
-                role="alert"
-                aria-live="polite"
-              ></div>
+              <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
 
               <div class="form-actions">
-                <button class="button button-primary" type="submit">
-                  Calculate Revenue <span class="arrow">↗</span>
+                <button type="submit" class="button button-primary">
+                  Calculate Revenue <span class="arrow" aria-hidden="true">↗</span>
                 </button>
 
-                <button
-                  class="button button-outline-light"
-                  type="button"
-                  id="resetButton"
-                >
+                <button type="reset" class="button button-outline-light" id="resetButton">
                   Reset
                 </button>
               </div>
@@ -2142,240 +2151,184 @@
           </section>
 
           <!-- RESULTS -->
-          <section
-            class="results-card"
-            aria-labelledby="resultsHeading"
-            aria-live="polite"
-            aria-atomic="false"
-          >
-            <div class="results-header">
-              <div class="results-eyebrow">
-                <span></span>
-                Calculation Results
+          <aside class="results-card" aria-labelledby="resultsHeading">
+            <div class="results-top">
+              <div>
+                <h3 id="resultsHeading">Your results</h3>
+                <p id="resultsSubtitle">Based on the values entered above.</p>
               </div>
-
-              <h3 id="resultsHeading">Your business metric</h3>
-
-              <p id="resultsDescription">
-                Based on your entered revenue and employee count.
-              </p>
+              <span class="results-indicator">ESTIMATE</span>
             </div>
 
-            <div class="main-result">
+            <div class="result-primary">
               <div class="result-label">Revenue per employee</div>
-
-              <div class="result-value" id="revenuePerEmployee">
-                <span class="currency">₹</span>2,00,000
-              </div>
-
-              <p class="result-caption" id="resultCaption">
-                Revenue generated per employee over the selected reporting period.
+              <div class="result-value" id="revenuePerEmployee" aria-live="polite">₹3,00,000</div>
+              <p class="result-description" id="primaryDescription">
+                Estimated revenue generated per average employee for the selected period.
               </p>
             </div>
 
-            <div class="results-grid">
-              <div class="result-mini">
-                <div class="result-mini-label">Total revenue</div>
-                <div class="result-mini-value" id="resultRevenue">₹50,00,000</div>
-                <div class="result-mini-note" id="revenuePeriodLabel">
-                  Annual revenue
-                </div>
+            <div class="result-grid">
+              <div class="result-stat">
+                <div class="result-stat-label">Total revenue</div>
+                <div class="result-stat-value" id="totalRevenueResult">₹1,20,00,000</div>
+                <div class="result-stat-note">For selected period</div>
               </div>
 
-              <div class="result-mini">
-                <div class="result-mini-label">Employee count</div>
-                <div class="result-mini-value" id="resultEmployees">25</div>
-                <div class="result-mini-note">People included</div>
+              <div class="result-stat">
+                <div class="result-stat-label">Average employees</div>
+                <div class="result-stat-value" id="employeeCountResult">40</div>
+                <div class="result-stat-note">Average headcount</div>
               </div>
 
-              <div class="result-mini">
-                <div class="result-mini-label">Monthly equivalent</div>
-                <div class="result-mini-value" id="monthlyEquivalent">₹16,667</div>
-                <div class="result-mini-note">Per employee, if annual</div>
+              <div class="result-stat">
+                <div class="result-stat-label">Revenue per employee / month</div>
+                <div class="result-stat-value" id="monthlyRevenueResult">₹25,000</div>
+                <div class="result-stat-note">Annual result divided by 12 when annual</div>
               </div>
 
-              <div class="result-mini">
-                <div class="result-mini-label">Quarterly equivalent</div>
-                <div class="result-mini-value" id="quarterlyEquivalent">₹50,000</div>
-                <div class="result-mini-note">Per employee, if annual</div>
+              <div class="result-stat">
+                <div class="result-stat-label">Previous-period change</div>
+                <div class="result-stat-value" id="revenueChangeResult">—</div>
+                <div class="result-stat-note" id="revenueChangeNote">Enter previous revenue to compare</div>
               </div>
             </div>
 
-            <div class="result-breakdown">
+            <div class="results-breakdown">
               <h4>Calculation breakdown</h4>
 
               <div class="breakdown-row">
-                <span>Total revenue</span>
-                <strong id="breakdownRevenue">₹50,00,000</strong>
-              </div>
-
-              <div class="breakdown-row">
-                <span>Employees</span>
-                <strong id="breakdownEmployees">25</strong>
-              </div>
-
-              <div class="breakdown-row">
                 <span>Reporting period</span>
-                <strong id="breakdownPeriod">Annual</strong>
+                <span id="periodResult">Annual</span>
               </div>
 
-              <div class="breakdown-row total">
-                <span>Revenue ÷ employees</span>
-                <strong id="breakdownResult">₹2,00,000</strong>
+              <div class="breakdown-row">
+                <span>Revenue basis</span>
+                <span id="revenueBasisResult">Reported revenue</span>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Previous revenue per employee</span>
+                <span id="previousPerEmployeeResult">—</span>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Change in revenue per employee</span>
+                <span id="perEmployeeChangeResult">—</span>
+              </div>
+
+              <div class="breakdown-row">
+                <span>Industry</span>
+                <span id="industryResult">Not specified</span>
               </div>
             </div>
 
-            <div class="result-actions">
-              <button
-                class="button button-primary"
-                type="button"
-                id="copyButton"
-              >
+            <p class="results-note">
+              This is a financial ratio, not a measure of an individual employee's
+              contribution. Results depend on revenue definitions, average headcount,
+              outsourcing, business model, and reporting practices.
+            </p>
+
+            <div class="results-actions">
+              <button type="button" class="button button-light" id="copyButton">
                 Copy Summary
               </button>
-
-              <button
-                class="button button-outline-dark"
-                type="button"
-                id="printButton"
-              >
+              <button type="button" class="button button-outline-dark" id="printButton">
                 Print / Save PDF
               </button>
             </div>
 
-            <div class="result-disclaimer">
-              <strong>Important:</strong>
-              This metric represents revenue per employee, not profit per
-              employee. It does not account for operating expenses, employee
-              costs, outsourcing, or differences between industries.
-            </div>
-          </section>
+            <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- METRIC EXPLANATION -->
-    <section class="metric-section">
-      <div class="container">
-        <div class="section-heading">
+    <!-- HOW THE CALCULATION WORKS -->
+    <section class="explanation-section" id="how-it-works">
+      <div class="container explanation-grid">
+        <div class="explanation-copy">
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
             Understand the Metric
           </div>
 
           <h2>
-            What does revenue per employee <span class="accent">tell you?</span>
+            One formula.<br>
+            <span class="accent">More business context.</span>
           </h2>
 
           <p>
-            This financial and operational metric helps businesses understand
-            how revenue relates to workforce size. Use it alongside other
-            financial indicators rather than as a standalone measure.
+            Revenue per employee provides a high-level view of revenue relative
+            to the size of the workforce. It can be useful for tracking changes
+            over time, provided the figures are calculated consistently.
+          </p>
+
+          <p>
+            A higher result does not automatically mean a company is more
+            efficient. Industry, pricing, capital intensity, outsourcing,
+            profit margins, and workforce structure can all influence the figure.
           </p>
         </div>
 
-        <div class="metric-grid">
-          <article class="metric-card">
-            <div class="metric-icon">₹</div>
-            <h3>Revenue efficiency</h3>
-            <p>
-              Understand how much revenue the business generates for each
-              employee included in the calculation. Compare periods to see
-              how the metric changes over time.
-            </p>
-            <div class="metric-formula">
-              Revenue per employee = Total revenue ÷ Employee count
-            </div>
-          </article>
-
-          <article class="metric-card">
-            <div class="metric-icon">↗</div>
-            <h3>Period comparison</h3>
-            <p>
-              Compare monthly, quarterly, or annual results using consistent
-              definitions. Consider seasonality, hiring changes, and changes
-              in revenue recognition before drawing conclusions.
-            </p>
-            <div class="metric-formula">
-              Compare like-for-like reporting periods
-            </div>
-          </article>
-
-          <article class="metric-card">
-            <div class="metric-icon">◎</div>
-            <h3>Business context</h3>
-            <p>
-              Revenue per employee differs across industries and business
-              models. Combine it with profit margins, operating costs,
-              workforce structure, and customer demand.
-            </p>
-            <div class="metric-formula">
-              Revenue is not the same as profit
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW TO USE -->
-    <section class="how-section" id="how-it-works">
-      <div class="container how-layout">
-        <div class="how-intro">
-          <div class="section-heading">
-            <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
-              How It Works
-            </div>
-
-            <h2>
-              Three steps to a <span class="accent">useful metric.</span>
-            </h2>
-
-            <p>
-              Use figures from the same reporting period to calculate
-              revenue per employee. The result updates when you calculate
-              again or change the inputs.
-            </p>
-          </div>
-
-          <a href="#calculator" class="button button-outline-light">
-            Use the Calculator <span class="arrow">↗</span>
-          </a>
-        </div>
-
-        <div class="how-list">
-          <article class="how-item">
-            <div class="how-number">01</div>
+        <div class="explanation-list">
+          <article class="explanation-item">
+            <div class="explanation-number">01</div>
             <div>
-              <h3>Enter total revenue</h3>
+              <h3>Identify total revenue</h3>
               <p>
-                Enter the company's total revenue for the period you want
-                to evaluate. Use the same currency throughout the calculation.
+                Use the revenue figure for a clearly defined period, such as a
+                month, quarter, or financial year. Use the same accounting basis
+                when comparing one period with another.
               </p>
+              <div class="formula-box">
+                <strong>Example:</strong> Annual revenue = ₹1,20,00,000
+              </div>
             </div>
           </article>
 
-          <article class="how-item">
-            <div class="how-number">02</div>
+          <article class="explanation-item">
+            <div class="explanation-number">02</div>
             <div>
-              <h3>Enter employee count</h3>
+              <h3>Determine average employee count</h3>
               <p>
-                Use an appropriate employee count for that period. Average
-                headcount may be more representative than using only the
-                number of employees on the final day.
+                If headcount changes during the period, average headcount can be
+                more representative than using only the starting or ending number.
+                Apply a consistent method to all periods being compared.
               </p>
+              <div class="formula-box">
+                <strong>Simple estimate:</strong> (Beginning headcount + ending headcount) ÷ 2
+              </div>
             </div>
           </article>
 
-          <article class="how-item">
-            <div class="how-number">03</div>
+          <article class="explanation-item">
+            <div class="explanation-number">03</div>
             <div>
-              <h3>Calculate and review</h3>
+              <h3>Divide revenue by average headcount</h3>
               <p>
-                Divide total revenue by employee count. Review the result
-                alongside the reporting period and other financial metrics.
-                Copy or print your calculation for reference.
+                Divide the period's revenue by the average number of employees
+                for that period. The resulting figure represents revenue per
+                average employee, not an employee's personal sales or output.
               </p>
+              <div class="formula-box">
+                <strong>Formula:</strong> Revenue per employee = Total revenue ÷ Average employee count
+              </div>
+            </div>
+          </article>
+
+          <article class="explanation-item">
+            <div class="explanation-number">04</div>
+            <div>
+              <h3>Compare like with like</h3>
+              <p>
+                When reviewing trends, use comparable periods, revenue definitions,
+                workforce definitions, and currencies. Annualize figures carefully
+                if you need to compare periods of different lengths.
+              </p>
+              <div class="formula-box">
+                <strong>Period change:</strong> ((Current result − Previous result) ÷ Previous result) × 100
+              </div>
             </div>
           </article>
         </div>
@@ -2385,81 +2338,81 @@
     <!-- EXAMPLE -->
     <section class="example-section">
       <div class="container">
-        <div class="example-panel">
-          <div class="example-copy">
-            <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
-              Worked Example
-            </div>
-
-            <h2>
-              A simple example of <span class="accent">the calculation.</span>
-            </h2>
-
-            <p>
-              Suppose a business generates ₹50,00,000 in annual revenue and
-              has an average of 25 employees during the year. Dividing the
-              revenue by the employee count gives an annual revenue-per-
-              employee figure of ₹2,00,000.
-            </p>
-
-            <p>
-              This is an illustrative example, not an industry benchmark
-              or a recommendation for a target level of revenue.
-            </p>
+        <div class="example-header">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Worked Example
           </div>
 
-          <div>
-            <div class="example-table-wrap">
-              <table class="example-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Input</th>
-                    <th scope="col">Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Annual revenue</td>
-                    <td>₹50,00,000</td>
-                  </tr>
-                  <tr>
-                    <td>Average employees</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>Calculation</td>
-                    <td>₹50,00,000 ÷ 25</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <h2>
+            See the calculation <span class="accent">in action.</span>
+          </h2>
 
-            <div class="example-total">
-              <span>Revenue per employee / year</span>
-              <strong>₹2,00,000</strong>
-            </div>
-          </div>
+          <p>
+            Suppose a business reports ₹1.2 crore in annual revenue and an average
+            workforce of 40 employees. The resulting revenue-per-employee figure
+            can be calculated as follows.
+          </p>
         </div>
+
+        <div class="example-table-wrap">
+          <table class="example-table">
+            <thead>
+              <tr>
+                <th scope="col">Metric</th>
+                <th scope="col">Value</th>
+                <th scope="col">Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Annual revenue</td>
+                <td>₹1,20,00,000</td>
+                <td>Total revenue for the year</td>
+              </tr>
+              <tr>
+                <td>Average employees</td>
+                <td>40</td>
+                <td>Average workforce during the year</td>
+              </tr>
+              <tr>
+                <td>Annual revenue per employee</td>
+                <td>₹3,00,000</td>
+                <td>₹1,20,00,000 ÷ 40</td>
+              </tr>
+              <tr class="total-row">
+                <td>Average monthly revenue per employee</td>
+                <td>₹25,000</td>
+                <td>₹3,00,000 ÷ 12</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="example-note">
+          Illustrative figures only. Monthly revenue per employee in this example
+          is the annual result divided by 12; it is not a separately measured
+          monthly result.
+        </p>
       </div>
     </section>
 
     <!-- FAQ -->
     <section class="faq-section">
       <div class="container faq-layout">
-        <div class="section-heading">
+        <div class="faq-heading">
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
             Frequently Asked Questions
           </div>
 
           <h2>
-            A few things <span class="accent">to know.</span>
+            Revenue per employee, <span class="accent">explained.</span>
           </h2>
 
           <p>
-            Understand the calculation, how to interpret the result, and
-            what to consider when comparing businesses.
+            Learn how to interpret the metric, compare reporting periods,
+            and understand its limitations.
           </p>
         </div>
 
@@ -2467,75 +2420,144 @@
           <details class="faq-item">
             <summary>What is revenue per employee?</summary>
             <div class="faq-answer">
-              Revenue per employee is a business metric calculated by
-              dividing total revenue for a reporting period by the number
-              of employees used in that calculation. It describes the
-              relationship between revenue and workforce size.
+              Revenue per employee is a business metric calculated by dividing
+              total revenue for a defined period by the average number of
+              employees during that period. It provides a high-level view of
+              revenue relative to workforce size.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>How do I calculate revenue per employee?</summary>
+            <summary>How do you calculate revenue per employee?</summary>
             <div class="faq-answer">
-              Divide total revenue by employee count. For example, if annual
-              revenue is ₹50,00,000 and the average employee count is 25,
-              revenue per employee is ₹2,00,000 for the year.
+              Divide the total revenue for the period by the average employee
+              count for the same period. For example, ₹1,20,00,000 in annual
+              revenue divided by 40 average employees equals ₹3,00,000 per employee
+              per year.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>Should I use average or current employee count?</summary>
+            <summary>Should I use total or net revenue?</summary>
             <div class="faq-answer">
-              Average headcount over the reporting period can be useful when
-              employee numbers change during the year. Using only the
-              current headcount may produce a different result. Choose a
-              method appropriate for your reporting purpose and apply it
-              consistently when comparing periods.
+              Use the revenue definition that best matches your reporting purpose
+              and apply it consistently. Net revenue may exclude items such as
+              discounts, returns, or allowances depending on your accounting
+              practices. Confirm the appropriate definition with your finance team.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>Is revenue per employee the same as profit per employee?</summary>
+            <summary>How should I calculate average employee count?</summary>
             <div class="faq-answer">
-              No. Revenue is the income generated from business activities
-              before subtracting expenses. Profit reflects revenue after
-              applicable costs. A company can have high revenue per employee
-              and still have low profit margins or operating losses.
+              If the workforce changes during a period, an average based on
+              regular headcount measurements can be more representative than a
+              single date's headcount. A simple estimate is the average of beginning
+              and ending headcount. More frequent measurements may give a better
+              estimate when workforce changes are significant.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>What is a good revenue per employee?</summary>
+            <summary>Is a higher revenue per employee always better?</summary>
             <div class="faq-answer">
-              There is no single target that applies to every business.
-              Results depend on the industry, business model, pricing,
-              workforce structure, outsourcing, capital intensity, and
-              reporting method. Compare companies cautiously and consider
-              other relevant financial measures.
+              Not necessarily. The metric varies by industry, pricing, outsourcing,
+              business model, and capital intensity. A company may generate more
+              revenue per employee but have lower profit margins or higher costs.
+              Review it alongside profitability, service quality, and other relevant
+              business measures.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>Can I compare monthly and annual revenue per employee?</summary>
+            <summary>Can I compare companies using this metric?</summary>
             <div class="faq-answer">
-              You can compare the metrics when each calculation uses revenue
-              and employee count from matching periods. Seasonal businesses
-              may show substantial monthly variation. An annual figure can
-              provide a broader view, while shorter periods can help identify
-              changes during the year.
+              Comparisons can be informative when companies have similar business
+              models, reporting periods, accounting definitions, and workforce
+              structures. Interpret comparisons cautiously if one company outsources
+              more work, relies on contractors, or operates in a different industry.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>Does this calculator store my business figures?</summary>
+            <summary>Does revenue per employee measure employee productivity?</summary>
             <div class="faq-answer">
-              The calculation runs in your browser using the values you enter
-              on this page. This calculator code does not send those values
-              to a server or save them in browser storage. Normal website
-              hosting and analytics services, if present elsewhere on the
-              website, may have their own data practices.
+              It is a company-level financial ratio, not a direct measure of an
+              individual's productivity. Revenue can be influenced by prices,
+              demand, technology, capital, business strategy, and many other
+              factors beyond an employee's control.
             </div>
           </details>
+
+          <details class="faq-item">
+            <summary>Is this calculator suitable for financial reporting?</summary>
+            <div class="faq-answer">
+              It is intended for estimation and business analysis. Verify the
+              underlying revenue and headcount figures before using the result
+              in financial reports, investor materials, or management decisions.
+              This calculator does not replace professional accounting advice.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED TOOLS -->
+    <section class="related-section">
+      <div class="container">
+        <div class="related-header">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Explore More
+            </div>
+
+            <h2>
+              More tools for <span class="accent">your business.</span>
+            </h2>
+          </div>
+
+          <a href="/tools.html" class="button button-outline-light">
+            View All Tools <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="related-grid">
+          <article class="related-card">
+            <div class="related-icon">%</div>
+            <h3>Profit Calculator</h3>
+            <p>
+              Calculate profit, profit margin, markup, and selling price
+              using your costs and revenue.
+            </p>
+            <a href="/tools/profit-calculator.html" class="text-link">
+              Calculate profit <span>↗</span>
+            </a>
+          </article>
+
+          <article class="related-card">
+            <div class="related-icon">₹</div>
+            <h3>Salary per Day Calculator</h3>
+            <p>
+              Estimate a daily salary amount from your salary and selected
+              working-day assumptions.
+            </p>
+            <a href="/salary-per-day-calculator.html" class="text-link">
+              Calculate daily salary <span>↗</span>
+            </a>
+          </article>
+
+          <article class="related-card">
+            <div class="related-icon">↗</div>
+            <h3>GST Calculator</h3>
+            <p>
+              Calculate GST, tax-inclusive totals, and amounts before tax
+              for business transactions.
+            </p>
+            <a href="/tools/gst-calculator.html" class="text-link">
+              Calculate GST <span>↗</span>
+            </a>
+          </article>
         </div>
       </div>
     </section>
@@ -2545,7 +2567,7 @@
       <div class="container">
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-          Practical Business Tools
+          Intelligence for Every Business
         </div>
 
         <h2>
@@ -2554,8 +2576,8 @@
         </h2>
 
         <p>
-          Explore more free ARTHNIX tools to help with everyday calculations,
-          pricing decisions, and business documents.
+          Explore practical business calculators and document tools from ARTHNIX.
+          Start with one task and build a clearer picture of your business.
         </p>
 
         <a href="/tools.html" class="button button-primary">
@@ -2570,11 +2592,7 @@
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <a
-            class="footer-brand-link"
-            href="/index.html"
-            aria-label="ARTHNIX home"
-          >
+          <a class="footer-brand-link" href="/index.html" aria-label="ARTHNIX home">
             <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
             <span>ARTHNIX</span>
           </a>
@@ -2597,7 +2615,6 @@
           <a href="/tools/invoice-generator.html">Invoice Generator</a>
           <a href="/tools/profit-calculator.html">Profit Calculator</a>
           <a href="/tools/quotation-generator.html">Quotation Generator</a>
-          <a href="/time-card-calculator.html">Time Card Calculator</a>
         </div>
 
         <div class="footer-column">
@@ -2618,8 +2635,7 @@
         </p>
 
         <p class="powered-by">
-          An independent product brand ·
-          <strong>Powered by Alphex AI</strong>
+          An independent product brand · <strong>Powered by Alphex AI</strong>
         </p>
       </div>
     </div>
@@ -2632,6 +2648,60 @@
       const menuButton = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
       const currentYear = document.getElementById("currentYear");
+
+      const form = document.getElementById("revenueForm");
+      const formError = document.getElementById("formError");
+      const currencySelect = document.getElementById("currency");
+      const currencySymbol = document.getElementById("currencySymbol");
+      const previousCurrencySymbol = document.getElementById("previousCurrencySymbol");
+
+      const fields = {
+        businessName: document.getElementById("businessName"),
+        period: document.getElementById("period"),
+        revenue: document.getElementById("revenue"),
+        employeeCount: document.getElementById("employeeCount"),
+        previousRevenue: document.getElementById("previousRevenue"),
+        previousEmployees: document.getElementById("previousEmployees"),
+        industry: document.getElementById("industry"),
+        revenueBasis: document.getElementById("revenueBasis")
+      };
+
+      const output = {
+        subtitle: document.getElementById("resultsSubtitle"),
+        revenuePerEmployee: document.getElementById("revenuePerEmployee"),
+        primaryDescription: document.getElementById("primaryDescription"),
+        totalRevenue: document.getElementById("totalRevenueResult"),
+        employeeCount: document.getElementById("employeeCountResult"),
+        monthlyRevenue: document.getElementById("monthlyRevenueResult"),
+        revenueChange: document.getElementById("revenueChangeResult"),
+        revenueChangeNote: document.getElementById("revenueChangeNote"),
+        period: document.getElementById("periodResult"),
+        revenueBasis: document.getElementById("revenueBasisResult"),
+        previousPerEmployee: document.getElementById("previousPerEmployeeResult"),
+        perEmployeeChange: document.getElementById("perEmployeeChangeResult"),
+        industry: document.getElementById("industryResult"),
+        copyStatus: document.getElementById("copyStatus")
+      };
+
+      let latestSummary = "";
+
+      const currencySymbols = {
+        INR: "₹",
+        USD: "$",
+        GBP: "£",
+        EUR: "€",
+        AED: "AED ",
+        CAD: "CA$",
+        AUD: "A$",
+        SGD: "S$"
+      };
+
+      const periodDivisors = {
+        Monthly: 1,
+        Quarterly: 3,
+        "Half-yearly": 6,
+        Annual: 12
+      };
 
       function setMenuState(isOpen) {
         if (!menuButton || !navLinks) return;
@@ -2667,9 +2737,7 @@
         });
 
         navLinks.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => {
-            setMenuState(false);
-          });
+          link.addEventListener("click", () => setMenuState(false));
         });
 
         document.addEventListener("click", (event) => {
@@ -2703,67 +2771,12 @@
         currentYear.textContent = new Date().getFullYear();
       }
 
-      /* =================================================
-         REVENUE PER EMPLOYEE CALCULATOR
-         ================================================= */
-
-      const form = document.getElementById("revenueForm");
-      const revenueInput = document.getElementById("totalRevenue");
-      const employeeInput = document.getElementById("employeeCount");
-      const businessNameInput = document.getElementById("businessName");
-      const currencySelect = document.getElementById("currency");
-      const periodSelect = document.getElementById("reportingPeriod");
-      const customPeriodInput = document.getElementById("customPeriod");
-      const customPeriodGroup = document.getElementById("customPeriodGroup");
-      const validationMessage = document.getElementById("validationMessage");
-      const resetButton = document.getElementById("resetButton");
-      const copyButton = document.getElementById("copyButton");
-      const printButton = document.getElementById("printButton");
-
-      const currencySymbols = {
-        INR: "₹",
-        USD: "$",
-        EUR: "€",
-        GBP: "£",
-        AED: "AED ",
-        CAD: "CA$",
-        AUD: "A$",
-        SGD: "S$"
-      };
-
-      const periodNames = {
-        annual: "Annual",
-        quarterly: "Quarterly",
-        monthly: "Monthly",
-        custom: "Custom period"
-      };
-
-      const output = {
-        revenuePerEmployee: document.getElementById("revenuePerEmployee"),
-        resultRevenue: document.getElementById("resultRevenue"),
-        resultEmployees: document.getElementById("resultEmployees"),
-        monthlyEquivalent: document.getElementById("monthlyEquivalent"),
-        quarterlyEquivalent: document.getElementById("quarterlyEquivalent"),
-        revenuePeriodLabel: document.getElementById("revenuePeriodLabel"),
-        breakdownRevenue: document.getElementById("breakdownRevenue"),
-        breakdownEmployees: document.getElementById("breakdownEmployees"),
-        breakdownPeriod: document.getElementById("breakdownPeriod"),
-        breakdownResult: document.getElementById("breakdownResult"),
-        resultsDescription: document.getElementById("resultsDescription"),
-        resultCaption: document.getElementById("resultCaption"),
-        resultsHeading: document.getElementById("resultsHeading")
-      };
-
-      let lastCalculatedSummary = "";
-
       function getCurrency() {
-        return currencySelect.value;
+        return currencySelect.value || "INR";
       }
 
       function formatMoney(value, currency = getCurrency()) {
-        if (!Number.isFinite(value)) {
-          return "—";
-        }
+        if (!Number.isFinite(value)) return "—";
 
         try {
           return new Intl.NumberFormat("en-IN", {
@@ -2774,303 +2787,374 @@
           }).format(value);
         } catch {
           const symbol = currencySymbols[currency] || "";
-          return symbol + Number(value).toLocaleString("en-IN", {
+          return symbol + new Intl.NumberFormat("en-IN", {
             maximumFractionDigits: 2
-          });
+          }).format(value);
         }
       }
 
       function formatNumber(value, maximumFractionDigits = 2) {
+        if (!Number.isFinite(value)) return "—";
+
         return new Intl.NumberFormat("en-IN", {
           maximumFractionDigits,
           minimumFractionDigits: 0
         }).format(value);
       }
 
-      function getPeriodName() {
-        if (periodSelect.value === "custom") {
-          const customLabel = customPeriodInput.value.trim();
-          return customLabel || "Custom period";
-        }
+      function formatPercent(value) {
+        if (!Number.isFinite(value)) return "—";
 
-        return periodNames[periodSelect.value] || "Annual";
+        const prefix = value > 0 ? "+" : "";
+
+        return prefix + formatNumber(value, 2) + "%";
       }
 
-      function getPeriodFactor() {
-        switch (periodSelect.value) {
-          case "monthly":
-            return 12;
-          case "quarterly":
-            return 4;
-          case "annual":
-            return 1;
-          case "custom":
-          default:
-            return null;
-        }
+      function parseOptionalNumber(input) {
+        const raw = input.value.trim();
+
+        if (raw === "") return null;
+
+        const number = Number(raw);
+
+        return Number.isFinite(number) ? number : NaN;
       }
 
       function showError(message) {
-        validationMessage.textContent = message;
-        validationMessage.classList.add("is-visible");
+        formError.textContent = message;
+        formError.classList.add("is-visible");
       }
 
       function clearError() {
-        validationMessage.textContent = "";
-        validationMessage.classList.remove("is-visible");
+        formError.textContent = "";
+        formError.classList.remove("is-visible");
       }
 
-      function updateCustomPeriodVisibility() {
-        const isCustom = periodSelect.value === "custom";
-
-        customPeriodGroup.hidden = !isCustom;
-
-        if (!isCustom) {
-          customPeriodInput.value = "";
+      function validateNonNegative(value, label) {
+        if (value === null || !Number.isFinite(value)) {
+          return label + " must be a valid number.";
         }
+
+        if (value < 0) {
+          return label + " cannot be negative.";
+        }
+
+        return "";
       }
 
-      function getInputs() {
-        const revenue = revenueInput.valueAsNumber;
-        const employees = employeeInput.valueAsNumber;
-
-        if (
-          revenueInput.value.trim() === "" ||
-          !Number.isFinite(revenue) ||
-          revenue < 0
-        ) {
-          return {
-            error: "Enter a valid total revenue of zero or more."
-          };
-        }
-
-        if (
-          employeeInput.value.trim() === "" ||
-          !Number.isFinite(employees) ||
-          employees <= 0
-        ) {
-          return {
-            error: "Enter an employee count greater than zero."
-          };
-        }
-
-        if (!Number.isFinite(revenue / employees)) {
-          return {
-            error: "These values are too large to calculate safely. Please enter smaller values."
-          };
-        }
-
-        return {
-          revenue,
-          employees,
-          currency: getCurrency(),
-          businessName: businessNameInput.value.trim(),
-          period: periodSelect.value,
-          periodName: getPeriodName()
-        };
-      }
-
-      function updateResults(data) {
-        const perEmployee = data.revenue / data.employees;
-        const factor = getPeriodFactor();
-
-        const monthly = factor
-          ? perEmployee * factor / 12
-          : null;
-
-        const quarterly = factor
-          ? perEmployee * factor / 4
-          : null;
-
-        const symbol = currencySymbols[data.currency] || "";
-
-        output.revenuePerEmployee.innerHTML =
-          '<span class="currency">' +
-          symbol.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") +
-          "</span>" +
-          formatNumber(perEmployee);
-
-        output.resultRevenue.textContent =
-          formatMoney(data.revenue, data.currency);
-
-        output.resultEmployees.textContent =
-          formatNumber(data.employees);
-
-        output.monthlyEquivalent.textContent =
-          monthly === null
-            ? "Not estimated"
-            : formatMoney(monthly, data.currency);
-
-        output.quarterlyEquivalent.textContent =
-          quarterly === null
-            ? "Not estimated"
-            : formatMoney(quarterly, data.currency);
-
-        output.revenuePeriodLabel.textContent =
-          data.periodName + " revenue";
-
-        output.breakdownRevenue.textContent =
-          formatMoney(data.revenue, data.currency);
-
-        output.breakdownEmployees.textContent =
-          formatNumber(data.employees);
-
-        output.breakdownPeriod.textContent = data.periodName;
-
-        output.breakdownResult.textContent =
-          formatMoney(perEmployee, data.currency);
-
-        output.resultsHeading.textContent = data.businessName
-          ? data.businessName + " — results"
-          : "Your business metric";
-
-        output.resultsDescription.textContent =
-          "Calculated from " +
-          formatMoney(data.revenue, data.currency) +
-          " in " +
-          data.periodName.toLowerCase() +
-          " revenue and " +
-          formatNumber(data.employees) +
-          " employees.";
-
-        output.resultCaption.textContent =
-          "Revenue generated per employee over the " +
-          data.periodName.toLowerCase() +
-          " reporting period.";
-
-        const monthlyText = monthly === null
-          ? "Not estimated for a custom period"
-          : formatMoney(monthly, data.currency);
-
-        const quarterlyText = quarterly === null
-          ? "Not estimated for a custom period"
-          : formatMoney(quarterly, data.currency);
-
-        lastCalculatedSummary = [
-          "ARTHNIX — Revenue Per Employee Calculator",
-          data.businessName ? "Business: " + data.businessName : null,
-          "Reporting period: " + data.periodName,
-          "Currency: " + data.currency,
-          "Total revenue: " + formatMoney(data.revenue, data.currency),
-          "Employee count: " + formatNumber(data.employees),
-          "Revenue per employee: " + formatMoney(perEmployee, data.currency),
-          "Monthly equivalent per employee: " + monthlyText,
-          "Quarterly equivalent per employee: " + quarterlyText,
-          "",
-          "Formula: Total revenue ÷ Employee count",
-          "Note: Revenue per employee is not profit per employee."
-        ].filter((line) => line !== null).join("\n");
-      }
-
-      function calculate(event) {
-        if (event) {
-          event.preventDefault();
-        }
-
+      function calculate() {
         clearError();
+        output.copyStatus.textContent = "";
 
-        const data = getInputs();
+        const revenue = parseOptionalNumber(fields.revenue);
+        const employeeCount = parseOptionalNumber(fields.employeeCount);
+        const previousRevenue = parseOptionalNumber(fields.previousRevenue);
+        const previousEmployees = parseOptionalNumber(fields.previousEmployees);
 
-        if (data.error) {
-          showError(data.error);
+        const revenueError = validateNonNegative(revenue, "Total revenue");
+
+        if (revenueError) {
+          showError(revenueError);
+          fields.revenue.focus();
           return false;
         }
 
-        updateResults(data);
+        if (revenue > 1e15) {
+          showError("Please enter a total revenue amount of 1,000,000,000,000,000 or less.");
+          fields.revenue.focus();
+          return false;
+        }
+
+        if (
+          employeeCount === null ||
+          !Number.isFinite(employeeCount) ||
+          employeeCount <= 0
+        ) {
+          showError("Average employee count must be greater than zero.");
+          fields.employeeCount.focus();
+          return false;
+        }
+
+        if (employeeCount > 1e9) {
+          showError("Please enter an average employee count of 1,000,000,000 or less.");
+          fields.employeeCount.focus();
+          return false;
+        }
+
+        if (fields.previousRevenue.value.trim() !== "") {
+          const previousRevenueError = validateNonNegative(
+            previousRevenue,
+            "Previous-period revenue"
+          );
+
+          if (previousRevenueError) {
+            showError(previousRevenueError);
+            fields.previousRevenue.focus();
+            return false;
+          }
+
+          if (previousRevenue > 1e15) {
+            showError("Previous-period revenue must be 1,000,000,000,000,000 or less.");
+            fields.previousRevenue.focus();
+            return false;
+          }
+        }
+
+        if (fields.previousEmployees.value.trim() !== "") {
+          if (
+            previousEmployees === null ||
+            !Number.isFinite(previousEmployees) ||
+            previousEmployees <= 0
+          ) {
+            showError("Previous-period average employee count must be greater than zero.");
+            fields.previousEmployees.focus();
+            return false;
+          }
+
+          if (previousEmployees > 1e9) {
+            showError("Previous-period average employee count must be 1,000,000,000 or less.");
+            fields.previousEmployees.focus();
+            return false;
+          }
+        }
+
+        const hasPreviousRevenue = previousRevenue !== null;
+        const hasPreviousEmployees = previousEmployees !== null;
+
+        if (hasPreviousEmployees && !hasPreviousRevenue) {
+          showError("Enter previous-period revenue to compare revenue per employee.");
+          fields.previousRevenue.focus();
+          return false;
+        }
+
+        if (hasPreviousRevenue && hasPreviousEmployees === false &&
+            fields.previousEmployees.value.trim() !== "") {
+          showError("Please check the previous-period employee count.");
+          fields.previousEmployees.focus();
+          return false;
+        }
+
+        const period = fields.period.value;
+        const currency = getCurrency();
+        const revenuePerEmployee = revenue / employeeCount;
+
+        let divisor = periodDivisors[period] || null;
+
+        if (period === "Custom") {
+          divisor = null;
+        }
+
+        const monthlyRevenuePerEmployee =
+          divisor !== null ? revenuePerEmployee / divisor : null;
+
+        const hasPreviousComparison =
+          hasPreviousRevenue && hasPreviousEmployees;
+
+        let previousPerEmployee = null;
+        let totalRevenueChange = null;
+        let perEmployeeChange = null;
+
+        if (hasPreviousComparison) {
+          previousPerEmployee = previousRevenue / previousEmployees;
+
+          if (previousRevenue !== 0) {
+            totalRevenueChange =
+              ((revenue - previousRevenue) / previousRevenue) * 100;
+          }
+
+          if (previousPerEmployee !== 0) {
+            perEmployeeChange =
+              ((revenuePerEmployee - previousPerEmployee) /
+                previousPerEmployee) * 100;
+          }
+        } else if (hasPreviousRevenue && previousRevenue !== 0) {
+          totalRevenueChange =
+            ((revenue - previousRevenue) / previousRevenue) * 100;
+        }
+
+        output.subtitle.textContent =
+          (fields.businessName.value.trim()
+            ? fields.businessName.value.trim() + " · "
+            : "") +
+          period +
+          " reporting period";
+
+        output.revenuePerEmployee.textContent =
+          formatMoney(revenuePerEmployee, currency);
+
+        output.primaryDescription.textContent =
+          "Revenue per average employee for the " +
+          period.toLowerCase() +
+          " reporting period.";
+
+        output.totalRevenue.textContent = formatMoney(revenue, currency);
+        output.employeeCount.textContent = formatNumber(employeeCount, 2);
+
+        output.monthlyRevenue.textContent =
+          monthlyRevenuePerEmployee === null
+            ? "—"
+            : formatMoney(monthlyRevenuePerEmployee, currency);
+
+        output.revenueChange.textContent =
+          totalRevenueChange === null
+            ? "—"
+            : formatPercent(totalRevenueChange);
+
+        output.revenueChangeNote.textContent =
+          totalRevenueChange === null
+            ? "Enter previous-period revenue to compare"
+            : "Change in total revenue";
+
+        output.period.textContent = period;
+        output.revenueBasis.textContent = fields.revenueBasis.value;
+
+        output.previousPerEmployee.textContent =
+          previousPerEmployee === null
+            ? "—"
+            : formatMoney(previousPerEmployee, currency);
+
+        output.perEmployeeChange.textContent =
+          perEmployeeChange === null
+            ? "—"
+            : formatPercent(perEmployeeChange);
+
+        output.industry.textContent =
+          fields.industry.value || "Not specified";
+
+        const businessName =
+          fields.businessName.value.trim() || "Business";
+
+        const monthlyLine =
+          monthlyRevenuePerEmployee === null
+            ? "Monthly equivalent: Not calculated for a custom period"
+            : "Monthly revenue per employee: " +
+              formatMoney(monthlyRevenuePerEmployee, currency);
+
+        const previousLines = hasPreviousComparison
+          ? [
+              "Previous revenue: " + formatMoney(previousRevenue, currency),
+              "Previous average employees: " + formatNumber(previousEmployees),
+              "Previous revenue per employee: " +
+                formatMoney(previousPerEmployee, currency),
+              "Change in revenue per employee: " +
+                (perEmployeeChange === null
+                  ? "Not available because previous revenue per employee is zero"
+                  : formatPercent(perEmployeeChange))
+            ]
+          : [
+              "Previous-period comparison: Not available"
+            ];
+
+        latestSummary = [
+          "ARTHNIX — Revenue per Employee Calculator",
+          "Business: " + businessName,
+          "Reporting period: " + period,
+          "Currency: " + currency,
+          "Revenue basis: " + fields.revenueBasis.value,
+          "Industry: " + (fields.industry.value || "Not specified"),
+          "Total revenue: " + formatMoney(revenue, currency),
+          "Average employees: " + formatNumber(employeeCount),
+          "Revenue per employee: " + formatMoney(revenuePerEmployee, currency),
+          monthlyLine,
+          "Change in total revenue: " +
+            (totalRevenueChange === null
+              ? "Not available"
+              : formatPercent(totalRevenueChange)),
+          ...previousLines,
+          "",
+          "This is an estimate for business analysis, not a direct measure of individual employee performance."
+        ].join("\n");
+
         return true;
       }
 
-      form.addEventListener("submit", calculate);
+      function updateCurrencySymbols() {
+        const symbol = currencySymbols[getCurrency()] || "";
 
-      [
-        revenueInput,
-        employeeInput,
-        businessNameInput,
-        currencySelect,
-        periodSelect,
-        customPeriodInput
-      ].forEach((element) => {
-        element.addEventListener("input", () => {
-          clearError();
+        currencySymbol.textContent = symbol;
+        previousCurrencySymbol.textContent = symbol;
+      }
 
-          if (element === periodSelect) {
-            updateCustomPeriodVisibility();
-          }
-
-          calculate();
-        });
-
-        element.addEventListener("change", () => {
-          clearError();
-
-          if (element === periodSelect) {
-            updateCustomPeriodVisibility();
-          }
-
-          calculate();
-        });
-      });
-
-      resetButton.addEventListener("click", () => {
-        form.reset();
-        clearError();
-        updateCustomPeriodVisibility();
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
         calculate();
       });
 
-      async function copyText(text) {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(text);
-          return;
-        }
+      form.addEventListener("reset", () => {
+        window.setTimeout(() => {
+          clearError();
+          output.copyStatus.textContent = "";
+          updateCurrencySymbols();
+          calculate();
+        }, 0);
+      });
 
-        const temporary = document.createElement("textarea");
-        temporary.value = text;
-        temporary.setAttribute("readonly", "");
-        temporary.style.position = "absolute";
-        temporary.style.left = "-9999px";
+      currencySelect.addEventListener("change", () => {
+        updateCurrencySymbols();
+        calculate();
+      });
 
-        document.body.appendChild(temporary);
-        temporary.select();
+      [
+        fields.businessName,
+        fields.period,
+        fields.revenue,
+        fields.employeeCount,
+        fields.previousRevenue,
+        fields.previousEmployees,
+        fields.industry,
+        fields.revenueBasis
+      ].forEach((field) => {
+        field.addEventListener("input", () => {
+          if (field === fields.revenue || field === fields.employeeCount ||
+              field === fields.previousRevenue || field === fields.previousEmployees) {
+            clearError();
+          }
 
-        const successful = document.execCommand("copy");
-        temporary.remove();
+          calculate();
+        });
 
-        if (!successful) {
-          throw new Error("Copy command was not successful.");
+        field.addEventListener("change", calculate);
+      });
+
+      async function copySummary() {
+        if (!calculate()) return;
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(latestSummary);
+          } else {
+            const textArea = document.createElement("textarea");
+            textArea.value = latestSummary;
+            textArea.setAttribute("readonly", "");
+            textArea.style.position = "absolute";
+            textArea.style.left = "-9999px";
+
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            const successful = document.execCommand("copy");
+            textArea.remove();
+
+            if (!successful) {
+              throw new Error("Copy command was not successful.");
+            }
+          }
+
+          output.copyStatus.textContent = "Summary copied successfully.";
+        } catch {
+          output.copyStatus.textContent =
+            "Copy was blocked by your browser. Select and copy the displayed results manually.";
         }
       }
 
-      copyButton.addEventListener("click", async () => {
-        if (!calculate()) {
-          return;
-        }
+      document.getElementById("copyButton").addEventListener("click", copySummary);
 
-        const originalText = copyButton.textContent;
-
-        try {
-          await copyText(lastCalculatedSummary);
-          copyButton.textContent = "Copied ✓";
-        } catch {
-          showError(
-            "Your browser could not copy the summary automatically. You can use Print / Save PDF to keep a copy of the results."
-          );
-        }
-
-        window.setTimeout(() => {
-          copyButton.textContent = originalText;
-        }, 1800);
-      });
-
-      printButton.addEventListener("click", () => {
-        if (!calculate()) {
-          return;
-        }
-
+      document.getElementById("printButton").addEventListener("click", () => {
+        if (!calculate()) return;
         window.print();
       });
 
-      updateCustomPeriodVisibility();
+      updateCurrencySymbols();
       calculate();
     })();
   </script>
