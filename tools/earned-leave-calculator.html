@@ -2,24 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Earned Leave Calculator — ARTHNIX</title>
   <meta
     name="description"
-    content="Calculate earned leave, opening balance, leave taken, closing leave balance, and estimated leave encashment value with the free ARTHNIX Earned Leave Calculator."
+    content="Calculate earned leave, leave balances, and estimated leave encashment value with the free ARTHNIX Earned Leave Calculator."
   >
   <meta name="theme-color" content="#090909">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://arthnix.com/earned-leave-calculator.html">
-  <link rel="icon" href="/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
-
   <style>
     :root {
       --black: #090909;
@@ -34,1136 +31,1496 @@
       --red-dark: #d92727;
       --radius: 18px;
       --container: 1160px;
-      --green: #16834a;
     }
-
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 90px;
     }
-
     body {
-      margin: 0;
-      background: var(--paper);
+      font-family: "DM Sans", sans-serif;
       color: var(--text);
-      font-family: "DM Sans", sans-serif;
-      line-height: 1.65;
+      background: var(--white);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-
     body,
+    button,
+    a,
     input,
-    select,
-    button {
-      font-family: "DM Sans", sans-serif;
+    select {
+      -webkit-tap-highlight-color: transparent;
     }
-
     a {
       color: inherit;
       text-decoration: none;
     }
-
     button,
     input,
     select {
-      font-size: inherit;
+      font: inherit;
     }
-
-    button {
-      cursor: pointer;
+    button,
+    a {
+      outline-offset: 4px;
     }
-
-    img {
-      max-width: 100%;
+    ::selection {
+      background: #ed3434;
+      color: #ffffff;
     }
-
     .container {
-      width: min(var(--container), calc(100% - 40px));
+      width: min(var(--container), calc(100% - 64px));
       margin-inline: auto;
     }
-
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+    .accent {
+      color: var(--red);
+    }
+    .section-heading {
+      max-width: 720px;
+    }
+    .section-heading h2 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(34px, 4.2vw, 53px);
+      line-height: 1.12;
+      letter-spacing: -2.4px;
+      font-weight: 600;
+    }
+    .section-heading p {
+      max-width: 650px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 650;
+      transition:
+        background 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+      cursor: pointer;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+    }
+    .button-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+    .button-primary:hover {
+      background: var(--red-dark);
+    }
+    .button-light {
+      background: var(--white);
+      color: var(--black);
+    }
+    .button-light:hover {
+      background: #eeeeec;
+    }
+    .button-outline-dark {
+      border-color: #383838;
+      color: var(--white);
+      background: transparent;
+    }
+    .button-outline-dark:hover {
+      border-color: #777777;
+      background: #171717;
+    }
+    .button-outline-light {
+      border-color: #dededb;
+      color: var(--text);
+      background: transparent;
+    }
+    .button-outline-light:hover {
+      border-color: #aaaaa5;
+      background: #fafaf8;
+    }
+    .arrow {
+      font-size: 17px;
+      line-height: 1;
+      transition: transform 180ms ease;
+    }
+    .button:hover .arrow {
+      transform: translateX(3px);
+    }
+    /* =====================================================
+       NAVIGATION — MATCHES THE ARTHNIX REFERENCE
+       ===================================================== */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: var(--black);
-      color: var(--white);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      width: 100%;
+      background: #090909;
+      border-bottom: 1px solid #292929;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
     }
-
-    .nav-wrap {
+    .navbar {
+      position: relative;
+      width: min(1200px, calc(100% - 64px));
       min-height: 76px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 28px;
     }
-
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .brand-logo {
+      display: block;
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
       flex-shrink: 0;
     }
-
-    .brand img {
-      width: 39px;
-      height: 39px;
-      object-fit: contain;
-    }
-
     .brand-name {
+      color: #ffffff;
       font-family: "Manrope", sans-serif;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -0.8px;
     }
-
-    .brand-name span {
-      color: var(--red);
-    }
-
     .nav-links {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 27px;
     }
-
-    .nav-links > a {
-      color: #c9c9c9;
+    .nav-links a {
+      display: inline-block;
+      color: #bcbcbc;
       font-size: 13px;
-      font-weight: 500;
-      transition: color 0.2s ease;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
     }
-
-    .nav-links > a:hover,
-    .nav-links > a.active {
-      color: var(--white);
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--red);
     }
-
-    .nav-links .nav-cta {
-      padding: 11px 17px;
-      border-radius: 8px;
-      background: var(--white);
-      color: var(--black);
-      font-weight: 700;
-    }
-
-    .nav-links .nav-cta:hover {
-      background: var(--red);
-      color: var(--white);
-    }
-
-    .menu-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 43px;
-      height: 43px;
-      border: 1px solid #333;
-      border-radius: 10px;
-      background: transparent;
-      color: white;
-      font-size: 22px;
-    }
-
-    .hero {
-      padding: 77px 0 57px;
-      background:
-        radial-gradient(circle at 86% 16%, rgba(237, 52, 52, 0.07), transparent 28%),
-        var(--paper);
-    }
-
-    .eyebrow {
+    .nav-cta {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      margin-bottom: 17px;
-      color: var(--red);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 2px;
+      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--red);
+      border-radius: 7px;
       background: var(--red);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease;
     }
-
-    h1,
-    h2,
-    h3,
-    h4 {
+    .nav-cta:hover {
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+    }
+    .menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border: 1px solid #353535;
+      border-radius: 7px;
+      background: #111111;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 5px auto;
+      border-radius: 2px;
+      background: #ffffff;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+    }
+    @media (max-width: 1050px) {
+      .navbar {
+        width: calc(100% - 40px);
+        gap: 18px;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      .nav-links a {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 780px) {
+      .navbar {
+        min-height: 68px;
+        width: calc(100% - 36px);
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+      .brand {
+        gap: 8px;
+      }
+      .brand-logo {
+        width: 31px;
+        height: 31px;
+      }
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+      }
+      .nav-cta {
+        min-height: 37px;
+        padding: 0 12px;
+        margin-left: auto;
+        font-size: 11px;
+      }
+      .menu-toggle {
+        display: inline-flex;
+      }
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 8px 14px 14px;
+        border: 1px solid #292929;
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: #090909;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+      }
+      .nav-links.is-open {
+        display: flex;
+      }
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 4px;
+        border-bottom: 1px solid #242424;
+        color: #dedede;
+        font-size: 13px;
+        white-space: normal;
+      }
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--red);
+      }
+    }
+    @media (max-width: 380px) {
+      .navbar {
+        width: calc(100% - 24px);
+        gap: 7px;
+      }
+      .brand-logo {
+        width: 27px;
+        height: 27px;
+      }
+      .brand-name {
+        font-size: 15px;
+      }
+      .nav-cta {
+        min-height: 35px;
+        padding: 0 9px;
+        font-size: 10px;
+      }
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+    /* =====================================================
+       PAGE HERO
+       ===================================================== */
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 95px 0 82px;
+      background: var(--black);
+      color: var(--white);
+    }
+    .page-hero::before {
+      position: absolute;
+      content: "";
+      width: 600px;
+      height: 600px;
+      top: -210px;
+      right: -160px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(237, 52, 52, 0.15) 0%,
+        rgba(237, 52, 52, 0.04) 42%,
+        transparent 72%
+      );
+      pointer-events: none;
+    }
+    .page-hero::after {
+      position: absolute;
+      content: "";
+      inset: 0;
+      opacity: 0.14;
+      background-image: radial-gradient(#6b6b6b 0.6px, transparent 0.6px);
+      background-size: 27px 27px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+      pointer-events: none;
+    }
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 0.65fr;
+      align-items: center;
+      gap: 60px;
+    }
+    .page-hero .eyebrow {
+      color: #bcbcbc;
+    }
+    .page-hero h1 {
+      max-width: 740px;
+      margin-top: 25px;
       font-family: "Manrope", sans-serif;
-      letter-spacing: -1.1px;
-    }
-
-    h1 {
-      max-width: 850px;
-      margin: 0;
-      font-size: clamp(38px, 6vw, 68px);
-      font-weight: 800;
+      font-size: clamp(44px, 6vw, 70px);
       line-height: 1.08;
+      font-weight: 600;
+      letter-spacing: -3.5px;
     }
-
-    .accent {
+    .page-hero h1 span {
       color: var(--red);
     }
-
-    .hero-description {
-      max-width: 680px;
-      margin: 23px 0 0;
-      color: #666;
-      font-size: 17px;
-      line-height: 1.8;
+    .page-hero-description {
+      max-width: 600px;
+      margin-top: 22px;
+      color: #a9a9a9;
+      font-size: 15px;
+      line-height: 1.9;
     }
-
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 26px;
+      margin-top: 25px;
     }
-
-    .meta-pill {
-      padding: 8px 12px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: white;
-      color: #555;
-      font-size: 12px;
-      font-weight: 600;
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 12px;
+      border: 1px solid #303030;
+      border-radius: 6px;
+      color: #c4c4c4;
+      font-size: 11px;
     }
-
-    .main-content {
-      padding: 10px 0 90px;
-    }
-
-    .calculator-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(330px, 0.85fr);
-      align-items: start;
-      gap: 25px;
-    }
-
-    .panel {
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: white;
-      box-shadow: 0 12px 38px rgba(0, 0, 0, 0.035);
-    }
-
-    .panel-header {
-      padding: 25px 27px 22px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .panel-header h2 {
-      margin: 0;
-      font-size: 23px;
-      font-weight: 800;
-      letter-spacing: -0.7px;
-    }
-
-    .panel-header p {
-      margin: 7px 0 0;
-      color: var(--muted);
+    .hero-meta span::before {
+      content: "✓";
+      color: var(--red);
       font-size: 13px;
     }
-
-    .panel-body {
+    .hero-side-card {
       padding: 27px;
+      border: 1px solid #333333;
+      border-radius: 10px;
+      background: rgba(20, 20, 20, 0.9);
     }
-
-    .form-section + .form-section {
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-label {
-      margin: 0 0 17px;
-      color: #333;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
+    .hero-side-label {
+      color: #a3a3a3;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
     }
-
+    .hero-side-card h2 {
+      margin-top: 17px;
+      font-family: "Manrope", sans-serif;
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: -0.8px;
+      line-height: 1.35;
+    }
+    .hero-side-card p {
+      margin-top: 12px;
+      color: #9e9e9e;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+    .hero-side-divider {
+      height: 1px;
+      margin: 22px 0;
+      background: #303030;
+    }
+    .hero-side-points {
+      display: grid;
+      gap: 13px;
+    }
+    .hero-side-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #d4d4d4;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .hero-side-point span {
+      color: var(--red);
+      font-size: 15px;
+    }
+    /* =====================================================
+       CALCULATOR SECTION
+       ===================================================== */
+    .calculator-section {
+      padding: 95px 0 105px;
+      background: var(--white);
+    }
+    .calculator-intro {
+      margin-bottom: 38px;
+    }
+    .calculator-intro h2 {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(31px, 4vw, 45px);
+      font-weight: 600;
+      letter-spacing: -1.8px;
+      line-height: 1.2;
+    }
+    .calculator-intro p {
+      max-width: 700px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      align-items: start;
+      gap: 24px;
+    }
+    .calculator-panel {
+      min-width: 0;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+    }
+    .panel-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding-bottom: 23px;
+      border-bottom: 1px solid var(--border);
+    }
+    .panel-heading-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1px solid #f2dddd;
+      border-radius: 9px;
+      background: #fff8f8;
+      color: var(--red);
+      font-size: 20px;
+    }
+    .panel-heading h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+    }
+    .panel-heading p {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px 16px;
+      gap: 20px 16px;
+      margin-top: 25px;
     }
-
-    .field {
+    .form-field {
       min-width: 0;
     }
-
-    .field.full {
+    .form-field.full-width {
       grid-column: 1 / -1;
     }
-
-    .field label {
+    .form-field label {
       display: block;
-      margin-bottom: 7px;
-      color: #333;
+      margin-bottom: 9px;
+      color: #333333;
       font-size: 12px;
       font-weight: 700;
+      line-height: 1.6;
     }
-
-    .field .hint {
+    .field-help {
       display: block;
-      margin-top: 5px;
-      color: #858585;
-      font-size: 11px;
-      line-height: 1.55;
+      margin-top: 6px;
+      color: #888888;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.65;
     }
-
-    .input-control {
+    .input-wrap {
+      position: relative;
+    }
+    .input-wrap input {
       width: 100%;
       min-height: 47px;
-      padding: 11px 13px;
+      padding: 0 13px;
       border: 1px solid #dededb;
-      border-radius: 9px;
+      border-radius: 7px;
       outline: none;
-      background: #fff;
+      background: #ffffff;
       color: var(--text);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      font-size: 13px;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
     }
-
-    .input-control:focus {
+    .input-wrap input:focus,
+    .form-field select:focus {
       border-color: var(--red);
       box-shadow: 0 0 0 3px rgba(237, 52, 52, 0.09);
     }
-
-    .input-control:disabled {
-      background: #f1f1ef;
-      color: #888;
-      cursor: not-allowed;
+    .form-field select {
+      width: 100%;
+      min-height: 47px;
+      padding: 0 12px;
+      border: 1px solid #dededb;
+      border-radius: 7px;
+      outline: none;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 12px;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
     }
-
     .checkbox-row {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      margin-top: 12px;
-      color: #444;
-      font-size: 12px;
-      line-height: 1.6;
+      margin-top: 13px;
+      color: #555555;
+      font-size: 11px;
+      line-height: 1.7;
     }
-
     .checkbox-row input {
       width: 16px;
       height: 16px;
-      margin-top: 3px;
+      margin-top: 2px;
       accent-color: var(--red);
       flex-shrink: 0;
     }
-
-    .button-row {
+    .optional-fields {
+      display: none;
+      margin-top: 15px;
+      padding: 16px;
+      border: 1px solid #eeeeeb;
+      border-radius: 8px;
+      background: #fafaf9;
+    }
+    .optional-fields.is-visible {
+      display: block;
+    }
+    .optional-fields .form-field + .form-field {
+      margin-top: 15px;
+    }
+    .form-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 28px;
     }
-
-    .btn {
-      display: inline-flex;
-      min-height: 45px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 17px;
-      border: 1px solid transparent;
-      border-radius: 9px;
+    .form-actions .button {
+      flex: 1 1 auto;
+    }
+    .form-message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border: 1px solid #f0c6c6;
+      border-radius: 7px;
+      background: #fff6f6;
+      color: #a32323;
       font-size: 12px;
-      font-weight: 700;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      line-height: 1.7;
     }
-
-    .btn-primary {
-      background: var(--red);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--red-dark);
-    }
-
-    .btn-secondary {
-      border-color: var(--border);
-      background: white;
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      border-color: #bcbcb8;
-      background: #f8f8f6;
-    }
-
-    .results-panel {
-      position: sticky;
-      top: 100px;
-    }
-
-    .results-heading {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .results-heading h2 {
-      margin: 0;
-      font-size: 23px;
-      font-weight: 800;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      flex-shrink: 0;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: #edf8f1;
-      color: var(--green);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .status-badge::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    .balance-card {
-      margin: 23px 0;
-      padding: 23px;
-      border-radius: 14px;
-      background: var(--black);
-      color: white;
-    }
-
-    .balance-card .result-label {
-      color: #c7c7c7;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .balance-number {
-      display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 5px;
-    }
-
-    .balance-number strong {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(44px, 5vw, 59px);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -2px;
-    }
-
-    .balance-number span {
-      color: #d0d0d0;
-      font-size: 14px;
-    }
-
-    .balance-card .balance-note {
-      margin: 12px 0 0;
-      color: #b9b9b9;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    .result-list {
-      display: grid;
-      gap: 0;
-    }
-
-    .result-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .result-row:last-child {
-      border-bottom: 0;
-    }
-
-    .result-row .label {
-      color: #666;
-      font-size: 12px;
-    }
-
-    .result-row .value {
-      color: #171717;
-      font-size: 13px;
-      font-weight: 800;
-      text-align: right;
-      overflow-wrap: anywhere;
-    }
-
-    .result-row .value.positive {
-      color: var(--green);
-    }
-
-    .result-row .value.negative {
-      color: var(--red);
-    }
-
-    .encashment-box {
-      margin-top: 23px;
-      padding: 20px;
-      border: 1px solid #f0d8d8;
-      border-radius: 12px;
-      background: #fff8f8;
-    }
-
-    .encashment-box .small-label {
-      color: #805454;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .encashment-amount {
+    .form-message.is-visible {
       display: block;
-      margin-top: 5px;
-      color: var(--red);
+    }
+    /* RESULTS */
+    .results-panel {
+      min-width: 0;
+      padding: 30px;
+      border: 1px solid #282828;
+      border-radius: 12px;
+      background: #101010;
+      color: var(--white);
+    }
+    .results-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid #303030;
+    }
+    .results-header h2 {
       font-family: "Manrope", sans-serif;
-      font-size: clamp(27px, 3vw, 35px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      overflow-wrap: anywhere;
+      font-size: 21px;
+      font-weight: 650;
+      letter-spacing: -0.6px;
     }
-
-    .encashment-box p {
-      margin: 6px 0 0;
-      color: #805454;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    .result-disclaimer {
-      margin: 18px 0 0;
-      color: #777;
+    .results-header p {
+      margin-top: 7px;
+      color: #999999;
       font-size: 11px;
       line-height: 1.7;
     }
-
-    .message {
-      display: none;
-      margin-top: 16px;
-      padding: 12px 14px;
+    .result-status {
+      padding: 7px 9px;
+      border: 1px solid #393939;
+      border-radius: 5px;
+      color: #bfbfbf;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+    .primary-result {
+      margin-top: 23px;
+      padding: 23px;
+      border: 1px solid #48302e;
       border-radius: 9px;
-      font-size: 12px;
-      line-height: 1.6;
+      background: #211716;
     }
-
-    .message.error {
-      display: block;
-      border: 1px solid #f3caca;
-      background: #fff2f2;
-      color: #a32121;
+    .primary-result-label {
+      color: #d3a7a3;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
-
-    .message.success {
-      display: block;
-      border: 1px solid #ccebd7;
-      background: #f0fbf4;
-      color: #176b3d;
-    }
-
-    .content-section {
-      padding-top: 85px;
-    }
-
-    .section-heading {
-      max-width: 730px;
-      margin-bottom: 30px;
-    }
-
-    .section-heading .eyebrow {
-      margin-bottom: 13px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: clamp(29px, 4vw, 43px);
-      line-height: 1.2;
-      font-weight: 800;
-    }
-
-    .section-heading p {
-      margin: 13px 0 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.8;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .info-card {
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: white;
-    }
-
-    .info-number {
-      display: inline-flex;
-      width: 35px;
-      height: 35px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: #fff0f0;
-      color: var(--red);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .info-card h3 {
-      margin: 17px 0 8px;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .info-card p {
-      margin: 0;
-      color: #686868;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .formula-box {
-      margin-top: 22px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: var(--surface);
-    }
-
-    .formula-box h3 {
-      margin: 0 0 13px;
-      font-size: 18px;
-    }
-
-    .formula {
-      margin: 8px 0;
-      padding: 13px 15px;
-      border: 1px solid #e5e5e2;
-      border-radius: 9px;
-      background: white;
-      font-size: 13px;
-      font-weight: 600;
+    .primary-result-value {
+      margin-top: 11px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(38px, 4.5vw, 55px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.1;
       overflow-wrap: anywhere;
     }
-
-    .formula-box p {
-      margin: 13px 0 0;
-      color: #686868;
-      font-size: 12px;
+    .primary-result-value small {
+      color: #d5aaa6;
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    .primary-result-note {
+      margin-top: 10px;
+      color: #b69a97;
+      font-size: 11px;
       line-height: 1.8;
     }
-
-    .note-box {
-      margin-top: 23px;
-      padding: 20px 22px;
-      border-left: 3px solid var(--red);
-      border-radius: 0 10px 10px 0;
-      background: white;
-    }
-
-    .note-box strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-    }
-
-    .note-box p {
-      margin: 0;
-      color: #666;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .faq-list {
+    .result-grid {
       display: grid;
-      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+      margin-top: 14px;
     }
-
-    .faq-item {
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: white;
+    .result-card {
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid #303030;
+      border-radius: 8px;
+      background: #171717;
     }
-
-    .faq-item summary {
-      position: relative;
-      padding: 19px 50px 19px 20px;
-      cursor: pointer;
-      list-style: none;
-      font-size: 14px;
+    .result-card-label {
+      color: #a0a0a0;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    .result-card-value {
+      margin-top: 9px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(19px, 2.5vw, 25px);
+      font-weight: 650;
+      letter-spacing: -0.7px;
+      overflow-wrap: anywhere;
+    }
+    .result-card-note {
+      margin-top: 6px;
+      color: #858585;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+    .result-divider {
+      height: 1px;
+      margin: 22px 0;
+      background: #303030;
+    }
+    .breakdown-title {
+      font-size: 12px;
       font-weight: 700;
     }
-
-    .faq-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .faq-item summary::after {
-      content: "+";
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      color: var(--red);
-      font-size: 23px;
-      font-weight: 400;
-      transform: translateY(-50%);
-    }
-
-    .faq-item[open] summary::after {
-      content: "−";
-    }
-
-    .faq-answer {
-      padding: 0 20px 19px;
-      color: #666;
-      font-size: 13px;
-      line-height: 1.85;
-    }
-
-    .related-grid {
+    .breakdown-list {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 17px;
+      gap: 13px;
+      margin-top: 15px;
     }
-
-    .related-card {
+    .breakdown-row {
       display: flex;
-      min-height: 155px;
-      flex-direction: column;
       justify-content: space-between;
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: white;
-      transition: transform 0.2s, border-color 0.2s;
+      gap: 15px;
+      color: #b7b7b7;
+      font-size: 11px;
+      line-height: 1.7;
     }
-
-    .related-card:hover {
-      transform: translateY(-3px);
-      border-color: #efaaaa;
+    .breakdown-row strong {
+      color: #eeeeee;
+      font-size: 11px;
+      font-weight: 650;
+      text-align: right;
+      overflow-wrap: anywhere;
     }
-
-    .related-card .related-label {
+    .breakdown-row.total {
+      padding-top: 13px;
+      border-top: 1px solid #303030;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .breakdown-row.total strong {
+      color: #ff8585;
+      font-size: 13px;
+    }
+    .results-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 25px;
+    }
+    .results-actions .button {
+      flex: 1 1 auto;
+      min-height: 43px;
+      padding-inline: 13px;
+      font-size: 11px;
+    }
+    .results-footnote {
+      margin-top: 18px;
+      color: #888888;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    /* EXPLANATION */
+    .explanation-section {
+      padding: 100px 0;
+      background: var(--paper);
+    }
+    .explanation-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: start;
+      gap: 75px;
+    }
+    .explanation-copy {
+      position: sticky;
+      top: 100px;
+    }
+    .explanation-copy h2 {
+      margin-top: 20px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(33px, 4vw, 46px);
+      font-weight: 600;
+      line-height: 1.16;
+      letter-spacing: -2px;
+    }
+    .explanation-copy p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .formula-card {
+      margin-top: 24px;
+      padding: 19px;
+      border: 1px solid #e5e5e1;
+      border-radius: 9px;
+      background: #ffffff;
+    }
+    .formula-card small {
       color: var(--red);
       font-size: 10px;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.1px;
       text-transform: uppercase;
     }
-
-    .related-card h3 {
-      margin: 10px 0;
+    .formula-card p {
+      margin-top: 10px;
+      color: #333333;
+      font-size: 13px;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+    .steps-list {
+      border-top: 1px solid #e2e2de;
+    }
+    .step-item {
+      display: grid;
+      grid-template-columns: 45px 1fr;
+      gap: 18px;
+      padding: 26px 0;
+      border-bottom: 1px solid #e2e2de;
+    }
+    .step-number {
+      color: var(--red);
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .step-item h3 {
+      font-family: "Manrope", sans-serif;
       font-size: 17px;
+      font-weight: 700;
       letter-spacing: -0.4px;
     }
-
-    .related-card .arrow {
-      align-self: flex-end;
-      color: var(--red);
-      font-size: 20px;
-    }
-
-    .cta-section {
-      margin-top: 85px;
-      padding: 48px;
-      border-radius: 20px;
-      background: var(--black);
-      color: white;
-    }
-
-    .cta-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .cta-section h2 {
-      margin: 0;
-      font-size: clamp(27px, 4vw, 39px);
-      line-height: 1.2;
-    }
-
-    .cta-section p {
-      max-width: 580px;
-      margin: 13px 0 0;
-      color: #bdbdbd;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .cta-section .btn {
-      flex-shrink: 0;
-      background: var(--red);
-      color: white;
-    }
-
-    .cta-section .btn:hover {
-      background: var(--red-dark);
-    }
-
-    .site-footer {
-      padding: 58px 0 22px;
-      background: var(--black);
-      color: white;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 38px;
-      padding-bottom: 43px;
-    }
-
-    .footer-brand p {
-      max-width: 260px;
-      margin: 16px 0 0;
-      color: #aaa;
+    .step-item p {
+      margin-top: 9px;
+      color: var(--muted);
       font-size: 12px;
       line-height: 1.9;
     }
-
-    .powered-by {
-      display: inline-block;
-      margin-top: 14px;
-      color: #888;
-      font-size: 11px;
+    /* IMPORTANT INFORMATION */
+    .notice-section {
+      padding: 75px 0;
+      background: var(--white);
     }
-
-    .footer-column h3 {
-      margin: 0 0 17px;
-      font-family: "DM Sans", sans-serif;
+    .notice-card {
+      display: grid;
+      grid-template-columns: 45px 1fr;
+      gap: 20px;
+      padding: 28px;
+      border: 1px solid #eadfce;
+      border-radius: 10px;
+      background: #fffcf7;
+    }
+    .notice-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #efdfc8;
+      border-radius: 9px;
+      color: #94621f;
+      background: #fff7e8;
+      font-size: 19px;
+    }
+    .notice-card h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+    .notice-card p {
+      margin-top: 10px;
+      color: #766b5c;
       font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0;
+      line-height: 1.9;
     }
-
+    /* FAQ */
+    .faq-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .faq-header {
+      max-width: 680px;
+      margin-bottom: 38px;
+    }
+    .faq-header h2 {
+      margin-top: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(34px, 4.2vw, 48px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -2px;
+    }
+    .faq-header p {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .faq-list {
+      max-width: 850px;
+      border-top: 1px solid var(--border);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item summary {
+      position: relative;
+      padding: 22px 40px 22px 0;
+      list-style: none;
+      cursor: pointer;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::after {
+      position: absolute;
+      top: 20px;
+      right: 5px;
+      content: "+";
+      color: var(--red);
+      font-family: "DM Sans", sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+    }
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+    .faq-item p {
+      max-width: 780px;
+      padding: 0 20px 22px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+    /* RELATED TOOLS */
+    .related-section {
+      padding: 90px 0;
+      background: var(--paper);
+    }
+    .related-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 25px;
+    }
+    .related-header h2 {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 600;
+      letter-spacing: -1.8px;
+      line-height: 1.2;
+    }
+    .related-header p {
+      max-width: 520px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 38px;
+    }
+    .related-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #ffffff;
+      transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+    .related-card:hover {
+      transform: translateY(-4px);
+      border-color: #d7d7d3;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.045);
+    }
+    .related-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #eeeeeb;
+      border-radius: 9px;
+      color: var(--red);
+      background: #fffafa;
+      font-size: 16px;
+    }
+    .related-card h3 {
+      margin-top: 19px;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+    .related-card p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 17px;
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .text-link span {
+      color: var(--red);
+      font-size: 15px;
+    }
+    /* FINAL CTA */
+    .final-cta {
+      padding: 90px 0;
+      background: var(--white);
+      text-align: center;
+    }
+    .final-cta .eyebrow {
+      justify-content: center;
+    }
+    .final-cta h2 {
+      max-width: 750px;
+      margin: 24px auto 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(38px, 5.5vw, 60px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -3px;
+    }
+    .final-cta p {
+      max-width: 560px;
+      margin: 19px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .final-cta .button {
+      margin-top: 28px;
+    }
+    /* =====================================================
+       FOOTER — MATCHES THE ARTHNIX REFERENCE
+       ===================================================== */
+    .site-footer {
+      padding: 57px 0 25px;
+      background: var(--black);
+      color: var(--white);
+    }
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 45px;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      display: block;
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .footer-tagline {
+      margin: 15px 0 0;
+      color: #d0d0d0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .footer-powered {
+      margin: 7px 0 0;
+      color: #929292;
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
+    .footer-column h4 {
+      margin-bottom: 19px;
+      color: #f0f0f0;
+      font-size: 11px;
+      font-weight: 700;
+    }
     .footer-column a {
       display: block;
       width: fit-content;
-      margin: 10px 0;
-      color: #aaa;
-      font-size: 12px;
-      transition: color 0.2s;
+      margin-top: 13px;
+      color: #919191;
+      font-size: 11px;
+      transition: color 180ms ease;
     }
-
     .footer-column a:hover {
-      color: white;
+      color: var(--white);
     }
-
     .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px solid #292929;
-      color: #888;
-      font-size: 11px;
     }
-
-    .footer-bottom p {
-      margin: 0;
+    .copyright,
+    .powered-by {
+      color: #797979;
+      font-size: 10px;
+      line-height: 1.8;
     }
-
-    .footer-bottom a {
-      color: #aaa;
+    .powered-by strong {
+      color: #b8b8b8;
+      font-weight: 600;
     }
-
-    .footer-bottom a:hover {
-      color: white;
-    }
-
-    @media (max-width: 1000px) {
-      .nav-links {
-        gap: 17px;
+    /* =====================================================
+       RESPONSIVE LAYOUT
+       ===================================================== */
+    @media (max-width: 1050px) {
+      .page-hero-inner {
+        grid-template-columns: 1fr 0.75fr;
+        gap: 30px;
       }
-
-      .calculator-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
-        gap: 17px;
-      }
-
-      .panel-body {
-        padding: 22px;
-      }
-
-      .info-grid,
-      .related-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .footer-top {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 760px) {
-      .container {
-        width: min(100% - 30px, var(--container));
-      }
-
-      .nav-wrap {
-        min-height: 68px;
-      }
-
-      .menu-toggle {
-        display: inline-flex;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 68px;
-        left: 0;
-        right: 0;
-        display: none;
-        align-items: stretch;
-        gap: 0;
-        padding: 10px 20px 20px;
-        border-top: 1px solid #282828;
-        background: var(--black);
-      }
-
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .nav-links > a {
-        padding: 13px 0;
-        border-bottom: 1px solid #222;
-      }
-
-      .nav-links .nav-cta {
-        margin-top: 12px;
-        padding: 12px 15px;
-        text-align: center;
-      }
-
-      .hero {
-        padding: 55px 0 40px;
-      }
-
-      .hero-description {
-        font-size: 15px;
-      }
-
-      .main-content {
-        padding-bottom: 60px;
-      }
-
       .calculator-layout {
         grid-template-columns: 1fr;
       }
-
       .results-panel {
         position: static;
       }
-
-      .panel-header {
-        padding: 22px;
+      .explanation-grid {
+        gap: 45px;
       }
-
-      .panel-body {
-        padding: 20px;
+      .footer-main {
+        gap: 30px;
       }
-
-      .content-section {
-        padding-top: 62px;
+    }
+    @media (max-width: 780px) {
+      .container {
+        width: min(calc(100% - 40px), var(--container));
       }
-
-      .info-grid,
-      .related-grid {
+      .page-hero {
+        padding: 80px 0 65px;
+      }
+      .page-hero-inner {
         grid-template-columns: 1fr;
+        gap: 35px;
       }
-
-      .cta-section {
-        margin-top: 60px;
-        padding: 29px 23px;
+      .page-hero h1 {
+        font-size: clamp(43px, 9vw, 65px);
       }
-
-      .cta-inner {
+      .hero-side-card {
+        max-width: 560px;
+      }
+      .calculator-section,
+      .explanation-section,
+      .faq-section,
+      .related-section {
+        padding: 75px 0;
+      }
+      .calculator-panel,
+      .results-panel {
+        padding: 24px;
+      }
+      .explanation-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .explanation-copy {
+        position: static;
+      }
+      .related-header {
         align-items: flex-start;
         flex-direction: column;
       }
-
-      .footer-top {
+      .related-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 30px 20px;
       }
-
+      .notice-section {
+        padding: 55px 0;
+      }
+      .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 38px 28px;
+      }
+    }
+    @media (max-width: 520px) {
+      .container {
+        width: calc(100% - 36px);
+      }
+      .page-hero {
+        padding: 65px 0 52px;
+      }
+      .page-hero h1 {
+        font-size: clamp(40px, 11vw, 55px);
+        letter-spacing: -2.7px;
+      }
+      .page-hero-description {
+        font-size: 14px;
+      }
+      .hero-meta {
+        gap: 8px;
+      }
+      .hero-meta span {
+        padding: 8px 9px;
+        font-size: 10px;
+      }
+      .hero-side-card {
+        padding: 21px;
+      }
+      .calculator-intro h2 {
+        font-size: 34px;
+        letter-spacing: -1.5px;
+      }
+      .calculator-intro p {
+        font-size: 13px;
+      }
+      .calculator-panel,
+      .results-panel {
+        padding: 19px;
+      }
+      .panel-heading h2,
+      .results-header h2 {
+        font-size: 18px;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .form-field.full-width {
+        grid-column: auto;
+      }
+      .form-actions {
+        flex-direction: column;
+      }
+      .form-actions .button {
+        width: 100%;
+      }
+      .results-header {
+        flex-direction: column;
+      }
+      .primary-result {
+        padding: 19px;
+      }
+      .primary-result-value {
+        font-size: 42px;
+      }
+      .result-grid {
+        gap: 8px;
+      }
+      .result-card {
+        padding: 12px;
+      }
+      .result-card-value {
+        font-size: 20px;
+      }
+      .results-actions {
+        flex-direction: column;
+      }
+      .results-actions .button {
+        width: 100%;
+      }
+      .step-item {
+        grid-template-columns: 30px 1fr;
+        gap: 13px;
+      }
+      .notice-card {
+        grid-template-columns: 1fr;
+        padding: 21px;
+      }
+      .faq-header h2 {
+        font-size: 35px;
+        letter-spacing: -1.5px;
+      }
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+      .final-cta {
+        padding: 70px 0;
+      }
+      .final-cta h2 {
+        font-size: 41px;
+        letter-spacing: -2px;
+      }
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 18px;
+      }
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
       .footer-bottom {
         align-items: flex-start;
         flex-direction: column;
+        gap: 9px;
       }
     }
-
-    @media (max-width: 420px) {
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .button-row .btn {
-        width: 100%;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-
-      .balance-card {
-        padding: 20px;
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
       }
     }
-
     @media print {
       @page {
+        size: A4;
         margin: 14mm;
       }
-
       body {
-        background: white;
-        color: black;
-        font-size: 11px;
+        background: #ffffff !important;
+        color: #111111 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
-
       .site-header,
-      .hero,
+      .page-hero,
+      .calculator-intro,
       .calculator-panel,
-      .content-section,
-      .cta-section,
+      .explanation-section,
+      .notice-section,
+      .faq-section,
+      .related-section,
+      .final-cta,
       .site-footer,
-      .button-row,
-      .status-badge,
-      .result-disclaimer {
+      .results-actions {
         display: none !important;
       }
-
-      .main-content {
-        padding: 0;
+      .calculator-section {
+        padding: 0 !important;
       }
-
-      .container {
-        width: 100%;
-      }
-
       .calculator-layout {
-        display: block;
+        display: block !important;
       }
-
       .results-panel {
-        position: static;
-        display: block;
-        border: 0;
-        box-shadow: none;
+        display: block !important;
+        padding: 20px !important;
+        border: 1px solid #cccccc !important;
+        background: #ffffff !important;
+        color: #111111 !important;
       }
-
-      .panel-header {
-        padding: 0 0 15px;
+      .results-header {
+        border-bottom-color: #dddddd !important;
       }
-
-      .panel-body {
-        padding: 0;
+      .results-header p,
+      .result-card-label,
+      .result-card-note,
+      .primary-result-note,
+      .breakdown-row {
+        color: #444444 !important;
       }
-
-      .balance-card {
-        padding: 18px;
-        background: #111 !important;
-        color: white !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
+      .result-status,
+      .result-card,
+      .primary-result {
+        border-color: #dddddd !important;
+        background: #ffffff !important;
+        color: #111111 !important;
       }
-
-      .encashment-box {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
+      .primary-result-label,
+      .primary-result-value,
+      .primary-result-value small,
+      .result-card-value,
+      .breakdown-row strong,
+      .breakdown-row.total strong {
+        color: #111111 !important;
       }
-
-      .result-row {
-        padding: 10px 0;
+      .breakdown-row.total {
+        border-top-color: #dddddd !important;
       }
-
-      .print-title {
-        display: block;
-        margin-bottom: 20px;
+      .results-footnote {
+        color: #444444 !important;
       }
-    }
-
-    .print-title {
-      display: none;
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Earned Leave Calculator",
-    "url": "https://arthnix.com/earned-leave-calculator.html",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "description": "A free calculator to estimate earned leave accrual, leave balance, and potential leave encashment value.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
-    }
-  }
-  </script>
 </head>
-
 <body>
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="ARTHNIX homepage">
-        <img src="/logo.png" alt="ARTHNIX logo" width="39" height="39">
-        <span class="brand-name">ARTH<span>NIX</span></span>
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="/index.html" aria-label="ARTHNIX home">
+        <img class="brand-logo" src="/logo.png" alt="ARTHNIX logo">
+        <span class="brand-name">ARTHNIX</span>
       </a>
-
+      <div class="nav-links" id="navLinks">
+        <a href="/tools.html">Free Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/earned-leave-calculator.html" aria-current="page">Earned Leave</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+      <a class="nav-cta" href="/tools.html">
+        Start Free <span aria-hidden="true">↗</span>
+      </a>
       <button
         class="menu-toggle"
         id="menuToggle"
@@ -1171,942 +1528,1144 @@
         aria-label="Open navigation menu"
         aria-expanded="false"
         aria-controls="navLinks"
-      >☰</button>
-
-      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="/tools.html" class="active">Free Tools</a>
-        <a href="/platform.html">Platform</a>
-        <a href="/#how-it-works">How It Works</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/contact.html">Contact</a>
-        <a class="nav-cta" href="/tools.html">Explore Tools ↗</a>
-      </nav>
-    </div>
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
   </header>
-
   <main>
-    <section class="hero">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Free Business & Salary Tool
+          </div>
+          <h1>
+            Earned Leave<br>
+            <span>Calculator.</span>
+          </h1>
+          <p class="page-hero-description">
+            Estimate earned leave accrual, adjust for leave already taken,
+            calculate your remaining balance, and estimate leave encashment
+            using your salary details. Simple calculations, with the
+            flexibility to use your organization's leave policy.
+          </p>
+          <div class="hero-meta">
+            <span>Free to use</span>
+            <span>Instant calculation</span>
+            <span>Works on mobile</span>
+          </div>
+        </div>
+        <aside class="hero-side-card">
+          <div class="hero-side-label">What you can calculate</div>
+          <h2>Understand your leave balance at a glance.</h2>
+          <p>
+            Enter your eligible workdays, leave-credit rule, current balance,
+            leave taken, and salary details to get an estimate.
+          </p>
+          <div class="hero-side-divider"></div>
+          <div class="hero-side-points">
+            <div class="hero-side-point">
+              <span>↗</span>
+              Estimate leave accrued during a period.
+            </div>
+            <div class="hero-side-point">
+              <span>↗</span>
+              Account for opening balance, leave taken, and adjustments.
+            </div>
+            <div class="hero-side-point">
+              <span>↗</span>
+              Estimate the gross value of eligible leave encashment.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <!-- CALCULATOR -->
+    <section class="calculator-section" id="calculator">
       <div class="container">
-        <div class="eyebrow">Free workplace calculator</div>
-        <h1>Earned Leave <span class="accent">Calculator.</span></h1>
-
-        <p class="hero-description">
-          Estimate earned leave accrual, calculate your remaining leave balance,
-          and understand the potential value of leave encashment using your
-          workplace's applicable rules.
-        </p>
-
-        <div class="hero-meta">
-          <span class="meta-pill">✓ Free to use</span>
-          <span class="meta-pill">✓ Instant calculation</span>
-          <span class="meta-pill">✓ No sign-up required</span>
-          <span class="meta-pill">✓ Calculations stay in your browser</span>
+        <div class="calculator-intro">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Calculate Your Leave
+          </div>
+          <h2>
+            Your leave balance.<br>
+            <span class="accent">Made easier to understand.</span>
+          </h2>
+          <p>
+            Enter the details from your company's leave policy or HR records.
+            The default values are examples only. Change them to match your
+            actual leave-credit rule and applicable policy.
+          </p>
+        </div>
+        <div class="calculator-layout">
+          <!-- INPUT PANEL -->
+          <section class="calculator-panel" aria-labelledby="inputHeading">
+            <div class="panel-heading">
+              <div class="panel-heading-icon" aria-hidden="true">▤</div>
+              <div>
+                <h2 id="inputHeading">Leave details</h2>
+                <p>Fill in the fields below to estimate your balance.</p>
+              </div>
+            </div>
+            <form id="leaveForm" novalidate>
+              <div class="form-grid">
+                <div class="form-field full-width">
+                  <label for="periodLabel">Calculation period</label>
+                  <div class="input-wrap">
+                    <input
+                      id="periodLabel"
+                      name="periodLabel"
+                      type="text"
+                      maxlength="80"
+                      value="Current leave period"
+                      placeholder="e.g. April–September 2026"
+                    >
+                  </div>
+                  <span class="field-help">
+                    Optional label for your result summary.
+                  </span>
+                </div>
+                <div class="form-field">
+                  <label for="daysWorked">Eligible days worked</label>
+                  <div class="input-wrap">
+                    <input
+                      id="daysWorked"
+                      name="daysWorked"
+                      type="number"
+                      min="0"
+                      max="366"
+                      step="1"
+                      value="240"
+                      required
+                      inputmode="numeric"
+                    >
+                  </div>
+                  <span class="field-help">
+                    Use the number of days recognized by your policy.
+                  </span>
+                </div>
+                <div class="form-field">
+                  <label for="creditRate">Days worked per 1 EL day</label>
+                  <div class="input-wrap">
+                    <input
+                      id="creditRate"
+                      name="creditRate"
+                      type="number"
+                      min="0.01"
+                      max="366"
+                      step="0.01"
+                      value="20"
+                      required
+                      inputmode="decimal"
+                    >
+                  </div>
+                  <span class="field-help">
+                    Example: 1 earned-leave day for every 20 eligible days.
+                  </span>
+                </div>
+                <div class="form-field">
+                  <label for="roundingMode">Accrual rounding</label>
+                  <select id="roundingMode" name="roundingMode">
+                    <option value="floor">Round down to whole days</option>
+                    <option value="nearest">Round to nearest whole day</option>
+                    <option value="exact">Keep decimal result</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="openingBalance">Opening leave balance (days)</label>
+                  <div class="input-wrap">
+                    <input
+                      id="openingBalance"
+                      name="openingBalance"
+                      type="number"
+                      min="0"
+                      max="10000"
+                      step="0.01"
+                      value="10"
+                      required
+                      inputmode="decimal"
+                    >
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="leaveTaken">Leave taken (days)</label>
+                  <div class="input-wrap">
+                    <input
+                      id="leaveTaken"
+                      name="leaveTaken"
+                      type="number"
+                      min="0"
+                      max="10000"
+                      step="0.01"
+                      value="5"
+                      required
+                      inputmode="decimal"
+                    >
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="adjustments">Other credits / adjustments</label>
+                  <div class="input-wrap">
+                    <input
+                      id="adjustments"
+                      name="adjustments"
+                      type="number"
+                      min="-10000"
+                      max="10000"
+                      step="0.01"
+                      value="0"
+                      required
+                      inputmode="decimal"
+                    >
+                  </div>
+                  <span class="field-help">
+                    Use a negative value for a deduction.
+                  </span>
+                </div>
+                <div class="form-field full-width">
+                  <label for="annualCap">Accrual cap for this period (days)</label>
+                  <div class="input-wrap">
+                    <input
+                      id="annualCap"
+                      name="annualCap"
+                      type="number"
+                      min="0"
+                      max="10000"
+                      step="0.01"
+                      placeholder="Leave blank if no cap applies"
+                      inputmode="decimal"
+                    >
+                  </div>
+                  <label class="checkbox-row" for="applyCap">
+                    <input id="applyCap" name="applyCap" type="checkbox">
+                    <span>
+                      Apply the cap to the calculated accrual. The cap is
+                      applied only when a valid cap value is entered.
+                    </span>
+                  </label>
+                </div>
+                <div class="form-field">
+                  <label for="monthlySalary">Monthly salary (₹)</label>
+                  <div class="input-wrap">
+                    <input
+                      id="monthlySalary"
+                      name="monthlySalary"
+                      type="number"
+                      min="0"
+                      max="1000000000"
+                      step="0.01"
+                      value="30000"
+                      required
+                      inputmode="decimal"
+                    >
+                  </div>
+                  <span class="field-help">
+                    Enter the salary component used by your policy.
+                  </span>
+                </div>
+                <div class="form-field">
+                  <label for="salaryDivisor">Salary divisor</label>
+                  <select id="salaryDivisor" name="salaryDivisor">
+                    <option value="30">30 calendar days</option>
+                    <option value="26">26 working days</option>
+                    <option value="custom">Custom divisor</option>
+                  </select>
+                </div>
+                <div class="form-field full-width optional-fields" id="customDivisorWrap">
+                  <div class="form-field">
+                    <label for="customDivisor">Custom salary divisor</label>
+                    <input
+                      id="customDivisor"
+                      name="customDivisor"
+                      type="number"
+                      min="0.01"
+                      max="366"
+                      step="0.01"
+                      value="30"
+                      inputmode="decimal"
+                    >
+                    <span class="field-help">
+                      Enter the divisor specified by your employer.
+                    </span>
+                  </div>
+                </div>
+                <div class="form-field full-width">
+                  <label for="encashmentDays">Days eligible for encashment</label>
+                  <div class="input-wrap">
+                    <input
+                      id="encashmentDays"
+                      name="encashmentDays"
+                      type="number"
+                      min="0"
+                      max="10000"
+                      step="0.01"
+                      placeholder="Leave blank to use closing balance"
+                      inputmode="decimal"
+                    >
+                  </div>
+                  <span class="field-help">
+                    Optional. This is used only to estimate gross encashment
+                    value, not to change your leave balance.
+                  </span>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button class="button button-primary" type="submit">
+                  Calculate Leave <span class="arrow">↗</span>
+                </button>
+                <button
+                  class="button button-outline-light"
+                  type="reset"
+                  id="resetButton"
+                >
+                  Reset Values
+                </button>
+              </div>
+              <div
+                class="form-message"
+                id="formMessage"
+                role="alert"
+                aria-live="polite"
+              ></div>
+            </form>
+          </section>
+          <!-- RESULTS PANEL -->
+          <section
+            class="results-panel"
+            id="resultsPanel"
+            aria-labelledby="resultsHeading"
+            aria-live="polite"
+          >
+            <div class="results-header">
+              <div>
+                <h2 id="resultsHeading">Your calculation</h2>
+                <p id="resultPeriod">Current leave period</p>
+              </div>
+              <span class="result-status">Estimated result</span>
+            </div>
+            <div class="primary-result">
+              <div class="primary-result-label">Closing leave balance</div>
+              <div class="primary-result-value">
+                <span id="closingBalance">17</span>
+                <small>days</small>
+              </div>
+              <p class="primary-result-note">
+                Estimated balance after adding accrued leave and adjustments,
+                then subtracting leave taken.
+              </p>
+            </div>
+            <div class="result-grid">
+              <div class="result-card">
+                <div class="result-card-label">Earned leave accrued</div>
+                <div class="result-card-value" id="accruedLeave">12</div>
+                <div class="result-card-note">For this calculation period</div>
+              </div>
+              <div class="result-card">
+                <div class="result-card-label">Daily salary rate</div>
+                <div class="result-card-value" id="dailyRate">₹1,000.00</div>
+                <div class="result-card-note">Based on your selected divisor</div>
+              </div>
+              <div class="result-card">
+                <div class="result-card-label">Encashment days</div>
+                <div class="result-card-value" id="encashmentDayResult">17</div>
+                <div class="result-card-note">Eligible days entered or balance used</div>
+              </div>
+              <div class="result-card">
+                <div class="result-card-label">Estimated gross encashment</div>
+                <div class="result-card-value" id="encashmentValue">₹17,000.00</div>
+                <div class="result-card-note">Before deductions or tax</div>
+              </div>
+            </div>
+            <div class="result-divider"></div>
+            <h3 class="breakdown-title">Leave balance breakdown</h3>
+            <div class="breakdown-list">
+              <div class="breakdown-row">
+                <span>Opening leave balance</span>
+                <strong id="openingResult">10 days</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Earned leave accrued</span>
+                <strong id="accruedResult">+12 days</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Other credits / adjustments</span>
+                <strong id="adjustmentsResult">0 days</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Leave taken</span>
+                <strong id="takenResult">−5 days</strong>
+              </div>
+              <div class="breakdown-row total">
+                <span>Closing balance</span>
+                <strong id="closingResult">17 days</strong>
+              </div>
+            </div>
+            <div class="results-actions">
+              <button class="button button-light" type="button" id="printButton">
+                Print / Save PDF <span class="arrow">↗</span>
+              </button>
+              <button
+                class="button button-outline-dark"
+                type="button"
+                id="copyButton"
+              >
+                Copy Summary
+              </button>
+            </div>
+            <p class="results-footnote">
+              This is an estimate based on the inputs you provide. Your
+              employer's policy, applicable law, eligibility rules, and
+              payroll calculations may produce a different result.
+            </p>
+          </section>
         </div>
       </div>
     </section>
-
-    <section class="main-content">
-      <div class="container">
-        <div class="calculator-layout">
-          <section class="panel calculator-panel" aria-labelledby="calculatorTitle">
-            <div class="panel-header">
-              <h2 id="calculatorTitle">Calculate your earned leave</h2>
-              <p>Enter your leave policy details and current leave information.</p>
-            </div>
-
-            <div class="panel-body">
-              <form id="leaveForm" novalidate>
-                <div class="form-section">
-                  <h3 class="section-label">01 — Accrual details</h3>
-
-                  <div class="form-grid">
-                    <div class="field full">
-                      <label for="periodLabel">Calculation period</label>
-                      <input
-                        class="input-control"
-                        id="periodLabel"
-                        type="text"
-                        maxlength="80"
-                        placeholder="e.g. April 2026 – March 2027"
-                        value="Current leave period"
-                      >
-                      <span class="hint">A label for your calculation summary.</span>
-                    </div>
-
-                    <div class="field">
-                      <label for="daysWorked">Eligible days worked</label>
-                      <input
-                        class="input-control"
-                        id="daysWorked"
-                        type="number"
-                        min="0"
-                        max="366"
-                        step="1"
-                        value="240"
-                        required
-                      >
-                      <span class="hint">Use the eligible days specified by your employer's policy.</span>
-                    </div>
-
-                    <div class="field">
-                      <label for="creditRate">Days worked per 1 EL day</label>
-                      <input
-                        class="input-control"
-                        id="creditRate"
-                        type="number"
-                        min="0.01"
-                        max="366"
-                        step="any"
-                        value="20"
-                        required
-                      >
-                      <span class="hint">Example: 1 leave day for every 20 eligible days worked.</span>
-                    </div>
-
-                    <div class="field">
-                      <label for="rounding">Accrual rounding</label>
-                      <select class="input-control" id="rounding">
-                        <option value="floor">Round down to whole days</option>
-                        <option value="nearest">Round to nearest whole day</option>
-                        <option value="exact">Keep decimal value</option>
-                      </select>
-                    </div>
-
-                    <div class="field">
-                      <label for="annualCap">Maximum accrual cap (days)</label>
-                      <input
-                        class="input-control"
-                        id="annualCap"
-                        type="number"
-                        min="0"
-                        max="366"
-                        step="any"
-                        placeholder="Optional"
-                      >
-                      <span class="hint">Leave blank if no cap applies.</span>
-                    </div>
-
-                    <div class="field full">
-                      <label class="checkbox-row" for="applyCap">
-                        <input id="applyCap" type="checkbox">
-                        <span>Apply the maximum accrual cap to this calculation.</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-section">
-                  <h3 class="section-label">02 — Leave balance</h3>
-
-                  <div class="form-grid">
-                    <div class="field">
-                      <label for="openingBalance">Opening leave balance (days)</label>
-                      <input
-                        class="input-control"
-                        id="openingBalance"
-                        type="number"
-                        min="0"
-                        max="10000"
-                        step="any"
-                        value="10"
-                        required
-                      >
-                    </div>
-
-                    <div class="field">
-                      <label for="leaveTaken">Leave taken (days)</label>
-                      <input
-                        class="input-control"
-                        id="leaveTaken"
-                        type="number"
-                        min="0"
-                        max="10000"
-                        step="any"
-                        value="5"
-                        required
-                      >
-                    </div>
-
-                    <div class="field full">
-                      <label for="adjustments">Other credits / adjustments (days)</label>
-                      <input
-                        class="input-control"
-                        id="adjustments"
-                        type="number"
-                        min="-10000"
-                        max="10000"
-                        step="any"
-                        value="0"
-                        required
-                      >
-                      <span class="hint">
-                        Use a positive value for additional credits or a negative value for deductions.
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-section">
-                  <h3 class="section-label">03 — Salary and encashment</h3>
-
-                  <div class="form-grid">
-                    <div class="field">
-                      <label for="monthlySalary">Monthly salary (₹)</label>
-                      <input
-                        class="input-control"
-                        id="monthlySalary"
-                        type="number"
-                        min="0"
-                        max="1000000000"
-                        step="any"
-                        value="30000"
-                        required
-                      >
-                      <span class="hint">Enter the salary amount relevant to your policy.</span>
-                    </div>
-
-                    <div class="field">
-                      <label for="salaryDivisor">Salary divisor</label>
-                      <select class="input-control" id="salaryDivisor">
-                        <option value="30">30 calendar days</option>
-                        <option value="26">26 working days</option>
-                        <option value="custom">Custom divisor</option>
-                      </select>
-                    </div>
-
-                    <div class="field" id="customDivisorField" hidden>
-                      <label for="customDivisor">Custom divisor</label>
-                      <input
-                        class="input-control"
-                        id="customDivisor"
-                        type="number"
-                        min="0.01"
-                        max="366"
-                        step="any"
-                        value="30"
-                      >
-                    </div>
-
-                    <div class="field full">
-                      <label for="encashmentDays">Days eligible for encashment</label>
-                      <input
-                        class="input-control"
-                        id="encashmentDays"
-                        type="number"
-                        min="0"
-                        max="10000"
-                        step="any"
-                        placeholder="Leave blank to use closing balance"
-                      >
-                      <span class="hint">
-                        Optional. If left blank, the calculator uses the estimated closing balance.
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="button-row">
-                  <button class="btn btn-primary" type="submit">Calculate leave ↗</button>
-                  <button class="btn btn-secondary" type="button" id="resetButton">Reset</button>
-                </div>
-
-                <div id="formMessage" class="message" role="alert" aria-live="polite"></div>
-              </form>
-            </div>
-          </section>
-
-          <section class="panel results-panel" aria-labelledby="resultsTitle">
-            <div class="panel-header">
-              <div class="results-heading">
-                <div>
-                  <h2 id="resultsTitle">Your results</h2>
-                  <p id="resultPeriod">Current leave period</p>
-                </div>
-                <span class="status-badge">Calculated</span>
-              </div>
-            </div>
-
-            <div class="panel-body">
-              <div class="print-title">
-                <h2>ARTHNIX — Earned Leave Summary</h2>
-              </div>
-
-              <div class="balance-card">
-                <div class="result-label">Estimated closing leave balance</div>
-                <div class="balance-number">
-                  <strong id="closingBalance">17.00</strong>
-                  <span>days</span>
-                </div>
-                <p class="balance-note">
-                  Estimated balance after accrual, leave taken, and adjustments.
-                  Actual balances depend on your employer's rules.
-                </p>
-              </div>
-
-              <div class="result-list">
-                <div class="result-row">
-                  <span class="label">Earned leave accrued</span>
-                  <span class="value positive" id="accruedLeave">12.00 days</span>
-                </div>
-
-                <div class="result-row">
-                  <span class="label">Opening balance</span>
-                  <span class="value" id="openingResult">10.00 days</span>
-                </div>
-
-                <div class="result-row">
-                  <span class="label">Leave taken</span>
-                  <span class="value negative" id="takenResult">−5.00 days</span>
-                </div>
-
-                <div class="result-row">
-                  <span class="label">Other adjustments</span>
-                  <span class="value" id="adjustmentsResult">0.00 days</span>
-                </div>
-
-                <div class="result-row">
-                  <span class="label">Eligible days worked</span>
-                  <span class="value" id="workedResult">240 days</span>
-                </div>
-
-                <div class="result-row">
-                  <span class="label">Accrual rule</span>
-                  <span class="value" id="ruleResult">1 day per 20 days</span>
-                </div>
-
-                <div class="result-row">
-                  <span class="label">Daily salary estimate</span>
-                  <span class="value" id="dailySalary">₹1,000.00</span>
-                </div>
-
-                <div class="result-row">
-                  <span class="label">Days used for encashment estimate</span>
-                  <span class="value" id="encashmentDaysResult">17.00 days</span>
-                </div>
-              </div>
-
-              <div class="encashment-box">
-                <div class="small-label">Estimated gross leave encashment</div>
-                <strong class="encashment-amount" id="encashmentValue">₹17,000.00</strong>
-                <p>
-                  Illustrative gross estimate only. Tax, eligibility, salary components,
-                  limits, and employer policy may change the payable amount.
-                </p>
-              </div>
-
-              <div class="button-row">
-                <button class="btn btn-secondary" type="button" id="copyButton">
-                  Copy summary
-                </button>
-                <button class="btn btn-secondary" type="button" id="printButton">
-                  Print / Save PDF
-                </button>
-              </div>
-
-              <div id="resultMessage" class="message" role="status" aria-live="polite"></div>
-
-              <p class="result-disclaimer">
-                This calculator provides an estimate, not an official HR record,
-                legal interpretation, or confirmation of leave entitlement.
-              </p>
-            </div>
-          </section>
-        </div>
-
-        <section class="content-section" id="how-it-works">
-          <div class="section-heading">
-            <div class="eyebrow">How it works</div>
-            <h2>Understand your earned leave calculation.</h2>
+    <!-- EXPLANATION -->
+    <section class="explanation-section">
+      <div class="container explanation-grid">
+        <div class="explanation-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            How It Works
+          </div>
+          <h2>
+            Understand the <span class="accent">calculation.</span>
+          </h2>
+          <p>
+            Earned leave is generally credited according to an organization's
+            leave policy. The applicable rate, eligible days, rounding rules,
+            carry-forward limits, and encashment conditions can differ.
+          </p>
+          <div class="formula-card">
+            <small>Accrual formula</small>
             <p>
-              Enter the eligible workdays and accrual rule used by your organization.
-              The calculator estimates accrued leave, adjusts your existing balance,
-              and optionally calculates an indicative encashment value.
+              <strong>Earned leave accrued</strong> = Eligible days worked
+              ÷ Days worked required for one leave day
             </p>
           </div>
-
-          <div class="info-grid">
-            <article class="info-card">
-              <span class="info-number">01</span>
-              <h3>Enter eligible days</h3>
+          <div class="formula-card">
+            <small>Balance formula</small>
+            <p>
+              <strong>Closing balance</strong> = Opening balance + Accrued
+              leave + Adjustments − Leave taken
+            </p>
+          </div>
+          <div class="formula-card">
+            <small>Encashment estimate</small>
+            <p>
+              <strong>Gross encashment</strong> = Eligible encashment days
+              × Daily salary rate
+            </p>
+          </div>
+        </div>
+        <div class="steps-list">
+          <article class="step-item">
+            <div class="step-number">01</div>
+            <div>
+              <h3>Enter your eligible days</h3>
               <p>
-                Add the number of eligible days worked during the period and the
-                number of days required to earn one day of leave.
+                Enter the number of days recognized for leave accrual during
+                the period. Depending on your employer's policy, these may
+                differ from calendar days or days physically worked.
               </p>
-            </article>
-
-            <article class="info-card">
-              <span class="info-number">02</span>
+            </div>
+          </article>
+          <article class="step-item">
+            <div class="step-number">02</div>
+            <div>
+              <h3>Set your leave-credit rule</h3>
+              <p>
+                Enter the number of eligible days required to earn one leave
+                day. Select the rounding method and apply a cap only if your
+                policy specifies one.
+              </p>
+            </div>
+          </article>
+          <article class="step-item">
+            <div class="step-number">03</div>
+            <div>
               <h3>Update your balance</h3>
               <p>
-                Provide your opening balance, leave taken, and any additional credits
-                or deductions to estimate your closing balance.
+                Add your opening balance, subtract leave already taken, and
+                enter any credits or deductions. The calculator estimates
+                your closing balance.
               </p>
-            </article>
-
-            <article class="info-card">
-              <span class="info-number">03</span>
-              <h3>Estimate encashment</h3>
-              <p>
-                Enter your monthly salary and the applicable salary divisor to
-                estimate the gross value of eligible leave days.
-              </p>
-            </article>
-          </div>
-
-          <div class="formula-box">
-            <h3>Earned leave formula</h3>
-            <div class="formula">
-              Accrued leave = Eligible days worked ÷ Days worked per leave day
             </div>
-            <div class="formula">
-              Closing balance = Opening balance + Accrued leave − Leave taken + Adjustments
-            </div>
-            <div class="formula">
-              Daily salary estimate = Monthly salary ÷ Selected salary divisor
-            </div>
-            <div class="formula">
-              Gross encashment estimate = Eligible encashment days × Daily salary estimate
-            </div>
-            <p>
-              The calculator applies your selected rounding method to the accrual
-              result. If you enable a maximum accrual cap and enter a cap value,
-              the accrued leave will not exceed that cap.
-            </p>
-          </div>
-
-          <div class="note-box">
-            <strong>Important: Leave rules vary by employer and location.</strong>
-            <p>
-              Earned leave, also called privilege leave in some workplaces, may be
-              governed by applicable legislation, establishment type, employment
-              contract, and company policy. Accrual rules, eligible days, carry-forward
-              limits, encashment eligibility, salary components, and calculation
-              methods can differ. Confirm the applicable rules with your HR team
-              before relying on a final entitlement or payment figure.
-            </p>
-          </div>
-        </section>
-
-        <section class="content-section" id="faq">
-          <div class="section-heading">
-            <div class="eyebrow">Frequently asked questions</div>
-            <h2>Earned leave calculator FAQs.</h2>
-            <p>Answers to common questions about leave accrual and balance estimates.</p>
-          </div>
-
-          <div class="faq-list">
-            <details class="faq-item">
-              <summary>What is earned leave?</summary>
-              <div class="faq-answer">
-                Earned leave is paid time off accumulated under an applicable
-                employment policy or legal framework. It may also be called
-                privilege leave in some workplaces. The exact entitlement and
-                accrual method depend on the rules that apply to your employment.
-              </div>
-            </details>
-
-            <details class="faq-item">
-              <summary>How do I calculate earned leave?</summary>
-              <div class="faq-answer">
-                A simple estimate divides eligible days worked by the number of
-                eligible days required to earn one leave day. For example, under
-                a hypothetical rule of one leave day per 20 eligible days, 240
-                eligible days would generate 12 leave days before any applicable
-                cap or rounding adjustment.
-              </div>
-            </details>
-
-            <details class="faq-item">
-              <summary>Are weekends and holidays included in eligible days worked?</summary>
-              <div class="faq-answer">
-                That depends on the applicable policy or law. Some rules use days
-                worked, some consider days of service or attendance, and some
-                define specific exclusions. Enter the eligible day count according
-                to your organization's actual rule.
-              </div>
-            </details>
-
-            <details class="faq-item">
-              <summary>Can I calculate leave encashment with this tool?</summary>
-              <div class="faq-answer">
-                Yes. Enter your monthly salary, select a salary divisor, and
-                optionally specify the number of days eligible for encashment.
-                The tool calculates an indicative gross amount. Your actual payment
-                may depend on the applicable salary components, eligibility rules,
-                limits, deductions, and tax treatment.
-              </div>
-            </details>
-
-            <details class="faq-item">
-              <summary>Why is my company's leave balance different?</summary>
-              <div class="faq-answer">
-                Your employer may use a different accrual rule, rounding method,
-                eligibility period, carry-forward limit, adjustment process, or
-                salary calculation. This calculator is a general estimator and
-                does not access your HR or payroll records.
-              </div>
-            </details>
-
-            <details class="faq-item">
-              <summary>Does this calculator store my salary information?</summary>
-              <div class="faq-answer">
-                The calculations on this page run in your browser. The calculator
-                does not intentionally send your entered salary or leave details
-                to a calculation server. Avoid entering confidential information
-                on devices or browsers you do not trust.
-              </div>
-            </details>
-          </div>
-        </section>
-
-        <section class="content-section" id="related-tools">
-          <div class="section-heading">
-            <div class="eyebrow">Explore more</div>
-            <h2>More free business tools.</h2>
-            <p>
-              Explore other ARTHNIX calculators and tools designed to simplify
-              everyday financial and business tasks.
-            </p>
-          </div>
-
-          <div class="related-grid">
-            <a class="related-card" href="/tools/salary-per-day-calculator.html">
-              <div>
-                <span class="related-label">Salary tool</span>
-                <h3>Salary Per Day Calculator</h3>
-                <span>Estimate your daily salary from monthly pay.</span>
-              </div>
-              <span class="arrow">↗</span>
-            </a>
-
-            <a class="related-card" href="/tools/gst-calculator.html">
-              <div>
-                <span class="related-label">Tax tool</span>
-                <h3>GST Calculator</h3>
-                <span>Calculate GST amounts and tax-inclusive prices.</span>
-              </div>
-              <span class="arrow">↗</span>
-            </a>
-
-            <a class="related-card" href="/tools/profit-calculator.html">
-              <div>
-                <span class="related-label">Business tool</span>
-                <h3>Profit Calculator</h3>
-                <span>Estimate profit, costs, and profit margins.</span>
-              </div>
-              <span class="arrow">↗</span>
-            </a>
-          </div>
-        </section>
-
-        <section class="cta-section">
-          <div class="cta-inner">
+          </article>
+          <article class="step-item">
+            <div class="step-number">04</div>
             <div>
-              <h2>Simple tools.<br><span class="accent">Clearer decisions.</span></h2>
+              <h3>Estimate the encashment amount</h3>
               <p>
-                Explore practical tools from ARTHNIX for everyday calculations
-                and business workflows.
+                Enter the relevant salary and the divisor used by your
+                employer. If you know the number of days eligible for
+                encashment, enter it separately.
               </p>
             </div>
-            <a class="btn" href="/tools.html">Explore all free tools ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- IMPORTANT INFORMATION -->
+    <section class="notice-section">
+      <div class="container">
+        <div class="notice-card">
+          <div class="notice-icon" aria-hidden="true">!</div>
+          <div>
+            <h2>Important: Check your employer's leave policy</h2>
+            <p>
+              Earned leave entitlement is not identical for every employee
+              or organization. Eligibility, accrual rate, rounding, maximum
+              accumulation, carry-forward, salary components, and encashment
+              conditions depend on the applicable employment terms and law.
+              Do not treat the example defaults in this calculator as a
+              universal Indian statutory rule. Confirm your actual entitlement
+              with HR or your applicable policy documents before making
+              payroll, resignation, or financial decisions.
+            </p>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-header">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Frequently Asked Questions
+          </div>
+          <h2>
+            Earned leave, <span class="accent">explained.</span>
+          </h2>
+          <p>
+            Answers to common questions about leave accrual, balance
+            calculations, and estimated encashment.
+          </p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is earned leave?</summary>
+            <p>
+              Earned leave is paid time off accrued by an employee according
+              to applicable employment rules or company policy. The way it
+              accrues and the number of days available can vary by employer,
+              employee category, and applicable law.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>How is earned leave calculated?</summary>
+            <p>
+              A common calculation method divides eligible days by the
+              number of days required to earn one leave day. The result is
+              then adjusted according to applicable rounding rules and any
+              relevant cap. Use the rule specified by your employer.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>What is the difference between accrued leave and closing balance?</summary>
+            <p>
+              Accrued leave is the leave earned during the selected period.
+              Closing balance includes your opening balance, newly accrued
+              leave, and adjustments, minus leave taken during that period.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I use this calculator for Indian employment?</summary>
+            <p>
+              You can use it to estimate figures using the leave-credit rule
+              and salary divisor applicable to your employment. However,
+              entitlement and encashment rules can vary according to the
+              applicable law, establishment, employment terms, and company
+              policy. Confirm the applicable rules with HR or a qualified
+              professional.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>How is leave encashment estimated?</summary>
+            <p>
+              This calculator multiplies the number of eligible encashment
+              days by the daily salary rate derived from your monthly salary
+              and selected divisor. The result is a gross estimate and may
+              differ from the amount payable under your employer's policy.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Does this calculator determine my legal entitlement?</summary>
+            <p>
+              No. It is a general calculation tool, not a legal determination
+              of your entitlement. Refer to your employment documents, HR
+              policy, applicable legislation, and official guidance for your
+              specific circumstances.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Are my salary and leave details uploaded?</summary>
+            <p>
+              The calculations on this page are performed locally in your
+              browser. This page's calculator code does not send your entered
+              salary or leave details to a server. Avoid using browser
+              extensions or third-party modifications that you do not trust.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- RELATED TOOLS -->
+    <section class="related-section">
+      <div class="container">
+        <div class="related-header">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Explore More
+            </div>
+            <h2>
+              More useful <span class="accent">calculators.</span>
+            </h2>
+            <p>
+              Explore other ARTHNIX tools for everyday salary calculations
+              and business documents.
+            </p>
+          </div>
+          <a href="/tools.html" class="button button-outline-light">
+            View All Tools <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="related-grid">
+          <article class="related-card">
+            <div class="related-icon">₹</div>
+            <h3>Salary Per Day Calculator</h3>
+            <p>
+              Estimate a daily salary rate from your monthly salary using
+              a selected divisor.
+            </p>
+            <a href="/salary-per-day-calculator.html" class="text-link">
+              Open calculator <span>↗</span>
+            </a>
+          </article>
+          <article class="related-card">
+            <div class="related-icon">%</div>
+            <h3>Income Tax Calculator</h3>
+            <p>
+              Estimate income tax under the applicable old or new tax
+              regime using your entered financial details.
+            </p>
+            <a href="/income-tax-calculator.html" class="text-link">
+              Calculate income tax <span>↗</span>
+            </a>
+          </article>
+          <article class="related-card">
+            <div class="related-icon">▤</div>
+            <h3>GST Calculator</h3>
+            <p>
+              Calculate GST amounts, inclusive prices, and pre-tax totals
+              for everyday transactions.
+            </p>
+            <a href="/tools/gst-calculator.html" class="text-link">
+              Open calculator <span>↗</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Practical Tools for Everyday Work
+        </div>
+        <h2>
+          Make everyday calculations<br>
+          <span class="accent">a little simpler.</span>
+        </h2>
+        <p>
+          Use the ARTHNIX tool collection to simplify common calculations
+          and everyday business tasks.
+        </p>
+        <a href="/tools.html" class="button button-primary">
+          Explore ARTHNIX Tools <span class="arrow">↗</span>
+        </a>
       </div>
     </section>
   </main>
-
-  <footer class="site-footer">
+  <!-- FOOTER -->
+  <footer class="site-footer" id="footer-contact">
     <div class="container">
-      <div class="footer-top">
+      <div class="footer-main">
         <div class="footer-brand">
-          <a class="brand" href="/" aria-label="ARTHNIX homepage">
-            <img src="/logo.png" alt="ARTHNIX logo" width="39" height="39">
-            <span class="brand-name">ARTH<span>NIX</span></span>
+          <a
+            class="footer-brand-link"
+            href="/index.html"
+            aria-label="ARTHNIX home"
+          >
+            <img class="footer-logo" src="/logo.png" alt="ARTHNIX logo">
+            <span>ARTHNIX</span>
           </a>
-
-          <p>
-            Intelligence for Every Business. Practical digital tools and
-            business solutions designed to make everyday work simpler.
-          </p>
-
-          <span class="powered-by">Powered by Alphex AI</span>
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <p class="footer-powered">Powered by Alphex AI</p>
         </div>
-
         <div class="footer-column">
-          <h3>Explore</h3>
-          <a href="/tools.html">Free Tools</a>
+          <h4>Explore</h4>
           <a href="/platform.html">Platform</a>
+          <a href="/tools.html">Free Tools</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="/blog.html">Blog</a>
+          <a href="/earned-leave-calculator.html">Earned Leave Calculator</a>
         </div>
-
         <div class="footer-column">
-          <h3>Business Tools</h3>
+          <h4>Business Tools</h4>
           <a href="/tools/gst-calculator.html">GST Calculator</a>
           <a href="/tools/invoice-generator.html">Invoice Generator</a>
           <a href="/tools/profit-calculator.html">Profit Calculator</a>
           <a href="/tools/quotation-generator.html">Quotation Generator</a>
-          <a href="/tools/salary-per-day-calculator.html">Salary Per Day Calculator</a>
+          <a href="/salary-per-day-calculator.html">Salary Per Day Calculator</a>
         </div>
-
         <div class="footer-column">
-          <h3>Information</h3>
-          <a href="/about.html">About</a>
+          <h4>Information</h4>
+          <a href="/about.html">About ARTHNIX</a>
           <a href="/help.html">Help Centre</a>
+          <a href="/blog.html">Blog</a>
           <a href="/contact.html">Contact</a>
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms of Use</a>
           <a href="/disclaimer.html">Disclaimer</a>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <p>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</p>
-        <p>An independent product brand · Powered by <a href="https://alphex.ai">Alphex AI</a></p>
+        <p class="copyright">
+          © <span id="currentYear">2026</span> ARTHNIX. All rights reserved.
+        </p>
+        <p class="powered-by">
+          An independent product brand ·
+          <strong>Powered by Alphex AI</strong>
+        </p>
       </div>
     </div>
   </footer>
-
   <script>
     (() => {
       "use strict";
-
-      const $ = (id) => document.getElementById(id);
-
-      const form = $("leaveForm");
-      const formMessage = $("formMessage");
-      const resultMessage = $("resultMessage");
-      const divisorSelect = $("salaryDivisor");
-      const customDivisorField = $("customDivisorField");
-      const applyCapCheckbox = $("applyCap");
-      const annualCapInput = $("annualCap");
-
+      const form = document.getElementById("leaveForm");
+      const menuButton = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const currentYear = document.getElementById("currentYear");
+      const formMessage = document.getElementById("formMessage");
+      const salaryDivisorSelect = document.getElementById("salaryDivisor");
+      const customDivisorWrap = document.getElementById("customDivisorWrap");
+      const applyCapCheckbox = document.getElementById("applyCap");
+      const annualCapInput = document.getElementById("annualCap");
+      const copyButton = document.getElementById("copyButton");
+      const printButton = document.getElementById("printButton");
+      const resetButton = document.getElementById("resetButton");
       let latestSummary = "";
-
-      $("currentYear").textContent = new Date().getFullYear();
-
-      const formatNumber = (value, digits = 2) => {
+      function setMenuState(isOpen) {
+        if (!menuButton || !navLinks) return;
+        navLinks.classList.toggle("is-open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        const lines = menuButton.querySelectorAll("span");
+        if (lines.length >= 2) {
+          lines[0].style.transform = isOpen
+            ? "translateY(3.5px) rotate(45deg)"
+            : "";
+          lines[1].style.transform = isOpen
+            ? "translateY(-3.5px) rotate(-45deg)"
+            : "";
+        }
+      }
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isOpen =
+            menuButton.getAttribute("aria-expanded") === "true";
+          setMenuState(!isOpen);
+        });
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => setMenuState(false));
+        });
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("is-open") &&
+            !menuButton.contains(event.target) &&
+            !navLinks.contains(event.target)
+          ) {
+            setMenuState(false);
+          }
+        });
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            navLinks.classList.contains("is-open")
+          ) {
+            setMenuState(false);
+            menuButton.focus();
+          }
+        });
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 780) {
+            setMenuState(false);
+          }
+        });
+      }
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+      function getNumber(id) {
+        const input = document.getElementById(id);
+        if (!input) return NaN;
+        const rawValue = input.value.trim();
+        if (rawValue === "") return NaN;
+        return Number(rawValue);
+      }
+      function formatNumber(value, maximumFractionDigits = 2) {
         return new Intl.NumberFormat("en-IN", {
-          minimumFractionDigits: digits,
-          maximumFractionDigits: digits
+          minimumFractionDigits: 0,
+          maximumFractionDigits
         }).format(value);
-      };
-
-      const formatCurrency = (value) => {
+      }
+      function formatCurrency(value) {
         return new Intl.NumberFormat("en-IN", {
           style: "currency",
           currency: "INR",
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }).format(value);
-      };
-
-      const showMessage = (element, text, type) => {
-        element.textContent = text;
-        element.className = `message ${type}`;
-      };
-
-      const clearMessage = (element) => {
-        element.textContent = "";
-        element.className = "message";
-      };
-
-      const readNumber = (id, label, options = {}) => {
-        const raw = $(id).value.trim();
-
-        if (raw === "") {
-          if (options.optional) return null;
-          throw new Error(`${label} is required.`);
+      }
+      function formatDays(value) {
+        return `${formatNumber(value)} ${Math.abs(value) === 1 ? "day" : "days"}`;
+      }
+      function showMessage(message) {
+        formMessage.textContent = message;
+        formMessage.classList.add("is-visible");
+      }
+      function clearMessage() {
+        formMessage.textContent = "";
+        formMessage.classList.remove("is-visible");
+      }
+      function validateNumber(id, label, options = {}) {
+        const input = document.getElementById(id);
+        const value = getNumber(id);
+        if (!input) {
+          return { valid: false, message: `${label} field was not found.` };
         }
-
-        const value = Number(raw);
-
+        if (input.value.trim() === "" && options.optional) {
+          return { valid: true, value: null };
+        }
         if (!Number.isFinite(value)) {
-          throw new Error(`Enter a valid number for ${label.toLowerCase()}.`);
+          return {
+            valid: false,
+            message: `Enter a valid number for ${label.toLowerCase()}.`
+          };
         }
-
         if (options.min !== undefined && value < options.min) {
-          throw new Error(`${label} must be at least ${options.min}.`);
+          return {
+            valid: false,
+            message: `${label} cannot be less than ${options.min}.`
+          };
         }
-
         if (options.max !== undefined && value > options.max) {
-          throw new Error(`${label} cannot exceed ${options.max}.`);
+          return {
+            valid: false,
+            message: `${label} cannot exceed ${options.max}.`
+          };
         }
-
+        return { valid: true, value };
+      }
+      function roundAccrual(value, mode) {
+        if (mode === "floor") {
+          return Math.floor(value + Number.EPSILON);
+        }
+        if (mode === "nearest") {
+          return Math.round(value);
+        }
         return value;
-      };
-
-      const roundAccrual = (value, method) => {
-        if (method === "floor") return Math.floor(value + 1e-10);
-        if (method === "nearest") return Math.round(value);
-        return value;
-      };
-
-      const cleanNegativeZero = (value) => {
-        return Object.is(value, -0) ? 0 : value;
-      };
-
-      function calculate() {
-        clearMessage(formMessage);
-        clearMessage(resultMessage);
-
-        try {
-          const period = $("periodLabel").value.trim() || "Current leave period";
-
-          const daysWorked = readNumber(
-            "daysWorked",
-            "Eligible days worked",
-            { min: 0, max: 366 }
+      }
+      function updateCustomDivisorVisibility() {
+        const isCustom = salaryDivisorSelect.value === "custom";
+        customDivisorWrap.classList.toggle("is-visible", isCustom);
+        document.getElementById("customDivisor").required = isCustom;
+      }
+      function updateCapAvailability() {
+        const capEntered = annualCapInput.value.trim() !== "";
+        annualCapInput.setAttribute(
+          "aria-describedby",
+          "capHelp"
+        );
+        if (!capEntered) {
+          applyCapCheckbox.checked = false;
+          applyCapCheckbox.disabled = true;
+        } else {
+          applyCapCheckbox.disabled = false;
+        }
+      }
+      function buildCalculation() {
+        const periodLabel =
+          document.getElementById("periodLabel").value.trim() ||
+          "Selected leave period";
+        const fields = [
+          validateNumber("daysWorked", "Eligible days worked", {
+            min: 0,
+            max: 366
+          }),
+          validateNumber("creditRate", "Days worked per leave day", {
+            min: 0.01,
+            max: 366
+          }),
+          validateNumber("openingBalance", "Opening leave balance", {
+            min: 0,
+            max: 10000
+          }),
+          validateNumber("leaveTaken", "Leave taken", {
+            min: 0,
+            max: 10000
+          }),
+          validateNumber("adjustments", "Other credits or adjustments", {
+            min: -10000,
+            max: 10000
+          }),
+          validateNumber("monthlySalary", "Monthly salary", {
+            min: 0,
+            max: 1000000000
+          }),
+          validateNumber("annualCap", "Accrual cap", {
+            min: 0,
+            max: 10000,
+            optional: true
+          }),
+          validateNumber("encashmentDays", "Encashment days", {
+            min: 0,
+            max: 10000,
+            optional: true
+          })
+        ];
+        const invalid = fields.find((field) => !field.valid);
+        if (invalid) {
+          throw new Error(invalid.message);
+        }
+        const [
+          daysWorked,
+          creditRate,
+          openingBalance,
+          leaveTaken,
+          adjustments,
+          monthlySalary,
+          annualCap,
+          encashmentDaysInput
+        ] = fields.map((field) => field.value);
+        if (
+          applyCapCheckbox.checked &&
+          annualCap === null
+        ) {
+          throw new Error(
+            "Enter an accrual cap before choosing to apply it."
           );
-
-          const creditRate = readNumber(
-            "creditRate",
-            "Days worked per leave day",
+        }
+        let divisor;
+        if (salaryDivisorSelect.value === "custom") {
+          const customResult = validateNumber(
+            "customDivisor",
+            "Custom salary divisor",
             { min: 0.01, max: 366 }
           );
-
-          const openingBalance = readNumber(
-            "openingBalance",
-            "Opening leave balance",
-            { min: 0, max: 10000 }
-          );
-
-          const leaveTaken = readNumber(
-            "leaveTaken",
-            "Leave taken",
-            { min: 0, max: 10000 }
-          );
-
-          const adjustments = readNumber(
-            "adjustments",
-            "Other credits or adjustments",
-            { min: -10000, max: 10000 }
-          );
-
-          const monthlySalary = readNumber(
-            "monthlySalary",
-            "Monthly salary",
-            { min: 0, max: 1000000000 }
-          );
-
-          const cap = readNumber(
-            "annualCap",
-            "Maximum accrual cap",
-            { min: 0, max: 366, optional: true }
-          );
-
-          const encashmentDaysInput = readNumber(
-            "encashmentDays",
-            "Days eligible for encashment",
-            { min: 0, max: 10000, optional: true }
-          );
-
-          if (applyCapCheckbox.checked && cap === null) {
-            throw new Error(
-              "Enter a maximum accrual cap or uncheck the cap option."
-            );
+          if (!customResult.valid) {
+            throw new Error(customResult.message);
           }
-
-          if (divisorSelect.value === "custom") {
-            customDivisorField.hidden = false;
-          }
-
-          let divisor;
-
-          if (divisorSelect.value === "custom") {
-            divisor = readNumber(
-              "customDivisor",
-              "Custom salary divisor",
-              { min: 0.01, max: 366 }
-            );
-          } else {
-            divisor = Number(divisorSelect.value);
-          }
-
-          let accrued = daysWorked / creditRate;
-          accrued = roundAccrual(accrued, $("rounding").value);
-
-          if (applyCapCheckbox.checked && cap !== null) {
-            accrued = Math.min(accrued, cap);
-          }
-
-          accrued = cleanNegativeZero(accrued);
-
-          const closingBalance = cleanNegativeZero(
-            openingBalance + accrued - leaveTaken + adjustments
-          );
-
-          const dailySalary = monthlySalary / divisor;
-          const encashmentDays = encashmentDaysInput === null
+          divisor = customResult.value;
+        } else {
+          divisor = Number(salaryDivisorSelect.value);
+        }
+        const rawAccrual = daysWorked / creditRate;
+        const roundedAccrual = roundAccrual(
+          rawAccrual,
+          document.getElementById("roundingMode").value
+        );
+        let accruedLeave = roundedAccrual;
+        if (applyCapCheckbox.checked && annualCap !== null) {
+          accruedLeave = Math.min(accruedLeave, annualCap);
+        }
+        const closingBalance =
+          openingBalance + accruedLeave + adjustments - leaveTaken;
+        const dailyRate = monthlySalary / divisor;
+        const effectiveEncashmentDays =
+          encashmentDaysInput === null
             ? Math.max(0, closingBalance)
             : encashmentDaysInput;
-
-          const encashmentValue = encashmentDays * dailySalary;
-
-          $("resultPeriod").textContent = period;
-          $("closingBalance").textContent = formatNumber(closingBalance);
-          $("accruedLeave").textContent = `${formatNumber(accrued)} days`;
-          $("openingResult").textContent = `${formatNumber(openingBalance)} days`;
-          $("takenResult").textContent = `−${formatNumber(leaveTaken)} days`;
-          $("adjustmentsResult").textContent =
-            `${adjustments > 0 ? "+" : ""}${formatNumber(adjustments)} days`;
-          $("workedResult").textContent = `${formatNumber(daysWorked, 0)} days`;
-          $("ruleResult").textContent = `1 day per ${formatNumber(creditRate)} days`;
-          $("dailySalary").textContent = formatCurrency(dailySalary);
-          $("encashmentDaysResult").textContent =
-            `${formatNumber(encashmentDays)} days`;
-          $("encashmentValue").textContent = formatCurrency(encashmentValue);
-
-          const closingElement = $("closingBalance");
-          closingElement.style.color = closingBalance < 0 ? "#ff7777" : "#ffffff";
-
-          const adjustmentsElement = $("adjustmentsResult");
-          adjustmentsElement.classList.toggle("negative", adjustments < 0);
-          adjustmentsElement.classList.toggle("positive", adjustments > 0);
-
-          latestSummary = [
-            "ARTHNIX — Earned Leave Summary",
-            `Calculation period: ${period}`,
-            `Eligible days worked: ${formatNumber(daysWorked, 0)}`,
-            `Accrual rule: 1 leave day per ${formatNumber(creditRate)} eligible days`,
-            `Earned leave accrued: ${formatNumber(accrued)} days`,
-            `Opening balance: ${formatNumber(openingBalance)} days`,
-            `Leave taken: ${formatNumber(leaveTaken)} days`,
-            `Other credits / adjustments: ${formatNumber(adjustments)} days`,
-            `Estimated closing balance: ${formatNumber(closingBalance)} days`,
-            `Monthly salary: ${formatCurrency(monthlySalary)}`,
-            `Salary divisor: ${formatNumber(divisor)}`,
-            `Estimated daily salary: ${formatCurrency(dailySalary)}`,
-            `Days used for encashment estimate: ${formatNumber(encashmentDays)}`,
-            `Estimated gross leave encashment: ${formatCurrency(encashmentValue)}`,
-            "",
-            "Note: These are estimates only. Verify the applicable employer policy and legal rules."
-          ].join("\n");
-
-          if (closingBalance < 0) {
+        const encashmentValue =
+          effectiveEncashmentDays * dailyRate;
+        return {
+          periodLabel,
+          daysWorked,
+          creditRate,
+          rawAccrual,
+          accruedLeave,
+          openingBalance,
+          leaveTaken,
+          adjustments,
+          closingBalance,
+          monthlySalary,
+          divisor,
+          dailyRate,
+          effectiveEncashmentDays,
+          encashmentValue,
+          annualCap,
+          capApplied: applyCapCheckbox.checked
+        };
+      }
+      function renderCalculation(data) {
+        document.getElementById("resultPeriod").textContent =
+          data.periodLabel;
+        document.getElementById("closingBalance").textContent =
+          formatNumber(data.closingBalance);
+        document.getElementById("accruedLeave").textContent =
+          formatNumber(data.accruedLeave);
+        document.getElementById("dailyRate").textContent =
+          formatCurrency(data.dailyRate);
+        document.getElementById("encashmentDayResult").textContent =
+          formatNumber(data.effectiveEncashmentDays);
+        document.getElementById("encashmentValue").textContent =
+          formatCurrency(data.encashmentValue);
+        document.getElementById("openingResult").textContent =
+          formatDays(data.openingBalance);
+        document.getElementById("accruedResult").textContent =
+          `${data.accruedLeave >= 0 ? "+" : ""}${formatDays(data.accruedLeave)}`;
+        document.getElementById("adjustmentsResult").textContent =
+          `${data.adjustments > 0 ? "+" : ""}${formatDays(data.adjustments)}`;
+        document.getElementById("takenResult").textContent =
+          `−${formatDays(data.leaveTaken)}`;
+        document.getElementById("closingResult").textContent =
+          formatDays(data.closingBalance);
+        latestSummary = [
+          "ARTHNIX — Earned Leave Calculator",
+          `Period: ${data.periodLabel}`,
+          "",
+          `Eligible days worked: ${formatNumber(data.daysWorked)}`,
+          `Leave-credit rule: 1 day per ${formatNumber(data.creditRate)} eligible days`,
+          `Raw accrual before rounding: ${formatNumber(data.rawAccrual)}`,
+          `Earned leave accrued: ${formatDays(data.accruedLeave)}`,
+          `Opening leave balance: ${formatDays(data.openingBalance)}`,
+          `Other credits / adjustments: ${formatDays(data.adjustments)}`,
+          `Leave taken: ${formatDays(data.leaveTaken)}`,
+          `Closing leave balance: ${formatDays(data.closingBalance)}`,
+          "",
+          `Monthly salary entered: ${formatCurrency(data.monthlySalary)}`,
+          `Salary divisor: ${formatNumber(data.divisor)}`,
+          `Daily salary rate: ${formatCurrency(data.dailyRate)}`,
+          `Days considered for encashment: ${formatNumber(data.effectiveEncashmentDays)}`,
+          `Estimated gross encashment: ${formatCurrency(data.encashmentValue)}`,
+          "",
+          "Note: These are estimates based on the supplied inputs, not confirmation of legal or employer-specific entitlement."
+        ].join("\n");
+      }
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        clearMessage();
+        try {
+          const data = buildCalculation();
+          renderCalculation(data);
+        } catch (error) {
+          showMessage(
+            error instanceof Error
+              ? error.message
+              : "Please review your entries and try again."
+          );
+        }
+      });
+      salaryDivisorSelect.addEventListener(
+        "change",
+        updateCustomDivisorVisibility
+      );
+      annualCapInput.addEventListener("input", updateCapAvailability);
+      applyCapCheckbox.addEventListener("change", () => {
+        if (
+          applyCapCheckbox.checked &&
+          annualCapInput.value.trim() === ""
+        ) {
+          applyCapCheckbox.checked = false;
+          showMessage("Enter an accrual cap before applying it.");
+        } else {
+          clearMessage();
+        }
+      });
+      resetButton.addEventListener("click", () => {
+        window.setTimeout(() => {
+          clearMessage();
+          updateCustomDivisorVisibility();
+          updateCapAvailability();
+          try {
+            renderCalculation(buildCalculation());
+          } catch (error) {
             showMessage(
-              resultMessage,
-              "Your estimated closing balance is negative. Check the opening balance, leave taken, and adjustments.",
-              "error"
-            );
-          } else {
-            showMessage(
-              resultMessage,
-              "Calculation updated successfully.",
-              "success"
+              error instanceof Error
+                ? error.message
+                : "Please review the reset values."
             );
           }
-        } catch (error) {
-          showMessage(formMessage, error.message, "error");
-        }
-      }
-
-      function resetCalculator() {
-        form.reset();
-
-        $("periodLabel").value = "Current leave period";
-        $("daysWorked").value = "240";
-        $("creditRate").value = "20";
-        $("rounding").value = "floor";
-        $("annualCap").value = "";
-        $("openingBalance").value = "10";
-        $("leaveTaken").value = "5";
-        $("adjustments").value = "0";
-        $("monthlySalary").value = "30000";
-        $("salaryDivisor").value = "30";
-        $("customDivisor").value = "30";
-        $("encashmentDays").value = "";
-
-        customDivisorField.hidden = true;
-        clearMessage(formMessage);
-        clearMessage(resultMessage);
-        calculate();
-      }
-
-      async function copySummary() {
-        clearMessage(resultMessage);
-
+        }, 0);
+      });
+      printButton.addEventListener("click", () => {
+        window.print();
+      });
+      copyButton.addEventListener("click", async () => {
         if (!latestSummary) {
-          calculate();
-          if (!latestSummary) return;
+          try {
+            renderCalculation(buildCalculation());
+          } catch (error) {
+            showMessage(
+              error instanceof Error
+                ? error.message
+                : "Calculate your leave before copying the summary."
+            );
+            return;
+          }
         }
-
         try {
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(latestSummary);
           } else {
-            const temporary = document.createElement("textarea");
-            temporary.value = latestSummary;
-            temporary.setAttribute("readonly", "");
-            temporary.style.position = "fixed";
-            temporary.style.opacity = "0";
-            document.body.appendChild(temporary);
-            temporary.select();
-
-            const copied = document.execCommand("copy");
-            temporary.remove();
-
-            if (!copied) {
-              throw new Error("Copy command was not successful.");
+            const textarea = document.createElement("textarea");
+            textarea.value = latestSummary;
+            textarea.setAttribute("readonly", "");
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            const successful = document.execCommand("copy");
+            textarea.remove();
+            if (!successful) {
+              throw new Error("Copy was not successful.");
             }
           }
-
-          showMessage(resultMessage, "Summary copied to clipboard.", "success");
+          copyButton.textContent = "Copied ✓";
+          window.setTimeout(() => {
+            copyButton.innerHTML = "Copy Summary";
+          }, 1800);
         } catch {
           showMessage(
-            resultMessage,
-            "Copy was unavailable. You can use Print / Save PDF to save your results.",
-            "error"
+            "The summary could not be copied automatically. Please use Print / Save PDF instead."
           );
         }
+      });
+      updateCustomDivisorVisibility();
+      updateCapAvailability();
+      try {
+        renderCalculation(buildCalculation());
+      } catch (error) {
+        showMessage(
+          error instanceof Error
+            ? error.message
+            : "Enter your details to calculate your leave."
+        );
       }
-
-      divisorSelect.addEventListener("change", () => {
-        customDivisorField.hidden = divisorSelect.value !== "custom";
-      });
-
-      applyCapCheckbox.addEventListener("change", () => {
-        annualCapInput.setAttribute(
-          "aria-required",
-          applyCapCheckbox.checked ? "true" : "false"
-        );
-      });
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        calculate();
-      });
-
-      $("resetButton").addEventListener("click", resetCalculator);
-      $("copyButton").addEventListener("click", copySummary);
-      $("printButton").addEventListener("click", () => {
-        calculate();
-        if (latestSummary) window.print();
-      });
-
-      const menuToggle = $("menuToggle");
-      const navLinks = $("navLinks");
-
-      menuToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.toggle("open");
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-        menuToggle.textContent = isOpen ? "×" : "☰";
-      });
-
-      navLinks.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open navigation menu");
-          menuToggle.textContent = "☰";
-        });
-      });
-
-      calculate();
     })();
   </script>
 </body>
