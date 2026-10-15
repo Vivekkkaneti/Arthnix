@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Time Card Calculator — ARTHNIX</title>
+  <meta
+    name="description"
+    content="Calculate total work hours, breaks, regular hours, overtime, and estimated pay with the free ARTHNIX Time Card Calculator."
+  >
+  <meta name="theme-color" content="#090909">
+  <link rel="canonical" href="https://arthnix.com/time-card-calculator.html">
+  <link rel="icon" type="image/png" href="/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --surface: #ffffff;
+      --text: #111111;
+      --muted: #6b6b6b;
+      --border: #e5e5e3;
+      --accent: #e53935;
+      --accent-dark: #c62828;
+      --soft-red: #fff0ef;
+      --black: #090909;
+      --radius: 12px;
+      --container: 1160px;
+      --shadow: 0 10px 35px rgba(0, 0, 0, 0.035);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body,
+    input,
+    select,
+    button,
+    textarea {
+      font-family: "DM Sans", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    /* Shared navigation */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(247, 247, 245, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      width: min(var(--container), calc(100% - 48px));
+      min-height: 76px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links > a:not(.nav-cta) {
+      color: #555;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links > a:not(.nav-cta):hover {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 17px;
+      background: var(--black);
+      color: #fff;
+      border: 1px solid var(--black);
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 22px;
+    }
+
+    /* Page intro */
+
+    .page {
+      padding: 66px 0 90px;
+    }
+
+    .page-intro {
+      max-width: 780px;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 17px;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.1);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Manrope", sans-serif;
+      letter-spacing: -1px;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 18px;
+      font-size: clamp(38px, 5.5vw, 60px);
+      font-weight: 800;
+      line-height: 1.08;
+    }
+
+    .heading-accent {
+      color: var(--accent);
+    }
+
+    .page-description {
+      max-width: 690px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    /* Layout */
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      padding: 25px 27px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-header h2 {
+      margin-bottom: 6px;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+    }
+
+    .card-header p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card-body {
+      padding: 25px 27px 28px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.1px;
+    }
+
+    .section-number {
+      display: inline-flex;
+      width: 26px;
+      height: 26px;
+      align-items: center;
+      justify-content: center;
+      background: var(--soft-red);
+      color: var(--accent-dark);
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .form-section + .form-section {
+      margin-top: 28px;
+      padding-top: 27px;
+      border-top: 1px solid var(--border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 16px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #292929;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 45px;
+      padding: 10px 12px;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #dcdcd9;
+      border-radius: 7px;
+      outline: none;
+      font-size: 13px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.09);
+    }
+
+    .field input::placeholder {
+      color: #a1a1a1;
+    }
+
+    .field-help {
+      display: block;
+      margin-top: 6px;
+      color: #888;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .day-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .day-row + .day-row {
+      margin-top: 18px;
+    }
+
+    .time-input {
+      letter-spacing: 0.2px;
+    }
+
+    .break-input {
+      max-width: 100%;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      min-height: 45px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 17px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: #bcbcb8;
+      background: #fafafa;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: #fff;
+      border-color: var(--black);
+    }
+
+    .btn-dark:hover {
+      background: #292929;
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 14px;
+      color: #a51d1a;
+      background: var(--soft-red);
+      border: 1px solid #ffd2d0;
+      border-radius: 7px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* Results */
+
+    .results-card {
+      position: sticky;
+      top: 100px;
+      overflow: hidden;
+    }
+
+    .results-top {
+      padding: 27px;
+      background: var(--black);
+      color: #fff;
+    }
+
+    .results-eyebrow {
+      margin-bottom: 10px;
+      color: #ffaaa7;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .results-top h2 {
+      margin-bottom: 7px;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .results-top p {
+      margin-bottom: 0;
+      color: #bcbcbc;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .total-hours {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 23px;
+    }
+
+    .total-hours strong {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(42px, 5vw, 55px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .total-hours span {
+      color: #c9c9c9;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .results-body {
+      padding: 23px 27px 27px;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid #eeeeec;
+    }
+
+    .result-row:first-child {
+      padding-top: 0;
+    }
+
+    .result-row:last-child {
+      border-bottom: 0;
+    }
+
+    .result-label {
+      color: #666;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .result-value {
+      color: var(--text);
+      text-align: right;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .result-value.red {
+      color: var(--accent-dark);
+    }
+
+    .result-highlight {
+      margin-top: 16px;
+      padding: 15px;
+      background: #fff5f4;
+      border: 1px solid #ffe0de;
+      border-radius: 8px;
+    }
+
+    .result-highlight .result-label {
+      color: #8a3431;
+    }
+
+    .result-highlight .result-value {
+      font-size: 18px;
+    }
+
+    .result-note {
+      margin: 17px 0 0;
+      color: #858585;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .result-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #37a56c;
+      border-radius: 50%;
+    }
+
+    /* Information sections */
+
+    .content-section {
+      margin-top: 62px;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 10px;
+      font-size: clamp(25px, 3vw, 34px);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .section-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-card {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .info-icon {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      background: var(--soft-red);
+      color: var(--accent-dark);
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .info-card h3 {
+      margin-bottom: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .info-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .formula-box {
+      padding: 23px 25px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .formula-box h3 {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .formula-line {
+      margin: 9px 0;
+      padding: 12px 14px;
+      background: #f8f8f6;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .formula-box p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item {
+      padding: 20px 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .faq-item h3 {
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+
+    .faq-item p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* Related tools */
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .related-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 19px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .related-link:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .related-link span {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .related-link strong {
+      color: var(--accent);
+      font-size: 17px;
+    }
+
+    /* Shared footer */
+
+    .site-footer {
+      padding: 60px 0 22px;
+      background: #090909;
+      color: #fff;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 45px;
+    }
+
+    .footer-brand .brand-name {
+      color: #fff;
+    }
+
+    .footer-tagline {
+      max-width: 230px;
+      margin: 17px 0 8px;
+      color: #c1c1c1;
+      font-size: 13px;
+    }
+
+    .footer-powered {
+      color: #858585;
+      font-size: 11px;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 17px;
+      color: #fff;
+      font-family: "DM Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin: 10px 0;
+      color: #a9a9a9;
+      font-size: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: #ff7773;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 21px;
+      border-top: 1px solid #282828;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+    }
+
+    .footer-bottom a {
+      color: #aaa;
+    }
+
+    .footer-bottom a:hover {
+      color: #fff;
+    }
+
+    /* Utility */
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 960px) {
+      .nav-links {
+        gap: 18px;
+      }
+
+      .calculator-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .results-card {
+        position: static;
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 35px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container,
+      .nav-inner {
+        width: min(100% - 32px, var(--container));
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 16px 18px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links > a:not(.nav-cta) {
+        padding: 13px 4px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-cta {
+        margin-top: 13px;
+      }
+
+      .page {
+        padding: 45px 0 65px;
+      }
+
+      h1 {
+        font-size: clamp(35px, 10vw, 48px);
+      }
+
+      .page-description {
+        font-size: 14px;
+      }
+
+      .card-header {
+        padding: 22px 20px 17px;
+      }
+
+      .card-body {
+        padding: 21px 20px 23px;
+      }
+
+      .results-top,
+      .results-body {
+        padding-left: 21px;
+        padding-right: 21px;
+      }
+
+      .info-grid,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-section {
+        margin-top: 48px;
+      }
+
+      .footer-main {
+        gap: 30px 20px;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .form-grid,
+      .day-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .actions .btn-primary {
+        grid-column: 1 / -1;
+      }
+
+      .actions .btn {
+        width: 100%;
+        padding-inline: 10px;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .site-header,
+      .site-footer,
+      .page-intro,
+      .form-card,
+      .content-section,
+      .actions,
+      .result-status {
+        display: none !important;
+      }
+
+      .page {
+        padding: 0;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .calculator-layout {
+        display: block;
+      }
+
+      .results-card {
+        position: static;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      .results-top {
+        background: #fff;
+        color: #111;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .results-top p,
+      .results-eyebrow {
+        color: #555;
+      }
+
+      .total-hours span {
+        color: #555;
+      }
+
+      .results-body {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="ARTHNIX home">
+        <img src="/logo.png" alt="ARTHNIX logo" width="34" height="34">
+        <span class="brand-name">ARTHNIX</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="navLinks"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="/tools.html">Tools</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+        <a class="nav-cta" href="/tools.html">Start Free <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="page-intro">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Free Business &amp; Work Tool
+        </div>
+
+        <h1>
+          Time Card <span class="heading-accent">Calculator.</span>
+        </h1>
+
+        <p class="page-description">
+          Calculate your work hours, unpaid breaks, regular time, overtime,
+          and estimated earnings in one place. Enter your clock-in and
+          clock-out times for each workday to get a clear time card summary.
+        </p>
+      </section>
+
+      <section class="calculator-layout" aria-label="Time card calculator">
+        <div class="card form-card">
+          <div class="card-header">
+            <h2>Enter your work hours</h2>
+            <p>Add your daily time entries and pay details below.</p>
+          </div>
+
+          <div class="card-body">
+            <form id="timeCardForm" novalidate>
+              <section class="form-section">
+                <h3 class="section-label">
+                  <span class="section-number">01</span>
+                  Time card details
+                </h3>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="employeeName">Employee name (optional)</label>
+                    <input
+                      id="employeeName"
+                      name="employeeName"
+                      type="text"
+                      placeholder="Enter name"
+                      autocomplete="name"
+                    >
+                  </div>
+
+                  <div class="field">
+                    <label for="weekStarting">Week starting (optional)</label>
+                    <input id="weekStarting" name="weekStarting" type="date">
+                  </div>
+
+                  <div class="field">
+                    <label for="hourlyRate">Hourly pay rate (₹)</label>
+                    <input
+                      id="hourlyRate"
+                      name="hourlyRate"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="200"
+                      inputmode="decimal"
+                      required
+                    >
+                    <span class="field-help">Used to estimate gross pay.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="regularLimit">Regular hours per week</label>
+                    <input
+                      id="regularLimit"
+                      name="regularLimit"
+                      type="number"
+                      min="0"
+                      max="168"
+                      step="0.25"
+                      value="40"
+                      inputmode="decimal"
+                      required
+                    >
+                    <span class="field-help">Hours above this may count as overtime.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="overtimeMultiplier">Overtime pay multiplier</label>
+                    <select id="overtimeMultiplier" name="overtimeMultiplier">
+                      <option value="1">1× — Regular rate</option>
+                      <option value="1.25">1.25×</option>
+                      <option value="1.5" selected>1.5× — Time and a half</option>
+                      <option value="2">2× — Double time</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="rounding">Time rounding</label>
+                    <select id="rounding" name="rounding">
+                      <option value="exact" selected>Exact minutes</option>
+                      <option value="5">Nearest 5 minutes</option>
+                      <option value="10">Nearest 10 minutes</option>
+                      <option value="15">Nearest 15 minutes</option>
+                    </select>
+                    <span class="field-help">Applied to each day's net hours.</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="form-section">
+                <h3 class="section-label">
+                  <span class="section-number">02</span>
+                  Daily time entries
+                </h3>
+
+                <p class="field-help" style="margin-top:-8px; margin-bottom:18px;">
+                  Use 24-hour time or the time picker. For overnight shifts,
+                  enter a clock-out time earlier than the clock-in time.
+                </p>
+
+                <div id="daysContainer"></div>
+              </section>
+
+              <div class="actions">
+                <button class="btn btn-primary" type="submit">
+                  Calculate Hours <span aria-hidden="true">↗</span>
+                </button>
+                <button class="btn btn-secondary" type="button" id="resetBtn">
+                  Reset
+                </button>
+                <button class="btn btn-secondary" type="button" id="copyBtn">
+                  Copy Summary
+                </button>
+                <button class="btn btn-dark" type="button" id="printBtn">
+                  Print / Save PDF
+                </button>
+              </div>
+
+              <div class="error-message" id="errorMessage" role="alert"></div>
+            </form>
+          </div>
+        </div>
+
+        <aside class="card results-card" aria-live="polite" aria-label="Time card results">
+          <div class="results-top">
+            <div class="results-eyebrow">Your time card summary</div>
+            <h2 id="resultHeading">Weekly work summary</h2>
+            <p id="resultSubheading">Your calculated hours and estimated gross pay appear here.</p>
+
+            <div class="total-hours">
+              <strong id="totalHours">0.00</strong>
+              <span>total hours</span>
+            </div>
+          </div>
+
+          <div class="results-body">
+            <div class="result-row">
+              <span class="result-label">Regular hours</span>
+              <span class="result-value" id="regularHours">0.00 h</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Overtime hours</span>
+              <span class="result-value red" id="overtimeHours">0.00 h</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Total unpaid breaks</span>
+              <span class="result-value" id="totalBreaks">0 min</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Hourly rate</span>
+              <span class="result-value" id="displayRate">₹200.00</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Regular pay</span>
+              <span class="result-value" id="regularPay">₹0.00</span>
+            </div>
+
+            <div class="result-row">
+              <span class="result-label">Overtime pay</span>
+              <span class="result-value" id="overtimePay">₹0.00</span>
+            </div>
+
+            <div class="result-highlight">
+              <div class="result-row" style="padding:0; border:0;">
+                <span class="result-label">Estimated gross pay</span>
+                <span class="result-value red" id="grossPay">₹0.00</span>
+              </div>
+            </div>
+
+            <div class="result-status">
+              <span class="status-dot"></span>
+              <span id="resultStatus">Ready to calculate</span>
+            </div>
+
+            <p class="result-note">
+              This is an estimate based on the values entered. Actual overtime
+              eligibility, pay rates, rounding, breaks, and payroll rules depend
+              on your employer's policy and applicable local law. Taxes and
+              deductions are not included.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            How it works
+          </div>
+          <h2>Understand your time card.</h2>
+          <p>
+            A time card records when you start and finish work, along with
+            unpaid breaks. The calculator totals your net working hours and
+            provides an estimated pay breakdown based on your settings.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-icon" aria-hidden="true">01</div>
+            <h3>Enter clock-in and clock-out</h3>
+            <p>
+              Add the start and finish time for each day you worked. Overnight
+              shifts are supported when the end time falls after midnight.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon" aria-hidden="true">02</div>
+            <h3>Subtract unpaid breaks</h3>
+            <p>
+              Enter the number of unpaid break minutes for each shift. Break
+              time is deducted from the elapsed shift duration.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon" aria-hidden="true">03</div>
+            <h3>Review hours and pay</h3>
+            <p>
+              View total hours, regular hours, overtime hours, and estimated
+              gross earnings. Copy or print your summary for your records.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <h2>Calculation method.</h2>
+          <p>
+            The calculator uses the following general approach. Your workplace
+            may use different rules for overtime, shift premiums, or rounding.
+          </p>
+        </div>
+
+        <div class="formula-box">
+          <h3>How hours and pay are estimated</h3>
+
+          <div class="formula-line">
+            <strong>Elapsed shift time</strong> = clock-out time − clock-in time
+            (with overnight shifts continuing into the next day)
+          </div>
+
+          <div class="formula-line">
+            <strong>Net daily hours</strong> = elapsed shift time − unpaid break time
+          </div>
+
+          <div class="formula-line">
+            <strong>Regular hours</strong> = the lesser of total weekly hours
+            and the configured regular-hours limit
+          </div>
+
+          <div class="formula-line">
+            <strong>Overtime hours</strong> = total weekly hours − regular hours
+          </div>
+
+          <div class="formula-line">
+            <strong>Estimated gross pay</strong> = regular hours × hourly rate
+            + overtime hours × hourly rate × overtime multiplier
+          </div>
+
+          <p>
+            This tool uses a weekly overtime threshold entered by you. Some
+            jurisdictions calculate overtime daily, by pay period, or according
+            to other rules. The estimate does not determine legal entitlement
+            to overtime or replace an employer's official payroll calculation.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <h2>Frequently asked questions.</h2>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>What is a time card calculator?</h3>
+            <p>
+              A time card calculator totals the hours recorded for work shifts.
+              It can account for clock-in and clock-out times, unpaid breaks,
+              regular hours, overtime, and estimated earnings.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can I calculate a shift that ends after midnight?</h3>
+            <p>
+              Yes. Enter the clock-in time and an earlier clock-out time. The
+              calculator treats the clock-out as occurring on the following
+              day. For example, 22:00 to 06:00 represents an eight-hour shift
+              before break deductions.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Are unpaid breaks included in total work hours?</h3>
+            <p>
+              No. The break minutes you enter are subtracted from each shift's
+              elapsed duration. Enter zero if you did not take an unpaid break.
+              Paid-break treatment can vary by employer and local rules.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>How is overtime calculated?</h3>
+            <p>
+              This calculator compares your total weekly net hours against the
+              regular-hours threshold you enter. Hours above that threshold are
+              shown as overtime and multiplied by your selected overtime rate.
+              Your applicable legal or employer overtime rules may differ.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Does estimated gross pay equal my take-home salary?</h3>
+            <p>
+              No. Gross pay is an estimate before taxes, deductions, benefits,
+              allowances, and other payroll adjustments. The actual amount paid
+              may differ.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can I save or share the time card?</h3>
+            <p>
+              Use Copy Summary to copy the calculated details, or choose
+              Print / Save PDF to print the results or save them as a PDF using
+              your browser's print dialog.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Explore more
+          </div>
+          <h2>More tools for everyday work.</h2>
+          <p>
+            Explore other free ARTHNIX tools for salary estimates and business
+            calculations.
+          </p>
+        </div>
+
+        <div class="related-grid">
+          <a class="related-link" href="/salary-per-day-calculator.html">
+            <span>Salary Per Day Calculator</span>
+            <strong aria-hidden="true">↗</strong>
+          </a>
+
+          <a class="related-link" href="/tools/gst-calculator.html">
+            <span>GST Calculator</span>
+            <strong aria-hidden="true">↗</strong>
+          </a>
+
+          <a class="related-link" href="/tools.html">
+            <span>Explore All Tools</span>
+            <strong aria-hidden="true">↗</strong>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="ARTHNIX home">
+            <img src="/logo.png" alt="ARTHNIX logo" width="34" height="34">
+            <span class="brand-name">ARTHNIX</span>
+          </a>
+
+          <p class="footer-tagline">Intelligence for Every Business.</p>
+          <div class="footer-powered">Powered by Alphex AI</div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="/platform.html">Platform</a>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/tools.html">All Tools</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Business Tools</h3>
+          <a href="/tools/gst-calculator.html">GST Calculator</a>
+          <a href="/tools/invoice-generator.html">Invoice Generator</a>
+          <a href="/tools/profit-calculator.html">Profit Calculator</a>
+          <a href="/tools/quotation-generator.html">Quotation Generator</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Information</h3>
+          <a href="/about.html">About</a>
+          <a href="/help.html">Help Centre</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> ARTHNIX. All rights reserved.</p>
+        <p>An independent product brand · Powered by Alphex AI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const form = document.getElementById("timeCardForm");
+      const daysContainer = document.getElementById("daysContainer");
+      const errorMessage = document.getElementById("errorMessage");
+
+      const DAY_NAMES = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ];
+
+      const formatMoney = (value) =>
+        new Intl.NumberFormat("en-IN", {
+          style: "currency",
+          currency: "INR",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(value);
+
+      const formatHours = (minutes) => (minutes / 60).toFixed(2) + " h";
+
+      const formatClock = (minutes) => {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}`;
+      };
+
+      function buildDayRows() {
+        daysContainer.innerHTML = "";
+
+        DAY_NAMES.forEach((day, index) => {
+          const row = document.createElement("div");
+          row.className = "day-row";
+
+          row.innerHTML = `
+            <div class="field">
+              <label for="start-${index}">${day} — Clock in</label>
+              <input
+                class="time-input"
+                id="start-${index}"
+                name="start-${index}"
+                type="time"
+                aria-label="${day} clock-in time"
+              >
+            </div>
+
+            <div class="field">
+              <label for="end-${index}">${day} — Clock out</label>
+              <input
+                class="time-input"
+                id="end-${index}"
+                name="end-${index}"
+                type="time"
+                aria-label="${day} clock-out time"
+              >
+            </div>
+
+            <div class="field full">
+              <label for="break-${index}">${day} — Unpaid break (minutes)</label>
+              <input
+                class="break-input"
+                id="break-${index}"
+                name="break-${index}"
+                type="number"
+                min="0"
+                max="1440"
+                step="1"
+                value="0"
+                inputmode="numeric"
+                aria-label="${day} unpaid break minutes"
+              >
+              <span class="field-help">Leave both time fields blank for a day off.</span>
+            </div>
+          `;
+
+          daysContainer.appendChild(row);
+        });
+      }
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add("show");
+      }
+
+      function clearError() {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
+      }
+
+      function readTime(value) {
+        if (!value) return null;
+        const parts = value.split(":").map(Number);
+        if (parts.length !== 2 || parts.some(Number.isNaN)) return null;
+        return parts[0] * 60 + parts[1];
+      }
+
+      function roundMinutes(minutes, mode) {
+        if (mode === "exact") return minutes;
+        const increment = Number(mode);
+        return Math.round(minutes / increment) * increment;
+      }
+
+      function getEntries() {
+        const rounding = document.getElementById("rounding").value;
+        const entries = [];
+        let totalBreaks = 0;
+
+        for (let index = 0; index < DAY_NAMES.length; index++) {
+          const startValue = document.getElementById(`start-${index}`).value;
+          const endValue = document.getElementById(`end-${index}`).value;
+          const breakValue = document.getElementById(`break-${index}`).value;
+
+          const breakMinutes = breakValue === "" ? 0 : Number(breakValue);
+
+          if (!Number.isFinite(breakMinutes) || breakMinutes < 0 || breakMinutes > 1440) {
+            throw new Error(`${DAY_NAMES[index]}: break minutes must be between 0 and 1440.`);
+          }
+
+          if (!startValue && !endValue) {
+            if (breakMinutes > 0) {
+              throw new Error(`${DAY_NAMES[index]}: enter clock-in and clock-out times for a day with a break.`);
+            }
+            continue;
+          }
+
+          if (!startValue || !endValue) {
+            throw new Error(`${DAY_NAMES[index]}: enter both clock-in and clock-out times.`);
+          }
+
+          const start = readTime(startValue);
+          const end = readTime(endValue);
+
+          if (start === null || end === null) {
+            throw new Error(`${DAY_NAMES[index]}: enter valid clock-in and clock-out times.`);
+          }
+
+          let elapsed = end - start;
+
+          // If clock-out is earlier than clock-in, treat it as an overnight shift.
+          if (elapsed < 0) elapsed += 1440;
+
+          // Equal start and end times are ambiguous; don't assume a full 24-hour shift.
+          if (elapsed === 0) {
+            throw new Error(`${DAY_NAMES[index]}: clock-in and clock-out times are identical. Enter different times.`);
+          }
+
+          if (breakMinutes > elapsed) {
+            throw new Error(`${DAY_NAMES[index]}: unpaid break cannot exceed the shift duration.`);
+          }
+
+          const netMinutes = roundMinutes(elapsed - breakMinutes, rounding);
+
+          entries.push({
+            day: DAY_NAMES[index],
+            start: startValue,
+            end: endValue,
+            elapsedMinutes: elapsed,
+            breakMinutes,
+            netMinutes
+          });
+
+          totalBreaks += breakMinutes;
+        }
+
+        return { entries, totalBreaks };
+      }
+
+      function calculate(event) {
+        if (event) event.preventDefault();
+        clearError();
+
+        try {
+          const rate = Number(document.getElementById("hourlyRate").value);
+          const regularLimit = Number(document.getElementById("regularLimit").value);
+          const overtimeMultiplier = Number(document.getElementById("overtimeMultiplier").value);
+
+          if (!Number.isFinite(rate) || rate < 0) {
+            throw new Error("Enter a valid hourly pay rate of zero or more.");
+          }
+
+          if (!Number.isFinite(regularLimit) || regularLimit < 0 || regularLimit > 168) {
+            throw new Error("Regular weekly hours must be between 0 and 168.");
+          }
+
+          if (!Number.isFinite(overtimeMultiplier) || overtimeMultiplier < 1) {
+            throw new Error("Select a valid overtime multiplier.");
+          }
+
+          const { entries, totalBreaks } = getEntries();
+
+          const totalMinutes = entries.reduce((sum, entry) => sum + entry.netMinutes, 0);
+          const totalHours = totalMinutes / 60;
+          const regularHours = Math.min(totalHours, regularLimit);
+          const overtimeHours = Math.max(0, totalHours - regularLimit);
+
+          const regularPay = regularHours * rate;
+          const overtimePay = overtimeHours * rate * overtimeMultiplier;
+          const grossPay = regularPay + overtimePay;
+
+          document.getElementById("totalHours").textContent = totalHours.toFixed(2);
+          document.getElementById("regularHours").textContent = formatHours(Math.round(regularHours * 60));
+          document.getElementById("overtimeHours").textContent = formatHours(Math.round(overtimeHours * 60));
+          document.getElementById("totalBreaks").textContent = `${totalBreaks} min`;
+          document.getElementById("displayRate").textContent = formatMoney(rate);
+          document.getElementById("regularPay").textContent = formatMoney(regularPay);
+          document.getElementById("overtimePay").textContent = formatMoney(overtimePay);
+          document.getElementById("grossPay").textContent = formatMoney(grossPay);
+
+          const employeeName = document.getElementById("employeeName").value.trim();
+          const weekStarting = document.getElementById("weekStarting").value;
+
+          document.getElementById("resultHeading").textContent =
+            employeeName ? `${employeeName}'s time card` : "Weekly work summary";
+
+          document.getElementById("resultSubheading").textContent =
+            weekStarting
+              ? `Week starting ${weekStarting}. Based on ${entries.length} recorded workday${entries.length === 1 ? "" : "s"}.`
+              : `Based on ${entries.length} recorded workday${entries.length === 1 ? "" : "s"}.`;
+
+          document.getElementById("resultStatus").textContent =
+            entries.length
+              ? "Calculation updated successfully"
+              : "No work shifts entered yet";
+
+          window.timeCardResult = {
+            employeeName,
+            weekStarting,
+            entries,
+            totalMinutes,
+            totalHours,
+            regularHours,
+            overtimeHours,
+            totalBreaks,
+            rate,
+            overtimeMultiplier,
+            regularPay,
+            overtimePay,
+            grossPay
+          };
+        } catch (error) {
+          showError(error.message || "Please check your entries and try again.");
+        }
+      }
+
+      function makeSummary() {
+        const result = window.timeCardResult;
+        if (!result) return "No time card has been calculated yet.";
+
+        const lines = [
+          "ARTHNIX — Time Card Summary",
+          result.employeeName ? `Employee: ${result.employeeName}` : null,
+          result.weekStarting ? `Week starting: ${result.weekStarting}` : null,
+          "",
+          "Daily entries:"
+        ].filter((line) => line !== null);
+
+        if (!result.entries.length) {
+          lines.push("No work shifts entered.");
+        } else {
+          result.entries.forEach((entry) => {
+            lines.push(
+              `${entry.day}: ${entry.start}–${entry.end} | Break: ${entry.breakMinutes} min | Net: ${formatHours(entry.netMinutes)}`
+            );
+          });
+        }
+
+        lines.push(
+          "",
+          `Total hours: ${result.totalHours.toFixed(2)} h`,
+          `Regular hours: ${result.regularHours.toFixed(2)} h`,
+          `Overtime hours: ${result.overtimeHours.toFixed(2)} h`,
+          `Unpaid breaks: ${result.totalBreaks} min`,
+          `Hourly rate: ${formatMoney(result.rate)}`,
+          `Regular pay: ${formatMoney(result.regularPay)}`,
+          `Overtime pay: ${formatMoney(result.overtimePay)}`,
+          `Estimated gross pay: ${formatMoney(result.grossPay)}`,
+          "",
+          "Estimate only. Verify applicable payroll, break, and overtime rules."
+        );
+
+        return lines.join("\n");
+      }
+
+      async function copySummary() {
+        clearError();
+        const summary = makeSummary();
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(summary);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = summary;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            const copied = document.execCommand("copy");
+            textarea.remove();
+
+            if (!copied) throw new Error("Copy is not available in this browser.");
+          }
+
+          document.getElementById("resultStatus").textContent = "Summary copied to clipboard";
+        } catch (error) {
+          showError("Unable to copy automatically. Please try Print / Save PDF instead.");
+        }
+      }
+
+      function resetCalculator() {
+        form.reset();
+        document.getElementById("hourlyRate").value = "200";
+        document.getElementById("regularLimit").value = "40";
+        document.getElementById("overtimeMultiplier").value = "1.5";
+        document.getElementById("rounding").value = "exact";
+
+        clearError();
+        window.timeCardResult = null;
+
+        document.getElementById("resultHeading").textContent = "Weekly work summary";
+        document.getElementById("resultSubheading").textContent =
+          "Your calculated hours and estimated gross pay appear here.";
+        document.getElementById("totalHours").textContent = "0.00";
+        document.getElementById("regularHours").textContent = "0.00 h";
+        document.getElementById("overtimeHours").textContent = "0.00 h";
+        document.getElementById("totalBreaks").textContent = "0 min";
+        document.getElementById("displayRate").textContent = "₹200.00";
+        document.getElementById("regularPay").textContent = "₹0.00";
+        document.getElementById("overtimePay").textContent = "₹0.00";
+        document.getElementById("grossPay").textContent = "₹0.00";
+        document.getElementById("resultStatus").textContent = "Ready to calculate";
+      }
+
+      form.addEventListener("submit", calculate);
+
+      document.getElementById("resetBtn").addEventListener("click", resetCalculator);
+      document.getElementById("copyBtn").addEventListener("click", copySummary);
+      document.getElementById("printBtn").addEventListener("click", () => {
+        calculate();
+        if (!errorMessage.classList.contains("show")) window.print();
+      });
+
+      // Shared responsive navigation behavior.
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        menuToggle.textContent = isOpen ? "×" : "☰";
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation menu");
+          menuToggle.textContent = "☰";
+        });
+      });
+
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+      buildDayRows();
+      calculate();
+    })();
+  </script>
+</body>
+</html>
