@@ -1251,8 +1251,9 @@
                       Authorized signatory
                     </div>
                   </div>
-                  <footer class="invoice-attribution">
+                  <footer class="invoice-attribution" style="display:none">
                     This invoice was generated using Arthnix — Smart Business Suite.
+                    Visit <a href="https://arthnix.vercel.app">arthnix.vercel.app</a> to streamline your finances.
                   </footer>
                 </article>
               </div>
@@ -1629,61 +1630,40 @@
         attribution.style.display = "none";
         form.setAttribute("data-grand-total", String(grandTotal));
       }
-     function printInvoice() {
-  const business = getValue("businessName");
-  const customer = getValue("customerName");
-  const invoiceNumber = getValue("invoiceNumber");
-
-  if (!business || !customer || !invoiceNumber || !getValue("issueDate")) {
-    alert(
-      "Please enter the business name, customer name, invoice number, and issue date before saving the PDF."
-    );
-
-    const missing = !business
-      ? $("businessName")
-      : !customer
-      ? $("customerName")
-      : !invoiceNumber
-      ? $("invoiceNumber")
-      : $("issueDate");
-
-    missing.focus();
-    return;
-  }
-
-  if (!itemsEditor.children.length) {
-    alert("Please add at least one product or service before saving the PDF.");
-    $("addItemButton").focus();
-    return;
-  }
-
-  const attribution = document.querySelector(".invoice-attribution");
-  const oldTitle = document.title;
-  const cleanNumber = invoiceNumber
-    .replace(/[^a-z0-9_-]/gi, "-")
-    .slice(0, 50);
-
-  document.title = "Invoice-" + cleanNumber;
-  attribution.style.display = "block";
-
-  let restored = false;
-
-  function restore() {
-    if (restored) return;
-    restored = true;
-
-    document.title = oldTitle;
-    attribution.style.display = "none";
-    window.removeEventListener("afterprint", restore);
-  }
-
-  window.addEventListener("afterprint", restore);
-
-  window.print();
-
-  // Restore the page if the browser does not fire afterprint.
-  setTimeout(restore, 2000);
-}
+      function printInvoice() {
+        const business = getValue("businessName");
+        const customer = getValue("customerName");
+        const invoiceNumber = getValue("invoiceNumber");
+        if (!business || !customer || !invoiceNumber || !getValue("issueDate")) {
+          alert("Please enter the business name, customer name, invoice number, and issue date before saving the PDF.");
+          const missing = !business ? $("businessName") :
+            !customer ? $("customerName") :
+            !invoiceNumber ? $("invoiceNumber") : $("issueDate");
+          missing.focus();
+          return;
+        }
+        if (!itemsEditor.children.length) {
+          alert("Please add at least one product or service before saving the PDF.");
+          $("addItemButton").focus();
+          return;
+        }
+        const attribution = document.querySelector(".invoice-attribution");
+        attribution.style.display = "block";
+        const oldTitle = document.title;
+        const cleanNumber = invoiceNumber.replace(/[^a-z0-9_-]/gi, "-").slice(0, 50);
+        document.title = "Invoice-" + cleanNumber;
+        const restore = () => {
+          document.title = oldTitle;
+          attribution.style.display = "none";
+          window.removeEventListener("afterprint", restore);
+        };
+        window.addEventListener("afterprint", restore);
+        window.print();
+        // Fallback for browsers that do not fire afterprint reliably.
+        setTimeout(() => {
+          if (document.title !== oldTitle) restore();
+        }, 2000);
+      }
       function resetForm() {
         form.reset();
         itemsEditor.innerHTML = "";
