@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARTHNIX OS — Integrated ERP/HRMS/POS</title>
+  <title>ARTHNIX — Business OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,14 +12,14 @@
       --black: #090909;
       --sidebar-bg: #111111;
       --white: #ffffff;
-      --bg-light: #f4f7f9;
-      --text-main: #1a1a1a;
+      --bg-light: #f8fafc;
+      --text-main: #1e293b;
       --text-muted: #64748b;
       --border: #e2e8f0;
       --red: #ed3434;
       --green: #10b981;
       --blue: #3b82f6;
-      --sidebar-width: 260px;
+      --sidebar-width: 280px;
       --header-height: 64px;
     }
 
@@ -28,19 +28,93 @@
       font-family: "DM Sans", sans-serif;
       background-color: var(--bg-light);
       color: var(--text-main);
-      display: flex;
       height: 100vh;
       overflow: hidden;
     }
 
-    /* SIDEBAR */
+    /* --- ONBOARDING UI --- */
+    #onboarding-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+    .onboarding-card {
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      border: 1px solid var(--border);
+    }
+    .onboarding-card h2 { font-family: "Manrope"; font-size: 28px; margin-bottom: 10px; }
+    .onboarding-card p { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .service-opt {
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .service-opt:hover { border-color: var(--red); }
+    .service-opt.selected {
+      border-color: var(--red);
+      background: #fffafa;
+      color: var(--red);
+    }
+    .service-opt input { display: none; }
+
+    .btn-next {
+      width: 100%;
+      padding: 14px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-next:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+    /* --- DASHBOARD UI (REAL PRODUCT) --- */
+    .app-shell { display: none; height: 100vh; width: 100vw; }
     .sidebar {
       width: var(--sidebar-width);
       background: var(--sidebar-bg);
       color: white;
       display: flex;
       flex-direction: column;
-      transition: all 0.3s ease;
     }
     .sidebar-brand {
       height: var(--header-height);
@@ -54,7 +128,7 @@
     .nav-group { padding: 24px 12px; flex-grow: 1; overflow-y: auto; }
     .nav-label {
       font-size: 10px; font-weight: 700; color: #555;
-      text-transform: uppercase; margin-bottom: 10px; padding-left: 12px; display: block;
+      text-transform: uppercase; margin-bottom: 12px; padding-left: 12px; display: block;
     }
     .nav-item {
       display: flex; align-items: center; padding: 12px;
@@ -65,7 +139,6 @@
     .nav-item.active { color: white; background: var(--red); }
     .nav-item span { margin-right: 12px; font-size: 18px; }
 
-    /* MAIN WRAPPER */
     .main-wrapper { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
     .top-bar {
       height: var(--header-height); background: white; border-bottom: 1px solid var(--border);
@@ -73,19 +146,17 @@
     }
     .biz-info { display: flex; align-items: center; gap: 12px; }
     .biz-name { font-family: "Manrope"; font-weight: 700; font-size: 16px; }
-    .biz-type-badge { 
+    .biz-badge { 
       padding: 2px 8px; background: #f1f5f9; border: 1px solid var(--border); 
       border-radius: 4px; font-size: 11px; font-weight: 600; color: var(--text-muted);
     }
 
-    /* CONTENT VIEW */
     .view-container { padding: 32px; overflow-y: auto; height: calc(100vh - var(--header-height)); }
     .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
     .page-header h1 { font-family: "Manrope"; font-size: 26px; font-weight: 700; }
 
-    /* KPI CARDS */
     .kpi-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px; margin-bottom: 32px;
     }
     .kpi-card {
@@ -93,11 +164,9 @@
       border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
     .kpi-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-    .kpi-value { font-family: "Manrope"; font-size: 24px; font-weight: 800; margin: 8px 0; }
-    .kpi-trend { font-size: 12px; font-weight: 600; }
-    .up { color: var(--green); }
+    .kpi-value { font-family: "Manrope"; font-size: 26px; font-weight: 800; margin: 8px 0; }
+    .kpi-trend { font-size: 12px; font-weight: 600; color: var(--green); }
 
-    /* TABLES & DATA */
     .data-card { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
     .card-header {
       padding: 16px 24px; border-bottom: 1px solid var(--border);
@@ -106,302 +175,234 @@
     table { width: 100%; border-collapse: collapse; font-size: 14px; }
     th { background: #fcfcfc; padding: 12px 24px; text-align: left; color: var(--text-muted); font-size: 12px; border-bottom: 1px solid var(--border); }
     td { padding: 14px 24px; border-bottom: 1px solid var(--border); }
-    
     .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
     .badge-success { background: #e7f5ed; color: var(--green); }
-    .badge-warn { background: #fff4e6; color: #c58a23; }
-    .badge-danger { background: #ffeef0; color: var(--red); }
-
-    /* POS INTERFACE (SPECIAL) */
-    .pos-grid { display: grid; grid-template-columns: 1fr 350px; gap: 20px; height: 600px; }
-    .pos-products { 
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
-      gap: 15px; overflow-y: auto; padding: 10px;
-    }
-    .product-item {
-      background: white; border: 1px solid var(--border); padding: 15px;
-      border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s;
-    }
-    .product-item:hover { border-color: var(--red); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .pos-cart { 
-      background: white; border: 1px solid var(--border); 
-      border-radius: 12px; display: flex; flex-direction: column; 
-    }
-    .cart-items { flex-grow: 1; overflow-y: auto; padding: 20px; }
-    .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: #fcfcfc; }
-
-    /* SWITCHER MODAL */
-    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; place-items: center; z-index: 1000; }
-    .modal { background: white; width: 500px; padding: 32px; border-radius: 16px; }
-    .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-    .type-btn { padding: 15px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-weight: 500; }
-    .type-btn:hover { border-color: var(--red); background: #fffafa; }
   </style>
 </head>
 <body>
 
-  <aside class="sidebar">
-    <div class="sidebar-brand"><span>ARTHNIX OS</span></div>
-    <div class="nav-group" id="sidebar-nav">
-      <!-- Nav items injected by JS based on industry -->
-    </div>
-    <div style="padding: 20px; border-top: 1px solid #222;">
-      <button class="btn-action" style="width: 100%; padding: 12px; background: var(--red); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 700;" onclick="openSwitcher()">Change Industry</button>
-    </div>
-  </aside>
-
-  <div class="main-wrapper">
-    <header class="top-bar">
-      <div class="biz-info">
-        <span class="biz-name" id="biz-name">Example Business Ltd.</span>
-        <span class="biz-type-badge" id="biz-type">Retail</span>
+  <!-- STEP 1: ONBOARDING SCREEN -->
+  <div id="onboarding-screen">
+    <div class="onboarding-card" id="step-1">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Setup Account</div>
+      <h2>Welcome to ARTHNIX</h2>
+      <p>Let's configure your business workspace for the first time.</p>
+      
+      <div class="form-group">
+        <label>Company Name</label>
+        <input type="text" id="reg-name" placeholder="e.g. Apex Solutions Ltd.">
       </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <span class="biz-type-badge" style="background: #fff0f0; color: var(--red);">Free Plan</span>
-        <div style="width: 32px; height: 32px; background: #ddd; border-radius: 50%;"></div>
+      <div class="form-group">
+        <label>Business Type</label>
+        <select id="reg-type">
+          <option value="Retail">Retail & Shops</option>
+          <option value="Service">Service Business</option>
+          <option value="Restaurant">Restaurant & Café</option>
+          <option value="Agency">Agency / Freelance</option>
+          <option value="Manufacturing">Manufacturing</option>
+        </select>
       </div>
-    </header>
+      <div class="form-group">
+        <label>Company Scale</label>
+        <select id="reg-scale">
+          <option value="Solo">Solo / Micro</option>
+          <option value="Small">Small (2-10 Employees)</option>
+          <option value="Medium">Medium (11-50 Employees)</option>
+          <option value="Large">Large (50+ Employees)</option>
+        </select>
+      </div>
+      <button class="btn-next" onclick="goToStep2()">Continue to Services →</button>
+    </div>
 
-    <div class="view-container" id="main-view">
-      <!-- App Content Injected Here -->
+    <div class="onboarding-card" id="step-2" style="display: none;">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Customize Workspace</div>
+      <h2>Select Your Services</h2>
+      <p>Which modules do you need? You can add more later as you grow.</p>
+      
+      <div class="service-grid">
+        <label class="service-opt"><input type="checkbox" value="erp"> <span>ERP Core</span></label>
+        <label class="service-opt"><input type="checkbox" value="hrms"> <span>HRMS & Payroll</span></label>
+        <label class="service-opt"><input type="checkbox" value="crm"> <span>CRM & Sales</span></label>
+        <label class="service-opt"><input type="checkbox" value="inv"> <span>Inventory Mgmt</span></label>
+        <label class="service-opt"><input type="checkbox" value="fin"> <span>Finance & Reports</span></label>
+        <label class="service-opt"><input type="checkbox" value="invoice"> <span>Invoicing/Quotes</span></label>
+        <label class="service-opt"><input type="checkbox" value="ai"> <span>AI Assistance</span></label>
+        <label class="service-opt"><input type="checkbox" value="workflow"> <span>Industry Workflows</span></label>
+      </div>
+      <button class="btn-next" onclick="completeRegistration()">Launch My Workspace 🚀</button>
     </div>
   </div>
 
-  <div class="overlay" id="switcher-overlay">
-    <div class="modal">
-      <h2 style="font-family: 'Manrope';">Select Business Mode</h2>
-      <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">This will switch the entire OS logic (ERP $\rightarrow$ POS $\rightarrow$ HRMS).</p>
-      <div class="type-grid">
-        <div class="type-btn" onclick="setIndustry('retail')">Retail (POS + Inventory)</div>
-        <div class="type-btn" onclick="setIndustry('restaurant')">Restaurant (POS + Kitchen)</div>
-        <div class="type-btn" onclick="setIndustry('service')">Service (CRM + Projects)</div>
-        <div class="type-btn" onclick="setIndustry('hr')">Small Team (HRMS + Payroll)</div>
-        <div class="type-btn" onclick="setIndustry('mfg')">Manufacturing (ERP + SCM)</div>
+  <!-- STEP 2: REAL PRODUCT SHELL -->
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand"><span>ARTHNIX OS</span></div>
+      <div class="nav-group" id="dynamic-nav">
+        <!-- Nav injected by JS based on selected services -->
       </div>
-      <button onclick="closeSwitcher()" style="margin-top: 20px; width: 100%; padding: 10px; border: none; background: none; cursor: pointer; color: var(--text-muted);">Cancel</button>
+      <div style="padding: 20px; border-top: 1px solid #222;">
+        <button class="btn-action" style="width: 100%; padding: 10px; background: #222; color: white; border: none; border-radius: 8px; cursor: pointer;" onclick="logout()">Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="biz-info">
+          <span class="biz-name" id="display-biz-name">Company Name</span>
+          <span class="biz-badge" id="display-biz-type">Industry</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <span class="biz-badge" style="background: #fff0f0; color: var(--red);">Free Plan</span>
+          <div style="width: 32px; height: 32px; background: #ddd; border-radius: 50%;"></div>
+        </div>
+      </header>
+
+      <div class="view-container" id="view-area">
+        <!-- Content injected here -->
+      </div>
     </div>
   </div>
 
   <script>
-    // --- REAL SYSTEM CONFIGURATION ---
-    const INDUSTRY_CONFIG = {
-      retail: {
-        name: "Retail & Shops",
-        nav: [
-          { label: "CORE", items: [{ id: 'dash', name: 'Dashboard', icon: '⌂' }, { id: 'pos', name: 'Point of Sale', icon: '🛒' }] },
-          { label: "OPERATIONS", items: [{ id: 'inv', name: 'Inventory', icon: '▦' }, { id: 'sales', name: 'Sales Logs', icon: '▤' }] },
-          { label: "MANAGEMENT", items: [{ id: 'cust', name: 'Customers', icon: '👤' }, { id: 'settings', name: 'Settings', icon: '⚙' }] }
-        ],
-        dashboard: {
-          kpis: [
-            { label: "Today's Sales", val: "₹12,400", trend: "up", trendVal: "↑ 8% vs yesterday" },
-            { label: "Stock Value", val: "₹4,50,000", trend: "neutral", trendVal: "Across 240 SKUs" },
-            { label: "Low Stock Alerts", val: "12", trend: "down", trendVal: "Requires reorder" }
-          ],
-          table: { title: "Recent Sales", cols: ['ID', 'Item', 'Qty', 'Total', 'Status'], data: [
-            ['#101', 'Office Chair', '2', '₹5,000', 'Paid'],
-            ['#102', 'Desk Lamp', '1', '₹1,200', 'Paid'],
-            ['#103', 'Wireless Mouse', '5', '₹4,000', 'Pending'],
-          ]}
-        }
-      },
-      restaurant: {
-        name: "Restaurant & Café",
-        nav: [
-          { label: "CORE", items: [{ id: 'dash', name: 'Dashboard', icon: '⌂' }, { id: 'pos', name: 'Order Entry (POS)', icon: '🍔' }] },
-          { label: "OPERATIONS", items: [{ id: 'kot', name: 'Kitchen (KOT)', icon: '🔥' }, { id: 'inv', name: 'Ingredients', icon: '🥦' }] },
-          { label: "MANAGEMENT", items: [{ id: 'staff', name: 'Staff Shifts', icon: '🕒' }, { id: 'settings', name: 'Settings', icon: '⚙' }] }
-        ],
-        dashboard: {
-          kpis: [
-            { label: "Table Occupancy", val: "75%", trend: "up", trendVal: "Peak hour active" },
-            { label: "Avg Order Value", val: "₹450", trend: "neutral", trendVal: "Last 30 days" },
-            { label: "Kitchen Delay", val: "14 min", trend: "down", trendVal: "Average wait time" }
-          ],
-          table: { title: "Active Tables", cols: ['Table', 'Guest', 'Order Total', 'Time', 'Status'], data: [
-            ['T-1', '4 Pax', '₹1,200', '20m', 'Eating'],
-            ['T-4', '2 Pax', '₹800', '45m', 'Billing'],
-            ['T-8', '1 Pax', '₹300', '10m', 'Ordering'],
-          ]}
-        }
-      },
-      hr: {
-        name: "Small Teams / HRMS",
-        nav: [
-          { label: "CORE", items: [{ id: 'dash', name: 'HR Overview', icon: '⌂' }, { id: 'emp', name: 'Employee Directory', icon: '👥' }] },
-          { label: "PAYROLL", items: [{ id: 'sal', name: 'Salary Slips', icon: '₹' }, { id: 'tax', name: 'Tax/PF', icon: '📄' }] },
-          { label: "ATTENDANCE", items: [{ id: 'att', name: 'Daily Logs', icon: '📅' }, { id: 'leave', name: 'Leave Requests', icon: '🏖️' }] }
-        ],
-        dashboard: {
-          kpis: [
-            { label: "Total Headcount", val: "24", trend: "neutral", trendVal: "3 New hires this month" },
-            { label: "Present Today", val: "21", trend: "up", trendVal: "87.5% Attendance" },
-            { label: "Pending Leaves", val: "5", trend: "down", trendVal: "Requires Approval" }
-          ],
-          table: { title: "Attendance Log", cols: ['Emp ID', 'Name', 'Check-in', 'Status', 'Hours'], data: [
-            ['E001', 'Rahul S.', '09:00 AM', 'Present', '8h'],
-            ['E002', 'Sana K.', '09:15 AM', 'Late', '7.5h'],
-            ['E003', 'Vikram P.', '-', 'Absent', '0h'],
-          ]}
-        }
-      },
-      mfg: {
-        name: "Manufacturing ERP",
-        nav: [
-          { label: "SUPPLY CHAIN", items: [{ id: 'dash', name: 'Plant Overview', icon: '⌂' }, { id: 'raw', name: 'Raw Materials', icon: '📦' }, { id: 'sup', name: 'Suppliers', icon: '🚛' }] },
-          { label: "PRODUCTION", items: [{ id: 'line', name: 'Assembly Line', icon: '⚙' }, { id: 'qc', name: 'Quality Control', icon: '✅' }] },
-          { label: "SALES", items: [{ id: 'dist', name: 'Distribution', icon: '🚚' }, { id: 'inv', name: 'Finished Goods', icon: '🏭' }] }
-        ],
-        dashboard: {
-          kpis: [
-            { label: "Production Yield", val: "98.2%", trend: "up", trendVal: "Efficiency ↑ 1.2%" },
-            { label: "Pending POs", val: "14", trend: "down", trendVal: "Raw material shortage" },
-            { label: "Warehouse Space", val: "62%", trend: "neutral", trendVal: "Utilized" }
-          ],
-          table: { title: "Production Queue", cols: ['Batch ID', 'Product', 'Stage', 'Est. Completion', 'Status'], data: [
-            ['B-901', 'Steel Valve', 'Milling', '2 hours', 'Active'],
-            ['B-902', 'Iron Pipe', 'Coating', '5 hours', 'Waiting'],
-            ['B-903', 'Gear Set', 'QC', '1 hour', 'Review'],
-          ]}
-        }
+    // --- SERVICE TO NAVIGATION MAPPING ---
+    const SERVICE_MAP = {
+      erp: { label: "ERP Core", icon: "⌂", group: "Core" },
+      hrms: { label: "HR & Payroll", icon: "👥", group: "People" },
+      crm: { label: "CRM & Sales", icon: "🤝", group: "Growth" },
+      inv: { label: "Inventory", icon: "📦", group: "Operations" },
+      fin: { label: "Finance", icon: "₹", group: "Operations" },
+      invoice: { label: "Billing", icon: "📄", group: "Growth" },
+      ai: { label: "AI Assistant", icon: "✳", group: "Intelligence" },
+      workflow: { label: "Workflows", icon: "⚙", group: "Operations" }
+    };
+
+    // --- APP STATE ---
+    let userState = {
+      isRegistered: false,
+      company: {},
+      services: []
+    };
+
+    // --- ONBOARDING LOGIC ---
+    function goToStep2() {
+      const name = document.getElementById('reg-name').value;
+      if(!name) return alert("Please enter company name");
+      
+      document.getElementById('step-1').style.display = 'none';
+      document.getElementById('step-2').style.display = 'block';
+    }
+
+    // Handle service selection visual
+    document.querySelectorAll('.service-opt').forEach(opt => {
+      opt.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        this.querySelector('input').checked = this.classList.contains('selected');
+      });
+    });
+
+    function completeRegistration() {
+      const selectedServices = [];
+      document.querySelectorAll('.service-opt input:checked').forEach(i => selectedServices.push(i.value));
+      
+      if(selectedServices.length === 0) return alert("Please select at least one service");
+
+      userState = {
+        isRegistered: true,
+        company: {
+          name: document.getElementById('reg-name').value,
+          type: document.getElementById('reg-type').value,
+          scale: document.getElementById('reg-scale').value
+        },
+        services: selectedServices
+      };
+
+      localStorage.setItem('arthnix_user', JSON.stringify(userState));
+      initApp();
+    }
+
+    // --- APP ENGINE ---
+    function initApp() {
+      const savedUser = localStorage.getItem('arthnix_user');
+      if (savedUser) {
+        userState = JSON.parse(savedUser);
+        document.getElementById('onboarding-screen').style.display = 'none';
+        document.getElementById('app-shell').style.display = 'flex';
+        
+        // Set Header
+        document.getElementById('display-biz-name').innerText = userState.company.name;
+        document.getElementById('display-biz-type').innerText = userState.company.type;
+        
+        renderSidebar();
+        loadModule('erp'); // Default start
       }
-    };
-
-    let state = {
-      industry: 'retail',
-      activeModule: 'dash'
-    };
-
-    function openSwitcher() { document.getElementById('switcher-overlay').style.display = 'grid'; }
-    function closeSwitcher() { document.getElementById('switcher-overlay').style.display = 'none'; }
-
-    function setIndustry(type) {
-      state.industry = type;
-      const config = INDUSTRY_CONFIG[type];
-      document.getElementById('biz-type').innerText = config.name;
-      document.getElementById('biz-name').innerText = config.name + " Enterprise Ltd.";
-      closeSwitcher();
-      renderSidebar();
-      loadModule('dash');
     }
 
     function renderSidebar() {
-      const nav = document.getElementById('sidebar-nav');
-      const config = INDUSTRY_CONFIG[state.industry];
+      const nav = document.getElementById('dynamic-nav');
+      const services = userState.services;
       
+      // Group services
+      const groups = {};
+      services.forEach(sId => {
+        const s = SERVICE_MAP[sId];
+        if(!groups[s.group]) groups[s.group] = [];
+        groups[s.group].push({ id: sId, ...s });
+      });
+
       let html = '';
-      config.nav.forEach(group => {
-        html += `<span class="nav-label">${group.label}</span>`;
-        group.items.forEach(item => {
-          html += `<a class="nav-item ${state.activeModule === item.id ? 'active' : ''}" onclick="loadModule('${item.id}')">
-            <span>${item.icon}</span> ${item.name}
+      for (let groupName in groups) {
+        html += `<span class="nav-label">${groupName}</span>`;
+        groups[groupName].forEach(item => {
+          html += `<a class="nav-item" onclick="loadModule('${item.id}')">
+            <span>${item.icon}</span> ${item.label}
           </a>`;
         });
-      });
+      }
       nav.innerHTML = html;
     }
 
     function loadModule(modId) {
-      state.activeModule = modId;
-      renderSidebar();
-      const view = document.getElementById('main-view');
-      const config = INDUSTRY_CONFIG[state.industry];
-
-      if (modId === 'dash') {
-        renderDashboard(config);
-      } else if (modId === 'pos') {
-        renderPOS();
-      } else {
-        renderGenericModule(modId);
-      }
-    }
-
-    function renderDashboard(config) {
-      const view = document.getElementById('main-view');
-      const data = config.dashboard;
-
-      let kpis = data.kpis.map(k => `
-        <div class="kpi-card">
-          <div class="kpi-label">${k.label}</div>
-          <div class="kpi-value">${k.val}</div>
-          <div class="kpi-trend ${k.trend}">${k.trendVal}</div>
-        </div>
-      `).join('');
-
-      let rows = data.table.data.map(row => `
-        <tr>${row.map((cell, i) => {
-          if(i === 4) return `<td><span class="badge ${cell === 'Paid' || cell === 'Present' || cell === 'Active' ? 'badge-success' : 'badge-warn'}">${cell}</span></td>`;
-          return `<td>${cell}</td>`;
-        }).join('')}</tr>
-      `).join('');
+      const view = document.getElementById('view-area');
+      
+      // Simple module rendering logic
+      const moduleTitles = {
+        erp: "ERP Overview", hrms: "HR & Payroll", crm: "Customer Management",
+        inv: "Inventory Control", fin: "Financial Reports", invoice: "Billing & Quotes",
+        ai: "AI Intelligence", workflow: "Industry Workflows"
+      };
 
       view.innerHTML = `
         <div class="page-header">
-          <div><h1>${config.name} Dashboard</h1><p>Real-time operational intelligence</p></div>
-          <button class="btn-action btn-primary" style="padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; background: var(--red); color: white; font-weight: 600;">Export Report</button>
+          <div>
+            <h1>${moduleTitles[modId] || 'Module'}</h1>
+            <p>Managing ${modId} for ${userState.company.name}</p>
+          </div>
+          <button class="btn-next" style="width: auto; padding: 10px 20px;">+ Add New Record</button>
         </div>
-        <div class="kpi-grid">${kpis}</div>
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="kpi-label">Status</div><div class="kpi-value">Active</div><div class="kpi-trend">Operational</div></div>
+          <div class="kpi-card"><div class="kpi-label">Efficiency</div><div class="kpi-value">94%</div><div class="kpi-trend">↑ 2% this week</div></div>
+          <div class="kpi-card"><div class="kpi-label">Alerts</div><div class="kpi-value">0</div><div class="kpi-trend">No issues</div></div>
+        </div>
         <div class="data-card">
-          <div class="card-header"><h3>${data.table.title}</h3><button class="btn-action" style="border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;">View All</button></div>
+          <div class="card-header"><h3>Recent Activity</h3></div>
           <table>
-            <thead><tr>${data.table.cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
-            <tbody>${rows}</tbody>
+            <thead><tr><th>Date</th><th>Transaction</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>2023-10-25</td><td>System Initialized</td><td>-</td><td><span class="badge badge-success">Completed</span></td></tr>
+              <tr><td>2023-10-25</td><td>Workspace Configured</td><td>-</td><td><span class="badge badge-success">Completed</span></td></tr>
+            </tbody>
           </table>
         </div>
       `;
     }
 
-    function renderPOS() {
-      const view = document.getElementById('main-view');
-      view.innerHTML = `
-        <div class="page-header">
-          <h1>Point of Sale (POS)</h1>
-          <p>Fast checkout and billing</p>
-        </div>
-        <div class="pos-grid">
-          <div class="pos-products">
-            <div class="product-item"><strong>Item A</strong><br>₹450</div>
-            <div class="product-item"><strong>Item B</strong><br>₹1,200</div>
-            <div class="product-item"><strong>Item C</strong><br>₹150</div>
-            <div class="product-item"><strong>Item D</strong><br>₹2,100</div>
-            <div class="product-item"><strong>Item E</strong><br>₹800</div>
-            <div class="product-item"><strong>Item F</strong><br>₹300</div>
-          </div>
-          <div class="pos-cart">
-            <div class="card-header"><h3>Current Cart</h3></div>
-            <div class="cart-items">
-              <div style="display:flex; justify-content:space-between; font-size: 14px; margin-bottom: 10px;">
-                <span>Item B x 1</span><strong>₹1,200</strong>
-              </div>
-            </div>
-            <div class="cart-footer">
-              <div style="display:flex; justify-content:space-between; font-weight: 700; margin-bottom: 15px; font-size: 18px;">
-                <span>Total</span><span>₹1,200</span>
-              </div>
-              <button class="btn-action btn-primary" style="width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;">Complete Payment</button>
-            </div>
-          </div>
-        </div>
-      `;
+    function logout() {
+      localStorage.removeItem('arthnix_user');
+      location.reload();
     }
 
-    function renderGenericModule(modId) {
-      const view = document.getElementById('main-view');
-      view.innerHTML = `
-        <div class="page-header">
-          <h1>${modId.toUpperCase()} Module</h1>
-          <p>This module is currently active for ${INDUSTRY_CONFIG[state.industry].name}.</p>
-        </div>
-        <div class="data-card" style="padding: 40px; text-align: center; color: var(--text-muted);">
-          <div style="font-size: 48px; margin-bottom: 20px;">⚙️</div>
-          <h3>Module Interface Loading...</h3>
-          <p>This is where the real database tables for ${modId} would be rendered.</p>
-        </div>
-      `;
-    }
-
-    // INIT
-    window.onload = () => setIndustry('retail');
+    window.onload = initApp;
   </script>
 </body>
 </html>
